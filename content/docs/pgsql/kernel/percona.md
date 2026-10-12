@@ -9,10 +9,10 @@ categories: [Concept]
 
 [Percona Postgres](https://www.percona.com/postgresql/software/postgresql-distribution) is a patched Postgres kernel with [`pg_tde`](https://docs.percona.com/pg-tde/index.html) (Transparent Data Encryption) extension.
 
-Starting with v4.4.0, Pigsty packages Percona PostgreSQL under the private `/usr/pgtde-$v`; v4.5.0 keeps this layout
-prefix (`/usr/pgtde-18` for PostgreSQL 18). The `pgtde` package alias installs
-both the kernel package and its contrib package, including `pg_tde`, PostGIS,
-pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
+From v4.4.0, Pigsty installs Percona PostgreSQL under the private prefix `/usr/pgtde-$v`.
+Version v4.5.0 keeps this layout, with `/usr/pgtde-18` for PostgreSQL 18.
+The `pgtde` package alias installs both the kernel package and its contrib package.
+These packages include `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
 
 - [Performance Test for Percona Transparent Data Encryption (TDE)](https://andreas.scherbaum.la/post/2025-06-30_performance-test-for-percona-transparent-data-encryption-tde/)
 
@@ -35,7 +35,7 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 
 ## Configuration
 
-The following parameters need to be adjusted to deploy a Percona cluster:
+To deploy a Percona cluster, adjust these parameters:
 
 ```yaml
 pg-meta:
@@ -62,7 +62,7 @@ pg-meta:
     pg_libs: 'pg_tde, pgaudit, pg_stat_statements, pg_stat_monitor, auto_explain'
 ```
 
-The `pgtde` packages are delivered by Pigsty's `pgsql` repository module.
+Pigsty's `pgsql` repository module supplies the `pgtde` packages.
 The legacy `percona` module is not required by this template.
 
 
@@ -70,14 +70,15 @@ The legacy `percona` module is not required by this template.
 
 ## Available Extensions
 
-The Percona Postgres kernel has **73** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The Percona Postgres kernel has **73** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|
-| [address_standardizer](/ext/e/address_standardizer) | `3.5.7` | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| [address_standardizer](/ext/e/address_standardizer) | `3.5.7` | Parses an address into its elements. Usually supports address normalization for geocoding. |
 | [address_standardizer_data_us](/ext/e/address_standardizer_data_us) | `3.5.7` | Address Standardizer US dataset example |
 | [pg_repack](/ext/e/pg_repack) | `1.5.3` | Reorganize tables in PostgreSQL databases with minimal locks |
-| [pg_stat_monitor](/ext/e/pg_stat_monitor) | `2.3.2` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
+| [pg_stat_monitor](/ext/e/pg_stat_monitor) | `2.3.2` | Monitors PostgreSQL query performance. Based on the PostgreSQL contrib module pg_stat_statements. Provides aggregated statistics, client information, execution plans and plan details, and histogram information. |
 | [pg_tde](/ext/e/pg_tde) | `2.2.1` | pg_tde access method |
 | [pgaudit](/ext/e/pgaudit) | `18.0` | provides auditing functionality |
 | [postgis](/ext/e/postgis) | `3.5.7` | PostGIS geometry and geography spatial types and functions |

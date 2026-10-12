@@ -6,7 +6,7 @@ icon: fa-solid fa-table-cells
 categories: [Reference]
 ---
 
-The `app/teable` configuration template provides a reference configuration for deploying Teable open-source no-code database, using Pigsty-managed PostgreSQL as the database.
+The `app/teable` template provides a reference configuration for the Teable open-source no-code database. It uses PostgreSQL managed by Pigsty.
 
 
 --------
@@ -40,7 +40,7 @@ Source: [`pigsty/conf/app/teable.yml`](https://github.com/pgsty/pigsty/blob/main
 
 ## Explanation
 
-The `app/teable` template provides a one-click deployment solution for Teable open-source no-code database.
+The `app/teable` template provides one-click deployment of the Teable open-source no-code database.
 
 **What is Teable**:
 - Open-source Airtable alternative

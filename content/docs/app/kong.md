@@ -9,7 +9,7 @@ categories: [Reference]
 
 [Kong](https://konghq.com/) is an open-source API gateway.
 
-Pigsty's `app/kong` template stores configuration in PostgreSQL and runs a one-time migration job (`kong-migration`) automatically.
+Pigsty's `app/kong` template stores configuration in PostgreSQL. It automatically runs the one-time `kong-migration` job.
 
 ## Quick Start
 

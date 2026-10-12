@@ -6,7 +6,7 @@ icon: fa-solid fa-layer-group
 categories: [Reference]
 ---
 
-`demo/saas` is a legacy feature-rich single-node example with predefined business users, databases, and application entrypoints. It demonstrates how PostgreSQL, Silo, Redis, Docker, and the portal can be combined.
+`demo/saas` is a legacy single-node example with many features. It includes predefined business users, databases, and application entrypoints. It demonstrates how to combine PostgreSQL, Silo, Redis, Docker, and the portal.
 
 
 --------
@@ -36,6 +36,6 @@ Source: [`pigsty/conf/demo/saas.yml`](https://github.com/pgsty/pigsty/blob/main/
 
 ## Explanation
 
-The template contains placeholder database users and databases for Grafana, Bytebase, Kong, Gitea, Wiki, NocoDB, and Odoo. It uses Silo as the pgBackRest repository and includes a Redis replica example and multiple portal domains.
+The template contains placeholder database users and databases for Grafana, Bytebase, Kong, Gitea, Wiki, NocoDB, and Odoo. It uses Silo as the pgBackRest repository. It also includes a Redis replica example and multiple portal domains.
 
-This compatibility/reference bundle does not install every listed application automatically. For new deployments, prefer [`rich`](/docs/conf/rich/) plus the relevant `app/*` template. Remove unused users, databases, and entrypoints and replace all passwords first.
+This compatibility/reference bundle does not install every listed application automatically. For new deployments, prefer [`rich`](/docs/conf/rich/) plus the relevant `app/*` template. First, remove unused users, databases, and entrypoints. Replace all passwords.

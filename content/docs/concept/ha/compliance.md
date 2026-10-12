@@ -11,20 +11,20 @@ categories: [Concept]
 
 ## Overview
 
-This page focuses on business continuity and disaster recovery. See [**Compliance**](/docs/concept/sec/compliance) for general mappings of access control, encrypted communication, audit, and other security controls.
+This page covers business continuity and disaster recovery. For access control, encrypted communication, auditing, and other security controls, see [**Compliance**](/docs/concept/sec/compliance).
 
-This document compiles the **RTO** (Recovery Time Objective) and **RPO** (Recovery Point Objective) compliance requirements from major international and Chinese standards for database disaster recovery. These standards cover critical industries including finance, healthcare, payments, and publicly traded companies, serving as important references for database selection and architecture design.
+This page collects **RTO** (Recovery Time Objective) and **RPO** (Recovery Point Objective) requirements from international and Chinese disaster recovery standards. It covers finance, healthcare, payments, and publicly traded companies. Use these requirements when selecting databases and designing recovery architecture.
 
-**Key Conclusion**: PostgreSQL + Patroni synchronous replication mode, with properly configured `ttl`/`loop_wait` parameters, can fully meet the financial industry's core system requirements of **RPO=0, RTO<2 hours**. In fact, Pigsty's default configuration can achieve second-level RTO, far exceeding minimum regulatory requirements.
+**Key conclusion**: PostgreSQL and Patroni synchronous replication can meet core financial-system targets of **RPO=0 and RTO<2 hours**. Configure `ttl` and `loop_wait` correctly. Pigsty defaults can provide recovery in seconds, below those minimum recovery-time requirements.
 
 
 -----------
 
 ## Chinese National Standards
 
-[**"Cybersecurity Technology - Information System Disaster Recovery Specification"**](https://std.samr.gov.cn/) (GB/T 20988-2025) is the foundational national standard for information system disaster recovery in China, released on June 30, 2025, and effective from January 1, 2026. This standard consolidates and replaces the original GB/T 20988-2007 "Information Security Technology - Information System Disaster Recovery Specification" and GB/T 30285-2013 "Information Security Technology - Disaster Recovery Center Construction and Operation Management Specification."
+[**"Cybersecurity Technology - Information System Disaster Recovery Specification"**](https://std.samr.gov.cn/) (GB/T 20988-2025) is China's foundational information-system disaster recovery standard. It was released on June 30, 2025, and took effect on January 1, 2026. It replaces GB/T 20988-2007 "Information Security Technology - Information System Disaster Recovery Specification". It also replaces GB/T 30285-2013 "Information Security Technology - Disaster Recovery Center Construction and Operation Management Specification."
 
-The new standard introduces the disaster recovery lifecycle concept, updates the disaster recovery capability level classification, RTO/RPO relationship examples with disaster recovery capability levels, disaster recovery plan framework, and adds cloud technology disaster recovery service examples. The national standard divides disaster recovery capability into **6 levels**:
+The standard introduces a disaster recovery lifecycle and cloud recovery service examples. It updates capability levels, RTO/RPO examples for those levels, and the recovery plan framework. It defines **6 capability levels**:
 
 | Level | Name                       | RTO          | RPO        | Typical Implementation      |
 |:------|:---------------------------|:-------------|:-----------|:----------------------------|
@@ -36,7 +36,7 @@ The new standard introduces the disaster recovery lifecycle concept, updates the
 | Level 6 | Zero Loss + Remote Cluster | Minutes | 0 | Sync replication + standby cluster |
 {.full-width}
 
-Level 6 requires real-time synchronous updates of customer data, ensuring business data consistency and integrity; the backup center's remote cluster system and network system can automatically perform load balancing and system switching, with business recovery time controllable to minutes, achieving zero data loss.
+Level 6 requires real-time synchronous customer-data updates to preserve consistency and integrity. The backup center's remote cluster and network must support automatic load balancing and switching. Business recovery occurs within minutes with zero data loss.
 
 **Pigsty Capability Comparison**:
 
@@ -53,7 +53,7 @@ Level 6 requires real-time synchronous updates of customer data, ensuring busine
 
 ## Chinese Financial Industry Standards
 
-Financial institutions have the **strictest** requirements for zero data loss and business continuity among all industries, particularly banks and securities firms. Banking architecture requires **two-site three-center** or primary-backup models for disaster recovery systems, with same-city data centers at least 50 km apart and remote data centers at least 300 km apart.
+Financial institutions, especially banks and securities firms, have the strictest continuity and zero-loss requirements. Banking recovery uses **two-site three-center** or primary-backup architectures. Same-city centers must be at least 50 km apart; remote centers must be at least 300 km apart.
 
 | Industry | Standard Document | RTO | RPO | Notes |
 |:---------|:------------------|:----|:----|:------|
@@ -105,7 +105,7 @@ Key industries for disaster recovery include banking, power, railways, civil avi
 
 ### SHARE 78 Standard (7-Tier Model)
 
-SHARE 78 is a disaster recovery capability classification standard proposed by the IBM user organization SHARE in 1978. It's the earliest and most authoritative international DR classification system and a key reference for China's GB/T 20988 national standard.
+The IBM user organization SHARE proposed SHARE 78 in 1978. It is the earliest international recovery classification system and a key reference for China's GB/T 20988 standard.
 
 | Tier | Name | RTO | RPO | Database Implementation |
 |:-----|:-----|:----|:----|:------------------------|
@@ -146,16 +146,16 @@ ISO 22301 is the international standard for Business Continuity Management Syste
 
 #### ISO 22301 Database Requirements
 
-- **Business Impact Analysis (BIA)**: Must assess the impact of database outages on business
-- **Tiered Protection**: Different importance databases should have different RTO/RPO targets
-- **Regular Testing**: DR drills at least annually
-- **Documentation**: All recovery procedures must be documented in writing
-- **Continuous Improvement**: Continuously optimize recovery processes based on test results
+- **Business Impact Analysis (BIA)**: Assess how database outages affect the business.
+- **Tiered Protection**: Set RTO/RPO targets according to database importance.
+- **Regular Testing**: Run recovery drills at least annually.
+- **Documentation**: Record every recovery procedure in writing.
+- **Continuous Improvement**: Use test results to improve recovery procedures.
 
 
 ### PCI-DSS (Payment Card Industry Data Security Standard)
 
-PCI-DSS is the data security standard for the payment card industry, with strict requirements for systems handling credit/debit card data.
+PCI-DSS defines security requirements for systems that handle credit and debit card data.
 
 #### Core Requirements
 
@@ -180,7 +180,7 @@ PCI-DSS is the data security standard for the payment card industry, with strict
 
 ### SOX (Sarbanes-Oxley Act)
 
-SOX is the financial reporting internal control regulation that US publicly traded companies must comply with.
+US publicly traded companies must follow SOX internal-control requirements for financial reporting.
 
 #### Core Requirements
 
@@ -246,18 +246,18 @@ Basel III is the core framework for international banking regulation, developed 
 
 #### Core Framework
 
-The Basel Committee requires banks to strengthen their ability to respond to operational risks, including pandemics, cyber incidents, technical failures, and natural disasters that could cause significant operational disruptions. Banks should develop plans and implement controls to maintain the integrity of critical information during cyber incidents, such as secure storage and offline backups of data supporting critical operations on immutable media.
+The Basel Committee requires banks to prepare for operational disruptions from pandemics, cyber incidents, technical failures, and natural disasters. Plans and controls should preserve critical information during cyber incidents. Examples include secure storage and offline backups of critical operational data on immutable media.
 
 #### Basel Requirements for Bank Databases
 
 Bank ICT policies should be fully documented, including:
 
-- Governance and oversight responsibilities, risk ownership
-- Any ICT security measures currently implemented
-- Cybersecurity controls, incident response plans
-- Business continuity and disaster recovery plans should be regularly reviewed and monitored
-- Critical ICT assets must be identified, with security measures tailored to assets most important to bank's critical operations
-- Including plans to protect critical data in the event of cybersecurity risk incidents
+- Governance, oversight, and risk ownership.
+- Current ICT security measures.
+- Cybersecurity controls and incident response plans.
+- Regular review and monitoring of business continuity and disaster recovery plans.
+- Identification of critical ICT assets, with protection appropriate to their operational importance.
+- Plans to protect critical data during cybersecurity incidents.
 
 #### Basel Banking RTO/RPO Recommendations
 
@@ -346,11 +346,8 @@ bootstrap:
 
 ## Key Conclusions
 
-1. **Finance is strictest**: Basel III and PCI-DSS require RPO=0, RTO<15 minutes for core trading systems
-2. **Healthcare focuses on availability**: HIPAA requires ePHI data to be accessible at all times, but RPO requirements are relatively lenient
-3. **SOX emphasizes data integrity**: 7-year data retention and complete audit trails are core requirements
-4. **PostgreSQL + Patroni fully capable**:
-   - Synchronous replication mode achieves **RPO=0**
-   - The `fast` preset targets **RTO<30 seconds** for automatic failover
-   - Far exceeds minimum requirements of most compliance standards
-5. **Testing is a common requirement**: All standards require regular DR drills and documentation
+1. **Finance**: Basel III and PCI-DSS specify the strictest core trading targets: RPO=0 and RTO<15 minutes.
+2. **Healthcare**: HIPAA emphasizes continuous ePHI access, with relatively less restrictive RPO requirements.
+3. **Financial reporting**: SOX emphasizes 7-year retention and complete audit trails.
+4. **PostgreSQL and Patroni**: Synchronous replication achieves **RPO=0**. The `fast` preset targets automatic failover **RTO<30 seconds**, below most minimum recovery-time requirements.
+5. **Testing**: All these standards require regular recovery drills and documentation.

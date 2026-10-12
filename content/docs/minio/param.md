@@ -120,11 +120,11 @@ used by the [`minio.yml`](/docs/minio/playbook#minioyml) playbook.
 
 Parameter: `minio_type`, Type: `enum`, Level: `G/C`
 
-This reserved object-storage backend selector defaults to—and currently accepts only—`silo`. Silo retains the MinIO S3/Admin APIs, `MINIO_*` environment variables, and disk format.
+Reserved object-storage backend selector. The default and only currently accepted value is `silo`. Silo retains the MinIO S3/Admin APIs, `MINIO_*` environment variables, and disk format.
 
-`minio` and `rustfs` are no longer valid values and fail during role identity validation. Before upgrading a legacy MinIO cluster to v4.5, independently validate backups, MinIO-to-Silo data compatibility, and rollback; changing this parameter does not migrate data.
+`minio` and `rustfs` are no longer valid values and fail during role identity validation. Before you upgrade a legacy MinIO cluster to v4.5, independently validate backups, MinIO-to-Silo data compatibility, and rollback. This parameter does not migrate data.
 
-Both the deployment and removal roles default `minio_type` to `silo`. A `minio-rm.yml` run still requires the `minio_cluster` and `minio_seq` identity parameters and remains subject to `minio_safeguard` and the data/package cleanup switches; the engine default does not bypass these removal guards.
+Both the deployment and removal roles default `minio_type` to `silo`. A `minio-rm.yml` run still requires `minio_cluster` and `minio_seq`. It still uses `minio_safeguard` and the data/package cleanup switches. The engine default does not bypass these removal guards.
 
 
 --------
@@ -134,9 +134,9 @@ Both the deployment and removal roles default `minio_type` to `silo`. A `minio-r
 
 Parameter: `minio_seq`, Type: `int`, Level: `I`
 
-Object-storage instance identifier, a required identity parameter. No default value—you must assign it manually.
+Object-storage instance identifier. This identity parameter is required and has no default. You must assign it manually.
 
-Best practice is to start from 1, increment by 1, and never reuse previously assigned sequence numbers.
+We recommend that you start at 1 and increment by 1. Never reuse a previously assigned sequence number.
 The sequence number, together with the cluster name [`minio_cluster`](#minio_cluster), uniquely identifies each object-storage instance (e.g., `minio-1`).
 
 In multi-node deployments, sequence numbers are also used to generate node names, which are written to the `/etc/hosts` file for static resolution.
@@ -156,7 +156,9 @@ Object-storage cluster name. This parameter is required and has no default. Use 
 The cluster name, together with the sequence number [`minio_seq`](#minio_seq), uniquely identifies each object-storage instance.
 For example, with cluster name `minio` and sequence `1`, the instance name is `minio-1`.
 
-The role finds members across the entire inventory by each host's `minio_cluster` value, so the Ansible group name may differ from the cluster identity. Define this parameter explicitly in the object-storage group's cluster variables; do not define it in `all.vars`, which would mark every host as a MINIO module member.
+The role finds members across the inventory through each host's `minio_cluster` value. The Ansible group name can differ from the cluster identity.
+
+Define this parameter explicitly in the object-storage group's cluster variables. Do not define it in `all.vars`. That would make every host a MINIO module member.
 
 For multiple clusters, also set distinct [`minio_alias`](#minio_alias), [`minio_domain`](#minio_domain), and [`minio_endpoint`](#minio_endpoint) values to avoid shared aliases and domain-name conflicts.
 
@@ -183,11 +185,13 @@ Silo runs as this user, and its certificates are stored under `~/.minio/certs/`.
 
 Parameter: `minio_https`, Type: `bool`, Level: `G/C`
 
-Enable HTTPS for the object-storage service? Default is `true`.
+Specifies whether to enable HTTPS for object storage. The default is `true`.
 
-Pigsty's default pgBackRest `minio` repository preset uses HTTPS and validates the certificate with `/etc/pki/ca.crt`, so keep this parameter `true` when using the defaults. pgBackRest itself does not require Silo to use HTTPS; if you explicitly switch to HTTP, you must also update the storage TLS options in `pgbackrest_repo` rather than changing only this parameter.
+Pigsty's default pgBackRest `minio` repository preset uses HTTPS. It validates the certificate with `/etc/pki/ca.crt`. Keep this parameter `true` when you use the defaults.
 
-When HTTPS is enabled, Pigsty automatically issues certificates for the selected server, containing the domain specified in [`minio_domain`](#minio_domain) and the IP addresses of each node.
+pgBackRest itself does not require HTTPS. If you explicitly switch to HTTP, also update the storage TLS options in `pgbackrest_repo`. A change to this parameter alone is insufficient.
+
+If HTTPS is enabled, Pigsty automatically issues certificates for the selected server. The certificates include [`minio_domain`](#minio_domain) and the IP addresses of each node.
 
 
 
@@ -200,7 +204,7 @@ Parameter: `minio_node`, Type: `string`, Level: `C`
 
 Object-storage node-name pattern used for [multi-node single-disk](/docs/minio/config#multi-node-single-disk) and [multi-node multi-disk](/docs/minio/config#multi-node-multi-disk) deployments.
 
-Default value: `${minio_cluster}-${minio_seq}.pigsty`, which uses the instance name plus `.pigsty` suffix as the default node name.
+The default is `${minio_cluster}-${minio_seq}.pigsty`. This combines the instance name with the `.pigsty` suffix.
 
 The domain pattern specified here generates node names, which are written to `/etc/hosts` on all Silo nodes.
 
@@ -214,11 +218,11 @@ The domain pattern specified here generates node names, which are written to `/e
 
 Parameter: `minio_data`, Type: `path`, Level: `C`
 
-Silo data directory, default value: `/data/minio`. Set this parameter to a filesystem directory, not a raw block device such as `/dev/sdb`. The MINIO role creates the directory and sets its permissions, but does not format or mount production data drives.
+Silo data directory, default value: `/data/minio`. Set this parameter to a filesystem directory, not a raw block device such as `/dev/sdb`. The MINIO role creates the directory and sets its permissions. It does not format or mount production data drives.
 
 [Single-node single-disk](/docs/minio/config#single-node-single-disk) may use a regular directory on the root filesystem for development. [Multi-node single-disk](/docs/minio/config#multi-node-single-disk), [multi-node multi-disk](/docs/minio/config#multi-node-multi-disk), and [single-node multi-disk](/docs/minio/config#single-node-multi-disk) deployments should use independent, persistent, non-root filesystems. Distributed Silo rejects data paths on the root filesystem.
 
-`/data/minio` may be a subdirectory of a separately mounted `/data` filesystem. If `/data` is only a directory under `/`, it is still on the root drive. For multi-drive deployments, use `{x...y}` notation for multiple mount points, such as `/data{1...4}/minio`; every expanded path should map to a separate filesystem.
+`/data/minio` may be a subdirectory of a separately mounted `/data` filesystem. If `/data` is only a directory under `/`, it is still on the root drive. For multiple drives, use `{x...y}` notation to specify mount points, such as `/data{1...4}/minio`. Each expanded path should map to a separate filesystem.
 
 See [Configuration: Storage Paths and Mounts](/docs/minio/config#storage-paths-and-mounts) for the complete requirements and verification commands.
 
@@ -259,9 +263,9 @@ Parameter: `minio_domain`, Type: `string`, Level: `G`
 
 Silo service domain name, default is `sss.pigsty`.
 
-Clients can access the Silo S3 service through this domain. The name is included in the SAN (Subject Alternative Name) of certificates issued by the role, but the MINIO role does not automatically create a DNS record for `minio_domain`.
+Clients can access the Silo S3 service through this domain. The role includes this name in the certificate SAN (Subject Alternative Name). It does not automatically create a DNS record for `minio_domain`.
 
-Add an explicit record through [`node_etc_hosts`](/docs/node/param#node_etc_hosts) or [`dns_records`](/docs/infra/param#dns_records), pointing it to a Silo node IP for a single-node deployment or to a load-balancer VIP for a multi-node deployment.
+Add an explicit record through [`node_etc_hosts`](/docs/node/param#node_etc_hosts) or [`dns_records`](/docs/infra/param#dns_records). For one node, point the record to the Silo node IP. For multiple nodes, point it to a load-balancer VIP.
 
 
 
@@ -324,7 +328,7 @@ Root secret key (password), default is `S3User.MinIO`.
 This is the Silo super-administrator password, used together with [`minio_access_key`](#minio_access_key).
 
 > [!CAUTION] Security Warning: Change the default password!
-> Using default passwords is a high-risk behavior! Make sure to change this password in your production deployment.
+> Default passwords create a security risk. Change this password in production.
 >
 > Tip: `./configure -g` randomizes default passwords recognized by the configuration wizard. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
@@ -361,7 +365,7 @@ minio_extra_vars: |
 
 Parameter: `minio_provision`, Type: `bool`, Level: `G/C`
 
-Run Silo provisioning tasks? Default is `true`.
+Specifies whether to run Silo provisioning tasks. The default is `true`.
 
 When enabled, Pigsty automatically creates the buckets and users defined in [`minio_buckets`](#minio_buckets) and [`minio_users`](#minio_users).
 Set this to `false` if you don't need automatic provisioning of these resources.
@@ -377,7 +381,7 @@ Parameter: `minio_alias`, Type: `string`, Level: `G`
 
 `mcli` client alias for the local Silo cluster, default value: `sss`.
 
-When [`minio_provision`](#minio_provision) is enabled, this alias is written to the `mcli` configuration file (`~/.mcli/config.json`) for the Ansible execution user on every Infra node and Silo member. Hosts in both groups are configured only once. You can then use `mcli <alias>` commands directly, for example `mcli ls sss/`.
+If [`minio_provision`](#minio_provision) is enabled, Pigsty writes this alias to the `mcli` configuration file (`~/.mcli/config.json`). It uses the Ansible execution user on every Infra node and Silo member. A host in both groups receives the configuration only once. You can then use `mcli <alias>` commands directly, for example `mcli ls sss/`.
 
 If deploying multiple Silo clusters, specify a different alias for each cluster to avoid conflicts.
 
@@ -392,7 +396,7 @@ If deploying multiple Silo clusters, specify a different alias for each cluster 
 
 Parameter: `minio_endpoint`, Type: `string`, Level: `C`
 
-Endpoint for the client alias. If specified, `minio_endpoint` (for example, `https://sss.pigsty:9002`) replaces the automatically assembled `<scheme>://<minio_domain>:<minio_port>` endpoint for aliases on Infra nodes and Silo members.
+Endpoint for the client alias. If specified, `minio_endpoint` overrides the automatic `<scheme>://<minio_domain>:<minio_port>` endpoint. For example, use `https://sss.pigsty:9002`. This override applies to aliases on Infra nodes and Silo members.
 
 ```bash
 mcli alias set {{ minio_alias }} {% if minio_endpoint is defined and minio_endpoint != '' %}{{ minio_endpoint }}{% else %}{% if minio_https|bool %}https{% else %}http{% endif %}://{{ minio_domain }}:{{ minio_port }}{% endif %} {{ minio_access_key }} {{ minio_secret_key }}
@@ -426,7 +430,7 @@ Three default buckets are created with different purposes and policies:
 
 Each bucket has a corresponding access policy with the same name. For example, the `pgsql` policy has full access to the `pgsql` bucket, and so on.
 
-You can also add a `lock` flag to bucket definitions to enable object locking, preventing accidental deletion of objects in the bucket.
+Add the `lock` flag to a bucket definition to enable object locking. This prevents accidental object deletion.
 
 
 
@@ -454,7 +458,7 @@ The default configuration creates three users corresponding to three default buc
 - `s3user_meta`: For accessing the `meta` bucket.
 - `s3user_data`: For accessing the `data` bucket.
 
-> [!CAUTION] Using default passwords is dangerous! Make sure to change these credentials in your deployment!
+> [!CAUTION] Default passwords create a security risk. Change these credentials in your deployment.
 > Tip: `./configure -g` will automatically replace these passwords in the configuration template if they appear as defaults.
 
 
@@ -476,7 +480,7 @@ Safeguard switch to prevent accidental deletion, default value is `false`.
 
 When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook aborts and refuses to remove the Silo cluster, protecting it against accidental deletion.
 
-It's recommended to enable this safeguard in production environments to prevent data loss from accidental operations:
+We recommend that you enable this safeguard in production. It helps prevent data loss from accidental operations:
 
 ```yaml
 minio_safeguard: true   # When enabled, minio-rm.yml will refuse to execute
@@ -491,9 +495,9 @@ minio_safeguard: true   # When enabled, minio-rm.yml will refuse to execute
 
 Parameter: `minio_rm_data`, Type: `bool`, Level: `G/C/A`
 
-Remove Silo data and configuration during removal? Default value is `true`.
+Specifies whether to delete Silo data and configuration during removal. The default is `true`.
 
-When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook deletes data directories, `/etc/default/silo`, the `.minio` user directory, and `/etc/systemd/system/silo.service`. Setting it to `false` preserves data and configuration but does not prevent service deregistration, stopping, or disabling.
+When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook deletes data directories, `/etc/default/silo`, the `.minio` user directory, and `/etc/systemd/system/silo.service`. If set to `false`, it preserves data and configuration. It does not prevent service deregistration, shutdown, or disabling.
 
 
 
@@ -504,6 +508,6 @@ When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook d
 
 Parameter: `minio_rm_pkg`, Type: `bool`, Level: `G/C/A`
 
-Uninstall Silo packages during removal? Default value is `false`.
+Specifies whether to uninstall Silo packages during removal. The default is `false`.
 
 When enabled, the [`minio-rm.yml`](/docs/minio/playbook/#minio-rmyml) playbook uninstalls `silo` and `mcli`. This option is disabled by default so the packages remain available for later use.

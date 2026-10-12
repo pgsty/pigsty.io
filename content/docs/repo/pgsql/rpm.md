@@ -9,6 +9,115 @@ categories: [Reference]
 
 ------
 
+## 2026-10-11
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| arrow | 22.0.0 | 25.0.1 | Includes compute/devel; ABI 2500; imported locally |
+| groonga | 15.1.8 | 16.1.3 | Includes libs/devel; upstream packages; imported locally |
+| groonga-tokenizer-mecab | 15.1.8 | 16.1.3 | MeCab tokenizer; imported locally |
+| pg_background | 2.0.4-1PGSTY | 2.0.4-2PGSTY | PG14-18; remove downstream upgrade patch; built, import pending |
+| pg_fts | 1.9.0 | 1.12.0 | PG17-18; built, import pending |
+| pg_grammar_guard | 0.4.1 | 0.4.9 | PG14-18; Apache-2.0; built, import pending |
+| pg_living_assertions | 0.5.1 | 0.5.10 | PG14-18; SQL-only; Apache-2.0; built, import pending |
+| pg_local_cache | 2.0.4 | 3.1.0 | PG14-18; OpenSSL dependency; built, import pending |
+| pg_mentat | 1.10.3 | 1.11.1 | PG14-18; pgrx 0.19.3; built, import pending |
+| pg_search | 0.26.0 | 0.26.1 | PG15-18; pgrx 0.19.3; built, import pending |
+| pg_semver | 0.41.0 | 0.42.0 | PG14-18; imported locally |
+| pg_tle | 1.5.2 | 1.5.3 | PG14-18; built, import pending |
+| pg_trickle | 0.108.1 | 0.108.3 | PG18; pgrx 0.19.3; built, import pending |
+| pg_turbovec | 2.10.3 | 2.12.0 | PG14-18; pgrx 0.19.3; built, import pending |
+| pgrdf | 0.6.39 | 0.6.40 | PG14-18; pgrx 0.19.3; built, import pending |
+| pgroonga | 4.0.9 | 4.1.0 | PG14-18; includes pgroonga_database; imported locally |
+| plpgsql_check | 2.10.11 | 2.10.14 | PG14-18; SQL version 2.10; imported locally |
+| rdkit | 202609.1-1PGSTY | 202609.1-2PGSTY | PG14-18; EL9/10; remove downstream upgrade patch; built, import pending |
+| timescaledb | 2.30.2 | 2.30.2 | PG16-18; TSL; same-version rebuild; import pending |
+{.stretch-last}
+
+------
+
+## 2026-10-06
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| acdat | 0.1.1 | 0.1.1 | PG14-18; First full production packaging of an existing extension; 80 main packages |
+| addressing_dictionary | - | 1.1 | PG14-18; SQL-only |
+| agensgraph-18 | - | 2.18.4.0 | PG18.4; retains AgensGraph 17 |
+| babelfish-17 | 5.4.0 | 5.7.0 | PG17.11; includes all four companion extensions |
+| babelfish-18 | 6.0.0 | 6.2.0 | PG18.6; includes all four companion extensions |
+| colnames | - | 1.7.1 | PG14-18; SQL 1.7.0 |
+| edtf_postgres | - | 1.2.3 | PG14-18 |
+| is_jsonb_valid | - | 0.1.4 | PG14-18 |
+| istore | - | 0.1.12 | PG14-18 |
+| jev | 0.2.0 | 0.2.1 | PG14-17 |
+| jsonschema | 0.1.9 | 0.1.10 | PG14-18 |
+| kafgres | 0.1.0 | 0.3.0 | PG16 |
+| libx509pq | - | 1.3 | PG14-18 |
+| lolor | 1.2.2 | 1.2.2 | PG15-18; Rebuilt with pgEdge; SQL version unchanged |
+| macavity | 0.1.0 | 0.2.0 | PG16-18; Fault injection; testing only |
+| mobilitydb | 1.3.0 | 1.3.1 | PG14-18; Includes mobilitydb_datagen; fills 32 DEB coordinates |
+| nominatim_fdw | 2.2.0 | 2.3 | PG14-18; PGDG is the principal RPM provider; same-version Pigsty supplements remain |
+| orioledb-16 | 1.8-beta16 | 1.10~beta19 | PG16.15; includes the OrioleDB extension |
+| orioledb-17 | 1.8-beta16 | 1.10~beta19 | PG17.11; includes the OrioleDB extension |
+| orioledb-18 | 1.8-beta16 | 1.10~beta19 | PG18.6; includes the OrioleDB extension |
+| passwordcheck_cracklib | 3.2.0 | 3.2.1 | PG14-18 |
+| pg_anon | 3.2.2 | 3.2.3 | PG14-18; Extension anon; follow upstream drop/recreate upgrade procedure |
+| pg_background | 2.0.3 | 2.0.4 | PG14-18; Restore latest main packages for full coverage |
+| pg_clickhouse | 0.10.0 | 0.11.0 | PG14-18; SQL version 0.11 |
+| pg_eviltransform | 0.0.5 | 0.0.7 | PG14-18 |
+| pg_fts | 1.8.3 | 1.9.0 | PG17-18 |
+| pg_h3 | 4.2.3 | 4.5.0 | PG14-18; Includes h3_postgis; adds 50 DEBs; follow upstream migration guidance |
+| pg_ivm | 1.15 | 1.16 | PG14-18; Restore latest main packages for full coverage |
+| pg_json_diff | - | 1.0 | PG14-18 |
+| pg_lake | 3.5.1 | 3.5.3 | PG16-18; Includes eight SQL extensions; SQL version remains 3.5; EL9/10 only |
+| pg_lexo | - | 0.6.1 | PG16-18; SQL 0.6.0; fix rank generation and ordering |
+| pg_living_assertions | 0.4.2 | 0.5.1 | PG14-18 |
+| pg_mentat | 1.6.0 | 1.10.3 | PG14-18 |
+| pg_money | - | 0.3.0 | PG14-18 |
+| pg_pinyin | 0.0.6 | 0.0.8 | PG14-18 |
+| pg_profile | 4.16 | 4.16 | PG14-18; Restore 30 RPMs; SQL-only; version unchanged |
+| pg_rusage | - | 1.0 | PG14-18 |
+| pg_search | 0.25.9 | 0.26.0 | PG15-18; preload |
+| pg_stat_ch | 0.3.6 | 0.4.0 | PG16-18; adds EL8 coverage; DEB stays on 0.3.6 |
+| pg_statkit | - | 1.1.0 | PG14-17 |
+| pg_statvfs | - | 1.0 | PG14-18 |
+| pg_statviz | 0.9 / 1.2 | 1.2.1 | PG14-18; Production RPMs switch from older PGDG builds to Pigsty 1.2.1; SQL version 1.2; fills 30 RPM coordinates |
+| pg_textsearch | 1.4.0 | 1.5.1 | PG17-18; RPMs from PGDG; DEBs from Pigsty |
+| pg_trickle | 0.107.0 | 0.108.1 | PG18 |
+| pg_turbovec | 2.2.2 | 2.10.3 | PG14-18; 2.x keeps wire v8; upgrades from 1.x require REINDEX |
+| pg_vault_tde | 1.7.1 | 1.7.2 | PG17-18; EL9/10 |
+| pgedge-15 | 15.19-1PGSTY | 15.19-2PGSTY | PG15; Kernel version unchanged; update bundled Spock |
+| pgedge-16 | 16.15-1PGSTY | 16.15-2PGSTY | PG16; Kernel version unchanged; update bundled Spock |
+| pgedge-17 | 17.11-1PGSTY | 17.11-2PGSTY | PG17; Kernel version unchanged; update bundled Spock |
+| pgedge-18 | 18.6-1PGSTY | 18.6-2PGSTY | PG18; Kernel version unchanged; update bundled Spock |
+| pgextwlist | 1.19 | 1.20 | PG14-18; RPM recipe updated; production packages from PGDG |
+| pggraph | 1.2.0 | 1.2.1 | PG14-18; Extension graph; fix DEB SQL payload checks |
+| pgmqtt | 0.5.0 | 0.5.1 | PG14-18; Preload required; CDC requires logical WAL |
+| pgrdf | 0.6.36 | 0.6.39 | PG14-18 |
+| pgroonga | 4.0.8 | 4.0.9 | PG14-18; Same-backend coexistence with PostGIS Raster remains restricted on EL8/9 |
+| pgs3 | 0.1.1 | 0.1.1 | PG17-18; First full production packaging of an existing extension; 32 main packages; alpha |
+| pgsentinel | 1.5.0 | 1.5.1 | PG14-18; Recipe updated; production packages from PGDG; duplicate Pigsty packages removed |
+| pgtde-18 | 18.4 | 18.6 | Percona 18.6.1; pg_tde 2.2.2 |
+| pgtde-18-contrib | 18.4 | 18.6 | pg_stat_monitor 2.4.0; vector 0.8.6 |
+| pgtelemetry | - | 1.7 | PG14-18; SQL-only; requires pg_stat_statements |
+| pgvector | 0.8.6 | 0.8.7 | PG14-18; RPM 0.8.7 from PGDG; Pigsty packages removed as agreed |
+| pgvectorscale | 0.9.1 | 0.9.1 | PG14-18; Extension vectorscale; same-version rebuild and correction of stale catalog label |
+| plpgsql_check | 2.10.10 | 2.10.11 | PG14-18; Recipe updated; production packages from PGDG |
+| plphp | - | 2.6 | PG14-18; fix embedded runtime dependencies |
+| plv8 | 3.2.4 | 3.2.5 | PG14-18; Fix EL10 LTO builds |
+| polardb-17 | 17.10.1.0 | 17.11.1.0 | PG17.11; includes companion extensions |
+| rdf_fdw | 2.7.0 | 3.0.0 | PG14-18; SQL version 3.0 |
+| rdkit | 202303.3 / 202503.6 | 202609.1 | PG14-18; EL9/10; EL8 stays on 202303.3 |
+| session_variable | 3.5 | 3.6 | PG14-18 |
+| snowflake | 2.6.0 | 2.6.0 | PG15-18; Rebuilt with pgEdge; correct stale 2.5.0 catalog label |
+| spock | 5.0.11 | 5.0.12 | PG15-18; Bundled with the pgEdge kernel; fix DEB file ownership conflicts |
+| supautils | 3.4.3 | 3.4.4 | PG14-18 |
+| timescaledb | 2.30.1 | 2.30.2 | PG16-18; TSL; PG14 stays on 2.19.3 and PG15 on 2.28.3 |
+| vgram | - | 1.0 | PG14-18 |
+{.stretch-last}
+
+------
+
 ## 2026-09-24
 
 | Name | Old | New | Comment |
@@ -51,7 +160,7 @@ categories: [Reference]
 
 ## 2026-08-14
 
-This batch adds `pg_relation_sql`, upgrades `pg_oidc_validator` and `pg_when`, and rebuilds existing packages after correcting license metadata. `pg_relation_sql` is standalone SQL and does not support `CREATE EXTENSION`.
+This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when`. It also rebuilt existing packages after corrections to license metadata. The `pg_relation_sql` package contains standalone SQL and does not support `CREATE EXTENSION`.
 
 | Name              | Old   | New    | Comment                                                                  |
 |:------------------|:------|:-------|:-------------------------------------------------------------------------|
@@ -141,7 +250,7 @@ This batch adds `pg_relation_sql`, upgrades `pg_oidc_validator` and `pg_when`, a
 
 ## 2026-07-24
 
-This batch records extension changes from 2026-07-07 through 2026-07-24: new extensions, version upgrades, Rust/pgrx rebuilds, and package-matrix gap repairs. Rows with unchanged versions record packaging or coverage changes; package or SQL-version differences are called out where they matter.
+This batch records extension changes from 2026-07-07 through 2026-07-24. It includes new extensions, version upgrades, Rust/pgrx rebuilds, and missing package builds. Rows with unchanged versions record packaging or platform coverage changes. Notes identify relevant package-version or SQL-version differences.
 
 | Name                    | Old Ver  | New Ver  | Note                                                  |
 |:------------------------|:---------|:---------|:------------------------------------------------------|
@@ -800,7 +909,7 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 ## 2025-11-10
 
-Add PostgreSQL 18 support for almost all extensions
+Added PostgreSQL 18 support for almost all extensions.
 
 | Name                      | Old Ver      | New Ver      | Note     |
 |---------------------------|--------------|--------------|----------|

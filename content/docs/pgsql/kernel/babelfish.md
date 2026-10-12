@@ -14,20 +14,22 @@ categories: [Concept]
 
 ## Overview
 
-Pigsty lets you deploy Babelfish in `mssql` mode and provide, on top of PostgreSQL:
+Deploy Babelfish in `mssql` mode to add these features to PostgreSQL:
 
 - SQL Server wire protocol compatibility (TDS, `1433`)
 - T-SQL compatibility
 - Unified integration with Pigsty capabilities (HA, backup, monitoring, IaC)
 
-In Pigsty v4, Babelfish supports **PostgreSQL 17/18**. The default template uses `pg_version: 17`, and Babelfish is part of Pigsty's standard delivery path with support for all Linux platforms.
+In Pigsty v4, Babelfish supports **PostgreSQL 17/18**.
+The default template uses `pg_version: 17`.
+Babelfish is part of Pigsty's standard delivery process and supports all Linux platforms.
 
 
 --------
 
 ## Current Behavior
 
-Compared with older `Babelfish/PG15` docs, current behavior is:
+The current behavior differs from older `Babelfish/PG15` documentation as follows:
 
 - Supported kernel majors are **PG17/18**; the template defaults to **PG17** (`pg_version: 17`)
 - Default package group: `babelfish + pgsql-common + sqlcmd`
@@ -101,7 +103,7 @@ Babelfish clusters expose two protocol endpoints:
 - PostgreSQL protocol: `5432`
 - SQL Server protocol (TDS): `1433`
 
-With Pigsty service abstraction you can also use:
+Through Pigsty services, you can also use these ports:
 
 - `5433`: fixed route to primary `1433`
 - `5434`: route to readable node `1433`
@@ -121,8 +123,8 @@ sqlcmd -S <any-node-ip>,5434 -U dbuser_mssql -P DBUser.MSSQL
 
 - Babelfish auth rules must use `md5` instead of default `scram-sha-256`.
 - Default migration mode is `multi-db`; switch with `babelfishpg_tsql.migration_mode` if needed.
-- Not all native PostgreSQL extensions are directly usable on Babelfish kernels; validate package availability and compatibility first.
-- Tighten HBA and network exposure for production; do not keep demo-level open rules.
+- Some native PostgreSQL extensions cannot run directly on Babelfish kernels. Verify package availability and compatibility first.
+- For production, restrict HBA rules and network access. Do not keep the open rules from the demonstration configuration.
 
 
 --------
@@ -138,7 +140,8 @@ sqlcmd -S <any-node-ip>,5434 -U dbuser_mssql -P DBUser.MSSQL
 
 ## Available Extensions
 
-The Babelfish kernel has **55** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The Babelfish kernel has **55** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

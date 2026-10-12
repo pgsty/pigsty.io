@@ -8,26 +8,30 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty is a "configuration-driven" PostgreSQL platform: all behaviors come from the combination of inventory files in `~/pigsty/conf/*.yml` and [`PGSQL` parameters](/docs/pgsql/param).
-Once you've written the configuration, you can replicate a customized cluster with instances, users, databases, access control, extensions, and tuning policies in just a few minutes.
+Pigsty uses configuration to control PostgreSQL behavior.
+This configuration combines inventory files in `~/pigsty/conf/*.yml` with [`PGSQL` parameters](/docs/pgsql/param).
+After you write the configuration, you can reproduce a customized cluster in a few minutes.
+The configuration includes instances, users, databases, access control, extensions, and tuning policies.
 
 
 ---------------------
 
 ## Configuration Entry
 
-1. **Prepare Inventory**: Copy a `pigsty/conf/*.yml` template or write an Ansible Inventory from scratch, placing cluster groups (`all.children.<cls>.hosts`) and global variables (`all.vars`) in the same file.
-2. **Define Parameters**: Override the required [`PGSQL` parameters](/docs/pgsql/param) in the `vars` block. The override order from global → cluster → host determines the final value.
-3. **Apply Configuration**: Run `./configure -c <conf>` or `bin/pgsql-add <cls>` and other playbooks to apply the configuration. Pigsty will generate the configuration files needed for Patroni/pgbouncer/pgbackrest based on the parameters.
+1. **Prepare Inventory**: Copy a `pigsty/conf/*.yml` template or write an Ansible inventory. Put cluster groups (`all.children.<cls>.hosts`) and global variables (`all.vars`) in the same file.
+2. **Define Parameters**: Override the required [`PGSQL` parameters](/docs/pgsql/param) in `vars`. The override order is global → cluster → host. The last applicable setting determines the value.
+3. **Apply Configuration**: Use `./configure -c <conf>`, `bin/pgsql-add <cls>`, and other playbooks to apply the configuration. Pigsty generates the required Patroni, PgBouncer, and pgBackRest files from these parameters.
 
-Pigsty's default demo inventory `conf/pgsql.yml` is a minimal example: one `pg-meta` cluster, global `pg_version: 18`, and a few business user and database definitions. You can expand with more clusters from this base.
+The default demonstration inventory, `conf/pgsql.yml`, provides a minimal example.
+It defines one `pg-meta` cluster, global `pg_version: 18`, and a few application users and databases.
+You can add more clusters to this configuration.
 
 
 ---------------------
 
 ## Focus Areas & Documentation Index
 
-Pigsty's PostgreSQL configuration can be organized from the following dimensions. Subsequent documentation will explain "how to configure" each:
+Use the following pages to configure each part of a PostgreSQL deployment:
 
 - **[Cluster & Instances](/docs/pgsql/config/cluster)**: Define instance topology (standalone, primary-replica, standby cluster, delayed cluster, Citus, etc.) through `pg_cluster / pg_role / pg_seq / pg_upstream`.
 - **[Kernel Version](/docs/pgsql/config/kernel)**: Select the core version, flavor, and tuning templates using `pg_version`, `pg_mode`, `pg_packages`, `pg_extensions`, `pg_conf`, and other parameters.
@@ -36,14 +40,15 @@ Pigsty's PostgreSQL configuration can be organized from the following dimensions
 - **[Access Control (HBA)](/docs/pgsql/config/hba)**: Maintain host-based authentication policies using `pg_default_hba_rules` and `pg_hba_rules` to ensure access boundaries for different roles/networks.
 - **[Privilege Model (ACL)](/docs/pgsql/config/acl)**: Converge object privileges through `pg_default_privileges`, `pg_default_roles`, `pg_revoke_public` parameters, providing an out-of-the-box layered role system.
 
-After understanding these parameters, you can write declarative inventory manifests as "configuration as infrastructure" for any business requirement. Pigsty will handle execution and ensure idempotency.
+Use these parameters to declare infrastructure in the inventory for your application requirements.
+Pigsty performs the operations and ensures idempotency.
 
 
 ---------------------
 
 ## A Typical Example
 
-The following snippet shows how to control instance topology, kernel version, extensions, users, and databases in the same configuration file:
+This example defines topology, kernel version, extensions, users, and databases in one configuration file:
 
 ```yaml
 all:
@@ -72,4 +77,4 @@ all:
 - Declare business objects in `pg_databases` and `pg_users`, automatically generating schema/extension and connection pool entries.
 - Additional `pg_hba_rules` restrict access sources and authentication methods.
 
-Modify and apply this inventory to get a customized PostgreSQL cluster without manual configuration.
+Adjust and apply this inventory to create a customized PostgreSQL cluster without manual configuration.

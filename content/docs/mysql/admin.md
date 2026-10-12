@@ -8,7 +8,7 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/admin]
 ---
 
-This page covers day-to-day operations for the MYSQL module. The governing principle: **declare state in the inventory, converge with the playbook.** Most anomalies — a dropped member, drifted AdminAPI state — heal with a single `./mysql.yml -l <cluster>` rerun. Only three destructive scenarios (member replacement, physical restore, complete-outage recovery) require the manual runbooks below.
+**Declare state in the inventory and apply it with the playbook.** Most dropped members or AdminAPI drift recover after `./mysql.yml -l <cluster>`. Member replacement, physical restore, and complete-outage recovery require the manual procedures below.
 
 
 --------
@@ -32,7 +32,7 @@ This page covers day-to-day operations for the MYSQL module. The governing princ
 
 ## Status Checks
 
-Run the commands in this page on a cluster member as root: the client configs and secrets under `/etc/mysql/pigsty/` are readable by root only. Examples use EL unit names — on Debian/Ubuntu the MySQL service unit is `mysql`, not `mysqld`.
+Run these commands as root on a cluster member. Only root can read `/etc/mysql/pigsty/` credentials. Examples use EL service names. Debian/Ubuntu uses `mysql`, not `mysqld`.
 
 On any member, confirm services and topology:
 
@@ -44,7 +44,7 @@ mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -e "
   FROM performance_schema.replication_group_members ORDER BY MEMBER_HOST;"
 ```
 
-A healthy three-node cluster shows three `ONLINE` rows with exactly one `PRIMARY`. For the AdminAPI view:
+A healthy three-node cluster has three `ONLINE` rows and exactly one `PRIMARY`. For AdminAPI status:
 
 ```bash
 mysqlsh --js -e '
@@ -55,7 +55,7 @@ shell.connect({user:"dbuser_cluster", password:pw, host:"127.0.0.1", port:3306,
 print(dba.getCluster().status());'
 ```
 
-For a fleet-level view, use the Grafana [MySQL Overview](https://demo.pigsty.io/ui/d/mysql-overview) dashboard or the derived metric `mysql:cls:health` (2 healthy / 1 degraded / 0 critical).
+Use [MySQL Overview](https://demo.pigsty.io/ui/d/mysql-overview) or `mysql:cls:health` for fleet status: 2 healthy, 1 degraded, 0 critical.
 
 
 --------
@@ -74,12 +74,12 @@ mysql -h <any-member> -P 6447 -u app -pDBUser.App --ssl-mode=VERIFY_CA --ssl-ca=
 
 Guidance:
 
-- TLS is enforced server-side and plaintext connections are rejected; the client default `PREFERRED` mode negotiates encryption automatically, but prefer an explicit `VERIFY_CA` (JDBC: `sslMode=VERIFY_CA`) trusting the Pigsty CA;
-- There is no VIP/DNS layer. To avoid a single Router node becoming a point of failure, configure a **multi-host DSN**, e.g. `jdbc:mysql://10.10.10.11:6446,10.10.10.12:6446,10.10.10.13:6446/app`, or list all members in your application-side load balancer;
-- Standalone clusters have no Router — connect to `3306` directly;
-- A member that is partitioned or has lost quorum makes its local Router refuse both RW and RO connections (fail-safe): no stale reads through the Router.
+- The server requires TLS and rejects plaintext. Client `PREFERRED` negotiates encryption automatically. Prefer explicit `VERIFY_CA` with the Pigsty CA; JDBC uses `sslMode=VERIFY_CA`.
+- There is no VIP/DNS layer. Use a **multi-host DSN**, such as `jdbc:mysql://10.10.10.11:6446,10.10.10.12:6446,10.10.10.13:6446/app`, to avoid one Router failure point. Alternatively, list all members in the application load balancer.
+- Standalone instances have no Router. Connect directly to `3306`.
+- A partitioned or quorum-lost member makes its Router reject read/write and read-only connections. This prevents stale Router reads.
 
-Measured expectations: a graceful primary stop interrupts writes for ~3–4 seconds; a primary crash (`kill -9`) for ~20 seconds with default eviction settings; rolling restarts of secondaries are invisible to clients.
+Measured write interruptions are approximately 3–4 seconds for graceful primary shutdown and 20 seconds for `kill -9` with default eviction. Secondary rolling restarts do not interrupt clients.
 
 
 --------
@@ -93,7 +93,7 @@ Edit `mysql_databases` / `mysql_users` in the inventory, then converge:
 ./mysql.yml -l my-test -t mysql_provision   # business objects only (faster)
 ```
 
-In HA, object changes execute on the current primary and replicate out. Declarations are additive: nothing is dropped or revoked implicitly — do those by hand, then update the inventory to match.
+In HA, changes run on the current primary and replicate to other members. Declarations are additive. Nothing is dropped or revoked implicitly. Perform removals manually, then update inventory.
 
 
 --------
@@ -115,10 +115,10 @@ mysql_parameters:
 
 Rolling-restart semantics (verified by testing):
 
-1. The rendered config passes `mysqld --validate-config` first — a bad option fails the run without touching the service;
-2. Cluster health is checked up front: **a degraded cluster (fewer than 3 ONLINE) refuses a rolling restart** — repair first, then change;
-3. Secondaries restart one at a time, each waiting to return `ONLINE`; the primary restarts last;
-4. The primary restart triggers one automatic failover with a write pause of a few seconds — schedule a change window if that matters.
+1. Validate rendered settings with `mysqld --validate-config`. Invalid options stop execution without changing the service.
+2. Check health. **Fewer than three ONLINE members blocks rolling restarts.** Repair before changing configuration.
+3. Restart secondaries one at a time, waiting for `ONLINE` after each. Restart the primary last.
+4. Primary restart causes one automatic failover and a write pause of a few seconds. Schedule a change window if needed.
 
 Standalone instances restart in place.
 
@@ -139,14 +139,14 @@ dba.getCluster().setPrimaryInstance("10.10.10.12:3306");   // the new primary
 '
 ```
 
-Routers follow automatically. Rerun `./mysql.yml -l <cluster>` afterwards to confirm convergence — primary placement is runtime state, not declared state, so the playbook will not move it back.
+Routers follow the switchover automatically. Rerun `./mysql.yml -l <cluster>` to verify convergence. Primary placement is runtime state, so the playbook does not move it back.
 
 
 --------
 
 ## Member Failures and Self-Healing
 
-**No action is needed during a failure**: after a primary crash, MGR elects a new primary within ~20 seconds and Routers re-route; the crashed member is restarted by systemd and rejoins on its own. Intervene only in these cases:
+**No action is needed for ordinary failover.** After a primary crash, MGR elects a replacement in approximately 20 seconds. Routers follow it. Systemd restarts the failed member, which rejoins automatically. Intervene for these cases:
 
 | Symptom | Action |
 |:---|:---|
@@ -164,7 +164,7 @@ Matching alerts: `MySQLClusterMemberOffline` (WARN), `MySQLClusterNoPrimary` / `
 
 ## Replace a Failed Member
 
-The replacement contract: **the new machine reuses the failed member's service address** (the inventory does not change). Three steps, assuming `my-test-3` (`10.10.10.13`) died:
+**Replacement hardware must reuse the failed member's service address.** Keep inventory unchanged. For failed `my-test-3` (`10.10.10.13`), use three steps:
 
 ```bash
 # 1. Remove the failed member. If the machine is still reachable, use the retirement playbook:
@@ -189,10 +189,10 @@ dba.getCluster("my-test").removeInstance("10.10.10.13:3306", {force: true});'
 
 Notes:
 
-- Step 1's real job is evicting the address from cluster metadata — only an address absent from metadata takes the fresh-clone path. The retirement playbook requires a **reachable target** (an ONLINE SECONDARY or an already-detached member); for a dead machine, use the force removal in 1b instead;
-- The replacement must be a **truly fresh machine** (empty datadir, no leftover Router keyring) — an OS reinstall guarantees that. Half-clean machines are rejected by preflight or the Router bootstrap;
-- Clone copies the full dataset; duration scales with data size. The cluster stays available throughout (one primary, one secondary online);
-- Changing a member's address during replacement is not supported, nor is running two nodes long-term.
+- Step 1 removes the address from cluster metadata. Only an absent address qualifies for fresh clone. Retirement requires a **reachable** ONLINE SECONDARY or detached member. For dead hardware, use force removal in 1b.
+- Replacement hardware must be **fully clean**, with an empty datadir and no Router keyring. OS reinstallation guarantees this. Preflight or Router bootstrap rejects partial cleanup.
+- Clone copies the full dataset; time depends on size. One primary and one secondary keep the cluster available.
+- Address changes during replacement and long-term two-node operation are unsupported.
 
 
 --------
@@ -205,16 +205,16 @@ Retire a whole cluster (stop services, deregister monitoring, keep all data):
 ./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
 ```
 
-Retirement writes `/var/lib/mysql/.pigsty-mysql-retired` on every member, which **blocks ordinary `mysql.yml` reruns** so a retired instance cannot be revived by accident. To deliberately resurrect:
+Retirement writes `/var/lib/mysql/.pigsty-mysql-retired` on every member. This **blocks ordinary `mysql.yml` reruns** and accidental revival. To restore service deliberately:
 
 ```bash
 ansible my-test -b -a 'rm -f /var/lib/mysql/.pigsty-mysql-retired'
 ./mysql.yml -l my-test
 ```
 
-Two commands suffice for a standalone. **HA clusters need one more step**: the rerun brings services up, but all three members return with Group Replication OFFLINE (split-brain protection — nobody self-bootstraps) and the playbook exits with the complete-outage error. Continue with steps 3–4 of [Recover from a Complete Outage](#recover-from-a-complete-outage) to rebuild quorum.
+Two commands suffice for standalone instances. **HA needs another step.** Reruns start services, but all three Group Replication members remain OFFLINE. No member self-bootstraps, to prevent split-brain. The playbook reports complete outage. Follow steps 3–4 of [complete-outage recovery](#recover-from-a-complete-outage) to restore quorum.
 
-Actual destruction (removing datadirs, backups, packages) is never done by playbooks — that is a manual decision made after verifying backups.
+Playbooks never destroy datadirs, backups, or packages. Decide on destruction manually after verifying backups.
 
 
 --------
@@ -239,21 +239,22 @@ Backup layout, on the **current primary's** local disk:
 └── latest -> 20260729T053900Z # atomic pointer to the newest backup
 ```
 
-Check backup freshness — on **all members** for HA, since backups follow the primary:
+Check backup freshness on **all HA members** because backups follow the primary:
 
 ```bash
 ansible my-test -b -a 'ls -l /data/backups/mysql/my-test/latest'
 ```
 
 > [!WARNING] Backup alerting gap
-> This version exports no backup-freshness metric and ships no backup alerts: a failed backup is only visible in the `mysql-backup` logs (queryable in VictoriaLogs and on the Instance dashboard's Router / Backup Logs panel). For important environments, add external log checks and rehearse the restore runbook below periodically.
+> This version has no backup-freshness metric or backup alerts. Failures appear only in `mysql-backup` logs.
+> Query them through VictoriaLogs or the Instance dashboard's Router / Backup Logs panel. In important environments, add external log checks and regularly rehearse restoration.
 
 
 --------
 
 ## Restore from Physical Backup
 
-This runbook restores a standalone instance to its most recent backup. **It is destructive**: writes after the backup are lost — check the `latest` timestamp first. Rebuilding an HA cluster works the same way: restore one node as the primary, then let the others rejoin via clone.
+This procedure restores standalone data to the latest backup. **It is destructive:** later writes are lost. Check the `latest` timestamp first. For HA, restore one primary node, then clone it to the other members.
 
 ```bash
 # 0. Verify the backup is committed: backup.ok must exist
@@ -289,14 +290,14 @@ sudo mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -e 'SELECT @@gtid_ex
 ./mysql.yml -l my-meta        # expect a green run (changed=0 or routine items only)
 ```
 
-The step-4 marker is Pigsty's proof of datadir ownership: without it (or with mismatched content), `mysql.yml` refuses to manage the restored datadir. For HA members, use `"topology": "innodb_cluster"` and the member's own instance name.
+The step-4 marker proves datadir ownership. Missing or mismatched contents cause `mysql.yml` to reject the restored directory. For HA, use `"topology": "innodb_cluster"` and the member's own instance name.
 
 
 --------
 
 ## Recover from a Complete Outage
 
-When all three members are `OFFLINE` (power loss, cascading failure), MGR deliberately **does not rebuild quorum on its own** — that is split-brain protection — and `mysql.yml` refuses with instructions. The procedure:
+If all three members are `OFFLINE`, MGR **does not rebuild quorum automatically**, preventing split-brain. This can follow power loss or cascading failure. `mysql.yml` stops with instructions. Use this procedure:
 
 ```bash
 # 1. Confirm mysqld is running everywhere (systemd usually restarted it) and GR is OFFLINE
@@ -322,10 +323,10 @@ print(c.status().defaultReplicaSet.status);'
 
 Notes:
 
-- Step 3 usually brings every reachable member back at once; stragglers are rejoined by step 4 — no per-node manual work;
-- If only a minority of machines survived, complete the reboot first to restore writes, then follow [Replace a Failed Member](#replace-a-failed-member) for the rest;
-- No writes are possible until step 3 completes (`super_read_only`); members usually remain readable, though a member that was expelled earlier may sit in `offline_mode` and refuse ordinary connections;
-- The default `sql_require_primary_key=ON` prevents the PK-less tables that would otherwise block this procedure.
+- Step 3 usually restores all reachable members. Step 4 rejoins remaining members without manual per-node work.
+- If only a minority survives, complete reboot to restore writes, then [replace failed members](#replace-a-failed-member).
+- `super_read_only` prevents writes until step 3 finishes. Members usually allow reads. Previously expelled members can remain in `offline_mode` and reject ordinary connections.
+- Default `sql_require_primary_key=ON` prevents tables without primary keys from blocking recovery.
 
 
 --------
@@ -334,6 +335,6 @@ Notes:
 
 Operational boundaries for the three platform passwords (details: [Parameters](/docs/mysql/param#credentials)):
 
-- `mysql_monitor_password`: update the inventory and rerun — rotates cleanly;
-- `mysql_root_password`: implicit resets are refused. Rotate manually — `ALTER USER 'root'@'localhost' IDENTIFIED BY '...';` on the primary — then update the inventory and rerun to refresh credential files;
-- `mysql_cluster_password`: on HA clusters, bound to cluster metadata and Router keyrings — ordinary reruns reject rotation, and no automated HA procedure ships yet (standalone instances rotate normally via inventory + rerun). If HA rotation is unavoidable, do it manually via AdminAPI, sync every member's credential files, then update the inventory.
+- `mysql_monitor_password`: Change inventory and rerun to rotate.
+- `mysql_root_password`: Implicit resets are rejected. On the primary, manually run `ALTER USER 'root'@'localhost' IDENTIFIED BY '...';`. Then update inventory and rerun to refresh credential files.
+- `mysql_cluster_password`: HA metadata and Router keyrings bind this password. Ordinary reruns reject rotation, and no automated HA rotation exists. If necessary, rotate manually through AdminAPI, synchronize all member credential files, then update inventory. Standalone instances rotate through inventory and rerun.

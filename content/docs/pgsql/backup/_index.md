@@ -6,13 +6,15 @@ weight: 1600
 categories: [Task, Reference]
 ---
 
-Pigsty uses [pgBackRest](/docs/pgbackrest/) for PostgreSQL backups. It supports full, differential, and incremental backups, parallel processing, encryption, and [Silo](/docs/minio/)/S3 object storage.
-Every [PGSQL](/docs/pgsql/) cluster is configured for backup and WAL archiving by default.
+Pigsty uses [pgBackRest](/docs/pgbackrest/) for PostgreSQL backups.
+It supports full, differential, and incremental backups, parallel processing, encryption, and [Silo](/docs/minio/)/S3 object storage.
+By default, Pigsty configures backup and WAL archiving for every [PGSQL](/docs/pgsql/) cluster.
 
 This chapter is the operational manual for backup configuration, management, recovery, and drills.
 For design concepts and tradeoffs, see [Point-in-Time Recovery](/docs/concept/pitr/).
 
-All backup and recovery operations ultimately invoke pgBackRest. Pigsty provides several wrapper layers:
+All backup and recovery operations call pgBackRest.
+Pigsty provides these wrapper layers:
 
 | Layer | Interface | Form | Scope |
 |:------|:----------|:-----|:------|
@@ -34,12 +36,16 @@ All backup and recovery operations ultimately invoke pgBackRest. Pigsty provides
 {.full-width}
 
 > [!WARNING] Disclaimer
-> Pigsty makes every effort to provide a reliable PITR solution, but accepts no liability for data loss caused by restore operations. If you need assistance, consider [professional services](/docs/about/service).
+> Pigsty makes every effort to provide a reliable PITR solution. It accepts no liability for data loss caused by restore operations.
+> If you need assistance, consider [professional services](/docs/about/service).
 
 > [!CAUTION] Recovery overwrites target data
-> Before PITR, inspect `pig pg list <target-cluster>` and `pig pb info`, verify a recent usable backup and recovery window,
-> have the operator state the exact target cluster and recovery point, then run the target-scoped `./pgsql-pitr.yml -l <target-cluster> ...` command.
-> `pgsql-pitr.yml` prints a plan but does not pause for approval. Production recovery also requires a maintenance window and an independently verified backup.
+> Before PITR, inspect `pig pg list <target-cluster>` and `pig pb info`.
+> Verify a recent usable backup and its recovery window.
+> Have the operator state the exact target cluster and recovery point.
+> Then run the target-scoped `./pgsql-pitr.yml -l <target-cluster> ...` command.
+> `pgsql-pitr.yml` prints a plan but does not pause for approval.
+> Production recovery also requires a maintenance window and an independently verified backup.
 
 
 --------

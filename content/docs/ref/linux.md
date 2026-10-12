@@ -6,9 +6,9 @@ icon: fa-brands fa-redhat
 categories: [Reference]
 ---
 
-Pigsty runs on **Linux**, supporting **`amd64/x86_64`** and **`arm64/aarch64`** arch, plus 3 major distros: [**EL**](#el), [**Debian**](#debian), [**Ubuntu**](#ubuntu).
+Pigsty runs on **Linux** with **`amd64/x86_64`** and **`arm64/aarch64`** architectures. It supports three major distribution families: [**EL**](#el), [**Debian**](#debian), and [**Ubuntu**](#ubuntu).
 
-Pigsty runs bare-metal without containers. Supports actively maintained mainstream releases across the 3 major distro families and both archs.
+Pigsty runs directly on the host without containers. It supports actively maintained mainstream releases in these three families on both architectures.
 
 
 ## Overview
@@ -32,7 +32,7 @@ Pigsty runs bare-metal without containers. Supports actively maintained mainstre
 | Debian 12 (`bookworm`)    | <b class="text-sky-600">x86_64</b> |   [`d12.x86_64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d12.x86_64.yml)   | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 | Debian 12 (`bookworm`)    | <b class="text-danger">aarch64</b> |  [`d12.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/d12.aarch64.yml)  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |
 
-These seven minor releases are the current validation baselines. The extension repository retains dual-architecture EL8 compatibility, so the complete package matrix covers 16 Linux platforms. EL8 is in its retirement transition and is no longer a recommended deployment baseline.
+These seven minor releases are the current validation baselines. The extension repository retains EL8 compatibility on both architectures. Thus, the complete package matrix covers 16 Linux platforms. EL8 is in its retirement transition and is no longer a recommended deployment baseline.
 
 
 ----------------
@@ -53,13 +53,13 @@ Pigsty supports RHEL / Rocky / Alma / Anolis / CentOS 8, 9, 10.
 | RHEL7 / CentOS7           | <b class="text-danger">aarch64</b> |                                                -                                                |                                                    |                                                    |                                                    |                                                         |                                                         |
 
 > [!TIP] Rocky Linux 9.8 / 10.2 Recommended
-> Rocky Linux 9.8 / 10.2 balances stability and fresh software. Recommended for EL users.
+> Rocky Linux 9.8 / 10.2 balances stability and recent software. We recommend these versions for EL users.
 
 > [!WARNING] EL8 EOL Soon
-> EL8 goes EOL in 2029. Plan upgrade ASAP. EL10 support is ready, EL8 will be dropped in next release.
+> EL8 reaches end of life in 2029. Plan an upgrade as soon as possible. EL10 support is ready. The next release will remove EL8 support.
 
 > [!CAUTION] EL 7 EOL @ 2024-06
-> RHEL 7 EOL since Jun 2024. PGDG stopped providing binary packages for PG 16/17/18 on EL7.
+> RHEL 7 reached end of life in June 2024. PGDG stopped providing binary packages for PG 16/17/18 on EL7.
 >
 > For extended support on legacy OS, consider [Enterprise Subscription](/docs/about/service).
 
@@ -86,7 +86,7 @@ Pigsty supports Ubuntu 26.04 / 24.04 / 22.04:
 
 ## Debian
 
-Pigsty supports Debian 12 / 13, latest Debian 13.6 recommended:
+Pigsty supports Debian 12 / 13. We recommend the latest Debian 13.6:
 
 | Debian Distro          |                Arch                |                                            OS Code                                            |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |
 |:-----------------------|:----------------------------------:|:---------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
@@ -100,14 +100,14 @@ Pigsty supports Debian 12 / 13, latest Debian 13.6 recommended:
 > [!TIP] Debian 12.15 / 13.6 Recommended
 
 > [!CAUTION] Debian 11 EOL @ 2024-07
-> Debian 11 EOL since Jul 2024. For extended support on legacy OS, consider [Enterprise Subscription](/docs/about/service).
+> Debian 11 reached end of life in July 2024. For extended support on legacy OS, consider [Enterprise Subscription](/docs/about/service).
 
 
 ----------------
 
 ## Vagrant
 
-For local VM deployment, use these Vagrant base images (same as used in Pigsty dev):
+For local VM deployment, use these Vagrant base images. Pigsty development uses the same images:
 
 - [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8): Rocky 8.10
 - [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9): Rocky 9.8

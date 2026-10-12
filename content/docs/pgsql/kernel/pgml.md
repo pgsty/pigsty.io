@@ -9,28 +9,35 @@ toc_hide: true
 ---
 
 
-[PostgresML](https://postgresml.org/) is a PostgreSQL extension that supports the latest large language models (LLM), vector operations, classical machine learning, and traditional Postgres application workloads.
+[PostgresML](https://postgresml.org/) is a PostgreSQL extension that supports the latest large language models (LLM), vector operations, and classical machine learning.
+It also supports traditional Postgres application workloads.
 
-PostgresML (pgml) is a PostgreSQL extension written in Rust. You can run standalone Docker images, but this documentation is not a docker-compose template introduction, for reference only.
+PostgresML (pgml) is written in Rust.
+You can run standalone Docker images.
+This page is reference documentation and does not describe a docker-compose template.
 
-PostgresML officially supports Ubuntu 22.04, but we also maintain RPM versions for EL 8/9, if you don't need CUDA and NVIDIA-related features.
+PostgresML officially supports Ubuntu 22.04.
+We also maintain RPM versions for EL 8/9, for use without CUDA and NVIDIA-related features.
 
 You need internet access on database nodes to download Python dependencies from PyPI and models from HuggingFace.
 
 
 > [!WARNING] PostgresML is Deprecated
-> Because the company behind it has ceased operations.
+> The company that developed PostgresML has ceased operations.
 
 -----------------------
 
 ## Configuration
 
-PostgresML is an extension written in Rust. Pigsty maintains prebuilt packages for PG14-17 on EL8/EL9 and Debian/Ubuntu platforms.
+PostgresML is an extension written in Rust.
+Pigsty maintains prebuilt packages for PG14-17 on EL8/EL9 and Debian/Ubuntu platforms.
 
 
 **Creating a New Cluster**
 
-PostgresML 2.10.0 is available for PostgreSQL 14-17. The example below uses PG17; if you use PG14-16, change `pg_version` to the corresponding major version.
+PostgresML 2.10.0 is available for PostgreSQL 14-17.
+The following example uses PG17.
+For PG14-16, set `pg_version` to the applicable major version.
 
 ```yaml
 pg-meta:
@@ -49,7 +56,8 @@ pg-meta:
     pg_extensions: [ pgml, pgvector, wal2json, pg_repack ]
 ```
 
-Pigsty resolves the `pgml` package alias to the platform-specific package name: `pgml_$v` on EL and `postgresql-$v-pgml` on Debian/Ubuntu. You also need to add `pgml` to `pg_libs`.
+Pigsty maps the `pgml` package alias to `pgml_$v` on EL and `postgresql-$v-pgml` on Debian/Ubuntu.
+You must also add `pgml` to `pg_libs`.
 
 
 **Enabling on an Existing Cluster**
@@ -68,7 +76,8 @@ ansible pg-meta -m package -b -a 'name=pgml_17'
 
 ## Python Dependencies
 
-You also need to install PostgresML's Python dependencies on cluster nodes. Official tutorial: [Installation Guide](https://postgresml.org/docs/guides/developer-docs/installation)
+You must also install PostgresML's Python dependencies on the cluster nodes.
+See the official tutorial: [Installation Guide](https://postgresml.org/docs/guides/developer-docs/installation)
 
 
 
@@ -101,7 +110,8 @@ python3.11 -m pip install --upgrade pip virtualenv  # use python3.11 on EL8 / EL
 
 **Install Dependencies**
 
-Create a Python virtual environment and use `pip` to install dependencies from [`requirements.txt`](https://github.com/postgresml/postgresml/blob/master/pgml-extension/requirements.txt) and [`requirements-xformers.txt`](https://github.com/postgresml/postgresml/blob/master/pgml-extension/requirements-xformers.txt).
+Create a Python virtual environment.
+Use `pip` to install dependencies from [`requirements.txt`](https://github.com/postgresml/postgresml/blob/master/pgml-extension/requirements.txt) and [`requirements-xformers.txt`](https://github.com/postgresml/postgresml/blob/master/pgml-extension/requirements-xformers.txt).
 
 > If you're using EL 8/9, replace `python3` with `python3.11` in the following commands.
 
@@ -160,9 +170,12 @@ sudo python3 -m pip install xgboost lightgbm scikit-learn
 
 ## Enable PostgresML
 
-After installing the `pgml` extension and Python dependencies on all cluster nodes, you can enable `pgml` on the PostgreSQL cluster.
+Install the `pgml` extension and Python dependencies on all cluster nodes first.
+Then enable `pgml` on the PostgreSQL cluster.
 
-Use the `patronictl` command to [configure the cluster](https://pigsty.io/docs/pgsql/admin/#config-cluster), add `pgml` to `shared_preload_libraries`, and specify your virtual environment directory in `pgml.venv`:
+Use `patronictl` to [configure the cluster](https://pigsty.io/docs/pgsql/admin/#config-cluster).
+Add `pgml` to `shared_preload_libraries`.
+Set `pgml.venv` to your virtual environment directory:
 
 ```yaml
 shared_preload_libraries: pgml, timescaledb, pg_stat_statements, auto_explain
@@ -177,7 +190,7 @@ CREATE EXTENSION pgml;          -- create PostgresML in the current database
 SELECT pgml.version();          -- print PostgresML version information
 ```
 
-If everything is normal, you should see output similar to the following:
+If these commands succeed, the output should be similar to this:
 
 ```bash
 # create extension pgml;
@@ -191,4 +204,4 @@ CREATE EXTENSION
  2.7.8
 ```
 
-Done! For more details, please refer to the official PostgresML documentation: https://postgresml.org/docs/guides/use-cases/
+For more details, see the official PostgresML documentation: https://postgresml.org/docs/guides/use-cases/

@@ -10,7 +10,8 @@ categories: [Task]
 
 ## Quick Start
 
-Pigsty provides [**{{< param pgext_count >}} extensions**](/ext/list). Using extensions involves four steps: **Download**, **Install**, **Configure**, **Enable**.
+Pigsty provides [**{{< param pgext_count >}} extensions**](/ext/list).
+To use an extension, complete four steps: **download**, **install**, **configure**, and **enable**.
 
 ```yaml
 pg-meta:
@@ -61,9 +62,10 @@ For complete extension reference, see [**Extensions**](/docs/pgsql/ext/). For av
 
 ## Install Extensions
 
-Extensions defined in [**`pg_extensions`**](/docs/pgsql/param#pg_extensions) are auto-installed during PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster) in the `pg_extension` task.
+During PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster), the `pg_extension` task automatically installs extensions from [**`pg_extensions`**](/docs/pgsql/param#pg_extensions).
 
-To install extensions on an existing cluster, add extensions to `all.children.<cls>.pg_extensions`, then execute:
+To install extensions on an existing cluster, add them to `all.children.<cls>.pg_extensions`.
+Then run:
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-ext <cls>   # Install extensions on <cls> cluster
@@ -84,18 +86,20 @@ bin/pgsql-ext pg-meta    # Install extensions defined in config on pg-meta
 pg_extensions: [ postgis, timescaledb, pgvector ]
 ```
 
-**Result**: Installs extension packages on all cluster nodes. Pigsty auto-translates [**package aliases**](/docs/pgsql/config/alias) to actual package names for OS and PG version.
+**Result**: Pigsty installs extension packages on all cluster nodes.
+It translates [**package aliases**](/docs/pgsql/config/alias) to package names for the operating system and PostgreSQL version.
 
 
 > [!NOTE] Ensure repos available before install
-> Before installing, ensure nodes have correct repos configured - extensions [**downloaded**](#download-extensions) to local repo, or [**upstream repos configured**](#configure-repos).
+> Before installation, verify that the nodes have the correct software repositories.
+> [**Download extensions**](#download-extensions) to the local repository or [**configure upstream repositories**](#configure-repos).
 
 
 ----------------
 
 ## Manual Install
 
-If you don't want to use Pigsty config to manage extensions, pass extension list directly on command line:
+To install extensions without managing them in Pigsty configuration, pass the extension list on the command line:
 
 ```bash {tab="Script" group="script-playbook" value="script"}
 bin/pgsql-ext pg-meta pg_duckdb pg_mooncake   # Install specified extensions on pg-meta
@@ -105,7 +109,8 @@ bin/pgsql-ext pg-meta pg_duckdb pg_mooncake   # Install specified extensions on 
 ./pgsql.yml -l pg-meta -t pg_ext -e '{"pg_extensions": ["pg_duckdb", "pg_mooncake"]}'
 ```
 
-You can also use [**pig**](/docs/pig) package manager CLI to install extensions on single node, with auto [**package alias**](/docs/pgsql/config/alias) resolution.
+You can also use the [**pig**](/docs/pig) package manager CLI to install extensions on one node.
+It resolves [**package aliases**](/docs/pgsql/config/alias) automatically.
 
 ```bash
 pig install postgis timescaledb       # Install multiple extensions
@@ -114,7 +119,8 @@ pig install pgvector -v 18            # Install for specific PG major version
 ansible pg-test -b -a 'pig install pg_duckdb'   # Batch install on cluster with Ansible
 ```
 
-You can also **use OS package manager directly** (`apt/dnf`), but you must know the exact RPM/DEB package name for your OS/PG:
+You can also **use the operating system package manager directly** (`apt/dnf`).
+You must know the exact RPM or DEB package name for your operating system and PostgreSQL version:
 
 ```bash
 # EL systems (RHEL, Rocky, Alma, Oracle Linux)
@@ -129,13 +135,14 @@ sudo apt install -y postgresql-18-pgvector
 
 ## Download Extensions
 
-To install extensions, ensure node's [**extension repos**](/docs/repo/pgsql) contain the extension:
+Before installation, verify that the node can get the extension from its [**software repositories**](/docs/repo/pgsql):
 
-- [**Standalone install**](/docs/setup/install): No worries, upstream repos already added to node.
-- [**Offline install**](/docs/setup/offline): No worries, most extensions included in offline package, few require online install.
-- [**Production multi-node deployment**](/docs/deploy/install) with local repo: depends - if extension was in [`repo_packages`](/docs/infra/param/#repo_packages) / [`repo_extra_packages`](/docs/infra/param/#repo_extra_packages) when creating local repo, it's already downloaded. Otherwise download first or [**configure upstream repos**](#configure-repos) for online install.
+- [**Standalone installation**](/docs/setup/install): The node already has the upstream repositories.
+- [**Offline installation**](/docs/setup/offline): The offline package contains most extensions. A few require online installation.
+- [**Production deployment on multiple nodes**](/docs/deploy/install) with a local repository: The extension may already be downloaded. This applies if [`repo_packages`](/docs/infra/param/#repo_packages) or [`repo_extra_packages`](/docs/infra/param/#repo_extra_packages) included it when you created the repository. Otherwise, download it first or [**configure upstream repositories**](#configure-repos) for online installation.
 
-Pigsty's default config auto-downloads mainstream extensions during installation. For additional extensions, add to [**`repo_extra_packages`**](/docs/infra/param#repo_extra_packages) and rebuild repo:
+The default Pigsty configuration downloads common extensions during installation.
+For additional extensions, add them to [**`repo_extra_packages`**](/docs/infra/param#repo_extra_packages) and rebuild the repository:
 
 ```yaml
 repo_extra_packages: [ pgvector, postgis, timescaledb ]
@@ -158,7 +165,9 @@ make node-repo    # Refresh node repo cache, update Infra repo reference
 
 ## Configure Repos
 
-You can also let all nodes use upstream repos directly (not recommended for production), skipping download and installing from [**upstream extension repos**](/docs/repo/pgsql):
+You can configure all nodes to install directly from [**upstream extension repositories**](/docs/repo/pgsql).
+This skips the local download step.
+It is not recommended for production:
 
 ```bash
 ./node.yml -t node_repo -e node_repo_modules=node,pgsql   # Add PGDG and Pigsty upstream repos
@@ -168,9 +177,12 @@ You can also let all nodes use upstream repos directly (not recommended for prod
 
 ## Configure Extensions
 
-Some extensions require preloading to [**`shared_preload_libraries`**](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-PRELOAD-LIBRARIES), requiring **database restart** after modification.
+Some extensions must be in [**`shared_preload_libraries`**](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-PRELOAD-LIBRARIES).
+Changes to this parameter require a **database restart**.
 
-Use [**`pg_libs`**](/docs/pgsql/param#pg_libs) as its default value to configure preload extensions, but this only takes effect during cluster init - later modifications are ineffective.
+Use [**`pg_libs`**](/docs/pgsql/param#pg_libs) to set the default list of preload extensions.
+This value applies only during cluster initialization.
+Changes to this value have no effect after initialization.
 
 ```yaml
 pg-meta:
@@ -188,9 +200,11 @@ pg edit-config pg-meta --force -p shared_preload_libraries='timescaledb, pg_stat
 pg restart pg-meta   # Modify pg-meta params and restart to apply
 ```
 
-Ensure extension packages are correctly installed before adding preload config. If extension in `shared_preload_libraries` doesn't exist or fails to load, PostgreSQL **won't start**.
-Also, manage cluster config changes through Patroni - avoid using `ALTER SYSTEM` or [**`pg_parameters`**](/docs/pgsql/param#pg_parameters) to modify instance config separately.
-If primary and replica configs differ, it may cause startup failure or replication interruption.
+Before you add preload configuration, verify that the extension packages are installed correctly.
+If an extension in `shared_preload_libraries` is missing or cannot load, PostgreSQL **will not start**.
+Manage cluster configuration changes through Patroni.
+Avoid `ALTER SYSTEM` or [**`pg_parameters`**](/docs/pgsql/param#pg_parameters) for separate instance configuration changes.
+Different primary and replica configurations can cause startup failure or interrupt replication.
 
 
 
@@ -199,7 +213,7 @@ If primary and replica configs differ, it may cause startup failure or replicati
 
 ## Enable Extensions
 
-After installing packages, execute `CREATE EXTENSION` in database to use extension features.
+After you install the packages, run `CREATE EXTENSION` in the database to enable extension features.
 
 **Enable during cluster init**
 
@@ -232,7 +246,8 @@ psql -d meta -c 'CREATE EXTENSION postgis SCHEMA public;'   # Specify schema
 bin/pgsql-db pg-meta meta    # Creating/modifying database auto-enables defined extensions
 ```
 
-**Result**: Creates extension objects (functions, types, operators, index methods, etc.) in database, enabling use of extension features.
+**Result**: Pigsty creates extension objects in the database, such as functions, types, operators, and index methods.
+You can then use the extension features.
 
 
 ----------------
@@ -270,7 +285,9 @@ ALTER EXTENSION vector UPDATE TO '0.8.1';
 ```
 
 > [!NOTE] Update Notes
-> Backup database before updating extensions. Preloaded extensions may require PostgreSQL restart after update. Some extension version upgrades may be incompatible - check extension docs.
+> Back up the database before you update extensions.
+> Preloaded extensions may require a PostgreSQL restart after an update.
+> Some version upgrades may be incompatible. Check the extension documentation.
 
 
 ----------------
@@ -310,7 +327,8 @@ sudo apt remove postgresql-18-pgvector        # Debian/Ubuntu
 ```
 
 > [!WARNING] CASCADE Warning
-> Using `CASCADE` to drop extensions also drops all objects depending on that extension (tables, indexes, views, etc.). Check dependencies before executing.
+> `CASCADE` also deletes all objects that depend on the extension, such as tables, indexes, and views.
+> Check dependencies before you run the command.
 
 
 ----------------
@@ -421,14 +439,16 @@ sudo apt update
 
 **Preloaded extension prevents startup**
 
-If extension in `shared_preload_libraries` doesn't exist or fails to load, PostgreSQL won't start. Solutions:
+If an extension in `shared_preload_libraries` is missing or cannot load, PostgreSQL will not start.
+Use one of these solutions:
 
 1. Ensure extension package is correctly installed
 2. Or remove extension from `shared_preload_libraries` (edit `/pg/data/postgresql.conf`)
 
 **Extension dependencies**
 
-Some extensions depend on others, requiring sequential creation or using `CASCADE`:
+Some extensions depend on other extensions.
+Create the dependencies first, or use `CASCADE`:
 
 ```sql
 CREATE EXTENSION postgis;                    -- Create base extension first

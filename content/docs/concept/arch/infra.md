@@ -7,14 +7,13 @@ module: [INFRA]
 categories: [Concept]
 ---
 
-Running production-grade, highly available PostgreSQL clusters typically requires a comprehensive set of infrastructure services (foundation) for support, such as monitoring and alerting, log collection, time synchronization, DNS resolution, and local software repositories.
-Pigsty provides the [**INFRA module**](/docs/infra) to address this—it's an **optional module**, but we strongly recommend enabling it.
+Production HA PostgreSQL needs monitoring, alerts, logs, time synchronization, DNS, and software repositories. The [**INFRA module**](/docs/infra) provides these services. It is optional but strongly recommended.
 
 --------
 
 ## Overview
 
-The diagram below shows the architecture of a [**single-node deployment**](/docs/setup/install). The right half represents the components included in the [**INFRA module**](/docs/infra):
+The following [**single-node deployment**](/docs/setup/install) diagram shows [**INFRA**](/docs/infra) components on the right:
 
 
 | Component                                 | Type            | Description                                                                                                    |
@@ -39,7 +38,7 @@ The diagram below shows the architecture of a [**single-node deployment**](/docs
 
 ## Nginx
 
-**Nginx** is the access entry point for all WebUI services in Pigsty, using ports [**`80`**](/docs/infra/param#nginx_port) / [**`443`**](/docs/infra/param#nginx_ssl_port) for HTTP/HTTPS by default. [**Live Demo**](https://demo.pigsty.io/)
+**Nginx** provides access to Pigsty WebUI services. HTTP and HTTPS use [**`80`**](/docs/infra/param#nginx_port) and [**`443`**](/docs/infra/param#nginx_ssl_port) by default. See the [**Live Demo**](https://demo.pigsty.io/).
 
 
 |              IP Access (replace)               |              Domain (HTTP)               |               Domain (HTTPS)               |                      Public Demo                       |
@@ -48,8 +47,7 @@ The diagram below shows the architecture of a [**single-node deployment**](/docs
 {.full-width}
 
 
-Infrastructure components with WebUIs can be exposed uniformly through **Nginx**, such as **Grafana**, **VictoriaMetrics** (VMUI), **AlertManager**,
-and **HAProxy** console. Additionally, the **local software repository** and other static resources are served via **Nginx**.
+**Nginx** exposes the **Grafana**, **VictoriaMetrics** (VMUI), **AlertManager**, and **HAProxy** web interfaces. It also serves the **local software repository** and other static files.
 
 **Nginx** configures local web servers or reverse proxy servers based on definitions in [**`infra_portal`**](/docs/infra/param/#infra_portal).
 
@@ -58,7 +56,7 @@ infra_portal:
   home : { domain: i.pigsty }
 ```
 
-By default, it exposes Pigsty's admin homepage: `i.pigsty`. Different endpoints on this page proxy different components:
+The default administration homepage is `i.pigsty`. Its endpoints proxy these components:
 
 | Endpoint     | Component                           | Native Port | Notes                             | Public Demo                                                    |
 |:-------------|:------------------------------------|:------------|:----------------------------------|----------------------------------------------------------------|
@@ -74,7 +72,7 @@ By default, it exposes Pigsty's admin homepage: `i.pigsty`. Different endpoints 
 
 [![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io)
 
-Pigsty allows rich customization of **Nginx** as a local file server or reverse proxy, with self-signed or real HTTPS certificates.
+Configure **Nginx** as a file server or reverse proxy. HTTPS supports self-signed and publicly trusted certificates.
 
 For more information, see: [**Tutorial: Nginx—Expose Web Services via Proxy**](/docs/infra/admin/portal/) and [**Tutorial: Certbot—Request and Renew HTTPS Certificates**](/docs/infra/admin/cert)
 
@@ -85,19 +83,16 @@ For more information, see: [**Tutorial: Nginx—Expose Web Services via Proxy**]
 
 ## Repo
 
-Pigsty creates a **local software repository** on the Infra node during installation to accelerate subsequent software installations. [**Live Demo**](https://demo.pigsty.io/pigsty/)
+During installation, Pigsty creates a **local software repository** on the infrastructure node to speed later installations. See the [**Live Demo**](https://demo.pigsty.io/pigsty/).
 
-This repository defaults to the [**`/www/pigsty`**](/docs/infra/param#repo_home) directory,
-served by **Nginx** and mounted at the `/pigsty` path:
+The default directory is [**`/www/pigsty`**](/docs/infra/param#repo_home). **Nginx** serves it at `/pigsty`:
 
 |                     IP Access (replace)                      |                     Domain (HTTP)                      |                      Domain (HTTPS)                      |                             Public Demo                              |
 |:------------------------------------------------------------:|:------------------------------------------------------:|:--------------------------------------------------------:|:--------------------------------------------------------------------:|
 | [**`http://10.10.10.10/pigsty`**](http://10.10.10.10/pigsty) | [**`http://i.pigsty/pigsty`**](http://i.pigsty/pigsty) | [**`https://i.pigsty/pigsty`**](https://i.pigsty/pigsty) | [**`https://demo.pigsty.io/pigsty`**](https://demo.pigsty.io/pigsty) |
 {.full-width}
 
-Pigsty supports [**offline installation**](/docs/setup/offline), which essentially pre-copies a prepared local software repository to the target environment.
-When Pigsty finds **`/www/pigsty/repo_complete`** during deployment, it skips upstream downloads and uses the existing repository directly.
-The current source has [sow](https://sow.pgsty.com) generate this file as both a completion marker and a SHA-256 manifest of repository contents. To force a rebuild, run `./infra.yml -t repo_build -e repo_build=true`.
+For [**offline installation**](/docs/setup/offline), copy a prepared local software repository into the target environment. If **`/www/pigsty/repo_complete`** exists, deployment skips upstream downloads and uses that repository. [sow](https://sow.pgsty.com) generates this file as a completion marker and SHA-256 manifest. To force a rebuild, run `./infra.yml -t repo_build -e repo_build=true`.
 
 [![repo](/img/pigsty/repo.webp)](https://demo.pigsty.io/pigsty/)
 
@@ -109,7 +104,7 @@ For more information, see: [**Config: INFRA - REPO**](/docs/infra/param/#repo)
 
 ## Grafana
 
-**Grafana** is the core component of Pigsty's monitoring system, used for visualizing metrics, logs, and various information. [**Live Demo**](https://demo.pigsty.io/ui/)
+**Grafana** visualizes Pigsty metrics, logs, and other monitoring data. See the [**Live Demo**](https://demo.pigsty.io/ui/).
 
 **Grafana** listens on port `3000` by default and is proxied via **Nginx** at the `/ui` path:
 
@@ -118,10 +113,9 @@ For more information, see: [**Config: INFRA - REPO**](/docs/infra/param/#repo)
 | [**`http://10.10.10.10/ui`**](http://10.10.10.10/ui) | [**`http://i.pigsty/ui`**](http://i.pigsty/ui) | [**`https://i.pigsty/ui`**](https://i.pigsty/ui) | [**`https://demo.pigsty.io/ui`**](https://demo.pigsty.io/ui) |
 {.full-width}
 
-Pigsty provides pre-built dashboards based on **VictoriaMetrics** / **Logs** / **Traces**, with one-click drill-down and roll-up via URL jumps for rapid troubleshooting.
+Pigsty includes dashboards for **VictoriaMetrics**, **Logs**, and **Traces**. URL links let you move between summary and detail views for diagnosis.
 
-**Grafana** can also serve as a low-code visualization platform, so **ECharts**, victoriametrics-datasource, victorialogs-datasource plugins are installed by default,
-with **Vector** / **Victoria** datasources registered uniformly as `vmetrics-*`, `vlogs-*`, `vtraces-*` for easy custom dashboard extension.
+**Grafana** also supports low-code visualization. Pigsty installs **ECharts**, victoriametrics-datasource, and victorialogs-datasource plugins by default. **Vector**/**Victoria** data sources use the names `vmetrics-*`, `vlogs-*`, and `vtraces-*` for custom dashboards.
 
 ![dashboard](/img/dashboard/pigsty.jpg)
 
@@ -133,17 +127,16 @@ For more information, see: [**Config: INFRA - GRAFANA**](/docs/infra/param/#graf
 
 ## VictoriaMetrics
 
-**VictoriaMetrics** is Pigsty's time series database, responsible for scraping and storing all monitoring metrics. [**Live Demo**](https://demo.pigsty.io/vmetrics/)
+**VictoriaMetrics** collects and stores Pigsty monitoring metrics as time-series data. See the [**Live Demo**](https://demo.pigsty.io/vmetrics/).
 
-It listens on port `8428` by default, mounted at **Nginx** `/vmetrics` path, and also accessible via the `p.pigsty` domain:
+The default port is `8428`. Access it through **Nginx** at `/vmetrics` or the `p.pigsty` domain:
 
 |                       IP Access (replace)                        |              Domain (HTTP)               |                        Domain (HTTPS)                        |                               Public Demo                                |
 |:----------------------------------------------------------------:|:----------------------------------------:|:------------------------------------------------------------:|:------------------------------------------------------------------------:|
 | [**`http://10.10.10.10/vmetrics`**](http://10.10.10.10/vmetrics) | [**`http://p.pigsty`**](http://p.pigsty) | [**`https://i.pigsty/vmetrics`**](https://i.pigsty/vmetrics) | [**`https://demo.pigsty.io/vmetrics`**](https://demo.pigsty.io/vmetrics) |
 {.full-width}
 
-**VictoriaMetrics** is fully compatible with the **Prometheus** API, supporting PromQL queries, remote read/write protocols, and the Alertmanager API.
-The built-in **VMUI** provides an ad-hoc query interface for exploring metrics data directly, and also serves as a **Grafana** datasource.
+**VictoriaMetrics** supports the **Prometheus** API, PromQL, remote read/write protocols, and the Alertmanager API. Its **VMUI** supports direct queries for metric exploration. It also supplies data to **Grafana**.
 
 [![vmetrics](/img/pigsty/vmetrics.webp)](https://demo.pigsty.io/vmetrics/vmui)
 
@@ -154,7 +147,7 @@ For more information, see: [**Config: INFRA - VMETRICS**](/docs/infra/param/#vme
 
 ## VictoriaLogs
 
-**VictoriaLogs** is Pigsty's log platform, centrally storing structured logs from all nodes. [**Live Demo**](https://demo.pigsty.io/vlogs/)
+**VictoriaLogs** centrally stores structured logs from all Pigsty nodes. See the [**Live Demo**](https://demo.pigsty.io/vlogs/).
 
 It listens on port `9428` by default, mounted at **Nginx** `/vlogs` path:
 
@@ -163,8 +156,7 @@ It listens on port `9428` by default, mounted at **Nginx** `/vlogs` path:
 | [**`http://10.10.10.10/vlogs`**](http://10.10.10.10/vlogs) | [**`http://i.pigsty/vlogs`**](http://i.pigsty/vlogs) | [**`https://i.pigsty/vlogs`**](https://i.pigsty/vlogs) | [**`https://demo.pigsty.io/vlogs`**](https://demo.pigsty.io/vlogs) |
 {.full-width}
 
-All managed nodes run **Vector** Agent by default, collecting system logs, PostgreSQL logs, Patroni logs, Pgbouncer logs, etc., processing them into structured format and pushing to **VictoriaLogs**.
-The built-in Web UI supports log search and filtering, and can be integrated with **Grafana**'s victorialogs-datasource plugin for visual analysis.
+Managed nodes run **Vector** by default. It collects system, PostgreSQL, Patroni, Pgbouncer, and other logs, structures them, and sends them to **VictoriaLogs**. The built-in Web UI supports search and filtering. Use the **Grafana** victorialogs-datasource plugin for visual analysis.
 
 [![vlogs](/img/pigsty/vmlogs.webp)](https://demo.pigsty.io/vlogs/select/vmui)
 
@@ -184,8 +176,7 @@ It listens on port `10428` by default, mounted at **Nginx** `/vtraces` path:
 | [**`http://10.10.10.10/vtraces`**](http://10.10.10.10/vtraces) | [**`http://i.pigsty/vtraces`**](http://i.pigsty/vtraces) | [**`https://i.pigsty/vtraces`**](https://i.pigsty/vtraces) | [**`https://demo.pigsty.io/vtraces`**](https://demo.pigsty.io/vtraces) |
 {.full-width}
 
-**VictoriaTraces** provides a **Jaeger**-compatible interface for analyzing service call chains and database slow queries.
-Combined with **Grafana** dashboards, it enables rapid identification of performance bottlenecks and root cause tracing.
+**VictoriaTraces** provides a **Jaeger**-compatible interface for service traces and slow SQL queries. Use it with **Grafana** to locate performance limits and trace their causes.
 
 For more information, see: [**Config: INFRA - VTRACES**](/docs/infra/param/#vtraces_enabled)
 
@@ -194,7 +185,7 @@ For more information, see: [**Config: INFRA - VTRACES**](/docs/infra/param/#vtra
 
 ## VMAlert
 
-**VMAlert** is the alerting rule computation engine, responsible for evaluating alert rules and pushing triggered events to **Alertmanager**. [**Live Demo**](https://demo.pigsty.io/vmalert/)
+**VMAlert** evaluates alert rules and sends triggered events to **Alertmanager**. See the [**Live Demo**](https://demo.pigsty.io/vmalert/).
 
 It listens on port `8880` by default, mounted at **Nginx** `/vmalert` path:
 
@@ -203,8 +194,7 @@ It listens on port `8880` by default, mounted at **Nginx** `/vmalert` path:
 | [**`http://10.10.10.10/vmalert`**](http://10.10.10.10/vmalert) | [**`http://i.pigsty/vmalert`**](http://i.pigsty/vmalert) | [**`https://i.pigsty/vmalert`**](https://i.pigsty/vmalert) | [**`https://demo.pigsty.io/vmalert`**](https://demo.pigsty.io/vmalert) |
 {.full-width}
 
-**VMAlert** reads metrics data from **VictoriaMetrics** and periodically evaluates alerting rules.
-Pigsty provides pre-built alerting rules for PGSQL, NODE, REDIS, and other modules, covering common failure scenarios out of the box.
+**VMAlert** periodically evaluates rules against **VictoriaMetrics** data. Pigsty includes rules for common failures in PGSQL, NODE, REDIS, and other modules.
 
 [![vmalert](/img/pigsty/vmalert.webp)](https://demo.pigsty.io/vmalert/vmalert/groups)
 
@@ -224,8 +214,7 @@ It listens on port `9059` by default, mounted at **Nginx** `/alertmgr` path, and
 | [**`http://10.10.10.10/alertmgr`**](http://10.10.10.10/alertmgr) | [**`http://a.pigsty`**](http://a.pigsty) | [**`https://i.pigsty/alertmgr`**](https://i.pigsty/alertmgr) | [**`https://demo.pigsty.io/alertmgr`**](https://demo.pigsty.io/alertmgr) |
 {.full-width}
 
-**AlertManager** supports multiple notification channels: email, Webhook, Slack, PagerDuty, WeChat Work, etc.
-Through alert routing rules, differentiated dispatch based on severity level and module type is possible, with support for silencing, inhibition, and other advanced features.
+**AlertManager** supports email, Webhook, Slack, PagerDuty, WeChat Work, and other notification channels. Routing rules select destinations by severity and module. Silencing and inhibition are also supported.
 
 [![alertmanager](/img/pigsty/alertmanager.webp)](https://demo.pigsty.io/alertmgr/)
 
@@ -236,7 +225,7 @@ For more information, see: [**Config: INFRA - AlertManager**](/docs/infra/param/
 
 ## BlackboxExporter
 
-**Blackbox Exporter** is used for active probing of target reachability, enabling blackbox monitoring.
+**Blackbox Exporter** probes targets to check reachability.
 
 It listens on port `9115` by default, mounted at **Nginx** `/blackbox` path:
 
@@ -245,8 +234,7 @@ It listens on port `9115` by default, mounted at **Nginx** `/blackbox` path:
 | [**`http://10.10.10.10/blackbox`**](http://10.10.10.10/blackbox) | [**`http://i.pigsty/blackbox`**](http://i.pigsty/blackbox) | [**`https://i.pigsty/blackbox`**](https://i.pigsty/blackbox) | [**`https://demo.pigsty.io/blackbox`**](https://demo.pigsty.io/blackbox) |
 {.full-width}
 
-It supports multiple probe methods including ICMP Ping, TCP ports, and HTTP/HTTPS endpoints.
-Useful for monitoring VIP reachability, service port availability, external dependency health, etc.—an important tool for assessing failure impact scope.
+Probe methods include ICMP Ping, TCP ports, and HTTP/HTTPS endpoints. Check VIP reachability, service ports, and external dependencies to determine the scope of a failure.
 
 [![blackbox](/img/pigsty/blackbox.webp)](https://demo.pigsty.io/blackbox/)
 
@@ -257,15 +245,14 @@ For more information, see: [**Config: INFRA - BLACKBOX**](/docs/infra/param/#bla
 
 ## Ansible
 
-**Ansible** is Pigsty's core orchestration tool; all deployment, configuration, and management operations are performed through Ansible Playbooks.
+**Ansible** runs Pigsty deployment, configuration, and management playbooks.
 
-Pigsty automatically installs **Ansible** on the admin node (Infra node) during installation.
-It adopts a declarative configuration style and idempotent playbook design: the same playbook can be run repeatedly, and the system automatically converges to the desired state without side effects.
+Installation adds **Ansible** to the administration/infrastructure node. Declarative configuration specifies the target state. Idempotent playbooks can run repeatedly to reach that state without additional side effects.
 
-**Ansible**'s core advantages:
-- **Agentless**: Executes remotely via SSH, no additional software needed on target nodes.
-- **Declarative**: Describes the desired state rather than execution steps; configuration is documentation.
-- **Idempotent**: Multiple executions produce consistent results; supports retry after partial failures.
+**Ansible** provides:
+- **Agentless execution**: Connect through SSH without installing an agent on managed nodes.
+- **Declarative configuration**: Describe the target state; configuration also documents it.
+- **Idempotent operations**: Repeated runs produce consistent results and can retry partial failures.
 
 For more information, see: [**Playbooks: Pigsty Playbook**](/docs/setup/playbook)
 
@@ -278,9 +265,7 @@ For more information, see: [**Playbooks: Pigsty Playbook**](/docs/setup/playbook
 
 DNSMASQ listens on port `53` (UDP/TCP) by default, providing DNS resolution for all nodes. Records are stored in the `/etc/dnsmasq.d/pigsty` directory.
 
-Other modules automatically register their domain names with **DNSMASQ** during deployment, which you can use as needed.
-DNS is completely optional—**Pigsty works normally without it**.
-Client nodes can configure INFRA nodes as their DNS servers, allowing access to services via domain names without remembering IP addresses.
+Other modules register domain names with **DNSMASQ** during deployment. Client nodes can use infrastructure nodes as DNS servers and access services by name. DNS is optional; **Pigsty also works without it**.
 
 - [**`dns_records`**](/docs/infra/param/#dns_records): Default DNS records written to INFRA nodes
 - [**`node_dns_servers`**](/docs/node/param/#node_dns_servers): Configure DNS servers for nodes, defaults to INFRA node via [**`admin_ip`**](/docs/infra/param/#admin_ip) (can also be [**disabled**](/docs/node/param#node_dns_method))
@@ -292,14 +277,11 @@ For more information, see: [**Config: INFRA - DNS**](/docs/infra/param/#dns) and
 
 ## Chronyd
 
-**Chronyd** provides NTP time synchronization, ensuring consistent clocks across all nodes. It listens on port `123` (UDP) by default as the time source.
+**Chronyd** synchronizes node clocks through NTP. Its time-source service uses UDP port `123` by default.
 
-Time synchronization is critical for distributed systems: log analysis requires aligned timestamps, certificate validation depends on accurate clocks, and **PostgreSQL** streaming replication is sensitive to clock drift.
-In isolated network environments, the INFRA node can serve as an internal NTP server with other nodes synchronizing to it.
+Distributed systems need synchronized clocks. Logs need comparable timestamps, certificate checks need accurate time, and **PostgreSQL** streaming replication is sensitive to clock drift. In isolated networks, other nodes can synchronize to an infrastructure node acting as their NTP server.
 
-In Pigsty, all nodes run chronyd by default for time sync. The default upstream is [**`pool.ntp.org`**](/docs/node/param#node_ntp_servers) public NTP servers.
-Chronyd is essentially managed by the [**Node module**](/docs/node), but in isolated networks, you can use [**`admin_ip`**](/docs/infra/param/#admin_ip) to point to the INFRA node's Chronyd service as the internal time source.
-In this case, the Chronyd service on the [**INFRA node**](/docs/concept/arch/node#infra-node) serves as the internal time synchronization infrastructure.
+All nodes run chronyd by default, using public [**`pool.ntp.org`**](/docs/node/param#node_ntp_servers) servers. The [**Node module**](/docs/node) manages chronyd. In isolated networks, use [**`admin_ip`**](/docs/infra/param/#admin_ip) to select the [**INFRA node**](/docs/concept/arch/node#infra-node) as the internal time source.
 
 For more information, see: [**Config: NODE - TIME**](/docs/node/param/#node_time)
 
@@ -310,23 +292,23 @@ For more information, see: [**Config: NODE - TIME**](/docs/node/param/#node_time
 
 In Pigsty, the relationship between nodes and infrastructure is a **weak circular dependency**: node_monitor → infra → node
 
-The [**NODE module**](/docs/node) itself doesn't depend on the [**INFRA module**](/docs/infra), but the monitoring functionality (node_monitor) requires the monitoring platform and services provided by the infrastructure module.
+[**NODE**](/docs/node) does not itself require [**INFRA**](/docs/infra). Its node_monitor functions require the infrastructure monitoring platform and services.
 
-Therefore, in the [**`infra.yml`**](/docs/infra/playbook#infrayml) and [**`deploy`**](/docs/setup/playbook) playbooks, an "interleaved deployment" technique is used:
+[**`infra.yml`**](/docs/infra/playbook#infrayml) and [**`deploy`**](/docs/setup/playbook) resolve this dependency through these steps:
 
-- First, initialize the [**NODE module**](/docs/node) on all [**regular nodes**](/docs/concept/arch/node#regular-node), but skip monitoring config since infrastructure isn't deployed yet.
-- Then, initialize the [**INFRA module**](/docs/infra) on the [**INFRA node**](/docs/concept/arch/node#infra-node)—monitoring is now available.
-- Finally, reconfigure monitoring on all [**regular nodes**](/docs/concept/arch/node#regular-node), connecting to the now-deployed monitoring platform.
+- Initialize [**NODE**](/docs/node) on [**regular nodes**](/docs/concept/arch/node#regular-node). Skip monitoring because the infrastructure is not ready.
+- Initialize [**INFRA**](/docs/infra) on the [**INFRA node**](/docs/concept/arch/node#infra-node) to provide monitoring.
+- Configure monitoring on [**regular nodes**](/docs/concept/arch/node#regular-node) to connect to that platform.
 
-If you don't need "one-shot" deployment of all nodes, you can use [**phased deployment**](/docs/setup/config#adding-infrastructure): initialize INFRA nodes first, then regular nodes.
+Alternatively, use [**phased deployment**](/docs/setup/config#adding-infrastructure): initialize infrastructure nodes before regular nodes.
 
 ### How Are Nodes Coupled to Infrastructure?
 
-Regular nodes reference an [**INFRA node**](#infra-node) via the [**`admin_ip`**](/docs/infra/param/#admin_ip) parameter as their infrastructure provider.
+Regular nodes use [**`admin_ip`**](/docs/infra/param/#admin_ip) to select an [**INFRA node**](#infra-node) for infrastructure services.
 
-For example, when you configure global `admin_ip = 10.10.10.10`, all nodes will typically use infrastructure services at this IP.
+For example, global `admin_ip = 10.10.10.10` normally directs all nodes to infrastructure at that address.
 
-This design allows quick, batch switching of infrastructure providers. Parameters that **may** reference `${admin_ip}`:
+Change this address to switch infrastructure providers for many nodes. These parameters **may** reference `${admin_ip}`:
 
 | Parameter                                                                |           Module           | Default Value                   | Description            |
 |:-------------------------------------------------------------------------|:--------------------------:|---------------------------------|------------------------|
@@ -340,25 +322,18 @@ This design allows quick, batch switching of infrastructure providers. Parameter
 | [**`node_ntp_servers`**](/docs/node/param/#node_ntp_servers)             |  [**`NODE`**](/docs/node)  | `["pool pool.ntp.org iburst"]`  | NTP servers (optional) |
 {.full-width}
 
-For example, when a node installs software, the `local` repo points to the Nginx local software repository at `admin_ip:80/pigsty`. The DNS server also points to [**DNSMASQ**](#dnsmasq) at `admin_ip:53`.
-However, this isn't mandatory—nodes can ignore the `local` repo and install directly from upstream internet sources (most single-node config templates); DNS servers can also remain unconfigured, as Pigsty has no DNS dependency.
+For example, `local` uses the Nginx software repository at `admin_ip:80/pigsty`. DNS uses [**DNSMASQ**](#dnsmasq) at `admin_ip:53`. Both choices are optional. Nodes can install from Internet repositories, as most single-node templates do. They can also leave DNS unconfigured because Pigsty does not require it.
 
 
 --------
 
 ## INFRA Node vs ADMIN Node
 
-The management-initiating [**ADMIN node**](/docs/concept/arch/node#admin-node) typically coincides with the [**INFRA node**](/docs/concept/arch/node#infra-node).
-In [**single-node deployment**](/docs/setup/install), this is exactly the case. In multi-node deployment with multiple INFRA nodes, the admin node is usually the first in the `infra` group; others serve as backups.
-However, exceptions exist. You might separate them for various reasons:
+The [**ADMIN node**](/docs/concept/arch/node#admin-node) usually also serves as the [**INFRA node**](/docs/concept/arch/node#infra-node), including in [**single-node deployments**](/docs/setup/install). With multiple infrastructure nodes, the first `infra` member usually administers the environment and others provide backups. You can also separate the roles.
 
-For example, in [**large-scale production deployments**](/docs/deploy), a classic pattern uses 1-2 dedicated management hosts (tiny VMs suffice) belonging to the DBA team
-as the control hub, with 2-3 high-spec physical machines (or more!) as monitoring infrastructure. Here, admin nodes are separate from infrastructure nodes.
-In this case, the [**admin_ip**](/docs/infra/param/#admin_ip) in your config should point to an INFRA node's IP, not the current ADMIN node's IP.
-This is for historical reasons: initially ADMIN and INFRA nodes were tightly coupled concepts, with separation capabilities evolving later, so the parameter name wasn't changed.
+For example, [**large production deployments**](/docs/deploy) can use 1–2 small DBA-managed VMs for administration. Use 2–3 high-capacity physical servers, or more, for monitoring infrastructure. Set [**admin_ip**](/docs/infra/param/#admin_ip) to an infrastructure node address. The parameter retains its historical name from when administration and infrastructure roles were combined.
 
-Another common scenario is [**managing cloud nodes locally**](/docs/setup). For example, you can install Ansible on your laptop and specify cloud nodes as "managed targets."
-In this case, your laptop acts as the ADMIN node, while cloud servers act as INFRA nodes.
+For [**local management of cloud nodes**](/docs/setup), install Ansible on your laptop and select cloud servers as managed targets. The laptop is the administration node. Cloud servers provide infrastructure.
 
 ```yaml
 all:
@@ -377,19 +352,12 @@ all:
 
 ## Multiple INFRA Nodes
 
-By default, Pigsty only needs one INFRA node for most requirements. Even if the INFRA module goes down, it won't affect database services on other nodes.
+One infrastructure node usually meets the requirements. Failure of its INFRA module does not interrupt database services on other nodes.
 
-However, in production environments with high monitoring and alerting requirements, you may want multiple INFRA nodes to improve infrastructure availability.
-A common deployment uses two Infra nodes for redundancy, monitoring each other...
-or more nodes to deploy a distributed Victoria cluster for unlimited horizontal scaling.
+For higher monitoring and alerting availability, use multiple infrastructure nodes. Two nodes can provide redundancy and monitor each other. A distributed Victoria cluster can use more nodes for horizontal scaling without a fixed limit.
 
-Each Infra node is **independent**—Nginx points to services on the local machine.
-VictoriaMetrics independently scrapes metrics from all services in the environment,
-and logs are pushed to all VictoriaLogs collection endpoints by default.
-The only exception is Grafana: every Grafana instance registers all VictoriaMetrics / Logs / Traces / PostgreSQL instances as datasources.
-Therefore, each Grafana instance can see complete monitoring data.
+Each infrastructure node operates **independently**. Nginx uses local services, and VictoriaMetrics collects metrics from every environment service. Nodes send logs to all VictoriaLogs endpoints by default. Grafana is the exception: each instance registers every VictoriaMetrics, Logs, Traces, and PostgreSQL instance as a data source. Thus, each Grafana can access all monitoring data.
 
-If you modify Grafana—such as adding new dashboards or changing datasource configs—these changes only affect the Grafana instance on that node.
-To keep Grafana consistent across all nodes, use a PostgreSQL database as shared storage. See [**Tutorial: Configure Grafana High Availability**](/docs/infra/admin/grafana) for details.
+Dashboard and data-source changes affect only the Grafana instance you edit. For shared configuration, use a PostgreSQL database as Grafana storage. See [**Configure Grafana High Availability**](/docs/infra/admin/grafana).
 
 [![INFRA overview dashboard](/img/dashboard/infra-overview.webp)](https://demo.pigsty.io/ui/d/infra-overview)

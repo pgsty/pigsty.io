@@ -13,10 +13,10 @@ categories: [Reference]
 
 ## Who Can Run Docker Commands?
 
-By default, Pigsty adds both the management user running the playbook on the remote node (i.e., the SSH login user on the target node) and the admin user specified in the [`node_admin_username`](/docs/node/param#node_admin_username) parameter to the Docker operating system group.
+By default, Pigsty adds two users to the Docker operating system group. One is the management user that runs the playbook: the SSH login user on the target node. The other is the admin user specified by [`node_admin_username`](/docs/node/param#node_admin_username).
 All users in this group (`docker`) can manage Docker using the `docker` CLI command.
 
-If you want other users to be able to run Docker commands, add that OS user to the docker group:
+To let another user run Docker commands, add that OS user to the docker group:
 
 ```bash
 usermod -aG docker <username>
@@ -27,12 +27,11 @@ usermod -aG docker <username>
 
 ## Working Through a Proxy
 
-During Docker installation, if the [`proxy_env`](/docs/infra/param#proxy_env) parameter exists,
-the HTTP proxy server configuration will be written to the `/etc/docker/daemon.json` configuration file.
+During Docker installation, Pigsty checks for [`proxy_env`](/docs/infra/param#proxy_env). If this parameter exists, Pigsty writes the HTTP proxy configuration to `/etc/docker/daemon.json`.
 
 Docker will use this proxy server when pulling images from upstream registries.
 
-Tip: Running `configure` with the `-x` flag will write the proxy server configuration from your current environment into `proxy_env`.
+Tip: Run `configure` with `-x` to copy the proxy settings from your current environment into `proxy_env`.
 
 
 --------
@@ -57,7 +56,7 @@ docker login quay.io    # Enter username and password to log in
 
 ## Adding Docker to Monitoring
 
-During Docker module installation, you can register Docker as a monitoring target by running the `docker_register` subtask (or alias tag `add_metrics`) for specific nodes:
+During installation, run the `docker_register` subtask for the target nodes to register Docker for monitoring. You can also use its alias tag, `add_metrics`:
 
 ```bash
 ./docker.yml -l <your-node-selector> -t docker_register
@@ -69,6 +68,4 @@ During Docker module installation, you can register Docker as a monitoring targe
 
 ## Using Software Templates
 
-Pigsty provides a collection of [software templates](/docs/app/) that can be launched using Docker Compose, ready to use out of the box.
-
-But you need to install the Docker module first.
+Pigsty provides ready-to-use [software templates](/docs/app/) for Docker Compose. Install the Docker module before you start these templates.

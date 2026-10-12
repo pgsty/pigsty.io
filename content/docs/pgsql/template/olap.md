@@ -8,7 +8,8 @@ categories: [Reference]
 ---
 
 
-`olap.yml` is optimized for **online analytical processing** (OLAP). Designed for 4-128 core CPUs with support for large queries, high parallelism, relaxed timeouts, and aggressive vacuum.
+`olap.yml` is optimized for **online analytical processing** (OLAP) on CPUs with 4-128 cores.
+It supports large queries, high parallelism, relaxed timeouts, and aggressive vacuum.
 
 > Pair with [**`node_tune`**](/docs/node/param#node_tune) = `olap` for OS-level tuning.
 
@@ -17,7 +18,7 @@ categories: [Reference]
 
 ## Use Cases
 
-OLAP template is ideal for:
+Use the OLAP template for:
 
 - **Data warehouses**: Historical data storage, multidimensional analysis
 - **BI reports**: Complex report queries, dashboard data sources
@@ -76,11 +77,12 @@ max_connections: 500
 superuser_reserved_connections: 10
 ```
 
-OLAP scenarios typically don't need many connections; 500 is sufficient for most analytical workloads.
+OLAP workloads usually need fewer connections.
+The limit of 500 is sufficient for most analytical workloads.
 
 ### Memory Config
 
-OLAP template uses more aggressive memory allocation:
+The OLAP template assigns more memory to operations:
 
 | Parameter | Formula | Description |
 |:----------|:--------|:------------|
@@ -102,11 +104,12 @@ Larger `work_mem` allows bigger sort and hash operations in memory, avoiding dis
 max_locks_per_transaction: 2-4x maxconn   # OLTP: 1-2x
 ```
 
-OLAP queries may involve more tables (partitions, many JOINs), requiring more lock slots.
+OLAP queries may access more tables through partitions and multiple JOINs.
+They therefore require more lock slots.
 
 ### Parallel Query
 
-OLAP template aggressively enables parallel queries:
+The OLAP template assigns more workers to parallel queries:
 
 ```yaml
 max_worker_processes: max(cpu + 20, 28)      # OLTP: max(cpu + 16, 24)
@@ -122,7 +125,7 @@ Parallel cost estimates use defaults to favor parallel plans:
 # parallel_tuple_cost: 0.1     # default, not doubled
 ```
 
-Partition-wise optimization enabled:
+The template enables partition-wise optimization:
 
 ```yaml
 enable_partitionwise_join: on       # smart partition JOIN
@@ -171,7 +174,8 @@ effective_io_concurrency: 200
 default_statistics_target: 1000    # OLTP: 400, more precise stats
 ```
 
-Higher `default_statistics_target` provides more accurate query plans, crucial for complex analytics.
+A higher `default_statistics_target` provides more accurate query plans.
+This is important for complex analytics.
 
 ### Logging & Monitoring
 
@@ -195,7 +199,8 @@ deadlock_timeout: 50ms
 idle_in_transaction_session_timeout: 0   # OLTP: 10min, disabled
 ```
 
-Analytical queries may need to hold transactions for extended periods, so idle timeout is disabled.
+Analytical queries may need to keep transactions open for long periods.
+Thus, the template disables the idle timeout.
 
 
 ----------------
@@ -229,7 +234,7 @@ Analytical queries may need to hold transactions for extended periods, so idle t
 
 ### With TimescaleDB
 
-OLAP template works great with TimescaleDB:
+You can use the OLAP template with TimescaleDB:
 
 ```yaml
 pg-timeseries:
@@ -242,7 +247,7 @@ pg-timeseries:
 
 ### With pg_duckdb
 
-For ultimate analytical performance, combine with pg_duckdb:
+To improve analytical performance, combine the template with pg_duckdb:
 
 ```yaml
 pg-analytics:

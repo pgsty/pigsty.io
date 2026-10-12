@@ -232,33 +232,19 @@ Release artifacts: [v1.8.1](https://github.com/pgsty/pig/releases/tag/v1.8.1)
 
 ## v1.8.0
 
-Pig `v1.8.0` is a native controller-workflow update on top of `v1.7.0`.
-`pig sty boot` and `pig sty conf` are now implemented in Go instead of wrapping the legacy
-`bootstrap` and `configure` shell scripts. The packaged PostgreSQL extension count remains
-**575**, and the embedded Pigsty version remains `4.5.0`.
+Pig `v1.8.0` updates native controller workflows from `v1.7.0`. Go implementations of `pig sty boot` and `pig sty conf` replace wrappers for the legacy `bootstrap` and `configure` shell scripts. The packaged PostgreSQL extension count remains **575**. The embedded Pigsty version remains `4.5.0`.
 
 **Highlights**
 
-- `pig sty boot` can elevate once through sudo, verifies Ansible and its actual Python runtime,
-  and supports explicit local packages, HTTP(S) URLs, trusted automatic offline packages,
-  committed local repositories, and regional online repositories. Repository replacement is
-  backed up and rolled back on failure; localhost SSH and a missing `~/pigsty` are repaired
-  on a best-effort basis.
-- `pig sty conf` now generates Inventory natively from safe templates, with up to ten IP mappings,
-  exact domain replacement, region and proxy settings, PostgreSQL-version selection, and random
-  credentials. The complete candidate is validated and atomically written with mode `0600`.
-- Bootstrap download and extraction no longer require `curl`, `wget`, `tar`, or `gzip`; offline
-  operation is restricted to `pigsty-local`, with the expected `/www -> /data/nginx` layout.
-- EL8 and newer consistently prefer DNF, local RPM requirements are resolved by provider
-  capability, extension metadata and availability matrices receive their routine refresh, and
-  the release toolchain moves to Go `1.26.6`.
+- `pig sty boot` can elevate once through sudo. It verifies Ansible and its actual Python runtime. It supports explicit local packages, HTTP(S) URLs, trusted automatic offline packages, committed local repositories, and regional online repositories. It backs up repository configuration before replacement and restores it on failure. It attempts to repair localhost SSH and a missing `~/pigsty`, but repair is not guaranteed.
+- `pig sty conf` generates inventory natively from safe templates. It supports up to ten IP mappings, exact domain replacement, region and proxy settings, PostgreSQL-version selection, and random credentials. It validates the complete candidate, then writes it atomically with mode `0600`.
+- Bootstrap download and extraction no longer require `curl`, `wget`, `tar`, or `gzip`. Offline operation uses only `pigsty-local` and requires the `/www -> /data/nginx` layout.
+- EL8 and newer consistently prefer DNF. Local RPM requirements resolve by provider capability. This release updates extension metadata and availability matrices, and moves the toolchain to Go `1.26.6`.
 
 **Compatibility Notes**
 
-- `pig sty boot` no longer executes `<PIGSTY_HOME>/bootstrap`; automation that relied on script
-  side effects must migrate to the native command.
-- `pig sty conf --raw` has been removed; `--conf MODE` and positional `MODE` are equivalent.
-  `--ip` accepts up to ten addresses and remains mutually exclusive with `--skip`.
+- `pig sty boot` no longer runs `<PIGSTY_HOME>/bootstrap`. Automation that relied on script side effects must use the native command.
+- Removed `pig sty conf --raw`. `--conf MODE` and positional `MODE` are equivalent. `--ip` accepts up to ten addresses. You cannot combine it with `--skip`.
 - EL8 and newer use DNF. The limited EL7 compatibility catalog keeps its separate legacy YUM path.
 
 **Checksums**
@@ -282,14 +268,14 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.8.0
 
 ## v1.7.0
 
-Pig `v1.7.0` is a repository compatibility and catalog release on top of `v1.6.2`. It makes China-mirror selection explicit, preserves native DNF module filtering by default, restores a streamlined EL7 repository catalog, and grows the bundled extension snapshot from 572 to 575. The embedded Pigsty version remains `4.5.0`.
+Pig `v1.7.0` updates repository compatibility and the catalog from `v1.6.2`. It makes China-mirror selection explicit and preserves native DNF module filtering by default. It restores a simplified EL7 repository catalog. The bundled extension snapshot grows from 572 to 575. The embedded Pigsty version remains `4.5.0`.
 
 **Highlights**
 
-- `-m|--mirror` now selects the bundled `china` repository definitions directly. PGDG, Rocky Linux, Debian, Ubuntu, Docker, and other regional routes use the maintained mirror list instead of the former runtime PGDG proxy rewrite.
-- EL repository definitions no longer receive `module_hotfixes=1` globally. Pigsty and PGDG repositories that intentionally override module streams opt in explicitly; BaseOS, AppStream, EPEL, and other repositories retain native DNF module filtering.
-- EL7 keeps a deliberately limited compatibility catalog: archived CentOS 7 Base/Updates/Extras/SCLo and EPEL definitions for `x86_64`, plus shared Pigsty and supported PGDG entries. The DNF-only `module_hotfixes` key is stripped when rendering EL7 YUM configuration.
-- Repository setup now reports unsupported platforms when the catalog has no matching definitions, instead of continuing with an empty repository set.
+- `-m|--mirror` directly selects the bundled `china` repository definitions. PGDG, Rocky Linux, Debian, Ubuntu, Docker, and other regional routes use the maintained mirror list. This replaces the former PGDG proxy rewrite at runtime.
+- EL repository definitions no longer receive `module_hotfixes=1` globally. Pigsty and PGDG repositories explicitly enable it when they need to override module streams. BaseOS, AppStream, EPEL, and other repositories retain native DNF module filtering.
+- EL7 retains a limited compatibility catalog. It includes archived CentOS 7 Base/Updates/Extras/SCLo and EPEL definitions for `x86_64`, plus shared Pigsty and supported PGDG entries. EL7 YUM rendering removes the DNF-only `module_hotfixes` key.
+- If the catalog has no matching definitions, repository setup reports an unsupported platform. It no longer continues with an empty repository set.
 
 **Extension Catalog**
 
@@ -300,9 +286,9 @@ Pig `v1.7.0` is a repository compatibility and catalog release on top of `v1.6.2
 **Compatibility Notes**
 
 - No commands or global flags are removed in this release.
-- `-m|--mirror` is now an explicit China-region selection rather than a PGDG proxy rewrite. Use `--region=default|china|europe` when you need a specific route.
-- Custom EL repository definitions that require module-stream overrides must set `meta.module_hotfixes: 1` explicitly. This setting is intentionally omitted for ordinary OS repositories and removed on EL7.
-- EL7 is end-of-life and only has limited compatibility coverage; prefer EL8 or newer for current PostgreSQL and extension packages.
+- `-m|--mirror` now explicitly selects the China region. It no longer rewrites the PGDG proxy. For a specific route, use `--region=default|china|europe`.
+- Custom EL repository definitions must set `meta.module_hotfixes: 1` explicitly to override module streams. Ordinary OS repositories omit this setting. EL7 removes it.
+- EL7 is end-of-life and has only limited compatibility coverage. Prefer EL8 or newer for current PostgreSQL and extension packages.
 
 **Checksums**
 
@@ -326,13 +312,13 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.7.0
 
 ## v1.6.2
 
-Pig `v1.6.2` is a feature and catalog release on top of `v1.6.1`. It grows the packaged extension catalog from 562 to 572, adds native Grafana dashboard schema v2 support, and improves local repository generation. The embedded Pigsty version remains locked at `4.5.0`.
+Pig `v1.6.2` adds features and updates the catalog from `v1.6.1`. Packaged extensions increase from 562 to 572. This release adds native Grafana dashboard schema v2 support and improves local repository generation. The embedded Pigsty version remains `4.5.0`.
 
 **Highlights**
 
-- `pig sty grafana` now accepts both legacy dashboard JSON and native `dashboard.grafana.app/v2` Dashboard resources. Loading a v2 dashboard uses Grafana's resource API so tabs and section variables survive the round trip; dumping preserves an existing v2 destination while new dumps keep the legacy format by default.
-- `pig repo create` now prefers `sow create --pigsty --timeout 10m -- <dir>` when SOW is available, requires the resulting `repo_complete` marker to exist as a regular file, and falls back to `createrepo_c` / `dpkg-scanpackages` on Linux.
-- Local repository creation now works on macOS through SOW, defaults to the current directory there, and does not require `sudo`. The Linux default remains `/www/pigsty`.
+- `pig sty grafana` accepts legacy dashboard JSON and native `dashboard.grafana.app/v2` Dashboard resources. It loads v2 dashboards through the Grafana resource API to preserve tabs and section variables across loading and dumping. Dumps preserve an existing v2 destination. New dumps use the legacy format by default.
+- When SOW is available, `pig repo create` prefers `sow create --pigsty --timeout 10m -- <dir>`. It requires a `repo_complete` marker that is a regular file. On Linux, it can fall back to `createrepo_c` / `dpkg-scanpackages`.
+- Local repository creation works on macOS through SOW. On macOS, it defaults to the current directory and does not require `sudo`. The Linux default remains `/www/pigsty`.
 - Release metadata is bumped to `1.6.2`; the embedded Pigsty version stays at `4.5.0`.
 
 **Extension Catalog**
@@ -345,8 +331,8 @@ Pig `v1.6.2` is a feature and catalog release on top of `v1.6.1`. It grows the p
 **Compatibility Notes**
 
 - No commands or global flags are removed in this release.
-- When SOW is installed, `pig repo create` now prefers it over the legacy Linux generators and checks that the completion marker exists before reporting success.
-- The catalog count is not a promise that every package is available on every PostgreSQL / OS / architecture combination; use `pig ext avail NAME` on the target host.
+- With SOW installed, `pig repo create` prefers it over the legacy Linux generators. It checks for the completion marker before reporting success.
+- The catalog count does not guarantee package availability for every PostgreSQL / OS / architecture combination. Check the target host with `pig ext avail NAME`.
 
 **Checksums**
 
@@ -370,11 +356,11 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.6.2
 
 ## v1.6.1
 
-Pig `v1.6.1` is a maintenance release that refreshes the bundled extension catalog and aligns the embedded Pigsty version with `4.5.0`. It introduces no new commands or flag changes.
+Pig `v1.6.1` is a maintenance release. It updates the bundled extension catalog and sets the embedded Pigsty version to `4.5.0`. It adds no commands and changes no flags.
 
 **Highlights**
 
-- Regenerate the embedded `extension.csv` from the Pigsty package repositories so fresh installs resolve against current package metadata without first running `pig ext reload`.
+- Regenerates the embedded `extension.csv` from Pigsty package repositories. New installations use current package metadata without first running `pig ext reload`.
 - Update the embedded Pigsty version reported by `pig sty` and `pig status` from `4.4.0` to `4.5.0`.
 - Keep 562 packaged extensions across PostgreSQL 14-18, EL 8/9/10, Debian 12/13, and Ubuntu 22/24/26 on `x86_64` and `aarch64`.
 
@@ -400,16 +386,16 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.6.1
 
 ## v1.6.0
 
-Pig `v1.6.0` is a major release: `pig pt` becomes a transparent `patronictl` launcher, the new root-level `pig inventory` command group brings lossless editing and validation of `pigsty.yml` (with an experimental PostgreSQL CMDB bridge), `pig sty grafana` adds native Grafana dashboard management, and the packaged extension catalog grows to 562.
+Pig `v1.6.0` is a major release. `pig pt` becomes a transparent `patronictl` launcher. The root-level `pig inventory` group adds lossless editing and validation of `pigsty.yml`, plus an experimental PostgreSQL CMDB bridge. `pig sty grafana` adds native Grafana dashboard management. The packaged extension catalog grows to 562.
 
 **Highlights**
 
-- `pig pt` is rewritten as a native `patronictl` passthrough: all cluster commands (`list`, `restart`, `switchover`, `failover`, `edit-config`, …) forward directly with native flags, prompts, output, and exit codes, so new patronictl features work without waiting for a pig release. Local helpers `status`, `log`, `set`, and `service/svc` remain, with new `-c/--config-file`, `-d/--dcs-url`, `-k/--insecure` options and a `pig pt -- …` escape hatch.
-- New root-level `pig inventory` command group (alias `inv`): `status` / `list` / `show` / `edit` / `validate` / `check` / `diff` — a lossless YAML engine that preserves comments, formatting, key order, and anchors byte-for-byte; `edit` validates before writing and writes atomically, so invalid YAML can never reach disk.
-- New **experimental** `pig inventory cmdb` subcommands (`check` / `init` / `load` / `dump` / `enable` / `disable`) exchange the inventory with the Pigsty CMDB in PostgreSQL over a native driver, with bounded timeouts and digest-pinned confirmation for destructive operations.
-- New `pig sty grafana` (alias `gf`) manages Grafana dashboards natively over HTTP: `info` / `list` / `boot` / `load` / `init` / `dump` / `clean` / `lang` / `style`. The `pig sty` surface is simplified: `sty edit` / `validate` / `check` / `cmdb` / `dashboard` / `release` are removed in favor of `pig inventory`, `pig sty grafana`, and `pig sty list` / `get`.
-- Reliability hardening: repo / catalog / download writes are atomic (no more truncated files on interrupt); structured `-o json|yaml` keeps stdout as a pure result envelope with wrapped-tool output on stderr; finer exit codes (usage errors → 2, missing `--yes` confirmation → 7); Ansible list variables are JSON-encoded.
-- Repository refresh: MySQL repos upgraded to 8.4 LTS, new Percona XtraBackup (`pxb84`) and MySQL Tools repos, Kubernetes v1.36, LLVM apt coverage for Debian/Ubuntu 26, Percona TDE sourced directly from repo.percona.com, `wiltondb` repo removed.
+- `pig pt` becomes a native `patronictl` launcher. All cluster commands (`list`, `restart`, `switchover`, `failover`, `edit-config`, …) forward directly with native flags, prompts, output, and exit codes. New patronictl features therefore work without a new pig release. Local helpers `status`, `log`, `set`, and `service/svc` remain. New options are `-c/--config-file`, `-d/--dcs-url`, and `-k/--insecure`. Use `pig pt -- …` to pass arguments directly.
+- Adds the root-level `pig inventory` command group (alias `inv`): `status` / `list` / `show` / `edit` / `validate` / `check` / `diff`. Its lossless YAML engine preserves comments, formatting, key order, and anchors byte-for-byte. `edit` validates before writing, then writes atomically. Invalid YAML cannot reach disk.
+- Adds **experimental** `pig inventory cmdb` subcommands: `check` / `init` / `load` / `dump` / `enable` / `disable`. They exchange inventory with the PostgreSQL Pigsty CMDB through a native driver. They use bounded timeouts and confirmation tied to a digest for destructive operations.
+- Adds `pig sty grafana` (alias `gf`) for native Grafana dashboard management over HTTP. Its commands are `info` / `list` / `boot` / `load` / `init` / `dump` / `clean` / `lang` / `style`. Removes `sty edit` / `validate` / `check` / `cmdb` / `dashboard` / `release` to simplify `pig sty`. Use `pig inventory`, `pig sty grafana`, and `pig sty list` / `get` instead.
+- Reliability improvements: repository, catalog, and download writes are atomic, preventing truncated files after interruption. Structured `-o json|yaml` output keeps only the result envelope on stdout and sends wrapped-tool output to stderr. More specific exit codes distinguish usage errors (2) from missing `--yes` confirmation (7). Ansible list variables use JSON encoding.
+- Repository updates: MySQL moves to 8.4 LTS, with new Percona XtraBackup (`pxb84`) and MySQL Tools repositories. Kubernetes moves to v1.36. LLVM APT coverage extends to Debian/Ubuntu 26. Percona TDE uses repo.percona.com directly. Removes the `wiltondb` repository.
 - Toolchain: Go 1.26.5, new native PostgreSQL driver (pgx v5), embedded Pigsty version `4.4.0`.
 
 **Extension Catalog**
@@ -417,13 +403,13 @@ Pig `v1.6.0` is a major release: `pig pt` becomes a transparent `patronictl` lau
 - Packaged extensions: **531 -> 562**; the broader PGEXT.CLOUD directory contains **2,230** entries.
 - 33 new extensions, including the `pg_lake` family (`pg_lake`, `pg_lake_table`, `pg_lake_engine`, `pg_lake_iceberg`, `pg_lake_copy`), `pg_jieba`, `pg_cjk_parser`, `pg_fts`, `pgmonitor`, `pgmemento`, `pg_tiktoken_c`, `online_advisor`, `pgsqlmock`, and `plx`.
 - 2 removed: `pg_analytics`, `spat`; 58 version refreshes, including `vector 0.8.5`, `timescaledb 2.28.3`, `pg_search 0.24.3`, `pg_tde 2.2.1`, and `powa 5.2.0`.
-- Package aliases synced with Pigsty: `kafka` is renamed to `kafka-stack`; the Debian/Ubuntu `postgresql` alias now maps to `postgresql-$v` only (use `pgsql` / `pgsql-full` for the full dev set).
+- Aligns package aliases with Pigsty. Renames `kafka` to `kafka-stack`. The Debian/Ubuntu `postgresql` alias maps only to `postgresql-$v`. For the full development set, use `pgsql` / `pgsql-full`.
 
 **Compatibility Notes**
 
-- ⚠ `pig pt failover <name>`: the positional argument is now the **cluster**, not the promotion candidate — use `pig pt failover CLUSTER --candidate MEMBER` and review any failover automation before upgrading.
-- `pig pt` positionals are native cluster-first (`restart CLUSTER [MEMBER]`); forwarded commands return native patronictl exit codes, own their confirmation prompts (`-y` no longer gates them), and no longer support `-o json` (use native `--format json`). `pig pt config` is replaced by `pig pt set K=V` and native `show-config` / `edit-config`.
-- In structured output mode, wrapped-tool output moves to stderr and stdout carries only the JSON/YAML envelope — update scripts that parsed mixed output.
+- ⚠ `pig pt failover <name>` now treats the positional argument as the **cluster**, not the promotion candidate. Use `pig pt failover CLUSTER --candidate MEMBER`. Review failover automation before upgrading.
+- `pig pt` uses native cluster-first positional arguments (`restart CLUSTER [MEMBER]`). Forwarded commands return native patronictl exit codes and manage their own confirmation prompts. `-y` no longer controls those prompts. They no longer support `-o json`; use native `--format json`. `pig pt set K=V` and native `show-config` / `edit-config` replace `pig pt config`.
+- In structured output mode, wrapped-tool output goes to stderr. Stdout contains only the JSON/YAML envelope. Update scripts that parsed mixed output.
 - `pig inventory edit` tightens the inventory file mode to 0600 after a successful edit, since the file may contain credentials.
 
 **Checksums**
@@ -450,8 +436,8 @@ Pig `v1.5.1` updates PG kernel forks to the latest package names.
 
 **Highlights**
 
-- Add mirror/proxy mode to repo, build, sty, update, and extension update workflows; `pig build rust -m` also configures Cargo mirror settings with `rsproxy.cn`.
-- Add explicit PostgreSQL 19 beta build switches: `pig build repo --beta`, `pig build tool --beta`, and `pig build pgrx -b`, while keeping PostgreSQL 18 and PG14-18 as the stable defaults.
+- Adds mirror/proxy mode to repository, build, sty, update, and extension update workflows. `pig build rust -m` also configures Cargo mirrors through `rsproxy.cn`.
+- Adds explicit PostgreSQL 19 beta build options: `pig build repo --beta`, `pig build tool --beta`, and `pig build pgrx -b`. PostgreSQL 18 and PG14-18 remain the stable defaults.
 - Refresh kernel and fork package aliases for IvorySQL, PolarDB, OrioleDB, OpenHaloDB, Babelfish, and the pgEdge suite.
 - Improve the Cloudberry package build flow for `cloudberry`, `cloudberry-backup`, and `cloudberry-pxf`.
 - Refresh source/package metadata for Cloudberry, Babelfish, OrioleDB, pgEdge, PolarDB, `polarstore`, `zlog`, `libpgfeutils`, and `libfq`.
@@ -478,15 +464,15 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.5.1
 
 ## v1.5.0
 
-Pig `v1.5.0` is a PostgreSQL operations release for day-to-day DBA work. It adds local database clone/fork workflows, clarifies the boundaries between `pg`, `pt`, `pb`, and `pitr`, and tightens preview, confirmation, and structured-output behavior for high-risk operations.
+Pig `v1.5.0` updates PostgreSQL operations for daily DBA work. It adds local database clone and fork workflows. It clarifies the roles of `pg`, `pt`, `pb`, and `pitr`. It also improves previews, confirmation, and structured output for high-risk operations.
 
 **Highlights**
 
-- `pig pg` is now more focused on local PostgreSQL operations. `pig pg clone` creates quick database-level copies, while `pig pg fork` creates disposable physical instance forks for local validation, recovery drills, and isolated experiments.
-- Recovery flows are split more clearly: `pig pitr` is the orchestration entry point across Patroni, PostgreSQL, and pgBackRest; `pig pb restore` remains the low-level pgBackRest restore primitive. Restore commands now require an explicit target and provide more concrete plans and post-restore guidance.
-- Patroni operations are more predictable: high-risk actions such as `pig pt restart`, `reinit`, `switchover`, and `failover` use Pig-managed confirmation and plan output; `pig pt config pg` points operators to `pig pt restart --pending` when a restart is required.
-- Automation is safer: structured output no longer implies confirmation for destructive commands. High-risk execution requires explicit `-y/--yes`, while `--plan` and `next_actions` are more consistent for preview-then-execute workflows.
-- Logs and status output are more useful during incidents: `pg`, `pb`, and `pt` log commands now cover common latest / tail / show / grep workflows, and structured log snapshots use JSONL semantics.
+- `pig pg` focuses on local PostgreSQL operations. `pig pg clone` makes quick database-level copies. `pig pg fork` creates temporary physical instance forks for local validation, recovery drills, and isolated experiments.
+- Recovery commands have clearer roles. `pig pitr` coordinates Patroni, PostgreSQL, and pgBackRest. `pig pb restore` remains the low-level pgBackRest restore command. Restore commands require an explicit target. They provide more specific plans and guidance for steps after recovery.
+- Patroni operations use more consistent behavior. High-risk actions such as `pig pt restart`, `reinit`, `switchover`, and `failover` use Pig-managed confirmation and plan output. When a restart is required, `pig pt config pg` directs operators to `pig pt restart --pending`.
+- Structured output no longer confirms destructive commands. High-risk execution requires explicit `-y/--yes`. `--plan` and `next_actions` provide more consistent workflows to preview an operation before execution.
+- Improves logs and status output for incident response. The `pg`, `pb`, and `pt` log commands support common latest / tail / show / grep workflows. Structured log snapshots use JSONL semantics.
 - Build and release defaults were refreshed: Pig is `1.5.0`, embedded Pigsty is `4.4.0`, and `pig build pgrx` defaults to `cargo-pgrx 0.19.1`.
 
 **Extension Catalog**
@@ -494,13 +480,13 @@ Pig `v1.5.0` is a PostgreSQL operations release for day-to-day DBA work. It adds
 - Available extensions: **524 -> 531**, with no removals.
 - New extensions: `pg_ducklake`, `pgdisablelogerror`, `pg_stat_log`, `pg_stat_plans`, `passwordpolicy`, `db2fce`, `plpgsql_wrap`.
 - Refreshed a batch of existing extension versions and package metadata, including `timescaledb 2.28.2`, `postgis 3.6.4`, `vector 0.8.4`, `biscuit 2.4.1`, `citus 14.1.0`, `orioledb 1.8`, `documentdb 0.113`, `credcheck 5.0`, and `pgtt 4.5`.
-- `orioledb` aliases no longer pin to PG17; they resolve against the requested PostgreSQL major. EL9 ARM64 Patroni aliases now point to noarch packages.
+- `orioledb` aliases no longer pin to PG17. They resolve against the requested PostgreSQL major version. EL9 ARM64 Patroni aliases now select noarch packages.
 
 **Compatibility Notes**
 
-- Use `-y/--yes` for destructive operations in automation; structured output mode no longer substitutes for human confirmation.
-- `pig pb restore` and `pig pitr` require exactly one explicit recovery target; use `--target-action=promote` for auto-promote behavior.
-- Several ambiguous short options were cleaned up. For log commands, `-o json` means a JSONL snapshot and is not used for tail/follow streaming modes.
+- For destructive operations in automation, use `-y/--yes`. Structured output mode no longer replaces human confirmation.
+- `pig pb restore` and `pig pitr` require exactly one explicit recovery target. For automatic promotion, use `--target-action=promote`.
+- Removed ambiguity in several short options. For log commands, `-o json` selects a JSONL snapshot. It does not apply to tail/follow streaming modes.
 
 **Checksums**
 
@@ -526,8 +512,8 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.5.0
 - Update package metadata for 48 existing extensions, including `timescaledb 2.28.0`, `timescaledb_toolkit 1.23.0`, `pg_task 2.1.29`, `pg_search 0.24.0`, `pg_clickhouse 0.3.2`, `pg_graphql 1.6.1`, `documentdb 0.112`, `toastinfo 1.7`, `wrappers 0.6.1`, and `pgclone 4.3.2`. No extensions were removed or demoted.
 - Add PostgreSQL 19 beta install/build/config support. PG19 is accepted as an explicit installable major, while PostgreSQL 18 remains the stable default for auto-detection, catalog display, and latest-version aliases.
 - Add `pg19` package aliases and PG19 category alias resolution. PG19 category aliases borrow the PostgreSQL 18 visibility template and limit beta package expansion to PGDG-origin entries.
-- Teach `pig sty conf -v 19` to enable the `beta` repository module when the template supports it, and emit clear warnings when a template is not tuned for PG19 beta or cannot enable the beta repo automatically.
-- Fix Patroni cluster operations by passing the resolved `CLUSTER_NAME` to `patronictl restart`, `reinit`, `switchover`, and `failover`; `pig pt list` also accepts an optional cluster name.
+- `pig sty conf -v 19` enables the `beta` repository module if the template supports it. It warns if the template is not tuned for PG19 beta or cannot enable the beta repository automatically.
+- Fixes Patroni cluster operations by passing the resolved `CLUSTER_NAME` to `patronictl restart`, `reinit`, `switchover`, and `failover`. `pig pt list` also accepts an optional cluster name.
 - Bump the default `pgrx` version for `pig build pgrx` from `0.18.0` to `0.18.1`.
 - Bump release metadata to `v1.4.2`, refresh Go module checksums, and add focused tests for PG19 aliases/config generation plus Patroni cluster-scope behavior.
 
@@ -579,7 +565,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.4.1
 
 - Refresh the extension catalog and increase the total available extensions to **510**, with version bumps such as `timescaledb 2.26.3`, `decoderbufs 3.5.0`, `pgclone 4.0.0`, and `nominatim_fdw 1.3`.
 - Bump the default `pgrx` version from `0.17.0` to `0.18.0` and align related Rust extension builds.
-- Refresh authoritative source bundles for `pig build get`, covering Cloudberry / OrioleDB build inputs and bundled artifacts for RDKit and OneSparse-related packages.
+- Updates authoritative source bundles for `pig build get`. These include Cloudberry / OrioleDB build inputs and bundled artifacts for RDKit and OneSparse packages.
 - Fix `repo set` flag isolation and correct schema maintenance SQL.
 - Bump `patroni` to `4.1.1` for `el9.aarch64`.
 
@@ -603,7 +589,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.4.0
 
 ## v1.3.4
 
-Bump total available extensions to **504**.
+Increases total available extensions to **504**.
 
 **Checksums**
 
@@ -734,9 +720,9 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.1
 
 ## v1.3.0
 
-This release is a focused engineering update from `v1.2.0` to `v1.3.0`: 15 commits, 74 files changed, `+1184 / -236` LOC.
+This engineering update moves from `v1.2.0` to `v1.3.0`. It contains 15 commits across 74 changed files, with `+1184 / -236` LOC.
 
-It hardens the `pig build` pipeline and extends catalog/alias coverage, increasing total extensions from **451** to **461**.
+It improves the reliability of the `pig build` pipeline and extends catalog and alias coverage. Total extensions increase from **451** to **461**.
 
 **Highlights**
 
@@ -745,12 +731,12 @@ It hardens the `pig build` pipeline and extends catalog/alias coverage, increasi
   - Add source mappings for `agensgraph` / `agentsgraph`.
   - `pgedge` now downloads both `postgresql-17.9.tar.gz` and `spock-5.0.5.tar.gz`.
 - Dependency resolution and install improvements (`pig build dep`):
-  - RPM dependencies can infer PG major from `pgmajorversion` in spec files; missing spec/control files now return explicit errors.
+  - RPM dependencies can infer the PG major version from `pgmajorversion` in spec files. Missing spec/control files return explicit errors.
   - DEB dependency parsing now covers `Build-Depends` / `Build-Depends-Arch` / `Build-Depends-Indep`, including multiline fields, alternatives, arch qualifiers, and build-profile cleanup.
   - `PGVERSION` placeholders can be expanded from `--pg`, installed PG majors, or extension metadata.
   - Dependency install failures are downgraded to warnings so batch runs continue.
 - DEB build result semantics fixed (`pig build ext/pkg`):
-  - Successful build command exit code is authoritative; artifact discovery is best-effort warning only.
+  - A successful build command exit code determines success. Artifact discovery is best-effort and can only produce warnings.
   - Suppress empty package-list banners on successful no-artifact runs.
   - Partial artifacts are warnings, not failures.
   - Build logs now print real metadata source/version values instead of always composing `name-version`.
@@ -761,7 +747,7 @@ It hardens the `pig build` pipeline and extends catalog/alias coverage, increasi
   - `openhalodb` is aligned to PG14 package naming; `ivorysqldb` naming is aligned.
   - Fork metadata and availability matrix were refreshed in batch (including `timescaledb`, `pgmq`, `orioledb`, `documentdb`, `pg_tde`, and `babelfishpg_*` entries).
 - Engineering and release:
-  - Version bumped to `v1.3.0` (including a `v1.2.1` transition commit), copyright year moved to 2026, and README refreshed for 461 extensions and current alias docs.
+  - Updated the version to `v1.3.0`, including a `v1.2.1` transition commit. Changed the copyright year to 2026. Updated the README for 461 extensions and current alias documentation.
 
 **Compatibility Notes**
 
@@ -822,7 +808,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.0
 
 - Extension catalog and alias resolution enhancements:
   - Introduce dynamic PG category alias resolution by PG major version.
-  - Add OS-level alias overrides (`ansible`/`bootstrap`) and converge unknown distro fallback to PGDG-only.
+  - Adds OS-level alias overrides (`ansible`/`bootstrap`). Unknown distributions now fall back only to PGDG.
   - Add aliases such as `node/infra` and `babelfish/cloudberry`, and refresh extension metadata to reduce package resolution ambiguity.
 - Plan preview for high-risk operations:
   - Add `pig install --plan` with structured execution plan output.
@@ -830,7 +816,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.0
   - Add plan-flag consistency tests to keep subcommand behavior aligned.
 - Native `sty` configuration capability:
   - Add `pig sty configure` with full execution flow (preflight, argument handling, execution orchestration).
-  - Unify `sty conf/configure` behavior: native implementation by default, with `--raw` fallback retained.
+  - Unifies `sty conf/configure` behavior. The native implementation is the default, and `--raw` remains as a fallback.
   - Add tests for configure main flow, preflight, routing, and install integration to improve maintainability.
 - Repo/build/reliability fixes:
   - Fix nil dereference in repo cache on `os.Stat` error paths.
@@ -879,19 +865,18 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.2.0
 
 ## v1.1.0
 
-This version is a planned architecture-level upgrade from `v1.0.0` to `v1.1.0` (79 commits, 193 files changed),
-with the core goal of moving pig from a "human-friendly CLI" to an "agent-native orchestratable CLI".
+This planned architecture update moves from `v1.0.0` to `v1.1.0`, with 79 commits across 193 changed files. It extends pig from an interactive CLI to a CLI that agents can orchestrate.
 
 Seven new extensions are added, bringing the total available extensions to 451.
 
 **New Features**
 
-- Land the unified agent-native output framework: introduce global `--output` (`text/yaml/json/json-pretty`), and provide unified `Result` structure, stable status codes, and machine-readable output for `ext/repo/pg/pt/pb/pitr/status/version/context`.
-- Introduce ANCS (Agent Native Command Schema) metadata: add semantic fields such as `type/volatility/parallel/risk/confirm/os_user/cost`, and make `help` emit a command capability tree directly in structured mode for agent-side capability and risk discovery.
-- Add `pig context` (`pig ctx`) environment snapshot command: aggregate host, PostgreSQL, Patroni, pgBackRest, and extension information in one call for direct agent workflow context injection.
-- Expand plan capabilities beyond PITR: add `pig ext add/rm --plan`, `pig pg stop/restart --plan`, `pig pt switchover/failover --plan`, and align with `pig pitr --plan/--dry-run` into a reviewable execution plan format (actions, scope, risks, expected outcomes).
-- Further improve structured result coverage: embed native `pgbackrest info` JSON, and unify structured return DTOs across Patroni/PostgreSQL/PITR/Repo/Ext subsystems for automation compatibility.
-- Strengthen compatibility layer: add legacy structured wrappers for existing command groups such as `pg_exporter/pg_probe/do/sty`, preserving legacy interaction behavior while exposing structured execution results and output capture.
+- Adds a unified output framework for agents. Global `--output` supports `text/yaml/json/json-pretty`. A common `Result` structure provides stable status codes and machine-readable output for `ext/repo/pg/pt/pb/pitr/status/version/context`.
+- Adds ANCS (Agent Native Command Schema) metadata, including `type/volatility/parallel/risk/confirm/os_user/cost` fields. In structured mode, `help` outputs a command capability tree. Agents can use it to identify capabilities and risks.
+- Adds the `pig context` (`pig ctx`) environment snapshot command. One call collects host, PostgreSQL, Patroni, pgBackRest, and extension information for direct use in agent workflows.
+- Extends plan support beyond PITR with `pig ext add/rm --plan`, `pig pg stop/restart --plan`, and `pig pt switchover/failover --plan`. These match `pig pitr --plan/--dry-run` in a common, reviewable format. Plans show actions, scope, risks, and expected results.
+- Extends structured results with native `pgbackrest info` JSON. Unifies structured return DTOs across Patroni/PostgreSQL/PITR/Repo/Ext for automation compatibility.
+- Adds legacy structured wrappers for command groups such as `pg_exporter/pg_probe/do/sty`. These retain existing interaction behavior while providing structured execution results and captured output.
 - Update pigsty to `v4.1.0`.
 
 **Extension Update**
@@ -936,10 +921,10 @@ Seven new extensions are added, bringing the total available extensions to 451.
 - Security fix: resolve parsing panic in `pig build proxy` when receiving malformed proxy addresses.
 - Security fix: resolve path traversal risk in `pig pg log`, preventing access to files outside the log directory via `../../`.
 - Security hardening: improve installer/repo path and quoting handling to reduce path injection and invalid-path misuse risks.
-- Build pipeline reliability fixes: correctly propagate errors and return non-zero exit codes in `pig build get/pkg/ext` when download/build fails; fix false failures in DEB builds caused by `pg_ver` mismatch.
-- Repo/catalog refresh fixes: support quiet mirror fallback for `ext/repo reload`; make `repo add/set/rm` return proper error status when cache updates fail.
-- Extension management fixes: adjust `ext update` to explicit-target updates and fix status drift issues; ensure `ext import` downloads requested DEB resources to the specified repo directory.
-- Output/observability fixes: align structured output exit code behavior with text mode rendering; improve permission handling and parsing stability in `pg status`.
+- Build reliability fixes: `pig build get/pkg/ext` now propagates errors and returns non-zero exit codes when downloads or builds fail. Fixes false DEB build failures caused by a `pg_ver` mismatch.
+- Repository/catalog update fixes: adds quiet mirror fallback for `ext/repo reload`. Commands `repo add/set/rm` return the correct error status when cache updates fail.
+- Extension management fixes: `ext update` now uses explicit targets, and status drift issues are fixed. `ext import` downloads requested DEB resources to the specified repository directory.
+- Output/observability fixes: aligns structured-output exit codes with text mode. Improves permission handling and parsing stability in `pg status`.
 
 **Checksums**
 
@@ -963,7 +948,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.1.0
 
 ## v1.0.0
 
-This release introduces three major new subcommand groups (`pig pg`, `pig pt`, `pig pb`) for managing PostgreSQL, Patroni, and pgBackRest, along with an orchestrated PITR command and enhanced extension availability display.
+This release adds three command groups: `pig pg` for PostgreSQL, `pig pt` for Patroni, and `pig pb` for pgBackRest. It also adds a coordinated PITR command and improves extension availability displays.
 
 **New Commands**
 
@@ -1045,7 +1030,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.0.0
 - Removed pgdg yum sysupdate repo due to upstream changes
 - Removed pgdg yum llvmjit package due to upstream changes
 - Fixed patroni 3.0.4 duplicate package issue on el9.aarch64
-- Added priority for el repo definitions, docker repo skipped when unavailable
+- Added priorities for EL repository definitions. Skips the Docker repository when it is unavailable.
 - Added epel 10 / pgdg 9/10 OS minor version hotfix
 
 **Checksums**
@@ -1083,7 +1068,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.8.0
 
 **Repository Updates**
 
-Use the fixed Aliyun PGDG mirror repository
+Uses the corrected Aliyun PGDG mirror repository.
 
 **Checksums**
 
@@ -1106,7 +1091,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.5
 ## v0.7.4
 
 - Update extension metadata: `pg_search`, `pgmq`, `pg_stat_monitor`
-- Update pgdg repo URL, the `extras` now move to parent directory
+- Updates the PGDG repository URL. The `extras` directory moves to the parent directory.
 - Bump ivorysql to 5.0 (compatible with PG 18.0)
 - Bump Percona Postgres TDE Kernel to 18.1
 
@@ -1133,7 +1118,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.4
 ## v0.7.3
 
 - Add new command: `pig repo reload` to update repo metadata
-- Fix EL PGDG sysupdate aarch64 repo issue (now aarch64 repo ready)
+- Fixes the EL PGDG sysupdate aarch64 repository. The aarch64 repository is now ready.
 - Fix EL10.aarch64 PGDG repo renaming issue
 - Update extension versions
 - Bump Pigsty version to 3.7.0
@@ -1185,10 +1170,10 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
 
 ## v0.7.1
 
-- The brand-new website: /ext/
-- Remove unnecessary sudo usage, now can be used inside docker
+- New website: /ext/
+- Removes unnecessary sudo calls. Pig can now run inside Docker.
 - Allow using `pg18`, `pg17` arg format in pig ext link command
-- Add environment var `PIG_NO_SUDO` to force not using sudo
+- Adds the environment variable `PIG_NO_SUDO` to prevent sudo use.
 - [RPM Changelog](/docs/repo/pgsql/rpm#2025-11-10): Add PG 18 support to almost all extensions
 - [DEB Changelog](/docs/repo/pgsql/deb#2025-11-10): Add PG 18 support to almost all extensions
 - [Infra Changelog](/docs/repo/infra/#2025-11-08): Routine update to the latest version
@@ -1213,18 +1198,18 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.1
 ## v0.7.0
 
 - Add support for Debian 13 and EL 10 distributions
-- Massive extension updates to the latest versions with PostgreSQL 18 support
+- Updates many extensions to their latest versions with PostgreSQL 18 support.
 - Almost all Rust extensions now support PG 18 via pgrx 0.16.1
 - `pig build` command overhaul
-  - `pig build pkg <pkg>` will now download source, prepare deps, and build in one go
+  - `pig build pkg <pkg>` downloads source, prepares dependencies, and builds in one operation.
   - `pig build pgrx` is now separated from `pig build rust`
   - `pig build pgrx [-v pgrx_version]` can now use existing PG installation directly
   - `pig build dep` will now handle extension dependencies on both EL and Debian systems
-  - `pig build ext` now has more compact and elegant output, can build RPM on EL without build script
+  - `pig build ext` has more compact output. It can build RPM packages on EL without a build script.
   - `pig build spec` now supports downloading spec files directly from Pigsty repo
   - `pig build repo` / `pig repo add` / `pig repo set` now use `node,pgsql,infra` as default repo modules instead of `node,pgdg,pigsty`
 - Optimized error logging
-- Brand new catalog website based on hugo and hextra
+- Adds a catalog website based on Hugo and Hextra.
 
 **Checksums**
 
@@ -1277,7 +1262,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.2
 - Remove unused `pgdg-el10fix` repo
 - Use Pigsty WiltonDB mirror
 - Add EL 10 dedicated epel repo
-- pig version output with go build environment
+- Version output includes the Go build environment.
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.6.1
 
@@ -1292,7 +1277,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.1
 - Add new package: Google GenAI MCP toolbox for databases
 - Add new repo: percona repo and clickhouse repo
 - Change extension summary info links to https://ext.pgsty.com
-- Fix orioledb broken on the Debian/Ubuntu system
+- Fixes OrioleDB on Debian/Ubuntu.
 - Fix epel repo on EL distributions
 - Bump golang to 1.24.5
 - Bump pigsty to v3.6.0
@@ -1320,7 +1305,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.0
 - Bump timescaledb to 2.20.3
 - Bump citus to 13.1.0
 - Bump vchord to 0.4.3
-- Bug fix pgvectorscale debian/ubuntu pg17 failure
+- Fixes pgvectorscale failures on Debian/Ubuntu with PG17.
 - Bump kubernetes repo to 1.33
 - Bump default pigsty version to 3.5.0
 
@@ -1383,14 +1368,14 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.4.1
 
 ## v0.4.0
 
-- Updated extension list, available extensions reached **407**
+- Updates the extension list to **407** available extensions.
 - Added `pig do` subcommand for executing Pigsty playbook tasks
 - Added `pig pt` subcommand for wrapping Patroni command-line tools
 - Added extension aliases: `openhalo` and `orioledb`
 - Added `gitlab-ce` / `gitlab-ee` repository distinction
 - Built with the latest Go 1.24.2 and upgraded dependency versions
 - Fixed `pig ext status` panic issue under specific conditions
-- Fixed `pig ext scan` unable to match several extensions
+- Fixes `pig ext scan` matching for several extensions.
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.4.0
 
@@ -1403,7 +1388,7 @@ curl https://repo.pigsty.io/pig | bash -s 0.3.4
 ```
 
 - Routine extension metadata update
-- Use aliyun epel mirror instead of broken tsinghua tuna mirror
+- Uses the Aliyun EPEL mirror to replace the broken Tsinghua TUNA mirror.
 - Bump pigsty version string
 - Add `gitlab` repo to the repo list
 
@@ -1452,7 +1437,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.3.1
 
 ## v0.3.0
 
-The [`pig`](/docs/pig/) project now has a new [homepage](/docs/pig/), along with the PostgreSQL Extension [Catalog](/ext/list).
+The [`pig`](/docs/pig/) project has a new [homepage](/docs/pig/) and PostgreSQL Extension [Catalog](/ext/list).
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.3.0
 
@@ -1480,7 +1465,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.1.4
 
 ## v0.1.3
 
-v0.1.3, routine update, with 390 extensions available now!
+Version v0.1.3 is a routine update with 390 available extensions.
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.1.3
 
@@ -1488,7 +1473,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.1.3
 
 ## v0.1.2
 
-[**351**](/ext/list) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
+Includes [**351**](/ext/list) PostgreSQL extensions, including [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/).
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.1.2
 

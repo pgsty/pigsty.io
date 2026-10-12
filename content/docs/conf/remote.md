@@ -6,7 +6,7 @@ icon: fa-solid fa-satellite-dish
 categories: [Reference]
 ---
 
-`demo/remote` deploys no local PostgreSQL cluster. Instead, it declares multiple `pg_exporters` on an INFRA node to monitor remote PostgreSQL, PolarDB, or cloud RDS instances.
+`demo/remote` declares multiple `pg_exporters` on an INFRA node. These exporters monitor remote PostgreSQL, PolarDB, or cloud RDS instances. The template does not deploy a local PostgreSQL cluster.
 
 
 --------
@@ -36,6 +36,6 @@ Source: [`pigsty/conf/demo/remote.yml`](https://github.com/pgsty/pigsty/blob/mai
 
 ## Explanation
 
-Each `pg_exporters` entry uses a unique local listen port and declares the remote instance's `pg_cluster`, `pg_seq`, `pg_host`, and optional connection settings. The template demonstrates complete URLs, split credentials, database allowlists, and auto-discovery.
+Each `pg_exporters` entry uses a unique local listen port. It declares the remote instance's `pg_cluster`, `pg_seq`, `pg_host`, and optional connection settings. The template demonstrates complete URLs, split credentials, database allowlists, and auto-discovery.
 
-All hostnames and credentials are placeholders. Keep only the entries you need, use a least-privilege monitoring account, and never commit real RDS passwords.
+All hostnames and credentials are placeholders. Keep only the entries you need. Use a monitoring account with the minimum required privileges. Never commit real RDS passwords.

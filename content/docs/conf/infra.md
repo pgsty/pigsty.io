@@ -6,9 +6,10 @@ icon: fa-solid fa-tower-observation
 categories: [Reference]
 ---
 
-The `infra` configuration template only deploys Pigsty's observability infrastructure components (VictoriaMetrics/Grafana/VictoriaLogs/Nginx, etc.), without PostgreSQL and etcd.
+The `infra` template deploys the Pigsty monitoring infrastructure, including VictoriaMetrics, Grafana, VictoriaLogs, and Nginx.
+It does not deploy PostgreSQL or etcd.
 
-Suitable for scenarios requiring a standalone monitoring stack, such as monitoring external PostgreSQL/RDS instances or other data sources.
+Use it as a standalone monitoring system for external PostgreSQL or RDS instances and other data sources.
 
 
 --------
@@ -43,7 +44,7 @@ Source: [`pigsty/conf/infra.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `infra` template is Pigsty's **pure monitoring stack configuration**, designed for standalone deployment of observability infrastructure.
+The `infra` template runs the monitoring infrastructure independently of database services.
 
 **Use Cases**:
 - Monitoring external PostgreSQL instances (RDS, self-hosted, etc.)
@@ -65,7 +66,7 @@ The `infra` template is Pigsty's **pure monitoring stack configuration**, design
 - Silo object storage
 
 **Monitoring External Instances**:
-After configuration, add monitoring for external PostgreSQL instances via the `pgsql-monitor.yml` playbook:
+After configuration, run `pgsql-monitor.yml` to add monitoring for external PostgreSQL instances:
 
 ```yaml
 pg_exporters:

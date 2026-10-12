@@ -2,8 +2,8 @@
 title: 'Wiki.js: OSS Wiki Software'
 date: 2022-05-25
 weight: 600
-description: How to self-hosting your own wikipedia with Wiki.js and use Pigsty managed
-  PostgreSQL as the backend database
+description: Self-host Wiki.js with Pigsty-managed PostgreSQL as its backend database.
+
 module: [SOFTWARE]
 categories: [Reference]
 ---

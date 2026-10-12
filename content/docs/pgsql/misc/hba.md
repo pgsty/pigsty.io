@@ -9,18 +9,23 @@ categories: [Reference]
 
 > Detailed explanation of Host-Based Authentication (HBA) in Pigsty.
 
-Authentication is the foundation of [Access Control](/docs/concept/sec/ac) and [Default Privileges](/docs/concept/sec/ac#default-privileges). PostgreSQL supports several [authentication](https://www.postgresql.org/docs/current/client-authentication.html) methods.
+Authentication supports [Access Control](/docs/concept/sec/ac) and [Default Privileges](/docs/concept/sec/ac#default-privileges).
+PostgreSQL supports several [authentication methods](https://www.postgresql.org/docs/current/client-authentication.html).
 
-Here we mainly introduce HBA: Host Based Authentication. HBA rules define which users can access which databases from which locations and in which ways.
+This page describes HBA, or Host-Based Authentication.
+HBA rules specify which users can access each database, from which locations, and with which authentication methods.
 
 
 ----------------
 
 ## Client Authentication
 
-To connect to a PostgreSQL database, users must first be authenticated (password is used by default).
+Users must authenticate before they connect to a PostgreSQL database.
+By default, they use a password.
 
-You can provide the password in the connection string (not secure), or pass it using the `PGPASSWORD` environment variable or `.pgpass` file. Refer to the [`psql`](https://www.postgresql.org/docs/current/app-psql.html#usage) documentation and [PostgreSQL Connection Strings](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) for more details.
+You can put the password in the connection string, but this is not secure.
+Alternatively, use the `PGPASSWORD` environment variable or a `.pgpass` file.
+For details, see [`psql`](https://www.postgresql.org/docs/current/app-psql.html#usage) and [PostgreSQL Connection Strings](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING).
 
 ```bash
 psql 'host=<host> port=<port> dbname=<dbname> user=<username> password=<password>'
@@ -36,13 +41,15 @@ psql postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta
 PGPASSWORD=DBUser.DBA; psql -U dbuser_dba -h 10.10.10.10 -p 5432 -d meta
 ```
 
-By default, Pigsty enables server-side SSL encryption but does not verify client SSL certificates. To connect using client SSL certificates, you can provide client parameters using the `PGSSLCERT` and `PGSSLKEY` environment variables or `sslkey` and `sslcert` parameters.
+By default, Pigsty enables server-side SSL encryption but does not verify client SSL certificates.
+To use client certificates, set `PGSSLCERT` and `PGSSLKEY`, or the `sslkey` and `sslcert` connection parameters.
 
 ```bash
 psql 'postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta?sslkey=/path/to/dbuser_dba.key&sslcert=/path/to/dbuser_dba.crt'
 ```
 
-Client certificates (`CN` = username) can be signed using the local CA with the [`cert.yml`](https://github.com/pgsty/pigsty/blob/main/cert.yml) playbook.
+Use [`cert.yml`](https://github.com/pgsty/pigsty/blob/main/cert.yml) to sign client certificates with the local CA.
+Set the certificate `CN` to the username.
 
 
 
@@ -58,7 +65,8 @@ In Pigsty, there are four parameters related to HBA rules:
 - [`pgb_hba_rules`](/docs/pgsql/param#pgb_hba_rules): pgbouncer HBA rules
 - [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules): pgbouncer global default HBA rules
 
-These are all arrays of HBA rule objects. Each HBA rule is an object in one of the following two forms:
+Each parameter is an array of HBA rule objects.
+A rule object can use either of these forms:
 
 
 ### 1. Raw Form
@@ -74,20 +82,25 @@ The raw form of HBA is almost identical to the PostgreSQL `pg_hba.conf` format:
     - host   all  all  192.168.0.0/16  md5
 ```
 
-In this form, the `rules` field is an array of strings, where each line is a raw [HBA rule](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html). The `title` field is rendered as a comment explaining what the rules below do.
+The `rules` field is an array of strings.
+Each string contains one raw [HBA rule](https://www.postgresql.org/docs/current/auth-pg-hba-conf.html).
+The generated file uses `title` as a comment to explain the following rules.
 
-The `role` field specifies which instance roles the rule applies to. When an instance's [`pg_role`](/docs/pgsql/param#pg_role) matches the `role`, the HBA rule will be added to that instance's HBA.
-- HBA rules with `role: common` will be added to all instances.
-- HBA rules with `role: primary` will only be added to primary instances.
-- HBA rules with `role: replica` will only be added to replica instances.
-- HBA rules with `role: offline` will be added to offline instances ([`pg_role`](/docs/pgsql/param#pg_role) = `offline` or [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) = `true`)
+The `role` field selects the instance roles to which the rule applies.
+Pigsty adds the rule when the instance [`pg_role`](/docs/pgsql/param#pg_role) matches `role`.
+- `role: common`: Add the rule to all instances.
+- `role: primary`: Add the rule only to primary instances.
+- `role: replica`: Add the rule only to replica instances.
+- `role: offline`: Add the rule to offline instances where [`pg_role`](/docs/pgsql/param#pg_role) = `offline` or [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) = `true`.
 
 
 
 
 ### 2. Alias Form
 
-The alias form allows you to maintain HBA rules in a simpler, clearer, and more convenient way: it replaces the `rules` field with `addr`, `auth`, `user`, and `db` fields. The `title` and `role` fields still apply.
+The alias form simplifies HBA rule maintenance.
+It replaces `rules` with the `addr`, `auth`, `user`, and `db` fields.
+The `title` and `role` fields still apply.
 
 ```yaml
 - addr: 'intra'    # world|intra|infra|admin|local|localhost|cluster|<cidr>
@@ -134,7 +147,8 @@ The alias form allows you to maintain HBA rules in a simpler, clearer, and more 
 
 ### 3. Definition Location
 
-Typically, global HBA is defined in `all.vars`. To modify the global default HBA rules, copy them from [`conf/ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) into `all.vars` and edit them.
+Usually, global HBA rules belong in `all.vars`.
+To change the defaults, copy them from [`conf/ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) to `all.vars`, then edit them.
 
 - [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules): postgres global default HBA rules
 - [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules): pgbouncer global default HBA rules
@@ -163,9 +177,13 @@ pg-meta:
 
 ## Reloading HBA
 
-HBA is a static rule configuration file that needs to be reloaded to take effect after modification. The default HBA rule set typically doesn't need to be reloaded because it doesn't involve Role or cluster members.
+HBA rules are static configuration.
+Reload them after changes to apply the new rules.
+The default rules usually need no reload for role or membership changes because they do not depend on those values.
 
-If your HBA design uses specific instance role restrictions or cluster member restrictions, then when cluster instance members change (add/remove/failover), some HBA rules' effective conditions/scope change, and you typically also need to [reload HBA](/docs/pgsql/admin#reload-hba) to reflect the latest changes.
+Some HBA rules restrict access by instance role or cluster membership.
+Adding or removing instances, or failover, can change where these rules apply.
+In these cases, [reload HBA](/docs/pgsql/admin#reload-hba) to apply the latest changes.
 
 To reload postgres/pgbouncer hba rules:
 
@@ -188,7 +206,8 @@ The underlying Ansible playbook commands actually executed are:
 
 ## Default HBA
 
-Pigsty has a default set of HBA rules that are secure enough for most scenarios. These rules use the alias form, so they are basically self-explanatory.
+Pigsty provides default HBA rules with sufficient security for most uses.
+The rules use the alias form to make their purpose clear.
 
 ```yaml
 pg_default_hba_rules:             # postgres global default HBA rules 
@@ -361,7 +380,8 @@ pgb_default_hba_rules:            # pgbouncer global default HBA rules
 
 ## Security Hardening
 
-For scenarios requiring higher security, use the hardened [`conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml) configuration template, which uses the following default HBA rule set:
+For higher security, use the hardened [`conf/ha/safe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/safe.yml) template.
+It uses these default HBA rules:
 
 ```yaml
 pg_default_hba_rules:             # postgres host-based auth rules by default

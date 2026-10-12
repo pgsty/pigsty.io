@@ -9,28 +9,23 @@ categories: [Concept]
 
 **RPO** (Recovery Point Objective) defines the **maximum amount of data loss** allowed when the primary fails.
 
-For scenarios where data integrity is critical, such as financial transactions, RPO = 0 is typically required, meaning no data loss is allowed.
+Critical data, such as financial transactions, typically requires RPO = 0: no data loss.
 
-However, stricter RPO targets come at a cost: higher write latency, reduced system throughput, and the risk that replica failures may cause primary unavailability.
-For typical scenarios, some data loss is acceptable in exchange for higher availability and performance.
+Stricter RPO targets increase write latency and reduce throughput. Replica failure can also make the primary unavailable. Some workloads accept limited data loss for higher performance and availability.
 
 --------
 
 ## Trade-offs
 
-In asynchronous replication scenarios, there is typically some replication lag between replicas and the primary (depending on network and throughput, normally in the range of 10KB-100KB / 100µs-10ms).
-This means when the primary fails, replicas may not have fully synchronized with the latest data. If a failover occurs, the new primary may lose some unreplicated data.
+Asynchronous replicas normally lag behind the primary by about 10KB–100KB or 100µs–10ms, depending on network and throughput. At primary failure, a replica might not have received the latest data. Promotion can lose those unreplicated changes.
 
-The [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter is written to Patroni's `maximum_lag_on_failover` and defaults to `1048576` (1MiB). It is the **sampled lag threshold that permits a replica to participate as a failover candidate**, not a hard upper bound on actual data loss.
+[**`pg_rpo`**](/docs/pgsql/param#pg_rpo) sets Patroni `maximum_lag_on_failover`. The default is `1048576` (1MiB). This is a **sampled candidate-lag threshold**. It does not set a hard bound on actual data loss.
 
-When the cluster primary fails, if any replica has replication lag within this threshold, Pigsty will automatically promote that replica to be the new primary.
-However, when all replicas exceed this threshold, Pigsty will refuse [**automatic failover**] to prevent data loss.
-Manual intervention is then required to decide whether to wait for the primary to recover (which may never happen) or accept the data loss and force-promote a replica.
+After primary failure, Pigsty can promote a replica whose lag is within the threshold. If every replica exceeds it, Pigsty refuses [**automatic failover**] to avoid data loss. An operator must choose between waiting for primary recovery, which might never occur, and accepting loss through forced promotion.
 
-Because the primary's WAL position is not sampled continuously, the worst-case loss under asynchronous replication can also include WAL generated during the most recent `ttl` window (on average, roughly another `loop_wait/2` of WAL). Configure this threshold with your workload's write rate in mind. Increasing it improves the chance of automatic failover but also broadens candidate eligibility.
+Patroni does not sample primary WAL position continuously. Worst-case asynchronous loss can include WAL from the latest `ttl` window. On average, sampling adds roughly `loop_wait/2` of WAL. Account for write rate when setting the threshold. A higher threshold allows more candidates and increases the chance of automatic failover.
 
-When you set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = 0, Pigsty enables **synchronous replication**, ensuring the primary only returns write success after at least one replica has persisted the data.
-This configuration ensures zero replication lag but introduces significant write latency and reduces overall throughput.
+Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) = 0 to enable **synchronous replication**. The primary acknowledges writes only after at least one replica persists them. This removes replication lag for acknowledged writes, but increases latency and reduces throughput.
 
 ```mermaid
 flowchart LR
@@ -62,22 +57,22 @@ flowchart LR
 
 ## Protection Modes
 
-Pigsty provides three protection modes to help users make trade-offs under different RPO requirements, similar to [**Oracle Data Guard**](https://docs.oracle.com/en/database/oracle/oracle-database/21/sbydb/oracle-data-guard-protection-modes.html) protection modes.
+Pigsty offers three protection modes for different RPO requirements. They resemble [**Oracle Data Guard**](https://docs.oracle.com/en/database/oracle/oracle-database/21/sbydb/oracle-data-guard-protection-modes.html) protection modes.
 
 > [!IMPORTANT] Maximum Performance
-> - **Default mode**, asynchronous replication, transactions commit with only local WAL persistence, no waiting for replicas, replica failures are completely transparent to the primary
-> - Primary failure may lose unsent/unreceived WAL. The default sampled candidate-lag threshold is 1MiB, but this is not a hard upper bound on actual loss
-> - Optimized for performance, suitable for typical business scenarios that tolerate minor data loss during failures
+> - **Default asynchronous mode**: Commit after local WAL persistence without waiting for replicas. Replica failures do not affect the primary.
+> - Primary failure can lose unsent or unreceived WAL. The 1MiB default sampled candidate threshold does not bound actual loss.
+> - Use for performance-sensitive workloads that tolerate limited failure-related data loss.
 
 > [!TIP] Maximum Availability
-> - Configured with [**`pg_rpo = 0`**](/docs/pgsql/param#pg_rpo), enables Patroni synchronous commit mode: `synchronous_mode: true`
-> - Under normal conditions, waits for at least one replica confirmation, achieving zero data loss. When **all** sync replicas fail, **automatically degrades to async mode to continue service**
-> - Balances data safety and service availability, recommended configuration for production **critical business**
+> - Set [**`pg_rpo = 0`**](/docs/pgsql/param#pg_rpo) to enable `synchronous_mode: true`.
+> - Normally, wait for at least one replica acknowledgement to prevent data loss. If **all synchronous replicas fail**, automatically switch to asynchronous operation.
+> - This balances data protection and availability. It is recommended for **critical production workloads**.
 
 > [!NOTE] Maximum Protection
-> - Uses `crit.yml` template, enables Patroni strict synchronous mode: `synchronous_mode: true` / `synchronous_mode_strict: true`
-> - When all sync replicas fail, **primary refuses writes** to prevent data loss, transactions must be persisted on at least one replica before returning success
-> - Suitable for financial transactions, medical records, and other scenarios with extremely high data integrity requirements
+> - Use `crit.yml` to enable `synchronous_mode: true` and `synchronous_mode_strict: true`.
+> - A transaction must persist on at least one replica before success. If all synchronous replicas fail, **the primary refuses writes**.
+> - Use for financial transactions, medical records, and other workloads with very strict integrity requirements.
 
 | **Name**                   |                     **Maximum Performance**                     |                         **Maximum Availability**                         |                    **Maximum Protection**                     |
 |:---------------------------|:---------------------------------------------------------------:|:------------------------------------------------------------------------:|:-------------------------------------------------------------:|
@@ -97,11 +92,11 @@ Pigsty provides three protection modes to help users make trade-offs under diffe
 
 ## Implementation
 
-The three protection modes differ in how two core **Patroni** parameters are configured: [**`synchronous_mode`**](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-mode) and [**`synchronous_mode_strict`**](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-mode):
+These modes use two **Patroni** parameters: [**`synchronous_mode`**](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-mode) and [**`synchronous_mode_strict`**](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-mode).
 
-- **`synchronous_mode`**: Whether Patroni enables synchronous replication. If enabled, check if **`synchronous_mode_strict`** enables strict synchronous mode.
-- **`synchronous_mode_strict = false`**: Default configuration, allows degradation to async mode when replicas fail, **primary continues service** (Maximum Availability)
-- **`synchronous_mode_strict = true`**: Degradation forbidden, **primary stops writes** until sync replica recovers (Maximum Protection)
+- **`synchronous_mode`** enables synchronous replication. When enabled, **`synchronous_mode_strict`** controls strict behavior.
+- **`synchronous_mode_strict = false`** is the default. If replicas fail, allow asynchronous operation so the **primary continues service**: Maximum Availability.
+- **`synchronous_mode_strict = true`** prevents asynchronous fallback. The **primary stops writes** until a synchronous replica recovers: Maximum Protection.
 
 |         Mode         |            **`synchronous_mode`**            |        **`synchronous_mode_strict`**         | Replication Mode       | Replica Failure Behavior                                    |
 |:--------------------:|:--------------------------------------------:|:--------------------------------------------:|------------------------|:------------------------------------------------------------|
@@ -110,27 +105,20 @@ The three protection modes differ in how two core **Patroni** parameters are con
 |  **Max Protection**  | <span class="text-success">**`true`**</span> | <span class="text-success">**`true`**</span> | **Strict Synchronous** | <span class="text-danger">**Primary refuses writes**</span> |
 {.full-width}
 
-Typically, you only need to set the [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) parameter to `0` to enable the `synchronous_mode` switch, activating **Maximum Availability mode**.
-If you use [**`pg_conf`**](/docs/pgsql/param#pg_conf) = [**`crit.yml`**](/docs/pgsql/template/crit) template, it additionally enables the `synchronous_mode_strict` strict mode switch, activating **Maximum Protection mode**.
-Additionally, you can enable [**watchdog**](/docs/pgsql/param#patroni_watchdog_mode) to fence the primary directly during node/Patroni freeze scenarios instead of degrading, achieving behavior equivalent to Oracle Maximum Protection mode.
+Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to `0` to enable `synchronous_mode` and **Maximum Availability**. Select [**`pg_conf`**](/docs/pgsql/param#pg_conf) = [**`crit.yml`**](/docs/pgsql/template/crit) to enable `synchronous_mode_strict` and **Maximum Protection**. You can also enable [**watchdog**](/docs/pgsql/param#patroni_watchdog_mode) to fence a frozen primary node or Patroni process instead of degrading. This provides behavior equivalent to Oracle Maximum Protection.
 
-You can also directly [**configure**](/docs/pgsql/admin/patroni#modify-config) these Patroni parameters as needed. Refer to Patroni and PostgreSQL documentation to achieve stronger data protection, such as:
+You can [**configure Patroni directly**](/docs/pgsql/admin/patroni#modify-config). Consult Patroni and PostgreSQL documentation for stronger protection options:
 
-- Specify the [**synchronous replica list**](/docs/pgsql/config/cluster#quorum-commit), configure more sync replicas to improve disaster tolerance, use quorum synchronous commit, or even require all replicas to perform synchronous commit.
-- [**Configure**](/docs/pgsql/admin/patroni#modify-config) [**`synchronous_commit`**](https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT): `'remote_apply'` to strictly ensure primary-replica read-write consistency. (Oracle Maximum Protection mode is equivalent to `remote_write`)
+- Configure the [**synchronous replica list**](/docs/pgsql/config/cluster#quorum-commit). Add synchronous replicas for greater disaster tolerance, use quorum commit, or require acknowledgements from all replicas.
+- [**Set**](/docs/pgsql/admin/patroni#modify-config) [**`synchronous_commit`**](https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT) to `'remote_apply'` for consistent primary/replica reads and writes. Oracle Maximum Protection corresponds to `remote_write`.
 
 ------
 
 ## Recommendations
 
-**Maximum Performance mode** (asynchronous replication) is the default mode used by Pigsty and is sufficient for the vast majority of workloads.
-It tolerates some loss during a failure in exchange for higher throughput and availability.
-In this mode, [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) adjusts the sampled lag threshold for failover candidates; actual worst-case loss also depends on write rate, `ttl`, and sampling timing.
+**Maximum Performance** is the default asynchronous mode and suits most workloads. It accepts some failure-related loss for higher throughput and availability. [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) sets sampled candidate lag. Actual worst-case loss also depends on write rate, `ttl`, and sampling time.
 
 
-**Maximum Availability mode** (synchronous replication) is suitable for scenarios with high data-integrity requirements. Acknowledged transactions have zero loss while a synchronous replica is healthy, but the cluster can degrade when all synchronous replicas are unavailable.
-In this mode, a minimum of two-node PostgreSQL cluster (one primary, one replica) is required.
-Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to 0 to enable this mode.
+**Maximum Availability** suits high-integrity workloads. Acknowledged transactions are protected while a synchronous replica is healthy. If all synchronous replicas fail, the cluster can switch to asynchronous operation. At least two PostgreSQL nodes are required: one primary and one replica. Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to 0.
 
-**Maximum Protection mode** (strict synchronous replication) is suitable for financial transactions, medical records, and other scenarios with extremely high data integrity requirements. We recommend using at least a three-node cluster (one primary, two replicas),
-because with only two nodes, if the replica fails, the primary will stop writes, causing service unavailability, which reduces overall system reliability. With three nodes, if only one replica fails, the primary can continue to serve.
+**Maximum Protection** suits financial transactions, medical records, and other workloads requiring strict integrity. Use at least three nodes: one primary and two replicas. With only two nodes, replica failure stops primary writes and reduces service availability. With three, the primary can continue after one replica fails.

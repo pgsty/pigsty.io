@@ -38,6 +38,9 @@ weight: 2670
 {.ext-table .ext-table--rel}
 
 
+> Upstream GitHub repository is archived.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

@@ -2,7 +2,7 @@
 title: "icu_ext"
 linkTitle: "icu_ext"
 description: "Access ICU functions"
-weight: 4240
+weight: 4250
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4240
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4240  | [**`icu_ext`**](/ext/e/icu_ext) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4250  | [**`icu_ext`**](/ext/e/icu_ext) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_xenophile`](/ext/e/pg_xenophile) [`pg_cjk_parser`](/ext/e/pg_cjk_parser) [`unaccent`](/ext/e/unaccent) [`gb18030_2022`](/ext/e/gb18030_2022) [`pgroonga`](/ext/e/pgroonga) [`citext`](/ext/e/citext) [`pg_tokenizer`](/ext/e/pg_tokenizer) [`pg_trgm`](/ext/e/pg_trgm) [`country`](/ext/e/country) [`currency`](/ext/e/currency) |

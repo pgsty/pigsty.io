@@ -8,7 +8,9 @@ categories: [Reference]
 ---
 
 
-`tiny.yml` is optimized for **micro instances** and resource-constrained environments. Designed for 1-3 core CPUs with minimal resource usage, conservative memory allocation, and disabled parallel queries.
+`tiny.yml` is optimized for **micro instances** and environments with limited resources.
+It is designed for CPUs with 1-3 cores.
+It minimizes resource use, limits memory allocation, and disables parallel queries.
 
 > Pair with [**`node_tune`**](/docs/node/param#node_tune) = `tiny` for OS-level tuning.
 
@@ -17,7 +19,7 @@ categories: [Reference]
 
 ## Use Cases
 
-TINY template is ideal for:
+Use the TINY template for:
 
 - **Dev/test**: Local development, CI/CD testing
 - **Low-spec VMs**: 1-2 core CPU, 1-4GB RAM cloud instances
@@ -72,7 +74,8 @@ max_connections: 250   # OLTP: 500-1000, reduced connection overhead
 superuser_reserved_connections: 10
 ```
 
-Micro instances don't need many concurrent connections; 250 is sufficient for dev/test.
+Micro instances need fewer concurrent connections.
+The limit of 250 is sufficient for development and testing.
 
 ### Memory Config
 
@@ -103,7 +106,8 @@ max_parallel_workers_per_gather: 0           # parallel queries disabled
 max_parallel_maintenance_workers: 33% × cpu (min 1)
 ```
 
-`max_parallel_workers_per_gather: 0` ensures queries won't spawn parallel workers, avoiding resource contention on low-core systems.
+`max_parallel_workers_per_gather: 0` prevents queries from starting parallel workers.
+This avoids resource contention on systems with few CPU cores.
 
 ### IO Config (PG18)
 
@@ -111,7 +115,7 @@ max_parallel_maintenance_workers: 33% × cpu (min 1)
 io_workers: 3   # fixed value, OLTP: 25% cpu (4-16)
 ```
 
-Fixed low IO worker count suitable for resource-constrained environments.
+A fixed, low I/O worker count is suitable for environments with limited resources.
 
 ### Vacuum Config
 
@@ -147,7 +151,7 @@ log_temp_files: 1024
 # log_connections uses default (no extra logging)
 ```
 
-TINY template doesn't enable extra connection logging to reduce log volume.
+The TINY template disables additional connection logging to reduce log volume.
 
 ### Client Timeouts
 
@@ -167,7 +171,8 @@ pg_stat_statements.track_utility: off
 pg_stat_statements.track_planning: off
 ```
 
-`pg_stat_statements.max` reduced from 10000 to 2500, saving ~75% memory.
+The template reduces `pg_stat_statements.max` from 10000 to 2500.
+This saves approximately 75% of its memory use.
 
 
 ----------------
@@ -327,7 +332,7 @@ pg-docker:
 
 ## Upgrading to OLTP
 
-When your application grows and needs more resources, easily upgrade to [**OLTP template**](/docs/pgsql/template/oltp/):
+When the application needs more resources, upgrade to the [**OLTP template**](/docs/pgsql/template/oltp/):
 
 1. Upgrade VM specs (4 core 8GB+)
 2. Modify cluster config:

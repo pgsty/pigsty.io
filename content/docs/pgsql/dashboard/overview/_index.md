@@ -4,7 +4,7 @@ weight: 10
 description: PostgreSQL module global overview monitoring dashboards
 ---
 
-PostgreSQL module global overview monitoring dashboards, including:
+Use these dashboards for a global overview of the PostgreSQL module:
 
 - [PGSQL Overview](/docs/pgsql/dashboard/overview/pgsql-overview): Main dashboard for the PGSQL module
 - [PGSQL Alert](/docs/pgsql/dashboard/overview/pgsql-alert): Global key metrics and alert events for PGSQL

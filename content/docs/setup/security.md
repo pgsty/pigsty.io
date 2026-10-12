@@ -1,45 +1,47 @@
 ---
 title: Security Recommendations
 weight: 290
-description: Basic security checks for quick-start and single-node deployments.
+description: Protect credentials, restrict network access, and control access to sensitive files.
 icon: fas fa-shield-halved
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-The default configuration targets local demonstrations and development or testing on a trusted intranet. If other hosts can reach the deployment, complete at least three checks: credentials, network boundaries, and critical files.
+The default configuration supports local demonstrations and development on a trusted intranet.
+If other hosts can reach the deployment, examine the credentials, network access, and sensitive files.
 
-Production environments should also review the [**Security Model**](/docs/concept/sec/level), [**Compliance**](/docs/concept/sec/compliance), and [**Security Considerations**](/docs/deploy/security/).
-
-
-----------------
+For production, also review the [Security Model](/docs/concept/sec/level/), [Compliance](/docs/concept/sec/compliance/), and [Security Considerations](/docs/deploy/security/).
 
 ## Passwords
 
-Pigsty default credentials are public in the source code and documentation and must not be used directly in production.
+Pigsty publishes its default credentials in the source code and documentation.
+Do not use these credentials in production.
 
-The configuration wizard can randomize built-in parameters and example credentials that it recognizes:
+Run the configuration wizard with `-g` to generate random passwords:
 
 ```bash
 ./configure -g
 ```
 
-`configure -g` does not replace:
+The wizard replaces the built-in parameters and example credentials that it recognizes.
+It does not replace these credentials:
 
-- the pgBackRest `cipher_pass`;
-- Silo users and selected example passwords in `ha/safe`;
-- database, object-storage, or application credentials added by the user.
+- The pgBackRest `cipher_pass`.
+- Silo user passwords and selected example passwords in `ha/safe`.
+- Database, object-storage, or application credentials that you added yourself.
 
-After generation, inspect `pigsty.yml` and replace every uncovered credential. The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data.
+After generation, examine `pigsty.yml`.
+Replace every credential that the wizard did not change.
 
-See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
-
-
-----------------
+The wizard prints generated passwords to the terminal.
+Protect terminal records and automation logs that contain these passwords.
+See the [Default Credentials Checklist](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
 ## Firewall
 
-[**`node_firewall_mode`**](/docs/node/param#node_firewall_mode) defaults to `zone`. It trusts the intranet defined by [**`node_firewall_intranet`**](/docs/node/param#node_firewall_intranet) and restricts ports exposed to public networks.
+The default value of [`node_firewall_mode`](/docs/node/param#node_firewall_mode) is `zone`.
+This mode trusts the intranet defined by [`node_firewall_intranet`](/docs/node/param#node_firewall_intranet).
+It restricts access to ports from public networks.
 
 | Port | Service | Public by Default |
 |:---:|:---|:---|
@@ -49,31 +51,33 @@ See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default
 | `5432` | PostgreSQL | Not in the base default; exposed additionally by the demo `pigsty.yml` |
 {.full-width}
 
-Production deployments should normally remove `5432` from the demo configuration. If applications need direct database access, restrict source addresses in the cloud security group, host firewall, and HBA.
+For production, normally remove port `5432` from the demonstration configuration.
+If applications require direct database access, permit only their source addresses.
+Apply these restrictions in the cloud security group, host firewall, and PostgreSQL HBA rules.
 
-Also verify that the intranet definition matches the actual trust boundary. The default RFC 1918 ranges may be too broad; office networks, container networks, and other tenant networks should not become trusted automatically.
-
-
-----------------
+Make sure that the intranet definition matches your trusted network.
+The default RFC 1918 address ranges can include networks that you do not trust.
+Do not automatically trust office networks, container networks, or other tenant networks.
 
 ## Files
 
-The following files and directories contain highly sensitive information:
+These files and directories contain sensitive information:
 
-- `pigsty.yml`: system and application credentials, node definitions, and service configuration;
-- `files/pki/ca/ca.key`: local CA private key;
-- the administration user's SSH private key, used to access managed nodes;
-- `files/pki/misc/*.key`: client-certificate private keys;
-- `/pg/tmp/pg-user-*.sql`: SQL containing plaintext passwords generated during user creation.
+| File or directory | Contents |
+|:------------------|:---------|
+| `pigsty.yml` | System and application credentials, node definitions, and service configuration |
+| `files/pki/ca/ca.key` | Local CA private key |
+| Administration account SSH private key | Access credentials for managed nodes |
+| `files/pki/misc/*.key` | Client-certificate private keys |
+| `/pg/tmp/pg-user-*.sql` | SQL files with plaintext passwords from user creation |
 
-Restrict access to the admin node and configuration repository. Do not commit complete inventories or private keys to public repositories. Maintain controlled backups of the CA private key and required configuration.
-
-
-----------------
+Restrict access to the administration node and configuration repository.
+Do not commit complete inventories or private keys to public repositories.
+Keep controlled backups of the CA private key and required configuration.
 
 ## Related Documentation
 
-- [**Security and Compliance**](/docs/concept/sec/): security chapter entry point
-- [**Authentication**](/docs/concept/sec/auth): HBA, passwords, and client certificates
-- [**Encrypted Communication**](/docs/concept/sec/ca): CA, TLS, and server verification
-- [**Production Security Considerations**](/docs/deploy/security/): complete launch checklist
+- [Security and Compliance](/docs/concept/sec/) introduces the security model.
+- [Authentication](/docs/concept/sec/auth/) explains HBA rules, passwords, and client certificates.
+- [Encrypted Communication](/docs/concept/sec/ca/) explains the CA, TLS, and server verification.
+- [Production Security Considerations](/docs/deploy/security/) supplies the complete deployment checklist.

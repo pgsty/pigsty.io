@@ -7,14 +7,14 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-After installing extension packages, you need to execute `CREATE EXTENSION` in the database to use extension features.
+After you install extension packages, run `CREATE EXTENSION` in the database to use their features.
 
 
 --------
 
 ## View Available Extensions
 
-After installing extension packages, you can view available extensions:
+After you install extension packages, run these queries to show the available extensions:
 
 ```sql
 -- View all available extensions
@@ -55,7 +55,8 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 ## Create During Cluster Initialization
 
-Declare extensions in [`pg_databases`](/docs/pgsql/param#pg_databases), and they will be automatically created during cluster initialization:
+Declare extensions in [`pg_databases`](/docs/pgsql/param#pg_databases).
+Pigsty creates them during cluster initialization:
 
 ```yaml
 pg-meta:
@@ -69,14 +70,15 @@ pg-meta:
           - { name: pg_stat_statements, schema: monitor }
 ```
 
-Pigsty will automatically execute `CREATE EXTENSION` after database creation.
+After it creates the database, Pigsty runs `CREATE EXTENSION` automatically.
 
 
 --------
 
 ## Extensions Requiring Preload
 
-Some extensions must be added to `shared_preload_libraries` and restarted before creation:
+Some extensions require preloading before creation.
+Add them to `shared_preload_libraries`, then restart PostgreSQL:
 
 ```yaml
 pg-meta:
@@ -89,7 +91,7 @@ pg-meta:
           - { name: timescaledb }  # Requires preload
 ```
 
-If you try to create without preloading, you will receive an error message.
+If you create such an extension without preloading it, PostgreSQL returns an error.
 
 Common extensions requiring preload: `timescaledb`, `citus`, `pg_cron`, `pg_net`, `pgaudit`, etc. See [Configure Extensions](/docs/pgsql/ext/config/).
 
@@ -98,7 +100,8 @@ Common extensions requiring preload: `timescaledb`, `citus`, `pg_cron`, `pg_net`
 
 ## Extension Dependencies
 
-Some extensions depend on other extensions and need to be created in order:
+Some extensions depend on other extensions.
+Create the dependencies first:
 
 ```sql
 -- postgis_topology depends on postgis
@@ -114,7 +117,7 @@ CREATE EXTENSION postgis_topology CASCADE;
 
 ## Extensions Not Requiring Creation
 
-A few extensions don't provide SQL interfaces and don't need `CREATE EXTENSION`:
+A few extensions have no SQL interfaces and do not require `CREATE EXTENSION`:
 
 | Extension | Description |
 |:-----|:-----|
@@ -122,7 +125,8 @@ A few extensions don't provide SQL interfaces and don't need `CREATE EXTENSION`:
 | `decoderbufs` | Logical decoding plugin |
 | `decoder_raw` | Logical decoding plugin |
 
-These extensions can be used immediately after installation, for example:
+You can use these extensions immediately after installation.
+For example:
 
 ```sql
 -- Create logical replication slot using wal2json

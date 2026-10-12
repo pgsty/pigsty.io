@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Reference]
 ---
 
-VIBE supports enabling components on demand and exposes services via a unified workspace and Nginx portal.
+Enable VIBE components as needed. VIBE provides a shared workspace and exposes services through the Nginx portal.
 
 --------
 
@@ -22,9 +22,9 @@ VIBE supports enabling components on demand and exposes services via a unified w
 | Codex CLI | `codex_enabled` | Enabled | CLI installation only; configuration is not managed |
 {.full-width}
 
-Note: module default is `jupyter_enabled: false`, while `conf/vibe.yml` explicitly sets it to `true`.
+Note: The module default is `jupyter_enabled: false`. The `conf/vibe.yml` template explicitly sets it to `true`.
 
-Config usually lives in cluster `vars`, and can be overridden at instance level:
+Configuration usually resides in cluster `vars`. You can override it at the instance level:
 
 ```yaml
 all:
@@ -50,7 +50,7 @@ all:
 - Claude Code working dir
 - Render the `AGENTS.md` context file and create a `CLAUDE.md` symlink to it
 
-The `vibe_dir` task creates the directory and context files, owned by `node_user`.
+The `vibe_dir` task creates the directory and context files. The `node_user` owns them.
 
 ```yaml
 vibe_data: /fs
@@ -96,10 +96,10 @@ Notes:
 - Service listens on `0.0.0.0:<jupyter_port>` (default 8888), base path `/jupyter/`
 - Config file: `jupyter_data/jupyter_config.py` (default `/data/jupyter/jupyter_config.py`)
 - Login token: `c.IdentityProvider.token`
-- The v4.5 template also sets `allow_origin = '*'`, `disable_check_xsrf = True`, and `trust_xheaders = True`; these relax the security boundary for a reverse-proxied development sandbox
-- **Venv is not created automatically**, use `node_uv_env` in `NODE` module beforehand
+- The v4.5 template also sets `allow_origin = '*'`, `disable_check_xsrf = True`, and `trust_xheaders = True`. These settings relax security checks for a development sandbox behind a reverse proxy.
+- **The module does not create the venv automatically.** First, create it with `node_uv_env` in the `NODE` module.
 
-Use a high-entropy random token and restrict TCP/8888 to trusted networks or the reverse proxy. `infra_portal.home` does not enable Basic Auth by default. For a second authentication layer, configure `nginx_users` and set `auth: true` on the portal. If you tighten the Jupyter settings, validate WebSockets, origin handling, and login before rollout.
+Use a high-entropy random token. Restrict TCP/8888 to trusted networks or the reverse proxy. `infra_portal.home` does not enable Basic Auth by default. For a second authentication layer, configure `nginx_users` and set `auth: true` on the portal. If you tighten the Jupyter settings, validate WebSockets, origin handling, and login before rollout.
 
 Create venv example:
 
@@ -143,7 +143,7 @@ Generated files:
 - `~/.claude.json`
 - `~/.claude/settings.json`
 
-`claude_env` is merged with default OpenTelemetry env vars, sending telemetry to VictoriaMetrics / VictoriaLogs.
+VIBE merges `claude_env` with the default OpenTelemetry environment variables. These settings send telemetry to VictoriaMetrics / VictoriaLogs.
 
 --------
 
@@ -153,7 +153,7 @@ Generated files:
 codex_enabled: true
 ```
 
-The `codex` task runs `npm install -g @openai/codex`. VIBE installs Codex CLI only; it does not write Codex configuration or connect it to VIBE's Claude Code observability.
+The `codex` task runs `npm install -g @openai/codex`. VIBE installs only Codex CLI. It does not write the Codex configuration or connect Codex to VIBE's Claude Code observability.
 
 --------
 

@@ -9,22 +9,22 @@ categories: [Reference]
 
 ## Configuration Guide
 
-INFRA = primarily **monitoring** infrastructure, **optional** for PostgreSQL databases.
+INFRA primarily provides **monitoring** infrastructure. It is **optional** for PostgreSQL databases.
 
-Unless manually configured to depend on DNS/NTP services on INFRA nodes, INFRA module failures typically don't affect PG cluster operations.
+INFRA failures typically do not affect PostgreSQL cluster operation. Exceptions apply if you manually configure dependencies on INFRA DNS/NTP services.
 
-Single INFRA node suffices for most scenarios. Prod env recommends 2-3 INFRA nodes for HA.
+One INFRA node is sufficient for most scenarios. For production HA, we recommend 2-3 INFRA nodes.
 
-For better resource utilization, ETCD module (required by PG HA) can share nodes with INFRA module.
+ETCD, which PostgreSQL HA requires, can share nodes with INFRA to use resources more efficiently.
 
-Using more than 3 INFRA nodes provides little additional benefit, but more ETCD nodes (e.g., 5) can improve DCS availability.
+More than 3 INFRA nodes provide little extra benefit. More ETCD nodes, such as 5, can improve DCS availability.
 
 
 ----------------
 
 ## Configuration Examples
 
-Add node IPs to `infra` group in config inventory, assign INFRA instance number `infra_seq`.
+Add node IP addresses to the `infra` inventory group. Assign an INFRA instance number with `infra_seq`.
 
 Default single INFRA node config:
 
@@ -34,9 +34,9 @@ all:
     infra: { hosts: { 10.10.10.10: { infra_seq: 1 } }}
 ```
 
-By default, `10.10.10.10` placeholder replaced with current node's primary IP during config.
+During configuration, Pigsty replaces `10.10.10.10` with the current node's primary IP address by default.
 
-Use `infra.yml` playbook to init INFRA module on nodes.
+Run `infra.yml` to initialize the INFRA module on these nodes.
 
 
 ### More Nodes
@@ -74,9 +74,9 @@ all:
 
 ## INFRA High Availability
 
-Most INFRA module components = "stateless/identical state". For HA, focus on "load balancing".
+Most INFRA components have no state or share identical state. Thus, load balancing is the main HA requirement.
 
-HA achievable via Keepalived L2 VIP or HAProxy L4 load balancing. L2 VIP recommended for L2-reachable networks.
+Use a Keepalived L2 VIP or HAProxy L4 load balancing for HA. We recommend an L2 VIP where nodes share an accessible L2 network.
 
 Config example:
 

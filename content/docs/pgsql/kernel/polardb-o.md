@@ -9,13 +9,18 @@ categories: [Concept]
 ---
 
 
-Pigsty allows you to create PolarDB for Oracle clusters with "domestic innovation qualification" credentials using PolarDB!
+Use Pigsty to create PolarDB for Oracle clusters with "domestic innovation qualification" credentials.
 
-According to the [Security and Reliability Evaluation Results Announcement (No. 1, 2023)](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html), Appendix 3, Centralized Database. PolarDB v2.0 is an autonomous, controllable, secure, and reliable domestic innovation database.
+The [Security and Reliability Evaluation Results Announcement (No. 1, 2023)](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html) lists PolarDB v2.0 in Appendix 3, Centralized Database.
+It identifies PolarDB v2.0 as an autonomous, controllable, secure, and reliable domestic innovation database.
 
-PolarDB for Oracle is an Oracle-compatible version developed based on PolarDB for PostgreSQL. Both share the same kernel, distinguished by the `--compatibility-mode` parameter.
+PolarDB for Oracle is an Oracle-compatible version based on PolarDB for PostgreSQL.
+Both use the same kernel.
+The `--compatibility-mode` parameter selects the mode.
 
-We collaborate with the Alibaba Cloud kernel team to provide a complete database solution based on PolarDB v2.0 kernel and Pigsty. Please contact sales for inquiries, or purchase on Alibaba Cloud Marketplace.
+We work with the Alibaba Cloud kernel team to provide a complete database solution with the PolarDB v2.0 kernel and Pigsty.
+For inquiries, contact sales.
+You can also purchase it on Alibaba Cloud Marketplace.
 
 The PolarDB for Oracle kernel is currently only available on EL7 (CentOS 7) systems.
 
@@ -25,7 +30,7 @@ The PolarDB for Oracle kernel is currently only available on EL7 (CentOS 7) syst
 
 ## Extensions
 
-Currently, the PolarDB 2.0 (Oracle compatible) kernel comes with the following **188** extension plugins:
+The PolarDB 2.0 kernel in Oracle compatibility mode currently includes these **188** extension plugins:
 
 | name                           | default_version | comment                                                                                                                    |
 |--------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------|

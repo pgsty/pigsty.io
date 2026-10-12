@@ -9,7 +9,7 @@ categories: [Task]
 
 [Bytebase](https://bytebase.com/) is a database schema change and version management tool.
 
-Pigsty provides a ready-to-use Compose template in `app/bytebase`. It listens on `8887` by default and connects to external PostgreSQL via `BB_PGURL`.
+Pigsty provides a Compose template in `app/bytebase`. It listens on `8887` by default and uses `BB_PGURL` to connect to external PostgreSQL.
 
 ## Quick Start
 
@@ -24,7 +24,7 @@ Access:
 - `http://ddl.pigsty`
 - `http://<IP>:8887`
 
-After first startup, initialize the admin account using the Bytebase setup wizard.
+After the first start, use the Bytebase setup wizard to initialize the admin account.
 
 ## External PostgreSQL
 

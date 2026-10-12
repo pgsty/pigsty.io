@@ -6,7 +6,7 @@ icon: fa-solid fa-shield-halved
 categories: [Reference]
 ---
 
-`ha/safe` uses a three-node high-availability topology to demonstrate TLS, client certificates, password checks, backup encryption, the CRIT parameter template, and related security settings. It is a configuration example to customize, not a compliance-certified template.
+`ha/safe` uses a three-node high-availability topology. It demonstrates TLS, client certificates, password checks, backup encryption, the CRIT parameter template, and related security settings. Customize this configuration example for your environment. The template does not have compliance certification.
 
 
 --------
@@ -53,7 +53,7 @@ Generate the configuration:
 ## Preflight Checklist
 
 - Replace every public example credential, especially `minio_users`, `pgbackrest_repo`, application users, and API passwords.
-- Confirm that the three nodes occupy independent failure domains, and update IPs, VIP, and domains for the target network.
+- Confirm that the three nodes occupy independent failure domains. Update the IPs, VIP, and domains for the target network.
 - Configure database clients with `sslmode=verify-full` and a trusted CA.
 - Confirm that the availability impact of strict synchronous mode meets application requirements.
 - Preload and configure `pgaudit`, `credcheck`, and other extensions as required.

@@ -6,7 +6,8 @@ icon: fa-solid fa-gears
 categories: [Task, Concept]
 ---
 
-Pigsty's backup and restore operations ultimately execute [**pgBackRest**](/docs/pgbackrest/) commands. Using them safely requires both pgBackRest's model and the mapping from Pigsty's orchestration layers to native options.
+Pigsty's backup and restore operations execute [**pgBackRest**](/docs/pgbackrest/) commands.
+For safe operation, understand the pgBackRest model and how Pigsty maps its orchestration parameters to native options.
 
 
 --------
@@ -15,13 +16,24 @@ Pigsty's backup and restore operations ultimately execute [**pgBackRest**](/docs
 
 ### Stanza: the Cluster's Backup Identity
 
-A **stanza** names one PostgreSQL backup configuration and isolates that cluster inside a repository. Pigsty maps it directly from [**`pg_cluster`**](/docs/pgsql/param#pg_cluster): the `pg-meta` stanza stores data under `backup/pg-meta/` and `archive/pg-meta/`, so several clusters can share one repository.
+A **stanza** names one PostgreSQL backup configuration and isolates that cluster inside a repository.
+Pigsty uses [**`pg_cluster`**](/docs/pgsql/param#pg_cluster) as the stanza name.
+The `pg-meta` stanza stores data under `backup/pg-meta/` and `archive/pg-meta/`.
+Thus, several clusters can share one repository.
 
-The stanza records the source system identifier and major version and checks them before a backup. That identity check is why a [**cross-cluster clone**](/docs/pgsql/backup/cluster) needs `stanza-upgrade` afterward. Pigsty creates the stanza during cluster initialization; [**`stanza-upgrade`**](/docs/pgbackrest/command/stanza-upgrade) updates it after a major-version change or clone.
+The stanza records the source system identifier and major version.
+pgBackRest checks these values before a backup.
+Because of this check, a [**cross-cluster clone**](/docs/pgsql/backup/cluster) needs `stanza-upgrade` afterward.
+Pigsty creates the stanza during cluster initialization.
+[**`stanza-upgrade`**](/docs/pgbackrest/command/stanza-upgrade) updates it after a major-version change or clone.
 
 ### Repository: Where Backups Live
 
-A **repository** stores backup files and WAL archives. `repo1-type` selects POSIX, S3, Azure, GCS, or SFTP; `repo1-path`, `repo1-cipher-*`, and `repo1-retention-*` define location, encryption, and retention. Pigsty renders these from [**`pgbackrest_repo`**](/docs/pgsql/param#pgbackrest_repo); see [**Backup Repository**](/docs/pgsql/backup/repository).
+A **repository** stores backup files and WAL archives.
+`repo1-type` selects POSIX, S3, Azure, GCS, or SFTP.
+`repo1-path`, `repo1-cipher-*`, and `repo1-retention-*` define location, encryption, and retention.
+Pigsty generates these settings from [**`pgbackrest_repo`**](/docs/pgsql/param#pgbackrest_repo).
+See [**Backup Repository**](/docs/pgsql/backup/repository).
 
 ### Backup Chains and Labels
 
@@ -32,27 +44,47 @@ A **repository** stores backup files and WAL archives. `repo1-type` selects POSI
 | Incremental | Changes since the latest backup of any type | `I` |
 {.full-width}
 
-Labels encode the chain. `20250715-013657F` is a full backup; `20250715-013657F_20250715-013724D` and `..._20250715-013730I` depend on the full identified before the underscore. `--set` chooses the starting backup explicitly; otherwise pgBackRest selects the newest usable set before the target.
+Labels identify the backup chain.
+`20250715-013657F` is a full backup.
+`20250715-013657F_20250715-013724D` and `..._20250715-013730I` depend on the full backup identified before the underscore.
+Use `--set` to select the starting backup explicitly.
+Otherwise, pgBackRest selects the newest usable set before the target.
 
 ### Retention: Keeping the Repository Bounded
 
-`repo1-retention-full` and `repo1-retention-full-type` (`count` or `time`) decide when full chains expire. Dependent differential/incremental backups and WAL needed only by that chain expire with the full. Pigsty enables `expire-auto`, and [**`pig pb expire --plan`**](/docs/pgsql/backup/admin/#expire-old-backups) previews a manual run.
+`repo1-retention-full` and `repo1-retention-full-type` (`count` or `time`) determine when full backup chains expire.
+Dependent differential/incremental backups and WAL needed only by that chain expire with the full backup.
+Pigsty enables `expire-auto`.
+Use [**`pig pb expire --plan`**](/docs/pgsql/backup/admin/#expire-old-backups) to preview a manual run.
 
-Time retention is a minimum window, not “keep only fulls newer than N days.” An old full expires only when another retained full has reached that age. A 14-day setting with weekly fulls therefore commonly retains three full chains and roughly 14–21 days of history.
+Time retention defines a minimum window.
+It does not remove every full backup older than N days.
+An old full backup expires only when another retained full backup has reached that age.
+With weekly full backups, a 14-day setting therefore commonly retains three full chains and approximately 14–21 days of history.
 
 ### WAL Archiving
 
-PostgreSQL invokes [**`archive-push`**](/docs/pgbackrest/command/archive-push) when a WAL segment fills or `archive_timeout` elapses. During recovery, `restore_command` calls [**`archive-get`**](/docs/pgbackrest/command/archive-get). Pigsty enables asynchronous archiving through `/pg/spool` so a temporary repository delay does not block the primary directly.
+PostgreSQL calls [**`archive-push`**](/docs/pgbackrest/command/archive-push) when a WAL segment fills or `archive_timeout` elapses.
+During recovery, `restore_command` calls [**`archive-get`**](/docs/pgbackrest/command/archive-get).
+Pigsty enables asynchronous archiving through `/pg/spool`.
+Thus, a temporary repository delay does not block the primary directly.
 
 ### Timelines
 
-Each promotion after recovery or failover creates a new timeline. Older timeline history remains in the repository, and `--target-timeline` chooses the recovery branch (`latest` by default). See the conceptual [**PITR mechanism**](/docs/concept/pitr/mechanism/#timelines).
+Each promotion after recovery or failover creates a new timeline.
+Older timeline history remains in the repository.
+`--target-timeline` selects the recovery branch and defaults to `latest`.
+See the conceptual [**PITR mechanism**](/docs/concept/pitr/mechanism/#timelines).
 
 ### What `restore` Actually Does
 
-[**`restore`**](/docs/pgbackrest/command/restore) first reconstructs the data directory. Pigsty enables `--delta`, so pgBackRest validates existing files and rewrites only mismatches. It then writes recovery state (`recovery.signal`, `restore_command`, and `recovery_target_*`). Actual WAL replay happens after PostgreSQL starts.
+[**`restore`**](/docs/pgbackrest/command/restore) first reconstructs the data directory.
+Pigsty enables `--delta`, so pgBackRest validates existing files and rewrites only files that differ.
+It then writes the recovery state (`recovery.signal`, `restore_command`, and `recovery_target_*`).
+WAL replay starts after PostgreSQL starts.
 
-Consequently, a successful `restore` command is only half of PITR. `--target-action` controls what happens when replay reaches the target: `pause`, `promote`, or `shutdown`.
+A successful `restore` command does not complete PITR.
+`--target-action` controls what happens when replay reaches the target: `pause`, `promote`, or `shutdown`.
 
 ```bash
 pgbackrest --stanza=pg-meta restore
@@ -139,11 +171,16 @@ pg-backup incr   # the default; pgBackRest promotes it when no full exists
 | `repo` | repository number only in `pig pitr` | rendered `repo1-*` | Override repository definition in the playbook |
 {.full-width}
 
-A selective restore is still physical. Excluded databases receive sparse zeroed files so PostgreSQL can complete recovery, but those databases are inaccessible and must be removed explicitly afterward; this is not a logical subset like `pg_dump`.
+A selective restore is still a physical restore.
+Excluded databases receive sparse zeroed files so PostgreSQL can complete recovery.
+These databases are inaccessible.
+You must remove them explicitly afterward.
+This is not a logical subset as with `pg_dump`.
 
 ### How Configuration Is Rendered
 
-The entry selected by [**`pgbackrest_method`**](/docs/pgsql/param#pgbackrest_method) is rendered to `/etc/pgbackrest/pgbackrest.conf`: underscores become hyphens and keys receive the `repo1-` prefix.
+[**`pgbackrest_method`**](/docs/pgsql/param#pgbackrest_method) selects the entry that Pigsty writes to `/etc/pgbackrest/pgbackrest.conf`.
+Pigsty converts underscores to hyphens and adds the `repo1-` prefix to keys.
 
 ```yaml
 pgbackrest_repo:
@@ -154,14 +191,17 @@ pgbackrest_repo:
     retention_full: 14        # repo1-retention-full=14
 ```
 
-`pgsql-pitr.yml` renders a separate temporary `/pg/conf/pitr.conf`; PostgreSQL recovery output goes to `/pg/tmp/recovery.log`.
+`pgsql-pitr.yml` generates a separate temporary configuration at `/pg/conf/pitr.conf`.
+PostgreSQL recovery output goes to `/pg/tmp/recovery.log`.
 
 
 --------
 
 ## Scheduled Backups
 
-[**`pg_crontab`**](/docs/pgsql/param#pg_crontab) entries are installed for the `postgres` OS user on every cluster node. Because `pg-backup` checks the current role, only the primary backs up, and a promoted primary takes over future schedules.
+Pigsty installs [**`pg_crontab`**](/docs/pgsql/param#pg_crontab) entries for the `postgres` OS user on every cluster node.
+`pg-backup` checks the current role, so only the primary makes backups.
+After promotion, the new primary runs future scheduled backups.
 
 ```yaml
 pg_crontab:
@@ -180,7 +220,9 @@ See [**Backup Policy**](/docs/pgsql/backup/policy) for frequency and retention d
 
 ## Deployment Details
 
-The `pg_backup` subtask installs/configures pgBackRest, creates the stanza, and—when [**`pgbackrest_init_backup`**](/docs/pgsql/param#pgbackrest_init_backup) is enabled—attempts an initial full backup. `/etc/pgbackrest/initial.done` is written only after that backup succeeds.
+The `pg_backup` subtask installs and configures pgBackRest, then creates the stanza.
+If [**`pgbackrest_init_backup`**](/docs/pgsql/param#pgbackrest_init_backup) is enabled, it attempts an initial full backup.
+It writes `/etc/pgbackrest/initial.done` only after that backup succeeds.
 
 | Path | Purpose |
 |:-----|:--------|
@@ -193,4 +235,6 @@ The `pg_backup` subtask installs/configures pgBackRest, creates the stanza, and�
 | `/pg/tmp/recovery.log` | PostgreSQL recovery log |
 {.full-width}
 
-`pgbackrest_exporter` listens on [**`pgbackrest_exporter_port`**](/docs/pgsql/param#pgbackrest_exporter_port), `9854` by default, and exports [**backup metrics**](/docs/pgbackrest/metric). Disable it with [**`pgbackrest_exporter_enabled`**](/docs/pgsql/param#pgbackrest_exporter_enabled) or customize it with [**`pgbackrest_exporter_options`**](/docs/pgsql/param#pgbackrest_exporter_options).
+`pgbackrest_exporter` exports [**backup metrics**](/docs/pgbackrest/metric) and listens on [**`pgbackrest_exporter_port`**](/docs/pgsql/param#pgbackrest_exporter_port), which defaults to `9854`.
+To disable it, use [**`pgbackrest_exporter_enabled`**](/docs/pgsql/param#pgbackrest_exporter_enabled).
+To customize it, use [**`pgbackrest_exporter_options`**](/docs/pgsql/param#pgbackrest_exporter_options).

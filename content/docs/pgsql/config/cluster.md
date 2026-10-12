@@ -10,9 +10,9 @@ categories: [Reference]
 
 
 
-> Choose the appropriate instance and cluster types based on your requirements to configure PostgreSQL database clusters that meet your needs.
+> Select instance and cluster types that meet your requirements.
 
-You can define different types of instances and clusters. Here are several common PostgreSQL instance/cluster types in Pigsty:
+Pigsty supports several PostgreSQL instance and cluster types:
 
 - [Primary](#primary): Define a single instance cluster.
 - [Replica](#replica): Define a basic HA cluster with one primary and one replica.
@@ -28,7 +28,7 @@ You can define different types of instances and clusters. Here are several commo
 
 ## Primary
 
-We start with the simplest case: a single instance cluster consisting of one primary:
+The simplest cluster contains one primary instance:
 
 ```yaml
 pg-test:
@@ -38,7 +38,11 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-This configuration is concise and self-describing, consisting only of [**identity parameters**](/docs/concept/model/pgsql#identity-parameters). Matching the Ansible group name to [`pg_cluster`](/docs/pgsql/param#pg_cluster) remains convenient for `-l pg-test`, but it is not a hard membership constraint. Current code discovers actual members from each host's `pg_cluster` identity, so one PostgreSQL cluster may span multiple inventory groups.
+This configuration contains only [**identity parameters**](/docs/concept/model/pgsql#identity-parameters).
+Matching the Ansible group name to [`pg_cluster`](/docs/pgsql/param#pg_cluster) makes selectors such as `-l pg-test` convenient.
+However, matching group names are not required for membership.
+Pigsty finds members from each host's `pg_cluster` identity.
+One PostgreSQL cluster can therefore span multiple inventory groups.
 
 Use the following command to create this cluster:
 
@@ -46,14 +50,17 @@ Use the following command to create this cluster:
 bin/pgsql-add pg-test
 ```
 
-For demos, development testing, hosting temporary requirements, or performing non-critical analytical tasks, a single database instance may not be a big problem. However, such a single-node cluster has no [high availability](/docs/concept/ha). When hardware failures occur, you'll need to use [PITR](/docs/concept/pitr) or other recovery methods to ensure the cluster's RTO/RPO. For this reason, you may consider adding several [read-only replicas](#replica) to the cluster.
+One instance can be suitable for demonstrations, development tests, temporary hosting, or non-critical analytical tasks.
+A single-node cluster has no [high availability](/docs/concept/ha).
+After hardware failure, use [PITR](/docs/concept/pitr) or another recovery method to meet RTO/RPO requirements.
+Consider adding [read-only replicas](#replica) for this reason.
 
 
 ----------------
 
 ## Replica
 
-To add a read-only replica instance, you can add a new node to `pg-test` and set its [`pg_role`](/docs/pgsql/param#pg_role) to `replica`.
+To add a read-only replica, add a node to `pg-test` and set its [`pg_role`](/docs/pgsql/param#pg_role) to `replica`.
 
 ```yaml
 pg-test:
@@ -64,14 +71,17 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-If the entire cluster doesn't exist, you can directly [create](/docs/pgsql/admin/cluster#create-cluster) the complete cluster. If the cluster primary has already been initialized, you can [add](/docs/pgsql/admin/cluster#expand-cluster) a replica to the existing cluster:
+If the cluster does not exist, [create](/docs/pgsql/admin/cluster#create-cluster) the complete cluster.
+If the primary is initialized, [add](/docs/pgsql/admin/cluster#expand-cluster) a replica to the existing cluster:
 
 ```bash
 bin/pgsql-add pg-test               # initialize the entire cluster at once
 bin/pgsql-add pg-test 10.10.10.12   # add replica to existing cluster
 ```
 
-When the cluster primary fails, the read-only instance (Replica) can take over the primary's work with the help of the high availability system. Additionally, read-only instances can be used to execute read-only queries: many businesses have far more read requests than write requests, and most read-only query loads can be handled by replica instances.
+If the primary fails, the high-availability system can promote a replica to take over.
+Replicas also process read-only queries.
+Many applications have more reads than writes, so replicas can handle most of their read-only workload.
 
 
 
@@ -79,9 +89,11 @@ When the cluster primary fails, the read-only instance (Replica) can take over t
 
 ## Offline
 
-Offline instances are dedicated read-only replicas specifically for serving slow queries, ETL, OLAP traffic, and interactive queries. Slow queries/long transactions have adverse effects on the performance and stability of online business, so it's best to isolate them from online business.
+Offline instances are read-only replicas for slow queries, ETL, OLAP, and interactive queries.
+Slow queries and long transactions can reduce online application performance and stability.
+We therefore recommend that you isolate them from online traffic.
 
-To add an offline instance, assign it a new instance and set [`pg_role`](/docs/pgsql/param#pg_role) to `offline`.
+To add an offline instance, add a new instance and set [`pg_role`](/docs/pgsql/param#pg_role) to `offline`.
 
 ```yaml
 pg-test:
@@ -93,9 +105,13 @@ pg-test:
     pg_cluster: pg-test
 ```
 
-Dedicated offline instances work similarly to common replica instances, but they serve as backup servers in the `pg-test-replica` service. That is, only when all `replica` instances are down will the offline and primary instances provide this read-only service.
+Dedicated offline instances operate like ordinary replicas but act as backup servers for the `pg-test-replica` service.
+Offline and primary instances serve read-only traffic only when every `replica` instance is down.
 
-In many cases, database resources are limited, and using a separate server as an offline instance is not economical. As a compromise, you can select an existing replica instance and mark it with the [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) flag to indicate it can handle "offline queries". In this case, this read-only replica will handle both online read-only requests and offline queries. You can use [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) and [`pg_hba_rules`](/docs/pgsql/param#pg_hba_rules) for additional access control on offline instances.
+A separate offline server may be too expensive when resources are limited.
+Instead, mark an existing replica with [`pg_offline_query`](/docs/pgsql/param#pg_offline_query).
+This replica handles both online read-only requests and offline queries.
+Use [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) and [`pg_hba_rules`](/docs/pgsql/param#pg_hba_rules) for additional access control on offline instances.
 
 
 
@@ -104,11 +120,21 @@ In many cases, database resources are limited, and using a separate server as an
 
 ## Sync Standby
 
-When Sync Standby is enabled, PostgreSQL will select one replica as the **sync standby**, with all other replicas as **candidates**. The primary database will wait for the standby instance to flush to disk before confirming commits. The standby instance always has the latest data with no replication lag, and primary-standby switchover to the sync standby will have no data loss.
+With Sync Standby enabled, PostgreSQL selects one replica as the **sync standby**.
+The other replicas are **candidates**.
+Before it confirms a commit, the primary waits for the sync standby to flush data to disk.
+The sync standby has the latest data without replication lag.
+A switchover to that standby has no data loss.
 
-PostgreSQL uses asynchronous streaming replication by default. If the primary fails, WAL that has not yet replicated may be lost. [`pg_rpo`](/docs/pgsql/param#pg_rpo) is Patroni's sampled lag threshold for failover candidates, not a hard upper bound on actual loss; the real window also depends on write rate, replication state, and Patroni sampling timing.
+PostgreSQL uses asynchronous streaming replication by default.
+If the primary fails, WAL that has not replicated may be lost.
+[`pg_rpo`](/docs/pgsql/param#pg_rpo) is Patroni's sampled lag threshold for failover candidates.
+It is not a hard limit on actual data loss.
+The loss window also depends on write rate, replication state, and Patroni sampling time.
 
-However, in some critical scenarios (e.g., financial transactions), data loss is completely unacceptable, or read replication lag is unacceptable. In such cases, you can use synchronous commit to solve this problem. To enable sync standby mode, you can simply use the `crit.yml` template in [`pg_conf`](/docs/pgsql/param#pg_conf).
+Critical workloads, such as financial transactions, may permit no data loss or read replication lag.
+Use synchronous commit for these requirements.
+To enable sync standby mode, select `crit.yml` with [`pg_conf`](/docs/pgsql/param#pg_conf).
 
 ```yaml
 pg-test:
@@ -133,8 +159,9 @@ $ pg edit-config pg-test    # run as admin user on admin node
 Apply these changes? [y/N]: y
 ```
 
-In this case, the PostgreSQL configuration parameter [`synchronous_standby_names`](https://www.postgresql.org/docs/current/runtime-config-replication.html#synchronous_standby_names) is automatically managed by Patroni.
-One replica will be elected as the sync standby, and its `application_name` will be written to the PostgreSQL primary configuration file and applied.
+Patroni manages [`synchronous_standby_names`](https://www.postgresql.org/docs/current/runtime-config-replication.html#synchronous_standby_names) automatically.
+It selects one replica as the sync standby.
+It writes and applies that replica's `application_name` in the primary configuration.
 
 
 
@@ -142,16 +169,19 @@ One replica will be elected as the sync standby, and its `application_name` will
 
 ## Quorum Commit
 
-Quorum Commit provides more powerful control than sync standby: especially when you have multiple replicas, you can set criteria for successful commits, achieving higher/lower consistency levels (and trade-offs with availability).
+Quorum Commit lets you set commit acknowledgment criteria, particularly for clusters with multiple replicas.
+You can adjust the consistency level and the associated availability tradeoff.
 
-If you want **at least two replicas** to confirm commits, you can adjust the [`synchronous_node_count`](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-replication-factor) parameter through Patroni [cluster configuration](/docs/pgsql/admin/cluster#config-cluster) and apply it:
+To require confirmation from **at least two replicas**, set [`synchronous_node_count`](https://patroni.readthedocs.io/en/latest/replication_modes.html#synchronous-replication-factor) through Patroni [cluster configuration](/docs/pgsql/admin/cluster#config-cluster).
+Apply this setting:
 
 ```yaml
 synchronous_mode: true          # ensure synchronous commit is enabled
 synchronous_node_count: 2       # specify "at least" how many replicas must successfully commit
 ```
 
-If you want to use more sync replicas, modify the `synchronous_node_count` value. When the cluster size changes, you should ensure this configuration is still valid to avoid service unavailability.
+To require more synchronous replicas, increase `synchronous_node_count`.
+After cluster size changes, verify that this setting remains valid to avoid service unavailability.
 
 In this case, the PostgreSQL configuration parameter [`synchronous_standby_names`](https://www.postgresql.org/docs/current/runtime-config-replication.html#synchronous_standby_names) is automatically managed by Patroni.
 
@@ -180,7 +210,8 @@ synchronous_standby_names = '2 ("pg-test-3","pg-test-2")'
 > +-----------+-------------+--------------+---------+----+-----------+-----------------+
 > ```
 
-Another scenario is using **any n** replicas to confirm commits. In this case, the configuration is slightly different. For example, if we only need any one replica to confirm commits:
+You can also require confirmation from **any n** replicas.
+For example, this configuration requires any one replica:
 
 ```yaml
 synchronous_mode: quorum        # use quorum commit
@@ -210,11 +241,13 @@ postgresql:
 
 You can clone an existing cluster and create a standby cluster for data migration, horizontal splitting, multi-region deployment, or disaster recovery.
 
-Under normal circumstances, the standby cluster will follow the upstream cluster and keep content synchronized. You can promote the standby cluster to become a truly independent cluster.
+Normally, the standby cluster follows the upstream cluster and keeps its data synchronized.
+Promote it to make it an independent cluster.
 
-The standby cluster definition is basically the same as a normal cluster definition, except that the [`pg_upstream`](/docs/pgsql/param#pg_upstream) parameter is additionally defined on the primary. The primary of the standby cluster is called the **Standby Leader**.
+Use a normal cluster definition, then add [`pg_upstream`](/docs/pgsql/param#pg_upstream) to its primary.
+This primary is called the **Standby Leader**.
 
-For example, below defines a `pg-test` cluster and its standby cluster `pg-test2`. The configuration inventory might look like this:
+This inventory defines `pg-test` and its standby cluster, `pg-test2`:
 
 ```yaml
 # pg-test is the original cluster
@@ -231,9 +264,9 @@ pg-test2:
   vars: { pg_cluster: pg-test2 }
 ```
 
-The primary node `pg-test2-1` of the `pg-test2` cluster will be a downstream replica of `pg-test` and serve as the Standby Leader in the `pg-test2` cluster.
+`pg-test2-1` replicates from `pg-test` and acts as the Standby Leader for `pg-test2`.
 
-Just ensure the [`pg_upstream`](/docs/pgsql/param#pg_upstream) parameter is configured on the standby cluster's primary node to automatically pull backups from the original upstream.
+Set [`pg_upstream`](/docs/pgsql/param#pg_upstream) on the standby cluster primary to pull backups automatically from the upstream cluster.
 
 ```bash
 bin/pgsql-add pg-test     # create original cluster
@@ -261,7 +294,8 @@ bin/pgsql-add pg-test2    # create standby cluster
 
 
 > [!DETAILS]- Example: Promote standby cluster
-> You can promote the standby cluster to an independent cluster at any time, so the cluster can independently handle write requests and diverge from the original cluster.
+> You can promote the standby cluster at any time.
+> It then accepts writes independently and can diverge from the original cluster.
 >
 > To do this, you must [configure](/docs/pgsql/admin/cluster#config-cluster) the cluster and completely erase the `standby_cluster` section, then apply.
 >
@@ -281,9 +315,12 @@ bin/pgsql-add pg-test2    # create standby cluster
  > [!DETAILS]- Example: Cascade replication
  > If you specify [`pg_upstream`](/docs/pgsql/param#pg_upstream) on a replica instead of the primary, you can configure **cascade replication** for the cluster.
  >
- > When configuring cascade replication, you must use the IP address of an instance in the cluster as the parameter value, otherwise initialization will fail. The replica performs streaming replication from a specific instance rather than the primary.
+ > For cascade replication, use the IP address of an instance in the same cluster. Otherwise, initialization fails.
+ > The replica streams from that instance instead of the primary.
  >
- > The instance acting as a WAL relay is called a **Bridge Instance**. Using a bridge instance can share the burden of sending WAL from the primary. When you have dozens of replicas, using bridge instance cascade replication is a good idea.
+ > The WAL relay is called a **Bridge Instance**.
+ > It reduces the WAL transmission load on the primary.
+ > Consider cascade replication through bridge instances when you have dozens of replicas.
  >
  > ```yaml
  > pg-test:
@@ -305,7 +342,7 @@ bin/pgsql-add pg-test2    # create standby cluster
 
 A Delayed Cluster is a special type of [standby cluster](#standby-cluster) used to quickly recover "accidentally deleted" data.
 
-For example, if you want a cluster named `pg-testdelay` whose data content is the same as the `pg-test` cluster from one hour ago:
+For example, define `pg-testdelay` to retain the state of `pg-test` from one hour earlier:
 
 ```yaml
 # pg-test is the original cluster
@@ -336,9 +373,12 @@ $ pg edit-config pg-testdelay
 Apply these changes? [y/N]: y
 ```
 
-When some tuples and tables are accidentally deleted, you can modify this parameter to advance this delayed cluster to an appropriate point in time, read data from it, and quickly fix the original cluster.
+After accidental row or table deletion, adjust this delay to advance the delayed cluster to the required time.
+Read the data from that cluster to repair the original cluster.
 
-Delayed clusters require additional resources, but are much faster than [PITR](/docs/concept/pitr#recovery) and have much less impact on the system. For very critical clusters, consider setting up delayed clusters.
+Delayed clusters need additional resources.
+They recover data much faster than [PITR](/docs/concept/pitr#recovery) and have less effect on the system.
+Consider them for critical clusters.
 
 
 
@@ -347,16 +387,18 @@ Delayed clusters require additional resources, but are much faster than [PITR](/
 
 ## Citus Cluster
 
-Pigsty natively supports Citus. You can refer to [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml) as a complete example.
+Pigsty natively supports Citus.
+See [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml) for a complete example.
 
 To define a Citus cluster, you need to specify the following parameters:
 
 - [`pg_mode`](/docs/pgsql/param#pg_mode) must be set to `citus`, not the default `pgsql`
 - The shard name [`pg_shard`](/docs/pgsql/param#pg_shard) and shard number [`pg_group`](/docs/pgsql/param#pg_group) must be defined on each shard cluster
 - [`pg_primary_db`](/docs/pgsql/param#pg_primary_db) must be defined to specify the database managed by Patroni.
-- If you want to use [`pg_dbsu`](/docs/pgsql/param#pg_dbsu) `postgres` instead of the default [`pg_admin_username`](/docs/pgsql/param#pg_admin_username) to execute admin commands, then [`pg_dbsu_password`](/docs/pgsql/param#pg_dbsu_password) must be set to a non-empty plaintext password
+- To run administration commands as [`pg_dbsu`](/docs/pgsql/param#pg_dbsu) `postgres` instead of [`pg_admin_username`](/docs/pgsql/param#pg_admin_username), set [`pg_dbsu_password`](/docs/pgsql/param#pg_dbsu_password) to a non-empty plaintext password.
 
-Additionally, extra hba rules are needed to allow SSL access from localhost and other data nodes. As shown below:
+Add HBA rules for SSL access from localhost and other data nodes.
+For example:
 
 ```yaml
 all:
@@ -387,7 +429,9 @@ all:
       - { user: 'all' ,db: all  ,addr: intra        ,auth: ssl ,title: 'all user ssl access from intranet'  }
 ```
 
-On the coordinator node, you can create distributed tables and reference tables and query them from any data node. Starting from 11.2, any Citus database node can act as a coordinator.
+On the coordinator, create distributed tables and reference tables.
+You can query them from any data node.
+From Citus 11.2, any Citus database node can act as coordinator.
 
 ```bash
 SELECT create_distributed_table('pgbench_accounts', 'aid'); SELECT truncate_local_data_after_distributing_table($$public.pgbench_accounts$$);

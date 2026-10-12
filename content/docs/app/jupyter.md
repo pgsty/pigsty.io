@@ -12,7 +12,7 @@ categories: [Reference]
 - The [`VIBE`](/docs/vibe/) module, managed by Ansible and systemd, for the complete v4.5.0 development sandbox.
 - The lightweight standalone `app/jupyter` Docker Compose template documented here.
 
-`app/jupyter` is not a default `apps` inventory entry, and data-directory preparation is a separate step. Do not assume that `app.yml -e app=jupyter` handles its directory ownership.
+`app/jupyter` is not a default `apps` inventory entry. Prepare its data directory separately. `app.yml -e app=jupyter` does not handle directory ownership.
 
 ![JupyterLab](/img/docs/app/jupyter.jpeg)
 
@@ -44,9 +44,9 @@ JUPYTER_PORT=8888
 JUPYTER_TOKEN=pigsty
 ```
 
-Compose mounts host `/data/jupyter` at `/home/jovyan/work` and passes the token into the container. The `latest` tag changes upstream; production deployments should use a tested, explicit image tag or digest.
+Compose mounts host `/data/jupyter` at `/home/jovyan/work` and passes the token into the container. The upstream `latest` tag changes. Production deployments should use a tested image tag or digest.
 
-For SciPy, R, Julia, TensorFlow, PyTorch, or Spark, select another [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/) image listed in `.env`, while still pinning its version and validating architecture support.
+For SciPy, R, Julia, TensorFlow, PyTorch, or Spark, select another [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/) image from `.env`. Pin its version and validate architecture support.
 
 --------
 
@@ -98,7 +98,7 @@ Only `/home/jovyan/work` is mapped to `/data/jupyter`. The following are not per
 - notebooks, configuration, and caches outside `work`
 - the container's own user state
 
-For production, install dependencies through a pinned image, custom Dockerfile, or reproducible dependency file, and back up `/data/jupyter` separately. A persistent mount is not a backup.
+For production, install dependencies with a pinned image, custom Dockerfile, or reproducible dependency file. Back up `/data/jupyter` separately. A persistent mount is not a backup.
 
 --------
 
@@ -116,7 +116,7 @@ make stop    # stop the container
 make pull    # pull the image selected in .env
 ```
 
-`make clean` removes the container but retains `/data/jupyter`. `make purge` recursively deletes `/data/jupyter`; it is an unrecoverable data-deletion operation and requires confirmation of the exact directory and a recent backup.
+`make clean` removes the container and retains `/data/jupyter`. `make purge` recursively deletes `/data/jupyter`, and this deletion is unrecoverable. Confirm the exact directory and a recent backup before running it.
 
 --------
 

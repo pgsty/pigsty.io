@@ -7,100 +7,74 @@ module: [PIGSTY]
 categories: [Reference]
 ---
 
-
-
---------
-
 ## What is etcd's role in Pigsty?
 
-etcd is a distributed, reliable key-value store for critical system data. Pigsty uses etcd as DCS (Distributed Config Store) service for Patroni, storing PG HA status.
+etcd is a distributed, reliable key-value store for critical system data. Pigsty uses etcd as the DCS (Distributed Config Store) for Patroni. It stores PostgreSQL HA status.
 
-Patroni uses etcd for: cluster failure detection, auto failover, primary-replica switchover, and cluster config management.
+Patroni uses etcd for cluster failure detection, automatic failover, primary-replica switchover, and cluster configuration management.
 
-etcd is critical for PostgreSQL HA, and its own availability depends on a reachable majority. Production deployments normally spread three or five voting members across independent failure domains.
-
-
-
---------
+etcd is critical for PostgreSQL HA. Its own availability requires a reachable majority. Production deployments normally put three or five voting members in independent failure domains.
 
 ## What's the appropriate etcd cluster size?
 
-If more than half (including exactly half) of etcd instances unavailable, etcd cluster enters unavailable state—refuses service.
+If at least half the etcd instances are unavailable, the cluster becomes unavailable and refuses service.
 
-Example: 3-node cluster allows max 1 node failure while 2 others continue; 5-node cluster tolerates 2 node failures.
+A 3-node cluster tolerates 1 node failure while the other 2 nodes continue to serve requests. A 5-node cluster tolerates 2 node failures.
 
-Note: **Learner** instances don't count toward members—3-node cluster with 1 learner = 2 actual members, zero fault tolerance.
+**Learner** instances do not count as voting members. A 3-node cluster with 1 learner has only 2 voting members. It cannot tolerate a voting member failure.
 
-In prod, use odd number of instances. For prod, recommend 3-node or 5-node for reliability.
-
-
-
---------
+Use an odd number of instances in production. We recommend 3 or 5 nodes for production reliability.
 
 ## Impact of etcd unavailability?
 
-If etcd cluster unavailable, affects PG control plane but not data plane—existing PG clusters continue running, but Patroni management ops fail.
+An etcd failure affects the PostgreSQL control plane. Existing PostgreSQL clusters continue to run, but Patroni management operations fail.
 
-During etcd failure: PG HA can't auto failover, can't use `patronictl` for PG management (config changes, manual failover, etc.).
+During the failure, PostgreSQL HA cannot perform automatic failover. You cannot use `patronictl` for operations such as configuration changes or manual failover.
 
-Ansible playbooks unaffected by etcd failure: create DB, create user, refresh HBA/Service config. During etcd failure, operate PG clusters directly.
+Ansible playbooks for database creation, user creation, and HBA or Service configuration updates are not affected. You can operate PostgreSQL clusters directly during an etcd failure.
 
-Note: Behavior applies to Patroni >=3.0 (Pigsty >=2.0). With older Patroni (<3.0, Pigsty 1.x), etcd/consul failure causes severe global impact:
-
-All PG clusters demote: primaries → replicas, reject writes, etcd failure amplifies to global PG failure. Patroni 3.0 introduced DCS Failsafe—significantly improved.
-
-
-
---------
+This behavior applies to Patroni >=3.0 (Pigsty >=2.0). With older Patroni versions (<3.0, Pigsty 1.x), an etcd or consul failure has a severe global effect. All PostgreSQL primaries become replicas and reject writes. Thus, an etcd failure causes a global PostgreSQL failure. The DCS Failsafe feature in Patroni 3.0 significantly improves this behavior.
 
 ## What data does etcd store?
 
-By default, Pigsty uses etcd as Patroni's DCS, where it stores coordination data such as leader leases, member state, and dynamic configuration. Pigsty itself does not store application data there.
+By default, Pigsty uses etcd as Patroni's DCS. It stores coordination data, including leader leases, member state, and dynamic configuration. Pigsty does not store application data in etcd.
 
-Patroni creates and manages this DCS data. During controlled maintenance, it can normally reconstruct coordination state from a healthy PostgreSQL cluster, but that does not make etcd stateless or make direct DCS deletion risk-free.
+Patroni creates and manages this DCS data. During controlled maintenance, it can normally reconstruct coordination state from a healthy PostgreSQL cluster. However, etcd has state, and direct DCS deletion has risks.
 
-Rebuilding etcd interrupts automatic failover and `patronictl` management and clears the current DCS state. Before doing so, inspect the Patroni topology, current primary, remaining quorum, and recent backups, and execute a documented recovery procedure during a maintenance window.
+An etcd rebuild interrupts automatic failover and `patronictl` management. It also clears the current DCS state. Before a rebuild, inspect the Patroni topology, current primary, remaining quorum, and recent backups. Use a documented recovery procedure during a maintenance window.
 
-If using etcd for other purposes (K8s metadata, custom storage), backup etcd data yourself and restore after cluster recovery.
-
-
-
---------
+If etcd also stores K8s metadata or other custom data, back up this data yourself. Restore it after cluster recovery.
 
 ## Recover from etcd failure?
 
-By default, Pigsty uses etcd only as Patroni DCS. Restarting services and rebuilding the whole cluster have very different risk: a restart preserves DCS data, while a rebuild clears coordination state and leaves PostgreSQL HA without DCS quorum until recovery. Diagnose and recover existing members first; rebuild only after verifying the topology, backups, and recovery path.
+By default, Pigsty uses etcd only as the Patroni DCS. A service restart preserves DCS data. A full cluster rebuild clears coordination state and leaves PostgreSQL HA without DCS quorum until recovery.
 
-**Restart** etcd cluster:
+First, diagnose the failure and recover existing members. Rebuild only after you verify the topology, backups, and recovery procedure.
+
+To **restart** the etcd cluster:
 
 ```bash
 ./etcd.yml -t etcd_launch
 ```
 
-If a full **reset/rebuild** is genuinely required, do it in a maintenance window and then verify `etcdctl endpoint health`, `etcdctl member list`, and `patronictl list`:
+If a full **reset/rebuild** is necessary, do it during a maintenance window. Then verify `etcdctl endpoint health`, `etcdctl member list`, and `patronictl list`:
 
 ```bash
 ./etcd-rm.yml -l etcd          # Clean the cluster after verifying target and backups
 ./etcd.yml -l etcd             # Redeploy from inventory
 ```
 
-For custom etcd data: backup and restore after recovery.
-
-
-
---------
+Back up custom etcd data before recovery. Restore it after recovery.
 
 ## Etcd maintenance considerations?
 
-Simple answer: **don't fill up etcd**.
+**Do not let etcd reach its storage limit.**
 
-Pigsty enables etcd auto-compaction by default, with the current backend quota set to 8 GiB. This is usually sufficient, but actual usage should still be monitored.
+Pigsty enables etcd auto-compaction by default. The current backend quota is 8 GiB. This is usually sufficient, but you should monitor actual usage.
 
-etcd's [data model](https://etcd.io/docs/v3.5/learning/data_model/) = each write generates new version.
+In the etcd [data model](https://etcd.io/docs/v3.5/learning/data_model/), each write creates a new version. Frequent writes increase the database size, even if there are only a few keys. When etcd reaches its capacity limit, it rejects writes and PostgreSQL HA fails.
 
-Frequent writes (even few keys) = growing etcd DB size. At capacity limit, etcd rejects writes → PG HA breaks.
-
-Pigsty's default etcd config includes optimizations:
+The default Pigsty etcd configuration includes these optimizations:
 
 ```yaml
 auto-compaction-mode: periodic      # periodic auto compaction
@@ -108,22 +82,16 @@ auto-compaction-retention: "24h"    # retain 24 hours history
 quota-backend-bytes: 8589934592     # 8 GiB quota
 ```
 
-More details: [etcd official maintenance guide](https://etcd.io/docs/v3.5/op-guide/maintenance/).
+For details, see the [official etcd maintenance guide](https://etcd.io/docs/v3.5/op-guide/maintenance/).
 
 > [!NOTE] Note
-> Before Pigsty v2.6? Manually enable etcd auto GC.
-
-
-
-
-
---------
+> For Pigsty versions before v2.6, enable automatic etcd garbage collection manually.
 
 ## Enable etcd auto garbage collection?
 
-Earlier Pigsty (v2.0 - v2.5)? Enable etcd auto-compaction in prod to avoid quota-based unavailability.
+For Pigsty v2.0-v2.5, enable etcd auto-compaction in production. This prevents unavailability caused by the storage quota.
 
-Edit the etcd configuration template: [`roles/etcd/templates/etcd.conf`](https://github.com/pgsty/pigsty/blob/main/roles/etcd/templates/etcd.conf#L29):
+Edit the etcd configuration template, [`roles/etcd/templates/etcd.conf`](https://github.com/pgsty/pigsty/blob/main/roles/etcd/templates/etcd.conf#L29):
 
 ```yaml
 auto-compaction-mode: periodic
@@ -131,19 +99,15 @@ auto-compaction-retention: "24h"
 quota-backend-bytes: 17179869184
 ```
 
-Then set related PG clusters to [**maintenance mode**](/docs/pgsql/admin#) and redeploy etcd with `./etcd.yml`.
+Set the related PostgreSQL clusters to [**maintenance mode**](/docs/pgsql/admin#). Then redeploy etcd with `./etcd.yml`.
 
-This increases default quota from 2 GiB → 16 GiB, retains last 24h writes—avoids infinite growth.
-
-
-
---------
+This change increases the default quota from 2 GiB to 16 GiB. It retains writes from the last 24 hours to prevent unlimited growth.
 
 ## Where is PG HA data stored in etcd?
 
-By default, Patroni uses [**`pg_namespace`**](/docs/pgsql/param#pg_namespace) prefix (default: `/pg`) for all metadata keys, followed by PG cluster name.
+Patroni uses the [**`pg_namespace`**](/docs/pgsql/param#pg_namespace) prefix for all metadata keys. The default prefix is `/pg`. The PostgreSQL cluster name follows this prefix.
 
-Example: PG cluster `pg-meta` stores metadata under `/pg/pg-meta`.
+For example, the `pg-meta` cluster stores metadata under `/pg/pg-meta`:
 
 ```bash
 etcdctl get /pg/pg-meta --prefix
@@ -169,25 +133,17 @@ pg-meta-1
 {"optime":184549376,"slots":{"pg_meta_2":184549376,"pg_meta_1":184549376},"retain_slots":["pg_meta_1","pg_meta_2"]}
 ```
 
-
-
---------
-
 ## Use external existing etcd cluster?
 
-Config inventory hardcodes `etcd` group—members used as DCS servers for PGSQL. Initialize with `etcd.yml` or assume external cluster exists.
+The configuration inventory uses the hardcoded `etcd` group. Its members serve as DCS servers for PGSQL. You can initialize this group with `etcd.yml` or use an existing external cluster.
 
-To use external etcd: define as usual. Skip `etcd.yml` execution since cluster exists—no deployment needed.
+To use external etcd, define the cluster as usual. Skip `etcd.yml` because the cluster already exists and does not require deployment.
 
-**Requirement: external etcd cluster certificate must use same CA as Pigsty**—otherwise clients can't use Pigsty's self-signed certs.
-
-
-
---------
+**The external etcd cluster certificate must use the same CA as Pigsty.** Otherwise, clients cannot use Pigsty's self-signed certificates.
 
 ## Add new member to existing etcd cluster?
 
-> For detailed process, refer to [Add member to etcd cluster](/docs/etcd/admin#add-member)
+> For the full procedure, see [Add member to etcd cluster](/docs/etcd/admin#add-member).
 
 **Recommended: Utility script**
 
@@ -205,15 +161,11 @@ etcdctl member add <etcd-?> --learner=true --peer-urls=https://<new_ins_ip>:2380
 etcdctl member promote <new_ins_server_id>                                       # promote to full member
 ```
 
-Recommend: add one new member at a time.
-
-
-
---------
+We recommend that you add one member at a time.
 
 ## Remove member from existing etcd cluster?
 
-> For detailed process, refer to [Remove member from etcd cluster](/docs/etcd/admin#remove-member)
+> For the full procedure, see [Remove member from etcd cluster](/docs/etcd/admin#remove-member).
 
 **Recommended: Utility script**
 
@@ -228,16 +180,15 @@ bin/etcd-rm                   # remove entire etcd cluster
 ./etcd-rm.yml -l <ins_ip>                    # Leave, stop, and delete local data by default
 ```
 
-`etcd-rm.yml` already includes the `etcdctl member remove` step; do not repeat it before or after the normal workflow. Use a manual `member remove` only for troubleshooting. You can still run the removal playbook once while the target remains in inventory to stop, deregister, and clean it locally, then verify the remaining quorum.
+`etcd-rm.yml` includes the `etcdctl member remove` step. Do not repeat this step before or after the normal procedure. Run `member remove` manually only for troubleshooting.
 
-
---------
+Keep the target in the inventory. You can still run the removal playbook once to stop, deregister, and clean up the target locally. Then verify the remaining quorum.
 
 ## Configure etcd RBAC authentication?
 
-Since v4.0, Pigsty has enabled etcd RBAC auth by default. Root password set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`.
+Since v4.0, Pigsty enables etcd RBAC authentication by default. Set the root password with [`etcd_root_password`](/docs/etcd/param#etcd_root_password). The default is `Etcd.Root`.
 
-**Prod recommendation: change default password**
+**Production recommendation: Change the default password.**
 
 ```yaml
 all:
@@ -245,7 +196,7 @@ all:
     etcd_root_password: 'YourSecurePassword'
 ```
 
-**Client auth:**
+**Client authentication:**
 
 ```bash
 # On etcd nodes, env vars auto-configured
@@ -259,4 +210,4 @@ export ETCDCTL_CERT=/etc/etcd/server.crt
 export ETCDCTL_KEY=/etc/etcd/server.key
 ```
 
-More: [RBAC Authentication](/docs/etcd/admin#rbac-authentication).
+See [RBAC Authentication](/docs/etcd/admin#rbac-authentication).

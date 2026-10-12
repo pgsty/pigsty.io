@@ -24,7 +24,7 @@ The MINIO module provides two built-in playbooks:
 - `minio_seq` is defined and is a non-negative integer
 - `minio_type` must equal `silo`
 
-Thus, `minio_cluster` is the module-membership gate, while invalid `minio_seq` or `minio_type` values fail identity validation explicitly. Do not define `minio_cluster` in `all.vars`.
+Thus, `minio_cluster` determines module membership. Invalid `minio_seq` or `minio_type` values cause identity validation to fail. Do not define `minio_cluster` in `all.vars`.
 
 The main task tags are:
 
@@ -41,7 +41,7 @@ The main task tags are:
 - `minio_register`: Write VictoriaMetrics FileSD targets
 - `minio_provision`: Have the cluster's first member provision `mcli` aliases, buckets, and users once
 
-Re-running `minio.yml` may restart a running object-storage service, but it does not proactively rebuild data. Schedule production runs according to the cluster's failure budget.
+If you run `minio.yml` again, it can restart a running object-storage service. It does not proactively rebuild data. Schedule production runs according to the cluster's failure budget.
 
 
 --------
@@ -60,7 +60,9 @@ Re-running `minio.yml` may restart a running object-storage service, but it does
 > [!CAUTION] Dangerous Operation
 > `minio_rm_data` defaults to `true`. A full removal run deletes every expanded `minio_data` directory. Before running it, verify `minio_cluster`, `minio_seq`, `minio_type: silo`, and all disk mount paths. To retire only the service while retaining data, explicitly pass `-e minio_rm_data=false`.
 
-Both deployment and removal roles default `minio_type` to `silo`; other values are rejected. The removal examples still pass it explicitly as part of reviewing the package, service, certificate directory, and data paths; it is not an additional interactive confirmation gate.
+Deployment and removal both default `minio_type` to `silo`. Both roles reject other values.
+
+The removal examples pass this value explicitly for review of the package, service, certificate directory, and data paths. It does not add an interactive confirmation step.
 
 
 ----------------
@@ -80,7 +82,7 @@ Both deployment and removal roles default `minio_type` to `silo`; other values a
 ./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true    # Also uninstall Silo and mcli
 ```
 
-If the configuration group name differs from `minio_cluster`, note that `-l` takes an Ansible group or host pattern, not the logical cluster name. Use a limit expression that covers every intended member.
+If the group name differs from `minio_cluster`, give `-l` an Ansible group or host pattern. It does not take the logical cluster name. Use a limit expression that covers every intended member.
 
 
 --------

@@ -6,9 +6,9 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Maybe**](https://github.com/maybe-finance/maybe) is an open-source personal finance application for managing accounts, transactions, budgets, investments, and household financial views. Maybe is a typical Rails web application: it stores business data in PostgreSQL in production and uses Redis for background job queues.
+[**Maybe**](https://github.com/maybe-finance/maybe) is an open-source personal finance application. It manages accounts, transactions, budgets, investments, and household financial views. This Rails application stores production business data in PostgreSQL and uses Redis for background job queues.
 
-Pigsty provides the `app/maybe` template, which connects the stateless Maybe Web / Worker containers to PostgreSQL managed by Pigsty and uses local Redis for the Sidekiq queue. This keeps your most important financial data in a PostgreSQL cluster that can be backed up, monitored, and recovered, rather than in an ephemeral Docker data volume.
+Pigsty's `app/maybe` template connects stateless Maybe Web / Worker containers to Pigsty-managed PostgreSQL. Local Redis provides the Sidekiq queue. Financial data resides in a PostgreSQL cluster with backup, monitoring, and recovery support, rather than an ephemeral Docker volume.
 
 > The upstream Maybe repository has been archived, and its latest release is `v0.6.0`. GHCR currently publishes `stable` and `latest` image tags. Pigsty uses `stable` by default, which tracks the latest release image.
 
@@ -34,7 +34,7 @@ Maybe listens on port `5002` by default. After installation, you can access it a
 - `http://<your_ip_address>:5002`
 - `http://maybe.pigsty`
 
-On your first visit, select the option to create an account on the login page, then register your first household account to get started.
+On the first visit, select the account creation option on the login page. Register your first household account.
 
 To access Maybe through `maybe.pigsty`, add the following entry to `/etc/hosts` on the machine running your browser:
 
@@ -107,7 +107,7 @@ pg-maybe:
     pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
 ```
 
-Here, `maybe_production` is the default production database name used upstream by Maybe / Rails. You can rename it to `maybe`, but you must update `POSTGRES_DB`, `pg_databases.name`, `pg_hba_rules.db`, and every reference in documentation and operational scripts at the same time.
+Maybe / Rails uses `maybe_production` as its default production database name. You can rename it to `maybe`. Update `POSTGRES_DB`, `pg_databases.name`, `pg_hba_rules.db`, and all documentation and operational script references together.
 
 ------
 
@@ -174,7 +174,7 @@ Then apply the Nginx ingress configuration:
 ./infra.yml -t nginx
 ```
 
-To request an HTTPS certificate, first ensure that the domain resolves to the current node, then add `certbot` under `infra_portal.maybe`:
+Before requesting an HTTPS certificate, verify that the domain resolves to the current node. Then add `certbot` under `infra_portal.maybe`:
 
 ```yaml
 maybe:
@@ -212,7 +212,7 @@ make console   # Enter the Rails console
 make exec      # Enter a shell in the maybe-web container
 ```
 
-The `web` container automatically runs `db:prepare` at startup, so manual migration is not usually required. If the startup logs report a database migration problem after an image upgrade, inspect the logs, then run:
+The `web` container runs `db:prepare` at startup, so manual migration is usually unnecessary. After an image upgrade, inspect any migration errors in startup logs. Then run:
 
 ```bash
 cd /opt/maybe
@@ -261,7 +261,7 @@ Maybe manages highly sensitive personal and household financial data. For produc
 - Enable HTTPS for public access and restrict access to administration ports.
 - If you enable `OPENAI_ACCESS_TOKEN` or `SYNTH_API_KEY`, assess both external API costs and the boundary of data exposure.
 
-The upstream Maybe repository has been archived. It is suitable for users who are satisfied with the existing feature set and prefer long-term local ownership. If you need continuously evolving features or automatic bank synchronization, evaluate the upstream maintenance status before adopting it.
+The upstream Maybe repository is archived. It suits users who accept the existing features and prefer long-term local ownership. If you need new features or automatic bank synchronization, evaluate upstream maintenance before adoption.
 
 ------
 

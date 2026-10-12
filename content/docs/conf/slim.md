@@ -6,9 +6,9 @@ icon: fa-solid fa-feather
 categories: [Reference]
 ---
 
-The `slim` configuration template provides **minimal installation** capability, installing a PostgreSQL high-availability cluster directly from the internet without deploying Infra monitoring infrastructure.
+The `slim` configuration template provides a **minimal installation** of a PostgreSQL high-availability cluster. It installs packages directly from the internet. It does not deploy Infra monitoring infrastructure.
 
-When you only need an available database instance without the monitoring system, consider using the **[Slim Installation](/docs/setup/slim/)** mode.
+If you need a database instance without a monitoring system, consider **[Slim Installation](/docs/setup/slim/)** mode.
 
 
 --------
@@ -43,7 +43,7 @@ Source: [`pigsty/conf/slim.yml`](https://github.com/pgsty/pigsty/blob/main/conf/
 
 ## Explanation
 
-The `slim` template is Pigsty's **minimal installation configuration**, designed for quick deployment of bare PostgreSQL clusters.
+The `slim` template provides a **minimal installation configuration**. Use it to deploy bare PostgreSQL clusters quickly.
 
 **Use Cases**:
 - Only need PostgreSQL database, no monitoring system required
@@ -59,7 +59,7 @@ The `slim` template is Pigsty's **minimal installation configuration**, designed
 - Default uses PostgreSQL 18
 
 **Differences from meta**:
-- `slim` uses dedicated `slim.yml` playbook, skips Infra module installation
+- `slim` uses the dedicated `slim.yml` playbook. This playbook skips Infra module installation.
 - Faster installation, less resource usage
 - Suitable for "just need a database" scenarios
 

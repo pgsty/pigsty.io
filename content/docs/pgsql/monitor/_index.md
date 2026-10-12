@@ -10,26 +10,29 @@ aliases: [/docs/pgsql/monitor/dashboard/]
 ---
 
 
-This document introduces Pigsty's monitoring system architecture, including metrics, logs, and target management. It also covers how to [monitor existing PG clusters](#monitor-existing-cluster) and remote [RDS services](#monitor-rds).
+This page describes the Pigsty monitoring architecture, including metrics, logs, and target management.
+It also explains how to [monitor existing PostgreSQL clusters](#monitor-existing-cluster) and remote [RDS services](#monitor-rds).
 
 
 ----------------
 
 ## Monitoring Overview
 
-Pigsty uses a modern observability stack for PostgreSQL monitoring:
+Pigsty uses these observability components for PostgreSQL monitoring:
 
-- Grafana for metrics visualization and PostgreSQL datasource
-- VictoriaMetrics for collecting metrics from PostgreSQL / Pgbouncer / Patroni / HAProxy / Node
-- VictoriaLogs for logging PostgreSQL / Pgbouncer / Patroni / pgBackRest and host component logs
-- Battery-included Grafana dashboards showcasing all aspects of PostgreSQL; use the live [demo](https://demo.pigsty.io/ui/) and the dashboard links in this page because the set evolves with each release
+- Grafana displays metrics and provides PostgreSQL data sources.
+- VictoriaMetrics collects PostgreSQL, Pgbouncer, Patroni, HAProxy, and node metrics.
+- VictoriaLogs stores PostgreSQL, Pgbouncer, Patroni, pgBackRest, and host component logs.
+- Included Grafana dashboards cover all PostgreSQL operations. The set changes with each release. Use the live [demo](https://demo.pigsty.io/ui/) and this page's dashboard links.
 
 **Metrics**
 
-PostgreSQL monitoring metrics are fully defined by the pg_exporter configuration file: [`roles/pg_monitor/templates/pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml).
-They are further processed by VictoriaMetrics/vmalert-compatible recording and alerting rules: [`files/victoria/rules/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/pgsql.yml).
+The pg_exporter configuration defines all PostgreSQL monitoring metrics: [`roles/pg_monitor/templates/pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml).
+VictoriaMetrics and vmalert recording and alerting rules process them further: [`files/victoria/rules/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/pgsql.yml).
 
-Pigsty uses three identity labels: `cls`, `ins`, `ip`, which are attached to all metrics and logs. Additionally, metrics from Pgbouncer, host nodes (NODE), and load balancers are also used by Pigsty, with the same labels used whenever possible for correlation analysis.
+Pigsty attaches three identity labels to all metrics and logs: `cls`, `ins`, and `ip`.
+It also uses metrics from Pgbouncer, host nodes (NODE), and load balancers.
+Where possible, these metrics use the same labels so you can compare related data.
 
 ```yaml
 - { cls: pg-meta, ins: pg-meta-1, ip: 10.10.10.10 }
@@ -40,7 +43,7 @@ Pigsty uses three identity labels: `cls`, `ins`, `ip`, which are attached to all
 
 **Logs**
 
-PostgreSQL-related logs are collected by Vector and sent to the VictoriaLogs log storage/query service on infra nodes.
+Vector collects PostgreSQL-related logs and sends them to VictoriaLogs on infrastructure nodes for storage and queries.
 
 - [`pg_log_dir`](/docs/pgsql/param#pg_log_dir): postgres log directory, defaults to `/pg/log/postgres`
 - [`pgbouncer_log_dir`](/docs/pgsql/param#pgbouncer_log_dir): pgbouncer log directory, defaults to `/pg/log/pgbouncer`
@@ -50,7 +53,8 @@ PostgreSQL-related logs are collected by Vector and sent to the VictoriaLogs log
 
 **Target Management**
 
-VictoriaMetrics monitoring targets are defined in static files under `/infra/targets/pgsql/`, with each instance having a corresponding file. Taking `pg-meta-1` as an example:
+Each VictoriaMetrics monitoring target instance has a static file in `/infra/targets/pgsql/`.
+This example defines `pg-meta-1`:
 
 ```yaml
 # pg-meta-1 [primary] @ 10.10.10.10
@@ -62,15 +66,18 @@ VictoriaMetrics monitoring targets are defined in static files under `/infra/tar
     - 10.10.10.10:9854    # <--- pgbackrest_exporter for backup metrics
 ```
 
-When the global flag [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is set, Patroni targets are written separately to `/infra/targets/patroni/<ins>.yml`, because they use an HTTPS scrape endpoint. When [monitoring RDS](#monitor-rds) instances, monitoring targets are placed in `/infra/targets/pgrds/` and managed by **cluster**.
+If [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is enabled globally, Patroni uses HTTPS scrape endpoints.
+Pigsty writes these targets separately to `/infra/targets/patroni/<ins>.yml`.
+For [RDS monitoring](#monitor-rds), targets are in `/infra/targets/pgrds/` and are managed by **cluster**.
 
-When removing a cluster using `bin/pgsql-rm` or `pgsql-rm.yml`, the corresponding monitoring targets are removed. You can also use:
+`bin/pgsql-rm` and `pgsql-rm.yml` remove the corresponding monitoring targets when they remove a cluster.
+You can also run:
 
 ```bash
 bin/pgmon-rm <cls|ins>    # Remove monitoring targets from all infra nodes
 ```
 
-Remote RDS monitoring targets are placed in `/infra/targets/pgrds/<cls>.yml`, created by the [`pgsql-monitor.yml`](/docs/pgsql/playbook#pgsql-monitoryml) playbook or `bin/pgmon-add` script.
+[`pgsql-monitor.yml`](/docs/pgsql/playbook#pgsql-monitoryml) and `bin/pgmon-add` create remote RDS targets in `/infra/targets/pgrds/<cls>.yml`.
 
 
 
@@ -100,7 +107,11 @@ Pigsty provides three monitoring modes to suit different monitoring needs.
 | Required Permissions  | Connectable PGURL from infra | SSH & sudo on DB nodes  | SSH & sudo on DB nodes |
 | Feature Summary       |     PGCAT + PGRDS       |        Most features        |  Full features  |
 
-Databases fully managed by Pigsty are automatically monitored with the best support and typically require no configuration. For existing PostgreSQL clusters or RDS services, if the target DB nodes **can be managed by Pigsty** (ssh accessible, sudo available), you can consider [managed deployment](#monitor-existing-cluster) for a monitoring experience similar to native Pigsty. If you **can only access the target database via PGURL** (database connection string), such as remote RDS services, you can use [basic mode](#monitor-rds) to monitor the target database.
+Pigsty automatically monitors fully managed databases with all supported features.
+They usually need no extra configuration.
+For existing PostgreSQL clusters or RDS services, use [managed deployment](#monitor-existing-cluster) if Pigsty can access the nodes through SSH and sudo.
+This gives monitoring similar to a native Pigsty deployment.
+If you **have only a PGURL connection string**, use [basic mode](#monitor-rds).
 
 
 
@@ -109,9 +120,14 @@ Databases fully managed by Pigsty are automatically monitored with the best supp
 
 ## Monitor Existing Cluster
 
-**If the target DB nodes can be managed by Pigsty** (`ssh` accessible and `sudo` available), you can use the `pg_exporter` task in the [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) playbook to deploy monitoring components (PG Exporter) on target nodes in the same way as standard deployments. You can also use the `pgbouncer` and `pgbouncer_exporter` tasks from that playbook to deploy connection pools and their monitoring on existing instance nodes. Additionally, you can use `node_exporter`, `haproxy`, and `vector` from [**`node.yml`**](/docs/node/playbook#nodeyml) to deploy host monitoring, load balancing, and log collection components, achieving an experience identical to native Pigsty database instances.
+**If Pigsty can manage the target database nodes**, deploy monitoring components there with the `pg_exporter` task in [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml).
+This requires `ssh` access and `sudo` privileges.
+Use `pgbouncer` and `pgbouncer_exporter` from the same playbook to deploy connection pools and pool monitoring.
+Use `node_exporter`, `haproxy`, and `vector` from [**`node.yml`**](/docs/node/playbook#nodeyml) for host monitoring, load balancing, and log collection.
+These components provide the same monitoring features as native Pigsty database instances.
 
-The definition method for existing clusters is exactly the same as for clusters managed by Pigsty. You selectively execute partial tasks from the `pgsql.yml` playbook instead of running the entire playbook.
+Define existing clusters in the same way as Pigsty-managed clusters.
+Run only the required `pgsql.yml` tasks, rather than the complete playbook.
 
 ```bash
 ./node.yml  -l <cls> -t node_repo,node_pkg           # Add YUM repos from INFRA nodes and install packages on host nodes
@@ -120,7 +136,7 @@ The definition method for existing clusters is exactly the same as for clusters 
 ./pgsql.yml -l <cls> -t pg_exporter,pg_register      # Configure PostgreSQL monitoring and register with VictoriaMetrics/Grafana
 ```
 
-Since the target database cluster already exists, you need to manually [create monitoring users, schemas, and extensions](#monitor-setup) on the target database cluster.
+For an existing cluster, manually [create monitoring users, schemas, and extensions](#monitor-setup) in the target database.
 
 
 
@@ -129,7 +145,8 @@ Since the target database cluster already exists, you need to manually [create m
 
 ## Monitor RDS
 
-If you **can only access the target database via PGURL** (database connection string), you can configure according to the instructions here. In this mode, Pigsty deploys corresponding PG Exporters on [**INFRA nodes**](/docs/concept/arch/node#infra-node) to scrape remote database metrics, as shown below:
+If you **have only a PGURL connection string**, follow this section.
+Pigsty deploys PG Exporters on [**INFRA nodes**](/docs/concept/arch/node#infra-node) to collect remote database metrics:
 
 ```text
 ------ infra ------
@@ -147,7 +164,11 @@ If you **can only access the target database via PGURL** (database connection st
 -------------------            ^------------------^
 ```
 
-In this mode, the monitoring system will not have metrics from hosts, connection pools, load balancers, or high availability components, but the database itself and real-time status information from the data catalog are still available. Pigsty provides two dedicated monitoring dashboards focused on PostgreSQL metrics: [PGRDS Cluster](https://demo.pigsty.io/ui/d/pgrds-cluster) and [PGRDS Instance](https://demo.pigsty.io/ui/d/pgrds-instance), while overview and database-level monitoring reuses existing dashboards. Since Pigsty cannot manage your RDS, users need to [configure monitoring objects](#monitor-setup) on the target database in advance.
+This mode provides database metrics and current status from the data catalog.
+It does not provide host, connection pool, load balancer, or high-availability component metrics.
+Pigsty provides two dashboards for PostgreSQL metrics: [PGRDS Cluster](https://demo.pigsty.io/ui/d/pgrds-cluster) and [PGRDS Instance](https://demo.pigsty.io/ui/d/pgrds-instance).
+Overview and database monitoring use the existing dashboards.
+Because Pigsty cannot manage RDS, [configure monitoring objects](#monitor-setup) on the target database first.
 
 
 
@@ -158,7 +179,8 @@ In this mode, the monitoring system will not have metrics from hosts, connection
 > - Log collection and log-derived metrics are not available
 
 
-Here we use the sandbox environment as an example: suppose the `pg-meta` cluster is an RDS instance `pg-foo-1` to be monitored, and the `pg-test` cluster is an RDS cluster `pg-bar` to be monitored:
+The following example uses the sandbox.
+Treat `pg-meta` as the RDS instance `pg-foo-1`, and `pg-test` as the RDS cluster `pg-bar`.
 
 1. Create monitoring schemas, users, and permissions on the target. Refer to [Monitor Setup](#monitor-setup) for details
 2. Declare the cluster in the configuration inventory. For example, if we want to monitor "remote" `pg-meta` & `pg-test` clusters:
@@ -175,7 +197,8 @@ Here we use the sandbox environment as an example: suppose the `pg-meta` cluster
           20004: { pg_cluster: pg-bar, pg_seq: 3, pg_host: 10.10.10.13 , pg_monitor_username: dbuser_monitor, pg_monitor_password: DBUser.Monitor }
     ```
 
-   Databases listed in the `pg_databases` field will be registered in Grafana as PostgreSQL datasources, providing data support for PGCAT monitoring dashboards. If you don't want to use PGCAT and register databases in Grafana, simply set `pg_databases` to an empty array or leave it blank.
+   Pigsty registers databases from `pg_databases` as PostgreSQL data sources in Grafana for PGCAT dashboards.
+   If you do not need PGCAT or Grafana registration, set `pg_databases` to an empty array or leave it blank.
 
    ![pigsty-monitor.jpg](/img/pigsty/monitor.jpg)
 
@@ -194,7 +217,8 @@ Here we use the sandbox environment as an example: suppose the `pg-meta` cluster
     ```
 
 
-You can use more parameters to override default `pg_exporter` options. Here's an example configuration for monitoring Aliyun RDS for PostgreSQL and PolarDB with Pigsty:
+Use additional parameters to override default `pg_exporter` options.
+This example monitors Aliyun RDS for PostgreSQL and PolarDB:
 
 > [!DETAILS]- Example: Monitoring Aliyun RDS for PostgreSQL and PolarDB
 > For details, refer to: [remote.yml](https://github.com/pgsty/pigsty/blob/main/conf/demo/remote.yml)
@@ -262,9 +286,11 @@ You can use more parameters to override default `pg_exporter` options. Here's an
 
 ## Monitor Setup
 
-When you want to monitor existing instances, whether RDS or self-built PostgreSQL instances, you need to configure the target database so that Pigsty can access them.
+Before you monitor an existing RDS or self-managed PostgreSQL instance, configure the target database for Pigsty access.
 
-To monitor an external existing PostgreSQL instance, you need a connection string that can access that instance/cluster. Any accessible connection string (business user, superuser) can be used, but we recommend using a dedicated monitoring user to avoid permission leaks.
+To monitor an external PostgreSQL instance, provide a connection string that can access the instance or cluster.
+A business user or superuser connection string can work.
+However, use a dedicated monitoring user to avoid exposing other privileges.
 
 - [ ] [Monitor User](#monitor-user): The default username is `dbuser_monitor`, which should belong to the `pg_monitor` role group or have access to relevant views
 - [ ] [Monitor Authentication](#monitor-authentication): Default password authentication is used; ensure HBA policies allow the monitoring user to access databases from the admin node or DB node locally
@@ -287,14 +313,15 @@ ALTER USER dbuser_monitor SET log_min_duration_statement = 1000;  -- Recommended
 ALTER USER dbuser_monitor SET search_path = monitor,public;       -- Recommended to ensure pg_stat_statements extension works properly
 ```
 
-Please note that the monitoring user and password created here should be consistent with [`pg_monitor_username`](/docs/pgsql/param#pg_monitor_username) and [`pg_monitor_password`](/docs/pgsql/param#pg_monitor_password).
+The monitoring username and password must match [`pg_monitor_username`](/docs/pgsql/param#pg_monitor_username) and [`pg_monitor_password`](/docs/pgsql/param#pg_monitor_password).
 
 
 ---------------------
 
 ### Monitor Authentication
 
-Configure the database `pg_hba.conf` file, adding the following rules to allow the monitoring user to access all databases from localhost and the admin machine using password authentication.
+Add these rules to `pg_hba.conf`.
+They allow the monitoring user to access all databases from localhost and the administration node with password authentication:
 
 ```ini
 # allow local role monitor with password
@@ -303,13 +330,15 @@ host    all  dbuser_monitor  127.0.0.1/32      md5
 host    all  dbuser_monitor  <admin_machine_IP>/32 md5
 ```
 
-If your RDS doesn't support defining HBA, simply whitelist the internal IP address of the machine running Pigsty.
+If RDS does not allow HBA configuration, allow the internal IP address of the machine that runs Pigsty.
 
 ---------------------
 
 ### Monitor Schema
 
-The monitoring schema is **optional**; even without it, the main functionality of Pigsty's monitoring system can work properly, but we strongly recommend creating this schema.
+The monitoring schema is **optional**.
+Core Pigsty monitoring works without it.
+However, creating this schema is strongly recommended.
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS monitor;               -- Create dedicated monitoring schema
@@ -320,15 +349,20 @@ GRANT USAGE ON SCHEMA monitor TO dbuser_monitor;   -- Allow monitoring user to u
 
 ### Monitor Extension
 
-The monitoring extension is optional, but we strongly recommend enabling the `pg_stat_statements` extension, which provides important data about query performance.
+The monitoring extension is optional.
+However, enabling `pg_stat_statements` is strongly recommended because it supplies important query performance data.
 
-Note: This extension must be listed in the database parameter `shared_preload_libraries` to take effect, and modifying that parameter requires a database restart.
+Add this extension to `shared_preload_libraries` to enable it.
+Changing this parameter requires a database restart.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS "pg_stat_statements" WITH SCHEMA "monitor";
 ```
 
-Please note that you should install this extension in the default admin database `postgres`. Sometimes RDS doesn't allow you to create a monitoring schema in the `postgres` database. In such cases, you can install the `pg_stat_statements` plugin in the default `public` schema, as long as you ensure the monitoring user's search_path is configured as above so it can find the `pg_stat_statements` view.
+Install this extension in the default administration database, `postgres`.
+Some RDS services do not allow a monitoring schema in `postgres`.
+In this case, install `pg_stat_statements` in the default `public` schema.
+Configure the monitoring user search_path as shown above so it can find the `pg_stat_statements` view.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS "pg_stat_statements";
@@ -340,7 +374,10 @@ ALTER USER dbuser_monitor SET search_path = monitor,public; -- Recommended to en
 
 ### Monitor Views
 
-Monitoring views provide several commonly used pre-processed results and encapsulate permissions for monitoring metrics that require high privileges (such as shared memory allocation), making them convenient for querying and use. Strongly recommended to create in all databases requiring monitoring.
+Monitoring views provide common preprocessed query results.
+They also control access to metrics that need high privileges, such as shared memory allocation.
+This makes these metrics easier to query and use.
+Creating the views in every monitored database is strongly recommended.
 
 > [!DETAILS]- Monitoring schema and monitoring view definitions
 > > The SQL below is provided to explain the monitored objects. The complete definitions rendered by current Pigsty are authoritative in [`roles/pgsql/templates/pg-init-template.sql`](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql), which also includes additional hardening for secure search paths and privilege boundaries.

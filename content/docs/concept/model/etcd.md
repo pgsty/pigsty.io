@@ -9,26 +9,24 @@ categories: [Concept]
 ---
 
 
-The ETCD module organizes ETCD in production as **clusters**—**logical entities** composed of a group of ETCD **instances** associated through the **Raft** consensus protocol.
+The ETCD module organizes production ETCD into **clusters**. A cluster is a **logical entity** whose ETCD **instances** coordinate through the **Raft** consensus protocol.
 
-Each cluster is an **autonomous** distributed key-value storage unit consisting of at least one **ETCD instance**, exposing service capabilities through client ports.
+Each cluster is an **autonomous** distributed key-value store with at least one **ETCD instance**. It provides services through client ports.
 
 There are three core entities in Pigsty's ETCD module:
 
-- **Cluster**: An autonomous ETCD service unit serving as the top-level namespace for other entities.
-- **Instance**: A single ETCD server process running on a node, participating in Raft consensus.
-- **Node**: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.
+- **Cluster**: An autonomous ETCD service unit and the top-level namespace for other entities.
+- **Instance**: One ETCD server process on a node, participating in Raft consensus.
+- **Node**: An implicitly declared hardware resource that runs Linux and Systemd.
 
-Compared to PostgreSQL clusters, the ETCD cluster model is simpler, without Services or complex Role distinctions.
-All ETCD instances are functionally equivalent, electing a Leader through the Raft protocol while others become Followers.
-During scale-out intermediate states, non-voting Learner instance members are also allowed.
+The ETCD model has no Service entities or complex Role distinctions, unlike PostgreSQL. All ETCD instances are functionally equivalent. Raft elects one Leader; the others become Followers. Non-voting Learner members are also permitted during intermediate scale-out states.
 
 
 ----------------
 
 ## Examples
 
-Let's look at a concrete example with a three-node ETCD cluster:
+This example defines a three-node ETCD cluster:
 
 ```yaml
 etcd:
@@ -40,7 +38,7 @@ etcd:
     etcd_cluster: etcd
 ```
 
-The above config fragment defines a three-node ETCD cluster with these related entities:
+The configuration defines these entities:
 
 | <span class="text-secondary">**Cluster**</span> | <span class="text-secondary">**Description**</span> |
 |:-----------------------------------------------:|-----------------------------------------------------|
@@ -60,7 +58,7 @@ The above config fragment defines a three-node ETCD cluster with these related e
 
 ## Identity Parameters
 
-Pigsty uses the [**`ETCD`**](/docs/etcd/param#etcd) parameter group to assign deterministic identities to each ETCD module entity. Two parameters are required:
+The [**`ETCD`**](/docs/etcd/param#etcd) parameter group assigns deterministic identities to ETCD entities. Two parameters are required:
 
 | Parameter                                           |   Type   | Level | Description                    | Format                                      |
 |:----------------------------------------------------|:--------:|:-----:|:-------------------------------|:--------------------------------------------|
@@ -68,14 +66,14 @@ Pigsty uses the [**`ETCD`**](/docs/etcd/param#etcd) parameter group to assign de
 | [**`etcd_seq`**](/docs/etcd/param#etcd_seq)         |  `int`   | Instance | ETCD instance number, required | Natural number, starting from 1, unique within cluster |
 {.full-width}
 
-With cluster name defined at cluster level and instance number assigned at instance level, Pigsty automatically generates unique identifiers for each entity based on rules:
+Set the cluster name at cluster level and the instance number at instance level. Pigsty generates unique identifiers with these rules:
 
 | Entity       | Generation Rule                     | Example                    |
 |--------------|:------------------------------------|:---------------------------|
 | **Instance** | `{{ etcd_cluster }}-{{ etcd_seq }}` | `etcd-1`, `etcd-2`, `etcd-3` |
 {.full-width}
 
-The ETCD module does not assign additional identity to host nodes; nodes are identified by their existing hostname or IP address.
+ETCD does not assign a separate identity to host nodes. It uses their existing hostname or IP address.
 
 
 ----------------
@@ -90,14 +88,14 @@ Each ETCD instance listens on the following two ports:
 | **2380** | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port) | Peer communication port, used for Raft consensus     |
 {.full-width}
 
-ETCD clusters enable [**TLS-encrypted communication**](/docs/concept/sec/ca) by default and use RBAC authentication. Clients need the correct certificates and passwords to access ETCD services.
+ETCD clusters enable [**TLS encryption**](/docs/concept/sec/ca) and RBAC authentication by default. Clients need the correct certificates and passwords to access ETCD.
 
 
 ----------------
 
 ## Cluster Size
 
-As a distributed coordination service, ETCD cluster size directly affects availability, requiring more than half (quorum) of nodes to be alive to maintain service.
+ETCD cluster size determines availability. More than half the nodes, called a quorum, must be alive to maintain this distributed coordination service.
 
 | Cluster Size | Quorum | Fault Tolerance | Use Case           |
 |:------------:|:------:|:---------------:|:-------------------|
@@ -106,14 +104,14 @@ As a distributed coordination service, ETCD cluster size directly affects availa
 |   5 nodes    |   3    |        2        | Large-scale production |
 {.full-width}
 
-Even-member ETCD clusters are technically valid, but they do not tolerate more failures than an odd cluster with one fewer member and add deployment and quorum cost. Production clusters therefore usually have one, three, or five members; clusters larger than five are uncommon.
+ETCD supports even member counts. However, they tolerate no more failures than the next smaller odd count. They also increase deployment and quorum costs. Production clusters therefore usually have one, three, or five members. Clusters with more than five members are uncommon.
 
 
 ----------------
 
 ## Monitoring Label System
 
-Pigsty provides an out-of-box monitoring system that uses the above [**identity parameters**](#identity-parameters) to identify various ETCD entities.
+The built-in monitoring system uses these [**identity parameters**](#identity-parameters) to identify ETCD entities.
 
 ```text
 etcd_up{cls="etcd", ins="etcd-1", ip="10.10.10.10", job="etcd"}
@@ -121,6 +119,4 @@ etcd_up{cls="etcd", ins="etcd-2", ip="10.10.10.11", job="etcd"}
 etcd_up{cls="etcd", ins="etcd-3", ip="10.10.10.12", job="etcd"}
 ```
 
-For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
-They appear along with the `job` label in **all** ETCD monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics).
-The `job` name for collecting ETCD metrics is fixed as `etcd`.
+The labels `cls`, `ins`, and `ip` identify the cluster name, instance name, and node IP. They accompany `job` in **all** ETCD metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics). The ETCD metrics `job` is always `etcd`.

@@ -10,16 +10,21 @@ categories: [Concept]
 
 > [Supabase](https://supabase.com/) — Build in a weekend, Scale to millions
 
-Supabase is an open-source Firebase alternative that wraps PostgreSQL and provides authentication, out-of-the-box APIs, edge functions, real-time subscriptions, object storage, and vector embedding capabilities.
-This is a low-code all-in-one backend platform that lets you skip most backend development work, requiring only database design and frontend knowledge to quickly ship products!
+Supabase is an open-source Firebase alternative built on PostgreSQL.
+It provides authentication, ready-to-use APIs, edge functions, real-time subscriptions, object storage, and vector embeddings.
+The low-code backend platform can replace much of the backend development work.
+Database design and frontend knowledge can be sufficient to build a product.
 
-Supabase's motto is: "**Build in a weekend, Scale to millions**". Indeed, Supabase is [extremely cost-effective](https://supabase.com/pricing) at small to micro scales (4c8g), like a cyber bodhisattva.
-— But when you really scale to millions of users — you should seriously consider self-hosting Supabase — whether for functionality, performance, or cost considerations.
+Supabase's motto is: "**Build in a weekend, Scale to millions**".
+Its cloud service can be [cost-effective](https://supabase.com/pricing) for small deployments, such as 4c8g.
+For millions of users, consider self-hosting to meet functionality, performance, and cost requirements.
 
-Pigsty provides you with a complete one-click self-hosting solution for Supabase. Self-hosted Supabase enjoys full PostgreSQL monitoring, IaC, PITR, and high availability,
-and compared to Supabase cloud services, it provides up to [**{{< param pgext_count >}}**](/ext/list/) out-of-the-box PostgreSQL extensions and can more fully utilize the performance and cost advantages of modern hardware.
+Pigsty provides an automated solution to self-host the complete Supabase stack.
+It includes PostgreSQL monitoring, IaC, PITR, and high availability.
+Compared with Supabase cloud services, this solution provides up to [**{{< param pgext_count >}}**](/ext/list/) ready-to-use PostgreSQL extensions.
+It can also make fuller use of the performance and cost advantages of modern hardware.
 
-For the complete self-hosting tutorial, please refer to: [**Supabase Self-Hosting Guide**](/docs/app/supabase)
+For the complete procedure, see: [**Supabase Self-Hosting Guide**](/docs/app/supabase)
 
 
 ![Supabase](/img/pigsty/supabase.webp)
@@ -39,20 +44,22 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./deploy.yml         # Install Pigsty, PostgreSQL, and Silo
 ```
 
-Before deploying Supabase, please modify the [Supabase parameters](#configuration-details) in the `pigsty.yml` config file according to your actual situation (mainly passwords!)
+Before you deploy Supabase, adjust the [Supabase parameters](#configuration-details) in `pigsty.yml` for your environment.
+In particular, change the passwords.
 
-Then, run [`docker.yml`](/docs/docker/playbook) and [`app.yml`](/docs/docker/playbook) to complete the remaining work and deploy Supabase containers:
+Then run [`docker.yml`](/docs/docker/playbook) and [`app.yml`](/docs/docker/playbook) to deploy the Supabase containers:
 
 ```bash
 ./docker.yml -l supabase  # Install Docker on the supabase group
 ./app.yml -l supabase     # Start stateless containers on the supabase group
 ```
 
-For users in China, please configure appropriate Docker mirror sites or proxy servers to bypass GFW to pull DockerHub images.
-For [professional subscriptions](/docs/about/service), we provide the ability to [offline install](/docs/setup/offline) Pigsty and Supabase without internet access.
+In China, configure Docker mirrors or proxy servers to bypass GFW restrictions when you pull DockerHub images.
+[Professional subscriptions](/docs/about/service) include [offline installation](/docs/setup/offline) of Pigsty and Supabase without internet access.
 
-Pigsty exposes web services through Nginx on the admin node/INFRA node by default. You can add DNS resolution for `supa.pigsty` pointing to this node locally,
-then access `https://supa.pigsty` through a browser to enter the Supabase Studio management interface.
+By default, Pigsty exposes web services through Nginx on the administration node/INFRA node.
+Add local DNS resolution that points `supa.pigsty` to this node.
+Then open `https://supa.pigsty` in a browser to access the Supabase Studio management interface.
 
 > Default username and password: supabase / pigsty
 

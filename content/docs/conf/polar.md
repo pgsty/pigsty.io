@@ -6,7 +6,7 @@ icon: fa-solid fa-snowflake
 categories: [Reference]
 ---
 
-The `polar` configuration template uses Alibaba Cloud's PolarDB for PostgreSQL database kernel instead of native PostgreSQL, providing "cloud-native" Aurora-style storage-compute separation capability.
+The `polar` configuration template uses Alibaba Cloud's PolarDB for PostgreSQL kernel instead of native PostgreSQL. This cloud-native kernel separates storage and compute in an architecture similar to Aurora.
 
 For the complete tutorial, see: **[PolarDB for PostgreSQL (POLAR) Kernel Guide](/docs/pgsql/kernel/polardb/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
 
@@ -42,11 +42,11 @@ Source: [`pigsty/conf/polar.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `polar` template uses Alibaba Cloud's open-source PolarDB for PostgreSQL kernel, providing cloud-native database capabilities.
+The `polar` template uses Alibaba Cloud's open-source PolarDB for PostgreSQL kernel. The kernel provides cloud-native database capabilities.
 
 **Key Features**:
-- Storage-compute separation architecture, compute and storage nodes can scale independently
-- Supports one-write-multiple-read, read replicas scale in seconds
+- The architecture separates storage and compute. Compute and storage nodes can scale independently.
+- Supports one write node and multiple read nodes. Read replicas scale in seconds.
 - Compatible with PostgreSQL ecosystem, maintains SQL compatibility
 - Supports shared storage scenarios, suitable for cloud environment deployment
 - Default PolarDB kernel path is `/usr/polar-17`

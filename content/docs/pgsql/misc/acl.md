@@ -15,4 +15,7 @@ Pigsty access-control documentation is organized by purpose:
 - [**HBA Configuration**](/docs/pgsql/config/hba): PostgreSQL and PgBouncer rule syntax.
 - [**User Management**](/docs/pgsql/admin/user): create, update, and remove users in an existing cluster.
 
-`dbrole_offline` provides independent read-only object privileges; it does not restrict instance scope automatically. To allow it only on offline instances, set `role: offline` explicitly on the corresponding HBA rule and verify the generated `pg_hba.conf` on both online and offline instances.
+`dbrole_offline` provides independent read-only object privileges.
+It does not restrict instance scope automatically.
+To allow access only on offline instances, set `role: offline` explicitly on the corresponding HBA rule.
+Verify the generated `pg_hba.conf` on both online and offline instances.

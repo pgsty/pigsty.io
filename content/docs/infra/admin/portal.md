@@ -7,7 +7,7 @@ categories: [Task]
 ---
 
 
-Pigsty installs Nginx on INFRA nodes as the entry point for all web services, listening on standard ports 80/443.
+Pigsty installs Nginx on INFRA nodes as the entry point for all web services. It listens on standard ports 80/443.
 
 In Pigsty, you can configure Nginx to provide various services through inventory:
 
@@ -30,7 +30,7 @@ infra_portal:
 ```
 
 `infra_portal` is a dictionary where each key defines a service and the value is the service configuration.
-Only services with a `domain` defined will generate corresponding Nginx config files.
+Pigsty generates Nginx configuration files only for services with a defined `domain`.
 
 - **`home`**: Special default server for homepage and built-in monitoring component reverse proxies
 - **Proxy services**: Specify upstream service address via `endpoint` for reverse proxy
@@ -239,7 +239,7 @@ Pigsty's default `home` server provides these built-in routes:
 | `/pev`                | PostgreSQL Explain visualization  |
 | `/haproxy/<cluster>/` | HAProxy admin interface (if any)  |
 
-These routes allow accessing all monitoring components through a single entry point, no need for multiple domain configurations.
+These routes provide one entry point for all monitoring components. You do not need to configure multiple domains.
 
 
 ----------------

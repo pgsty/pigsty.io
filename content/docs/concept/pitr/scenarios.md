@@ -8,7 +8,7 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-During an incident, the most expensive resource is often **decision time**. Pigsty can orchestrate the mechanical recovery steps, but an operator must still answer three questions: **what is the target, should recovery be in place or into a clone, and how will the result be validated?**
+Decisions can consume much of the available incident response time. Pigsty automates recovery steps, but the operator must decide three things. **Select the target, choose in-place or clone recovery, and define how to validate the result.**
 
 Read and rehearse this framework before an incident.
 
@@ -28,8 +28,8 @@ Read and rehearse this framework before an incident.
 
 Two principles apply throughout:
 
-* **Stop the damage first.** Pause the defective application or remove its write access before choosing a target. The window is moving, but a rushed restore to the wrong cluster can cause a second incident.
-* **Prefer a clone while production is usable.** It leaves the source untouched, supports repeated target selection, and allows validation before export or cutover. It does overwrite the designated destination cluster. In-place recovery is appropriate when the whole cluster is unusable or the business has explicitly accepted rolling every database back.
+* **Stop the damage first.** Before selecting a target, pause the defective application or remove its write access. The recovery window keeps moving. However, restoring the wrong cluster in haste can cause another incident.
+* **Prefer a clone while production is usable.** A clone leaves the source unchanged. You can try multiple targets and validate before export or cutover. Recovery overwrites the selected destination cluster. Use in-place recovery when the whole cluster is unusable or the business explicitly accepts rolling back every database.
 
 ```mermaid
 flowchart TD
@@ -46,9 +46,9 @@ flowchart TD
 
 ## Accidental DML
 
-A `DELETE` without `WHERE`, an incorrect `UPDATE`, or a defective batch job is the most common PITR use case.
+Common PITR cases include `DELETE` without `WHERE`, an incorrect `UPDATE`, and defective batch jobs.
 
-First locate the error using application logs, PostgreSQL logs, metrics, or audit records. A timestamp is usually sufficient. If the exact transaction ID is known, `xid` plus `exclusive: true` can stop immediately before that transaction.
+Find the error in application logs, PostgreSQL logs, metrics, or audit records. A timestamp is usually sufficient. If you know the exact transaction ID, use `xid` with `exclusive: true` to stop immediately before it.
 
 ```bash
 # If the deletion occurred around 10:15, clone the state from 10:14
@@ -58,56 +58,56 @@ First locate the error using application logs, PostgreSQL logs, metrics, or audi
 ./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "xid": "250000", "exclusive": true, "archive": false, "action": "promote" }}'
 ```
 
-Validate the recovered rows, then copy only the required data back with `pg_dump`, `COPY`, or an application-specific reconciliation procedure. If a configured [**delayed cluster**](/docs/pgsql/config/cluster/#delayed-cluster) is still inside its delay window, reading from it may be faster than PITR.
+Validate the recovered rows. Copy only required data back with `pg_dump`, `COPY`, or an application-specific reconciliation procedure. A configured [**delayed cluster**](/docs/pgsql/config/cluster/#delayed-cluster) may provide faster access if it remains within its delay window.
 
 
 ----------------
 
 ## Dropped Objects
 
-The same approach applies to `DROP TABLE`, `DROP DATABASE`, or a migration executed in the wrong environment, with an even stronger preference for a clone. Rolling the entire production cluster back to recover one object also discards every legitimate write after the target.
+Use the same approach for `DROP TABLE`, `DROP DATABASE`, or a migration in the wrong environment. Prefer a clone more strongly in these cases. Whole-cluster rollback to recover one object also discards every valid write after the target.
 
-Restore a separate destination to before the DDL, validate the object, export it with `pg_dump`, and import it into production. For planned high-risk changes, create a named restore point with `pg_create_restore_point()` beforehand; a `name` target then removes timestamp ambiguity.
+Restore a separate destination to before the DDL. Validate the object, export it with `pg_dump`, and import it into production. Before planned high-risk changes, create a restore point with `pg_create_restore_point()`. A `name` target avoids timestamp ambiguity.
 
 
 ----------------
 
 ## Defective Release or Batch Corruption
 
-When a faulty release corrupts data for hours, the challenge is usually identifying the last clean state and the full impact. A clone provides a clean comparison set. Restore repeatedly to candidate times, compare it with production, and decide whether to copy back corrected rows or cut over to a recovered cluster.
+A faulty release can corrupt data for hours. Identify the last correct state and the full impact. Restore a clone to candidate times and compare it with production. Then decide whether to copy corrected rows back or switch to a recovered cluster.
 
-This decision needs application-owner validation: a successful PostgreSQL restore proves consistency at a target, not that the target represents correct business state.
+The application owner must validate this decision. Successful PostgreSQL recovery proves consistency at the target. It does not prove that the business state is correct.
 
 
 ----------------
 
 ## Audit and Investigation
 
-Questions such as “what was this balance at month end?” require historical state. Restore into a separate destination, stop at a time, LSN, XID, or named restore point, and inspect without altering the source.
+Historical questions, such as a month-end balance, require historical data. Restore a separate destination to a time, LSN, XID, or named point. Inspect it without changing the source.
 
-`action: pause` is the targeted-restore default and holds recovery at the target for inspection; it does **not** itself configure read-only access or create a separate cluster. The inventory limit and `cluster` source field determine the destination workflow. Run `-t down`, `-t pitr`, and `-t up` separately when you need an operator gate before promotion, and enforce read-only access explicitly if the investigation requires it. `immediate` means “stop at the first consistent point,” not “choose a historical timestamp.”
+Targeted recovery defaults to `action: pause`, which holds recovery at the target for inspection. This option does **not** configure read-only access or create a separate cluster. The inventory limit and `cluster` source field determine the destination workflow. For an operator checkpoint before promotion, run `-t down`, `-t pitr`, and `-t up` separately. Explicitly enforce read-only access if required for investigation. `immediate` stops at the first consistent point; it does not select a historical timestamp.
 
 
 ----------------
 
 ## Site Loss
 
-If every database host is destroyed or encrypted, HA cannot help. Recovery requires a repository and the other control-plane assets to have survived **outside that failure domain**. That survivor can be Silo/S3, another protected host or filesystem, or another tested pgBackRest backend; a remote object store is recommended but the essential property is independent failure-domain survival.
+HA cannot help if every database host is destroyed or encrypted. The repository and other control-plane assets must survive **outside that failure domain**. Possible repositories include Silo/S3, another protected host or filesystem, and other tested pgBackRest backends. A remote object store is recommended. The essential requirement is survival in an independent failure domain.
 
-Rebuild hosts, restore the declarative inventory, credentials, and PKI, point the cluster at the surviving repository, then restore through the end of archived WAL:
+Rebuild the hosts and restore the inventory, credentials, and PKI. Select the surviving repository, then restore through the latest archived WAL:
 
 ```bash
 ./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": {"action": "promote"}}'
 ```
 
-Inventory and backup data are necessary but not sufficient. Preserve installation media or package repositories, repository credentials and encryption passwords, CA material, custom files, DNS dependencies, and an independently accessible runbook. Keep secrets encrypted and separate from both the database hosts and ordinary source control.
+Inventory and backups alone are insufficient. Preserve installation media or package repositories, repository credentials, encryption passwords, CA material, custom files, and DNS dependencies. Keep an independently accessible runbook. Encrypt secrets and store them separately from database hosts and ordinary source control.
 
 
 ----------------
 
 ## Make Recovery a Routine Drill
 
-The first end-to-end execution of any of these workflows should not occur during a production incident. Use a disposable destination to rehearse clone recovery regularly and after material architecture changes. Measure three outcomes:
+Do not run these procedures for the first time during a production incident. Rehearse clone recovery regularly on a disposable destination. Repeat after major architecture changes. Measure these outcomes:
 
 1. **Usability:** can the backup and complete WAL chain be restored and validated?
 2. **RTO:** how long does the actual restore and replay take now?

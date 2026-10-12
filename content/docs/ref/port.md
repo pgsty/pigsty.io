@@ -7,7 +7,7 @@ categories: [Reference]
 ---
 
 
-This page lists default ports used by Pigsty module components. Adjust as needed or use as a reference for fine-grained firewall configuration.
+This page lists the default ports for Pigsty module components. Adjust them as needed. Use this list to configure specific firewall rules.
 
 |             Module             |             Component              |   Port  | Parameter                                                                    | Status   |
 |:------------------------------:|:----------------------------------:|:-------:|:-----------------------------------------------------------------------------|----------|
@@ -59,7 +59,7 @@ This page lists default ports used by Pigsty module components. Adjust as needed
 |  [**`PGSQL`**](/docs/pgsql)    | **`{{ pg_cluster }}-<service>`**   | `543x`  | [**`pg_services`**](/docs/pgsql/param#pg_services)                           | Optional |
 {.full-width}
 
-The native MySQL pilot reuses port `3306` for MySQL Shell AdminAPI. XtraBackup is invoked by a local systemd timer and has no listening port, while the role explicitly disables the MySQL Router REST management interface. The table lists only network endpoints currently managed by the role.
+The native MySQL pilot reuses port `3306` for MySQL Shell AdminAPI. A local systemd timer runs XtraBackup, which has no listening port. The role explicitly disables the MySQL Router REST management interface. The table lists only network endpoints currently managed by the role.
 
 
 ## Public Port Recommendations
@@ -69,7 +69,16 @@ If you use firewall [**`zone`**](/docs/node/param#node_firewall_mode) mode, expo
 - Minimal management surface: `22, 80, 443` (recommended)
 - If public direct DB access is required: additionally expose `5432`
 
-Avoid exposing internal component ports directly to the public internet: `etcd` (`2379/2380`), `patroni` (`8008`), exporters (`9xxx`), object-storage S3/admin endpoints (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), MySQL Group Replication (`33061`), etc.
+Avoid direct public exposure of internal component ports. Examples include:
+
+- `etcd`: `2379/2380`.
+- `patroni`: `8008`.
+- Exporters: `9xxx`.
+- Object-storage S3/admin endpoints: `9000/9001`.
+- `redis`: `6379`.
+- `ferretdb`: `27017/27018`.
+- Kafka: `9092/9093`.
+- MySQL Group Replication: `33061`.
 
 ```yaml
 node_firewall_mode: zone

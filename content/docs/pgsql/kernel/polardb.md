@@ -14,11 +14,14 @@ categories: [Concept]
 
 ## Overview
 
-Pigsty allows you to create PostgreSQL clusters with "domestic innovation qualification" credentials using PolarDB!
+Use Pigsty and PolarDB to create PostgreSQL clusters with "domestic innovation qualification" credentials.
 
-PolarDB for PostgreSQL now uses PostgreSQL 17 as its base. The `polar` template, default path, and extension notes in Pigsty have all been updated to PG17. Any client tool compatible with the PostgreSQL wire protocol can access PolarDB clusters.
+PolarDB for PostgreSQL now uses PostgreSQL 17 as its base.
+The Pigsty `polar` template, default path, and extension notes now use PG17.
+Any client tool that supports the PostgreSQL wire protocol can connect to PolarDB clusters.
 
-Pigsty's PGSQL repository provides PolarDB PG open-source installation packages, but they are not downloaded to the local software repository during Pigsty installation.
+Pigsty's PGSQL repository provides PolarDB PG open-source installation packages.
+Pigsty does not download these packages to the local software repository during installation.
 
 ![PolarDB for PostgreSQL](/img/pigsty/polar.jpg)
 
@@ -38,7 +41,8 @@ Use the built-in Pigsty template:
 
 ## Change Summary
 
-Starting with Pigsty v4.4, the PolarDB PG kernel uses packages built and maintained by Pigsty. The main changes are:
+From Pigsty v4.4, the PolarDB PG kernel uses packages that Pigsty builds and maintains.
+The main changes are:
 
 | Item | Old docs / old default | Current |
 |------|-------------------------|---------|
@@ -55,7 +59,7 @@ Starting with Pigsty v4.4, the PolarDB PG kernel uses packages built and maintai
 
 ## Configuration
 
-The following parameters need special configuration for PolarDB database clusters:
+Set these parameters for PolarDB database clusters:
 
 ```yaml
 #----------------------------------#
@@ -76,7 +80,9 @@ pg_default_roles:
   - { name: dbuser_monitor ,roles: [pg_monitor] ,pgbouncer: true ,parameters: {log_min_duration_statement: 1000 } ,pool_mode: session ,pool_connlimit: 8 ,comment: pgsql monitor user }
 ```
 
-The default installation directory for the `polar` kernel has moved to `/usr/polar-17`. One important difference is that PolarDB PG still requires the `replicator` replication user to be `SUPERUSER`, unlike vanilla PostgreSQL.
+The default installation directory for the `polar` kernel is now `/usr/polar-17`.
+PolarDB PG still requires the `replicator` replication user to be `SUPERUSER`.
+Native PostgreSQL does not have this requirement.
 
 
 
@@ -86,7 +92,8 @@ The default installation directory for the `polar` kernel has moved to `/usr/pol
 
 ## Available Extensions
 
-The PolarDB PG kernel has **93** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The PolarDB PG kernel has **93** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

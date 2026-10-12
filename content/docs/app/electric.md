@@ -6,9 +6,9 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Electric**](https://electric-sql.com/) is a PostgreSQL sync engine focused on efficiently delivering database changes to frontend and edge applications.
+[**Electric**](https://electric-sql.com/) is a PostgreSQL sync engine. It delivers database changes efficiently to frontend and edge applications.
 
-Pigsty provides the `app/electric` template (`conf/app/electric.yml`) to bootstrap database, container, and ingress settings in one flow.
+Pigsty provides the `app/electric` template (`conf/app/electric.yml`). It configures the database, containers, and ingress in one workflow.
 
 ## Quick Start
 
@@ -36,7 +36,7 @@ Metrics port defaults to `8003` (`ELECTRIC_PROMETHEUS_PORT`).
 - `DATABASE_URL`: PostgreSQL connection string used by Electric (replication privileges required)
 - `ELECTRIC_PORT`: Electric HTTP port (default `8002`)
 - `ELECTRIC_PROMETHEUS_PORT`: metrics port (default `8003`)
-- `ELECTRIC_INSECURE`: can be `true` in dev; disable in prod and use proper secrets
+- `ELECTRIC_INSECURE`: can be `true` for development. Disable it in production and configure proper secrets.
 
 ## Operations
 

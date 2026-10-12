@@ -29,8 +29,7 @@ juice_instances:
 
 ## Why does changing `data` not take effect?
 
-`data` is only used by `juicefs format --no-update`. After filesystem creation it will not change.
-To switch backend, migrate data and reformat manually.
+Only `juicefs format --no-update` uses `data`. This setting does not change the filesystem after creation. To change the backend, migrate the data and reformat manually.
 
 --------
 
@@ -55,7 +54,7 @@ To switch backend, migrate data and reformat manually.
 ```
 
 Removal does not delete PostgreSQL metadata or object storage data.
-`juice_register` refreshes the target file; running only `juice_clean` leaves a stale monitoring scrape endpoint.
+`juice_register` updates the target file. If you run only `juice_clean`, a stale monitoring scrape endpoint remains.
 
 --------
 
@@ -66,14 +65,14 @@ Depends on `data`:
 - `--storage postgres`: JuiceFS creates a `jfs_blob` table in the PostgreSQL database selected by `--bucket`
 - `--storage minio/s3`: data is stored in a Silo/S3-compatible object-storage bucket
 
-Metadata is stored in the metadata engine defined by `meta` (in Pigsty production scenarios, this is usually PostgreSQL).
+`meta` specifies the metadata engine. Pigsty production deployments usually use PostgreSQL for this role.
 
 --------
 
 ## Multi-node mount notes?
 
 - Use the same `meta` and instance name on all nodes
-- Only one node needs to format; others will skip
+- Only one node needs to format the filesystem. Other nodes skip this operation.
 - Ensure `port` does not conflict on each node
 
 --------
@@ -91,7 +90,7 @@ You can run manually:
 
 ## How to change mount options?
 
-After updating `mount` in the instance, refresh config first and then manually restart the service:
+After you update `mount` in the instance, refresh the configuration. Then restart the service manually:
 
 ```bash
 ./juice.yml -l <host> -t juice_config,juice_launch

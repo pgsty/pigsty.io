@@ -1,27 +1,29 @@
 ---
 title: Greenplum
 weight: 2311
-description: Deploy/Monitor Greenplum clusters with Pigsty, build Massively Parallel
-  Processing (MPP) PostgreSQL data warehouse clusters!
+description: Deploy and monitor Greenplum clusters with Pigsty to build Massively Parallel Processing (MPP) PostgreSQL data warehouses.
 icon: fas fa-leaf
 toc_hide: true
 module: [PGSQL]
 categories: [Concept]
 ---
 
-Pigsty supports deploying Greenplum clusters and its derivative distribution YMatrixDB, and provides the capability to integrate existing Greenplum deployments into Pigsty monitoring.
+Pigsty supports deployment of Greenplum clusters and the derivative distribution YMatrixDB.
+You can also add existing Greenplum deployments to Pigsty monitoring.
 
 --------
 
 ## Overview
 
-Greenplum / YMatrix cluster deployment capabilities are only available in the professional/enterprise editions and are not currently open source.
+Only the professional/enterprise editions provide Greenplum / YMatrix cluster deployment.
+This capability is not currently open source.
 
 --------
 
 ## Installation
 
-Pigsty provides installation packages for Greenplum 6 (@el7) and Greenplum 7 (@el8). Open source users can install and configure them manually.
+Pigsty provides installation packages for Greenplum 6 (@el7) and Greenplum 7 (@el8).
+Open-source users can install and configure them manually.
 
 ```bash
 # EL 7 Only (Greenplum6)
@@ -35,7 +37,8 @@ Pigsty provides installation packages for Greenplum 6 (@el7) and Greenplum 7 (@e
 
 ## Configuration
 
-To define a Greenplum cluster, you need to use `pg_mode` = `gpsql` and additional identity parameters `pg_shard` and `gp_role`.  
+To define a Greenplum cluster, set `pg_mode` = `gpsql`.
+Also set the identity parameters `pg_shard` and `gp_role`.
 
 ```yaml
 #================================================================#
@@ -93,4 +96,4 @@ mx-sdw:
 
 ```
 
-Additionally, PG Exporter requires extra connection parameters to connect to Greenplum Segment instances for metric collection.
+PG Exporter also requires extra connection parameters to collect metrics from Greenplum Segment instances.

@@ -33,6 +33,9 @@ weight: 5880
 {.ext-table .ext-table--rel}
 
 
+> Deprecated upstream; the archived project will receive no further updates.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

@@ -7,11 +7,16 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension that claims to provide 4x OLTP performance, no xid wraparound and table bloat issues, and "cloud-native" (data stored in S3) capabilities.
+[OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension.
+It claims to provide 4x OLTP performance and to eliminate xid wraparound and table bloat issues.
+It also claims to provide cloud-native storage, with data stored in S3.
 
 Pigsty ships OrioleDB as a patched PostgreSQL kernel plus the [OrioleDB extension](https://github.com/orioledb/orioledb).
 
-You can run OrioleDB as an RDS using Pigsty. Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms. `pg_mode` still uses `oriole` for the `/usr/oriole-$v` install path, while the `orioledb` package alias resolves to versioned kernel packages such as `orioledb-16`, `orioledb-17`, and `orioledb-18`.
+You can run OrioleDB as an RDS with Pigsty.
+Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms.
+Set `pg_mode` to `oriole` to use the `/usr/oriole-$v` installation path.
+The `orioledb` package alias resolves to versioned kernel packages, such as `orioledb-16`, `orioledb-17`, and `orioledb-18`.
 The current Pigsty package line is OrioleDB 1.8 beta16.
 
 
@@ -27,7 +32,7 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 ./deploy.yml             # Install Pigsty with OrioleDB
 ```
 
-For production deployment, ensure you modify the password parameters in the `pigsty.yml` configuration before running the `install` playbook.
+For production deployment, change the password parameters in `pigsty.yml` before you run the `install` playbook.
 
 
 
@@ -61,7 +66,8 @@ pg-meta:
 
 ## Usage
 
-To use OrioleDB, install the `orioledb` package alias. Pigsty resolves it to the selected PG16, PG17, or PG18 OrioleDB kernel package according to `pg_version`.
+To use OrioleDB, install the `orioledb` package alias.
+Pigsty uses `pg_version` to select the PG16, PG17, or PG18 OrioleDB kernel package.
 
 Initialize TPC-B-like tables with `pgbench` using 100 warehouses:
 
@@ -73,7 +79,7 @@ pgbench -nv -P1 -c10    -T1000 meta
 pgbench -nv -P1 -c50    -T1000 meta
 ```
 
-Next, you can rebuild these tables using the `orioledb` storage engine and observe the performance difference:
+Next, rebuild these tables with the `orioledb` storage engine and compare performance:
 
 ```sql
 -- Create OrioleDB tables
@@ -114,7 +120,8 @@ ALTER TABLE pgbench_tellers_o RENAME TO pgbench_tellers;
 
 ## Available Extensions
 
-The OrioleDB kernel has **53** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The OrioleDB kernel has **53** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

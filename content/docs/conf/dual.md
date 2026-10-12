@@ -6,7 +6,8 @@ icon: fa-solid fa-dice-two
 categories: [Reference]
 ---
 
-The `ha/dual` template uses two-node deployment, implementing a "semi-HA" architecture with one primary and one standby. If you only have two servers, this is a pragmatic choice.
+The `ha/dual` template deploys one primary and one standby on two nodes.
+This Semi-HA configuration provides limited failover when only two servers are available.
 
 
 --------
@@ -26,7 +27,7 @@ Usage:
 ./configure -c ha/dual [-i <primary_ip>]
 ```
 
-After configuration, modify placeholder IP `10.10.10.11` to actual standby node IP address.
+After configuration, replace `10.10.10.11` with the standby node's actual IP address.
 
 
 --------
@@ -42,7 +43,7 @@ Source: [`pigsty/conf/ha/dual.yml`](https://github.com/pgsty/pigsty/blob/main/co
 
 ## Explanation
 
-The `ha/dual` template is Pigsty's **two-node limited HA configuration**, designed for scenarios with only two servers.
+The `ha/dual` template supplies **limited high availability with two nodes**.
 
 **Architecture**:
 - **Node A** (10.10.10.10): Admin node, runs Infra + etcd + PostgreSQL replica
@@ -63,6 +64,6 @@ The `ha/dual` template is Pigsty's **two-node limited HA configuration**, design
 - Transitional solution before upgrading to three-node HA
 
 **Notes**:
-- True HA requires at least three nodes (DCS needs majority)
-- Recommend upgrading to three-node architecture as soon as possible
+- Full HA requires at least three nodes because the DCS requires a majority.
+- Expand to three nodes as soon as your resources permit it.
 - L2 VIP requires network environment support (same broadcast domain)

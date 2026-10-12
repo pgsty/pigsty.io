@@ -8,17 +8,17 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/config]
 ---
 
-The MYSQL module is driven by the inventory: you declare the desired cluster, and `mysql.yml` converges the live state to match. This page covers topology planning and every configuration block; see [Parameters](/docs/mysql/param) for the full reference.
+Declare the cluster in inventory. `mysql.yml` adjusts live state to match. This page covers topology and configuration blocks. See [Parameters](/docs/mysql/param) for the full reference.
 
 
 --------
 
 ## Before You Deploy
 
-- Target nodes are [`NODE`](/docs/node)-managed, with the shared CA installed at `/etc/pki/ca.crt` (managed by the `node_ca` role; the MySQL role only issues leaf certificates);
-- Package repositories include the `mysql` module: `node_repo_modules: node,infra,mysql`, or a local repo cached with `repo_extra_packages: [mysql]`;
-- The platform is in the support matrix: `x86_64` on EL 8/9/10, Debian 12/13, Ubuntu 22/24; or `aarch64` on EL 9/10;
-- The three platform passwords (`mysql_root_password`, `mysql_monitor_password`, `mysql_cluster_password`) are set to production values — preflight rejects `CHANGE_ME` placeholders.
+- Manage nodes with [`NODE`](/docs/node). Install the shared CA at `/etc/pki/ca.crt` through `node_ca`. MYSQL issues leaf certificates only.
+- Include `mysql` in repositories with `node_repo_modules: node,infra,mysql`, or cache packages locally with `repo_extra_packages: [mysql]`.
+- Use supported platforms: `x86_64` EL 8/9/10, Debian 12/13, Ubuntu 22/24; or `aarch64` EL 9/10.
+- Set production `mysql_root_password`, `mysql_monitor_password`, and `mysql_cluster_password`. Preflight rejects `CHANGE_ME` placeholders.
 
 
 --------
@@ -33,9 +33,9 @@ Each cluster is an inventory group with two required identity parameters:
 | `mysql_seq` | Instance | `1` for standalone; sequential `1..3` for HA; doubles as `server_id` |
 {.full-width}
 
-Topology is inferred from member count: **1 member is a standalone, 3 members form an InnoDB Cluster**; any other count is rejected at preflight. `mysql_seq=1` is only the bootstrap coordinator, not the runtime primary.
+**One member selects standalone; three select InnoDB Cluster.** Preflight rejects other counts. `mysql_seq=1` coordinates bootstrap only; it does not set runtime PRIMARY.
 
-Instance names follow `{{ mysql_cluster }}-{{ mysql_seq }}` (e.g. `my-test-1`). The inventory host address (IP or resolvable hostname) is the advertised MySQL and MGR address and cannot be changed by an ordinary rerun.
+Instances use `{{ mysql_cluster }}-{{ mysql_seq }}`, such as `my-test-1`. Inventory IP or resolvable hostname becomes the advertised MySQL/MGR address. Ordinary reruns cannot change it.
 
 
 --------
@@ -52,7 +52,7 @@ my-meta:
     mysql_cluster: my-meta
 ```
 
-Standalone instances have no Router (`6446/6447` do not exist); clients connect to `3306` directly. Backups, monitoring, and TLS behave exactly as in HA mode.
+Standalone has no Router or `6446/6447` endpoints. Connect to `3306`. TLS, monitoring, and backups otherwise behave as in HA.
 
 
 --------
@@ -77,10 +77,11 @@ my-test:
         priv: { 'app.*': 'ALL PRIVILEGES' }
 ```
 
-This yields a single-primary MGR cluster: one writable PRIMARY, two read-only SECONDARY members, tolerating one node failure. Every member runs a Router, so port `6446` on any member reaches the current primary.
+This creates one writable PRIMARY and two read-only SECONDARY members. It tolerates one node failure. Every member runs Router; any `6446` reaches the current primary.
 
 > [!WARNING] Always select the complete cluster
-> Every `mysql.yml` run must select **all members** of the cluster with `-l` (or omit `-l` to converge every MySQL cluster). Partial member selection is rejected at preflight — a deliberate guard against topology divergence.
+> Every `mysql.yml` run must select **all members** with `-l`, or omit it to select all MySQL clusters.
+> Preflight rejects partial selection to prevent topology divergence.
 
 
 --------
@@ -104,10 +105,11 @@ mysql_databases:
 
 Each entry accepts only these three fields; preflight validation rejects additional keys.
 
-Convergence is **additive**: reruns create missing databases, but removing an entry never drops one. Deleting data is a manual operation by design.
+Convergence is **additive**. Reruns create missing databases. Removing an entry never drops a database; deletion is manual.
 
 > [!NOTE] Every table needs a primary key
-> The platform enables `sql_require_primary_key=ON` by default, so creating a PK-less table fails with `ERROR 3750`. This is not pedantry: PK-less tables are read-only under MGR and block AdminAPI cluster rebuilds during disaster recovery. Define a primary key on every table (invisible-column PKs work too); override via `mysql_parameters` only if you truly must.
+> Default `sql_require_primary_key=ON` rejects tables without primary keys with `ERROR 3750`. Such tables become read-only under MGR and block AdminAPI disaster recovery.
+> Give every table a primary key, including an invisible-column key if needed. Override through `mysql_parameters` only if necessary.
 
 
 --------
@@ -127,21 +129,21 @@ mysql_users:
       'app2.*': 'SELECT, INSERT, UPDATE, DELETE'
 ```
 
-Grant scopes are written as `'db.table'`, with `*` wildcards on either side (`'*.*'`, `'app.*'`); values are comma-separated privilege names. Preflight validates usernames, hosts, scopes, and privilege words, rejecting malformed declarations.
+Use `'db.table'` grant scopes. Either part can be `*`, as in `'*.*'` and `'app.*'`. Values are comma-separated privileges. Preflight rejects malformed users, hosts, scopes, or privilege names.
 
 Semantics:
 
-- Missing users are created; existing users get their password and connection limit updated;
-- Grants in `priv` are applied, but **removing a mapping does not REVOKE**;
-- The platform identities (`root`, `dbuser_monitor`, `dbuser_cluster`, `dbuser_backup`) cannot be declared;
-- The server enforces TLS: the client default `PREFERRED` mode negotiates encryption automatically, and plaintext (`DISABLED`) connections are rejected; prefer an explicit `VERIFY_CA`.
+- Create missing users. Update existing passwords and connection limits.
+- Apply `priv` grants. **Removing mappings does not REVOKE privileges.**
+- Do not declare platform identities: `root`, `dbuser_monitor`, `dbuser_cluster`, or `dbuser_backup`.
+- The server requires TLS. `PREFERRED` negotiates encryption; `DISABLED` plaintext connections fail. Prefer explicit `VERIFY_CA`.
 
 
 --------
 
 ## Parameter Overrides
 
-`mysql_parameters` overrides `[mysqld]` options, rendered at the end of the managed config so the last value wins:
+`mysql_parameters` appends `[mysqld]` overrides at the end of managed configuration. The last value takes precedence:
 
 ```yaml
 my-test:
@@ -155,12 +157,12 @@ my-test:
 
 Rules and safety:
 
-- Keys must be plain option names (letter first; `._-` allowed); values must be single-line scalars;
-- The rendered config still passes `mysqld --validate-config`, so a bad option fails at deploy time without touching the running service;
-- **Platform-reserved options cannot be overridden**: identity and protocol (`user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `mysqlx`, …), replication and plugins (`gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `plugin_load*`, `clone`, `plugin_clone`, `plugin_mysqlx`, `group_replication_*`, …), and TLS (`require_secure_transport`, `ssl_*`) are role-managed and rejected if declared;
-- Parameter changes trigger an [orchestrated rolling restart](/docs/mysql/admin#change-cluster-parameters): secondaries first, primary last.
+- Start option names with a letter; `._-` characters are permitted. Values must be single-line scalars.
+- `mysqld --validate-config` checks the rendered result. Invalid options stop deployment without changing the running service.
+- **Reserved settings cannot be overridden.** These include identity/protocol (`user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `mysqlx`, …). They also include replication/plugins (`gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `plugin_load*`, `clone`, `plugin_clone`, `plugin_mysqlx`, `group_replication_*`, …) and TLS (`require_secure_transport`, `ssl_*`). The role owns and rejects overrides for these keys.
+- Changes trigger [rolling restarts](/docs/mysql/admin#change-cluster-parameters): secondaries first, primary last.
 
-Memory needs no configuration: the buffer pool is 25% of node memory (256MB floor), redo capacity is half the buffer pool (128MB–4GB), and replica parallelism follows CPU count. For precise control, override `innodb_buffer_pool_size` and friends via `mysql_parameters`.
+Default buffer pool is 25% of node memory, at least 256MB. Redo capacity is half that size, limited to 128MB–4GB. Replica parallelism follows CPU count. Override `innodb_buffer_pool_size` and other keys through `mysql_parameters` when needed.
 
 
 --------
@@ -177,13 +179,14 @@ mysql_backup_repo:
 
 The backup contract (details in [Administration](/docs/mysql/admin#manage-backups)):
 
-- One XtraBackup **full physical backup** per day, prepared immediately after — the output directory is directly restorable;
-- Standalone backs up locally; in HA every member's timer fires, but **only the current PRIMARY actually runs** — other members skip cleanly;
-- Layout is `<path>/<cluster>/<UTC timestamp>/`, with an atomic `latest` symlink and retention-based pruning;
-- No incremental chain, no binlog archiving, no PITR: for a standalone the recovery point is the most recent backup.
+- Run a daily full physical XtraBackup backup and prepare it immediately. The result is directly restorable.
+- Standalone backs up locally. Every HA timer runs, but **only the current PRIMARY performs backup**. Others skip.
+- Use `<path>/<cluster>/<UTC timestamp>/`, atomic `latest` symlinks, and retention-based pruning.
+- No incremental chains, binlog archiving, or PITR. Standalone recovery reaches the most recent backup.
 
 > [!WARNING] Backups follow the primary
-> After a failover, new backups land on the new primary's local disk. Before restoring, check the `latest` timestamp on **all members** and take the newest. For off-site protection, sync the backup directory yourself (e.g. a scheduled rclone/rsync job).
+> After failover, backups use the new primary's local disk. Compare `latest` timestamps on **all members** and select the newest.
+> For off-site protection, synchronize backups yourself, for example with scheduled rclone or rsync.
 
 
 --------
@@ -198,11 +201,11 @@ mysql_cluster_password: MySQL.Cluster    # AdminAPI / Router / backup identity
 
 Credential lifecycle rules:
 
-- Passwords must be single-line and must not keep the `CHANGE_ME` prefix — enforced at preflight;
-- **On HA clusters, `mysql_cluster_password` cannot be rotated by an ordinary rerun**: it is embedded in cluster metadata and Router keyrings, so implicit rotation is rejected (standalone instances have no such binding and rotate normally);
-- **`mysql_root_password` cannot be silently reset either**: if the live root password differs from the declaration, the task fails explicitly instead of overwriting it.
+- Passwords must be single-line and cannot retain a `CHANGE_ME` prefix. Preflight enforces this.
+- **Ordinary HA reruns cannot rotate `mysql_cluster_password`.** Metadata and Router keyrings bind it, so implicit rotation fails. Standalone rotation works normally.
+- **`mysql_root_password` cannot reset silently.** If the live value differs, the task fails instead of replacing it.
 
-Credential material lives in `/etc/mysql/pigsty/` (root-owned: directory `0700`, files `0600`), including ready-to-use client configs for local operations:
+Root owns `/etc/mysql/pigsty/`, with directory mode `0700` and file mode `0600`. It contains secrets and ready-to-use local client configuration:
 
 ```bash
 mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf        # local root session
@@ -254,4 +257,4 @@ all:
     mysql_cluster_password: MySQL.Cluster
 ```
 
-See [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml) for the full template. Note that [`conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) is the OpenHalo template (a MySQL-compatible PostgreSQL kernel) and is unrelated to this module.
+Use [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml) for the full template. [`conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) belongs to OpenHalo, a MySQL-compatible PostgreSQL kernel, and is unrelated to this module.

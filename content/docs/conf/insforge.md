@@ -6,7 +6,8 @@ icon: fa-solid fa-layer-group
 categories: [Reference]
 ---
 
-The `app/insforge` configuration template deploys InsForge OSS and uses Pigsty-managed PostgreSQL as the external database.
+The `app/insforge` template deploys InsForge OSS.
+It uses Pigsty-managed PostgreSQL as the external database.
 
 For details, see: **[InsForge Deployment Tutorial](/docs/app/insforge/)**
 
@@ -62,4 +63,6 @@ http://<IP>:7130
 http://isf.pigsty
 ```
 
-The default admin account is `admin@example.com` / `pigsty`. For production, change `JWT_SECRET`, `ENCRYPTION_KEY`, `ROOT_ADMIN_PASSWORD`, and the database password, keeping encryption and grant settings aligned with `pg_parameters`.
+The default administration account is `admin@example.com` with password `pigsty`.
+For production, replace `JWT_SECRET`, `ENCRYPTION_KEY`, `ROOT_ADMIN_PASSWORD`, and the database password.
+Keep encryption and permission settings consistent with `pg_parameters`.

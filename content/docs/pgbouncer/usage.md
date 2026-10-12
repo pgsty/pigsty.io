@@ -31,47 +31,27 @@ Additional options for setting up a Windows service:
 
 ## Description
 
-**pgbouncer** is a PostgreSQL connection pooler. Any target application
-can be connected to **pgbouncer** as if it were a PostgreSQL server,
-and **pgbouncer** will create a connection to the actual server, or it
-will reuse one of its existing connections.
+**pgbouncer** is a PostgreSQL connection pooler. Applications connect to **pgbouncer** as they would to PostgreSQL. **pgbouncer** creates a server connection or reuses an existing one.
 
-The aim of **pgbouncer** is to lower the performance impact of opening
-new connections to PostgreSQL.
+**pgbouncer** reduces the performance cost of opening new PostgreSQL connections.
 
-In order not to compromise transaction semantics for connection
-pooling, **pgbouncer** supports several types of pooling when
-rotating connections:
+To preserve transaction semantics, **pgbouncer** supports these pooling modes:
 
 Session pooling
 
-:   Most polite method. When a client connects, a server connection will
-    be assigned to it for the whole duration the client stays connected. When
-    the client disconnects, the server connection will be put back into the pool.
-    This is the default method.
+:   PgBouncer assigns a server connection for the full client session. The connection returns to the pool when the client disconnects. This is the default mode and changes connection assignment least often.
 
 Transaction pooling
 
-:   A server connection is assigned to a client only during a transaction.
-    When PgBouncer notices that transaction is over, the server connection
-    will be put back into the pool.
+:   PgBouncer assigns a server connection only during a transaction. The connection returns to the pool when the transaction ends.
 
 Statement pooling
 
-:   Most aggressive method. The server connection will be put back into the
-    pool immediately after a query completes. Multi-statement
-    transactions are disallowed in this mode as they would break.
+:   The server connection returns to the pool immediately after each query. This mode changes connection assignment most often. Multi-statement transactions cannot work and are disallowed.
 
-The administration interface of **pgbouncer** consists of some new
-`SHOW` commands available when connected to a special "virtual"
-database **pgbouncer**.
+Connect to the virtual **pgbouncer** database to use its administration interface. This interface provides additional `SHOW` commands.
 
-Since version 1.26.0, PgBouncer sends the `pgbouncer.version`,
-`pgbouncer.pool_mode`, and `pgbouncer.max_prepared_statements`
-`ParameterStatus` values to clients at login. Drivers can use these values
-to detect PgBouncer and adapt their behavior. The optional
-[`login_notify_message`](/docs/pgbouncer/config/#login_notify_message)
-setting sends a welcome NOTICE after a successful login.
+Since 1.26.0, PgBouncer sends three `ParameterStatus` values at client login: `pgbouncer.version`, `pgbouncer.pool_mode`, and `pgbouncer.max_prepared_statements`. Drivers can detect PgBouncer and adapt their behavior. Optional [`login_notify_message`](/docs/pgbouncer/config/#login_notify_message) sends a welcome NOTICE after successful login.
 
 --------
 
@@ -132,9 +112,7 @@ Basic setup and usage is as follows.
 `-d`, `--daemon`
 :   Run in the background. Without it, the process will run in the foreground.
 
-    In daemon mode, setting `pidfile` as well as `logfile` or `syslog`
-    is required.  No log messages will be written to stderr after
-    going into the background.
+    Daemon mode requires `pidfile` and either `logfile` or `syslog`. After entering the background, PgBouncer writes no messages to stderr.
 
     Note: Does not work on Windows; **pgbouncer** need to run as service there.
 
@@ -145,9 +123,7 @@ Basic setup and usage is as follows.
 :   Increase verbosity.  Can be used multiple times.
 
 `-q`, `--quiet`
-:   Be quiet: do not log to stderr.  This does not affect
-    logging verbosity, only that stderr is not to be used.
-    For use in init.d scripts.
+:   Disable stderr logging. This does not change logging verbosity. Use it in init.d scripts.
 
 `-V`, `--version`
 :   Show version.
@@ -171,17 +147,11 @@ database **pgbouncer**:
 
     $ psql -p 6432 pgbouncer
 
-Only users listed in the configuration parameters **admin_users** or **stats_users**
-are allowed to log in to the console.  (Except when `auth_type=any`, then
-any user is allowed in as a stats_user.)
+Only users in **admin_users** or **stats_users** can log in to the console. With `auth_type=any`, any user can log in as a stats_user.
 
-Additionally, the user name **pgbouncer** is allowed to log in without password,
-if the login comes via the Unix socket and the client has same Unix user UID
-as the running process.
+The **pgbouncer** user can also log in without a password through a Unix socket. Its Unix UID must match the running PgBouncer process.
 
-The admin console currently only supports the simple query protocol.
-Some drivers use the extended query protocol for all commands; these
-drivers will not work for this.
+The admin console supports only the simple query protocol. Drivers that use extended query protocol for all commands cannot use it.
 
 ### Show commands
 
@@ -189,8 +159,7 @@ The **SHOW** commands output information. Each command is described below.
 
 #### SHOW STATS
 
-Shows statistics.  In this and related commands, the total figures are
-since process start, the averages are updated every `stats_period`.
+Show statistics. In this and related commands, totals start at process startup. Averages update every `stats_period`.
 
 database
 :   Statistics are presented per database.
@@ -350,11 +319,7 @@ link
 :   Address of client connection the server is paired with.
 
 remote_pid
-:   PID of backend server process.  In case connection is made over
-    Unix socket and OS supports getting process ID info, its
-    OS PID.  Otherwise it's extracted from cancel packet the server sent,
-    which should be the PID in case the server is PostgreSQL, but it's a random
-    number in case the server it is another PgBouncer.
+:   Backend process ID. For Unix socket connections, use the OS PID if the operating system exposes it. Otherwise, read the value from the server cancellation packet. For PostgreSQL, this should be its PID. For another PgBouncer, it is a random number.
 
 tls
 :   A string with TLS connection information, or empty if not using TLS.
@@ -386,9 +351,7 @@ replication
 :   If client connection uses replication. Can be **none**, **logical** or **physical**.
 
 state
-:   State of the client connection, one of **active** (Client connections that are linked to server connections),
-    **idle** (Client connections with no queries waiting to be processed), **waiting**,
-    **active_cancel_req**, or **waiting_cancel_req**.
+:   Client connection state: **active**, **idle**, **waiting**, **active_cancel_req**, or **waiting_cancel_req**. Active clients are linked to servers. Idle clients have no queries waiting for processing.
 
 addr
 :   IP address of client.
@@ -470,9 +433,7 @@ sv_active_cancel
 :   Server connections that are currently forwarding a cancel request.
 
 sv_being_canceled
-:   Servers that normally could become idle but are waiting to do so until
-    all in-flight cancel requests have completed that were sent to cancel
-    a query on this server.
+:   Servers waiting to become idle until all cancellation requests for their queries complete.
 
 sv_idle
 :   Server connections that are unused and immediately usable for client queries.
@@ -489,10 +450,7 @@ sv_login
 :   Server connections currently in the process of logging in.
 
 maxwait
-:   How long the first (oldest) client in the queue has waited, in seconds.
-    If this starts increasing, then the current pool of servers does
-    not handle requests quickly enough.  The reason may be either an overloaded
-    server or just too small of a **pool_size** setting.
+:   Seconds the oldest queued client has waited. An increasing value means the server pool cannot process requests quickly enough. The server may be overloaded, or **pool_size** may be too small.
 
 maxwait_us
 :   Microsecond part of the maximum waiting time.
@@ -537,9 +495,7 @@ pools
 :   Count of pools.
 
 free_clients
-:   Count of free clients. These are clients that are disconnected, but
-    PgBouncer keeps the memory around that was allocated for them so it can be
-    reused for a future clients to avoid allocations.
+:   Disconnected client count. PgBouncer retains their allocated memory for future clients to avoid new allocations.
 
 used_clients
 :   Count of used clients.
@@ -548,9 +504,7 @@ login_clients
 :   Count of clients in **login** state.
 
 free_servers
-:   Count of free servers. These are servers that are disconnected, but
-    PgBouncer keeps the memory around that was allocated for them so it can be
-    reused for a future servers to avoid allocations.
+:   Disconnected server count. PgBouncer retains their allocated memory for future servers to avoid new allocations.
 
 used_servers
 :   Count of used servers.
@@ -610,9 +564,7 @@ database
 :   Actual database name PgBouncer connects to.
 
 force_user
-:   When the user is part of the connection string, the connection between
-    PgBouncer and PostgreSQL is forced to the given user, whatever the
-    client user.
+:   If the connection string specifies a user, PgBouncer always uses that user for PostgreSQL connections, regardless of the client user.
 
 pool_size
 :   Maximum number of server connections.
@@ -685,9 +637,7 @@ default
 :   Configuration default value
 
 changeable
-:   Either **yes** or **no**, shows if the variable can be changed while running.
-    If **no**, the variable can be changed only at boot time.  Use
-    **SET** to change a variable at run time.
+:   **yes** if the setting can change at runtime, or **no** if it can change only at startup. Use **SET** for runtime changes.
 
 #### SHOW MEM
 
@@ -734,12 +684,7 @@ Show the PgBouncer state settings. Current states are active and paused.
 
 #### PAUSE [db]
 
-PgBouncer tries to disconnect from all servers. Disconnecting each server connection
-waits for that server connection to be released according to the server pool's pooling
-mode (in transaction pooling mode, the transaction must complete, in statement mode,
-the statement must complete, and in session pooling mode the client must disconnect).
-The command will not return before all server connections have been disconnected.
-To be used at the time of database restart.
+PgBouncer disconnects all server connections after their pooling mode permits release. Transaction pooling waits for transaction completion. Statement pooling waits for statement completion. Session pooling waits for client disconnection. The command returns only after all server connections close. Use it during database restarts.
 
 If database name is given, only that database will be paused.
 
@@ -756,29 +701,11 @@ Allow new client connections after a previous **DISABLE** command.
 
 #### RECONNECT [db]
 
-Close each open server connection for the given database, or all
-databases, after it is released (according to the pooling mode), even
-if its lifetime is not up yet.  New server connections can be made
-immediately and will connect as necessary according to the pool size
-settings.
+Close server connections after release according to their pooling mode, even before their lifetime expires. Apply this to the specified database, or all databases if omitted. New server connections can open immediately as required by pool size settings.
 
-This command is useful when the server connection setup has changed,
-for example to perform a gradual switchover to a new server.  It is
-*not* necessary to run this command when the connection string in
-pgbouncer.ini has been changed and reloaded (see **RELOAD**) or when
-DNS resolution has changed, because then the equivalent of this
-command will be run automatically.  This command is only necessary if
-something downstream of PgBouncer routes the connections.
+Use this after server connection routing changes, for example for gradual switchover. Reloading changed pgbouncer.ini connection strings with **RELOAD**, or a DNS change, already triggers the equivalent action. This command is necessary only when a downstream component routes connections.
 
-After this command is run, there could be an extended period where
-some server connections go to an old destination and some server
-connections go to a new destination.  This is likely only sensible
-when switching read-only traffic between read-only replicas, or when
-switching between nodes of a multimaster replication setup.  If all
-connections need to be switched at the same time, **PAUSE** is
-recommended instead.  To close server connections without waiting (for
-example, in emergency failover rather than gradual switchover
-scenarios), also consider **KILL**.
+Old and new server destinations can coexist for an extended period after this command. This is generally suitable for read-only traffic between replicas or for switching nodes in a multimaster setup. If all connections must switch together, use **PAUSE**. To close connections immediately, for example during emergency failover, consider **KILL**.
 
 #### KILL [db]
 
@@ -790,9 +717,7 @@ is called.
 
 #### KILL_CLIENT id
 
-Immediately kill specified client connection along with any server
-connections for the given client. The client to kill, is identified
-by the `id` value that can be found using the `SHOW CLIENTS` command.
+Immediately terminate the specified client and all its associated server connections. Find its `id` with `SHOW CLIENTS`.
 
 An example command will look something like `KILL_CLIENT 1234`.
 
@@ -806,58 +731,29 @@ The PgBouncer process will exit.
 
 #### SHUTDOWN WAIT_FOR_SERVERS
 
-Stop accepting new connections and shutdown after all servers are released.
-This is basically the same as issuing **PAUSE** and **SHUTDOWN**, except that
-this also stops accepting new connections while waiting for the **PAUSE** as
-well as eagerly disconnecting clients that are waiting to receive a server
-connection. Please note that UNIX sockets will remain open during the shutdown
-but will only accept connections to the PgBouncer admin console.
+Stop accepting new connections and shut down after all servers are released. This is similar to **PAUSE** followed by **SHUTDOWN**, but also stops new connections while waiting. It immediately disconnects clients waiting for a server. Unix sockets remain open but accept only administration console connections.
 
 #### SHUTDOWN WAIT_FOR_CLIENTS
 
-Stop accepting new connections and shutdown the process once all existing
-clients have disconnected. Please note that UNIX sockets will remain open
-during the shutdown but will only accept connections to the pgbouncer
-admin console. This command can be used to do zero-downtime rolling
-restart of two PgBouncer processes using the following procedure:
+Stop accepting new connections and shut down after all existing clients disconnect. Unix sockets remain open but accept only administration console connections. Use this command for a zero-downtime rolling restart of two PgBouncer processes:
 
-1. Have two or more PgBouncer processes running on the same port using
-   `so_reuseport` ([configuring peering](/docs/pgbouncer/config/#section-peers) is
-   recommended, but not required). To achieve zero downtime when
-   restarting we'll restart these processes one-by-one, thus leaving the
-   others running to accept connections while one is being restarted.
-2. Pick a process to restart first, let's call it A.
-3. Run `SHUTDOWN WAIT_FOR_CLIENTS` (or send `SIGTERM`) to process A.
-4. Cause all clients to reconnect. Possibly by waiting some time until the
-   client side pooler causes reconnects due to its `server_idle_timeout`
-   (or similar config). Or if no client side pooler is used, possibly by
-   restarting the clients. Once all clients have reconnected. Process A
-   will exit automatically, because no clients are connected to it anymore.
-5. Start process A again.
-6. Repeat step 3, 4 and 5 for each of the remaining processes, one-by-one
-   until you restarted all processes.
+1. Run two or more PgBouncer processes on one port with `so_reuseport`. [Peering](/docs/pgbouncer/config/#section-peers) is recommended but optional. Restart processes one at a time so the others continue to accept connections.
+2. Select the first process, called A here.
+3. Send `SHUTDOWN WAIT_FOR_CLIENTS` or `SIGTERM` to A.
+4. Make all clients reconnect. You can wait for a client pooler's `server_idle_timeout` or equivalent setting. Without a client pooler, you can restart clients. After all clients reconnect elsewhere, A exits automatically because it has no clients.
+5. Start A again.
+6. Repeat steps 3, 4, and 5 for each remaining process, one at a time.
 
 
 #### RELOAD
 
-The PgBouncer process will reload its configuration files and update
-changeable settings.  This includes the main configuration file as
-well as the files specified by the settings `auth_file` and
-`auth_hba_file`.
+PgBouncer reloads its configuration files and applies changeable settings. This includes the main file, `auth_file`, and `auth_hba_file`.
 
-PgBouncer notices when a configuration file reload changes the
-connection parameters of a database definition.  An existing server
-connection to the old destination will be closed when the server
-connection is next released (according to the pooling mode), and new
-server connections will immediately use the updated connection
-parameters.
+If reload changes a database connection definition, PgBouncer closes old server connections on their next release according to the pooling mode. New connections use the changed parameters immediately.
 
 #### WAIT_CLOSE [db]
 
-Wait until all server connections, either of the specified database or
-of all databases, have cleared the "close_needed" state (see **SHOW SERVERS**). This can be called after a **RECONNECT** or **RELOAD** to
-wait until the respective configuration change has been fully
-activated, for example in switchover scripts.
+Wait until all server connections clear "close_needed"; see **SHOW SERVERS**. Apply to the specified database, or all databases if omitted. After **RECONNECT** or **RELOAD**, this waits for the change to apply fully, for example in switchover scripts.
 
 ### Other commands
 
@@ -868,9 +764,7 @@ Changes a configuration setting (see also **SHOW CONFIG**).  For example:
     SET log_connections = 1;
     SET server_check_query = 'select 2';
 
-(Note that this command is run on the PgBouncer admin console and sets
-PgBouncer settings.  A **SET** command run on another database will be
-passed to the PostgreSQL backend like any other SQL command.)
+Run this command in the PgBouncer admin console to change PgBouncer settings. **SET** on another database passes to PostgreSQL like other SQL commands.
 
 ### Signals
 
@@ -878,17 +772,10 @@ SIGHUP
 :   Reload config. Same as issuing the command **RELOAD** on the console.
 
 SIGTERM
-:   Super safe shutdown. Wait for all existing clients to disconnect, but don't
-    accept new connections. This is the same as issuing
-    **SHUTDOWN WAIT_FOR_CLIENTS** on the console. If this signal is received while
-    there is already a shutdown in progress, then an "immediate shutdown" is
-    triggered instead of a "super safe shutdown". In PgBouncer versions earlier
-    than 1.23.0, this signal would cause an "immediate shutdown".
+:   Wait for existing clients to disconnect and reject new connections, like **SHUTDOWN WAIT_FOR_CLIENTS**. If shutdown is already in progress, this signal triggers immediate shutdown. Before PgBouncer 1.23.0, SIGTERM caused immediate shutdown.
 
 SIGINT
-:   Safe shutdown. Same as issuing **SHUTDOWN WAIT_FOR_SERVERS** on the console.
-    If this signal is received while there is already a shutdown in progress,
-    then an "immediate shutdown" is triggered instead of a "safe shutdown".
+:   Wait for server release, like **SHUTDOWN WAIT_FOR_SERVERS**. If shutdown is already in progress, this signal triggers immediate shutdown.
 
 SIGQUIT
 :   Immediate shutdown. Same as issuing **SHUTDOWN** on the console.

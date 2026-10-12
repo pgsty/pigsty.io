@@ -8,22 +8,22 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/monitor]
 ---
 
-The MYSQL module plugs into Pigsty's observability stack: metrics flow through mysqld_exporter into VictoriaMetrics, error logs flow through Journald/Vector into VictoriaLogs, Grafana ships 5 dashboards, and vmalert loads 68 recording rules plus 27 alert rules.
+MYSQL sends mysqld_exporter metrics to VictoriaMetrics and Journald/Vector error logs to VictoriaLogs. Grafana supplies five dashboards. vmalert loads 68 recording rules and 27 alerts.
 
 
 --------
 
 ## Collection Architecture
 
-Each MySQL node runs one `mysqld_exporter` (port `9104`) using the least-privilege monitor account (`dbuser_monitor@'127.0.0.1'`). Deployment writes a file-based service-discovery target on the Infra node:
+Each node runs `mysqld_exporter` on `9104` with least-privilege `dbuser_monitor@'127.0.0.1'`. Deployment creates a discovery file on the INFRA node:
 
 ```text
 /infra/targets/mysql/<instance>.yml     # e.g. my-test-1.yml
 ```
 
-The VictoriaMetrics `mysql` scrape job consumes this directory. `mysql_exporter_enabled: false` converges the target to an empty list; only `mysql-rm.yml` deletes target files.
+The VictoriaMetrics `mysql` job reads this directory. `mysql_exporter_enabled: false` empties the target list. Only `mysql-rm.yml` removes the file.
 
-Enabled collectors include global status/variables, binlog size, InnoDB metrics, the process list, performance-schema statement digests (top 50), table/index I/O waits, and MGR membership plus replication statistics.
+Collectors cover global status/variables, binlog size, InnoDB, process lists, top-50 statement digests, table/index I/O waits, MGR membership, and replication statistics.
 
 
 --------
@@ -41,7 +41,7 @@ All MySQL metrics carry a consistent label set:
 | `topology` | Topology type | `innodb_cluster` / `standalone` |
 {.full-width}
 
-Derived rules are named `mysql:ins:*` (instance level) and `mysql:cls:*` (cluster level); the full dictionary is in [Metrics](/docs/mysql/metric).
+Derived names use `mysql:ins:*` for instances and `mysql:cls:*` for clusters. See [Metrics](/docs/mysql/metric).
 
 
 --------
@@ -57,16 +57,16 @@ Derived rules are named `mysql:ins:*` (instance level) and `mysql:cls:*` (cluste
 | [MySQL Alert](https://demo.pigsty.io/ui/d/mysql-alert) | Alert summary and key platform logs |
 {.full-width}
 
-Cluster health at a glance: `mysql:cls:health` is **2 (healthy) / 1 (degraded but writable) / 0 (critical or unwritable)** — the Overview's Healthy Clusters stat and Cluster Health timeline are built on it.
+`mysql:cls:health` reports **2 healthy, 1 degraded but writable, or 0 critical or unwritable**. Overview's Healthy Clusters stat and Cluster Health timeline use it.
 
-The Group Replication dashboard is only meaningful for `innodb_cluster` topologies; selecting a standalone cluster legitimately shows No data on MGR panels.
+Group Replication panels apply only to `innodb_cluster`. No data is expected for standalone clusters.
 
 
 --------
 
 ## Alert Rules
 
-The 27 alert rules are tiered by `severity` (CRIT / WARN / INFO). The ones to page on:
+The 27 rules use `severity` CRIT, WARN, or INFO. Use these alerts for paging:
 
 ### Availability and Cluster State
 
@@ -84,16 +84,22 @@ The 27 alert rules are tiered by `severity` (CRIT / WARN / INFO). The ones to pa
 
 ### Capacity and Performance
 
-Connection pressure (`MySQLConnectionsHigh` WARN at 80% / `MySQLConnectionsCritical` CRIT at 95%), replication queues (`MySQLGRQueueHigh` WARN / `MySQLGRQueueCritical` CRIT), flow control (`MySQLGRFlowControlHigh`), InnoDB signals (`MySQLBufferPoolWaits`, `MySQLInnoDBLogWaits`, `MySQLRedoCapacityHigh`, `MySQLDeadlocksHigh`, `MySQLHistoryListLarge`), and INFO-level hints for slow queries, disk temp tables, full joins, buffer-pool hit ratio, and recent restarts.
+Other alerts cover:
 
-Observed behavior from testing: a primary crash-failover (~20s) only produces pending alerts, no false pages; a genuine complete outage drives `ClusterNoPrimary` and `QuorumLost` to firing within 2 minutes.
+- Connections: `MySQLConnectionsHigh` WARN at 80%, `MySQLConnectionsCritical` CRIT at 95%.
+- Replication queues: `MySQLGRQueueHigh` WARN and `MySQLGRQueueCritical` CRIT.
+- Flow control: `MySQLGRFlowControlHigh`.
+- InnoDB: `MySQLBufferPoolWaits`, `MySQLInnoDBLogWaits`, `MySQLRedoCapacityHigh`, `MySQLDeadlocksHigh`, and `MySQLHistoryListLarge`.
+- INFO hints: slow queries, disk temporary tables, full joins, buffer-pool hit ratio, and recent restarts.
+
+Tests showed approximately 20-second primary crash failovers produced pending alerts without false pages. Complete outages fired `ClusterNoPrimary` and `QuorumLost` within two minutes.
 
 
 --------
 
 ## Log Queries
 
-MySQL error logs are written twice: to `/var/log/mysql/error.log` and via syslog → Journald → Vector → VictoriaLogs. Entries carry `app=mysqld-<instance>`, so the dashboard log panels work out of the box, and LogsQL queries are straightforward:
+MySQL writes errors to `/var/log/mysql/error.log` and through syslog → Journald → Vector → VictoriaLogs. `app=mysqld-<instance>` labels support dashboard panels and LogsQL queries:
 
 ```bash
 # Recent errors from one instance
@@ -105,19 +111,19 @@ curl -s http://<infra>:9428/select/logsql/query \
   -d 'query=job:syslog cls:my-test (app:~"mysqld-" OR unit:mysql-backup) _time:1h | limit 100'
 ```
 
-Note the log `cls` label is the **node** cluster name (`node_cluster`) — keep `node_cluster` aligned with `mysql_cluster`, as the configuration examples do, so metric and log labels agree.
+Log `cls` uses the **node** cluster, `node_cluster`. Match it to `mysql_cluster`, as examples do, to align metric and log labels.
 
 Known boundaries:
 
-- The **slow query log** (`slow.log`, 1s threshold) stays on local disk and is not shipped to VictoriaLogs — inspect it on the instance, or use the statement-digest metrics (`mysql:ins:statement_latency` and friends);
-- **Router runtime logs** live in `/var/log/mysqlrouter/` and are also local-only.
+- **Slow queries:** `slow.log`, with a 1s threshold, remains local. Inspect it on the instance or use statement digests such as `mysql:ins:statement_latency`.
+- **Router runtime logs:** `/var/log/mysqlrouter/` also remains local.
 
 
 --------
 
 ## Verify the Pipeline
 
-Self-check every hop after deployment:
+Verify every pipeline stage after deployment:
 
 ```bash
 # Exporter itself

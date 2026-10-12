@@ -8,7 +8,7 @@ categories: [Reference]
 ---
 
 
-The MINIO module collects Silo metrics through `/minio/metrics/v3`. The metric set varies with server versions and enabled features, so this page documents the stable interfaces used by current dashboards and alerts rather than treating a complete scrape from one version as a permanent contract.
+The MINIO module collects Silo metrics through `/minio/metrics/v3`. The metric set varies with the server version and enabled features. This page describes the stable interfaces used by current dashboards and alerts. A complete scrape from one version is not a permanent interface contract.
 
 
 --------
@@ -55,4 +55,6 @@ Each Silo instance exposes only the V3 root endpoint, `/minio/metrics/v3`. Curre
 | Audit | `minio_audit_total_messages` | Audit-message count |
 {.full-width}
 
-Pigsty drops samples whose `bucket` label is non-empty at scrape time and does not register dedicated per-bucket or replication endpoints. This is an intentional cardinality-control policy. If per-bucket metrics are required, evaluate the time-series volume before adding a custom scrape job.
+During scraping, Pigsty drops samples with a non-empty `bucket` label. It does not register dedicated per-bucket or replication endpoints. This policy controls the number of time series.
+
+If you need per-bucket metrics, evaluate the time-series volume before you add a custom scrape job.

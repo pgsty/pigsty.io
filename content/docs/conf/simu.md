@@ -6,7 +6,7 @@ icon: fa-solid fa-server
 categories: [Reference]
 ---
 
-The `ha/simu` configuration template is a 20-node production environment simulation, requiring a powerful host machine to run.
+The `ha/simu` configuration template simulates a production environment with 20 nodes. It requires a powerful host machine.
 
 
 --------
@@ -39,7 +39,7 @@ Source: [`pigsty/conf/ha/simu.yml`](https://github.com/pgsty/pigsty/blob/main/co
 
 ## Explanation
 
-The `ha/simu` template is a **large-scale production environment simulation** for testing and validating complex scenarios.
+The `ha/simu` template provides a **large-scale production environment simulation**. Use it to test and validate complex scenarios.
 
 **Architecture**:
 - 2-node HA INFRA (monitoring/alerting/Nginx/DNS)

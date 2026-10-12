@@ -8,12 +8,12 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql]
 ---
 
-[MySQL](https://www.mysql.com/) is one of the world's most popular open-source relational databases. Pigsty's **MYSQL** module deploys a fixed, **native MySQL 8.4 LTS platform** on managed nodes: either a standalone instance or a three-node single-primary InnoDB Cluster built on Group Replication, with TLS, backups, monitoring, and lifecycle handled for you.
+[MySQL](https://www.mysql.com/) is a widely used open-source relational database. Pigsty's **MYSQL** module installs a fixed **native MySQL 8.4 LTS platform** on managed nodes. Choose a standalone instance or three-node single-primary InnoDB Cluster with Group Replication. The module manages TLS, backups, monitoring, and lifecycle.
 
 > [!NOTE] Current status: Pilot module
-> MYSQL is a supplementary pilot module. It aims to be a simple, inexpensive, good-enough MySQL cluster — not a peer of the PGSQL module.
-> The core capabilities (deployment and convergence, HA failover, daily backups, monitoring and alerting) have been tested systematically;
-> destructive procedures such as complete-outage recovery and physical restore are deliberately kept manual, with runbooks provided in [Administration](/docs/mysql/admin).
+> MYSQL is a supplementary pilot module for a simple, low-cost MySQL cluster. Its scope is smaller than PGSQL.
+> Deployment, convergence, HA failover, daily backups, monitoring, and alerts have systematic tests.
+> Destructive complete-outage recovery and physical restore remain manual. Follow the [Administration](/docs/mysql/admin) procedures.
 
 
 --------
@@ -22,23 +22,23 @@ aliases: [/docs/pilot/mysql]
 
 The MYSQL module currently provides:
 
-- A fixed native MySQL 8.4 LTS platform: server, client, Shell, Router, and XtraBackup at matching versions, working out of the box
-- Two topologies: a standalone instance, or a three-node single-primary InnoDB Cluster created and reconciled through MySQL Shell AdminAPI
-- MySQL Router on every HA member, providing topology-aware read-write (`6446`) and read-only (`6447`) endpoints
-- TLS everywhere: leaf certificates issued from the shared Pigsty CA; non-TLS connections are rejected
-- Declarative business objects: `mysql_databases` and `mysql_users` converge additively and never delete data implicitly
-- `mysql_parameters` overrides for key settings such as `max_connections`, with orchestrated rolling restarts on configuration change
-- A daily full physical backup: XtraBackup backup plus prepare, with retention, concurrency locking, and atomic commit
-- Full observability: mysqld_exporter metrics, 68 recording rules, 27 alert rules, 5 Grafana dashboards, and error logs shipped to VictoriaLogs
-- `sql_require_primary_key` enabled by default, blocking PK-less tables that would break MGR replication and disaster recovery
-- Convergent operations: for a dropped member or drifted AdminAPI state, rerunning `mysql.yml` heals the cluster; destructive paths are fenced by guardrails
+- Fixed native MySQL 8.4 LTS server, client, Shell, Router, and matching XtraBackup packages.
+- Standalone or three-node single-primary InnoDB Cluster, created and reconciled through MySQL Shell AdminAPI.
+- Router on each HA member, with topology-aware read/write `6446` and read-only `6447` endpoints.
+- TLS with leaf certificates from the shared Pigsty CA. Non-TLS connections are rejected.
+- Additive `mysql_databases` and `mysql_users` declarations that never delete data implicitly.
+- `mysql_parameters` overrides, including `max_connections`, with rolling restarts after configuration changes.
+- Daily full physical XtraBackup backup and prepare, retention, concurrency locks, and atomic completion.
+- mysqld_exporter metrics, 68 recording rules, 27 alerts, five Grafana dashboards, and VictoriaLogs error logs.
+- Default `sql_require_primary_key`, blocking tables without primary keys that would break MGR replication and recovery.
+- Convergent repair of dropped members and AdminAPI drift by rerunning `mysql.yml`. Safeguards restrict destructive paths.
 
 
 --------
 
 ## Module Architecture
 
-The MYSQL module depends on [`NODE`](/docs/node) for node management, package repositories, and the shared CA, and on [`INFRA`](/docs/infra) for VictoriaMetrics, VictoriaLogs, Grafana, and Alertmanager. It does not require `ETCD` or `PGSQL`.
+[`NODE`](/docs/node) supplies node management, repositories, and the shared CA. [`INFRA`](/docs/infra) supplies VictoriaMetrics, VictoriaLogs, Grafana, and Alertmanager. MYSQL depends on both, but not `ETCD` or `PGSQL`.
 
 ```mermaid
 flowchart LR
@@ -60,7 +60,7 @@ flowchart LR
     style vl fill:#C98367,stroke:#9e634e,color:#fff
 ```
 
-In the three-node topology, `mysql_seq=1` is only the bootstrap coordinator. The runtime PRIMARY is elected, and reruns never force the primary back to node 1.
+In three-node clusters, `mysql_seq=1` coordinates bootstrap only. Runtime PRIMARY is elected. Reruns never force it back to node 1.
 
 
 --------
@@ -96,20 +96,20 @@ The native-package platform gate admits:
 | `aarch64` | EL 9/10 |
 {.full-width}
 
-Debian/Ubuntu ARM64 is rejected at preflight: Oracle's APT repository publishes no `arm64` payload for MySQL 8.4. On ARM, use EL 9/10 (e.g. Rocky Linux).
+Preflight rejects Debian/Ubuntu ARM64 because Oracle APT has no MySQL 8.4 `arm64` packages. On ARM, use EL 9/10, such as Rocky Linux.
 
 
 --------
 
 ## Scope and Boundaries
 
-MYSQL is a fixed platform, not a general-purpose MySQL installer. The following are **deliberate non-goals** — confirm they are acceptable before adopting:
+MYSQL provides a fixed platform. Before adoption, accept these **scope limits**:
 
-- **Topology is fixed at 1 or 3 nodes**: no in-place 1→3 upgrade, no 3→5 scale-out, no persistent two-node operation. Capacity upgrades go through logical migration; hardware refresh goes through [same-address replacement](/docs/mysql/admin#replace-a-failed-member)
-- **Versions, ports, directories, and charset are fixed**: no parameters expose them. Memory sizing is derived from node specs and can be overridden per key via [`mysql_parameters`](/docs/mysql/param#mysql_parameters)
-- **Backups are daily local fulls**: no incremental chain, no continuous binlog archiving, no PITR. Physical restore is a manual procedure with a [runbook](/docs/mysql/admin#restore-from-physical-backup)
-- **Complete-outage recovery stays manual** to rule out split-brain from automated guessing; playbook failures print the recovery instructions
-- **No VIP / DNS / HAProxy access layer**: clients connect through any member's Router ports, preferably with a multi-host DSN
+- **One or three nodes only:** No in-place 1→3 or 3→5 expansion and no persistent two-node operation. Use logical migration for capacity changes and [same-address replacement](/docs/mysql/admin#replace-a-failed-member) for hardware refresh.
+- **Fixed versions, ports, directories, and charset:** No parameters change them. Memory sizing comes from node specifications. Override individual keys through [`mysql_parameters`](/docs/mysql/param#mysql_parameters).
+- **Daily local full backups:** No incremental chains, continuous binlog archives, or PITR. Physical restore is manual; follow the [procedure](/docs/mysql/admin#restore-from-physical-backup).
+- **Manual complete-outage recovery:** This avoids split-brain from automated guesses. Playbook failures print recovery instructions.
+- **No VIP, DNS, or HAProxy access layer:** Connect through any member's Router, preferably with a multi-host DSN.
 
 
 --------

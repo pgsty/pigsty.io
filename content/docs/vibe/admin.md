@@ -68,7 +68,9 @@ Config file: `/data/jupyter/jupyter_config.py`
 
 Field: `c.IdentityProvider.token`
 
-The current v4.5 template also allows any Origin and disables XSRF checks, so the token is its primary authentication barrier. Use a strong random token, restrict TCP/8888, and access it through a trusted TLS reverse proxy. Persist a new token in inventory, then preview and apply it:
+The current v4.5 template allows any Origin and disables XSRF checks. Thus, the token is its primary authentication barrier. Use a strong random token. Restrict TCP/8888 and access Jupyter through a trusted TLS reverse proxy.
+
+Save the new token in the inventory. Then preview and apply the change:
 
 ```bash
 ./vibe.yml -l <host> -t jupyter_config --check
@@ -102,7 +104,7 @@ Redeploy:
 
 ## JupyterLab Environment
 
-VIBE does not create venv automatically, ensure `jupyter_venv` exists:
+VIBE does not create the venv automatically. Make sure that `jupyter_venv` exists:
 
 ```bash
 uv venv /data/venv
@@ -127,7 +129,7 @@ systemctl restart jupyter
 
 ## Claude Code
 
-The `claude_install` subtask installs Claude CLI, while `claude_config` writes the configuration files.
+The `claude_install` subtask installs Claude CLI. The `claude_config` subtask writes its configuration files.
 
 ```bash
 which claude
@@ -159,7 +161,7 @@ Override `claude_package` if you need a different npm package.
 
 ## Codex CLI
 
-VIBE installs `@openai/codex` through `codex_install`, but does not manage Codex configuration:
+VIBE installs `@openai/codex` through `codex_install`. It does not manage the Codex configuration:
 
 ```bash
 which codex

@@ -8,24 +8,28 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-This is the Pigsty production multi-node deployment guide. For single-node Demo/Dev setups, see [**Getting Started**](/docs/setup/).
-
-----------------
+This guide describes production deployment on multiple nodes.
+For single-node demonstrations or development, use [Getting Started](/docs/setup/).
 
 ## Summary
 
-[**Prepare**](/docs/deploy/prepare) [**nodes**](/docs/deploy/prepare#node) with [**SSH access**](/docs/deploy/admin#ssh) following your [**architecture plan**](/docs/deploy/planning),
-install a [**compatible Linux OS**](/docs/ref/linux/), then execute with an [**admin user**](/docs/deploy/admin) having passwordless [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo):
+1. [Prepare](/docs/deploy/prepare) the [nodes](/docs/deploy/prepare#node) according to your [architecture plan](/docs/deploy/planning).
+2. Install a [supported Linux operating system](/docs/ref/linux/).
+3. Configure [SSH access](/docs/deploy/admin#ssh).
+4. Use an [administration account](/docs/deploy/admin) with passwordless [`ssh`](/docs/deploy/admin#ssh) and [`sudo`](/docs/deploy/admin#sudo) access.
+5. Run the installation command:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash;         # International
 curl -fsSL https://repo.pigsty.cc/get | bash;         # Backup Mirror
 ```
 
-This runs the [**install**](#install) script, downloading and extracting Pigsty source to your home directory with dependencies installed. Complete [**configuration**](#configure) and [**deployment**](#deploy) to finish.
+The [installation script](#install) downloads and extracts Pigsty into your home directory.
+It also installs the dependencies.
+Then complete [configuration](#configure) and [deployment](#deploy).
 
-Before running [**`deploy.yml`**](/docs/setup/playbook) for deployment, review and edit the [**configuration inventory**](/docs/concept/iac/inventory): `pigsty.yml`.
+Before you run [`deploy.yml`](/docs/setup/playbook), examine and edit `pigsty.yml`.
+This file is the [configuration inventory](/docs/concept/iac/inventory).
 
 ```bash
 cd ~/pigsty      # Enter Pigsty directory
@@ -33,23 +37,20 @@ cd ~/pigsty      # Enter Pigsty directory
 ./deploy.yml     # Execute deployment playbook based on generated config
 ```
 
-After installation, access the [**WebUI**](/docs/setup/webui/) via IP/domain + ports `80/443`,
-and [**PostgreSQL service**](/docs/setup/pgsql/) via port `5432`.
+After deployment, open the [Web UI](/docs/setup/webui/) through the IP address or domain on ports `80/443`.
+Connect to [PostgreSQL](/docs/setup/pgsql/) on port `5432`.
 
-Full installation takes 3-10 minutes depending on specs/network. [**Offline installation**](/docs/setup/offline/) significantly speeds this up; [**slim installation**](/docs/setup/slim/) further accelerates when monitoring isn't needed.
+Installation usually takes 3-10 minutes, depending on server resources and network speed.
+[Offline installation](/docs/setup/offline/) can reduce this time.
+If you do not need monitoring, [Slim Installation](/docs/setup/slim/) installs fewer components and takes less time.
 
-**Video Example: 20-node Production Simulation (Ubuntu 24.04 x86_64)**
+**Example: 20-node production simulation on Ubuntu 24.04, x86_64**
 
 {{< asciinema file="demo/install-simu.cast" markers="0:Provision Servers,36.0:Deploy,360:Complete" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
-
-
-
-----------------
-
 ## Prepare
 
-Production Pigsty deployment involves [**preparation work**](/docs/deploy/prepare). Here's the complete checklist:
+Use this checklist to complete the [deployment preparations](/docs/deploy/prepare):
 
 |                   Item                    | Requirement                              |                           Item                           | Requirement                                             |
 |:-----------------------------------------:|:-----------------------------------------|:--------------------------------------------------------:|:--------------------------------------------------------|
@@ -63,13 +64,10 @@ Production Pigsty deployment involves [**preparation work**](/docs/deploy/prepar
 |     [**SSH**](/docs/deploy/admin#ssh)     | Passwordless SSH via public key          | [**Accessible**](/docs/deploy/admin#check-accessibility) | `ssh <ip\|alias> sudo ls` no error                      |
 {.full-width}
 
-
-
-----------------
-
 ## Install
 
-Use the following to automatically install the [**Pigsty source package**](/docs/deploy/prepare#pigsty) to `~/pigsty` (recommended). Deployment dependencies (Ansible) are auto-installed.
+Use one of these commands to install the [Pigsty source package](/docs/deploy/prepare#pigsty) into `~/pigsty`.
+This method is recommended and also installs Ansible and other deployment dependencies.
 
 ```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
@@ -81,37 +79,39 @@ curl -fsSL https://repo.pigsty.cc/get | bash            # Install current defaul
 curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param stable_version >}}  # Explicitly install the current public stable release
 ```
 
-If you prefer not to run remote scripts, manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use:
+You can instead [download a release](https://github.com/pgsty/pigsty/releases) or clone the source repository.
+If you use `git`, select a released version before deployment:
 
 ```bash
 git clone https://github.com/pgsty/pigsty; cd pigsty;
 git checkout {{< param stable_version >}};  # Always checkout a released tag when using git
 ```
 
-For manual download/clone, additionally run [**`bootstrap`**](/docs/setup/offline#bootstrap) to manually install Ansible and other dependencies, or [**install them yourself**](/docs/setup/playbook#install-ansible):
+After a manual download or clone, run [`bootstrap`](/docs/setup/offline#bootstrap) to install Ansible and the other dependencies.
+You can also [install them yourself](/docs/setup/playbook#install-ansible).
 
 ```bash
 ./bootstrap           # Install ansible for subsequent deployment
 ```
 
-
-
-----------------
-
 ## Configure
 
-In Pigsty, deployment details are defined by the [**configuration inventory**](/docs/setup/config/)—the [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) config file. Customize through declarative configuration.
+The [inventory](/docs/setup/config/) defines the deployment configuration.
+Pigsty uses [`pigsty.yml`](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) as the default configuration file.
+Edit it to define the required deployment.
 
-Pigsty provides [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) as an optional [**configuration wizard**](/docs/concept/iac/configure),
-generating a [**configuration inventory**](/docs/concept/iac/inventory/) with good defaults based on your environment:
+The [`configure` script](https://github.com/pgsty/pigsty/blob/main/configure) is an optional [configuration wizard](/docs/concept/iac/configure).
+It generates an [inventory](/docs/concept/iac/inventory/) with defaults for your environment:
 
 ```bash
 ./configure -g                # Use wizard to generate config with random passwords
 ```
 
-The generated config defaults to `~/pigsty/pigsty.yml`. Review and customize before installation.
+The default output file is `~/pigsty/pigsty.yml`.
+Examine this file and make the necessary changes before deployment.
 
-Many [**configuration templates**](/docs/concept/iac/template/) are available for reference. You can skip the wizard and directly edit `pigsty.yml`:
+Use the [configuration templates](/docs/concept/iac/template/) as examples.
+You can also edit `pigsty.yml` directly without the wizard:
 
 ```bash
 ./configure -c ha/full -g       # Use 4-node sandbox template
@@ -119,7 +119,6 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ./configure -c ha/dual -g -v 18 # Use 2-node semi-HA template with PG 18
 ./configure -c ha/simu -s       # Use 20-node production simulation, skip IP check, no random passwords
 ```
-
 
 > [!DETAILS]- Example configure output
 > ```bash
@@ -146,9 +145,10 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 > proceed with ./deploy.yml
 > ```
 
-The wizard only replaces the **current node's** IP (use `-s` to skip replacement). For multi-node deployments, replace other node IPs manually.
-Also customize the config as needed—modify default passwords, add nodes, etc.
-
+The wizard replaces only the current node IP address.
+Use `-s` to skip this replacement.
+For multiple nodes, replace the other IP addresses manually.
+Change default passwords, add nodes, and adjust other configuration values for your environment.
 
 **Common configure parameters**:
 
@@ -161,22 +161,20 @@ Also customize the config as needed—modify default passwords, add nodes, etc.
 | `-x\|--proxy`           | Configure [`proxy_env`](/docs/infra/param#proxy_env) from current environment variables |
 {.full-width}
 
-If your machine has multiple IPs, explicitly specify one with `-i|--ip <ipaddr>` or provide it interactively.
-The script replaces IP placeholder `10.10.10.10` with the current node's primary IPv4. Use a static IP; never use public IPs.
+If the node has multiple IP addresses, select its primary address with `-i|--ip <ipaddr>` or enter it interactively.
+The script replaces `10.10.10.10` with the current node's primary IPv4 address.
+Use a static private address.
+Do not use a public IP address.
 
-Generated config is at `~/pigsty/pigsty.yml`. Review and modify before installation.
+Review the generated `~/pigsty/pigsty.yml` before deployment.
 
-> [!CAUTION] Change default passwords!
-> Change default passwords and credentials before installation. See [**Security Recommendations**](/docs/setup/security#passwords).
-
-
-
-
---------
+> [!CAUTION] Replace default credentials
+> Change default passwords and credentials before deployment.
+> See [Security Recommendations](/docs/setup/security#passwords).
 
 ## Deploy
 
-Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/playbook/) applies the [**configuration**](#configure) blueprint to **all target nodes**.
+The [`deploy.yml`](/docs/setup/playbook/) [playbook](/docs/setup/playbook/) applies the [configuration](#configure) to all target nodes:
 
 ```bash
 ./deploy.yml     # Deploy core modules on all target nodes at once
@@ -200,21 +198,20 @@ Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/pl
 > localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 > ```
 >
-> When output ends with `pgsql init done`, `PLAY RECAP`, etc., installation is complete!
+> The final installation output includes `pgsql init done` and `PLAY RECAP`.
 
-> [!WARNING] Upstream repo changes may cause online installation failures!
-> Upstream repos (Linux/PGDG) may break due to improper updates, causing deployment failures (quite common)!
-> For serious production deployments, we strongly recommend using verified [**offline packages**](/docs/setup/offline#offline-package) for [**offline installation**](/docs/setup/offline).
+> [!WARNING] Upstream changes can stop installation
+> Incorrect updates to Linux or PGDG repositories can break dependencies and cause deployment failures.
+> These failures are common.
+> For production, we strongly recommend verified [offline packages](/docs/setup/offline#offline-package) for [offline installation](/docs/setup/offline).
 
-> [!WARNING] Avoid running deploy playbook repeatedly!
-> Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an initialized environment may restart services and overwrite configs. Be careful!
-
-
---------
+> [!WARNING] Repeated deployment can change services
+> Another run of [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) on an existing deployment can restart services and overwrite configuration files.
+> Examine the required changes before you run it again.
 
 ## Interface
 
-Assuming the [**4-node**](/docs/conf/full) deployment template, your Pigsty environment should have a structure like:
+The [4-node template](/docs/conf/full) creates this deployment structure:
 
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
@@ -224,22 +221,19 @@ Assuming the [**4-node**](/docs/conf/full) deployment template, your Pigsty envi
 | 4  |    `10.10.10.13`    |      `pg-test-3`      |           -           |            -            |
 {.full-width}
 
-The [**`INFRA`**](/docs/infra) module provides a [**graphical management interface**](/docs/setup/webui) via browser, accessible through Nginx's **80/443** ports.
+The [`INFRA` module](/docs/infra) supplies the [Web UI](/docs/setup/webui) through Nginx on ports **80/443**.
+The [`PGSQL` module](/docs/pgsql/) supplies a [PostgreSQL server](/docs/setup/pgsql) on port **5432**.
+You can also connect through [PgBouncer or HAProxy](/docs/pgsql/service).
 
-The [**`PGSQL`**](/docs/pgsql/) module provides a [**PostgreSQL database server**](/docs/setup/pgsql) on port **5432**, also accessible via Pgbouncer/HAProxy [**proxies**](/docs/pgsql/service).
-
-For production multi-node HA PostgreSQL clusters, use [**service access**](/docs/pgsql/misc/svc) for automatic traffic routing.
+For production HA clusters, use [service access](/docs/pgsql/misc/svc) to route traffic automatically.
 
 [![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io)
 
-
-----------------
-
 ## More
 
-After installation, explore the [**WebUI**](/docs/setup/webui/) and access [**PostgreSQL service**](/docs/setup/pgsql/) via port 5432.
-
-Deploy and monitor [**more clusters**](/docs/conf/full)—add definitions to the [**configuration inventory**](/docs/setup/config/) and run:
+After installation, open the [Web UI](/docs/setup/webui/) and connect to [PostgreSQL](/docs/setup/pgsql/) on port 5432.
+To deploy and monitor [additional clusters](/docs/conf/full), add their definitions to the [inventory](/docs/setup/config/).
+Then run the applicable commands:
 
 ```bash
 bin/node-add   pg-test      # Add pg-test cluster's 3 nodes to Pigsty management
@@ -247,7 +241,6 @@ bin/pgsql-add  pg-test      # Initialize a 3-node pg-test HA PG cluster
 bin/redis-add  redis-ms     # Initialize Redis cluster: redis-ms
 ```
 
-Most modules require the [**`NODE`**](/docs/node/) module first. See available [**modules**](/docs/ref/module/):
-
-[**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), [**`ETCD`**](/docs/etcd/),
-[**`MINIO`**](/docs/minio/), [**`REDIS`**](/docs/redis/), [**`DOCKER`**](/docs/docker/)...
+Most modules require the [`NODE` module](/docs/node/) first.
+See the [module reference](/docs/ref/module/).
+Available modules include [`PGSQL`](/docs/pgsql/), [`INFRA`](/docs/infra/), [`NODE`](/docs/node/), [`ETCD`](/docs/etcd/), [`MINIO`](/docs/minio/), [`REDIS`](/docs/redis/), and [`DOCKER`](/docs/docker/).

@@ -6,7 +6,7 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-The `mysql` configuration template uses OpenHalo database kernel instead of native PostgreSQL, providing MySQL wire protocol and SQL syntax compatibility.
+The `mysql` configuration template uses the OpenHalo database kernel instead of native PostgreSQL. OpenHalo provides MySQL wire protocol and SQL syntax compatibility.
 
 
 --------
@@ -40,7 +40,7 @@ Source: [`pigsty/conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `mysql` template uses the OpenHalo kernel, allowing you to connect to PostgreSQL using MySQL client tools.
+The `mysql` template uses the OpenHalo kernel. You can connect to PostgreSQL with MySQL client tools.
 
 **Key Features**:
 - Uses MySQL protocol (port 3306), compatible with MySQL clients
@@ -64,6 +64,6 @@ psql postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
 - Leveraging PostgreSQL ecosystem while maintaining MySQL compatibility
 
 **Notes**:
-- OpenHalo is based on PostgreSQL 14, does not support higher version features
+- OpenHalo is based on PostgreSQL 14. It does not support features from later versions.
 - Some MySQL syntax may have compatibility differences
-- The current `openhalo` package alias covers Pigsty's supported Linux platforms on both architectures; actual installation still depends on the target platform's repository index
+- The current `openhalo` package alias covers Pigsty's supported Linux platforms on both architectures. Installation still depends on the repository index for the target platform.

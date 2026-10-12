@@ -20,14 +20,14 @@ weight: 5920
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgpool`**](/ext/e/pgpool_adm) | `4.7.2` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgpool`**](/ext/e/pgpool_adm) | `4.7.3` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5900  | [**`pgpool_adm`**](/ext/e/pgpool_adm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
-| 5910  | [**`pgpool_recovery`**](/ext/e/pgpool_recovery) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
-| 5920  | [**`pgpool_regclass`**](/ext/e/pgpool_regclass) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5900  | [**`pgpool_adm`**](/ext/e/pgpool_adm) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 5910  | [**`pgpool_recovery`**](/ext/e/pgpool_recovery) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 5920  | [**`pgpool_regclass`**](/ext/e/pgpool_regclass) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgdd`](/ext/e/pgdd) [`meta`](/ext/e/meta) [`pg_readme`](/ext/e/pg_readme) [`ddlx`](/ext/e/ddlx) [`pg_catcheck`](/ext/e/pg_catcheck) |
@@ -35,13 +35,16 @@ weight: 5920
 {.ext-table .ext-table--rel}
 
 
+> Pgpool-II/PGDG package 4.7.3; pgpool_regclass SQL/control version 1.0. Verified RPM/DEB payload includes pgpool-regclass.so; standard native extension, no preload required.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.2` | {{< pgvers "18,17,16,15,14" >}} | `pgpool` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.2` | {{< pgvers "18,17,16,15,14" >}} | `pgpool-II-pg$v-extensions` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgpool2` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.3` | {{< pgvers "18,17,16,15,14" >}} | `pgpool` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.3` | {{< pgvers "18,17,16,15,14" >}} | `pgpool-II-pg$v-extensions` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgpool2` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -53,16 +56,16 @@ weight: 5920
 | el9.aarch64 | AVAIL PGDG 4.7.3 14 | AVAIL PGDG 4.7.3 19 | AVAIL PGDG 4.7.3 22 | AVAIL PGDG 4.7.3 25 | AVAIL PGDG 4.7.3 25 |
 | el10.x86_64 | AVAIL PGDG 4.7.3 14 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 |
 | el10.aarch64 | AVAIL PGDG 4.7.3 14 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 | AVAIL PGDG 4.7.3 17 |
-| d12.x86_64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| d12.aarch64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| d13.x86_64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| d13.aarch64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u22.x86_64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u22.aarch64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u24.x86_64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u24.aarch64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u26.x86_64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
-| u26.aarch64 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 | AVAIL PGDG 4.7.2 3 |
+| d12.x86_64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| d12.aarch64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| d13.x86_64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| d13.aarch64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u22.x86_64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u22.aarch64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u24.x86_64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u24.aarch64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u26.x86_64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
+| u26.aarch64 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 | AVAIL PGDG 4.7.3 3 |
 {{< /pgext_matrix >}}
 
 

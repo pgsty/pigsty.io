@@ -7,11 +7,11 @@ module: [PIGSTY]
 categories: [Concept]
 ---
 
-Pigsty uses a **modular architecture** with a **declarative interface**. You can [**freely combine modules like building blocks**](/docs/deploy/planning#common-solutions) as needed.
+Pigsty uses a **modular architecture** and **declarative interface**. [**Combine modules**](/docs/deploy/planning#common-solutions) to meet your requirements.
 
-* Pigsty adopts a [**modular design**](/docs/deploy/planning) that can be freely combined and used on demand (use one or all) to suit different scenarios.
-* Pigsty uses [**config inventory**](/docs/concept/iac/inventory) and [**config parameters**](/docs/concept/iac/parameter) to describe the entire deployment environment, implemented via [**Ansible playbooks**](/docs/setup/playbook).
-* Pigsty can run on any [**node**](/docs/concept/arch/node)—physical or virtual—as long as the OS is [**compatible**](/docs/ref/linux).
+* Use one or more modules from the [**modular design**](/docs/deploy/planning).
+* Describe the environment with a [**configuration inventory**](/docs/concept/iac/inventory) and [**parameters**](/docs/concept/iac/parameter). Apply it with [**Ansible playbooks**](/docs/setup/playbook).
+* Run Pigsty on physical or virtual [**nodes**](/docs/concept/arch/node) with a [**compatible OS**](/docs/ref/linux).
 
 
 ----------------
@@ -27,12 +27,9 @@ Pigsty uses a modular design with six main default modules: [`PGSQL`](/docs/pgsq
 * [`REDIS`](/docs/redis): Redis servers supporting standalone primary-replica, sentinel, and cluster modes with full monitoring.
 * [`MINIO`](/docs/minio): S3-compatible simple object storage that can serve as an optional backup destination for PG databases.
 
-You can declaratively compose them freely. If you only want host monitoring, installing the [`INFRA`](/docs/infra) module on infrastructure nodes and the [`NODE`](/docs/node) module on managed nodes is sufficient.
-The [`ETCD`](/docs/etcd) and [`PGSQL`](/docs/pgsql) modules are used to build HA PG clusters—installing these modules on multiple nodes automatically forms a high-availability database cluster.
-You can reuse Pigsty infrastructure and develop your own modules; [`REDIS`](/docs/redis) and [`MINIO`](/docs/minio) can serve as examples. Protocol compatibility layers such as [PostgreSQL Mongo mode](/docs/conf/mongo/) are composed from standard PGSQL and Docker APP workflows.
+Combine modules through declarative configuration. For host monitoring, install [`INFRA`](/docs/infra) on infrastructure nodes and [`NODE`](/docs/node) on managed nodes. Install [`ETCD`](/docs/etcd) and [`PGSQL`](/docs/pgsql) across multiple nodes to form an HA PostgreSQL cluster automatically. You can reuse Pigsty infrastructure for custom modules; see [`REDIS`](/docs/redis) and [`MINIO`](/docs/minio) as examples. Compatibility modes, such as [PostgreSQL Mongo mode](/docs/conf/mongo/), combine standard PGSQL and Docker APP workflows.
 
-Note that all modules depend strongly on the `NODE` module: in Pigsty, nodes must first have the `NODE` module installed to be managed before deploying other modules.
-When nodes (by default) use the local software repo for installation, the `NODE` module has a weak dependency on the `INFRA` module. Therefore, the admin/infrastructure nodes with the `INFRA` module complete the bootstrap process in the [`deploy.yml`](/docs/setup/playbook) playbook, resolving the circular dependency.
+Every module requires `NODE`. Install it first on managed nodes. By default, `NODE` uses the local software repository and thus has a weak dependency on `INFRA`. The [`deploy.yml`](/docs/setup/playbook) playbook bootstraps administration/infrastructure nodes with `INFRA` to resolve this circular dependency.
 
 
 [![pigsty-sandbox](/img/pigsty/sandbox.png)](/docs/deploy/sandbox)
@@ -43,10 +40,9 @@ When nodes (by default) use the local software repo for installation, the `NODE`
 
 ## Standalone Installation
 
-By default, Pigsty installs on a single **node** (physical/virtual machine). The [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) playbook installs [`INFRA`](/docs/infra), [`ETCD`](/docs/etcd), [`PGSQL`](/docs/pgsql), and optionally [`MINIO`](/docs/minio) modules on the **current** node,
-giving you a fully-featured observability stack (VictoriaMetrics, VictoriaLogs, VictoriaTraces, Grafana, Alertmanager, Blackbox Exporter, etc.), plus a built-in PostgreSQL standalone instance as a CMDB, ready to use out of the box (cluster name `pg-meta`, database name `meta`).
+By default, Pigsty installs on one physical or virtual **node**. [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) installs [`INFRA`](/docs/infra), [`ETCD`](/docs/etcd), [`PGSQL`](/docs/pgsql), and optional [`MINIO`](/docs/minio) on the **current** node. Monitoring includes VictoriaMetrics, VictoriaLogs, VictoriaTraces, Grafana, Alertmanager, and Blackbox Exporter. A standalone PostgreSQL instance serves as the CMDB: cluster `pg-meta`, database `meta`.
 
-This node now has a complete self-monitoring system, visualization tools, and a Postgres database with PITR auto-configured (HA unavailable since you only have one node). You can use this node as a devbox, for testing, running demos, and data visualization/analysis. Or, use this node as an admin node to deploy and manage more nodes!
+This node has monitoring, visualization, and PostgreSQL with automatic PITR configuration. One node cannot provide HA. Use it for development, tests, demonstrations, and data visualization or analysis. It can also serve as an administration node for additional nodes.
 
 [![pigsty-arch](/img/pigsty/arch.png)](/docs/infra/)
 
@@ -56,11 +52,9 @@ This node now has a complete self-monitoring system, visualization tools, and a 
 
 ## Monitoring
 
-The installed [standalone meta node](#standalone-installation) can serve as an **admin node** and **monitoring center** to bring more nodes and database servers under its supervision and control.
+Use the [standalone meta node](#standalone-installation) as an **administration node** and **monitoring center** for additional nodes and database servers.
 
-Pigsty's monitoring system can be used independently. If you want to install the VictoriaMetrics/Grafana observability stack, Pigsty provides best practices!
-It offers rich dashboards for [host nodes](https://demo.pigsty.io/d/node-overview) and [PostgreSQL databases](https://demo.pigsty.io/d/pgsql-overview).
-Whether or not these nodes or PostgreSQL servers are managed by Pigsty, with simple configuration, you immediately have a production-grade monitoring and alerting system, bringing existing hosts and PostgreSQL under management.
+You can use Pigsty monitoring independently. It configures VictoriaMetrics/Grafana with dashboards for [host nodes](https://demo.pigsty.io/d/node-overview) and [PostgreSQL databases](https://demo.pigsty.io/d/pgsql-overview). A small configuration enables production monitoring and alerts for existing hosts and databases, including those managed outside Pigsty.
 
 [![pigsty-dashboard.jpg](/img/pigsty/dashboard.jpg)](/docs/pgsql/monitor/)
 
@@ -70,9 +64,9 @@ Whether or not these nodes or PostgreSQL servers are managed by Pigsty, with sim
 
 ## HA PostgreSQL Clusters
 
-Pigsty helps you **own** your own production-grade HA PostgreSQL RDS service anywhere.
+Pigsty lets you operate your own production HA PostgreSQL RDS service in your chosen environment.
 
-To create such an HA PostgreSQL cluster/RDS service, you simply describe it with a short config and run the playbook to create it:
+To create an HA cluster, describe it in configuration and run the playbook:
 
 ```yaml
 pg-test:
@@ -87,12 +81,10 @@ pg-test:
 $ bin/pgsql-add pg-test  # Initialize cluster 'pg-test'
 ```
 
-In less than 10 minutes, you'll have a PostgreSQL database cluster with service access, monitoring, backup PITR, and HA fully configured.
+In less than 10 minutes, the cluster has service access, monitoring, backup PITR, and HA configured.
 
 [![pigsty-ha.png](/img/pigsty/ha.png)](/docs/concept/ha)
 
-Hardware failures are covered by the self-healing HA architecture provided by patroni, etcd, and haproxy—in case of primary failure, automatic failover executes within 45 seconds by default.
-Clients don't need to modify config or restart applications: Haproxy uses patroni health checks for traffic distribution, and read-write requests are automatically routed to the new cluster primary, avoiding split-brain issues.
-This process is seamless—for example, in case of replica failure or planned switchover, clients experience only a momentary flash of the current query.
+Patroni, etcd, and HAProxy provide automatic recovery from hardware failure. By default, primary failover completes within 45 seconds. HAProxy uses Patroni health checks to route read/write traffic to the new primary and avoid split brain. Clients need no configuration change or application restart. Replica failures and planned switchovers cause only a brief interruption to the current query.
 
-Software failures, human errors, and datacenter-level disasters are covered by pgBackRest and the optional [Silo](/docs/minio) cluster. This provides local/cloud PITR capabilities and, in case of datacenter failure, offers cross-region replication and disaster recovery.
+pgBackRest and optional [Silo](/docs/minio) provide local and cloud PITR for software failures, human errors, and datacenter disasters. They also support cross-region replication and disaster recovery after datacenter failure.

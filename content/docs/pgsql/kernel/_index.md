@@ -7,13 +7,15 @@ module: [PGSQL]
 categories: [Reference, Concept]
 ---
 
-In Pigsty, you can replace the native PostgreSQL kernel with different PostgreSQL "flavors" to unlock specialized capabilities.
+In Pigsty, you can replace the native PostgreSQL kernel with a variant that provides specialized features.
 
-Pigsty supports multiple PostgreSQL kernels and compatibility branches so you can get compatibility layers, multi-master replication, graph queries, MPP warehousing, transparent encryption, and more inside one operational framework.
+Pigsty supports multiple PostgreSQL kernels and compatibility branches within one operational framework.
+These kernels provide compatibility layers, multi-master replication, graph queries, MPP warehousing, transparent encryption, and other features.
 
-One thing to keep in mind is that not every kernel has the same delivery depth in Pigsty:
-PostgreSQL, Citus, Babelfish, IvorySQL, PolarDB, AgensGraph, and pgEdge already have relatively clear templates and configuration paths;
-Cloudberry and Greenplum, by contrast, are more often managed through `gpsql` mode, and their MPP initialization plus scale-out operations are still better handled with upstream tooling.
+The level of Pigsty integration differs between kernels.
+PostgreSQL, Citus, Babelfish, IvorySQL, PolarDB, AgensGraph, and pgEdge have defined templates and configuration procedures.
+Cloudberry and Greenplum usually use `gpsql` mode.
+For their MPP initialization and scale-out operations, upstream tools remain the preferred method.
 
 | Kernel                                          | Key Feature                           | Description                                   |
 |:------------------------------------------------|:--------------------------------------|:----------------------------------------------|

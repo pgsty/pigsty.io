@@ -9,26 +9,27 @@ aliases: [/docs/pilot/kafka/config]
 ---
 
 
-The KAFKA module expresses cluster intent through 15 persistent public parameters; everything else — topology, listeners, storage subdirectories, replication safety, authorization, and Exporter placement — is derived by the role in a single, consistent way. For a first deployment, start with the [Quickstart](/docs/kafka/start); for the full field reference, see [Parameters](/docs/kafka/param).
+KAFKA uses 15 persistent public parameters. The role derives topology, listeners, storage subdirectories, replication safety, authorization, and exporter placement consistently. Start with [Quickstart](/docs/kafka/start). See [Parameters](/docs/kafka/param) for the field reference.
 
 > [!WARNING] Plan First, Then Format
-> `kafka_seq` becomes the KRaft `node.id`. For a new cluster, the randomly generated Cluster ID, the initial controller identities, the security profile, and the initial replication policy are all written into the bootstrap manifest. Once storage has been formatted, do not casually change identities, the security profile, or the controller set. The role validates the live state against the manifest and fails closed on any conflict; it never silently overwrites or reformats data.
+> `kafka_seq` becomes KRaft `node.id`. A new cluster's bootstrap manifest freezes the random Cluster ID, initial controller identities, security profile, and initial replication policy.
+> After formatting, do not casually change identities, security profile, or controllers. The role checks live state against the manifest and blocks conflicts. It never silently overwrites or reformats data.
 
 
 --------
 
 ## Pre-Deployment Checklist
 
-Before filling in the inventory, confirm at least the following:
+Before writing the inventory, confirm these requirements:
 
-- The target hosts are already commissioned by [`NODE`](/docs/node), the software repository is reachable, and `inventory_hostname` is directly routable by every Kafka member and client.
-- A single operation will use `-l` to select precisely all members of one `kafka_cluster` — not a single node, a subset of members, or multiple clusters.
-- `kafka_seq` is unique within the cluster, the controller count is odd, and the broker count matches your fault domains and capacity targets.
-- Ports `9092`, `9093`, `9308`, and `9404` do not collide, and Infra nodes can reach both metrics ports.
-- `kafka_data` maps to a dedicated filesystem, sized for retention, write peaks, replication traffic, recovery time, and growth headroom.
-- Production uses `kafka_security: scram`; node and admin clocks are synchronized, the Pigsty CA is available, and application passwords come from a secret source such as Vault.
-- Topic partitions, replicas, `min.insync.replicas`, and retention policy — along with client `acks`, retries, and consumer recovery strategy — have been reviewed.
-- Scale-out and scale-in, partition reassignment, upgrades, backup, restore, and controller membership changes each have their own runbook.
+- [`NODE`](/docs/node) manages the hosts, and the software repository is reachable. Every member and client can route directly to `inventory_hostname`.
+- Each operation uses `-l` to select exactly all members of one `kafka_cluster`. Do not select a node, subset, or multiple clusters.
+- `kafka_seq` is unique per cluster. Controller count is odd. Broker count meets failure-domain and capacity requirements.
+- `9092`, `9093`, `9308`, and `9404` do not conflict. INFRA nodes can reach both metrics ports.
+- `kafka_data` uses a dedicated filesystem. Size it for retention, peak writes, replication, recovery time, and growth.
+- Production uses `kafka_security: scram`. Synchronize node and administration clocks. Provide the Pigsty CA and application passwords from a secret source such as Vault.
+- Review partitions, replica counts, `min.insync.replicas`, retention, client `acks`, retries, and consumer recovery.
+- Prepare separate procedures for expansion, shrink, reassignment, upgrades, backup, restore, and controller membership changes.
 
 
 --------
@@ -44,14 +45,14 @@ Before filling in the inventory, confirm at least the following:
 | `controller` | `controller` | － | ✓ | ✓ | － |
 {.full-width}
 
-`kafka_role` is all-or-nothing: cluster members either all omit it (and consistently use `combined`) or all declare it explicitly — a mix is refused during the identity precheck. A cluster must contain at least one controller-capable node and at least one broker-capable node; an even number of controllers produces a warning, and production typically uses 3 controllers.
+Either omit `kafka_role` on every member to use `combined`, or explicitly set it on every member. Identity checks reject mixed declarations. A cluster needs at least one controller-capable and one broker-capable node. Even controller counts trigger a warning. Production usually uses three controllers.
 
 
 --------
 
 ## Single-Node Development Cluster
 
-A single node serves as both broker and controller. It cannot tolerate a node failure and is suitable only for development, testing, and feature validation:
+A single node runs both broker and controller. It cannot survive node failure. Use it only for development, testing, and feature validation:
 
 ```yaml
 kf-dev:
@@ -61,14 +62,14 @@ kf-dev:
     kafka_cluster: kf-dev
 ```
 
-The role derives RF=1 and minISR=1 from the initial broker count. Do not use a single-node topology or the default `plaintext` security profile directly in production.
+The initial broker count sets RF=1 and minISR=1. Do not use this single-node topology or default `plaintext` profile directly in production.
 
 
 --------
 
 ## Three-Node Combined Deployment
 
-All three nodes serve as both broker and controller — a compact production starting point. Omit every role field to use the default `combined`:
+Three combined broker/controller nodes provide a compact production starting point. Omit all role fields to use `combined`:
 
 ```yaml
 kf-main:
@@ -93,14 +94,14 @@ kf-main:
           cleanup.policy: delete
 ```
 
-The initial three brokers automatically get the role-owned replication policy of RF=3 and minISR=2. You neither need nor are allowed to override the internal-topic RF, `default.replication.factor`, or `min.insync.replicas` in `kafka_parameters`. The 4G heap in the example is only illustrative; in production, balance the JVM heap, the operating-system page cache, and any other processes on the same host through load testing.
+Three initial brokers set RF=3 and minISR=2. The role owns this policy. Do not override internal-topic RF, `default.replication.factor`, or `min.insync.replicas` in `kafka_parameters`. The example 4G heap is illustrative. Use load tests to balance JVM heap, OS page cache, and other host processes.
 
 
 --------
 
 ## Separating Controllers and Brokers
 
-Critical or larger clusters can separate the control plane from the data plane. Because explicit roles are present, every member must declare its role:
+For critical or larger clusters, separate control and data planes. Explicit roles require a role declaration on every member:
 
 ```yaml
 kf-main:
@@ -116,19 +117,19 @@ kf-main:
     kafka_security: scram
 ```
 
-A controller-only node does not listen on `9092` and does not run the protocol Exporter; it still exposes KRaft and JVM state through JMX. At most two `kafka_exporter` instances are placed on the broker-capable nodes with the lowest `kafka_seq`.
+Controller-only nodes have no `9092` listener or protocol exporter. JMX still exposes KRaft and JVM metrics. At most two `kafka_exporter` instances run on broker-capable nodes with the lowest `kafka_seq`.
 
 
 --------
 
 ## Dynamic KRaft and the Bootstrap Manifest
 
-A new cluster uses the dynamic quorum directly: every node renders `controller.quorum.bootstrap.servers`, and no static `controller.quorum.voters` is generated. At the first format:
+New clusters use dynamic quorum. Each node renders `controller.quorum.bootstrap.servers`, without static `controller.quorum.voters`. During first formatting:
 
-- The Cluster ID is generated randomly, not hashed from the cluster name;
-- The Directory IDs of the initial controllers are generated randomly and frozen;
-- Each node is formatted explicitly with either `--initial-controllers` or `--no-initial-controllers` mode;
-- After the first bootstrap startup, the role waits for the dynamic quorum to elect a leader, and verifies that every initial controller's Directory ID has entered the live quorum.
+- Generate a random Cluster ID rather than hashing the cluster name.
+- Generate and freeze random initial controller Directory IDs.
+- Format each node explicitly with `--initial-controllers` or `--no-initial-controllers`.
+- After bootstrap startup, wait for leader election. Verify that every initial controller Directory ID entered live quorum.
 
 The bootstrap-only facts live on every cluster member:
 
@@ -136,14 +137,16 @@ The bootstrap-only facts live on every cluster member:
 /etc/kafka/manifest.yml
 ```
 
-Each member of a `scram` cluster also holds `/etc/kafka/secrets.yml`. The admin node keeps no kafka state at all: the manifest and secrets are resolved from any member copy on every run, and the issued node certificates live in the shared PKI tree (`files/pki/kafka/`, with CSRs under `files/pki/csr/`) and are simply re-signed from the Pigsty CA when absent. The manifest records only the cluster identity, the initial controller identities, the security profile, and the initial RF/minISR. The live cluster is always the authority on runtime facts:
+Each `scram` member also stores `/etc/kafka/secrets.yml`. Every run retrieves the manifest and secrets from any member copy. The administration node keeps no Kafka state. Certificates reside in shared PKI at `files/pki/kafka/`, with CSRs in `files/pki/csr/`. Missing certificates are signed again by the Pigsty CA. The manifest stores only cluster identity, initial controller identities, security profile, and initial RF/minISR.
 
-- When the manifest conflicts with the live identity or security profile, ordinary playbooks fail closed;
-- When an old manifest exists but all data disks are empty, reviving the old cluster is refused;
-- When no member holds a manifest copy while storage is already formatted, the role fails closed and asks you to restore the file on any member first;
-- An already-formatted `scram` cluster likewise fails closed when no member holds the secret material.
+Live cluster state is authoritative for runtime facts:
 
-The manifest is the cluster's birth certificate: after the first commission, membership is authoritative in the live Raft state. Combined/controller nodes newly declared in the inventory are then joined to the dynamic quorum by the playbook (fresh format → observer catch-up → `add-controller` promotion), and retirement is a `kafka-rm.yml` strict-subset run (automatic `remove-controller` and broker unregistration) — see [Expand Cluster](/docs/kafka/admin#expand-cluster) and [Shrink Cluster](/docs/kafka/admin#shrink-cluster).
+- Manifest conflicts with live identity or security profile block ordinary playbooks.
+- An old manifest with all data disks empty cannot revive the old cluster.
+- Formatted storage without any member manifest blocks execution. Restore a manifest copy on any member first.
+- A formatted `scram` cluster without secret material on any member also blocks execution.
+
+The manifest records bootstrap facts. After commissioning, live Raft state controls membership. Playbooks join new combined/controller members by fresh formatting, observer catch-up, and `add-controller` promotion. A strict-subset `kafka-rm.yml` run retires members with `remove-controller` and broker unregistration. See [Expand Cluster](/docs/kafka/admin#expand-cluster) and [Shrink Cluster](/docs/kafka/admin#shrink-cluster).
 
 
 --------
@@ -159,14 +162,14 @@ The manifest is the cluster's birth certificate: after the first commission, mem
 | KRaft Cluster ID | Randomly generated at bootstrap | 22-character Kafka UUID | `kafka_cluster_id` is only a takeover/recovery assertion |
 {.full-width}
 
-An already-formatted node reads `cluster.id` and `node.id` from `${kafka_data}/metadata/meta.properties` and cross-checks them against the manifest and the inventory; the initial controllers' Directory IDs are compared against the live quorum after startup. An identity mismatch is a protective failure and must not be worked around by deleting `meta.properties` or wiping data.
+A formatted node reads `cluster.id` and `node.id` from `${kafka_data}/metadata/meta.properties`. It checks them against the manifest and inventory. After startup, it checks initial controller Directory IDs against live quorum. Identity mismatches stop execution for protection. Never bypass this by deleting `meta.properties` or erasing data.
 
 
 --------
 
 ## Network and Listeners
 
-The role exposes only ports — not bind addresses, advertised addresses, or the listener map:
+Public parameters expose ports only. They do not expose bind addresses, advertised addresses, or listener maps:
 
 | Parameter | Default | Purpose |
 |:---|:---|:---|
@@ -176,19 +179,21 @@ The role exposes only ports — not bind addresses, advertised addresses, or the
 | [`kafka_jmx_exporter_port`](/docs/kafka/param#kafka_jmx_exporter_port) | `9404` | JMX Exporter HTTP metrics |
 {.full-width}
 
-The fixed listener conventions are as follows:
+The listener conventions are fixed:
 
-- The broker listener binds `0.0.0.0`, and the controller listener binds `inventory_hostname`;
-- The broker's `advertised.listeners` uses `inventory_hostname`;
-- The controller bootstrap address also uses `inventory_hostname`;
-- `plaintext`: both BROKER and CONTROLLER use PLAINTEXT;
-- `scram`: BROKER uses SASL_SSL + SCRAM-SHA-512, and CONTROLLER uses mutual TLS.
+- Brokers bind `0.0.0.0`; controllers bind `inventory_hostname`.
+- Broker `advertised.listeners` uses `inventory_hostname`.
+- Controller bootstrap addresses also use `inventory_hostname`.
+- `plaintext` uses PLAINTEXT for BROKER and CONTROLLER.
+- `scram` uses SASL_SSL + SCRAM-SHA-512 for BROKER and mutual TLS for CONTROLLER.
 
-Clients must therefore be able to resolve and directly reach every broker's `inventory_hostname`. The current v1 does not support NAT, public-address mapping, multiple client networks for the same broker, or arbitrary raw listener overrides; these scenarios cannot be assembled around through `kafka_parameters`.
+Clients must resolve and directly reach every broker's `inventory_hostname`. Version 1 does not support NAT, public-address mapping, multiple client networks per broker, or arbitrary listener overrides. `kafka_parameters` cannot bypass these limits.
 
-Kafka's standard access model is a smart client connecting directly to brokers: `bootstrap.servers` is configured with several seed addresses, and once the client fetches cluster metadata it connects directly to the partition leaders. HAProxy, a Keepalived VIP, or a cloud LB should not be used as the regular Kafka data-plane entry point, because they are unaware of Kafka metadata and partition leaders and cannot exempt clients from reaching every `advertised.listeners` address. A DNS or TCP LB can at most serve as an optional bootstrap discovery entry point; even then, the application network must still reach all brokers directly. See [Quickstart: Connecting Application Clients](/docs/kafka/start#part-3-connect-application-clients) for details.
+Kafka clients connect directly to brokers. Configure several seeds in `bootstrap.servers`. After fetching metadata, clients connect to partition leaders. Do not use HAProxy, Keepalived VIP, or a cloud load balancer as the regular data-plane entry. They cannot interpret Kafka metadata or remove the need to reach every `advertised.listeners` address.
 
-The minimum required network flows:
+DNS or a TCP load balancer can optionally provide bootstrap discovery only. Clients must still reach every broker directly. See [Connecting Application Clients](/docs/kafka/start#part-3-connect-application-clients).
+
+Permit these minimum network flows:
 
 | Source | Destination | Port | Purpose |
 |:---|:---|:---:|:---|
@@ -198,7 +203,7 @@ The minimum required network flows:
 | Infra/VictoriaMetrics | Selected Exporter nodes | `9308` | Cluster/Topic/Consumer metrics |
 {.full-width}
 
-The metrics ports are HTTP, and even when Kafka uses `scram` they should be restricted to the monitoring network by firewall.
+Metrics use HTTP even with `scram`. Restrict these ports to the monitoring network through firewalls.
 
 
 --------
@@ -211,9 +216,9 @@ You set only the root directory:
 kafka_data: /data/kafka
 ```
 
-The role derives the topic data directory `${kafka_data}/data` and the KRaft metadata directory `${kafka_data}/metadata` in a fixed way. `kafka_data` must be a dedicated absolute path, and cannot be `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, or `/pg`.
+The role uses `${kafka_data}/data` for topics and `${kafka_data}/metadata` for KRaft. Set `kafka_data` to a dedicated absolute path. Forbidden paths are `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, and `/pg`.
 
-Production planning should account for at least retention, message peaks, replication traffic, partition/segment counts, disk latency and throughput, file descriptors, recovery time, JVM heap, and page cache. The current role generates only a single `log.dirs`; multi-disk JBOD, disk replacement, and automatic data migration require separate runbooks.
+Plan production capacity for retention, peak messages, replication, partition/segment counts, disk latency and throughput, file descriptors, recovery time, heap, and page cache. The role generates one `log.dirs`. Multi-disk JBOD, disk replacement, and automatic data migration require separate procedures.
 
 For deployments spanning fault domains, declare [`kafka_rack`](/docs/kafka/param#kafka_rack) consistently on all broker-capable nodes:
 
@@ -223,7 +228,7 @@ For deployments spanning fault domains, declare [`kafka_rack`](/docs/kafka/param
 10.10.10.23: { kafka_seq: 6, kafka_role: broker, kafka_rack: az-c }
 ```
 
-Broker-capable nodes must either all set the rack or all omit it. Changing the rack triggers a safe rolling restart but does not automatically migrate existing replicas.
+Either set racks on all broker-capable nodes or omit them on all. Rack changes trigger safe rolling restarts without moving existing replicas.
 
 
 --------
@@ -237,21 +242,21 @@ replication_factor = min(3, broker_count)
 min_insync_replicas = max(1, replication_factor - 1)
 ```
 
-The initial default RF for future topics, the internal-topic RF, and the cluster minISR are all written into the manifest and frozen. After scaling out:
+The manifest freezes initial topic-default RF, internal-topic RF, and cluster minISR. After expansion:
 
-- `default.replication.factor` keeps its initial value; Kafka 4.3 does not allow changing it online through dynamic broker configuration;
-- The RF of existing internal/business topics is not raised automatically;
-- The role does not report "brokers have joined" as "data is balanced";
-- An RF change must use a reviewed `kafka-reassign-partitions.sh` plan; raising the static default additionally requires controller high availability or an explicit maintenance window, and takes effect through a full-cluster safe rolling restart.
+- `default.replication.factor` retains its initial value. Kafka 4.3 cannot update it through dynamic broker configuration.
+- Existing internal and business topics retain their RF.
+- Broker admission does not imply balanced data.
+- RF changes require a reviewed `kafka-reassign-partitions.sh` plan. Increasing the static default also requires controller HA or an explicit maintenance window. A safe full-cluster rolling restart applies it.
 
-Producer `acks`, idempotence, retries, batching, and compression are client policy, not parameters of the Kafka broker role.
+Configure producer `acks`, idempotence, retries, batching, and compression on clients. They are not broker-role parameters.
 
 
 --------
 
 ## `kafka_parameters`
 
-[`kafka_parameters`](/docs/kafka/param#kafka_parameters) is the only broker-parameter escape hatch. It defaults to `{}` and is rendered only onto broker-capable nodes. It is suited to non-role-owned keys such as `num.partitions`, thread counts, buffers, retention, and segments.
+[`kafka_parameters`](/docs/kafka/param#kafka_parameters) is the only custom broker configuration interface. It defaults to `{}` and renders only on broker-capable nodes. Use keys that the role does not own, such as `num.partitions`, threads, buffers, retention, and segments.
 
 The following patterns are owned by the role and must not be overridden:
 
@@ -282,20 +287,20 @@ ssl.*
 listener.*
 ```
 
-If any reserved key appears, the identity preflight fails outright before any file is written.
+Any reserved key causes identity preflight to fail before writing files.
 
 
 --------
 
 ## Security and Declarative Resources
 
-`kafka_security: scram` is a complete production profile, not a set of switches to be combined at will. It automatically enables:
+`kafka_security: scram` selects a complete production profile. Its controls cannot be combined individually. It enables:
 
-- Per-node certificates issued by the Pigsty CA;
-- Mutual TLS on the controller listener;
-- SASL_SSL + SCRAM-SHA-512 for broker/client and inter-broker traffic;
-- `StandardAuthorizer`, deny-by-default, and role-owned admin/monitoring identities;
-- Convergence of the minimal monitoring ACL before the protocol Exporter starts.
+- Pigsty CA certificates for each node.
+- Mutual TLS on controllers.
+- SASL_SSL + SCRAM-SHA-512 for broker/client and inter-broker traffic.
+- `StandardAuthorizer`, default denial, and role-managed administration and monitoring identities.
+- Minimum monitoring ACLs before starting the protocol exporter.
 
 Application resources are declared through two domain objects:
 
@@ -325,16 +330,16 @@ kafka_topics:
       cleanup.policy: delete
 ```
 
-Resource convergence semantics: topic creation is idempotent, partitions only increase, and only explicitly declared config is updated; an RF change is refused with a prompt to run reassignment. A declared user's password, ACLs, and the quota fields you provide converge idempotently. Removing a topic or user entry is not an implicit deletion procedure.
+Topic creation is idempotent. Partitions can only increase, and only declared settings change. RF changes fail with a reassignment instruction. User passwords, ACLs, and specified quota fields converge idempotently. Removing topic or user entries does not delete those resources.
 
-The security profile cannot be switched by an ordinary playbook after bootstrap. Internal credentials and certificates can use [protected rotation](/docs/kafka/playbook#protected-rotation), but an online migration from `plaintext` to `scram` still requires an explicit state machine that is planned for the future.
+Ordinary playbooks cannot change the security profile after bootstrap. [Protected rotation](/docs/kafka/playbook#protected-rotation) changes internal credentials or certificates. Online `plaintext` to `scram` migration still needs a separate state machine planned for future work.
 
 
 --------
 
 ## Packages and File Layout
 
-The role installs `java-runtime` and `kafka-stack` through platform mappings. The payload verified on 2026-07-16 is Kafka 4.3.1, `kafka_exporter` 1.9.0, and JMX Exporter 1.6.0; the actual versions still depend on the target platform's repository and the installed packages.
+Platform mappings install `java-runtime` and `kafka-stack`. The payload verified on 2026-07-16 contained Kafka 4.3.1, `kafka_exporter` 1.9.0, and JMX Exporter 1.6.0. Actual versions depend on target-platform repositories and installed packages.
 
 | Path | Purpose |
 |:---|:---|
@@ -353,4 +358,4 @@ The role installs `java-runtime` and `kafka-stack` through platform mappings. Th
 | `files/pki/kafka/` | Issued node certs on the admin node (`<cluster>-<seq>.key/.crt`, CSRs under `files/pki/csr/`) |
 {.full-width}
 
-These files are managed by the role. Persistent intent belongs in `pigsty.yml`. Do not edit generated files directly on the nodes, and do not copy passwords, private keys, or role-owned secret contents into inventory, logs, or tickets.
+The role manages these files. Put persistent settings in `pigsty.yml`, not generated node files. Never copy passwords, private keys, or role-managed secrets into inventory, logs, or tickets.

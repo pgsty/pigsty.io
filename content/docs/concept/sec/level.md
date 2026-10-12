@@ -7,8 +7,7 @@ module: [PIGSTY, PGSQL]
 categories: [Concept]
 ---
 
-Before examining individual security features, answer two more fundamental questions: **Where is the root of trust?** and **How many defensive layers exist?**
-The first determines what deserves the strongest protection. The second determines what remains when one layer fails.
+Identify the **root of trust** and **defensive layers** before selecting security features. The root of trust needs the strongest protection. Multiple layers preserve some protection if one fails.
 
 
 ----------------
@@ -17,7 +16,7 @@ The first determines what deserves the strongest protection. The second determin
 
 ## Trust Boundaries
 
-Pigsty is an Ansible-based declarative deployment system. Like other control-plane systems, its [**admin node**](/docs/concept/arch/node#admin-node) is the control plane and the node that requires the strongest protection.
+Pigsty uses Ansible for declarative deployment. Its [**administration node**](/docs/concept/arch/node#admin-node) is the control plane and needs the strongest protection.
 
 | Role | Assets and Privileges |
 |:---|:---|
@@ -27,14 +26,13 @@ Pigsty is an Ansible-based declarative deployment system. Like other control-pla
 | **Clients** | Database credentials or client certificates; access through service ports, HBA, and authentication |
 {.full-width}
 
-These roles hold different capabilities; they do not form a simple linear hierarchy. Three assets are especially important:
+These roles have different capabilities, not a simple hierarchy. Protect these three assets in particular:
 
-1. The [**`pigsty.yml` inventory**](/docs/concept/iac/inventory) contains component passwords and credentials. Strictly control access to the admin node and to the configuration repository when Git is used.
-2. The **CA private key**, `files/pki/ca/ca.key`, is the trust anchor for the deployment. Anyone holding it can issue an arbitrary trusted certificate. The file uses mode `0600` inside a `0700` directory; keep an offline backup.
-3. The **administration user's SSH private key** lets the admin node manage every enrolled node with passwordless sudo. It is effectively root access to the managed fleet.
+1. The [**`pigsty.yml` inventory**](/docs/concept/iac/inventory) contains component passwords and credentials. Strictly restrict administration node access and access to any Git configuration repository.
+2. The **CA private key**, `files/pki/ca/ca.key`, anchors deployment trust. Its holder can issue any trusted certificate. The file uses mode `0600` inside a `0700` directory. Keep an offline backup.
+3. The **administration user's SSH private key** provides passwordless sudo access to all enrolled nodes. It effectively grants root access throughout the managed deployment.
 
-Pigsty's [**security policy**](https://github.com/pgsty/pigsty/blob/main/SECURITY.md) states this boundary explicitly: an attack that requires admin-node access, or possession of both `pigsty.yml` and the CA private key, is not treated as a product vulnerability.
-These are high-trust control-plane assets by design and must be protected accordingly.
+Pigsty's [**security policy**](https://github.com/pgsty/pigsty/blob/main/SECURITY.md) defines this trust boundary. Attacks requiring administration node access, or both `pigsty.yml` and the CA private key, are not product vulnerabilities. These control-plane assets have high trust by design. Protect them accordingly.
 
 
 ----------------
@@ -49,8 +47,7 @@ These are high-trust control-plane assets by design and must be protected accord
 
 ## Seven Defensive Layers
 
-Defense in depth does not ask one mechanism to solve every problem. It combines controls so that one failure does not remove all protection.
-Pigsty's security capabilities can be summarized as seven layers:
+Defense in depth combines controls so that one failure does not remove all protection. Pigsty provides seven security layers:
 
 | # | Layer | Mechanisms | Details |
 |:-:|:---|:---|:---|
@@ -67,32 +64,27 @@ Layers 2, 3, 4, 6, and 7 have dedicated chapters. The following sections cover t
 
 ### Network Boundaries
 
-Pigsty enables a firewall during node provisioning ([`node_firewall_mode`](/docs/node/param#node_firewall_mode) defaults to `zone`), using `firewalld` or `ufw` according to the operating system.
-Intranet CIDRs (`10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16`, defined by [`node_firewall_intranet`](/docs/node/param#node_firewall_intranet)) enter the trusted zone.
-Public networks can reach only ports declared in [`node_firewall_public_port`](/docs/node/param#node_firewall_public_port), which defaults to `22` for SSH and `80`/`443` for web traffic.
+Node provisioning enables `firewalld` or `ufw`, depending on the OS. [`node_firewall_mode`](/docs/node/param#node_firewall_mode) defaults to `zone`. [`node_firewall_intranet`](/docs/node/param#node_firewall_intranet) places `10.0.0.0/8`, `172.16.0.0/12`, and `192.168.0.0/16` in the trusted zone. Public networks can reach only [`node_firewall_public_port`](/docs/node/param#node_firewall_public_port) ports. Defaults are `22` for SSH and `80`/`443` for web traffic.
 
-> The default demo inventory, `pigsty.yml`, also exposes port `5432` for local evaluation. Remove it in production. If direct database access is required, restrict sources to explicit CIDRs with security groups, host firewalls, and HBA.
+> The demo `pigsty.yml` also exposes `5432` for local evaluation. Remove this exception in production. If direct database access is needed, restrict sources to explicit CIDRs through security groups, host firewalls, and HBA.
 
-PostgreSQL listens on all addresses by default ([`pg_listen`](/docs/pgsql/param#pg_listen): `0.0.0.0`). The effective access boundary is the combination of listen addresses, firewall rules, and HBA. Stricter environments can constrain the listener:
+PostgreSQL listens on all addresses by default: [`pg_listen`](/docs/pgsql/param#pg_listen) is `0.0.0.0`. Listen addresses, firewall rules, and HBA jointly control access. For stricter access, constrain the listener:
 
 ```yaml
 pg_listen: '${ip},${vip},${lo}'   # Host IP, cluster VIP, and loopback only
 ```
 
-The default firewall does not expose Grafana, VictoriaMetrics, or other web infrastructure directly to public networks. External web access normally enters through the [**Nginx portal**](/docs/concept/arch/infra#nginx).
-Database traffic enters through HAProxy [**service**](/docs/pgsql/misc/svc) ports. Fewer entry points are easier to harden and audit.
+The default firewall blocks direct public access to Grafana, VictoriaMetrics, and other web infrastructure. External web traffic normally uses the [**Nginx portal**](/docs/concept/arch/infra#nginx). Database traffic uses HAProxy [**service**](/docs/pgsql/misc/svc) ports. Fewer entry points simplify hardening and auditing.
 
 ### Host Security
 
-The central host-level rule is: **each OS user receives only the privileges required for its job**.
+**Give each OS user only the privileges its job requires.**
 
-- The database superuser `postgres` ([`pg_dbsu`](/docs/pgsql/param#pg_dbsu)) has **no password** by default and can enter the database only through local `ident` authentication.
-  [`pg_dbsu_sudo`](/docs/pgsql/param#pg_dbsu_sudo) defaults to `limit`, allowing passwordless `systemctl` operations for database services and log viewing rather than unrestricted root access.
-- The administration user ([`node_admin_username`](/docs/node/param#node_admin_username), default `dba`) is used by operators and playbooks and receives passwordless sudo (`nopass`) by default.
-  Security-sensitive environments can set [`node_admin_sudo`](/docs/node/param#node_admin_sudo) to `all`, which requires a sudo password, or `limit`, which restricts the command set.
-- [`node_selinux_mode`](/docs/node/param#node_selinux_mode) defaults SELinux to `permissive`: violations are logged but not blocked, providing a baseline before moving to `enforcing`.
+- The database superuser `postgres` ([`pg_dbsu`](/docs/pgsql/param#pg_dbsu)) has **no password** by default. It can enter the database only through local `ident`. [`pg_dbsu_sudo`](/docs/pgsql/param#pg_dbsu_sudo) defaults to `limit`. This permits passwordless database service `systemctl` operations and log viewing, without unrestricted root access.
+- Operators and playbooks use [`node_admin_username`](/docs/node/param#node_admin_username), default `dba`. It receives passwordless sudo (`nopass`) by default. For stricter control, set [`node_admin_sudo`](/docs/node/param#node_admin_sudo) to `all` to require a password, or `limit` to restrict commands.
+- [`node_selinux_mode`](/docs/node/param#node_selinux_mode) defaults to `permissive`. SELinux records violations without blocking them, providing a baseline before `enforcing`.
 
-Pigsty does not manage the SSH server configuration. Disabling password login, restricting remote root login, and similar operating-system hardening belong in your host security baseline.
+Pigsty does not manage SSH server configuration. Put password-login restrictions, remote-root restrictions, and similar OS hardening in your host security baseline.
 
 
 ----------------
@@ -101,37 +93,36 @@ Pigsty does not manage the SSH server configuration. Disabling password login, r
 
 ## Hardening Levels
 
-Security does not have to jump to its final state in one step. Pigsty provides an upgrade path in which each level builds on the previous one:
+Harden the deployment in stages. Each level adds to the previous level:
 
-**Level 1: default baseline.** Out-of-the-box controls include SCRAM passwords, data checksums, a local CA and component certificates, layered HBA, a four-tier role model, default backups, and firewall zones.
-This level suits development, testing, and evaluation on a trusted intranet. Production still requires credential review, network-boundary review, and client verification.
+**Level 1: default baseline.** Defaults provide SCRAM passwords, data checksums, a local CA, component certificates, layered HBA, four-tier roles, backups, and firewall zones. This suits development, testing, and evaluation on a trusted intranet. For production, review credentials and network boundaries, and configure client verification.
 
-**Level 2: randomized credentials.** Default passwords are documented publicly and must be changed in every network-exposed deployment. Add `-g` when generating configuration to randomize built-in parameters and example credentials recognized by the configuration wizard:
+**Level 2: randomized credentials.** Change all public default passwords before any network-exposed deployment. Add `-g` to randomize recognized built-in parameters and example credentials:
 
 ```bash
 ./configure -g    # --generate: randomize recognized default credentials
 ```
 
-This option does not replace the pgBackRest `cipher_pass`, every Silo example credential in `ha/safe`, or user-defined values. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
+This option does not replace pgBackRest `cipher_pass`, all Silo examples in `ha/safe`, or custom values. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for coverage.
 
-**Level 3: policy hardening with the `ha/safe` template.** [**`conf/ha/safe.yml`**](/docs/conf/safe) combines several controls into a starting point for further customization:
+**Level 3: policy hardening with `ha/safe`.** [**`conf/ha/safe.yml`**](/docs/conf/safe) combines controls for further customization:
 
-- **TLS and certificate authentication:** the main TCP HBA rules use `ssl`, public administrator access uses a client certificate, PgBouncer uses `require`, and the Patroni API uses HTTPS. Local `ident` and selected localhost password rules remain.
-- **Password policy:** `passwordcheck` is preloaded explicitly, and built-in users declare `expire_in`. Example passwords in the template still require review and replacement.
-- **Reduced attack surface:** listen addresses are limited to `${ip},${vip},${lo}`, and public connection-pool access by monitoring and administration accounts is denied explicitly.
-- **Backup encryption:** pgBackRest uses the remote `minio` repository preset with AES-256-CBC. `pgBR.${pg_cluster}` is a predictable example value and must be replaced.
-- [**Security extensions**](/ext/cate/sec/): `passwordcheck`, `credcheck`, `pgaudit`, `pgsodium`, `anonymizer`, and related extensions are installed. Installation does not preload, create, or configure an extension.
+- **TLS and certificates:** Main TCP HBA rules use `ssl`. Public administrator access requires a client certificate. PgBouncer uses `require`, and Patroni API uses HTTPS. Local `ident` and selected localhost password rules remain.
+- **Password policy:** The template preloads `passwordcheck` and sets `expire_in` for built-in users. Review and replace example passwords.
+- **Reduced exposure:** Listen addresses are limited to `${ip},${vip},${lo}`. Public connection-pool access is explicitly denied for monitoring and administration accounts.
+- **Backup encryption:** pgBackRest uses the remote `minio` preset with AES-256-CBC. Replace the predictable example `pgBR.${pg_cluster}`.
+- [**Security extensions**](/ext/cate/sec/): The template installs `passwordcheck`, `credcheck`, `pgaudit`, `pgsodium`, `anonymizer`, and related extensions. Installation does not preload, create, or configure them.
 
-**Level 4: database hardening with the `crit.yml` parameter template.** The safe template selects the [**CRIT parameter template**](/docs/pgsql/template/crit) for consistency-first workloads. Compared with the general `oltp` template, it:
+**Level 4: database hardening with `crit.yml`.** The safe template selects [**CRIT**](/docs/pgsql/template/crit) for workloads that prioritize consistency. Compared with `oltp`, CRIT:
 
-- forces data checksums regardless of `pg_checksum`;
-- enables strict synchronous replication (`synchronous_mode_strict`), blocking writes that require synchronous acknowledgment when no synchronous replica is available;
-- logs connection and disconnection events; PostgreSQL 18 also separates connection receipt, authentication, and authorization stages;
-- configures [**watchdog**](/docs/concept/ha/failure/partition/#2-linux-watchdog) as `automatic`, which activates only when a usable device exists.
+- Requires checksums regardless of `pg_checksum`.
+- Enables strict synchronous replication (`synchronous_mode_strict`). Writes needing synchronous acknowledgment block if no synchronous replica is available.
+- Logs connections and disconnections. PostgreSQL 18 separates connection receipt, authentication, and authorization.
+- Sets [**watchdog**](/docs/concept/ha/failure/partition/#2-linux-watchdog) to `automatic`. It activates only if a usable device exists.
 
-Strict synchronous mode targets preservation of acknowledged transactions, but still depends on `synchronous_commit`, synchronous replica state, and failover eligibility. Validate [**RPO**](/docs/concept/ha/rpo) with failure exercises on the target topology.
+Strict synchronous mode aims to preserve acknowledged transactions. It depends on `synchronous_commit`, synchronous replica state, and failover eligibility. Verify [**RPO**](/docs/concept/ha/rpo) with failure exercises on the target topology.
 
-You can also select individual controls instead of adopting the complete template:
+You can select individual controls instead of the whole template:
 
 ```yaml
 pg-meta:

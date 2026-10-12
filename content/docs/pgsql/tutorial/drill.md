@@ -11,11 +11,15 @@ categories: [Task, Concept]
 ---
 
 
-If a classic 3-node HA deployment experiences simultaneous failure of two nodes (majority), the system typically cannot complete automatic failover and requires manual intervention.
+In a typical 3-node HA deployment, simultaneous failure of two nodes removes the majority.
+The system usually cannot complete automatic failover and needs manual intervention.
 
-First, assess the status of the other two servers. If they can be brought up quickly, prioritize recovering those two servers. Otherwise, enter the **Emergency Recovery Procedure**.
+First, assess the two failed servers.
+If they can restart quickly, prioritize their recovery.
+Otherwise, use the **Emergency Recovery Procedure**.
 
-**The Emergency Recovery Procedure assumes your admin node has failed** and only a single regular database node survives. In this case, the fastest recovery process is:
+**The Emergency Recovery Procedure assumes that the administration node has failed** and only one regular database node survives.
+In this case, the fastest recovery procedure is:
 
 - Adjust HAProxy configuration to direct traffic to the primary.
 - Stop Patroni and manually promote the PostgreSQL replica to primary.
@@ -25,7 +29,8 @@ First, assess the status of the other two servers. If they can be brought up qui
 
 ## Adjust HAProxy Configuration
 
-If you access the cluster bypassing HAProxy, you can skip this step. If you access the database cluster through HAProxy, you need to adjust the load balancer configuration to manually direct read/write traffic to the primary.
+If connections bypass HAProxy, skip this step.
+If connections use HAProxy, change its configuration to direct read/write traffic to the primary manually.
 
 - Edit `/etc/haproxy/conf.d/<pg_cluster>-primary.cfg`, where `<pg_cluster>` is your PostgreSQL cluster name, e.g., `pg-meta`.
 - Comment out the health check configuration options to stop health checks.
@@ -52,14 +57,18 @@ listen pg-meta-primary
     #server pg-meta-3 10.10.10.12:6432 check port 8008 weight 100 <---- comment this
 ```
 
-After adjusting the configuration, don't rush to execute `systemctl reload haproxy` to reload. Wait until after promoting the primary, then execute together. The effect of this configuration is that HAProxy will no longer perform primary health checks (which by default use Patroni), but will directly direct write traffic to the current primary.
+After you change the configuration, wait until primary promotion before you run `systemctl reload haproxy`.
+The new configuration disables HAProxy primary health checks, which use Patroni by default.
+HAProxy then directs write traffic to the current primary.
 
 
 --------
 
 ## Manually Promote Replica
 
-Log in to the target server, switch to the dbsu user, execute `CHECKPOINT` to flush to disk, stop Patroni, restart PostgreSQL, and execute Promote.
+Log in to the target server and switch to the dbsu user.
+Run `CHECKPOINT` to flush data to disk.
+Stop Patroni, restart PostgreSQL, then promote the replica:
 
 ```bash
 sudo su - postgres                     # Switch to database dbsu user
@@ -70,7 +79,8 @@ pg-promote                             # Promote PostgreSQL replica to primary
 psql -c 'SELECT pg_is_in_recovery();'  # If result is f, it has been promoted to primary
 ```
 
-If you adjusted the HAProxy configuration above, you can now execute `systemctl reload haproxy` to reload the HAProxy configuration and direct traffic to the new primary.
+If you changed the HAProxy configuration, now run `systemctl reload haproxy`.
+This applies the configuration and directs traffic to the new primary.
 
 ```bash
 systemctl reload haproxy                # Reload HAProxy configuration to direct write traffic to current instance
@@ -82,7 +92,9 @@ systemctl reload haproxy                # Reload HAProxy configuration to direct
 
 ## Avoid Split Brain
 
-After emergency recovery, the second priority is: **Avoid Split Brain**. Users should prevent the other two servers from coming back online and forming a split brain with the current primary, causing data inconsistency.
+After emergency recovery, the next priority is to **Avoid Split Brain**.
+Prevent the other two servers from returning online and becoming competing primaries.
+Such a split brain can cause data inconsistency.
 
 Simple approaches:
 
@@ -100,19 +112,24 @@ Then decide the next steps based on the specific situation:
 
 ## Recovery After Temporary Failure
 
-If the other two servers have temporary failures and can be repaired to continue service, follow these steps for repair and rebuild:
+If the other two servers have temporary failures and can return to service, use these repair and rebuild steps:
 
 - Handle one failed server at a time, prioritize the admin node / INFRA node.
 - Start the failed server and stop Patroni after startup.
 
-After the ETCD cluster quorum is restored, it will resume work. Then start Patroni on the surviving server (current primary) to take over the existing PostgreSQL and regain cluster leadership. After Patroni starts, enter maintenance mode.
+When ETCD regains quorum, it resumes operation.
+Start Patroni on the surviving server, which is the current primary.
+Patroni takes control of the existing PostgreSQL instance and regains cluster leadership.
+Then enter maintenance mode:
 
 ```bash
 sudo systemctl restart patroni
 pg pause <pg_cluster>
 ```
 
-On the other two instances, create the `touch /pg/data/standby.signal` marker file as the `postgres` user to mark them as replicas, then start Patroni:
+On each of the other two instances, use the `postgres` account to run `touch /pg/data/standby.signal`.
+The marker identifies the instance as a replica.
+Then start Patroni:
 
 ```bash
 sudo -iu postgres touch /pg/data/standby.signal
@@ -131,17 +148,21 @@ pg resume <pg_cluster>
 
 ## Recovery After Permanent Failure
 
-After permanent failure, first recover the `~/pigsty` directory on the admin node. The key files needed are `pigsty.yml` and `files/pki/ca/ca.key`.
+After permanent failure, first recover `~/pigsty` on the administration node.
+The essential files are `pigsty.yml` and `files/pki/ca/ca.key`.
 
-> If you cannot retrieve or don't have backups of these two files, you can deploy a new Pigsty and migrate the existing cluster to the new deployment via [Backup Cluster](/docs/pgsql/config/#backup-cluster).
+> If you cannot retrieve these two files or their backups, deploy a new Pigsty installation.
+> Migrate the existing cluster through [Backup Cluster](/docs/pgsql/config/#backup-cluster).
 >
-> Please regularly backup the `pigsty` directory (e.g., using Git for version control). Learn from this and avoid such mistakes in the future.
+> Back up the `pigsty` directory regularly, for example with Git version control.
 
 
 
 ### Configuration Repair
 
-You can use the surviving node as the new admin node, copy the `~/pigsty` directory to the new admin node, then start adjusting the configuration. For example, replace the original default admin node `10.10.10.10` with the surviving node `10.10.10.12`:
+You can use the surviving node as the new administration node.
+Copy `~/pigsty` to it, then adjust the configuration.
+For example, replace the original administration node `10.10.10.10` with the surviving node `10.10.10.12`:
 
 ```yaml
 all:
@@ -189,7 +210,8 @@ Follow the instructions in [ETCD Reload Configuration](/docs/etcd/admin#reload-c
 
 #### INFRA Repair
 
-If the surviving node doesn't have the INFRA module, configure and install a new INFRA module on the current node. Execute the following command to deploy the INFRA module to the surviving node:
+If the surviving node does not have the INFRA module, configure and install it on that node.
+Run this command:
 
 ```bash
 ./infra.yml -l 10.10.10.12
@@ -209,4 +231,4 @@ Repair monitoring on the current node:
 systemctl reload patroni                          # Reload Patroni configuration on surviving node
 ```
 
-After repairing each module, you can follow the standard expansion process to add new nodes to the cluster and restore cluster high availability.
+After you repair each module, use the standard expansion procedure to add nodes and restore cluster high availability.

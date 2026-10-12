@@ -6,7 +6,9 @@ icon: fa-brands fa-linux
 categories: [Reference]
 ---
 
-The `pgsql` configuration template uses the native PostgreSQL kernel, Pigsty's default database kernel, with stable support for PostgreSQL 14 to 18. The current `configure` also accepts version 19, but PG19 remains Beta; use the dedicated [`pg19`](/docs/conf/pg19/) template for evaluation.
+The `pgsql` configuration template uses the native PostgreSQL kernel. This is Pigsty's default database kernel, with stable support for PostgreSQL 14 to 18.
+
+The current `configure` command also accepts version 19. PG19 remains Beta. Use the dedicated [`pg19`](/docs/conf/pg19/) template for evaluation.
 
 
 --------
@@ -46,7 +48,7 @@ Source: [`pigsty/conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `pgsql` template is Pigsty's **standard kernel configuration**, using community-native PostgreSQL.
+The `pgsql` template provides the **standard kernel configuration** for community-native PostgreSQL.
 
 **Version Support**:
 - PostgreSQL 18 (default)

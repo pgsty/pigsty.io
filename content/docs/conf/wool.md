@@ -6,7 +6,7 @@ icon: fa-solid fa-cloud
 categories: [Reference]
 ---
 
-`demo/wool` targets small cloud instances in China and defaults to `region: china`, PostgreSQL 18, and the `tiny` tuning profiles.
+`demo/wool` targets small cloud instances in China. It defaults to `region: china`, PostgreSQL 18, and the `tiny` tuning profiles.
 
 
 --------
@@ -41,4 +41,6 @@ Source: [`pigsty/conf/demo/wool.yml`](https://github.com/pgsty/pigsty/blob/main/
 - Disables pgBackRest by default to reduce disk usage on a small test host
 - Includes several example portal domains
 
-This template trades backup capability for lower resource use and is suitable only for temporary testing. Production deployments must enable and verify backups, tighten network rules, replace default passwords, and remove unused portal entries.
+This template reduces resource use by disabling backups. It is suitable only for temporary testing.
+
+For production deployments, you must enable and verify backups. Tighten the network rules, replace default passwords, and remove unused portal entries.

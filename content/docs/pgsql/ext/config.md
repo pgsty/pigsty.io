@@ -7,16 +7,19 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Some extensions require preloading dynamic libraries or configuring parameters before use. This section describes how to configure extensions.
+Some extensions require you to preload dynamic libraries or configure parameters before use.
+This section gives the configuration procedures.
 
 
 --------
 
 ## Preload Extensions
 
-Most extensions can be enabled directly with `CREATE EXTENSION` after installation, but some extensions using PostgreSQL's Hook mechanism require **preloading**.
+After installation, you can enable most extensions with `CREATE EXTENSION`.
+Some extensions use PostgreSQL's Hook mechanism and require **preloading**.
 
-Preloading is specified via the `shared_preload_libraries` parameter and requires a **database restart** to take effect.
+Set `shared_preload_libraries` to specify the libraries to preload.
+A **database restart** is required to apply the change.
 
 ### Extensions Requiring Preload
 
@@ -40,11 +43,11 @@ For the complete list, see the [Extension Catalog](/ext/list) (marked with `LOAD
 
 ### Preload Order
 
-The loading order of extensions in `shared_preload_libraries` is important:
+Use the required loading order in `shared_preload_libraries`:
 
-- `timescaledb` and `citus` must be placed **first**
-- If using both, `citus` should come before `timescaledb`
-- Statistics extensions should come after `pg_stat_statements` to use the same query_id
+- Put `timescaledb` and `citus` **first**.
+- If you use both, `citus` should come before `timescaledb`.
+- Statistics extensions should come after `pg_stat_statements` to use the same query_id.
 
 ```yaml
 pg_libs: 'citus, timescaledb, pg_stat_statements, auto_explain'
@@ -55,7 +58,7 @@ pg_libs: 'citus, timescaledb, pg_stat_statements, auto_explain'
 
 ## Configure During Cluster Initialization
 
-When creating a new cluster, use the [`pg_libs`](/docs/pgsql/param#pg_libs) parameter to specify preloaded extensions:
+For a new cluster, use [`pg_libs`](/docs/pgsql/param#pg_libs) to specify the extensions to preload:
 
 ```yaml
 pg-meta:
@@ -66,11 +69,12 @@ pg-meta:
     pg_extensions: [ timescaledb, postgis, pgvector ]
 ```
 
-The value of `pg_libs` will be written to `shared_preload_libraries` during cluster initialization.
+During cluster initialization, Pigsty writes the value of `pg_libs` to `shared_preload_libraries`.
 
 ### Default Value
 
-The default value of [`pg_libs`](/docs/pgsql/param#pg_libs) is `pg_stat_statements, auto_explain`. These two Contrib extensions provide basic observability:
+The default value of [`pg_libs`](/docs/pgsql/param#pg_libs) is `pg_stat_statements, auto_explain`.
+These two Contrib extensions provide basic observability:
 
 - `pg_stat_statements`: Track execution statistics of all SQL statements
 - `auto_explain`: Automatically log execution plans for slow queries
@@ -96,18 +100,18 @@ You can also directly modify `postgresql.conf` or use `ALTER SYSTEM`:
 ALTER SYSTEM SET shared_preload_libraries = 'timescaledb, pg_stat_statements, auto_explain';
 ```
 
-A PostgreSQL service restart is required after modification.
+After the change, restart the PostgreSQL service.
 
 
 --------
 
 ## Extension Parameter Configuration
 
-Many extensions have configurable parameters that can be set in the following locations:
+Many extensions have parameters that you can configure in the following locations:
 
 ### During Cluster Initialization
 
-Use the [`pg_parameters`](/docs/pgsql/param#pg_parameters) parameter to specify:
+Use [`pg_parameters`](/docs/pgsql/param#pg_parameters) to set extension parameters:
 
 ```yaml
 pg-meta:
@@ -142,13 +146,13 @@ pg edit-config pg-meta --force -p 'pg_stat_statements.track=all'
 
 ## Important Notes
 
-1. **Preload errors prevent startup**: If an extension in `shared_preload_libraries` doesn't exist or fails to load, PostgreSQL will not start. Ensure extensions are properly installed before adding to preload.
+1. **Preload errors prevent startup**: If an extension in `shared_preload_libraries` does not exist or fails to load, PostgreSQL will not start. Install each extension correctly before you add it to the preload list.
 
-2. **Modification requires restart**: Changes to `shared_preload_libraries` require restarting the PostgreSQL service to take effect.
+2. **Modification requires restart**: After you change `shared_preload_libraries`, restart the PostgreSQL service to apply the change.
 
-3. **Partial functionality available**: Some extensions can be partially used without preloading, but full functionality requires preloading.
+3. **Partial functionality available**: Some extensions provide limited functionality without preloading. Full functionality requires preloading.
 
-4. **View current configuration**: Use the following command to view current preload libraries:
+4. **View current configuration**: Run this command to show the current preload libraries:
 
 ```sql
 SHOW shared_preload_libraries;

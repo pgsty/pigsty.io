@@ -6,7 +6,9 @@ icon: fa-solid fa-microchip
 categories: [Reference]
 ---
 
-The `demo/kernel` configuration template demonstrates the major PostgreSQL kernels and compatible branches supported by Pigsty in a single configuration. It is intended for feature validation and kernel difference testing, not production use.
+The `demo/kernel` template demonstrates the PostgreSQL kernels and compatible branches that Pigsty supports.
+Use it to validate features and compare kernel behavior.
+Do not use this demonstration template for production.
 
 
 --------
@@ -49,7 +51,7 @@ This template uses single-node clusters to show the minimum viable configuration
 - `pg-mssql`: Babelfish, compatible with PostgreSQL 17
 - `pg-polar`: PolarDB for PostgreSQL, compatible with PostgreSQL 17
 - `pg-tde`: Percona PostgreSQL 18 + `pg_tde`
-- `pg-oriole`: OrioleDB, supports PostgreSQL 16, 17, and 18; the current demo config defaults to PG18
+- `pg-oriole`: OrioleDB with PostgreSQL 16, 17, and 18 support. The current demonstration defaults to PG18.
 - `pg-mysql`: OpenHalo, compatible with PostgreSQL 14
 - `pg-mongo`: DocumentDB backend for PostgreSQL Mongo mode, default PostgreSQL 18
 - `pg-agens`: AgensGraph, compatible with PostgreSQL 17
@@ -57,4 +59,5 @@ This template uses single-node clusters to show the minimum viable configuration
 
 **Notes**:
 - Package support varies by kernel, OS, and architecture. Confirm the target repository is available before deployment.
-- This template includes permissive access rules for demo use. For production, use a dedicated kernel template and tighten HBA and password policies.
+- This template has permissive access rules for demonstrations.
+  For production, use a dedicated kernel template and restrict HBA and password policies.

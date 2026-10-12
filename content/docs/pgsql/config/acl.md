@@ -7,7 +7,9 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-> Access control combines roles, object privileges, database ACLs, and HBA. This page covers configuration parameters; see [**Access Control Concepts**](/docs/concept/sec/ac) for design and boundaries.
+> Access control combines roles, object privileges, database ACLs, and HBA.
+> This page describes configuration parameters.
+> For design and boundaries, see [**Access Control Concepts**](/docs/concept/sec/ac).
 
 Pigsty provides a compact ACL model described by these parameters:
 
@@ -37,7 +39,10 @@ The defaults contain four business roles and four system users:
 | `dbuser_monitor` | User | Monitoring account with `pg_monitor`; records slow SQL by default |
 {.full-width}
 
-These definitions live in `pg_default_roles`. The parameter is a complete list. When customizing it, copy and retain the required default roles and system users, then add new roles in dependency order. If a role name changes, update references in HBA, default privileges, and scripts.
+`pg_default_roles` contains these definitions as a complete list.
+To customize it, copy and retain the required default roles and system users.
+Then add new roles in dependency order.
+If a role name changes, update its references in HBA, default privileges, and scripts.
 
 
 ----------------
@@ -65,7 +70,9 @@ After changing these parameters, update the corresponding user definitions in `p
 
 ## Application Roles and Grants (pg_users)
 
-Declare application users with `pg_users`; see [User Configuration](/docs/pgsql/config/user) for field details. The `roles` field grants business roles.
+Declare application users with `pg_users`.
+The `roles` field grants application roles.
+For field details, see [User Configuration](/docs/pgsql/config/user).
 
 Example read-only and read-write users:
 
@@ -75,16 +82,19 @@ pg_users:
   - { name: app_writer,  password: DBUser.Writer,  roles: [dbrole_readwrite], pgbouncer: true }
 ```
 
-Application users inherit default object privileges through `dbrole_*`. Database `CONNECT` privileges and [`pg_hba_rules`](/docs/pgsql/config/hba) continue to control which databases and sources can connect.
+Application users inherit default object privileges through `dbrole_*`.
+Database `CONNECT` privileges and [`pg_hba_rules`](/docs/pgsql/config/hba) also control which databases and sources can connect.
 
-For finer ACLs, use standard `GRANT` and `REVOKE` in baseline SQL or a later playbook, and include those additional grants in reviews.
+For more specific ACLs, use standard `GRANT` and `REVOKE` in baseline SQL or a later playbook.
+Include these additional grants in reviews.
 
 
 ----------------
 
 ## Default Privilege Template (pg_default_privileges)
 
-`pg_default_privileges` applies to `pg_dbsu`, `pg_admin_username`, `dbrole_admin`, and every declared database owner. The default template is:
+`pg_default_privileges` applies to `pg_dbsu`, `pg_admin_username`, `dbrole_admin`, and every declared database owner.
+The default template is:
 
 ```yaml
 pg_default_privileges:
@@ -130,7 +140,9 @@ pg_hba_rules:
   - { user: partner_ro, db: analytics, addr: 203.0.113.0/24, auth: ssl }
 ```
 
-This adds an HBA rule allowing the partner to reach `analytics` over TLS from the specified CIDR. `pg_hba_rules` does not remove broader default rules. If the account must reach only this database, also narrow the default HBA policy and configure database `CONNECT` privileges.
+This adds an HBA rule for partner access to `analytics` over TLS from the specified CIDR.
+`pg_hba_rules` does not remove broader default rules.
+If the account must access only this database, narrow the default HBA policy and configure database `CONNECT` privileges.
 
 ### DDL for an Application Administrator
 
@@ -141,7 +153,9 @@ pg_users:
     roles: [dbrole_admin]
 ```
 
-> `app_admin` inherits DDL privileges from `dbrole_admin`. To apply the default privileges configured for `dbrole_admin` to new objects, run `SET ROLE dbrole_admin` first. If `app_admin` is a declared database owner, it can also create objects directly as that owner.
+> `app_admin` inherits DDL privileges from `dbrole_admin`.
+> To apply the `dbrole_admin` default privileges to new objects, first run `SET ROLE dbrole_admin`.
+> If `app_admin` is a declared database owner, it can create objects directly as that owner.
 
 ### Custom Default Privileges
 
@@ -152,7 +166,10 @@ pg_default_privileges:
   - GRANT SELECT ON TABLES TO reporting_group
 ```
 
-This parameter replaces the complete default privilege list. Referenced roles must already exist. Changes affect only objects created afterward; grant privileges separately on existing objects.
+This parameter replaces the complete default privilege list.
+Referenced roles must already exist.
+Changes affect only objects created afterward.
+Grant privileges separately on existing objects.
 
 
 ----------------
@@ -163,7 +180,8 @@ This parameter replaces the complete default privilege list. Referenced roles mu
 - **PgBouncer:** users with `pgbouncer: true` are written to `userlist.txt`; `pool_mode` and `pool_connlimit` control pool-level quotas.
 - **Database monitoring:** `dbuser_monitor` receives privileges from `pg_default_roles`. When adding another monitoring user, grant `pg_monitor` and check access to the `monitor` schema.
 
-These parameters can be versioned with the inventory. Continue to review effective privileges through PostgreSQL catalogs.
+You can version these parameters with the inventory.
+Continue to review effective privileges through PostgreSQL catalogs.
 
 
 ----------------

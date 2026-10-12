@@ -6,8 +6,7 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-Supabase is great, but having your own Supabase is even better.
-Pigsty can help you deploy enterprise-grade Supabase on your own servers (physical, virtual, or cloud) with a single command — more extensions, better performance, deeper control, and more cost-effective.
+Pigsty can deploy Supabase on your physical, virtual, or cloud servers with a single command. Self-hosting provides more extensions, performance options, control, and potential cost savings.
 
 > As of August 2026, the [official Supabase self-hosting guide](https://supabase.com/docs/guides/self-hosting) recommends Docker and classifies other implementations as community projects. Pigsty is an independent community integration and is not currently listed on that page.
 
@@ -71,12 +70,9 @@ After installation, access Supa Studio on port `8000` with username `supabase` a
 
 ## What is Supabase?
 
-[Supabase](https://supabase.com/) is a BaaS (Backend as a Service), an open-source Firebase alternative, and the most popular database + backend solution in the AI Agent era.
-Supabase wraps PostgreSQL and provides authentication, messaging, edge functions, object storage, and automatically generates REST APIs based on your database schema. After enabling `pg_graphql` on demand, it can also provide GraphQL APIs.
+[Supabase](https://supabase.com/) is an open-source Backend as a Service (BaaS) and Firebase alternative. It is widely used for AI agent database and backend services. Supabase adds authentication, messaging, edge functions, and object storage to PostgreSQL. It generates REST APIs from the database schema. Enable `pg_graphql` when you need GraphQL APIs.
 
-Supabase aims to provide developers with a one-stop backend solution, reducing the complexity of developing and maintaining backend infrastructure.
-It allows developers to skip most backend development work — **you only need to understand database design and frontend to ship quickly!**
-Developers can use vibe coding to create a frontend and database schema to rapidly build complete applications.
+Supabase combines backend services to reduce development and infrastructure maintenance work. Developers can focus on database design and the frontend to build applications quickly. Vibe coding can help create the frontend and schema for complete applications.
 
 Supabase is one of the most popular open-source projects in the [PostgreSQL ecosystem](https://ossrank.com/cat/368-postgresql-ecosystem). As of August 2026, its [GitHub repository](https://github.com/supabase/supabase/) has more than 100,000 stars.
 Supabase also offers a free hosted tier. The current [Free plan](https://supabase.com/pricing) includes shared CPU, 500 MB of RAM, a 500 MB database quota, and 1 GB of file storage; consult the official page for later changes.
@@ -85,20 +81,15 @@ Supabase also offers a free hosted tier. The current [Free plan](https://supabas
 
 ## Why Self-Host?
 
-If Supabase cloud is so attractive, why self-host?
+Self-hosting can address cost, functionality, and control requirements.
 
-The most obvious reason is what we discussed in "[Is Cloud Database an IQ Tax?](https://vonng.com/cloud/rds/)": costs can rise quickly once data, compute, or availability requirements outgrow a managed-service tier.
-And nowadays, reliable [local enterprise NVMe SSDs](https://vonng.com/cloud/bonus/) have three to four orders of magnitude cost advantage over [cloud storage](https://vonng.com/cloud/ebs/), and self-hosting can better leverage this.
+Costs can rise quickly when data, compute, or availability requirements exceed a managed-service tier. See [Is Cloud Database an IQ Tax?](https://vonng.com/cloud/rds/). Reliable [local enterprise NVMe SSDs](https://vonng.com/cloud/bonus/) have a cost advantage of three to four orders of magnitude over [cloud storage](https://vonng.com/cloud/ebs/). Self-hosting can use this advantage.
 
-Another important reason is **functionality** — Supabase cloud features are limited. Many powerful PostgreSQL extensions aren't available in cloud services due to multi-tenant security challenges and licensing.
-Despite [extensions being a core PostgreSQL feature](https://vonng.com/pg/pg-eat-db-world), Supabase currently promises only [more than 50 preconfigured extensions](https://supabase.com/docs/guides/database/extensions); the exact list changes with platform releases.
-Self-hosted Supabase with Pigsty provides up to [**{{< param pgext_count >}}**](/ext/list) ready-to-use PostgreSQL extensions.
+**Functionality** is another reason. Multi-tenant security and licensing constraints exclude many PostgreSQL extensions from cloud services. Although [extensions are a core PostgreSQL feature](https://vonng.com/pg/pg-eat-db-world), Supabase promises [more than 50 preconfigured extensions](https://supabase.com/docs/guides/database/extensions). The exact list changes with platform releases. Self-hosting with Pigsty provides up to [**{{< param pgext_count >}}**](/ext/list) ready-to-use extensions.
 
-Additionally, self-control and vendor lock-in avoidance are important reasons for self-hosting. Although Supabase aims to provide a vendor-lock-free open-source Google Firebase alternative, self-hosting enterprise-grade Supabase is not trivial.
-Supabase includes PostgreSQL extensions that it develops and maintains. It acquired the Oriole team in 2024 and offers [**OrioleDB**](/docs/pgsql/kernel/orioledb) as an optional Public Alpha; OrioleDB is not the production default and should not be described as a confirmed replacement for native PostgreSQL. Some Supabase extensions and patched kernels are not distributed by the official PGDG repository.
+Self-hosting gives users control and helps avoid vendor lock-in. Supabase aims to provide an open-source Firebase alternative without vendor lock-in, but enterprise self-hosting still requires work. Supabase develops and maintains PostgreSQL extensions. It acquired the Oriole team in 2024 and offers [**OrioleDB**](/docs/pgsql/kernel/orioledb) as an optional Public Alpha. OrioleDB is not the production default or a confirmed replacement for native PostgreSQL. Some Supabase extensions and patched kernels are absent from the official PGDG repository.
 
-This is implicit vendor lock-in, preventing users from self-hosting in ways other than the supabase/postgres Docker image. Pigsty provides an open, transparent, and universal solution.
-We package the 10 missing Supabase extensions as ready-to-use RPM/DEB packages for the current `supabase` template matrix: EL 8/9, Debian 12, and Ubuntu 22.04/24.04/26.04 on x86_64 and aarch64. See [supported Linux distributions](/docs/ref/linux).
+Missing packages create a dependency on the supabase/postgres Docker image for self-hosting. Pigsty provides these packages for other deployment methods. The 10 missing Supabase extensions are available as RPM/DEB packages for the `supabase` template matrix. This covers EL 8/9, Debian 12, and Ubuntu 22.04/24.04/26.04 on x86_64 and aarch64. See [supported Linux distributions](/docs/ref/linux).
 
 | Extension | Description |
 |---|---|
@@ -113,19 +104,18 @@ We package the 10 missing Supabase extensions as ready-to-use RPM/DEB packages f
 | [`supautils`](/ext/e/supautils/) | Security utilities for cloud environments (C), provided by PIGSTY |
 | [`pg_plan_filter`](/ext/e/plan_filter/) | Filter queries by execution plan cost (C), provided by PIGSTY |
 
-We also [install](/docs/pgsql/ext/install) most extensions by default in Supabase deployments. You can [enable](/docs/pgsql/ext/create) them as needed.
-Newer templates install the `pg_graphql` package but no longer create the `pg_graphql` extension object by default. If you need GraphQL APIs, run `CREATE EXTENSION IF NOT EXISTS pg_graphql;` in the target database; the event trigger in the template will rebuild the `graphql_public.graphql` entry point and permissions.
+Supabase deployments [install](/docs/pgsql/ext/install) most extensions by default. [Enable](/docs/pgsql/ext/create) them as needed. Newer templates install the `pg_graphql` package without creating its extension object. For GraphQL APIs, run `CREATE EXTENSION IF NOT EXISTS pg_graphql;` in the target database. The template event trigger rebuilds `graphql_public.graphql` and its permissions.
 
-Pigsty also handles the underlying [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) cluster, highly available [Silo](/docs/minio/) object storage cluster, and even [Docker](/docs/docker/) deployment, [Nginx](/docs/infra/admin/portal) reverse proxy, [domain configuration](/docs/infra/admin/domain), and [HTTPS certificate issuance](/docs/infra/admin/cert). You can spin up any number of stateless Supabase container clusters using Docker Compose and store state in external Pigsty-managed database services.
+Pigsty manages the [highly available](/docs/concept/ha/) [PostgreSQL](/docs/pgsql/) and [Silo](/docs/minio/) object storage clusters. It also manages [Docker](/docs/docker/), the [Nginx](/docs/infra/admin/portal) reverse proxy, [domains](/docs/infra/admin/domain), and [HTTPS certificates](/docs/infra/admin/cert). Run any number of stateless Supabase container clusters with Docker Compose. Store their state in external Pigsty-managed database services.
 
-With this self-hosted architecture, you can choose among the PostgreSQL majors supported by the current template (15-18, default 18), install [**{{< param pgext_count >}}**](/ext/list/) extensions, and scale Supabase, PostgreSQL, and Silo independently. Compared with a managed service, you also assume responsibility for operating and securing that infrastructure.
+The current template supports PostgreSQL 15-18, with 18 as the default. You can install [**{{< param pgext_count >}}**](/ext/list/) extensions and scale Supabase, PostgreSQL, and Silo independently. You are responsible for operating and securing this infrastructure.
 
 
 ------
 
 ## Single-Node Quick Start
 
-Let's start with single-node Supabase deployment. We'll cover multi-node high availability later.
+Start with single-node deployment. Multi-node high availability is covered later.
 
 [Prepare](/docs/deploy/prepare) a fresh [Linux server](/docs/deploy/prepare), use the Pigsty [`supabase`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template for [standard installation](/docs/setup/install),
 then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (Envoy uses HTTP port `8000` by default; the Nginx portal provides HTTPS).
@@ -163,14 +153,12 @@ Default username and password are `supabase` and `pigsty`.
 
 Here are some key technical decisions for self-hosting Supabase:
 
-**Single-node deployment** doesn't provide PostgreSQL/Silo high availability.
-However, single-node deployment still has significant advantages over the official pure Docker Compose approach: out-of-the-box monitoring, freedom to install extensions, component scaling capabilities, and point-in-time recovery as a safety net.
+**Single-node deployment** does not provide PostgreSQL/Silo high availability. Compared with the official Docker Compose setup, it provides monitoring, extension installation, independent component scaling, and point-in-time recovery.
 
 Pigsty's Supabase template does not start the upstream Compose `db` or `supavisor` containers, and does not use Supabase's bundled connection pooler.
 Stateless containers connect directly to the PostgreSQL service managed by Pigsty; the single-node template uses service port `5436` by default, which always routes to the current primary.
 
-Logflare / Analytics in the template no longer writes to `postgres._analytics` in the application database. Instead, it uses the separate `_supabase` database and its `_analytics` schema.
-This prevents internal scheduling tables such as `oban_jobs` and `oban_peers` from being created in the project database's `public` schema and triggering Supabase Advisor RLS warnings. `LOGFLARE_DB` and `LOGFLARE_SCHEMA` control these locations.
+Logflare / Analytics uses `_analytics` in the separate `_supabase` database instead of `postgres._analytics` in the application database. This keeps internal tables such as `oban_jobs` and `oban_peers` out of the project database's `public` schema. It prevents Supabase Advisor RLS warnings about those tables. `LOGFLARE_DB` and `LOGFLARE_SCHEMA` control these locations.
 
 The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
 Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
@@ -183,11 +171,9 @@ docker compose -f docker-compose.yml -f docker-compose.kong.yml up -d
 
 Both gateways use `API_GW_HTTP_PORT` for their HTTP port, defaulting to `8000`. Only the Kong configuration also exposes `KONG_HTTPS_PORT` (default `8443`).
 
-If you only have one server or choose to self-host on cloud servers, Pigsty recommends using external S3 instead of local Silo for object storage to hold PostgreSQL backups and Supabase Storage.
-This provides an hour-scale recovery path after a single-node failure. Actual RPO depends on the newest recoverable backup, WAL archiving state, and object-storage availability; the topology alone does not guarantee a fixed value.
+For one server or cloud-hosted servers, Pigsty recommends external S3 instead of local Silo for PostgreSQL backups and Supabase Storage. This supports recovery on an hour scale after single-node failure. Actual RPO depends on the latest recoverable backup, WAL archives, and object-storage availability. The topology does not guarantee a fixed RPO.
 
-For serious production deployments, Pigsty recommends at least 3-4 nodes, ensuring both Silo and PostgreSQL use enterprise-grade multi-node high availability deployments.
-You'll need more nodes and disks, adjusting cluster configuration in `pigsty.yml` and Supabase cluster configuration to use high availability endpoints.
+For production, Pigsty recommends at least 3-4 nodes with multi-node high availability for Silo and PostgreSQL. This requires more nodes and disks. Update `pigsty.yml` and Supabase configuration to use high-availability endpoints.
 
 Some Supabase features require sending emails, so SMTP service is needed. Unless purely for internal use, production deployments should use SMTP cloud services. Self-hosted mail servers' emails are often marked as spam.
 
@@ -230,7 +216,7 @@ For older deployments, also check that `supabase_storage_admin` has `CREATE` on 
 
 **Pigsty Components**
 
-For serious production deployments, we strongly recommend changing Pigsty component passwords. These defaults are public and well-known — going to production without changing passwords is like running naked:
+For production, changing Pigsty component passwords is strongly recommended. These defaults are public:
 
 - [`grafana_admin_password`](/docs/infra/param/#grafana_admin_password): `pigsty`, Grafana admin password
 - [`pg_admin_password`](/docs/pgsql/param/#pg_admin_password): `DBUser.DBA`, PostgreSQL superuser password
@@ -302,8 +288,7 @@ For Kong or asymmetric JWTs, first update configuration with `./app.yml -l supab
 
 If using Supabase locally or on LAN, you can directly connect to the API gateway's HTTP port 8000 via IP:Port.
 
-You can use an internal static-resolved domain, but for serious production deployments, we recommend using a real domain + HTTPS to access Supabase.
-In this case, your server should have a public IP, you should own a domain, use cloud/DNS/CDN provider's DNS resolution to point to the node's public IP (optional fallback: local `/etc/hosts` static resolution).
+An internally resolved static domain is possible. For production, a real domain and HTTPS are recommended. Use a server with a public IP and a domain that you own. Point the domain to the public IP through your cloud, DNS, or CDN provider. Local `/etc/hosts` resolution is an optional fallback.
 
 The simple approach is to batch-replace the placeholder domain (`supa.pigsty`) with your actual domain, e.g., `supa.pigsty.io`:
 
@@ -405,7 +390,7 @@ all:
         retention_full: 14                # keep full backup for the last 14 days
 ```
 
-Then select `aliyun` with `all.vars.pgbackrest_method`. Check the current backup first, run check mode, and only after explicit authorization re-render pgBackRest configuration on the named cluster, initialize the stanza, and establish a new full recovery point:
+Select `aliyun` with `all.vars.pgbackrest_method`. Check the current backup and run check mode first. After explicit authorization, regenerate pgBackRest configuration on the named cluster, initialize the stanza, and create a new full recovery point:
 
 ```bash
 pig pb info
@@ -413,7 +398,7 @@ pig pb info
 pg-backup full
 ```
 
-Backups in the old repository are not migrated automatically, and a recovery-window gap remains until the first full backup in the new repository succeeds. See [Switching Repositories](/docs/pgsql/backup/repository/#switch-repositories) for the complete procedure.
+The new repository does not automatically receive old backups. A recovery-window gap remains until its first full backup succeeds. See [Switching Repositories](/docs/pgsql/backup/repository/#switch-repositories) for the complete procedure.
 
 
 
@@ -447,13 +432,11 @@ Reload the configuration with `./app.yml -l supabase -t app_config,app_launch`.
 
 ## Advanced: True High Availability
 
-After these configurations, you have enterprise-grade Supabase with public domain, HTTPS certificate, SMTP, PITR backup, monitoring, IaC, and access to {{< param pgext_count >}} PostgreSQL extensions (basic single-node version).
-For high availability configuration, see other Pigsty documentation. We offer expert consulting services for hands-on Supabase self-hosting — $400 USD to save you the hassle.
+These steps provide a single-node Supabase setup with a public domain, HTTPS, SMTP, PITR backups, monitoring, and IaC. It can use {{< param pgext_count >}} PostgreSQL extensions. See other Pigsty documentation for high availability. Hands-on Supabase self-hosting consulting is available for $400 USD.
 
-Single-node RTO/RPO relies on external object storage as a safety net. If your node fails, backups in external S3 storage let you redeploy Supabase on a new node and restore from backup.
-This provides an hour-scale [recovery fallback](/docs/pgsql/backup), but RPO depends on the actual backup and WAL-archive state and must be proven through restore drills. “MB-level” is not a fixed guarantee.
+Single-node RTO/RPO depends on external object storage for recovery. After node failure, redeploy Supabase on a new node and restore from external S3 backups. This provides an hour-scale [recovery fallback](/docs/pgsql/backup). RPO depends on actual backups and WAL archives and must be verified with restore drills. “MB-level” is not a fixed guarantee.
 
-For a target RTO below 30 seconds while preserving acknowledged transactions, use [multi-node](/docs/deploy/install), explicitly select the `fast` RTO preset and the `crit.yml` strict-synchronous policy, and validate them with failure drills. The default `norm` preset targets RTO below 45 seconds, while asynchronous replication does not promise RPO=0:
+For RTO below 30 seconds with acknowledged transactions preserved, use [multiple nodes](/docs/deploy/install). Explicitly select the `fast` RTO preset and `crit.yml` strict-synchronous policy. Validate them with failure drills. The default `norm` preset targets RTO below 45 seconds. Asynchronous replication does not promise RPO=0:
 
 - [ETCD](/docs/etcd/): DCS needs three or more nodes to tolerate one node failure.
 - [PGSQL](/docs/pgsql/): PostgreSQL synchronous commit (no data loss) mode recommends at least three nodes.

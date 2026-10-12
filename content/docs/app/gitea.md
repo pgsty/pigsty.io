@@ -10,7 +10,7 @@ categories: [Reference]
 
 [Gitea](https://gitea.io/) is a lightweight open-source Git hosting platform.
 
-Pigsty's `app/gitea` template uses **external PostgreSQL mode** by default, configured via `GITEA_DB_*` values in `.env`.
+Pigsty's `app/gitea` template uses **external PostgreSQL mode** by default. Configure the database through `GITEA_DB_*` values in `.env`.
 
 ## Quick Start
 

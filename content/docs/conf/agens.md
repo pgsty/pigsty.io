@@ -6,7 +6,8 @@ icon: fa-solid fa-project-diagram
 categories: [Reference]
 ---
 
-The `agens` configuration template replaces native PostgreSQL with the AgensGraph kernel and enables property-graph modeling plus Cypher queries.
+The `agens` template replaces the standard PostgreSQL kernel with AgensGraph.
+It supports property graphs and Cypher queries.
 
 For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgraph/)**
 
@@ -42,7 +43,8 @@ Source: [`pigsty/conf/agens.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Notes
 
-The `agens` template enables `pg_mode: agens` in the `pg-meta` cluster and installs the `agensgraph` kernel package instead of standard PostgreSQL.
+The `agens` template sets `pg_mode: agens` in the `pg-meta` cluster.
+It installs the `agensgraph` kernel package instead of standard PostgreSQL.
 
 **Key features**:
 
@@ -60,5 +62,5 @@ The `agens` template enables `pg_mode: agens` in the `pg-meta` cluster and insta
 **Caveats**:
 
 - Current AgensGraph template is pinned to `pg_version: 17`
-- Default topology is single-node for quick validation; production should extend with HA topology planning
-- Graph schema and Cypher semantics should follow official AgensGraph docs
+- The default topology has one node for validation. For production, plan and extend it for high availability.
+- Follow the official AgensGraph documentation for graph schemas and Cypher semantics.

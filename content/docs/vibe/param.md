@@ -7,7 +7,7 @@ module: [VIBE]
 categories: [Reference]
 ---
 
-VIBE module has **18** parameters, grouped as:
+The VIBE module has **18** parameters in these groups:
 
 - Common
 - Code-Server
@@ -80,7 +80,7 @@ codex_enabled: true
 
 ### `vibe_data`
 
-Workspace directory, default `/fs`. Code-Server and JupyterLab use it as their workspace root; `vibe_dir` renders `AGENTS.md` here and creates a `CLAUDE.md` symlink to it.
+Workspace directory. The default is `/fs`. Code-Server and JupyterLab use it as their workspace root. The `vibe_dir` task renders `AGENTS.md` here and creates a `CLAUDE.md` symlink to it.
 
 --------
 
@@ -92,7 +92,7 @@ Enable Code-Server, default `true`.
 
 ### `code_port`
 
-Listen port, default `8443`; bound to `127.0.0.1` and forwarded by Nginx `/code/`.
+Listen port. The default is `8443`, bound to `127.0.0.1`. Nginx forwards requests through `/code/`.
 
 ### `code_data`
 
@@ -100,12 +100,12 @@ Data dir, config file at `code_data/code-server/config.yaml` (default `/data/cod
 
 ### `code_password`
 
-Login password, default `Vibe.Coding`; it must be changed in production.
+Login password. The default is `Vibe.Coding`. You must change it in production.
 
 ### `code_gallery`
 
 Extension marketplace: `openvsx` / `microsoft`.
-When `region=china` and `openvsx`, Tsinghua mirror is used.
+If `region=china` and the marketplace is `openvsx`, VIBE uses the Tsinghua mirror.
 
 --------
 
@@ -114,7 +114,7 @@ When `region=china` and `openvsx`, Tsinghua mirror is used.
 ### `jupyter_enabled`
 
 Enable JupyterLab.
-Module default is `false`; `conf/vibe.yml` explicitly sets it to `true` to enable a full sandbox.
+The module default is `false`. The `conf/vibe.yml` template explicitly sets it to `true` for a full sandbox.
 
 ### `jupyter_port`
 
@@ -130,7 +130,7 @@ Access token, default `Vibe.Coding`, written to `c.IdentityProvider.token`.
 
 ### `jupyter_venv`
 
-Python venv path for JupyterLab, default `/data/venv`; it must be created beforehand (usually by the `NODE` module).
+Python venv path for JupyterLab. The default is `/data/venv`. You must create it first, usually through the `NODE` module.
 
 --------
 
@@ -142,7 +142,7 @@ Enable the standalone Node.js installation task, default `true`.
 
 ### `nodejs_registry`
 
-npm registry mirror; when empty and `region=china`, defaults to `https://registry.npmmirror.com`.
+npm registry mirror. If this value is empty and `region=china`, the default is `https://registry.npmmirror.com`.
 
 ### `npm_packages`
 
@@ -155,7 +155,7 @@ Claude Code and Codex CLI are installed by their own dedicated tasks and do not 
 
 ### `claude_enabled`
 
-Enable Claude Code installation and configuration, default `true`. `claude_install` installs the CLI, while `claude_config` writes its configuration.
+Enable Claude Code installation and configuration. The default is `true`. The `claude_install` task installs the CLI. The `claude_config` task writes its configuration.
 
 ### `claude_package`
 
@@ -182,5 +182,6 @@ Default env vars include:
 
 ### `codex_enabled`
 
-Whether to install Codex CLI; defaults to `true`. When enabled, `codex_install` runs `npm install -g @openai/codex`.
-VIBE installs Codex CLI only; it does not manage Codex configuration or configure OpenTelemetry for it.
+Specifies whether to install Codex CLI. The default is `true`. If enabled, `codex_install` runs `npm install -g @openai/codex`.
+
+VIBE installs only Codex CLI. It does not manage the Codex configuration or configure OpenTelemetry for Codex.

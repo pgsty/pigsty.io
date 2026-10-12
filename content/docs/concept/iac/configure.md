@@ -8,39 +8,39 @@ categories: [Concept]
 ---
 
 
-Pigsty provides a **`configure`** script as a **configuration wizard** that automatically generates an appropriate `pigsty.yml` configuration file based on your current environment.
+The **`configure`** configuration wizard generates `pigsty.yml` for your current environment.
 
-This is an **optional** script: if you already understand how to configure Pigsty, you can directly edit the `pigsty.yml` configuration file and skip the wizard.
+This script is **optional**. If you know how to configure Pigsty, edit `pigsty.yml` directly and skip the wizard.
 
 -----------------
 
 ## Quick Start
 
-Enter the pigsty source home directory and run `./configure` to automatically start the configuration wizard. Without any arguments, it defaults to the [**`meta`**](/docs/conf/meta) single-node configuration template:
+Enter the Pigsty source directory and run `./configure` to start the wizard. Without arguments, it uses the [**`meta`**](/docs/conf/meta) single-node template:
 
 ```bash
 cd ~/pigsty
 ./configure          # Interactive configuration wizard, auto-detect environment and generate config
 ```
 
-This command will use the selected template as a base, detect the current node's IP address and region, and generate a `pigsty.yml` configuration file suitable for the current environment.
+The command starts with the selected template. It detects the current node IP address and region, then generates `pigsty.yml` for that environment.
 
 {{< asciinema file="demo/configure.cast" markers="3:Default config,7:Specify IP,14:Random password,17:rich template,20:app/odoo template,26:china region,33:ha/full template" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
 
 ## Features
 
-The **`configure`** script performs the following adjustments based on environment and input, generating `pigsty.yml` in the Pigsty directory by default.
+The **`configure`** script makes these adjustments from your environment and input. By default, it generates `pigsty.yml` in the Pigsty directory.
 
-- Detects the current node IP address; if multiple IPs exist, prompts the user to input a **primary IP address** as the node's identity
-- Uses the IP address to replace the placeholder **`10.10.10.10`** in the configuration template and sets it as the [**`admin_ip`**](/docs/infra/param#admin_ip) parameter value
-- Detects the current region, setting [**`region`**](/docs/infra/param#region) to **`default`** (global default repos) or **`china`** (using Chinese mirror repos)
-- For micro instances (vCPU < 4), uses the **`tiny`** parameter template for [**`node_tune`**](/docs/node/param#node_tune) and [**`pg_conf`**](/docs/pgsql/param#pg_conf) to optimize resource usage
-- If **`-v`** is specified, switches [**`pg_version`**](/docs/pgsql/param#pg_version) and `pg18-*` package-group aliases in the template to that major version; fixed-kernel templates `mssql`, `polar`, and `pg19` are excluded from this replacement
-- If **`-g`** is specified, replaces default passwords recognized by the configuration wizard with randomly generated strong passwords; review uncovered values against the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) (**strongly recommended**)
-- When PG major version ≥ 17, prioritizes the built-in **`C.UTF-8`** locale, or the OS-supported **`C.UTF-8`**
-- Checks if the core dependency **`ansible`** for deployment is available in the current environment
-- Also checks if the deployment target node is SSH-reachable and can execute commands with sudo (**`-s`** to skip)
+- Detect the current node IP address. If the node has multiple addresses, ask you to select a **primary IP address** as its identity.
+- Replace **`10.10.10.10`** in the template with this address. Set [**`admin_ip`**](/docs/infra/param#admin_ip) to the same value.
+- Detect the region. Set [**`region`**](/docs/infra/param#region) to **`default`** for global software repositories or **`china`** for Chinese mirrors.
+- For instances with fewer than four vCPUs, use the **`tiny`** template for [**`node_tune`**](/docs/node/param#node_tune) and [**`pg_conf`**](/docs/pgsql/param#pg_conf). This reduces resource use.
+- With **`-v`**, change [**`pg_version`**](/docs/pgsql/param#pg_version) and `pg18-*` package-group aliases to the specified major version. Exclude the fixed-kernel templates `mssql`, `polar`, and `pg19`.
+- With **`-g`**, replace recognized default passwords with strong random passwords. This is **strongly recommended**. Review other values against the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist).
+- For PG major versions ≥ 17, prefer the built-in **`C.UTF-8`** locale, or the OS-supported **`C.UTF-8`**.
+- Check that the core deployment dependency **`ansible`** is available.
+- Check that the deployment target accepts SSH connections and can run commands with sudo. Use **`-s`** to skip these checks.
 
 
 
@@ -128,7 +128,7 @@ The **`configure`** script performs the following adjustments based on environme
 
 ## Execution Flow
 
-The `configure` script executes detection and configuration in the following order:
+The `configure` script detects and configures settings in this order:
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -175,27 +175,27 @@ The `configure` script executes detection and configuration in the following ord
 
 ### Region Detection
 
-The script automatically detects the network environment to determine if you're in mainland China (behind GFW):
+The script tests network access to detect mainland China behind the GFW:
 
 ```bash
 # The actual probe uses HTTPS with a two-second total timeout
 curl -I -s --max-time 2 https://www.google.com
 ```
 
-- If Google is reachable, uses the `region: default` repositories
-- If Google is unreachable but `https://pigsty.cc` is reachable, sets `region: china`
-- If neither endpoint is reachable, falls back to `region: default` and emits an internet-unreachable warning
-- Can manually specify region via `-r` argument
+- If Google is reachable, use `region: default` repositories.
+- If Google is unreachable but `https://pigsty.cc` is reachable, set `region: china`.
+- If neither endpoint is reachable, use `region: default` and warn that internet access is unavailable.
+- To set the region manually, use `-r`.
 
 
 ### IP Address Handling
 
-The script determines the primary IP address in the following priority:
+The script selects the primary IP address in this order:
 
-1. **Command line argument**: If IP is specified via `-i`, use it directly
-2. **Single IP detection**: If the current node has only one IP, use it automatically
-3. **Demo IP detection**: If `10.10.10.10` is detected, select it automatically (for sandbox environments)
-4. **Interactive input**: When multiple IPs exist, prompt user to choose or input
+1. **Command line argument**: Use the address specified with `-i`.
+2. **Single IP detection**: If the node has only one IP address, select it automatically.
+3. **Demo IP detection**: If `10.10.10.10` exists, select it automatically for the sandbox environment.
+4. **Interactive input**: If multiple addresses remain, ask you to select or enter one.
 
 ```bash
 [WARN] Multiple IP address candidates found:
@@ -208,7 +208,7 @@ The script determines the primary IP address in the following priority:
 
 ### Low-End Hardware Optimization
 
-When fewer than 4 CPU cores are detected (1-3 cores), the script automatically adjusts configuration:
+If the script detects fewer than four CPU cores (1–3), it changes these settings:
 
 ```bash
 [WARN] replace oltp template with tiny due to cpu < 4
@@ -217,15 +217,15 @@ When fewer than 4 CPU cores are detected (1-3 cores), the script automatically a
 - Changes [`pg_conf`](/docs/pgsql/param#pg_conf) from `oltp.yml` to `tiny.yml`
 - Changes [`node_tune`](/docs/node/param#node_tune) from `oltp` to `tiny`
 
-This ensures smooth operation on low-spec virtual machines.
+These settings support operation on virtual machines with limited resources.
 
 
 ### Locale Settings
 
-The script automatically enables `C.UTF-8` as the default locale when:
+The script enables `C.UTF-8` as the default locale if either condition applies:
 
-- PostgreSQL version ≥ 17 (built-in Locale Provider support)
-- **Or** the current system supports `C.UTF-8` / `C.utf8` locale
+- PostgreSQL version is ≥ 17, with built-in Locale Provider support.
+- The operating system supports the `C.UTF-8` or `C.utf8` locale.
 
 ```yaml
 pg_locale: C.UTF-8
@@ -236,15 +236,15 @@ pg_lc_ctype: C.UTF-8
 
 ### China Region Special Handling
 
-When region is set to `china`, the script automatically:
+For region `china`, the script automatically enables:
 
-- Enables `docker_registry_mirrors` Docker mirror acceleration
-- Enables `PIP_MIRROR_URL` Python mirror acceleration
+- `docker_registry_mirrors` for faster Docker downloads through mirrors.
+- `PIP_MIRROR_URL` for faster Python downloads through mirrors.
 
 
 ### Password Generation
 
-When using the `-g` argument, the script generates 24-character random strings for the following passwords:
+With `-g`, the script generates a random 24-character string for each of these passwords:
 
 |    Password Parameter     | Description                          |
 |:-------------------------:|:-------------------------------------|
@@ -281,7 +281,7 @@ $ ./configure -g
 
 ## Configuration Templates
 
-The script reads templates from `conf/`. The value of `-c` is a path relative to that directory without the `.yml` suffix, such as `ha/full` or `app/immich`.
+The script reads templates from `conf/`. Set `-c` to a relative path without the `.yml` suffix, such as `ha/full` or `app/immich`.
 
 ### Core Templates
 
@@ -411,17 +411,17 @@ The script supports the following environment variables:
 
 ## Notes
 
-1. **Passwordless access**: Before running `configure`, ensure the current user has passwordless sudo privileges and passwordless SSH to localhost. This can be automatically configured via the `bootstrap` script.
+1. **Passwordless access**: Before you run `configure`, the current user must have passwordless sudo and passwordless SSH access to localhost. The `bootstrap` script can configure both.
 
-2. **IP address selection**: Choose an **internal IP** as the primary IP address, not a public IP or `127.0.0.1`.
+2. **IP address selection**: Select an **internal IP** as the primary address. Do not select a public IP or `127.0.0.1`.
 
-3. **Password security**: In production, **always** change default passwords in the configuration file. Use `-g` to randomize recognized credentials, then review the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for remaining values.
+3. **Password security**: In production, **always** change default passwords. Use `-g` to randomize recognized credentials. Review the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for remaining values.
 
-4. **Configuration review**: After the script completes, it's recommended to review the generated `pigsty.yml` file to confirm the configuration meets expectations.
+4. **Configuration review**: After the script completes, review the generated `pigsty.yml`. Check that it meets your requirements.
 
-5. **Multiple executions**: You can run `configure` multiple times to regenerate configuration; each run will overwrite the existing `pigsty.yml`.
+5. **Multiple executions**: You can run `configure` again to regenerate configuration. **Each run overwrites the existing `pigsty.yml`.**
 
-6. **macOS limitations**: When running on macOS, the script skips some Linux-specific checks and uses placeholder IP `10.10.10.10`. macOS can only serve as an admin node.
+6. **macOS limitations**: On macOS, the script skips some Linux checks and uses placeholder IP `10.10.10.10`. macOS can serve only as an administration node.
 
 
 -----------------

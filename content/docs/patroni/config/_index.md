@@ -14,13 +14,13 @@ categories: [Reference]
 There are 3 types of Patroni configuration:
 
 - Global [dynamic configuration](/docs/patroni/config/dynamic#dynamic).  
-  These options are stored in the DCS (Distributed Configuration Store) and applied on all cluster nodes. Dynamic configuration can be set at any time using [patronictl_edit_config](/docs/patroni/patronictl#patronictl_edit_config) tool or Patroni [REST API](/docs/patroni/rest_api#rest_api). If the options changed are not part of the startup configuration, they are applied asynchronously (upon the next wake up cycle) to every node, which gets subsequently reloaded. If the node requires a restart to apply the configuration (for [PostgreSQL parameters](https://www.postgresql.org/docs/current/view-pg-settings.html) with context postmaster, if their values have changed), a special flag `pending_restart` indicating this is set in the members.data JSON. Additionally, the node status indicates this by showing `"restart_pending": true`.
+  These options are stored in the DCS (Distributed Configuration Store) and apply to all nodes. Change them at any time with [patronictl_edit_config](/docs/patroni/patronictl#patronictl_edit_config) or the [REST API](/docs/patroni/rest_api#rest_api). Changes outside startup configuration apply asynchronously on each node's next wake-up cycle, followed by a reload. Changed [PostgreSQL parameters](https://www.postgresql.org/docs/current/view-pg-settings.html) with postmaster context require a restart. Patroni sets `pending_restart` in members.data JSON for these nodes. Node status also shows `"restart_pending": true`.
 
 - Local [configuration file](/docs/patroni/config/yaml#yaml) (patroni.yml).  
-  These options are defined in the configuration file and take precedence over dynamic configuration. `patroni.yml` can be changed and reloaded at runtime (without restart of Patroni) by sending SIGHUP to the Patroni process, performing `POST /reload` REST-API request or executing [patronictl_reload](/docs/patroni/patronictl#patronictl_reload). Local configuration can be either a single YAML file or a directory. When it is a directory, all YAML files in that directory are loaded one by one in sorted order. In case a key is defined in multiple files, the occurrence in the last file takes precedence.
+  Local options override dynamic configuration. To reload `patroni.yml` without restarting Patroni, send SIGHUP, send `POST /reload`, or run [patronictl_reload](/docs/patroni/patronictl#patronictl_reload). Local configuration can be one YAML file or a directory. Patroni loads all YAML files in a directory in sorted order. If several files define a key, the last file takes precedence.
 
 - [Environment configuration](/docs/patroni/config/env#env).  
-  It is possible to set/override some of the "Local" configuration parameters with environment variables. Environment configuration is very useful when you are running in a dynamic environment and you don't know some of the parameters in advance (for example it's not possible to know your external IP address when you are running inside `docker`).
+  Environment variables can set or override some local parameters. Use them in dynamic environments where some values are unknown in advance. For example, the external IP address may be unknown inside `docker`.
 
 <a id="important_configuration_rules"></a>
 
@@ -30,7 +30,7 @@ There are 3 types of Patroni configuration:
 
 ### PostgreSQL parameters controlled by Patroni
 
-Some of the PostgreSQL parameters **must hold the same values on the primary and the replicas**. For those, **values set either in the local patroni configuration files or via the environment variables take no effect**. To alter or set their values one must change the shared configuration in the DCS. Below is the actual list of such parameters together with the default and minimal values:
+These PostgreSQL parameters **must have the same values on the primary and replicas**. **Local configuration and environment values have no effect**. Set them through shared DCS configuration. The list shows their defaults and minimum values:
 
 - **max_connections**: default value 100, minimal value 25
 - **max_locks_per_transaction**: default value 64, minimal value 32
@@ -39,7 +39,7 @@ Some of the PostgreSQL parameters **must hold the same values on the primary and
 - **wal_level**: default value hot_standby, accepted values: hot_standby, replica, logical
 - **track_commit_timestamp**: default value off
 
-For the parameters below, PostgreSQL does not require equal values among the primary and all the replicas. However, considering the possibility of a replica to become the primary at any time, it doesn't really make sense to set them differently; therefore, **Patroni restricts setting their values to the** [dynamic configuration](/docs/patroni/config/dynamic#dynamic).
+PostgreSQL permits different primary and replica values for the parameters below. However, a replica can become primary at any time. Different values are therefore unsuitable, and **Patroni permits changes only through** [dynamic configuration](/docs/patroni/config/dynamic#dynamic).
 
 - **max_wal_senders**: default value 10, minimal value 3
 - **max_replication_slots**: default value 10, minimal value 4
@@ -47,7 +47,7 @@ For the parameters below, PostgreSQL does not require equal values among the pri
 - **wal_keep_size**: default value 128MB, minimal value 16MB
 - **wal_log_hints**: on
 
-These parameters are validated to ensure they are sane, or meet a minimum value.
+Patroni validates these values for correctness or a required minimum.
 
 There are some other Postgres parameters controlled by Patroni:
 
@@ -56,19 +56,19 @@ There are some other Postgres parameters controlled by Patroni:
 - **cluster_name** - is set either from `scope` or from `PATRONI_SCOPE` environment variable
 - **hot_standby: on**
 
-To be on the safe side parameters from the above lists are written into `postgresql.conf`, and passed as a list of arguments to the `postgres` which gives them the highest precedence (except `wal_keep_segments` and `wal_keep_size`), even above [ALTER SYSTEM](https://www.postgresql.org/docs/current/static/sql-altersystem.html)
+Patroni writes the parameters above to `postgresql.conf`. Except for `wal_keep_segments` and `wal_keep_size`, it also passes them as `postgres` arguments. These arguments take precedence over all other settings, including [ALTER SYSTEM](https://www.postgresql.org/docs/current/static/sql-altersystem.html).
 
-There also are some parameters like **postgresql.listen**, **postgresql.data_dir** that **can be set only locally**, i.e. in the Patroni [config file](/docs/patroni/config/yaml#yaml) or via [configuration](/docs/patroni/config/env#env) variable. In most cases the local configuration will override the dynamic configuration.
+Parameters such as **postgresql.listen** and **postgresql.data_dir** **can only be set locally**. Use the [configuration file](/docs/patroni/config/yaml#yaml) or [environment variables](/docs/patroni/config/env#env). Local configuration overrides dynamic configuration in most cases.
 
 When applying the local or dynamic configuration options, the following actions are taken:
 
-- The node first checks if there is a `postgresql.base.conf` file or if the `custom_conf` parameter is set.
-- If the `custom_conf` parameter is set, the file it specifies is used as the base configuration, ignoring `postgresql.base.conf` and `postgresql.conf`.
-- If the `custom_conf` parameter is not set and `postgresql.base.conf` exists, it contains the renamed "original" configuration and is used as the base configuration.
-- If there is no `custom_conf` nor `postgresql.base.conf`, the original `postgresql.conf` is renamed to `postgresql.base.conf` and used as the base configuration.
-- The dynamic options (with the exceptions above) are dumped into the `postgresql.conf` and an include is set in `postgresql.conf` to the base configuration (either `postgresql.base.conf` or the file at `custom_conf`). Therefore, we would be able to apply new options without re-reading the configuration file to check if the include is present or not.
-- Some parameters that are essential for Patroni to manage the cluster are overridden using the command line.
-- If an option that requires restart is changed (we should look at the context in pg_settings and at the actual values of those options), a pending_restart flag is set on that node. This flag is reset on any restart.
+- The node checks for `postgresql.base.conf` and `custom_conf`.
+- If `custom_conf` is set, its file supplies the base configuration. Patroni ignores `postgresql.base.conf` and `postgresql.conf` as base files.
+- Otherwise, an existing `postgresql.base.conf` supplies the base configuration. It contains the renamed original configuration.
+- If neither exists, Patroni renames the original `postgresql.conf` to `postgresql.base.conf` and uses it as the base.
+- Patroni writes dynamic options to `postgresql.conf`, subject to the exceptions above. It adds an include for `postgresql.base.conf` or the `custom_conf` file. New options can then apply without rereading the file to check for the include.
+- Command-line arguments override parameters essential for Patroni cluster management.
+- If a changed value requires restart according to pg_settings context, Patroni sets pending_restart on the node. Any restart resets this flag.
 
 The parameters would be applied in the following order (run-time are given the highest priority):
 
@@ -77,7 +77,7 @@ The parameters would be applied in the following order (run-time are given the h
 3.  load parameters from file `postgresql.auto.conf`
 4.  run-time parameter using `-o --name=value`
 
-This allows configuration for all the nodes (2), configuration for a specific node using `ALTER SYSTEM` (3) and ensures that parameters essential to the running of Patroni are enforced (4), as well as leaves room for configuration tools that manage `postgresql.conf` directly without involving Patroni (1).
+This order supports shared node configuration (2) and node-specific `ALTER SYSTEM` settings (3). It enforces essential Patroni parameters (4). It also permits external tools to manage the base configuration directly (1).
 
 <a id="shared_memory_gucs"></a>
 
@@ -91,16 +91,16 @@ PostgreSQL has some parameters that determine the size of the shared memory used
 - **max_wal_senders**
 - **max_worker_processes**
 
-Changing these parameters require a PostgreSQL restart to take effect, and their shared memory structures cannot be smaller on the standby nodes than on the primary node.
+Changes require a PostgreSQL restart. Standby shared memory structures must not be smaller than the corresponding primary structures.
 
-As explained before, Patroni restrict changing their values through [dynamic configuration](/docs/patroni/config/dynamic#dynamic), which usually consists of:
+Change these values through [dynamic configuration](/docs/patroni/config/dynamic#dynamic), as Patroni requires. The usual sequence is:
 
 1.  Applying changes through [patronictl_edit_config](/docs/patroni/patronictl#patronictl_edit_config) (or via REST API `/config` endpoint)
 2.  Restarting nodes through [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) (or via REST API `/restart` endpoint)
 
-**Note:** please keep in mind that you should perform a restart of the PostgreSQL nodes through [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) command, or via REST API `/restart` endpoint. An attempt to restart PostgreSQL by restarting the Patroni daemon, e.g. by executing `systemctl restart patroni`, can cause a failover to occur in the cluster, if you are restarting the primary node.
+**Note:** Restart PostgreSQL through [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) or the REST API `/restart` endpoint. Restarting the Patroni daemon with `systemctl restart patroni` can trigger failover if the node is primary.
 
-However, as those settings manage shared memory, some extra care should be taken when restarting the nodes:
+These shared memory settings require a specific restart order:
 
 - If you want to **increase** the value of any of those settings:
 
@@ -112,7 +112,7 @@ However, as those settings manage shared memory, some extra care should be taken
   > 1.  Restart the primary first
   > 2.  Restart all standbys after that
 
-**Note:** if you attempt to restart all nodes in one go after **decreasing** the value of any of those settings, Patroni will ignore the change and restart the standby with the original setting value, thus requiring that you restart the standbys again later. Patroni does that to prevent the standby to enter in an infinite crash loop, because PostgreSQL quits with a `FATAL` message if you attempt to set any of those parameters to a value lower than what is visible in `pg_controldata` on the Standby node. In other words, we can only decrease the setting on the standby once its `pg_controldata` is up-to-date with the primary in regards to these changes on the primary.
+**Note:** If you restart all nodes together after a **decrease**, Patroni restarts standbys with the original value. You must restart them again later. This prevents an endless crash loop: PostgreSQL exits with `FATAL` if a value is below that recorded in standby `pg_controldata`. A standby value can decrease only after its `pg_controldata` reflects the primary change.
 
 More information about that can be found at [PostgreSQL Administrator's Overview](https://www.postgresql.org/docs/current/hot-standby.html#HOT-STANDBY-ADMIN).
 
@@ -128,9 +128,9 @@ Also the following Patroni configuration options **can be changed only dynamical
 - **check_timeline**: false
 - **postgresql.use_slots**: true
 
-Upon changing these options, Patroni will read the relevant section of the configuration stored in DCS and change its run-time values.
+After a change, Patroni reads the relevant DCS configuration section and updates its runtime values.
 
-Patroni nodes are dumping the state of the DCS options to disk upon for every change of the configuration into the file `patroni.dynamic.json` located in the Postgres data directory. Only the leader is allowed to restore these options from the on-disk dump if these are completely absent from the DCS or if they are invalid.
+After each configuration change, Patroni writes DCS options to `patroni.dynamic.json` in the Postgres data directory. Only the leader can restore these options from disk. It can do so only when DCS options are absent or invalid.
 
 <a id="validate_generate_config"></a>
 
@@ -138,7 +138,7 @@ Patroni nodes are dumping the state of the DCS options to disk upon for every ch
 
 ## Configuration generation and validation
 
-Patroni provides command-line interfaces for a Patroni [local configuration](/docs/patroni/config/yaml#yaml) generation and validation. Using the `patroni` executable you can:
+The `patroni` executable can generate and validate [local configuration](/docs/patroni/config/yaml#yaml). Use it to:
 
 - Create a sample local Patroni configuration;
 - Create a Patroni configuration file for the locally running PostgreSQL instance (e.g. as a preparation step for the [Patroni integration](/docs/patroni/existing_data#existing_data));
@@ -154,7 +154,7 @@ patroni --generate-sample-config [configfile]
 
 #### Description
 
-Generate a sample Patroni configuration file in `yaml` format. Parameter values are defined using the [Environment configuration](/docs/patroni/config/env#env), otherwise, if not set, the defaults used in Patroni or the `#FIXME` string for the values that should be later defined by the user.
+Generate a sample Patroni configuration in `yaml` format. Values come from [Environment configuration](/docs/patroni/config/env#env). For unset parameters, use Patroni defaults or `#FIXME` for values that the user must supply.
 
 Some default values are defined based on the local setup:
 
@@ -178,9 +178,9 @@ patroni --generate-config [--dsn DSN] [configfile]
 
 #### Description
 
-Generate a Patroni configuration in `yaml` format for the locally running PostgreSQL instance. Either the provided DSN (takes precedence) or PostgreSQL [environment variables](https://www.postgresql.org/docs/current/libpq-envars.html) will be used for the PostgreSQL connection. If the password is not provided, it should be entered via prompt.
+Generate a `yaml` configuration for the local running PostgreSQL instance. Connection settings use the supplied DSN first, then PostgreSQL [environment variables](https://www.postgresql.org/docs/current/libpq-envars.html). If no password is supplied, enter it at the prompt.
 
-All the non-internal GUCs defined in the source Postgres instance, independently if they were set through a configuration file, through the postmaster command-line, or through environment variables, will be used as the source for the following Patroni configuration parameters:
+All non-internal GUCs from the source instance supply these Patroni parameters. This includes GUCs set through files, postmaster command-line arguments, or environment variables:
 
 > - **scope**: `cluster_name` GUC value;
 > - **postgresql.listen**: `listen_addresses` and `port` GUC values;
@@ -188,7 +188,7 @@ All the non-internal GUCs defined in the source Postgres instance, independently
 > - **postgresql.parameters**: `archive_command`, `restore_command`, `archive_cleanup_command`, `recovery_end_command`, `ssl_passphrase_command`, `hba_file`, `ident_file`, `config_file` GUC values;
 > - **bootstrap.dcs**: all other gathered PostgreSQL GUCs.
 
-If `scope`, `postgresql.listen` or `postgresql.datadir` is not set from the Postgres GUCs, the respective [Environment configuration](/docs/patroni/config/env#env) value is used.
+If Postgres GUCs do not supply `scope`, `postgresql.listen`, or `postgresql.datadir`, Patroni uses the corresponding [Environment configuration](/docs/patroni/config/env#env) value.
 
 Other rules applied for the values definition:
 
@@ -201,7 +201,7 @@ Other rules applied for the values definition:
 > - **restapi.listen**: IP address returned by `gethostname` call for the current machine's hostname and the standard `8008` port.
 > - **restapi.connect_address**: IP address returned by `gethostname` call for the current machine's hostname and the standard `8008` port.
 
-Other parameters defined using [Environment configuration](/docs/patroni/config/env#env) are also included into the configuration.
+The generated file also includes other parameters from [Environment configuration](/docs/patroni/config/env#env).
 
 #### Parameters
 
@@ -219,15 +219,15 @@ patroni --validate-config [configfile] [--ignore-listen-port | -i]
 
 #### Description
 
-Validate the given Patroni configuration and print the information about the failed checks.
+Validate the Patroni configuration and print failed checks.
 
 #### Parameters
 
 `configfile`  
-Full path to the configuration file to check. If not given or file does not exist, will try to read from the `PATRONI_CONFIG_VARIABLE` environment variable or, if not set, from the [Patroni environment variables](/docs/patroni/config/env#env).
+Full path to the file to check. If absent or nonexistent, read `PATRONI_CONFIG_VARIABLE`. If that variable is unset, use [Patroni environment variables](/docs/patroni/config/env#env).
 
 `--ignore-listen-port | -i`  
-Optional flag to ignore bind failures for `listen` ports that are already in use when validating the `configfile`.
+Optional flag to ignore bind failures for occupied `listen` ports during `configfile` validation.
 
 `--print | -p`  
-Optional flag to print out local configuration (including environment configuration overrides) after it has been successfully validated.
+Optional flag to print local configuration, including environment overrides, after successful validation.

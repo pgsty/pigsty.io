@@ -16,7 +16,7 @@ categories: [Reference]
 
 ## Overview
 
-The current open-source tree has no TigerBeetle role or dedicated playbook. It only provides the `tigerbeetle` installation alias in the node platform package map; initialize and manage the service according to the official TigerBeetle documentation.
+The current open-source tree has no TigerBeetle role or dedicated playbook. It provides only the `tigerbeetle` installation alias in the node platform package map. Use the official TigerBeetle documentation to initialize and manage the service.
 
 
 --------
@@ -29,10 +29,10 @@ Use the following command to install the mapped package from the Pigsty Infra re
 ./node.yml -t node_install -e '{"node_repo_modules":"infra","node_packages":["tigerbeetle"]}'
 ```
 
-After installation, please refer to the official documentation for configuration: https://github.com/tigerbeetle/tigerbeetle
+After installation, use the official documentation to configure TigerBeetle: https://github.com/tigerbeetle/tigerbeetle
 
 
 > [!CAUTION] TigerBeetle Requires Linux Kernel Version 5.5 or Higher!
-> Please note that TigerBeetle supports only Linux kernel version 5.5 or higher, making it incompatible by default with EL7 (3.10) and EL8 (4.18) systems.
+> TigerBeetle supports only Linux kernel version 5.5 or higher. Thus, it is incompatible with the default kernels of EL7 (3.10) and EL8 (4.18).
 >
-> To install TigerBeetle, please use EL 9/10, Ubuntu 22/24/26, Debian 12/13, or another system whose kernel version meets TigerBeetle's requirements.
+> Use EL 9/10, Ubuntu 22/24/26, Debian 12/13, or another system with a supported kernel version.

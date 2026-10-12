@@ -6,7 +6,7 @@ icon: fa-solid fa-feather
 categories: [Reference]
 ---
 
-The `oriole` configuration template uses OrioleDB storage engine instead of PostgreSQL's default Heap storage, providing bloat-free, high-performance OLTP capability.
+The `oriole` configuration template uses the OrioleDB storage engine instead of PostgreSQL's default Heap storage. It provides bloat-free, high-performance OLTP capability.
 
 
 --------
@@ -46,7 +46,7 @@ Source: [`pigsty/conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/con
 
 ## Explanation
 
-The `oriole` template uses OrioleDB storage engine, fundamentally solving PostgreSQL table bloat problems.
+The `oriole` template uses the OrioleDB storage engine to prevent PostgreSQL table bloat.
 
 **Key Features**:
 - **Bloat-free Design**: Uses UNDO logs instead of Multi-Version Concurrency Control (MVCC)
@@ -74,7 +74,7 @@ CREATE TABLE orders (
 ```
 
 **Notes**:
-- OrioleDB supports PostgreSQL 16, 17, and 18; the template defaults to PG18, and you can select a major version with `-v 16`, `-v 17`, or `-v 18`
+- OrioleDB supports PostgreSQL 16, 17, and 18. The template defaults to PG18. To select a major version, use `-v 16`, `-v 17`, or `-v 18`.
 - Need to add `orioledb` to `shared_preload_libraries`
 - Some PostgreSQL features may not be fully supported
 - Use the matching OrioleDB packages for the selected PostgreSQL major and OS architecture

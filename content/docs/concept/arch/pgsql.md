@@ -7,18 +7,18 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-The PGSQL module organizes PostgreSQL in production as **clusters**—**logical entities** composed of a group of database **instances** associated by **primary-replica** relationships.
+PGSQL organizes PostgreSQL as **clusters**. Each cluster is a logical group of database **instances** connected through **primary-replica** relationships.
 
 
 --------
 
 ## Overview
 
-The [**PGSQL module**](/docs/pgsql) includes the following components, working together to provide production-grade PostgreSQL HA cluster services:
+The [**PGSQL module**](/docs/pgsql) combines these components for production HA clusters:
 
 | Component                                                 | Type      | Description                                                             |
 |:----------------------------------------------------------|-----------|:------------------------------------------------------------------------|
-| [**`postgres`**](#postgresql)                             | Database  | The world's most advanced open-source relational database, PGSQL core   |
+| [**`postgres`**](#postgresql)                             | Database  | Open-source relational database engine for PGSQL   |
 | [**`patroni`**](#patroni)                                 | HA        | Manages PostgreSQL, coordinates failover, leader election, config changes |
 | [**`pgbouncer`**](#pgbouncer)                             | Pool      | Lightweight connection pooling middleware, reduces overhead, adds flexibility |
 | [**`pgbackrest`**](#pgbackrest)                           | Backup    | Full/incremental backup and WAL archiving, supports local and object storage |
@@ -28,7 +28,7 @@ The [**PGSQL module**](/docs/pgsql) includes the following components, working t
 | [**`vip-manager`**](#vip-manager)                         | VIP       | Binds L2 VIP to current primary node for transparent failover [Optional] |
 {.full-width}
 
-The [**`vip-manager`**](#vip-manager) is an on-demand component. Additionally, PGSQL uses components from other modules:
+Enable [**`vip-manager`**](#vip-manager) when needed. PGSQL also uses components from other modules:
 
 | Component                   | Module                       | Type     | Description                                                        |
 |-----------------------------|:-----------------------------|----------|:-------------------------------------------------------------------|
@@ -37,11 +37,9 @@ The [**`vip-manager`**](#vip-manager) is an on-demand component. Additionally, P
 | [**`etcd`**](#etcd)         | [**ETCD**](/docs/etcd)       | DCS      | Distributed consistent store for cluster metadata and leader info  |
 {.full-width}
 
-By analogy, the [PostgreSQL](#postgresql) database kernel is the CPU, while the PGSQL module packages it as a complete computer.
-[Patroni](#patroni) and [Etcd](#etcd) form the [HA subsystem](#ha-subsystem), while [pgBackRest](#pgbackrest) and optional Silo form the [backup subsystem](#backup-subsystem).
-[HAProxy](#haproxy), [Pgbouncer](#pgbouncer), and [vip-manager](#vip-manager) form the [access subsystem](#access-subsystem).
-Various Exporters and [Vector](#vector) build the [observability subsystem](#observability-subsystem);
-finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**extension cards**](/docs/pgsql/ext).
+The PGSQL module combines the [PostgreSQL](#postgresql) engine with supporting services. [Patroni](#patroni) and [Etcd](#etcd) provide [HA](#ha-subsystem). [pgBackRest](#pgbackrest) and optional Silo provide [backups](#backup-subsystem). [HAProxy](#haproxy), [Pgbouncer](#pgbouncer), and [vip-manager](#vip-manager) provide [access](#access-subsystem). Exporters and [Vector](#vector) provide [monitoring](#observability-subsystem).
+
+You can select other [**database kernels**](/docs/pgsql/kernel) and [**extensions**](/docs/pgsql/ext). The diagram represents the engine as a CPU and the complete service as a computer.
 
 ![Pigsty PostgreSQL cluster architecture](/img/pigsty/motherboard.gif)
 
@@ -96,10 +94,9 @@ finally, you can swap different [**kernel CPUs**](/docs/pgsql/kernel) and [**ext
 
 ## HA Subsystem
 
-The [**HA**](/docs/concept/ha) subsystem consists of [**Patroni**](#patroni) and [**etcd**](#etcd), responsible for PostgreSQL cluster failure detection, automatic failover, and configuration management.
+[**Patroni**](#patroni) and [**etcd**](#etcd) provide the [**HA subsystem**](/docs/concept/ha). They detect failures, coordinate failover, and manage configuration.
 
-**How it works**: [Patroni](#patroni) runs on each node, managing the local [PostgreSQL](#postgresql) process and writing cluster state (leader, members, config) to [etcd](#etcd).
-When the primary fails, [Patroni](#patroni) coordinates election via [etcd](#etcd), promoting the healthiest replica to new primary. The entire process is automatic, with RTO typically under 45 seconds.
+**Operation**: [Patroni](#patroni) manages each local [PostgreSQL](#postgresql) process. It writes the leader, members, and configuration to [etcd](#etcd). After primary failure, Patroni coordinates an election and promotes the healthiest replica. Recovery is automatic, with RTO typically below 45 seconds.
 
 **Key Interactions**:
 - **[PostgreSQL](#postgresql)**: Starts, stops, reloads PG as parent process, controls its lifecycle
@@ -114,7 +111,7 @@ For more information, see: [**High Availability**](/docs/concept/ha/) and [**Con
 
 ## Access Subsystem
 
-The access subsystem consists of [**HAProxy**](#haproxy), [**Pgbouncer**](#pgbouncer), and [**vip-manager**](#vip-manager), responsible for service exposure, traffic routing, and connection pooling.
+[**HAProxy**](#haproxy), [**Pgbouncer**](#pgbouncer), and [**vip-manager**](#vip-manager) expose services, route traffic, and pool connections.
 
 There are multiple access methods. A typical traffic path is: `Client → DNS/VIP → HAProxy (543x) → Pgbouncer (6432) → PostgreSQL (5432)`
 
@@ -143,7 +140,7 @@ For more information, see: [**Service Access**](/docs/pgsql/service/) and [**Con
 
 ## Backup Subsystem
 
-The backup subsystem consists of [**pgBackRest**](#pgbackrest) (optionally with **Silo** or external S3 as a remote repository), responsible for data backup and point-in-time recovery ([**PITR**](/docs/concept/pitr)).
+[**pgBackRest**](#pgbackrest) provides backups and [**PITR**](/docs/concept/pitr). Optional **Silo** or external S3 storage can serve as the remote repository.
 
 **Backup Types**:
 - **Full backup**: Complete database copy
@@ -166,7 +163,7 @@ For more information, see: [**PITR**](/docs/concept/pitr/), [**Backup & Recovery
 
 ## Observability Subsystem
 
-The observability subsystem consists of three **Exporters** and [**Vector**](#vector), responsible for metrics collection and log aggregation.
+Three **Exporters** collect metrics, and [**Vector**](#vector) collects logs.
 
 | Component                                         | Port   | Target                                                                        | Key Metrics                        |
 |:--------------------------------------------------|:-------|:------------------------------------------------------------------------------|:-----------------------------------|
@@ -179,7 +176,7 @@ The observability subsystem consists of three **Exporters** and [**Vector**](#ve
 - **Metrics**: Exporter → VictoriaMetrics (INFRA) → Grafana dashboards
 - **Logs**: [Vector](#vector) → VictoriaLogs (INFRA) → Grafana log queries
 
-[pg_exporter](#pg_exporter) / [pgbouncer_exporter](#pgbouncer_exporter) connect to target services via local Unix socket, decoupled from HA topology. In [**slim install**](/docs/setup/slim) mode, these components can be disabled.
+[pg_exporter](#pg_exporter) and [pgbouncer_exporter](#pgbouncer_exporter) use local Unix sockets, independently of HA topology. [**Slim installation**](/docs/setup/slim) can disable them.
 
 For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#pg_monitor)
 
@@ -188,15 +185,11 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 ## PostgreSQL
 
-[**PostgreSQL**](https://www.postgresql.org/) is the PGSQL module core, listening on port `5432` by default for relational database services, deployed 1:1 with [**nodes**](/docs/node).
+[**PostgreSQL**](https://www.postgresql.org/) is the PGSQL database engine. It listens on `5432` by default, with one instance per [**node**](/docs/node).
 
-Pigsty currently supports PostgreSQL 14-18 (lifecycle major versions), installed via binary packages from the [**PGDG official repo**](/docs/repo/pgdg/).
-Pigsty also allows you to use other [**PG kernel forks**](/docs/pgsql/kernel) to replace the default PostgreSQL kernel,
-and install up to [**{{< param pgext_count >}}**](/docs/pgsql/ext) extension plugins on top of the PG kernel.
+Pigsty supports PostgreSQL 14–18 through binary packages from the [**PGDG repository**](/docs/repo/pgdg/). You can replace the default engine with a [**PG-compatible kernel**](/docs/pgsql/kernel). Up to [**{{< param pgext_count >}} extensions**](/docs/pgsql/ext) are available.
 
-**PostgreSQL** processes are managed by default by the [**HA**](/docs/concept/ha) agent—[**Patroni**](#patroni).
-When a cluster has only one node, that instance is the primary; when the cluster has multiple nodes, other instances automatically join as replicas:
-through physical replication, syncing data changes from the primary in real-time. Replicas can handle read-only requests and automatically take over when the primary fails.
+[**Patroni**](#patroni) manages **PostgreSQL** processes for [**HA**](/docs/concept/ha) by default. A single-node cluster has one primary. Additional nodes automatically join as replicas and receive changes through real-time physical replication. Replicas serve read-only traffic and can automatically replace a failed primary.
 
 [![pigsty-ha.png](/img/pigsty/ha.png)](/docs/concept/ha)
 
@@ -211,11 +204,9 @@ For more information, see: [**Config: PGSQL - PG_BOOTSTRAP**](/docs/pgsql/param/
 
 [**Patroni**](https://patroni.readthedocs.io/) is the PostgreSQL HA control component, listening on port `8008` by default.
 
-**Patroni** takes over [**PostgreSQL**](#postgresql) startup, shutdown, configuration, and health status, writing leader and member information to [**etcd**](#etcd).
-It handles automatic failover, maintains replication factor, coordinates parameter changes, and provides a REST API for [**HAProxy**](#haproxy), monitoring, and administrators.
+**Patroni** manages [**PostgreSQL**](#postgresql) startup, shutdown, configuration, and health. It writes leader and member records to [**etcd**](#etcd). It coordinates failover, replication factor, and parameter changes. Its REST API serves [**HAProxy**](#haproxy), monitoring, and administrators.
 
-[**HAProxy**](#haproxy) uses **Patroni** health check endpoints to determine instance roles and route traffic to the correct primary or replica.
-[**vip-manager**](#vip-manager) monitors the leader key in [**etcd**](#etcd) and automatically migrates the VIP when the primary changes.
+[**HAProxy**](#haproxy) checks **Patroni** endpoints to identify instance roles and route primary or replica traffic. [**vip-manager**](#vip-manager) watches the [**etcd**](#etcd) leader key and moves the VIP when the primary changes.
 
 [![patroni](/img/dashboard/pgsql-patroni.webp)](/docs/concept/ha)
 
@@ -226,16 +217,13 @@ For more information, see: [**Config: PGSQL - PG_BOOTSTRAP**](/docs/pgsql/param/
 
 ## Pgbouncer
 
-[**Pgbouncer**](https://www.pgbouncer.org/) is a lightweight connection pooling middleware, listening on port `6432` by default, deployed 1:1 with [PostgreSQL](#postgresql) database and node.
+[**Pgbouncer**](https://www.pgbouncer.org/) provides connection pooling on port `6432` by default. Each node has one Pgbouncer instance for its [PostgreSQL](#postgresql) instance.
 
-**Pgbouncer** runs statelessly on each instance, connecting to [**PostgreSQL**](#postgresql) via local Unix socket, using Transaction Pooling by default
-for pool management, absorbing burst client connections, stabilizing database sessions, reducing lock contention, and significantly improving performance under high concurrency.
+**Pgbouncer** is stateless and connects to local [**PostgreSQL**](#postgresql) through a Unix socket. Its default transaction pooling handles connection bursts, stabilizes session counts, and reduces lock contention. This improves performance under high concurrency.
 
-Pigsty routes production traffic (read-write service `5433` / read-only service `5434`) through **Pgbouncer** by default,
-while only the default service (`5436`) and offline service (`5438`) bypass the pool for direct [**PostgreSQL**](#postgresql) connections.
+By default, read/write `5433` and read-only `5434` traffic use **Pgbouncer**. Default `5436` and offline `5438` services connect directly to [**PostgreSQL**](#postgresql).
 
-Pool mode is controlled by [`pgbouncer_poolmode`](/docs/pgsql/param#pgbouncer_poolmode), defaulting to `transaction` (transaction-level pooling).
-Connection pooling can be disabled via [`pgbouncer_enabled`](/docs/pgsql/param#pgbouncer_enabled).
+[`pgbouncer_poolmode`](/docs/pgsql/param#pgbouncer_poolmode) defaults to `transaction`. Disable pooling with [`pgbouncer_enabled`](/docs/pgsql/param#pgbouncer_enabled).
 
 [![pgbouncer.png](/img/dashboard/pgsql-pgbouncer.webp)](https://demo.pigsty.io/ui/d/pgsql-pgbouncer)
 
@@ -246,17 +234,13 @@ For more information, see: [**Config: PGSQL - PG_ACCESS**](/docs/pgsql/param/#pg
 
 ## pgBackRest
 
-[**pgBackRest**](https://pgbackrest.org/) is a professional PostgreSQL backup/recovery tool, one of the strongest in the PG ecosystem, supporting full/incremental/differential backup and WAL archiving.
+[**pgBackRest**](https://pgbackrest.org/) provides full, incremental, and differential PostgreSQL backups and WAL archiving.
 
-Pigsty uses pgBackRest for PostgreSQL [**PITR**](/docs/concept/pitr) capability,
-allowing you to roll back clusters to any point within the backup retention window.
+Pigsty uses pgBackRest for [**PITR**](/docs/concept/pitr) to any time within the backup retention window.
 
-**pgBackRest** works with [**PostgreSQL**](#postgresql) to create backup repositories on the primary, executing backup and archive tasks.
-By default, it uses local backup repository ([**`pgbackrest_method`**](/docs/pgsql/param#pgbackrest_method) = `local`),
-but can be configured for Silo or external S3 object storage for centralized backup management.
+**pgBackRest** coordinates with [**PostgreSQL**](#postgresql) for backups and archiving. By default, it creates a repository on the primary: [**`pgbackrest_method`**](/docs/pgsql/param#pgbackrest_method) = `local`. Configure Silo or external S3 storage for centralized backup management.
 
-After initialization, [**`pgbackrest_init_backup`**](/docs/pgsql/param#pgbackrest_init_backup) can automatically trigger the first full backup.
-Recovery integrates with [**Patroni**](#patroni), supporting bootstrapping replicas as new primaries or standbys.
+[**`pgbackrest_init_backup`**](/docs/pgsql/param#pgbackrest_init_backup) can trigger the first full backup after initialization. Recovery integrates with [**Patroni**](#patroni) to initialize replicas as new primaries or standbys.
 
 [![pgbackrest](/img/dashboard/pgsql-pitr.webp)](/docs/concept/pitr)
 
@@ -277,11 +261,9 @@ For more information, see: [**Backup & Recovery**](/docs/pgsql/backup/) and [**C
 | `5436` | default     | Primary [Postgres](#postgresql)| Default service, direct to primary (bypasses pool)|
 | `5438` | offline     | Offline [Postgres](#postgresql)| Offline service, direct to offline replica (ETL/analytics)|
 
-**HAProxy** uses [**Patroni**](#patroni) REST API health checks to determine instance roles and route traffic to the appropriate primary or replica.
-Service definitions are composed from [**`pg_default_services`**](/docs/pgsql/param#pg_default_services) and [**`pg_services`**](/docs/pgsql/param#pg_services).
+**HAProxy** checks [**Patroni**](#patroni) REST endpoints to identify roles and route primary or replica traffic. [**`pg_default_services`**](/docs/pgsql/param#pg_default_services) and [**`pg_services`**](/docs/pgsql/param#pg_services) define services.
 
-A dedicated HAProxy node group can be specified via [**`pg_service_provider`**](/docs/pgsql/param#pg_service_provider) to handle higher traffic;
-by default, **HAProxy** on local nodes publishes services.
+By default, local **HAProxy** instances expose services. For higher traffic, use [**`pg_service_provider`**](/docs/pgsql/param#pg_service_provider) to select a dedicated HAProxy node group.
 
 [![haproxy](/img/dashboard/node-haproxy.webp)](/docs/concept/ha/svc)
 
@@ -294,13 +276,9 @@ For more information, see: [**Service Access**](/docs/pgsql/service/) and [**Con
 
 [**vip-manager**](https://github.com/cybertec-postgresql/vip-manager) binds L2 VIP to the current primary node. This is an optional component; enable it if your network supports L2 VIP.
 
-**vip-manager** runs on each PG node, monitoring the leader key written by [**Patroni**](#patroni) in [**etcd**](#etcd),
-and binds [**`pg_vip_address`**](/docs/pgsql/param#pg_vip_address) to the current primary node's network interface.
-When cluster failover occurs, **vip-manager** immediately releases the VIP from the old primary and rebinds it on the new primary, switching traffic to the new primary.
+**vip-manager** runs on each PG node. It watches the leader key that [**Patroni**](#patroni) writes to [**etcd**](#etcd). It binds [**`pg_vip_address`**](/docs/pgsql/param#pg_vip_address) to the primary network interface. During failover, it releases the old binding and immediately binds the VIP to the new primary.
 
-This component is optional, enabled via [**`pg_vip_enabled`**](/docs/pgsql/param#pg_vip_enabled).
-When enabled, ensure all nodes are in the same VLAN; otherwise, VIP migration will fail.
-Public cloud networks typically don't support L2 VIP; it's recommended only for on-premises and private cloud environments.
+Enable this optional component with [**`pg_vip_enabled`**](/docs/pgsql/param#pg_vip_enabled). All nodes must share one VLAN or VIP migration fails. Public clouds usually do not support L2 VIP. Use it for on-premises or private cloud deployments.
 
 [![node-vip](/img/dashboard/node-vip.webp)](/docs/concept/ha/svc)
 
@@ -313,14 +291,11 @@ For more information, see: [**Tutorial: VIP Configuration**](/docs/pgsql/tutoria
 
 [**pg_exporter**](https://github.com/pgsty/pg_exporter) exports [PostgreSQL](#postgresql) monitoring metrics, listening on port `9630` by default.
 
-**pg_exporter** runs on each PG node, connecting to [**PostgreSQL**](#postgresql) via local Unix socket,
-exporting rich metrics covering sessions, buffer hits, replication lag, transaction rates, etc., scraped by **VictoriaMetrics** on INFRA nodes.
+**pg_exporter** connects to local [**PostgreSQL**](#postgresql) through a Unix socket. It exports sessions, buffer hits, replication lag, transaction rates, and other metrics. **VictoriaMetrics** on infrastructure nodes collects them.
 
-Collection configuration is specified by [**`pg_exporter_config`**](/docs/pgsql/param#pg_exporter_config),
-with support for automatic database discovery ([**`pg_exporter_auto_discovery`**](/docs/pgsql/param#pg_exporter_auto_discovery)),
-and tiered cache strategies via [**`pg_exporter_cache_ttls`**](/docs/pgsql/param#pg_exporter_cache_ttls).
+Set collection rules with [**`pg_exporter_config`**](/docs/pgsql/param#pg_exporter_config). Use [**`pg_exporter_auto_discovery`**](/docs/pgsql/param#pg_exporter_auto_discovery) for automatic database discovery. [**`pg_exporter_cache_ttls`**](/docs/pgsql/param#pg_exporter_cache_ttls) controls different cache lifetimes.
 
-You can disable this component via parameters; in [**slim install**](/docs/setup/slim), this component is not enabled.
+Disable this component through parameters. [**Slim installation**](/docs/setup/slim) leaves it disabled.
 
 [![pg-exporter](/img/dashboard/pgsql-exporter.webp)](https://demo.pigsty.io/ui/d/pgsql-exporter)
 
@@ -333,10 +308,9 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 **pgbouncer_exporter** exports [Pgbouncer](#pgbouncer) connection pool metrics, listening on port `9631` by default.
 
-`pgbouncer_exporter` uses the same [**pg_exporter**](#pg_exporter) binary but with a dedicated metrics config file, supporting pgbouncer 1.8-1.25+.
-**pgbouncer_exporter** reads [**Pgbouncer**](#pgbouncer) statistics views, providing pool utilization, wait queue, and hit rate metrics.
+`pgbouncer_exporter` uses the [**pg_exporter**](#pg_exporter) binary with separate metric configuration. It supports pgbouncer 1.8–1.25+. **Pgbouncer** [statistics views](#pgbouncer) provide pool utilization, wait queue, and hit rate metrics.
 
-If [**Pgbouncer**](#pgbouncer) is disabled, this component is also disabled. In [**slim install**](/docs/setup/slim), this component is not enabled.
+Disabling [**Pgbouncer**](#pgbouncer) also disables its exporter. [**Slim installation**](/docs/setup/slim) leaves the exporter disabled.
 
 For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#pg_monitor)
 
@@ -347,9 +321,7 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 **pgbackrest_exporter** exports backup status metrics, listening on port `9854` by default.
 
-**pgbackrest_exporter** parses [**pgBackRest**](#pgbackrest) status, generating metrics for most recent backup time, size, type, etc. Combined with alerting policies, it quickly detects expired or failed backups, ensuring data safety.
-Note that when there are many backups or using large network repositories, collection overhead can be significant, so **pgbackrest_exporter** has a default 2-minute collection interval.
-In the worst case, you may see the latest backup status in the monitoring system 2 minutes after a backup completes.
+**pgbackrest_exporter** reads [**pgBackRest**](#pgbackrest) status to report the latest backup time, size, type, and other metrics. Alert rules can detect expired or failed backups. Large repositories or many backups can make collection expensive. The default collection interval is 2 minutes, so a completed backup can take 2 minutes to appear in monitoring.
 
 For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#pg_monitor)
 
@@ -360,9 +332,7 @@ For more information, see: [**Config: PGSQL - PG_MONITOR**](/docs/pgsql/param/#p
 
 [**etcd**](/docs/etcd) is a distributed consistent store (DCS), providing cluster metadata storage and leader election capability for [**Patroni**](#patroni).
 
-etcd is deployed and managed by the independent [**ETCD module**](/docs/etcd), not part of the PGSQL module itself, but critical for PostgreSQL HA.
-[Patroni](#patroni) writes cluster state, leader info, and config parameters to etcd; all nodes reach consensus through etcd.
-[vip-manager](#vip-manager) also reads the leader key from etcd to enable automatic VIP migration.
+The separate [**ETCD module**](/docs/etcd) manages etcd. PGSQL relies on it for HA. [Patroni](#patroni) stores cluster state, leader information, and configuration there so nodes can reach consensus. [vip-manager](#vip-manager) reads the leader key to move the VIP automatically.
 
 For more information, see: [**ETCD Module**](/docs/etcd/)
 
@@ -371,9 +341,8 @@ For more information, see: [**ETCD Module**](/docs/etcd/)
 
 ## vector
 
-[**Vector**](https://vector.dev/) is a high-performance log collection component, deployed by the [**NODE module**](/docs/node), responsible for collecting PostgreSQL-related logs.
+The [**NODE module**](/docs/node) deploys [**Vector**](https://vector.dev/) to collect PostgreSQL-related logs efficiently.
 
-Vector runs on nodes, tracking [PostgreSQL](#postgresql), [Pgbouncer](#pgbouncer), [Patroni](#patroni), and [pgBackRest](#pgbackrest) log directories,
-sending structured logs to VictoriaLogs on INFRA nodes for centralized storage and querying.
+Vector reads node log directories for [PostgreSQL](#postgresql), [Pgbouncer](#pgbouncer), [Patroni](#patroni), and [pgBackRest](#pgbackrest). It sends structured records to infrastructure-node VictoriaLogs for central storage and queries.
 
 For more information, see: [**NODE Module**](/docs/node/)

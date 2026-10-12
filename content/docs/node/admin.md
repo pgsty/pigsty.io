@@ -23,7 +23,7 @@ For more questions, see [FAQ: NODE](/docs/node/faq/)
 
 ## Add Node
 
-To add a node to Pigsty, you need passwordless ssh/sudo access to that node.
+To add a node to Pigsty, first configure passwordless SSH and sudo access to it.
 
 You can also add an entire cluster at once, or use wildcards to match nodes in the inventory to add to Pigsty.
 
@@ -45,7 +45,7 @@ bin/node-add 10.10.10.10              # init node '10.10.10.10'
 
 To remove a node from Pigsty, you can use the following commands:
 
-First confirm that every business module on the node has been removed through its own workflow and check whether any `vector_data` buffer must be retained.
+First, confirm that each business module on the node has been removed through its own procedure. Check whether any `vector_data` buffer needs preservation.
 After confirming the exact target, call the wrapper:
 
 ```bash
@@ -57,8 +57,8 @@ bin/node-rm 10.10.10.10              # remove node '10.10.10.10'
 
 You can also remove an entire cluster at once, or use wildcards to match nodes in the inventory to remove from Pigsty.
 
-Here, “remove node” means removing NODE management. The playbook deregisters monitoring, logging, and the HAProxy portal; stops Node Exporter, Vector, HAProxy, and optional VIP services; and deletes `vector_data` (default: `/data/vector`).
-It does not uninstall packages, remove the admin user or `node_data`, stop Docker, or delete Docker data. See [`node-rm.yml`](/docs/node/playbook#node-rmyml) for the exact boundary.
+Here, node removal means removal of NODE management. The playbook deregisters monitoring, logging, and the HAProxy portal. It stops Node Exporter, Vector, HAProxy, and optional VIP services. It deletes `vector_data`, which defaults to `/data/vector`.
+It preserves packages, the admin user, `node_data`, and Docker data. It does not stop Docker. See [`node-rm.yml`](/docs/node/playbook#node-rmyml) for the exact boundary.
 
 {{< asciinema file="demo/node-rm.cast" speed="1.2" autoplay="true" loop="true" >}}
 
@@ -168,11 +168,11 @@ After changing the password, use the following to reload config (hot reload, no 
 
 ## Firewall Management
 
-Pigsty uses [`node_firewall_mode`](/docs/node/param#node_firewall_mode) to control firewall behavior.
-Uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
+Pigsty uses [`node_firewall_mode`](/docs/node/param#node_firewall_mode) to control the firewall. It uses **firewalld** on RHEL/Rocky and **ufw** on Debian/Ubuntu.
 
-Since v4.1, this defaults to `zone`: Pigsty enables the system firewall consistently across distros with an "intranet trusted, public minimized" policy.
-In zone mode, intranet traffic is unrestricted, but external access is limited to specific ports.
+Since v4.1, the default is `zone`. Pigsty enables the system firewall with the same policy across distributions. This policy trusts intranet traffic and minimizes public access.
+
+In zone mode, intranet traffic is unrestricted. External access is limited to specific ports.
 Set `node_firewall_mode: none` only when you want to fully self-manage firewall state and rules.
 This is especially important when deploying on cloud servers exposed to the internet.
 
@@ -226,8 +226,8 @@ node_firewall_intranet:
 
 ### Remove Rules (Manual)
 
-> **Important**: Pigsty's firewall management is **add-only**. Removing entries from config and re-running
-> **will NOT** delete existing rules. You must remove them manually.
+> **Important**: Pigsty firewall management is **add-only**. If you remove configuration entries and run the playbook again, existing rules remain.
+> You must remove these rules manually.
 
 ```bash {tab="EL (firewalld)" group="el-firewalld-debian-ufw" value="el-firewalld"}
 # Remove port from public zone

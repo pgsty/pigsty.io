@@ -13,16 +13,16 @@ categories: [Reference]
 
 ## Dashboards
 
-ETCD module provides one monitoring dashboard: Etcd Overview.
+The ETCD module provides one monitoring dashboard: Etcd Overview.
 
 
 ### ETCD Overview Dashboard
 
 [ETCD Overview](https://demo.pigsty.io/d/etcd-overview): Overview of ETCD cluster
 
-Dashboard provides key ETCD status info. Notable: ETCD Aliveness—shows overall etcd cluster service status.
+The dashboard shows key ETCD status information. The ETCD Aliveness panel shows the overall cluster service status.
 
-Red bands = instance downtime; blue-gray below = cluster unavailable.
+Red bands indicate instance downtime. A blue-gray area below the bands indicates that the cluster is unavailable.
 
 [![etcd-overview.jpg](/img/dashboard/etcd-overview.jpg)](https://demo.pigsty.io/d/etcd-overview)
 
@@ -40,7 +40,7 @@ Pigsty provides five preset alert rules for etcd, defined in [`files/victoria/ru
 - `EtcdNetworkPeerRTSlow`: etcd network latency slow, INFO alert
 - `EtcdWalFsyncSlow`: etcd disk fsync slow, INFO alert
 
-The following excerpt mirrors the current rule source. Pigsty currently ships only the `etcd-overview` dashboard; the `/ui/d/etcd-instance` targets in the comments for the two latency alerts do not exist. Use `/ui/d/etcd-overview` to inspect cluster state. This is a known source-comment discrepancy and does not affect the alert expressions.
+The following excerpt matches the current rule source. Pigsty currently includes only the `etcd-overview` dashboard. Comments for the two latency alerts refer to `/ui/d/etcd-instance`, but these targets do not exist. Use `/ui/d/etcd-overview` to inspect cluster state. This known error in the source comments does not affect the alert expressions.
 
 ```yaml
 #==============================================================#

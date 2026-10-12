@@ -7,11 +7,15 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-`crit.yml` targets transactional workloads with elevated consistency and audit requirements. It forces data checksums and Patroni strict synchronous mode, adds connection logging, and adjusts selected WAL, timeout, and parallel-query parameters.
+`crit.yml` is for transactional workloads with increased consistency and audit requirements.
+It forces data checksums and Patroni strict synchronous mode.
+It also adds connection logging and adjusts selected WAL, timeout, and parallel-query parameters.
 
-The template increases write latency and may block writes when no synchronous replica is available. Before use, confirm consistency objectives, failure domains, client commit settings, and availability requirements.
+The template increases write latency and may block writes when no synchronous replica is available.
+Before use, confirm consistency objectives, failure domains, client commit settings, and availability requirements.
 
-Also evaluate [**`node_tune: crit`**](/docs/node/param#node_tune), although host tuning and database parameters can be selected independently.
+Also evaluate [**`node_tune: crit`**](/docs/node/param#node_tune).
+You can select host tuning and database parameters independently.
 
 
 ----------------
@@ -32,7 +36,9 @@ pg-critical:
     node_tune: crit
 ```
 
-A three-node topology leaves room to select another synchronous replica after one node fails. Continued write availability still depends on remaining node state, DCS, network, and synchronous-replica selection. Exercise failures on the target topology.
+A three-node topology lets the cluster select another synchronous replica after one node fails.
+Continued write availability depends on the remaining node state, DCS, network, and synchronous-replica selection.
+Test failures on the target topology.
 
 
 ----------------
@@ -42,14 +48,16 @@ A three-node topology leaves room to select another synchronous replica after on
 
 ## Strict Synchronous Replication
 
-CRIT does not derive synchronous mode from [**`pg_rpo`**](/docs/pgsql/param#pg_rpo). It enables these settings unconditionally:
+CRIT does not derive synchronous mode from [**`pg_rpo`**](/docs/pgsql/param#pg_rpo).
+It always enables these settings:
 
 ```yaml
 synchronous_mode: true
 synchronous_mode_strict: true
 ```
 
-`synchronous_mode_strict` prevents Patroni from falling back to asynchronous replication when no synchronous replica is available. The primary therefore blocks writes that require synchronous acknowledgment.
+`synchronous_mode_strict` prevents Patroni from switching to asynchronous replication when no synchronous replica is available.
+The primary then blocks writes that require synchronous acknowledgment.
 
 The mode targets preservation of acknowledged transactions when:
 
@@ -57,7 +65,8 @@ The mode targets preservation of acknowledged transactions when:
 - a synchronous replica acknowledges WAL during commit;
 - failover selects only an eligible node containing the required WAL.
 
-RPO must therefore be validated against client parameters, replication state, and the failure model; it cannot be inferred from the template name alone.
+Validate RPO against client parameters, replication state, and the failure model.
+The template name alone does not establish RPO.
 
 To require acknowledgment from multiple synchronous replicas, change Patroni dynamic configuration:
 
@@ -85,7 +94,9 @@ initdb:
   - data-checksums
 ```
 
-This overrides a disabled [**`pg_checksum`**](/docs/pgsql/param#pg_checksum) setting and enables page checksums for a new cluster. Checksums detect page damage after write; they do not detect logical errors or every memory error.
+This overrides a disabled [**`pg_checksum`**](/docs/pgsql/param#pg_checksum) setting and enables page checksums for a new cluster.
+Checksums detect page damage after a write.
+They do not detect logical errors or every memory error.
 
 
 ----------------
@@ -109,9 +120,13 @@ PostgreSQL 18 and later use:
 log_connections: 'receipt,authentication,authorization'
 ```
 
-Earlier versions use `log_connections: on`. These records support connection auditing but are not fine-grained SQL audit logs. Enable `pgaudit` separately to record object reads and writes, roles, or statement classes.
+Earlier versions use `log_connections: on`.
+These records support connection auditing but do not provide fine-grained SQL audit logs.
+Enable `pgaudit` separately to record object reads and writes, roles, or statement classes.
 
-`track_activity_query_size` is set to 32 KiB to retain longer active-query text. Logs may contain SQL and business data; restrict access and set an appropriate retention period.
+CRIT sets `track_activity_query_size` to 32 KiB to retain longer active-query text.
+Logs may contain SQL and business data.
+Restrict access and set a suitable retention period.
 
 
 ----------------
@@ -126,7 +141,9 @@ watchdog:
   device: /dev/watchdog
 ```
 
-`automatic` activates only when the system has a usable watchdog device. If fencing must be mandatory, verify hardware, virtualization support, and device permissions before setting `required` explicitly. A bad configuration can prevent primary startup or disrupt failover.
+`automatic` activates only when the system has a usable watchdog device.
+If fencing must be mandatory, verify hardware, virtualization support, and device permissions before you explicitly set `required`.
+An incorrect configuration can prevent primary startup or interrupt failover.
 
 
 ----------------
@@ -152,7 +169,8 @@ watchdog:
 | `log_disconnections` | `on` | `off` | Records disconnections |
 {.full-width}
 
-CRIT also disables parallel gather for individual queries and adjusts parallel costs, autovacuum, WAL, and statistics parameters. The active values for a release are defined in `roles/pgsql/templates/crit.yml`.
+CRIT also disables parallel gather for individual queries and adjusts parallel costs, autovacuum, WAL, and statistics parameters.
+The release file `roles/pgsql/templates/crit.yml` defines the active values.
 
 
 ----------------
@@ -161,19 +179,22 @@ CRIT also disables parallel gather for individual queries and adjusts parallel c
 
 ## Preloaded Extensions
 
-CRIT generates `shared_preload_libraries` from [**`pg_libs`**](/docs/pgsql/param#pg_libs). The role default sets:
+CRIT generates `shared_preload_libraries` from [**`pg_libs`**](/docs/pgsql/param#pg_libs).
+The role default is:
 
 ```yaml
 pg_libs: 'pg_stat_statements, auto_explain'
 ```
 
-Selecting `crit.yml` alone **does not load `passwordcheck`**. Configure it explicitly when password-complexity checks are required:
+Selecting `crit.yml` alone **does not load `passwordcheck`**.
+If you need password-complexity checks, configure it explicitly:
 
 ```yaml
 pg_libs: '$libdir/passwordcheck, pg_stat_statements, auto_explain'
 ```
 
-[**`ha/safe`**](/docs/conf/safe) includes this override. To use `pgaudit`, also add it to `pg_libs` and configure the audit scope:
+[**`ha/safe`**](/docs/conf/safe) includes this override.
+To use `pgaudit`, also add it to `pg_libs` and configure the audit scope:
 
 ```yaml
 pg_libs: '$libdir/passwordcheck, pg_stat_statements, auto_explain, pgaudit'
@@ -195,7 +216,9 @@ pg_parameters:
 - More detailed logging and statistics consume additional I/O, CPU, and storage.
 - A shorter idle-transaction timeout may terminate application sessions that hold a transaction open without executing statements.
 
-The impact depends on hardware, network, queries, and client behavior. Test with the actual workload instead of relying on a fixed latency or throughput percentage.
+The impact depends on hardware, network, queries, and client behavior.
+Test the actual workload.
+Do not rely on a fixed latency or throughput percentage.
 
 
 ----------------

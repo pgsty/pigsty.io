@@ -6,9 +6,7 @@ description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions a
 weight: 610
 ---
 
-Pigsty has a repository that provides additional PostgreSQL extension packages on mainstream [Linux Distros](/docs/ref/linux).
-It is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/) out-of-the-box.
+The Pigsty repository provides additional PostgreSQL extension packages for mainstream [Linux distributions](/docs/ref/linux). Use it with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repository. Together, these repositories provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/).
 
 |   PGSQL Repo   |                                 Description                                  |             Link              |
 |:--------------:|:----------------------------------------------------------------------------:|:-----------------------------:|
@@ -38,7 +36,7 @@ Together, they can provide [{{< param pgext_count >}} packaged PostgreSQL extens
 
 ## Get Started
 
-You can enable the pigsty [infra](/docs/repo/infra/) & [pgsql](/docs/repo/pgsql/) repo with the [pig](/docs/pig/) CLI tool:
+Use the [pig](/docs/pig/) CLI tool to enable the Pigsty [infra](/docs/repo/infra/) and [pgsql](/docs/repo/pgsql/) repositories:
 
 ```bash {tab="Default" group="default-mirror" value="default"}
 curl https://repo.pigsty.io/pig | bash      # download and install the pig CLI tool
@@ -55,7 +53,7 @@ pig repo add -u                             # add linux, pgdg, pigsty repo and u
 
 ## Manual Install
 
-You can also add these repos to your system [manually](#manual-install) with the default `apt`, `dnf`, `yum` approach.
+You can also add these repositories [manually](#manual-install) with the standard `apt`, `dnf`, or `yum` tools.
 
 ```bash {tab="APT" group="apt-yum" value="apt"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
@@ -103,26 +101,23 @@ EOF
 sudo yum makecache;
 ```
 
-All the RPM / DEB packages are signed with [GPG Key](/docs/repo/gpg/) fingerprint (`B9BD8B20`) in Pigsty repository.
+Pigsty signs all RPM / DEB packages in its repository with the [GPG key](/docs/repo/gpg/) identified by `B9BD8B20`.
 
 
 ---------
 
 ## Repository Components
 
-Pigsty has two major repos: [**INFRA**](/docs/repo/infra/) and [**PGSQL**](/docs/repo/pgsql/),
-providing DEB / RPM packages for `x86_64` and `aarch64` architecture.
+Pigsty has two main repositories: [**INFRA**](/docs/repo/infra/) and [**PGSQL**](/docs/repo/pgsql/). They provide DEB / RPM packages for `x86_64` and `aarch64`.
 
-The [**INFRA**](/docs/repo/infra/) repo contains packages that are generic to any PostgreSQL version and Linux major version,
-including Prometheus & Grafana stack, admin tools for Postgres, and many utilities written in Go.
+The [**INFRA**](/docs/repo/infra/) repository contains packages that are independent of the PostgreSQL version and Linux major version. These include the Prometheus and Grafana stack, PostgreSQL administration tools, and many utilities written in Go.
 
 | Linux  | Package | x86_64 | aarch64 |
 |:------:|:-------:|:------:|:-------:|
 |   EL   |  `rpm`  |   ✓    |    ✓    |
 | Debian |  `deb`  |   ✓    |    ✓    |
 
-The [**PGSQL**](/docs/repo/pgsql/) repo contains packages that are ad hoc to specific PostgreSQL Major Versions
-(often ad hoc to a specific Linux distro major version, too). Including extensions and some kernel forks.
+The [**PGSQL**](/docs/repo/pgsql/) repository contains packages for specific PostgreSQL major versions. These packages often also depend on the Linux distribution major version. They include extensions and some kernel forks.
 
 
 ---------
@@ -156,7 +151,7 @@ The [**PGSQL**](/docs/repo/pgsql/) repo contains packages that are ad hoc to spe
 
 ## Source
 
-Building specs of these repos and packages are open-sourced on GitHub:
+The build specifications for these repositories and packages are open source on GitHub:
 
 - https://github.com/pgsty/rpm
 - https://github.com/pgsty/deb

@@ -8,7 +8,9 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-PostgreSQL security combines authentication, authorization, network boundaries, encrypted communication, data protection, and operational process. Pigsty provides configuration entry points for these mechanisms; operators must still harden, verify, and audit the deployment for its environment.
+PostgreSQL security combines authentication, authorization, network boundaries, encrypted communication, data protection, and operating procedures.
+Pigsty provides configuration parameters for these mechanisms.
+Operators must still harden, verify, and audit the deployment for its environment.
 
 
 ---------------------
@@ -45,4 +47,6 @@ PostgreSQL security combines authentication, authorization, network boundaries, 
 - [**Security Considerations**](/docs/deploy/security): production hardening and acceptance checklist.
 - [**Security Recommendations**](/docs/setup/security): minimum password, network, and file checks before installation.
 
-The inventory describes desired state. Acceptance checks should also inspect HBA, certificates, listen ports, and sensitive files on running nodes, and verify effective roles and privileges through PostgreSQL catalogs.
+The inventory describes the required state.
+Acceptance checks should inspect HBA, certificates, listening ports, and sensitive files on running nodes.
+They should also verify effective roles and privileges through PostgreSQL catalogs.

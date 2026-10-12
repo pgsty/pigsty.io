@@ -7,14 +7,14 @@ module: [PIGSTY]
 categories: [Concept]
 ---
 
-In the **inventory**, you can use various parameters to fine-tune Pigsty customization. These parameters cover everything from infrastructure settings to database configuration.
+Use **inventory** parameters to customize infrastructure settings and database configuration.
 
 
 ------
 
 ## Parameter List
 
-According to the current source and parameter reference pages, Pigsty's 10 official modules expose **373** public parameters for fine-grained control. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module exposes 13 additional public parameters that are listed separately and excluded from this total.
+The current source and reference pages list **373** public parameters across 10 official modules. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module has 13 additional public parameters. They are listed separately and excluded from this total.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
@@ -35,7 +35,7 @@ According to the current source and parameter reference pages, Pigsty's 10 offic
 
 ## Parameter Form
 
-**Parameters** are **key-value pairs** that describe entities. The **Key** is a string, and the **Value** can be one of five types: boolean, string, number, array, or object.
+**Parameters** are **key-value pairs** that describe entities. A **key** is a string. A **value** can be a boolean, string, number, array, or object.
 
 ```yaml
 all:                            # <------- Top-level object: all
@@ -56,7 +56,7 @@ all:                            # <------- Top-level object: all
 
 ## Parameter Priority
 
-Parameters can be set at different levels with the following priority:
+Set parameters at these levels, listed from highest to lowest priority:
 
 | Level         | Location                       | Description                     | Priority    |
 |:--------------|:-------------------------------|:--------------------------------|:------------|
@@ -66,22 +66,22 @@ Parameters can be set at different levels with the following priority:
 | **Global**    | `all.vars`                     | Parameters shared by all hosts  | Lower (2)   |
 | **Default**   | `<roles>/default/main.yml`     | Role implementation defaults    | Lowest (1)  |
 
-Here are some examples of parameter priority:
+These examples show parameter priority:
 
-- Use command line parameter [**`-e grafana_clean=true`**](/docs/infra/param#grafana_clean) when running playbooks to wipe Grafana data
-- Use instance-level parameter `pg_role` on host variables to override pg instance role
-- Use cluster-level parameter `pg_cluster` on group variables to override pg cluster name
-- Use global parameter `node_ntp_servers` on global variables to specify global NTP servers
-- If [**`pg_version`**](/docs/pgsql/param#pg_version) is not set, Pigsty will use the default value from the [**`pgsql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/defaults/main.yml#L42) role implementation (default is `18`)
+- Set [**`-e grafana_clean=true`**](/docs/infra/param#grafana_clean) on the playbook command line to erase Grafana data.
+- Set host variable `pg_role` to override the PostgreSQL instance role.
+- Set group variable `pg_cluster` to override the PostgreSQL cluster name.
+- Set global variable `node_ntp_servers` to specify NTP servers.
+- If you do not set [**`pg_version`**](/docs/pgsql/param#pg_version), Pigsty uses the [**`pgsql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/defaults/main.yml#L42) role default, `18`.
 
-Except for **identity parameters**, every parameter has an appropriate default value, so explicit setting is not required.
+Except for **identity parameters**, all parameters have defaults. You do not need to set them explicitly.
 
 
 ------
 
 ## Identity Parameters
 
-Identity parameters are special parameters that serve as entity ID identifiers, therefore they **have no default values** and **must be explicitly set**.
+Identity parameters identify entities. They **have no defaults** and **must be set explicitly**, with the exception below.
 
 | Module                                      | Identity Parameters                              |
 |:--------------------------------------------|:-------------------------------------------------|
@@ -92,6 +92,4 @@ Identity parameters are special parameters that serve as entity ID identifiers, 
 | [**`REDIS`**](/docs/redis/param/)           | `redis_cluster`, `redis_node`, `redis_instances` |
 | [**`INFRA`**](/docs/infra/param#infra_id)   | `infra_seq`                                      |
 
-The exception is [**`etcd_cluster`**](/docs/etcd/param#etcd_cluster), which still defaults to `etcd`.
-Object storage [**`minio_cluster`**](/docs/minio/param#minio_cluster) no longer has a default and must be defined explicitly in each object-storage cluster's variables.
-Do not place it in `all.vars`, or every host will be marked as a MINIO module member.
+[**`etcd_cluster`**](/docs/etcd/param#etcd_cluster) is an exception. It defaults to `etcd`. Set [**`minio_cluster`**](/docs/minio/param#minio_cluster) explicitly in each object storage cluster's variables. It no longer has a default. Do not set it in `all.vars`: this marks every host as a MINIO module member.

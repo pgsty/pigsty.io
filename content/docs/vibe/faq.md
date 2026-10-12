@@ -13,7 +13,7 @@ categories: [Reference]
 
 ### code-server package not found
 
-Ensure [`NODE`](/docs/node) and repo config are in place:
+Make sure that [`NODE`](/docs/node) and the repository configuration are ready:
 
 ```bash
 yum repolist    # EL
@@ -60,7 +60,7 @@ If using custom `infra_portal`, set `websocket: true`.
 
 ### Change Code-Server password
 
-Persist the new password in inventory first so it does not enter shell history:
+First, save the new password in the inventory. This keeps it out of shell history:
 
 ```bash
 ./vibe.yml -l <host> -t code_config,code_launch --check
@@ -69,7 +69,7 @@ Persist the new password in inventory first so it does not enter shell history:
 
 ### Change JupyterLab token
 
-Persist a high-entropy random token in inventory first. The current template allows any Origin and disables XSRF checks, so never use an example token or expose TCP/8888 directly:
+First, save a high-entropy random token in the inventory. The current template allows any Origin and disables XSRF checks. Never use an example token or expose TCP/8888 directly:
 
 ```bash
 ./vibe.yml -l <host> -t jupyter_config --check
@@ -107,7 +107,7 @@ npm list -g --depth=0 | grep '@openai/codex'
 ./vibe.yml -l <host> -t codex_install
 ```
 
-Confirm that `codex_enabled: true`. VIBE installs Codex CLI only and does not generate Codex configuration.
+Confirm that `codex_enabled: true`. VIBE installs only Codex CLI. It does not generate the Codex configuration.
 
 ### API key not set
 

@@ -10,7 +10,7 @@ categories: [Reference]
 
 > Source: [pgBackRest Command Docs: version](https://pgbackrest.org/command.html#command-version)
 
-Displays installed pgBackRest version.
+Display the installed pgBackRest version.
 
 ## Command Options
 

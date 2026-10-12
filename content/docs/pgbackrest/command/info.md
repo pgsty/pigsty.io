@@ -10,27 +10,29 @@ categories: [Reference]
 
 > Source: [pgBackRest Command Docs: info](https://pgbackrest.org/command.html#command-info)
 
-The `info` command operates on a single stanza or all stanzas. Text output is the default and gives a human-readable summary of backups for the stanza(s) requested. This format is subject to change with any release.
+The `info` command reports on one stanza or all stanzas. By default, text output summarizes backups for the requested stanzas. The text format can change in any release.
 
-For machine-readable output use `--output=json`. The JSON output contains far more information than the text output and is kept stable unless a bug is found.
+For machine-readable output, use `--output=json`. JSON includes much more information than text output. Its format stays stable unless a bug requires a change.
 
-To speed up execution, limit the output to only progress information by specifying `--detail-level=progress`. Note that this skips all checks except for availability of the stanza.
+Use `--detail-level=progress` to show only progress and reduce execution time. This skips all checks except stanza availability.
 
-Each stanza has a separate section and it is possible to limit output to a single stanza with the `--stanza` option. The stanza '`status`' gives a brief indication of the stanza's health. If this is '`ok`' then pgBackRest is functioning normally. If there are multiple repositories, then a status of '`mixed`' indicates that the stanza is not in a healthy state on one or more of the repositories; in this case the state of the stanza will be detailed per repository. For cases in which an error on a repository occurred that is not one of the known error codes, then an error code of '`other`' will be used and the full error details will be provided. The '`wal archive min/max`' shows the minimum and maximum WAL currently stored in the archive and, in the case of multiple repositories, will be reported across all repositories unless the `--repo` option is set. Note that there may be gaps due to archive retention policies or other reasons.
+Each stanza has a separate section. Use `--stanza` to show only one. The `status` field indicates stanza health: `ok` means pgBackRest operates normally. With multiple repositories, `mixed` means at least one repository has an unhealthy stanza; output then gives the status per repository. An unknown repository error uses the code `other` and includes full error details.
 
-The '`backup/expire running`' and/or '`restore running`' messages will appear beside the '`status`' information if any of those commands are currently running on the host. Per-repo progress will also be reported in text output and a '`repo`' array will be included in JSON output.
+The `wal archive min/max` field shows the minimum and maximum archived WAL. With multiple repositories, it covers all repositories unless you set `--repo`. Archive retention policies or other causes can leave gaps in this range.
 
-The backups are displayed oldest to newest. The oldest backup will *always* be a full backup (indicated by an `F` at the end of the label) but the newest backup can be full, differential (ends with `D`), or incremental (ends with `I`).
+The `backup/expire running` and/or `restore running` messages appear beside `status` when those commands run on the host. Text output also shows progress per repository. JSON output includes a `repo` array.
 
-The '`timestamp start/stop`' defines the time period when the backup ran. The '`timestamp stop`' can be used to determine the backup to use when performing Point-In-Time Recovery. More information about Point-In-Time Recovery can be found in the [Point-In-Time Recovery](/docs/pgbackrest/user-guide/#point-in-time-recovery) section.
+Backups appear from oldest to newest. The oldest is always a full backup, with an `F` at the end of its label. The newest can be full, differential (label ends with `D`), or incremental (label ends with `I`).
 
-The '`wal start/stop`' defines the WAL range that is required to make the database consistent when restoring. The `backup` command will ensure that this WAL range is in the archive before completing.
+The `timestamp start/stop` field shows when the backup ran. Use `timestamp stop` to choose a backup for Point-In-Time Recovery. See [Point-In-Time Recovery](/docs/pgbackrest/user-guide/#point-in-time-recovery) for details.
 
-The '`database size`' is the full uncompressed size of the database while '`database backup size`' is the amount of data in the database to actually back up (these will be the same for full backups).
+The `wal start/stop` field shows the WAL range necessary for database consistency after a restore. The `backup` command checks that the archive contains this range before it completes.
 
-The '`repo`' indicates in which repository this backup resides. The '`backup set size`' includes all the files from this backup and any referenced backups in the repository that are required to restore the database from this backup while '`backup size`' includes only the files in this backup (these will also be the same for full backups). Repository sizes reflect compressed file sizes if compression is enabled in pgBackRest.
+The `database size` field shows the full, uncompressed database size. The `database backup size` field shows the database data actually backed up. These values match for full backups.
 
-The '`backup reference total`' summarizes the list of additional backups that are required to restore this backup. Use the `--set` option to display the complete reference list.
+The `repo` field identifies the repository that contains the backup. The `backup set size` includes files in this backup and referenced backups needed for a restore. The `backup size` includes only files in this backup. These sizes match for full backups. When pgBackRest compression is enabled, repository sizes reflect compressed files.
+
+The `backup reference total` summarizes other backups needed to restore this backup. Use `--set` for the complete reference list.
 
 ## Command Options
 
@@ -66,7 +68,7 @@ example: --output=json
 
 Backup set to detail.
 
-Details include a complete list of additional backups that are required to restore this backup, a list of databases (with OIDs) in the backup set (excluding template databases), tablespaces (with OIDs) with the destination where they will be restored by default, and symlinks with the destination where they will be restored when `--link-all` is specified.
+Details include all additional backups needed for a restore. They also list databases and OIDs, except template databases. Tablespace details include OIDs and default restore destinations. Symlink details show restore destinations when `--link-all` is specified.
 
 ```yaml
 example: --set=20150131-153358F_20150131-153401I
@@ -92,9 +94,9 @@ example: --type=full
 
 Allow the command to run as the root user.
 
-By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+By default, only `restore` can run as root because it manages file ownership. Other commands can create root-owned files, for example in the repository. The PostgreSQL user cannot access these files, which causes later commands to fail.
 
-Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+Enable this option to run another command as root. Preferably, run pgBackRest as the user that owns the repository and PostgreSQL cluster.
 
 ```yaml
 default: n
@@ -105,7 +107,7 @@ example: --allow-root
 
 Buffer size for I/O operations.
 
-Buffer size used for copy, compress, encrypt, and other operations. The number of buffers used depends on options and each operation may use additional memory, e.g. `gz` compression may use an additional 256KiB of memory.
+Set the buffer size for copy, compression, encryption, and other operations. Options determine the number of buffers. Each operation can also use more memory. For example, `gz` compression can use an additional 256KiB.
 
 Allowed values are `16KiB`, `32KiB`, `64KiB`, `128KiB`, `256KiB`, `512KiB`, `1MiB`, `2MiB`, `4MiB`, `8MiB`, and `16MiB`.
 
@@ -118,7 +120,7 @@ example: --buffer-size=2MiB
 
 SSH client command.
 
-Use a specific SSH client command when an alternate is desired or the `ssh` command is not in $PATH.
+Use this option to select a different SSH client or when the `ssh` command is not in $PATH.
 
 ```yaml
 default: ssh
@@ -129,7 +131,7 @@ example: --cmd-ssh=/usr/bin/ssh
 
 Network compression level.
 
-Sets the network compression level when `compress-type=none` and the command is not run on the same host as the repository. Compression is used to reduce network traffic. When `compress-type` does not equal `none` the `compress-level-network` setting is ignored and `compress-level` is used instead so that the file is only compressed once.
+Set the network compression level when `compress-type=none` and the command runs on a host other than the repository host. Compression reduces network traffic. When `compress-type` is not `none`, pgBackRest ignores `compress-level-network` and uses `compress-level`. This prevents compression of the same file twice.
 
 ```yaml
 default: 1
@@ -141,7 +143,7 @@ example: --compress-level-network=1
 
 pgBackRest configuration file.
 
-Use this option to specify a different configuration file than the default.
+Use this option to select a configuration file other than the default.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_FILE
@@ -152,7 +154,7 @@ example: --config=/conf/pgbackrest/pgbackrest.conf
 
 Path to additional pgBackRest configuration files.
 
-Configuration files existing in the specified location with extension `.conf` will be concatenated with the pgBackRest configuration file, resulting in one configuration file.
+pgBackRest combines files with the `.conf` extension in this location with its configuration file. The result is one configuration file.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_INCLUDE_PATH
@@ -163,9 +165,9 @@ example: --config-include-path=/conf/pgbackrest/conf.d
 
 Base path of pgBackRest configuration files.
 
-This setting is used to override the default base path setting for the `--config` and `--config-include-path` options unless they are explicitly set on the command-line.
+Set the default base path for `--config` and `--config-include-path`. Explicit command-line values for these options override this setting.
 
-For example, passing only `--config-path=/conf/pgbackrest` results in the `--config` default being set to `/conf/pgbackrest/pgbackrest.conf` and the `--config-include-path` default being set to `/conf/pgbackrest/conf.d`.
+For example, specify only `--config-path=/conf/pgbackrest` to set the `--config` default to `/conf/pgbackrest/pgbackrest.conf`. This also sets the `--config-include-path` default to `/conf/pgbackrest/conf.d`.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH
@@ -176,9 +178,9 @@ example: --config-path=/conf/pgbackrest
 
 I/O timeout.
 
-Timeout, in seconds, used for connections and read/write operations.
+Set the connection and read/write timeout in seconds.
 
-Note that the entire read/write operation does not need to complete within this timeout but *some* progress must be made, even if it is only a single byte.
+The complete read/write operation can take longer than this timeout. However, it must make some progress before the timeout, even if only one byte.
 
 ```yaml
 default: 1m
@@ -190,7 +192,7 @@ example: --io-timeout=120
 
 Path where lock files are stored.
 
-The lock path provides a location for pgBackRest to create lock files to prevent conflicting operations from being run concurrently.
+pgBackRest creates lock files in this path to prevent conflicting operations from running at the same time.
 
 ```yaml
 default: /tmp/pgbackrest
@@ -201,7 +203,7 @@ example: --lock-path=/backup/db/lock
 
 Set process priority.
 
-Defines how much priority (i.e. niceness) will be given to the process by the kernel scheduler. Positive values decrease priority and negative values increase priority. In most case processes do not have permission to increase their priority.
+Set the process priority, or niceness, used by the kernel scheduler. Positive values decrease priority. Negative values increase priority. Processes usually lack permission to increase their priority.
 
 ```yaml
 allowed: [-20, 19]
@@ -212,7 +214,7 @@ example: --priority=19
 
 Protocol timeout.
 
-Sets the timeout, in seconds, that the local or remote process will wait for a new message to be received on the protocol layer. This prevents processes from waiting indefinitely for a message.
+Set how many seconds a local or remote process waits for a new protocol message. This prevents an indefinite wait.
 
 > **NOTE:** The `protocol-timeout` option must be greater than the `db-timeout` option.
 
@@ -237,9 +239,9 @@ example: --no-sck-keep-alive
 
 Defines the stanza.
 
-A stanza is the configuration for a PostgreSQL database cluster that defines where it is located, how it will be backed up, archiving options, etc. Most db servers will only have one PostgreSQL database cluster and therefore one stanza, whereas backup servers will have a stanza for every database cluster that needs to be backed up.
+A stanza contains the configuration for a PostgreSQL database cluster. It defines the cluster location, backup method, archive options, and other settings. Most database servers have one PostgreSQL cluster and one stanza. A backup server has a stanza for each cluster that needs a backup.
 
-It is tempting to name the stanza after the primary cluster but a better name describes the databases contained in the cluster. Because the stanza name will be used for the primary and all replicas it is more appropriate to choose a name that describes the actual function of the cluster, such as app or dw, rather than the local cluster name, such as main or prod.
+Choose a stanza name that describes the databases in the cluster. The primary and all replicas use the same stanza name. A functional name, such as app or dw, is preferable to a local cluster name, such as main or prod.
 
 ```yaml
 example: --stanza=main
@@ -249,7 +251,7 @@ example: --stanza=main
 
 Keep-alive count.
 
-Specifies the number of TCP keep-alive messages that can be lost before the connection is considered dead.
+Set how many TCP keep-alive messages can be lost before the connection is considered dead.
 
 This option is available on systems that support the `TCP_KEEPCNT` socket option.
 
@@ -262,7 +264,7 @@ example: --tcp-keep-alive-count=3
 
 Keep-alive idle time.
 
-Specifies the amount of time (in seconds) with no network activity after which the operating system should send a TCP keep-alive message.
+Set how many seconds of network inactivity must pass before the operating system sends a TCP keep-alive message.
 
 This option is available on systems that support the `TCP_KEEPIDLE` socket option.
 
@@ -275,7 +277,7 @@ example: --tcp-keep-alive-idle=60
 
 Keep-alive interval time.
 
-Specifies the amount of time (in seconds) after which a TCP keep-alive message that has not been acknowledged should be retransmitted.
+Set how many seconds to wait before retransmitting a TCP keep-alive message that has no acknowledgement.
 
 This option is available on systems that support the `TCP_KEEPINTVL` socket option.
 
@@ -288,11 +290,11 @@ example: --tcp-keep-alive-interval=30
 
 Allowed TLSv1.2 cipher suites.
 
-All TLS connections between the pgBackRest client and server are encrypted. By default, connections to objects stores (e.g. S3) are also encrypted.
+All TLS connections between the pgBackRest client and server use encryption. Connections to object stores, such as S3, also use encryption by default.
 
 > **NOTE:** The absolute minimum security level for any transport connection is TLSv1.2.
 
-The accepted cipher suites can be adjusted if need arises. The example is reasonable choice unless you have specific security requirements. If unset (the default), the default of the underlying OpenSSL library applies.
+Change the accepted cipher suites if necessary. The example is suitable unless you have specific security requirements. By default, this option is unset and the underlying OpenSSL library default applies.
 
 ```yaml
 example: --tls-cipher-12=HIGH:MEDIUM:+3DES:!aNULL
@@ -302,11 +304,11 @@ example: --tls-cipher-12=HIGH:MEDIUM:+3DES:!aNULL
 
 Allowed TLSv1.3 cipher suites.
 
-All TLS connections between the pgBackRest client and server are encrypted. By default, connections to objects stores (e.g. S3) are also encrypted.
+All TLS connections between the pgBackRest client and server use encryption. Connections to object stores, such as S3, also use encryption by default.
 
 > **NOTE:** The absolute minimum security level for any transport connection is TLSv1.2.
 
-The accepted cipher suites can be adjusted if need arises. If unset (the default), the default of the underlying OpenSSL library applies.
+Change the accepted cipher suites if necessary. By default, this option is unset and the underlying OpenSSL library default applies.
 
 ```yaml
 example: --tls-cipher-13=TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
@@ -356,7 +358,7 @@ example: --log-level-file=debug
 
 Level for stderr logging.
 
-Specifies which log levels will output to `stderr` rather than `stdout` (specified by `log-level-console`). The timestamp and process will not be output to `stderr`.
+Select the log levels that write to `stderr` instead of `stdout`, which `log-level-console` controls. Output to `stderr` excludes the timestamp and process.
 
 The following log levels are supported:
 
@@ -377,7 +379,7 @@ example: --log-level-stderr=error
 
 Path where log files are stored.
 
-The log path provides a location for pgBackRest to store log files. Note that if `log-level-file=off` then no log path is required.
+pgBackRest stores log files in this path. If `log-level-file=off`, no log path is necessary.
 
 ```yaml
 default: /var/log/pgbackrest
@@ -388,7 +390,7 @@ example: --log-path=/backup/db/log
 
 Enable logging in subprocesses.
 
-Enable file logging for any subprocesses created by this process using the log level specified by `log-level-file`.
+Enable file logging for subprocesses created by this process. Use the level specified by `log-level-file`.
 
 ```yaml
 default: n
@@ -399,7 +401,7 @@ example: --log-subprocess
 
 Enable timestamp in logging.
 
-Enables the timestamp in console and file logging. This option is disabled in special situations such as generating documentation.
+Include timestamps in console and file logs. Disable this option for special uses, such as documentation generation.
 
 ```yaml
 default: y
@@ -414,7 +416,7 @@ Set repository.
 
 Set the repository for a command to operate on.
 
-For example, this option may be used to perform a restore from a specific repository, rather than letting pgBackRest choose.
+For example, select a repository for a restore instead of letting pgBackRest choose one.
 
 ```yaml
 allowed: [1, 256]
@@ -427,7 +429,7 @@ Azure repository container.
 
 Azure container used to store the repository.
 
-pgBackRest repositories can be stored in the container root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other Azure-generated content can also be stored in the container.
+Set `repo-path=/` to store the repository in the container root. Usually, specify a prefix such as `/repo`. The container can then also store logs and other Azure-generated content.
 
 ```yaml
 example: --repo1-azure-container=pg-backup
@@ -471,7 +473,7 @@ The following cipher types are supported:
 - `none` - The repository is not encrypted
 - `aes-256-cbc` - Advanced Encryption Standard with 256 bit key length
 
-Note that encryption is always performed client-side even if the repository type (e.g. S3) supports encryption.
+pgBackRest always encrypts data on the client, even when the repository type, such as S3, supports encryption.
 
 ```yaml
 default: none
@@ -484,7 +486,7 @@ GCS repository bucket.
 
 GCS bucket used to store the repository.
 
-pgBackRest repositories can be stored in the bucket root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other GCS-generated content can also be stored in the bucket.
+Set `repo-path=/` to store the repository in the bucket root. Usually, specify a prefix such as `/repo`. The bucket can then also store logs and other GCS-generated content.
 
 ```yaml
 example: --repo1-gcs-bucket=/pg-backup
@@ -494,7 +496,7 @@ example: --repo1-gcs-bucket=/pg-backup
 
 GCS repository endpoint.
 
-Endpoint used to connect to the storage service. May be updated to use a local GCS server or alternate endpoint.
+Set the endpoint for the storage service connection. You can select a local GCS server or another endpoint.
 
 ```yaml
 default: storage.googleapis.com
@@ -511,7 +513,7 @@ The following types are supported for authorization:
 - `service` - Service account from locally stored key.
 - `token` - For local testing, e.g. `fakegcs`.
 
-When `repo-gcs-key-type=service` the credentials will be reloaded when the authentication token is renewed.
+When `repo-gcs-key-type=service`, pgBackRest reloads credentials when it renews the authentication token.
 
 ```yaml
 default: service
@@ -532,7 +534,7 @@ example: --repo1-gcs-user-project=my-project
 
 Repository host when operating remotely.
 
-When backing up and archiving to a locally mounted filesystem this setting is not required.
+This setting is not necessary for backups and archives on a locally mounted filesystem.
 
 ```yaml
 example: --repo1-host=repo1.domain.com
@@ -564,7 +566,7 @@ example: --repo1-host-ca-path=/etc/pki/tls/certs
 
 Repository host certificate file.
 
-Sent to repository host to prove client identity.
+pgBackRest sends this certificate to the repository host to prove the client identity.
 
 ```yaml
 example: --repo1-host-cert-file=/path/to/client.crt
@@ -574,7 +576,7 @@ example: --repo1-host-cert-file=/path/to/client.crt
 
 Repository host pgBackRest command.
 
-Required only if the path to the pgBackRest command is different on the local and repository hosts. If not defined, the repository host command will be set the same as the local command.
+Set this option only when the pgBackRest command path differs between the local and repository hosts. Otherwise, the repository host uses the local command path.
 
 ```yaml
 default: [path of executed pgbackrest binary]
@@ -587,7 +589,7 @@ Deprecated Name: backup-cmd
 
 pgBackRest repository host configuration file.
 
-Sets the location of the configuration file on the repository host. This is only required if the repository host configuration file is in a different location than the local configuration file.
+Set the repository host configuration file location. This is necessary only when it differs from the local configuration file location.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_FILE
@@ -600,7 +602,7 @@ Deprecated Name: backup-config
 
 pgBackRest repository host configuration include path.
 
-Sets the location of the configuration include path on the repository host. This is only required if the repository host configuration include path is in a different location than the local configuration include path.
+Set the repository host configuration include path. This is necessary only when it differs from the local configuration include path.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_INCLUDE_PATH
@@ -611,7 +613,7 @@ example: --repo1-host-config-include-path=/conf/pgbackrest/conf.d
 
 pgBackRest repository host configuration path.
 
-Sets the location of the configuration path on the repository host. This is only required if the repository host configuration path is in a different location than the local configuration path.
+Set the repository host configuration path. This is necessary only when it differs from the local configuration path.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH
@@ -622,7 +624,7 @@ example: --repo1-host-config-path=/conf/pgbackrest
 
 Repository host key file.
 
-Proves client certificate was sent by owner.
+This key proves that the certificate owner sent the client certificate.
 
 ```yaml
 example: --repo1-host-key-file=/path/to/client.key
@@ -634,7 +636,7 @@ Repository host port when `repo-host` is set.
 
 Use this option to specify a non-default port for the repository host protocol.
 
-> **NOTE:** When `repo-host-type=ssh` there is no default for `repo-host-port`. In this case the port will be whatever is configured for the command specified by `cmd-ssh`.
+> **NOTE:** When `repo-host-type=ssh`, `repo-host-port` has no default. The command specified by `cmd-ssh` supplies its configured port.
 
 ```yaml
 default (depending on repo-host-type):
@@ -664,7 +666,7 @@ example: --repo1-host-type=tls
 
 Repository host user when `repo-host` is set.
 
-Defines the user that will be used for operations on the repository host. Preferably this is not the `postgres` user but rather some other user like `pgbackrest`. If PostgreSQL runs on the repository host the `postgres` user can be placed in the `pgbackrest` group so it has read permissions on the repository without being able to damage the contents accidentally.
+Set the user for repository host operations. Prefer a separate user, such as `pgbackrest`, to the `postgres` user. If PostgreSQL runs on the repository host, you can add `postgres` to the `pgbackrest` group. This gives it read access to the repository without permission to damage its contents accidentally.
 
 ```yaml
 default: pgbackrest
@@ -679,7 +681,7 @@ Path where backups and archive are stored.
 
 The repository is where pgBackRest stores backups and archives WAL segments.
 
-It may be difficult to estimate in advance how much space you'll need. The best thing to do is take some backups then record the size of different types of backups (full/incr/diff) and measure the amount of WAL generated per day. This will give you a general idea of how much space you'll need, though of course requirements will likely change over time as your database evolves.
+To estimate repository space, take some backups. Record the sizes of full, incremental, and differential backups (full/incr/diff). Measure how much WAL the database generates each day. These measurements give an approximate space requirement. Requirements will probably change as the database changes.
 
 ```yaml
 default: /var/lib/pgbackrest
@@ -692,7 +694,7 @@ S3 repository bucket.
 
 S3 bucket used to store the repository.
 
-pgBackRest repositories can be stored in the bucket root by setting `repo-path=/` but it is usually best to specify a prefix, such as `/repo`, so logs and other AWS generated content can also be stored in the bucket.
+Set `repo-path=/` to store the repository in the bucket root. Usually, specify a prefix such as `/repo`. The bucket can then also store logs and other AWS-generated content.
 
 ```yaml
 example: --repo1-s3-bucket=pg-backup
@@ -741,9 +743,9 @@ example: --repo1-s3-kms-key-id=bceb4f13-6939-4be3-910d-df54dee817b7
 
 S3 authentication process command.
 
-Command (and optional arguments) to execute for retrieving temporary S3 credentials. The first list entry is the command and the remaining entries are passed as parameters.
+Set the command and optional arguments that retrieve temporary S3 credentials. The first list entry is the command. The remaining entries are its parameters.
 
-The process must output JSON containing `AccessKeyId`, `SecretAccessKey`, `SessionToken`, and `Expiration` fields. Credentials will be automatically refreshed before the expiration time. See [Process Credential Provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-process-credentials.html#feature-process-credentials-output) for format details.
+The process must output JSON with `AccessKeyId`, `SecretAccessKey`, `SessionToken`, and `Expiration` fields. pgBackRest refreshes credentials automatically before they expire. See [Process Credential Provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-process-credentials.html#feature-process-credentials-output) for the format.
 
 ```yaml
 example: --repo1-s3-process-cmd=/usr/local/bin/get-credentials --repo1-s3-process-cmd=--role --repo1-s3-process-cmd=my-role
@@ -774,7 +776,7 @@ example: --no-repo1-s3-requester-pays
 
 S3 repository role.
 
-The AWS role name (not the full ARN) used to retrieve temporary credentials when `repo-s3-key-type=auto`.
+When `repo-s3-key-type=auto`, set the AWS role name used to retrieve temporary credentials. Use the name, not the full ARN.
 
 ```yaml
 example: --repo1-s3-role=authrole
@@ -784,7 +786,7 @@ example: --repo1-s3-role=authrole
 
 S3 signing service.
 
-The S3 signing service used in SigV4 authentication. Defaults to `s3` for standard S3 endpoints. Set to `s3-outposts` when using an S3 Outposts endpoint.
+Set the signing service for SigV4 authentication. The default is `s3` for standard S3 endpoints. For an S3 Outposts endpoint, use `s3-outposts`.
 
 ```yaml
 default: s3
@@ -795,7 +797,7 @@ example: --repo1-s3-service=s3-outposts
 
 S3 repository STS endpoint.
 
-The STS endpoint used to retrieve temporary credentials when `repo-s3-key-type=web-id` is configured. Set to a regional endpoint (e.g. `sts.us-east-1.amazonaws.com`) to use regional STS, which may be required for GovCloud, China regions, or to reduce latency.
+When `repo-s3-key-type=web-id`, this endpoint retrieves temporary credentials. To use regional STS, select a regional endpoint, such as `sts.us-east-1.amazonaws.com`. Regional STS might be necessary for GovCloud or China regions, or to reduce latency.
 
 ```yaml
 default: sts.amazonaws.com
@@ -830,7 +832,7 @@ example: --repo1-sftp-host=sftprepo.domain
 
 SFTP repository host fingerprint.
 
-SFTP repository host fingerprint generation should match the `repo-sftp-host-key-hash-type`. Generate the fingerprint via `awk '{print $2}' ssh_host_xxx_key.pub | base64 -d | (md5sum or sha1sum) -b`. The ssh host keys are normally found in the `/etc/ssh` directory.
+Generate the SFTP host fingerprint with the hash type specified by `repo-sftp-host-key-hash-type`. Use `awk '{print $2}' ssh_host_xxx_key.pub | base64 -d | (md5sum or sha1sum) -b`. SSH host keys are usually in `/etc/ssh`.
 
 ```yaml
 example: --repo1-sftp-host-fingerprint=f84e172dfead7aeeeae6c1fdfb5aa8cf
@@ -842,10 +844,10 @@ SFTP host key check type.
 
 The following SFTP host key check types are supported:
 
-- `strict` - pgBackRest will never automatically add host keys to the ~/.ssh/known_hosts file, and refuses to connect to hosts whose host key has changed or is not found in the known hosts files. This option forces the user to manually add all new hosts.
-- `accept-new` - pgBackRest will automatically add new host keys to the user's known hosts file, but will not permit connections to hosts with changed host keys.
-- `fingerprint` - pgBackRest will check the host key against the fingerprint specified by the `repo-sftp-host-fingerprint` option.
-- `none` - no host key checking will be performed.
+- `strict` - pgBackRest never adds host keys to ~/.ssh/known_hosts automatically. It refuses connections when a host key changes or is absent from the known hosts files. Add each new host manually.
+- `accept-new` - pgBackRest automatically adds new host keys to the user's known hosts file. It refuses connections when a host key changes.
+- `fingerprint` - pgBackRest compares the host key with the `repo-sftp-host-fingerprint` value.
+- `none` - pgBackRest does not check host keys.
 
 ```yaml
 default: strict
@@ -856,7 +858,7 @@ example: --repo1-sftp-host-key-check-type=accept-new
 
 SFTP repository host key hash type.
 
-SFTP repository host key hash type. Declares the hash type to be used to compute the digest of the remote system's host key on SSH startup. Newer versions of `libssh2` support `sha256` in addition to md5 and sha1.
+Set the hash type used to calculate the remote host key digest at SSH startup. Newer `libssh2` versions support `sha256` as well as md5 and sha1.
 
 ```yaml
 example: --repo1-sftp-host-key-hash-type=sha256
@@ -888,7 +890,9 @@ example: --repo1-sftp-host-user=pg-backup
 
 SFTP known hosts file.
 
-A known hosts file to search for an SFTP host match during authentication. When unspecified, pgBackRest will default to searching `~/.ssh/known_hosts`, `~/.ssh/known_hosts2`, `/etc/ssh/ssh_known_hosts`, and `/etc/ssh/ssh_known_hosts2`. If configured with one or more file paths, pgBackRest will search those for a match. File paths must be full or leading tilde paths. The `repo-sftp-known-host` option can be passed multiple times to specify more than one known hosts file to search. To utilize known hosts file checking `repo-sftp-host-fingerprint` must not be specified. See also `repo-sftp-host-check-type` option.
+Set a known hosts file to check during SFTP authentication. By default, pgBackRest searches `~/.ssh/known_hosts`, `~/.ssh/known_hosts2`, `/etc/ssh/ssh_known_hosts`, and `/etc/ssh/ssh_known_hosts2`. If you configure file paths, it searches those files. Use absolute paths or paths that start with a tilde. Repeat `repo-sftp-known-host` to specify multiple files. To check known hosts files, do not set `repo-sftp-host-fingerprint`.
+
+See also the `repo-sftp-host-check-type` option.
 
 ```yaml
 example: --repo1-sftp-known-host=/home/postgres/.ssh/known_hosts
@@ -908,7 +912,7 @@ example: --repo1-sftp-private-key-file=~/.ssh/id_ed25519
 
 SFTP public key file.
 
-SFTP public key file used for authentication. Optional if compiled against OpenSSL, required if compiled against a different library.
+Set the SFTP public key file for authentication. This file is optional for builds that use OpenSSL. Other builds require it.
 
 ```yaml
 example: --repo1-sftp-public-key-file=~/.ssh/id_ed25519.pub
@@ -968,9 +972,9 @@ Deprecated Names: repo-azure-port, repo-s3-port
 
 Repository storage tag(s).
 
-Specify tags that will be added to objects when the repository is an object store (e.g. S3). The option can be repeated to add multiple tags.
+For an object store repository, such as S3, specify the tags to add to objects. Repeat this option to add multiple tags.
 
-There is no provision in pgBackRest to modify these tags so be sure to set them correctly before running `stanza-create` to ensure uniform tags across the entire repository.
+pgBackRest cannot change these tags. Before you run `stanza-create`, set them correctly to give the entire repository uniform tags.
 
 ```yaml
 example: --repo1-storage-tag=key1=value1
@@ -980,13 +984,13 @@ example: --repo1-storage-tag=key1=value1
 
 Repository storage upload chunk size.
 
-Object stores such as S3 allow files to be uploaded in chunks when the file is too large to be stored in memory. Even if the file can be stored in memory, it is more memory efficient to limit the amount of memory used for uploads.
+Object stores, such as S3, support uploads in chunks for files too large to fit in memory. For smaller files, chunks also reduce the memory used for uploads.
 
-A larger chunk size will generally lead to better performance because it will minimize upload requests and allow more files to be uploaded in a single request rather than in chunks. The disadvantage is that memory usage will be higher and because the chunk buffer must be allocated per process, larger `process-max` values will lead to more memory being consumed overall.
+Larger chunks usually improve performance because they reduce upload requests. More files can fit in a single request without division into chunks. However, larger chunks use more memory. Each process needs a chunk buffer, so a larger `process-max` value also increases total memory use.
 
-Note that valid chunk sizes vary by storage type and by platform. For example, AWS S3 has a minimum chunk size of 5MiB. Terminology for chunk size varies by storage type, so when searching min/max values use "part size" for AWS S3, "chunk size" for GCS, and "block size" for Azure.
+Valid chunk sizes depend on the storage type and platform. For example, AWS S3 requires a minimum chunk size of 5MiB. To find minimum and maximum values, search for the term that matches your storage type. Use "part size" for AWS S3, "chunk size" for GCS, and "block size" for Azure.
 
-If a file is larger than 1GiB (the maximum size PostgreSQL will create by default) then the chunk size will be increased incrementally up to the maximum allowed in order to complete the file upload.
+By default, PostgreSQL creates files no larger than 1GiB. For larger files, pgBackRest increases the chunk size in increments, up to the allowed maximum, to complete the upload.
 
 ```yaml
 default (depending on repo-type):
@@ -1006,7 +1010,7 @@ example: --repo1-storage-upload-chunk-size=16MiB
 
 Repository storage certificate verify.
 
-This option provides the ability to enable/disable verification of the storage (e.g. S3, Azure) server TLS certificate. Disabling should only be used for testing or other scenarios where a certificate has been self-signed.
+Enable or disable verification of the storage server TLS certificate, for example for S3 or Azure. Disable verification only for testing or other cases that use a self-signed certificate.
 
 ```yaml
 default: y
@@ -1019,13 +1023,13 @@ Deprecated Names: repo-azure-verify-tls, repo-s3-verify-ssl, repo-s3-verify-tls
 
 Target time for repository.
 
-The target time defines the time that commands use to read a repository on versioned storage. This allows the command to read the repository as it was at a point-in-time in order to recover data that has been deleted or corrupted by user accident or malware.
+Set the point in time at which commands read a repository on versioned storage. This lets you recover data deleted or corrupted by user error or malware.
 
-Versioned storage is supported by S3, GCS, and Azure but is generally not enabled by default. In addition to enabling versioning, it may be useful to enable object locking for S3 and soft delete for GCS or Azure.
+S3, GCS, and Azure support versioned storage, but usually disable it by default. In addition to versioning, consider S3 object locking or GCS and Azure soft delete.
 
-When the `repo-target-time` option is specified then the `repo` option must also be provided. It is likely that not all repository types will support versioning and in general it makes sense to target a single repository for recovery.
+When you specify `repo-target-time`, you must also specify `repo`. Some repository types probably will not support versioning. Recovery usually targets one repository.
 
-Note that comparisons to the storage timestamp are <= the timestamp provided and milliseconds are truncated from the timestamp when provided.
+Storage timestamps must be <= the specified timestamp. pgBackRest truncates milliseconds from the specified timestamp.
 
 ```yaml
 example: --repo-target-time=2024-08-08 12:12:12+00
@@ -1044,7 +1048,7 @@ The following repository types are supported:
 - `s3` - AWS Simple Storage Service
 - `sftp` - Secure File Transfer Protocol
 
-When an NFS mount is used as a `posix` repository, the same rules apply to pgBackRest as described in the PostgreSQL documentation: [Creating a Database Cluster - File Systems](https://www.postgresql.org/docs/current/creating-cluster.html#CREATING-CLUSTER-FILESYSTEM).
+For an NFS mount used as a `posix` repository, follow the PostgreSQL filesystem rules. See [Creating a Database Cluster - File Systems](https://www.postgresql.org/docs/current/creating-cluster.html#CREATING-CLUSTER-FILESYSTEM).
 
 ```yaml
 default: posix

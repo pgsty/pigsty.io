@@ -8,17 +8,13 @@ module: [DOCKER]
 categories: [Reference]
 ---
 
-
-Pigsty has built-in [**Docker**](https://www.docker.com/) support, which you can use to quickly deploy containerized applications.
-
-
---------
+Pigsty includes [**Docker**](https://www.docker.com/) support. Use it to deploy containerized applications quickly.
 
 ## Getting Started
 
-Docker is an **optional module**. In Pigsty, whether Docker is installed is controlled by [`docker_enabled`](/docs/docker/param#docker_enabled), which is disabled by default.
+Docker is an **optional module**. The [`docker_enabled`](/docs/docker/param#docker_enabled) parameter controls Docker installation. It is disabled by default.
 
-The `docker-ce` upstream repository belongs to the `infra` module. If you need to explicitly include Docker packages in the offline repository, use `repo_extra_packages` with the `docker` package alias (mapped to `docker-ce` and `docker-compose-plugin`).
+The `docker-ce` upstream repository belongs to the `infra` module. To include Docker packages in the offline repository, set `repo_extra_packages` to the `docker` package alias. This alias maps to `docker-ce` and `docker-compose-plugin`.
 
 ```yaml
 repo_modules: infra,node,pgsql     # <--- Keep infra module (Docker upstream belongs to infra)
@@ -27,7 +23,7 @@ repo_extra_packages:
   - docker                         # <--- Download Docker (docker-ce + docker-compose-plugin)
 ```
 
-After Docker is downloaded, you need to set the [**`docker_enabled`**](/docs/docker/param#docker_enabled): `true` flag on the nodes where you want to install Docker, and configure [**other parameters**](/docs/docker/param/) as needed.
+After you download Docker, set [**`docker_enabled`**](/docs/docker/param#docker_enabled) to `true` on each target node. Set the [**other parameters**](/docs/docker/param/) as needed.
 
 ```yaml
 infra:
@@ -38,52 +34,37 @@ infra:
     docker_enabled: true  # Install Docker on this group!
 ```
 
-Finally, you can use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to install it on the nodes:
+Use the [`docker.yml`](/docs/docker/playbook#dockeryml) playbook to install Docker on these nodes:
 
 ```bash
 ./docker.yml -l infra    # Install Docker on the infra group
 ```
 
-
-
---------
-
 ## Installation
 
-If you want to temporarily install Docker directly from the internet on certain nodes, you can use the following command:
+To install Docker directly from the internet on selected nodes for a temporary need, use this command:
 
 ```bash
 ./node.yml -e '{"node_repo_modules":"node,infra","node_packages":["docker-ce","docker-compose-plugin"]}' -t node_repo,node_pkg -l <select_group_ip>
 ```
 
-This command will first enable the upstream software sources for the `node,infra` modules on the target nodes, then install the `docker-ce` and `docker-compose-plugin` packages (same package names on EL/Debian).
+This command first enables the upstream software sources for the `node,infra` modules on the target nodes. Then it installs `docker-ce` and `docker-compose-plugin`. These package names are the same on EL and Debian.
 
-If you want Docker-related packages to be automatically downloaded during Pigsty initialization, refer to the instructions below.
-
-
-
-
---------
+To download Docker packages automatically during Pigsty initialization, use the instructions below.
 
 ## Removal
 
-Because it's so simple, Pigsty doesn't provide an uninstall playbook for the Docker module. You can directly remove Docker using an Ansible command:
+The Docker module does not include an uninstall playbook. To remove Docker directly, use this Ansible command:
 
 ```bash
 ansible <selector> -m package -b -a 'name=docker-ce,docker-compose-plugin state=absent'  # Remove docker
 ```
 
-
-
-
-
-
---------
-
 ## Download
 
-To download Docker during Pigsty installation, confirm that [`repo_modules`](/docs/infra/param#repo_modules) includes `infra` (the module containing Docker upstream repositories),
-then specify Docker packages in [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages).
+To download Docker during Pigsty installation, make sure that [`repo_modules`](/docs/infra/param#repo_modules) includes `infra`. This module contains the Docker upstream repositories.
+
+Specify the Docker packages in [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages):
 
 ```yaml
 repo_modules: infra,node,pgsql         # <--- Docker upstream repo belongs to infra
@@ -94,41 +75,30 @@ repo_extra_packages:
   - docker  # <--- Can also be specified here
 ```
 
-The `docker` specified here (which actually corresponds to the `docker-ce` and `docker-compose-plugin` packages) will be automatically downloaded to the local repository during the default [`deploy.yml`](/docs/setup/playbook#deploy-playbook) process.
-After downloading, the Docker packages will be available to all nodes via the local repository.
+The default [`deploy.yml`](/docs/setup/playbook#deploy-playbook) process downloads the `docker` package alias to the local repository. This alias contains `docker-ce` and `docker-compose-plugin`. After the download, all nodes can get these packages from the local repository.
 
-If you've already completed Pigsty installation and the local repository is initialized, you can run `./infra.yml -t repo_build` after modifying the configuration to re-download and rebuild the offline repository.
+If Pigsty installation and local repository initialization are complete, change the configuration first. Then run `./infra.yml -t repo_build` to download the packages again and rebuild the offline repository.
 
-Installing Docker requires the Docker YUM/APT [repository](#repository). In the v4.x default `repo_upstream`, this repository belongs to the `infra` module and is usually available out of the box.
-
-
-
---------
+Docker installation requires the Docker YUM/APT [repository](#repository). In the v4.x default `repo_upstream`, this repository belongs to the `infra` module. It is usually available without extra configuration.
 
 ## Repository
 
-Downloading Docker requires upstream internet software repositories, which are defined in the default `repo_upstream` with module name `infra`:
+Docker downloads require upstream internet software repositories. The default `repo_upstream` defines these repositories under the `infra` module:
 
 ```yaml
 - { name: docker-ce ,description: 'Docker CE' ,module: infra  ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'    ,china: 'https://mirrors.aliyun.com/docker-ce/linux/centos/$releasever/$basearch/stable'  ,europe: 'https://mirrors.xtom.de/docker-ce/linux/centos/$releasever/$basearch/stable' }}
 - { name: docker-ce ,description: 'Docker'    ,module: infra  ,releases: [11,12,13,22,24,26] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/${distro_name} ${distro_codename} stable' ,china: 'https://mirrors.aliyun.com/docker-ce/linux/${distro_name} ${distro_codename} stable' }}
 ```
 
-You can reference this repository using the `infra` module name in [`repo_modules`](/docs/infra/param#repo_modules) and [`node_repo_modules`](/docs/node/param#node_repo_modules).
+To select this repository, use `infra` in [`repo_modules`](/docs/infra/param#repo_modules) and [`node_repo_modules`](/docs/node/param#node_repo_modules).
 
-> Note that Docker's official software repository is **blocked** by default in mainland China. You need to use mirror sites in China to complete the download.
+> Docker's official software repository is **blocked** by default in mainland China. Use mirror sites in China to download the packages.
 >
-> If you're in mainland China and encounter Docker download failures, check whether `region` is set to `default` in your configuration inventory. The automatically configured `region: china` can resolve this issue.
-
-
-
-
-
---------
+> If Docker downloads fail in mainland China, check `region` in your configuration inventory. If it is `default`, the automatically configured `region: china` can resolve the problem.
 
 ## Proxy
 
-If your network environment requires a proxy server to access the internet, you can configure the [`proxy_env`](/docs/infra/param#proxy_env) parameter in Pigsty's configuration inventory. This parameter will be written to the `proxy` related configuration in Docker's configuration file.
+If internet access requires a proxy server, set [`proxy_env`](/docs/infra/param#proxy_env) in the Pigsty configuration inventory. Pigsty writes this value to the `proxy` configuration in the Docker configuration file.
 
 ```bash
 proxy_env:
@@ -138,49 +108,37 @@ proxy_env:
   #all_proxy: 'http://username:password@proxy.address.com'
 ```
 
-When running [`configure`](/docs/setup/install#configure) with the `-x` parameter, the proxy server configuration from your current environment will be automatically generated into Pigsty's configuration file under `proxy_env`.
+When you run [`configure`](/docs/setup/install#configure) with `-x`, Pigsty reads the proxy settings from your current environment. It writes these settings under `proxy_env` in the Pigsty configuration file.
 
-In addition to using a proxy server, you can also configure [**Docker Registry Mirrors**](#registry-mirrors) to bypass blocks.
-
-
-
-
-
---------
+You can also configure [**Docker Registry Mirrors**](#registry-mirrors) to bypass network blocks.
 
 ## Registry Mirrors
 
-You can use the [`docker_registry_mirrors`](/docs/docker/param#docker_registry_mirrors) parameter to specify Docker Registry Mirrors:
+Use [`docker_registry_mirrors`](/docs/docker/param#docker_registry_mirrors) to specify Docker Registry Mirrors.
 
-For users outside the firewall, in addition to the official DockerHub site, you can also consider using the `quay.io` mirror site. If your internal network environment already has mature image infrastructure, you can use your internal Docker registry mirrors to avoid being affected by external mirror sites and improve download speeds.
+Outside the firewall, you can consider `quay.io` as an alternative to the official DockerHub site. If your internal network has established image infrastructure, use its Docker registry mirrors. Internal mirrors reduce dependence on external sites and improve download speeds.
 
-Users of public cloud providers can consider using free internal Docker mirrors. For example, if you're using Alibaba Cloud, you can use Alibaba Cloud's internal Docker mirror site (requires login):
+Public cloud providers can offer free internal Docker mirrors. For example, Alibaba Cloud provides an internal Docker mirror site that requires login:
 
 ```bash
 ["https://registry.cn-hangzhou.aliyuncs.com"]   # Alibaba Cloud mirror, requires explicit login
 ```
 
-If you're using Tencent Cloud, you can use Tencent Cloud's internal Docker mirror site (requires internal network):
+Tencent Cloud provides an internal Docker mirror site that requires access from its internal network:
 
 ```bash
 ["https://ccr.ccs.tencentyun.com"]   # Tencent Cloud mirror, internal network only
 ```
 
-Additionally, you can use [CF-Workers-docker.io](https://github.com/cmliu/CF-Workers-docker.io?tab=readme-ov-file#%E7%AC%AC%E4%B8%89%E6%96%B9-dockerhub-%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1) to quickly set up your own Docker image proxy.
-You can also consider using free [Docker proxy mirrors](https://github.com/cmliu/CF-Workers-docker.io?tab=readme-ov-file#%E7%AC%AC%E4%B8%89%E6%96%B9-dockerhub-%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1) (use at your own risk!)
-
-
-
-
---------
+You can use [CF-Workers-docker.io](https://github.com/cmliu/CF-Workers-docker.io?tab=readme-ov-file#%E7%AC%AC%E4%B8%89%E6%96%B9-dockerhub-%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1) to set up your own Docker image proxy quickly. You can also consider free [Docker proxy mirrors](https://github.com/cmliu/CF-Workers-docker.io?tab=readme-ov-file#%E7%AC%AC%E4%B8%89%E6%96%B9-dockerhub-%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1). Use these public mirrors at your own risk.
 
 ## Pulling Images
 
-The [`docker_image`](/docs/docker/param#docker_image) and [`docker_image_cache`](/docs/docker/param#docker_image_cache) parameters can be used to directly specify a list of images to pull during Docker installation.
+Use [`docker_image`](/docs/docker/param#docker_image) and [`docker_image_cache`](/docs/docker/param#docker_image_cache) to specify images to load during Docker installation.
 
-Using this feature, Docker will come with the specified images after installation (provided they can be successfully pulled; this task will be automatically ignored and skipped on failure).
+After installation, Docker contains the specified images if the image downloads succeed. If this task fails, the playbook automatically ignores the failure and skips the task.
 
-For example, you can specify images to pull in the configuration inventory:
+For example, specify the images in the configuration inventory:
 
 ```yaml
 infra:
@@ -192,12 +150,13 @@ infra:
       - redis:latest      # Pull the latest Redis image
 ```
 
-Another way to preload images is to use locally `save` d `tgz` archives: if you've previously exported Docker images using `docker save xxx | gzip -c > /tmp/docker/xxx.tgz`.
-These exported image files can be automatically loaded via the glob specified by the [`docker_image_cache`](/docs/docker/param#docker_image_cache) parameter. The default location is: `/tmp/docker/*.tgz`.
+You can also preload images from local `tgz` archives previously exported with `save`. For example, export an image with `docker save xxx | gzip -c > /tmp/docker/xxx.tgz`.
 
-This means you can place images in the `/tmp/docker` directory beforehand, and after running [`docker.yml`](/docs/docker/playbook#dockeryml) to install Docker, these image packages will be automatically loaded.
+The [`docker_image_cache`](/docs/docker/param#docker_image_cache) glob selects the exported image files to load automatically. Its default value is `/tmp/docker/*.tgz`.
 
-For example, in the [self-hosted Supabase tutorial](/blog/db/supabase), this technique is used. Before spinning up Supabase and installing Docker, the `*.tgz` image archives from the local `/tmp/supabase` directory are copied to the target node's `/tmp/docker` directory.
+Put these image archives in `/tmp/docker` before you run [`docker.yml`](/docs/docker/playbook#dockeryml). The playbook installs Docker and automatically loads the archives.
+
+The [self-hosted Supabase tutorial](/blog/db/supabase) uses this method. Before Docker installation and Supabase startup, copy the `*.tgz` archives from local `/tmp/supabase` to `/tmp/docker` on the target node:
 
 ```yaml
 - name: copy local docker images
@@ -207,16 +166,6 @@ For example, in the [self-hosted Supabase tutorial](/blog/db/supabase), this tec
     supa_images: /tmp/supabase/*.tgz
 ```
 
-
---------
-
 ## Applications
 
-Pigsty provides a series of ready-to-use, Docker Compose-based [**software templates**](/docs/app/), which you can use to spin up business software that uses external Pigsty-managed database clusters.
-
-
-<br>
-
---------
-
-<br>
+Pigsty provides ready-to-use [**software templates**](/docs/app/) based on Docker Compose. Use these templates to start business software that connects to external database clusters managed by Pigsty.

@@ -19,7 +19,7 @@ Official License: [https://github.com/pgsty/pigsty/blob/main/LICENSE](https://gi
 
 The Pigsty core is licensed under [**Apache License 2.0**](#apache-20-license-text).
 
-Apache-2.0 is a permissive open-source license. You may freely use, modify, and distribute the software for commercial purposes without opening your own source code or adopting the same license.
+Apache-2.0 is a permissive open-source license. You may freely use, modify, and distribute the software for commercial purposes. You do not need to open your own source code or adopt the same license.
 
 |                  **What This License Grants**                   |                 **What This License Does NOT Grant**                 |                                        **License Conditions**                                        |
 |:---------------------------------------------------------------:|:--------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
@@ -49,9 +49,9 @@ Pigsty documentation sites ([**pigsty.cc**](https://pigsty.cc), [**pigsty.io**](
 
 ## SBOM Inventory
 
-Open-source software used or related to the Pigsty project.
+The table lists open-source software that Pigsty uses or that is related to the project.
 
-For {{< param pgext_count >}} PostgreSQL extension plugin licenses, refer to [**PostgreSQL Extension License List**](/ext/license/).
+For the licenses of {{< param pgext_count >}} PostgreSQL extensions, see the [**PostgreSQL Extension License List**](/ext/license/).
 
 | **Module** | **Software Name**                                                 | **License**                                                                                               | **Purpose & Description**                   |  **Necessity**  |
 |:----------:|:------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------|:--------------------------------------------|:---------------:|
@@ -88,9 +88,9 @@ For {{< param pgext_count >}} PostgreSQL extension plugin licenses, refer to [**
 
 **Necessity Levels:**
 
-* **Required**: Essential core capabilities, no option to disable
-* **Recommended**: Enabled by default, can be disabled via configuration
-* **Optional**: Not enabled by default, can be enabled via configuration
+* **Required**: Core capabilities that you cannot disable.
+* **Recommended**: Enabled by default. You can disable these through configuration.
+* **Optional**: Disabled by default. You can enable these through configuration.
 
 ## Apache-2.0 License Text
 

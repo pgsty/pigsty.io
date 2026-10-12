@@ -23,7 +23,7 @@ The `mongo` configuration template is a **PostgreSQL deployment mode**, not an i
 - The `documentdb` extension and its required preload libraries
 - A stateless FerretDB proxy deployed with Pigsty's Docker APP workflow
 
-All data, high availability, backup, monitoring, and lifecycle management remain PostgreSQL responsibilities. FerretDB only provides the MongoDB wire-compatible endpoint.
+PostgreSQL manages all data, high availability, backups, monitoring, and the database lifecycle. FerretDB provides only the MongoDB wire-compatible endpoint.
 
 
 --------
@@ -42,7 +42,7 @@ Install `mongosh` separately if it is not already available, or use another Mong
 mongosh 'mongodb://mongod:DBUser.Mongo@127.0.0.1:27017/'
 ```
 
-The dedicated `mongod` PostgreSQL login is declared by the template. FerretDB authentication is enabled, but MongoDB authorization roles are not implemented; PostgreSQL remains the security boundary.
+The template declares a dedicated `mongod` PostgreSQL login. FerretDB authentication is enabled. MongoDB authorization roles are not implemented. PostgreSQL remains the security boundary.
 
 
 --------
@@ -55,7 +55,7 @@ The dedicated `mongod` PostgreSQL login is declared by the template. FerretDB au
 | Protocol | FerretDB Docker APP | Stateless MongoDB wire compatibility |
 | Access | `127.0.0.1:27017` by default | Local MongoDB client endpoint |
 
-The container connects to Pigsty's local primary service on port `5436` through `host.docker.internal`. The default Mongo endpoint is not exposed to the network; change `FERRETDB_BIND_ADDR` only when remote access is required.
+The container connects to Pigsty's local primary service on port `5436` through `host.docker.internal`. The default Mongo endpoint is not exposed to the network. Change `FERRETDB_BIND_ADDR` only if you need remote access.
 
 
 --------
@@ -90,7 +90,7 @@ Use the standard PostgreSQL parameters, playbooks, dashboards, and administratio
 
 The template contains a commented `pg-mongo` example for three PostgreSQL/FerretDB nodes. Uncomment that block and the two additional etcd members when needed.
 
-In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`; HAProxy exposes all three backends through the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). PostgreSQL failover is still handled by Patroni, while FerretDB remains stateless.
+In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`. HAProxy exposes all three backends through the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). Patroni continues to handle PostgreSQL failover. FerretDB remains stateless.
 
 
 --------
@@ -99,5 +99,5 @@ In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`; HAPr
 
 - The template includes development-friendly HBA examples; tighten them for production.
 - Client-side MongoDB TLS is not enabled by default.
-- Monitor the backend with the standard PostgreSQL and Docker dashboards; there is no separate FERRET module or dedicated module dashboard.
+- Monitor the backend with the standard PostgreSQL and Docker dashboards. There is no separate FERRET module or dedicated module dashboard.
 - Repeat an authenticated CRUD smoke test after upgrading FerretDB or DocumentDB.

@@ -7,17 +7,12 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-Pigsty provides a standard 4-node **sandbox** environment for learning, testing, and feature demonstration.
-
-The sandbox uses fixed IP addresses and predefined identity identifiers, making it easy to reproduce various demo use cases.
-
-
-----------------
+Pigsty supplies a standard 4-node sandbox for learning, testing, and feature demonstrations.
+It uses fixed IP addresses and predefined identity values to make the demonstrations repeatable.
 
 ## Description
 
-The default sandbox environment consists of 4 nodes, using the [`ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) configuration template.
+The default sandbox has 4 nodes and uses the [`ha/full.yml` template](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml).
 
 | ID |   IP Address   |   Node   | PostgreSQL  |   INFRA   |   ETCD   |   MINIO   |
 |:--:|:--------------:|:--------:|:-----------:|:---------:|:--------:|:---------:|
@@ -26,7 +21,7 @@ The default sandbox environment consists of 4 nodes, using the [`ha/full.yml`](h
 | 3  | `10.10.10.12`  | `node-2` | `pg-test-2` |           |          |           |
 | 4  | `10.10.10.13`  | `node-3` | `pg-test-3` |           |          |           |
 
-The sandbox configuration can be summarized as the following config:
+This example shows the sandbox configuration:
 
 ```yaml
 all:
@@ -55,18 +50,16 @@ all:
 
 ![pigsty-sandbox](/img/pigsty/sandbox.png)
 
-
-
 ### PostgreSQL Clusters
 
-The sandbox comes with a single-instance PostgreSQL cluster `pg-meta` on the `meta` node:
+The `meta` node has a PostgreSQL cluster named `pg-meta` with one instance:
 
 ```bash
 10.10.10.10 meta pg-meta-1
 10.10.10.2  pg-meta          # Optional L2 VIP
 ```
 
-There's also a 3-instance PostgreSQL HA cluster `pg-test` deployed on the other three nodes:
+The other three nodes host the `pg-test` HA cluster with 3 instances:
 
 ```bash
 10.10.10.11 node-1 pg-test-1
@@ -75,36 +68,35 @@ There's also a 3-instance PostgreSQL HA cluster `pg-test` deployed on the other 
 10.10.10.3  pg-test          # Optional L2 VIP
 ```
 
-Two optional L2 VIPs are bound to the primary instances of `pg-meta` and `pg-test` clusters respectively.
-
+The sandbox has two optional L2 VIPs.
+Each VIP binds to the primary instance of its cluster, `pg-meta` or `pg-test`.
 
 ### Infrastructure
 
-The `meta` node also hosts:
+The `meta` node also hosts these services:
 
-- **ETCD cluster**: Single-node `etcd` cluster providing DCS service for PostgreSQL HA
-- **Silo cluster**: A single-node `minio` cluster managed by the MINIO module, providing S3-compatible object storage
+- A single-node `etcd` cluster that supplies the distributed configuration store (DCS) for PostgreSQL HA.
+- A single-node Silo `minio` cluster that supplies S3-compatible object storage through the MINIO module.
 
 ```bash
 10.10.10.10 etcd-1
 10.10.10.10 minio-1
 ```
 
-`ha/full.yml` also declares three Redis example topologies and enables Docker installation on the INFRA node. The standard `deploy.yml` does not deploy these two optional modules; run `./redis.yml` and `./docker.yml` separately when needed.
-
-
-----------------
+The `ha/full.yml` template also defines three Redis example topologies and enables Docker on the INFRA node.
+The standard `deploy.yml` playbook does not deploy Redis or Docker.
+When required, run `./redis.yml` and `./docker.yml` separately.
 
 ## Creating Sandbox
 
-Pigsty provides out-of-the-box templates. You can use [**Vagrant**](/docs/deploy/vagrant/) to create a local sandbox, or use [**OpenTofu**](/docs/deploy/terraform/) to create a cloud sandbox.
-
+Use [Vagrant](/docs/deploy/vagrant/) to create a local sandbox from the supplied templates.
+Use [OpenTofu](/docs/deploy/terraform/) to create a cloud sandbox.
 
 ### Local Sandbox (Vagrant)
 
-Local sandbox uses VirtualBox/libvirt to create local virtual machines, running free on your Mac / PC.
-
-To run the full 4-node sandbox, your machine should have at least **4 CPU cores** and **8GB memory**.
+The local sandbox uses VirtualBox or libvirt to create virtual machines on your Mac or PC.
+It has no cloud resource charges.
+For the complete 4-node sandbox, provide at least **4 CPU cores** and **8GB memory**.
 
 ```bash
 cd ~/pigsty/vagrant
@@ -115,14 +107,16 @@ make full24     # Create 4-node sandbox with Ubuntu 24.04
 make full26     # Create 4-node sandbox with Ubuntu 26.04
 ```
 
-The current Vagrant configuration uses the `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). See [**Vagrant: Supported Images**](/docs/deploy/vagrant/#supported-images) for available images, source-pinned versions, and architecture details. Boxes without a version pinned in source are resolved by Vagrant to their currently available version.
-
+The current Vagrant configuration uses `cloud-image/*` boxes from [Vagrant Cloud](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image).
+See [Supported Images](/docs/deploy/vagrant/#supported-images) for available images, pinned versions, and architectures.
+If the source does not pin a box version, Vagrant selects its currently available version.
 
 ### Cloud Sandbox (Terraform)
 
-Cloud sandbox uses public cloud API to create virtual machines. Easy to create and destroy, pay-as-you-go, ideal for quick testing.
+The cloud sandbox uses public cloud APIs to create virtual machines.
+You can create and remove these resources for short tests and pay for their use.
 
-Use the [`spec/aliyun-full.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-full.tf) template to create a 4-node sandbox on Alibaba Cloud:
+Use [`spec/aliyun-full.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/aliyun-full.tf) to create a 4-node sandbox on Alibaba Cloud:
 
 ```bash
 cd ~/pigsty/terraform
@@ -131,62 +125,53 @@ terraform init
 terraform apply
 ```
 
-For more details, please refer to the [**OpenTofu**](/docs/deploy/terraform/) documentation.
-
-
-
-----------------
+See the [OpenTofu guide](/docs/deploy/terraform/) for details.
 
 ## Other Specs
 
-Besides the standard 4-node sandbox, Pigsty also provides other environment specs:
-
-Run the following Makefile shortcuts from `~/pigsty/vagrant`:
+Pigsty also supplies other environment specifications.
+Run these Makefile shortcuts from `~/pigsty/vagrant`:
 
 ```bash
 cd ~/pigsty/vagrant
 ```
 
-
 ### Single Node Devbox (meta)
 
-The simplest 1-node environment for quick start, development, and testing:
+Use the 1-node environment for the quick start, development, and testing:
 
 ```bash
 make meta       # Create single-node devbox
 ```
 
-
 ### Two Node Environment (dual)
 
-2-node environment for testing primary-replica replication:
+Use the 2-node environment to test replication between a primary and a replica:
 
 ```bash
 make dual       # Create 2-node environment
 ```
 
-
 ### Three Node Environment (trio)
 
-3-node environment for testing basic high availability:
+Use the 3-node environment to test basic high availability:
 
 ```bash
 make trio       # Create 3-node environment
 ```
 
-
 ### Production Simulation (simu)
 
-20-node large simulation environment for full production environment testing:
+Use the 20-node simulation to test a complete production environment:
 
 ```bash
 make simu       # Create 20-node production simulation environment
 ```
 
-This environment includes:
+This environment includes these nodes:
 
-- 3 infrastructure nodes (`meta1`, `meta2`, `meta3`)
-- 2 HAProxy proxy nodes
-- 4 MINIO (Silo) nodes
-- 5 ETCD nodes
-- 6 PostgreSQL nodes (2 clusters, 3 nodes each)
+- 3 infrastructure nodes: `meta1`, `meta2`, and `meta3`.
+- 2 HAProxy proxy nodes.
+- 4 MINIO (Silo) nodes.
+- 5 ETCD nodes.
+- 6 PostgreSQL nodes in 2 clusters with 3 nodes each.

@@ -8,7 +8,7 @@ module: [SOFTWARE]
 categories: [Task]
 ---
 
-[pgAdmin](https://www.pgadmin.org/) is an open-source PostgreSQL administration and development GUI. Pigsty v4.5.0 provides the `app/pgadmin` Docker Compose template and can generate a server list and password file from the current inventory.
+[pgAdmin](https://www.pgadmin.org/) is an open-source PostgreSQL administration and development GUI. Pigsty v4.5.0 provides the `app/pgadmin` Docker Compose template. It can generate a server list and password file from the current inventory.
 
 > [!WARNING] Change the defaults first
 > The template login is `admin@pigsty.cc` with password `pigsty`. It is suitable only for a local demo. Before deployment on a shared network or the Internet, change the credentials, restrict port access, and configure HTTPS.
@@ -72,9 +72,9 @@ The current template uses the unpinned `dpage/pgadmin4` image. For production, p
 - `/infra/pgadmin/servers.json`: PostgreSQL instance list
 - `/infra/pgadmin/pgpass`: database administrator password file
 
-In the default `conf/meta.yml`, the `infra` and `app` groups point to the same host, so pgAdmin can bind-mount both files read-only. If pgAdmin and Infra run on different hosts, the application node does not automatically have `/infra/pgadmin/`; securely distribute equivalent files or customize the mounts instead of assuming that a local path is shared across hosts.
+In the default `conf/meta.yml`, the `infra` and `app` groups use the same host. pgAdmin can therefore bind-mount both files read-only. With separate pgAdmin and Infra hosts, `/infra/pgadmin/` is not automatically available on the application node. Securely distribute equivalent files or customize the mounts. A local path is not shared across hosts.
 
-For the default colocated topology, regenerate the files and then ask the running container to import the list and password:
+For the default topology with both services on one host, regenerate the files. Then import the list and password into the running container:
 
 ```bash
 ./infra.yml -l infra -t env_pgadmin
@@ -137,7 +137,7 @@ make stop     # stop the container
 make restart  # restart the container
 ```
 
-The Compose template does not persist `/var/lib/pgadmin`. Pigsty can re-import its generated server list, but preferences, users, and other state created in the pgAdmin UI may be lost when the container is recreated. If that state matters, add a protected persistent volume for the directory and include it in backups after validating the template change.
+The Compose template does not persist `/var/lib/pgadmin`. Pigsty can re-import its generated server list. Container recreation can lose preferences, users, and other state created through the pgAdmin UI. To retain this state, add a protected persistent volume for this directory. Validate the template change, then include the volume in backups.
 
 ![pgAdmin](/img/docs/app/pgadmin.jpeg)
 

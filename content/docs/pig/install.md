@@ -25,13 +25,15 @@ curl -fsSL https://repo.pigsty.io/pig | bash
 curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
-This script downloads the latest `pig` RPM/DEB package from the Pigsty [software repository](/docs/repo/) and installs it using `rpm` or `dpkg`.
-Script installation targets Linux x86_64 / aarch64 RPM or DEB distributions. On macOS, use the binary from the release tarball.
+The script downloads the latest `pig` RPM/DEB package from the Pigsty [software repository](/docs/repo/).
+It installs the package with `rpm` or `dpkg`.
+Use the script on Linux x86_64 / aarch64 systems with RPM or DEB packages.
+On macOS, use the binary from the release tarball.
 
 
 ## Specify Version
 
-You can request a particular version that is already published on the selected mirror by passing the version number as an argument:
+To install a version published on the selected mirror, pass the version number as an argument:
 
 **Default Installation** (Cloudflare CDN):
 
@@ -50,7 +52,9 @@ Mirror publication can lag the GitHub release. For the exact current release, us
 
 ## Download Release Artifacts
 
-Current `v1.9.0` installation packages (`RPM`/`DEB`/tarball) are available from the [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.9.0), with published hashes in [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.9.0/checksums.txt). Use the following direct URL pattern:
+Download the `v1.9.0` packages (`RPM`/`DEB`/tarball) from the [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.9.0).
+Check the published hashes in [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.9.0/checksums.txt).
+Use this URL pattern:
 
 - `https://github.com/pgsty/pig/releases/download/v1.9.0/<filename>`
 
@@ -66,13 +70,15 @@ v1.9.0
 └── pig-v1.9.0.darwin-arm64.tar.gz
 ```
 
-After extracting, place the binary file in your system PATH.
-The equivalent Pigsty mirror directory becomes available after repository synchronization; check the target URL before using a version-pinned installer command.
+Extract the archive and put the binary in your system PATH.
+The Pigsty mirror directory becomes available after repository synchronization.
+Before you run an installer for a specific version, check that its target URL is available.
 
 
 ## Repository Installation
 
-The `pig` software is located in the [`pigsty-infra`](/docs/repo/infra/) repository. You can add this repository to your operating system and then install using the OS package manager:
+The [`pigsty-infra`](/docs/repo/infra/) repository contains `pig`.
+Add this repository to your system. Then install `pig` with the OS package manager:
 
 ### YUM
 
@@ -108,7 +114,7 @@ sudo apt install -y pig
 
 ## Update
 
-To upgrade an existing `pig` version to the latest available version, use the following command:
+To upgrade `pig` to the latest available version, run:
 
 ```bash
 pig update            # upgrade pig itself to the latest version
@@ -116,7 +122,7 @@ pig update -m         # upgrade using the pigsty.cc mirror
 pig update -v X.Y.Z   # upgrade to a version published by the configured repository
 ```
 
-To update the extension data of an existing `pig` to the latest available version, use the following command:
+To update the extension data used by `pig`, run:
 
 ```bash
 pig ext reload        # Update pig extension data to the latest version
@@ -134,7 +140,7 @@ rm -rf /usr/bin/pig   # If installed directly from binary, just delete the binar
 
 ## Build from Source
 
-You can also build `pig` yourself. `pig` is developed in Go and is very easy to build. The source code is hosted at [github.com/pgsty/pig](https://github.com/pgsty/pig)
+You can build `pig` from its Go source code at [github.com/pgsty/pig](https://github.com/pgsty/pig):
 
 ```bash
 git clone https://github.com/pgsty/pig.git; cd pig
@@ -142,4 +148,4 @@ go mod download
 make build
 ```
 
-All RPM/DEB packages are automatically built through GitHub CI/CD workflow using goreleaser.
+The GitHub CI/CD workflow uses GoReleaser to build all RPM/DEB packages automatically.

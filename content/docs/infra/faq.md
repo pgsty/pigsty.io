@@ -13,14 +13,16 @@ categories: [Reference]
 
 ## What components are included in the INFRA module?
 
-Strictly following the current source, the `infra` role directly manages:
+The current `infra` role directly manages these components:
 
 - **Nginx**: Exposes Grafana, VictoriaMetrics (VMUI), Alertmanager, and other WebUIs, and hosts local YUM/APT repositories.
 - **DNSMasq**: Provides DNS registration and resolution.
 - **VictoriaMetrics suite**: VictoriaMetrics, VMAlert, VictoriaLogs, and VictoriaTraces.
 - **Alertmanager, Blackbox Exporter, and Grafana**: Alert dispatch, blackbox probing, and visualization.
 
-`infra.yml` also chains the CA, repository, NODE, HAProxy, and node-monitoring roles, so it configures supporting capabilities such as the self-signed CA, Chronyd, Node Exporter, and Vector on Infra nodes. ETCD, PostgreSQL, and Docker are separate modules and are not deployed by `infra.yml`; use `etcd.yml`, `pgsql.yml`, and `docker.yml`, respectively.
+`infra.yml` also runs the CA, repository, NODE, HAProxy, and node-monitoring roles. These configure supporting services such as the self-signed CA, Chronyd, Node Exporter, and Vector on Infra nodes.
+
+ETCD, PostgreSQL, and Docker are separate modules. The `infra.yml` playbook does not deploy them. Use `etcd.yml`, `pgsql.yml`, and `docker.yml`, respectively.
 
 
 
@@ -97,8 +99,7 @@ PGSQL cluster/instance domains are registered by default to `/etc/dnsmasq.d/pigs
 
 ## How to expose new upstream services via Nginx?
 
-Although you can access services directly via IP:Port, we still recommend consolidating access entry points by using domain names and accessing various WebUI services through Nginx proxy.
-This helps consolidate access, reduce exposed ports, and facilitate access control and auditing.
+You can access services directly through IP:Port. However, we recommend domain names and the Nginx proxy for WebUI access. This centralizes access, reduces exposed ports, and simplifies access control and auditing.
 
 If you want to expose new WebUI services through the Nginx portal, you can add service definitions to the [`infra_portal`](/docs/infra/param#infra_portal) parameter.
 For example, here's the Infra portal configuration used by Pigsty's official demo, exposing several additional services:
@@ -133,8 +134,9 @@ After completing the Nginx upstream service definition, use the following config
 ansible infra -b -a 'nginx -s reload'  # Reload Nginx config
 ```
 
-If you want HTTPS access, you must delete `files/pki/csr/pigsty.csr` and `files/pki/nginx/pigsty.{key,crt}` to force regeneration of Nginx SSL/TLS certificates to include new upstream domains.
-If you want to use certificates issued by an authoritative CA instead of Pigsty self-signed CA certificates, you can place them in the `/etc/nginx/conf.d/cert/` directory and modify the corresponding configuration: `/etc/nginx/conf.d/<name>.conf`.
+For HTTPS, delete `files/pki/csr/pigsty.csr` and `files/pki/nginx/pigsty.{key,crt}` to force Nginx SSL/TLS certificate regeneration. The new certificates include the new upstream domains.
+
+To use certificates from an authoritative CA instead of the Pigsty self-signed CA, put them in `/etc/nginx/conf.d/cert/`. Update the corresponding `/etc/nginx/conf.d/<name>.conf` configuration.
 
 
 

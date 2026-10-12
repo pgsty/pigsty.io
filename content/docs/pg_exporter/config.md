@@ -7,9 +7,12 @@ category: [Reference]
 ---
 
 
-Every business metric in `pg_exporter` is driven by a YAML **collector** definition: one SQL query plus its execution conditions (version, role, tags, predicates) and runtime controls (caching, timeout). This page is the complete reference for collector definitions.
+Each business metric in `pg_exporter` comes from a YAML **collector** definition.
+A collector contains one SQL query and its execution conditions: version, role, tags, and predicates.
+It also controls caching and timeout. This page describes all collector settings.
 
-A configuration can be a single YAML file (like the default `pg_exporter.yml`) or a directory of YAML files — the official default bundle is merged from the 58 definition files under [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config).
+Use one YAML file, such as the default `pg_exporter.yml`, or a directory of YAML files.
+The official default bundle combines 58 definition files from [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config).
 
 ## Configuration Loading
 
@@ -23,13 +26,13 @@ PG Exporter searches for configuration in the following order:
 
 Directory mode details:
 
-- Only `.yml` / `.yaml` files in that directory are loaded, non-recursively
-- Files are merged in lexicographic order; later files override earlier collector definitions with the same top-level name
-- If a config directory contains YAML files but every one of them fails to parse, the exporter returns an error instead of silently ignoring the directory
+- The exporter loads only `.yml` / `.yaml` files in the specified directory. It does not read subdirectories.
+- It merges files in lexicographic order. A later file overrides an earlier collector definition with the same top-level name.
+- If the directory contains YAML files but none can be parsed, the exporter returns an error.
 
 ## Collector Structure
 
-Each collector is a top-level object in the YAML configuration with a unique name and various properties:
+Define each collector as a top-level YAML object with a unique name and the required properties:
 
 ```yaml
 collector_branch_name:           # Unique identifier for this collector
@@ -71,14 +74,14 @@ collector_branch_name:           # Unique identifier for this collector
 
 Validation rules:
 
-- Each entry in `metrics` must define exactly one column mapping
-- Each collector must expose at least one `GAUGE`, `COUNTER`, or `HISTOGRAM` column
-- `usage` only accepts `GAUGE`, `COUNTER`, `HISTOGRAM`, `LABEL`, or `DISCARD`
-- `HISTOGRAM` columns must define `bucket`: a finite, strictly increasing list of bucket upper bounds; the `+Inf` bucket is appended automatically
-- Metric names and label names are validated against Prometheus naming rules during load; invalid configs fail fast
-- Constant labels are checked for conflicts during load; they cannot overlap with query labels or built-in dynamic labels such as `datname` and `query`; when any `HISTOGRAM` collector is configured, `le` is reserved and cannot be used as a constant label
-- The SQL result must include every column declared as `LABEL`; since `v1.4.1`, a missing label column fails that collector's entire scrape instead of emitting an empty label or retaining stale results, while other non-fatal collectors continue normally
-- If you use one-line inline `metrics` definitions, keep `description` values double-quoted to avoid YAML ambiguity
+- Each entry in `metrics` must define exactly one column mapping.
+- Each collector must expose at least one `GAUGE`, `COUNTER`, or `HISTOGRAM` column.
+- `usage` accepts only `GAUGE`, `COUNTER`, `HISTOGRAM`, `LABEL`, or `DISCARD`.
+- A `HISTOGRAM` column must define `bucket` with finite upper bounds in strictly increasing order. The exporter appends the `+Inf` bucket.
+- Metric and label names must follow Prometheus naming rules. The exporter checks them during loading and rejects invalid configurations immediately.
+- Constant labels cannot conflict with query labels or built-in dynamic labels such as `datname` and `query`. The exporter checks this during loading. If any collector uses `HISTOGRAM`, `le` is reserved and cannot be a constant label.
+- The SQL result must include every `LABEL` column. From `v1.4.1`, a missing label column fails the entire collector scrape. The collector does not emit an empty label or keep stale results. Other non-fatal collectors continue.
+- In one-line inline `metrics` definitions, enclose `description` values in double quotes to prevent YAML ambiguity.
 
 ## Core Configuration Elements
 
@@ -122,10 +125,10 @@ Each column in the query result must be mapped to a metric type:
 
 ### Histogram Columns (HISTOGRAM)
 
-`v1.4.0` introduces the `HISTOGRAM` column type: every row returned by the query counts
-as one observation, aggregated per label group into a classic Prometheus histogram
-snapshot, deriving three series families: `<name>_bucket` (with the `le` label and the
-`+Inf` bucket), `<name>_count`, and `<name>_sum`:
+Version `v1.4.0` adds the `HISTOGRAM` column type.
+Each query result row is one observation. The exporter groups observations by label to produce a classic Prometheus histogram snapshot.
+It generates three series families: `<name>_bucket`, `<name>_count`, and `<name>_sum`.
+The bucket series includes the `le` label and the `+Inf` bucket:
 
 ```yaml
 pg_xact_age:
@@ -149,15 +152,10 @@ pg_xact_age:
 
 Usage notes:
 
-- This is a **snapshot** histogram: the whole distribution is rebuilt on every scrape,
-  so bucket counts can go up or down — gauge-like semantics. `histogram_quantile()`
-  works directly, but `rate()` / `increase()` over `_count` / `_sum` is meaningless
-- SQL `NULL` observations are ignored by default; with an explicit `default`, they
-  count as the default value
-- `scale` is applied to the observation before bucket assignment; as with scalar
-  columns, timestamp and boolean values are exempt from `scale`
-- The [`pg_xact_age`](https://github.com/pgsty/pg_exporter/blob/main/config/0450-pg_xact_age.yml)
-  collector in the default bundle serves as the reference implementation
+- This is a **snapshot** histogram. Each scrape rebuilds the full distribution. Bucket counts can increase or decrease, as gauges do. Use `histogram_quantile()` directly. Do not use `rate()` / `increase()` on `_count` / `_sum`; these operations have no meaning for a snapshot.
+- By default, the exporter ignores SQL `NULL` observations. If you set `default`, it counts them with that value.
+- The exporter applies `scale` before it assigns a bucket. As with scalar columns, `scale` does not apply to timestamps or booleans.
+- For a reference implementation, see the default [`pg_xact_age`](https://github.com/pgsty/pg_exporter/blob/main/config/0450-pg_xact_age.yml) collector.
 
 ### Cache Control (TTL)
 
@@ -207,11 +205,11 @@ Version numbers follow PostgreSQL `server_version_num` rules:
 
 ## Execution Model
 
-Understanding the full path from a collector definition to emitted metrics helps answer "why is this metric missing":
+Use the execution model to find why a metric is missing:
 
-1. **Planning** (on connection setup or hot reload): each collector branch is checked in turn — target type (PostgreSQL / pgBouncer), `min_version` / `max_version` gates, `tags` matching against server role and exporter tags, and the `skip` switch. Branches that fail any check are not installed on that target. `curl localhost:9630/explain` shows exactly the verdict of this step.
-2. **Scraping** (on every `/metrics` request): for each installed collector — if the cache is still within `ttl`, the cached result is returned; otherwise `predicate_queries` run first (any false verdict skips this round and bumps `pg_exporter_query_scrape_predicate_skip_count`), then the main query executes under `timeout`, and results are converted to metrics and cached.
-3. **Failure semantics**: a normal collector failure only affects itself (`pg_exporter_query_scrape_error_count` goes up, its metric group is absent this round); a failing collector marked `fatal: true` fails the whole server scrape.
+1. **Planning** runs when the connection starts or configuration reloads. It checks each branch's target type (PostgreSQL / pgBouncer), `min_version` / `max_version`, `tags`, and `skip` setting. Tags must match the server role and exporter tags. A branch that fails any check is not installed on the target. Use `curl localhost:9630/explain` to see each decision.
+2. **Scraping** runs on each `/metrics` request. An installed collector returns cached results while they are within `ttl`. Otherwise, it first runs `predicate_queries`. A false result skips the collector for this round and increments `pg_exporter_query_scrape_predicate_skip_count`. If all predicates pass, the main query runs with `timeout`. The exporter converts the results to metrics and caches them.
+3. **Failure semantics**: a normal collector failure affects only that collector. It increments `pg_exporter_query_scrape_error_count` and omits its metric group for this round. A failed collector with `fatal: true` fails the entire server scrape.
 
 ## Tag System
 
@@ -244,7 +242,7 @@ Pass custom tags to the exporter:
 pg_exporter --tag="production,critical"
 ```
 
-Then use in configuration:
+Then use the tags in the configuration:
 
 ```yaml
 expensive_metrics:
@@ -253,7 +251,7 @@ expensive_metrics:
 
 ## Predicate Queries
 
-Execute conditional checks before main query:
+Run conditional checks before the main query:
 
 ```yaml
 predicate_queries:

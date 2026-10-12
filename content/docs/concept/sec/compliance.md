@@ -7,14 +7,13 @@ module: [PIGSTY, PGSQL]
 categories: [Concept]
 ---
 
-Compliance is not a product you can buy. It is a state that must be demonstrated continuously through three elements:
+Compliance requires continuous evidence of three elements:
 
-- **Configuration:** whether security controls are enabled. Pigsty directly provides this part.
-- **Process:** access approval, change management, recovery exercises, and related procedures. The organization must establish these.
-- **Evidence:** records showing that configuration and process remain effective. Pigsty's [**inventory**](/docs/concept/iac/inventory), runtime logs, and [**monitoring system**](/docs/concept/monitor) can provide part of this evidence.
+- **Configuration:** Security controls must be enabled. Pigsty directly provides configuration.
+- **Process:** The organization must establish access approval, change management, recovery exercises, and related procedures.
+- **Evidence:** Records must show that configuration and processes remain effective. The [**inventory**](/docs/concept/iac/inventory), runtime logs, and [**monitoring system**](/docs/concept/monitor) provide part of this evidence.
 
-This page begins with a pre-launch hardening checklist and then maps Pigsty security capabilities to common compliance frameworks.
-The mappings support architecture and gap analysis; they are not an MLPS assessment conclusion, a SOC 2 audit opinion, or legal advice.
+This page provides a pre-launch checklist and maps Pigsty capabilities to common compliance frameworks. These mappings support architecture and gap analysis. They are not an MLPS assessment, SOC 2 audit opinion, or legal advice.
 
 
 ---------------------
@@ -23,7 +22,7 @@ The mappings support architecture and gap analysis; they are not an MLPS assessm
 
 ## Default Credentials Checklist
 
-Pigsty default credentials are public in the documentation and source code. They are intended only for demonstrations and local development. **Change every applicable default before any production or network-exposed deployment goes live:**
+Default credentials are public in documentation and source code. Use them only for demonstrations and local development. **Change every applicable default before production or network-exposed deployment:**
 
 | Scope | Example Default | `configure -g` |
 |:---|:---|:---:|
@@ -40,13 +39,13 @@ Pigsty default credentials are public in the documentation and source code. They
 | User-defined credentials | Custom values | **No** |
 {.full-width}
 
-Use `-g` while generating configuration to randomize built-in parameters and example strings recognized by the configuration wizard:
+Use `-g` to randomize built-in parameters and example strings recognized by the configuration wizard:
 
 ```bash
 ./configure -g     # Generate the inventory and randomize recognized default credentials
 ```
 
-The wizard prints generated passwords to the terminal, so protect terminal history and automation logs as sensitive data. After generation, inspect the configuration and replace pgBackRest `cipher_pass`, MINIO module example values in `ha/safe` that were not covered, and all custom credentials.
+The wizard prints generated passwords to the terminal. Protect terminal history and automation logs as sensitive data. Then inspect the configuration. Replace pgBackRest `cipher_pass`, uncovered MINIO values in `ha/safe`, and all custom credentials.
 
 
 ---------------------
@@ -60,22 +59,22 @@ The wizard prints generated passwords to the terminal, so protect terminal histo
 
 **Before deployment:**
 
-- [ ] Define the [**network boundary**](/docs/concept/sec/level#network-boundaries): do not expose database ports publicly, and remove the demo firewall exception for `5432`
-- [ ] Select a certificate policy: use the built-in CA or integrate enterprise PKI; see [**Using an Enterprise CA**](/docs/concept/sec/ca#using-an-enterprise-ca)
-- [ ] Plan [**client verification**](/docs/concept/sec/ca#server-identity-verification): configure database clients with `sslmode=verify-full` and a trusted CA
-- [ ] Design the account model: assign application accounts through the [**four-tier roles**](/docs/concept/sec/ac#role-system) and declare `expire_in`
-- [ ] Plan the [**backup repository**](/docs/concept/pitr/tradeoff), retention, encryption passphrase, and off-site copies
-- [ ] Decide whether to use the [**`ha/safe` template**](/docs/conf/safe) and the [**CRIT parameter template**](/docs/pgsql/template/crit)
+- [ ] Define the [**network boundary**](/docs/concept/sec/level#network-boundaries). Do not expose database ports publicly. Remove the demo firewall exception for `5432`.
+- [ ] Select the built-in CA or enterprise PKI. See [**Using an Enterprise CA**](/docs/concept/sec/ca#using-an-enterprise-ca).
+- [ ] Plan [**client verification**](/docs/concept/sec/ca#server-identity-verification). Set `sslmode=verify-full` and a trusted CA on database clients.
+- [ ] Assign application accounts through the [**four-tier roles**](/docs/concept/sec/ac#role-system). Declare `expire_in`.
+- [ ] Plan the [**backup repository**](/docs/concept/pitr/tradeoff), retention, encryption passphrase, and off-site copies.
+- [ ] Decide whether to use [**`ha/safe`**](/docs/conf/safe) and the [**CRIT parameter template**](/docs/pgsql/template/crit).
 
 <span id="after-deployment-must"></span>
 
 **After deployment:**
 
-- [ ] Confirm that credentials covered by `configure -g` and uncovered backup, object-storage, and custom credentials have all been changed
-- [ ] Review the effective [**HBA rules**](/docs/concept/sec/auth) in `/pg/data/pg_hba.conf` against the declaration and intended boundary
-- [ ] Query effective users, roles, [**default privileges**](/docs/concept/sec/ac#default-privileges), and database `CONNECT` grants, and compare them with the inventory
-- [ ] Run one full backup and a [**recovery exercise**](/docs/concept/pitr/scenarios) to validate the backup path
-- [ ] Confirm log collection, monitoring alerts, and notification channels
+- [ ] Confirm that all default credentials have changed. Include values covered by `configure -g` and uncovered backup, object storage, and custom credentials.
+- [ ] Compare `/pg/data/pg_hba.conf` with the declared [**HBA policy**](/docs/concept/sec/auth) and intended access boundary.
+- [ ] Query effective users, roles, [**default privileges**](/docs/concept/sec/ac#default-privileges), and database `CONNECT` grants. Compare them with the inventory.
+- [ ] Run a full backup and [**recovery exercise**](/docs/concept/pitr/scenarios) to validate the backup path.
+- [ ] Confirm log collection, monitoring alerts, and notification channels.
 
 <span id="periodic-maintenance"></span>
 
@@ -93,7 +92,7 @@ The wizard prints generated passwords to the terminal, so protect terminal histo
 
 ## Compliance Evidence
 
-Declarative configuration provides a stable starting point for audit evidence. Retain runtime state as well to show that the configuration was applied and remains effective.
+Use declarative configuration as a starting point for audit evidence. Retain runtime state to prove that the configuration was applied and remains effective.
 
 | Evidence | Source |
 |:---|:---|
@@ -114,7 +113,7 @@ Declarative configuration provides a stable starting point for audit evidence. R
 
 ## MLPS Level 3 Mapping
 
-The following maps database-related Pigsty capabilities to controls in the "secure computing environment" section of GB/T 22239-2019 Level 3:
+This table maps database-related capabilities to the secure computing environment controls in GB/T 22239-2019 Level 3:
 
 | Control | Pigsty Capability | Additional Requirement |
 |:---|:---|:---|
@@ -130,8 +129,7 @@ The following maps database-related Pigsty capabilities to controls in the "secu
 | Residual information protection | — | Media destruction and erasure process |
 {.full-width}
 
-MLPS also covers physical security, communication networks, and management systems beyond the scope of a database distribution.
-Pigsty can support database-related technical controls in a secure computing environment; facilities, network devices, and governance must be addressed in the overall system.
+MLPS also covers physical security, networks, and management systems beyond a database distribution. Pigsty supports database-related technical controls. The overall system must address facilities, network devices, and governance.
 
 
 ---------------------
@@ -159,15 +157,13 @@ Database-related controls in the SOC 2 [**Trust Services Criteria**](https://www
 
 ## Supply Chain and Vulnerability Response
 
-Compliance reviews increasingly cover the software supply chain. Pigsty provides the following distribution and response controls:
+Compliance reviews also cover the software supply chain. Pigsty provides these distribution and response controls:
 
-**Package integrity:** RPM and DEB packages in the Pigsty repositories (`repo.pigsty.io` and `repo.pigsty.cc`) are GPG-signed.
-The public-key fingerprint is `9592 A7BC 7A68 2E73 3337 6E09 E793 5D8D B9BD 8B20` (`B9BD8B20`) and can be verified before trust is established. Repository definitions written during deployment and the local repository on the [**INFRA node**](/docs/concept/arch/node#infra-node) do not enforce signature verification for every package by default; review package-manager repository trust and signature settings in production.
+**Package integrity:** Pigsty repository RPM and DEB packages (`repo.pigsty.io`, `repo.pigsty.cc`) are GPG-signed. Verify fingerprint `9592 A7BC 7A68 2E73 3337 6E09 E793 5D8D B9BD 8B20` (`B9BD8B20`) before trusting the key. Deployment-generated repository definitions and the [**INFRA node**](/docs/concept/arch/node#infra-node) local repository do not enforce verification for every package by default. In production, review package-manager trust and signature settings.
 
-**Vulnerability response:** report security issues privately through GitHub private vulnerability reporting or email, as documented in [**SECURITY.md**](https://github.com/pgsty/pigsty/blob/main/SECURITY.md).
-The project targets acknowledgment within three business days and an initial assessment within seven days.
+**Vulnerability response:** Report issues privately through GitHub vulnerability reporting or email as specified in [**SECURITY.md**](https://github.com/pgsty/pigsty/blob/main/SECURITY.md). The project targets acknowledgment within three business days and initial assessment within seven days.
 
-**Version support:** security fixes ship with the latest stable release. Staying current is the standard way to receive them. Users who must remain on a version for longer can obtain extended support through [**subscription services**](/docs/about/service/).
+**Version support:** Security fixes ship in the latest stable release. Update to receive them. [**Subscription services**](/docs/about/service/) provide extended support for users who must retain a version longer.
 
 
 ---------------------

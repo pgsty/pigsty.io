@@ -11,7 +11,9 @@ aliases: [/docs/pgsql/backup/database/]
 
 ## Quick Start
 
-Pigsty uses declarative management: first [**define databases**](/docs/pgsql/config/db) in the [**inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-db <cls> <dbname>` to create or modify.
+Pigsty manages databases declaratively.
+First [**define databases**](/docs/pgsql/config/db) in the [**inventory**](/docs/concept/iac/inventory).
+Then run `bin/pgsql-db <cls> <dbname>` to create or modify them.
 
 ```yaml
 pg-meta:
@@ -36,7 +38,8 @@ bin/pgsql-db pg-meta some_db    # Create/modify some_db database on pg-meta clus
 
 For the complete database definition reference, see [**Database Configuration**](/docs/pgsql/config/db). For database access permissions, see [**Access Control: Database Isolation**](/docs/concept/sec/ac#database-isolation).
 
-Note: Some parameters can only be specified at **creation time**. Modifying these requires recreating the database (use `state: recreate`).
+You can set some parameters only at **creation time**.
+To change these parameters, recreate the database with `state: recreate`.
 
 | Action                                    | Command                   | Description                                    |
 |:------------------------------------------|:--------------------------|:-----------------------------------------------|
@@ -55,9 +58,10 @@ Note: Some parameters can only be specified at **creation time**. Modifying thes
 
 ## Create Database
 
-Databases defined in [**`pg_databases`**](/docs/pgsql/param#pg_databases) are auto-created during PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster) in the `pg_db` task.
+During PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster), the `pg_db` task automatically creates databases defined in [**`pg_databases`**](/docs/pgsql/param#pg_databases).
 
-To create a new database on an existing cluster, add [**database definition**](/docs/pgsql/config/db) to `all.children.<cls>.pg_databases`, then execute:
+To create a database on an existing cluster, add its [**definition**](/docs/pgsql/config/db) to `all.children.<cls>.pg_databases`.
+Then run:
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <dbname>   # Create database <dbname>
@@ -84,7 +88,9 @@ bin/pgsql-db pg-meta myapp    # Create myapp database in pg-meta cluster
     comment: my application database
 ```
 
-**Result**: Creates `myapp` database on primary, sets owner to `dbuser_myapp`, creates `app` schema, enables `pg_trgm` and `btree_gin` extensions. Database is auto-added to Pgbouncer pool and registered as Grafana datasource.
+**Result**: Pigsty creates `myapp` on the primary with `dbuser_myapp` as its owner.
+It creates the `app` schema and enables the `pg_trgm` and `btree_gin` extensions.
+It also adds the database to the Pgbouncer pool and registers a Grafana data source.
 
 > [!NOTE] Recommendation: Use playbook
 > For manual database creation, you must ensure Pgbouncer pool and Grafana datasource sync yourself.
@@ -94,9 +100,11 @@ bin/pgsql-db pg-meta myapp    # Create myapp database in pg-meta cluster
 
 ## Modify Database
 
-Same command as create - playbook is idempotent when no `baseline` SQL is defined.
+Use the same command as for creation.
+The playbook is idempotent when no `baseline` SQL is defined.
 
-When target database exists, Pigsty modifies properties to match config. However, some properties can only be set at creation.
+If the target database exists, Pigsty changes its properties to match the configuration.
+However, you can set some properties only at creation.
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Modify database <db> properties
@@ -111,14 +119,15 @@ bin/pgsql-db pg-meta myapp    # Modify myapp database to match config
 ```
 
 
-**Immutable properties**: These can't be modified after creation, require `state: recreate`:
+**Immutable properties**: To change these properties after creation, use `state: recreate`:
 
 - `name` (database name), `template`, `strategy` (clone strategy)
 - `encoding`, `locale`/`lc_collate`/`lc_ctype`, `locale_provider`/`icu_locale`/`icu_rules`/`builtin_locale`
 
 All other properties can be modified. Common examples:
 
-**Modify owner**: Update `owner` field, executes `ALTER DATABASE ... OWNER TO` and grants permissions.
+**Modify owner**: Change the `owner` field.
+Pigsty runs `ALTER DATABASE ... OWNER TO` and grants permissions.
 
 ```yaml
 - name: myapp
@@ -132,7 +141,8 @@ All other properties can be modified. Common examples:
   connlimit: 100              # Max 100 connections
 ```
 
-**Revoke public connect**: Setting `revokeconn: true` revokes PUBLIC CONNECT privilege, allowing only owner, DBA, monitor, and replication users.
+**Revoke public connect**: Set `revokeconn: true` to revoke the PUBLIC CONNECT privilege.
+Only the owner, DBA, monitor, and replication users can then connect.
 
 ```yaml
 - name: myapp
@@ -140,7 +150,9 @@ All other properties can be modified. Common examples:
   revokeconn: true            # Revoke PUBLIC CONNECT
 ```
 
-**Manage parameters**: Use `parameters` dict for database-level params, generates `ALTER DATABASE ... SET`. Use special value `DEFAULT` to reset.
+**Manage parameters**: Use the `parameters` dictionary to set database-level parameters.
+Pigsty generates `ALTER DATABASE ... SET` commands.
+Use the special value `DEFAULT` to reset a parameter.
 
 ```yaml
 - name: myapp
@@ -151,7 +163,8 @@ All other properties can be modified. Common examples:
     search_path: DEFAULT      # Reset to default
 ```
 
-**Manage schemas**: Use `schemas` array with simple or extended format. Use `state: absent` to drop (CASCADE).
+**Manage schemas**: Use the `schemas` array with simple or extended definitions.
+To drop a schema with CASCADE, set `state: absent`.
 
 ```yaml
 - name: myapp
@@ -161,7 +174,8 @@ All other properties can be modified. Common examples:
     - { name: deprecated, state: absent }   # Drop schema
 ```
 
-**Manage extensions**: Use `extensions` array with simple or extended format. Use `state: absent` to uninstall (CASCADE).
+**Manage extensions**: Use the `extensions` array with simple or extended definitions.
+To uninstall an extension with CASCADE, set `state: absent`.
 
 ```yaml
 - name: myapp
@@ -172,9 +186,12 @@ All other properties can be modified. Common examples:
 ```
 
 > [!WARNING] CASCADE Warning
-> Dropping schemas or uninstalling extensions uses `CASCADE`, deleting all dependent objects. Understand impact before executing.
+> Schema deletion and extension removal use `CASCADE`.
+> This deletes all dependent objects.
+> Understand the effect before you run these operations.
 
-**Connection pool config**: By default all databases are added to Pgbouncer. Configure `pgbouncer`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`, and `pool_auth_user`.
+**Connection pool config**: By default, Pigsty adds all databases to Pgbouncer.
+Configure pooling with `pgbouncer`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`, and `pool_auth_user`.
 
 ```yaml
 - name: myapp
@@ -187,7 +204,8 @@ All other properties can be modified. Common examples:
   pool_auth_user: dbuser_meta  # Auth query user (with pgbouncer_auth_query)
 ```
 
-> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
+> Since Pigsty `v4.1.0`, use `pool_reserve` and `pool_connlimit` for database pool fields.
+> These names replace the legacy aliases `pool_size_reserve` and `pool_max_db_conn`.
 
 
 ----------------
@@ -216,12 +234,18 @@ pg_databases:
     state: absent
 ```
 
-**Deletion process**: If `is_template: true`, first executes `ALTER DATABASE ... IS_TEMPLATE false`; uses `DROP DATABASE ... WITH (FORCE)` (PG13+) to force drop and terminate all connections; removes from Pgbouncer pool; unregisters from Grafana datasource.
+**Deletion process**: If `is_template: true`, Pigsty first runs `ALTER DATABASE ... IS_TEMPLATE false`.
+It then uses `DROP DATABASE ... WITH (FORCE)` (PG13+) to delete the database and terminate all its connections.
+It removes the database from the Pgbouncer pool and unregisters its Grafana data source.
 
-**Protection**: System databases `postgres`, `template0`, `template1` cannot be deleted. Deletion only runs on primary - streaming replication syncs to replicas.
+**Protection**: Pigsty cannot delete the system databases `postgres`, `template0`, and `template1`.
+Deletion runs only on the primary.
+Streaming replication sends the change to replicas.
 
 > [!CAUTION] Danger Warning
-> Database deletion is **irreversible** - permanently deletes all data. Before executing: ensure recent backup exists, confirm no business uses the database, notify stakeholders.
+> Database deletion is **irreversible** and permanently deletes all data.
+> Before deletion, verify that a recent backup exists.
+> Confirm that no business uses the database, and notify stakeholders.
 > Pigsty is not responsible for any data loss from database deletion. Use at your own risk.
 
 
@@ -255,14 +279,17 @@ pg_databases:
 
 **Use cases**: Test environment reset, clear dev database, modify immutable properties (encoding, locale), restore to initial state.
 
-**Difference from manual DROP + CREATE**: Single command; auto-preserves Pgbouncer and Grafana config; auto-loads `baseline` init script.
+**Difference from manual DROP + CREATE**: One command performs the operation.
+It preserves Pgbouncer and Grafana configuration automatically.
+It also loads the `baseline` initialization script automatically.
 
 
 ----------------
 
 ## Clone Database
 
-Clone PostgreSQL databases using PG template mechanism. During cloning, no active connections to template database are allowed.
+Use the PostgreSQL template mechanism to clone a database.
+The template database must have no active connections during cloning.
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-db <cls> <db>   # Clone <db> (config must specify template)
@@ -287,7 +314,9 @@ pg_databases:
     strategy: FILE_COPY          # PG15+ clone strategy, instant on PG18
 ```
 
-**Instant Clone (PG18+)**: If using PostgreSQL 18+, Pigsty defaults [**`file_copy_method`**](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-FILE-COPY-METHOD). With `strategy: FILE_COPY`, database clone completes in ~200ms without copying data files. E.g., cloning 30GB database: normal takes 18s, instant takes 200ms.
+**Instant Clone (PG18+)**: For PostgreSQL 18+, Pigsty configures [**`file_copy_method`**](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-FILE-COPY-METHOD) by default.
+With `strategy: FILE_COPY`, cloning takes about 200ms and does not copy data files.
+For example, a 30GB database takes 18s with normal cloning and 200ms with instant cloning.
 
 **Manual clone**: Ensure all connections to template are terminated:
 
@@ -296,7 +325,9 @@ SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'meta';
 CREATE DATABASE meta_dev TEMPLATE meta STRATEGY FILE_COPY;
 ```
 
-**Limitations**: Instant clone only available on supported filesystems (xfs, btrfs, zfs, apfs); don't use `postgres` database as template; in high-concurrency environments, all template connections must be cleared within clone window (~200ms).
+**Limitations**: Instant cloning requires a supported filesystem: xfs, btrfs, zfs, or apfs.
+Do not use the `postgres` database as a template.
+In high-concurrency environments, clear all template connections within the cloning window of about 200ms.
 
 
 ----------------
@@ -305,6 +336,9 @@ CREATE DATABASE meta_dev TEMPLATE meta STRATEGY FILE_COPY;
 
 [**Connection pool params**](/docs/pgsql/config/db#connection-pool) in database definitions are applied to Pgbouncer when creating/modifying databases.
 
-By default all databases are added to Pgbouncer pool (`pgbouncer: true`). Databases are added to `/etc/pgbouncer/database.txt`. Database-level pool params (`pool_auth_user`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, `pool_connlimit`) are configured via this file.
+By default, Pigsty adds all databases to the Pgbouncer pool (`pgbouncer: true`).
+It adds their definitions to `/etc/pgbouncer/database.txt`.
+This file also holds database-level pool parameters: `pool_auth_user`, `pool_mode`, `pool_size`, `pool_reserve`, `pool_size_min`, and `pool_connlimit`.
 
-Use `postgres` OS user with `pgb` alias to access Pgbouncer admin database. For more pool management, see [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer).
+As the `postgres` operating system user, use the `pgb` alias to access the Pgbouncer administration database.
+For more operations, see [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer).

@@ -2,7 +2,7 @@
 title: "pg_kpart"
 linkTitle: "pg_kpart"
 description: "Reject full partition scans that omit the partition key"
-weight: 7450
+weight: 7460
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 7450
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7450  | [**`pg_kpart`**](/ext/e/pg_kpart) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 7460  | [**`pg_kpart`**](/ext/e/pg_kpart) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`plan_filter`](/ext/e/plan_filter) [`pg_partman`](/ext/e/pg_partman) [`safeupdate`](/ext/e/safeupdate) [`block_copy_command`](/ext/e/block_copy_command) [`pg_strict`](/ext/e/pg_strict) [`prioritize`](/ext/e/prioritize) [`qos`](/ext/e/qos) [`pg_readonly`](/ext/e/pg_readonly) [`pgextwlist`](/ext/e/pgextwlist) [`timescaledb`](/ext/e/timescaledb) |

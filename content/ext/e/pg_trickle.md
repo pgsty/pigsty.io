@@ -11,10 +11,10 @@ weight: 2860
     <div class="ext-card__title">trickle-labs/pg-trickle</div>
     <div class="ext-card__desc">https://github.com/trickle-labs/pg-trickle</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_trickle-0.108.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_trickle-0.108.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_trickle-0.108.1.tar.gz</div>
-    <div class="ext-card__desc">pg_trickle-0.108.1.tar.gz</div>
+    <div class="ext-card__title">pg_trickle-0.108.3.tar.gz</div>
+    <div class="ext-card__desc">pg_trickle-0.108.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2860
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_trickle`**](/ext/e/pg_trickle) | `0.108.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_trickle`**](/ext/e/pg_trickle) | `0.108.3` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 2860
 {.ext-table .ext-table--rel}
 
 
-> PG18 only; requires preload and ships pg_trickle_dump. Follow the packaged upgrade guide.
+> PG18 only; requires preload and ships pg_trickle_dump. Built with pgrx 0.19.3.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.1` | {{< pgvers "18" >}} | `pg_trickle` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.1` | {{< pgvers "18" >}} | `pg_trickle_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.1` | {{< pgvers "18" >}} | `postgresql-$v-pg-trickle` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.3` | {{< pgvers "18" >}} | `pg_trickle` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.3` | {{< pgvers "18" >}} | `pg_trickle_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.108.3` | {{< pgvers "18" >}} | `postgresql-$v-pg-trickle` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -140,16 +140,18 @@ CREATE EXTENSION pg_trickle;
 
 Sources:
 
-- [sql/pg_trickle--0.108.0--0.108.1.sql](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/sql/pg_trickle--0.108.0--0.108.1.sql)
-- [Version 0.108.1 README](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/README.md)
-- [SQL reference](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/docs/SQL_REFERENCE.md)
-- [Configuration](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/docs/CONFIGURATION.md)
-- [GUC catalog](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/docs/GUC_CATALOG.md)
-- [Upgrade guide](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/docs/UPGRADING.md)
-- [Control file](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/pg_trickle.control)
-- [0.107.0 to 0.108.0 migration](https://github.com/trickle-labs/pg-trickle/blob/v0.108.1/sql/pg_trickle--0.107.0--0.108.0.sql)
+- [0.108.3 migration](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/sql/pg_trickle--0.108.2--0.108.3.sql)
+- [0.108.2 migration](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/sql/pg_trickle--0.108.1--0.108.2.sql)
+- [sql/pg_trickle--0.108.0--0.108.1.sql](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/sql/pg_trickle--0.108.0--0.108.1.sql)
+- [Version 0.108.2 README](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/README.md)
+- [SQL reference](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/docs/SQL_REFERENCE.md)
+- [Configuration](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/docs/CONFIGURATION.md)
+- [GUC catalog](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/docs/GUC_CATALOG.md)
+- [Upgrade guide](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/docs/UPGRADING.md)
+- [Control file](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/pg_trickle.control)
+- [0.107.0 to 0.108.0 migration](https://github.com/trickle-labs/pg-trickle/blob/ce709f06327b4801f79fc48934bc96107b450907/sql/pg_trickle--0.107.0--0.108.0.sql)
 
-`pg_trickle` 0.108.1 maintains stream tables on PostgreSQL 18: ordinary queryable tables derived from a SQL query, refreshed incrementally when supported or recomputed in full. Tables may depend on other stream tables, forming a dependency graph. Same-transaction maintenance is also available.
+`pg_trickle` 0.108.2 maintains stream tables on PostgreSQL 18: ordinary queryable tables derived from a SQL query, refreshed incrementally when supported or recomputed in full. Tables may depend on other stream tables, forming a dependency graph. Same-transaction maintenance is also available.
 
 ### Enable the Extension
 
@@ -204,12 +206,12 @@ Lifecycle functions require explicit execution grants and ownership checks; admi
 
 `pgtrickle.output_delta_consumer_status` reports consumers, while `pgtrickle.validate_output_delta_consumer` checks whether a consumer can resume. `pgtrickle.request_output_delta_resnapshot`, `pgtrickle.begin_output_delta_resnapshot`, and `pgtrickle.ack_output_delta_resnapshot` manage rebuilding a baseline. A resnapshot is fenced by database-instance identity, output-contract digest, and row-identity version. Follow the exact SQL reference signatures and acknowledgement protocol before advancing external delivery.
 
-### Upgrade to 0.108.1
+### Upgrade to 0.108.2
 
 Install the new library and extension files before applying the packaged migration:
 
 ```sql
-ALTER EXTENSION pg_trickle UPDATE TO '0.108.1';
+ALTER EXTENSION pg_trickle UPDATE TO '0.108.2';
 SELECT * FROM pgtrickle.output_delta_consumer_status();
 ```
 
@@ -217,4 +219,12 @@ The upgrade preserves consumers, cursors, batches, and typed payload while addin
 
 ### Version 0.108.1
 
-This patch keeps downstream `IMMEDIATE` tables current after upstream FULL refresh or truncation, recovers missing change buffers, and fixes unintended suspension after source schema changes and scalar-subquery differential refresh. PostgreSQL 18.6 support is added. After installing matching files run `ALTER EXTENSION pg_trickle UPDATE TO '0.108.1'` and verify dependent stream-table results and capture health.
+This patch keeps downstream `IMMEDIATE` tables current after upstream FULL refresh or truncation, recovers missing change buffers, and fixes unintended suspension after source schema changes and scalar-subquery differential refresh. PostgreSQL 18.6 support is added. After installing matching files run `ALTER EXTENSION pg_trickle UPDATE TO '0.108.2'` and verify dependent stream-table results and capture health.
+
+### Version 0.108.2 and Row Identity V3
+
+The 0.108.2 migration fixes blank-padded character identity encoding through `pgtrickle.encode_row_id_v3`. It marks existing stream tables for reinitialization and blocks differential maintenance until a protected FULL rebuild. Existing output-delta consumers and durable cursors remain, but consumers move to `RESNAPSHOT_REQUIRED`; old resnapshot tokens are removed. Establish and acknowledge a new baseline before resuming external consumption. External refresh clients must fetch the new graph-contract digest. Budget for full recomputation and verify maintained results after upgrading. Queued change rows are retained while capture sentinels are replaced.
+
+### Version 0.108.3
+
+0.108.3 aligns FULL and DIFFERENTIAL row identity when a projection omits its source primary key, including duplicate visible rows. The UNION ALL fast path is restricted to a complete UNION ALL query. After `ALTER EXTENSION pg_trickle UPDATE TO '0.108.3'`, run a protected FULL refresh for every stream table marked for reinitialization, using `pgtrickle.refresh_stream_table`. Differential maintenance waits for that rebuild; queued CDC changes are retained. Verify output-delta consumer status and any required baseline before resuming delivery.

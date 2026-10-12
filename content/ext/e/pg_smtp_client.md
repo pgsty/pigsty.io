@@ -2,7 +2,7 @@
 title: "pg_smtp_client"
 linkTitle: "pg_smtp_client"
 description: "PostgreSQL extension to send email using SMTP"
-weight: 4170
+weight: 4180
 ---
 
 <div class="ext-cards">
@@ -30,12 +30,15 @@ weight: 4170
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4170  | [**`pg_smtp_client`**](/ext/e/pg_smtp_client) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `smtp_client` |
+| 4180  | [**`pg_smtp_client`**](/ext/e/pg_smtp_client) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `smtp_client` |
 {.ext-table}
 
 | **Related** | [`pg_html5_email_address`](/ext/e/pg_html5_email_address) [`emailaddr`](/ext/e/emailaddr) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`omni_email`](/ext/e/omni_email) [`uri`](/ext/e/uri) [`ip4r`](/ext/e/ip4r) [`url_encode`](/ext/e/url_encode) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
+
+
+> Upstream GitHub repository is archived.
 
 
 ## Version

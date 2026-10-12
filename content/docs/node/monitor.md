@@ -6,7 +6,7 @@ icon: fa-solid fa-binoculars
 categories: [Reference]
 ---
 
-Pigsty currently provides 10 monitoring dashboards in the NODE dashboard directory, along with comprehensive alerting rules.
+The NODE dashboard directory contains 10 monitoring dashboards. Pigsty also provides comprehensive alert rules.
 
 
 ----------------
@@ -17,7 +17,7 @@ The NODE dashboard directory currently contains 10 dashboards. The JuiceFS and C
 
 ### NODE Overview
 
-Displays an overall overview of all host nodes in the current environment.
+Shows all host nodes in the current environment.
 
 [![node-overview.jpg](/img/dashboard/node-overview.jpg)](https://demo.pigsty.io/d/node-overview)
 
@@ -31,14 +31,14 @@ Shows detailed monitoring data for a specific host cluster.
 
 ### Node Instance
 
-Presents detailed monitoring information for a single host node.
+Shows detailed monitoring data for one host node.
 
 [![node-instance.jpg](/img/dashboard/node-instance.jpg)](https://demo.pigsty.io/d/node-instance)
 
 
 ### NODE Alert
 
-Centrally displays alert information for all hosts in the environment.
+Shows alerts for all hosts in the environment.
 
 [![node-alert.jpg](/img/dashboard/node-alert.jpg)](https://demo.pigsty.io/d/node-alert)
 
@@ -52,7 +52,7 @@ Monitors detailed status of L2 virtual IPs.
 
 ### Node Haproxy
 
-Tracks the operational status of HAProxy load balancers.
+Shows the status of HAProxy load balancers.
 
 [![node-haproxy.jpg](/img/dashboard/node-haproxy.jpg)](https://demo.pigsty.io/d/node-haproxy)
 

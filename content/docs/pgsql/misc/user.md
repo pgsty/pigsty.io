@@ -10,7 +10,8 @@ categories: [Reference]
 
 > In this context, users refer to logical objects within a database cluster created using the SQL commands `CREATE USER/ROLE`.
 
-In PostgreSQL, users belong directly to the database cluster rather than to a specific database. Therefore, when creating business databases and business users, you should follow the principle of "users first, then databases."
+In PostgreSQL, users belong to the database cluster, rather than a specific database.
+Create business users before you create business databases.
 
 
 ----------------
@@ -22,9 +23,13 @@ Pigsty defines roles and users in database clusters through two configuration pa
 - [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): Defines globally unified roles and users
 - [`pg_users`](/docs/pgsql/param#pg_users): Defines business users and roles at the database cluster level
 
-The former defines roles and users shared across the entire environment, while the latter defines business roles and users specific to individual clusters. Both have the same format and are arrays of user definition objects.
+The first parameter defines roles and users shared across the environment.
+The second defines business roles and users for individual clusters.
+Both use arrays of user definition objects.
 
-You can define multiple users/roles, and they will be created sequentially—first global, then cluster-level, and finally in array order—so later users can belong to roles defined earlier.
+You can define multiple users and roles.
+Pigsty creates global objects first, then cluster-level objects, following array order within each group.
+Thus, later users can belong to roles defined earlier.
 
 Here is the business user definition for the default cluster `pg-meta` in the Pigsty demo environment:
 
@@ -68,12 +73,12 @@ Each user/role definition is an object that may include the following fields. Us
   search_path: public             # Optional, key-value configuration parameters per postgresql documentation (e.g., use pigsty as default search_path)
 ```
 
-- The only required field is `name`, which should be a valid and unique username in the PostgreSQL cluster.
-- Roles don't need a `password`, but for loginable business users, a password is usually required.
-- `password` can be plaintext or scram-sha-256 / md5 hash string; please avoid using plaintext passwords.
-- Users/roles are created one by one in array order, so ensure roles/groups are defined before their members.
-- `login`, `superuser`, `createdb`, `createrole`, `inherit`, `replication`, `bypassrls` are boolean flags.
-- `pgbouncer` is disabled by default: to add business users to the pgbouncer user list, you should explicitly set it to `true`.
+- The only required field is `name`. Use a valid username that is unique within the PostgreSQL cluster.
+- Roles do not need a `password`. Business users with login access usually need one.
+- `password` accepts plaintext, scram-sha-256, or md5 hash strings. Avoid plaintext passwords.
+- Pigsty creates users and roles in array order. Define roles and groups before their members.
+- `login`, `superuser`, `createdb`, `createrole`, `inherit`, `replication`, and `bypassrls` are Boolean flags.
+- `pgbouncer` is disabled by default. To add business users to the pool user list, explicitly set it to `true`.
 
 **ACL System**
 
@@ -84,7 +89,7 @@ Pigsty provides a built-in access control / [ACL](/docs/concept/sec/ac#role-syst
 - `dbrole_admin`: Role with DDL privileges (business administrators, scenarios requiring table creation in applications)
 - `dbrole_offline`: Independent read-only role for ad hoc queries, ETL, and analytics; restrict its instance scope explicitly through HBA
 
-If you want to redesign your own ACL system, consider customizing the following parameters and templates:
+To define your own ACL system, consider these parameters and templates:
 
 - [`pg_default_roles`](/docs/pgsql/param#pg_default_roles): System-wide roles and global users
 - [`pg_default_privileges`](/docs/pgsql/param#pg_default_privileges): Default privileges for newly created objects
@@ -97,20 +102,24 @@ If you want to redesign your own ACL system, consider customizing the following 
 
 ## Creating Users
 
-Users and roles [defined](#defining-users) in [`pg_default_roles`](/docs/pgsql/param#pg_default_roles) and [`pg_users`](/docs/pgsql/param#pg_users) are automatically created one by one during the cluster initialization PROVISION phase.
-If you want to [create users](/docs/pgsql/admin#create-user) on an existing cluster, you can use the `bin/pgsql-user` tool.
-Add the new user/role definition to `all.children.<cls>.pg_users` and use the following method to create the user:
+During the cluster initialization PROVISION phase, Pigsty creates users and roles one at a time.
+It uses the [definitions](#defining-users) in [`pg_default_roles`](/docs/pgsql/param#pg_default_roles) and [`pg_users`](/docs/pgsql/param#pg_users).
+To [create users](/docs/pgsql/admin#create-user) on an existing cluster, use `bin/pgsql-user`.
+Add the definition to `all.children.<cls>.pg_users`, then run:
 
 ```bash
 bin/pgsql-user <cls> <username>    # pgsql-user.yml -l <cls> -e username=<username>
 ```
 
-Unlike databases, the user creation playbook is always idempotent. When the target user already exists, Pigsty will modify the target user's attributes to match the configuration. So running it repeatedly on existing clusters is usually not a problem.
+The user creation playbook is always idempotent, unlike the database creation playbook.
+If the target user exists, Pigsty changes its attributes to match the configuration.
+Thus, you can usually repeat the playbook on existing clusters.
 
 
 > [!NOTE] Please Use Playbooks to Create Users
-> We don't recommend manually creating new business users, especially when you want the user to use the default pgbouncer connection pool: unless you're willing to manually maintain the user list in Pgbouncer and keep it consistent with PostgreSQL.
-> When creating new users with **`bin/pgsql-user`** tool or [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml) playbook, the user will also be added to the [Pgbouncer Users](#pgbouncer-users) list.
+> Manual business user creation is not recommended, especially with the default Pgbouncer connection pool.
+> If you create users manually, you must maintain the Pgbouncer user list and keep it consistent with PostgreSQL.
+> The **`bin/pgsql-user`** tool and [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml) playbook also add users to the [Pgbouncer user list](#pgbouncer-users).
 
 
 
@@ -120,13 +129,16 @@ Unlike databases, the user creation playbook is always idempotent. When the targ
 
 The method for modifying PostgreSQL user attributes is the same as [**Creating Users**](#creating-users).
 
-First, adjust your user definition, modify the attributes that need adjustment, then execute the following command to apply:
+First, change the required attributes in the user definition.
+Then run this command to apply them:
 
 ```bash
 bin/pgsql-user <cls> <username>    # pgsql-user.yml -l <cls> -e username=<username>
 ```
 
-Note that modifying users will not delete users, but modify user attributes through the `ALTER USER` command; it also won't revoke user privileges and groups, and will use the `GRANT` command to grant new roles.
+User modification changes attributes with `ALTER USER`; it does not delete users.
+It also keeps existing privileges and groups.
+It uses `GRANT` to add new roles.
 
 
 
@@ -134,7 +146,7 @@ Note that modifying users will not delete users, but modify user attributes thro
 
 ## Pgbouncer Users
 
-Pgbouncer is enabled by default and serves as a connection pool middleware, with its users managed by default.
+Pigsty enables Pgbouncer connection pooling and manages its users by default.
 
 Pigsty adds all users in [`pg_users`](/docs/pgsql/param#pg_users) that explicitly have the `pgbouncer: true` flag to the pgbouncer user list.
 
@@ -160,10 +172,15 @@ dbuser_dba                  = pool_mode=session max_user_connections=16
 dbuser_monitor              = pool_mode=session max_user_connections=8
 ```
 
-When you [create a database](#creating-databases), the Pgbouncer database list definition file will be refreshed and take effect through online configuration reload, without affecting existing connections.
+When you [create a database](#creating-databases), Pigsty refreshes the Pgbouncer database list.
+An online reload applies the changes without affecting existing connections.
 
-Pgbouncer runs with the same `dbsu` as PostgreSQL, which defaults to the `postgres` operating system user. You can use the `pgb` alias to access pgbouncer management functions using the dbsu.
+Pgbouncer runs as the same `dbsu` as PostgreSQL.
+The default is the `postgres` operating system user.
+As dbsu, use the `pgb` alias for Pgbouncer administration.
 
-The connection pool user configuration files `userlist.txt` and `useropts.txt` are automatically refreshed when you [create users](#creating-users), and take effect through online configuration reload, normally without affecting existing connections.
+When you [create users](#creating-users), Pigsty refreshes `userlist.txt` and `useropts.txt` automatically.
+An online reload applies these pool user changes, normally without affecting existing connections.
 
-Note that the [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) parameter allows you to use dynamic queries to complete connection pool user authentication—this is a compromise when you don't want to manage users in the connection pool.
+Use [`pgbouncer_auth_query`](/docs/pgsql/param#pgbouncer_auth_query) to authenticate pool users with dynamic queries.
+This is an alternative when you do not want to manage pool users directly.

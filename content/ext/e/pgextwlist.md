@@ -320,10 +320,10 @@ weight: 7390
 
 ## Build
 
-You can build the RPM packages for `pgextwlist` using `pig build`:
+You can build the RPM / DEB packages for `pgextwlist` using `pig build`:
 
 ```bash
-pig build pkg pgextwlist         # build RPM packages
+pig build pkg pgextwlist         # build RPM / DEB packages
 ```
 
 

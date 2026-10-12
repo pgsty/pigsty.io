@@ -9,7 +9,7 @@ aliases: [/docs/pilot/kafka/param]
 ---
 
 
-The KAFKA role deliberately exposes only 15 persistent parameters. Details such as topology, listeners, security implementation, storage subdirectories, replication safety, and Exporter placement are derived by the role in a single, consistent way, and cannot be overridden as additional persistent variables.
+KAFKA exposes 15 persistent parameters. The role derives topology, listeners, security, storage subdirectories, replication safety, and exporter placement consistently. Additional persistent variables cannot override these derived settings.
 
 
 --------
@@ -35,7 +35,7 @@ The KAFKA role deliberately exposes only 15 persistent parameters. Details such 
 | [`kafka_topics`](#kafka_topics)                       | Cluster | `[]`            | Declarative topics                   |
 {.full-width}
 
-`kafka_cluster` and `kafka_seq` must be defined; `kafka_role` has a real default. The cluster's roles are either all omitted or all declared explicitly.
+Set `kafka_cluster` and `kafka_seq`. `kafka_role` has a default. Omit it on every member or declare it on every member.
 
 
 --------
@@ -44,24 +44,24 @@ The KAFKA role deliberately exposes only 15 persistent parameters. Details such 
 
 ### `kafka_cluster`
 
-The required cluster identity. It must start with a letter or digit and contain only letters, digits, underscores, and hyphens:
+Required cluster identity. Start with a letter or digit. Use only letters, digits, underscores, and hyphens:
 
 ```yaml
 kafka_cluster: kf-main
 ```
 
-It is used to discover the complete cluster membership, generate instance names, and locate the bootstrap manifest. Every `kafka.yml` lifecycle operation must use a precise `-l` to select all members of this cluster.
+This identifies all cluster members, generates instance names, and locates the manifest. Every `kafka.yml` lifecycle operation must select all cluster members with precise `-l`.
 
 
 ### `kafka_seq`
 
-A required non-negative integer, unique within the same `kafka_cluster`, which becomes the KRaft `node.id` directly:
+Required non-negative integer, unique within `kafka_cluster`. It directly becomes KRaft `node.id`:
 
 ```yaml
 10.10.10.11: { kafka_seq: 1 }
 ```
 
-The instance name is derived as `${kafka_cluster}-${kafka_seq}`. Once a node has been formatted, do not change or reuse a sequence number that still has associated data.
+The instance name is `${kafka_cluster}-${kafka_seq}`. After formatting, do not change or reuse a sequence number that still has data.
 
 
 ### `kafka_role`
@@ -75,18 +75,18 @@ Defaults to `combined`, and accepts only:
 | `controller` | `controller`          | Controller only                 |
 {.full-width}
 
-When all cluster members omit it, they consistently use `combined`; as soon as any member sets it explicitly, all members must set it explicitly. No legacy role aliases are provided.
+If all members omit the role, they use `combined`. If one declares it, all must declare it. Legacy aliases are unavailable.
 
 
 ### `kafka_cluster_id`
 
-Unset by default, used only to assert the identity of an existing cluster during takeover or recovery. It must be a 22-character Kafka UUID:
+Unset by default. Use it only to assert an existing cluster identity for takeover or recovery. It requires a 22-character Kafka UUID:
 
 ```yaml
 kafka_cluster_id: MkU3OEVBNTcwNTJENDM2Qk
 ```
 
-Do not set it for an ordinary new cluster. The role generates the Cluster ID randomly and writes it into every member's `/etc/kafka/manifest.yml`. This parameter does not relabel existing data; it fails closed when it conflicts with the manifest or `meta.properties`.
+Omit it for ordinary new clusters. The role generates a random Cluster ID and writes `/etc/kafka/manifest.yml` on every member. This parameter cannot relabel data. Conflicts with the manifest or `meta.properties` block execution.
 
 
 ### `kafka_rack`
@@ -97,7 +97,7 @@ An optional broker fault-domain label, rendered as `broker.rack`:
 10.10.10.21: { kafka_seq: 4, kafka_role: broker, kafka_rack: az-a }
 ```
 
-All broker-capable nodes must either all declare it or all omit it. Controller-only nodes do not use this value. Changing the rack is a static change that goes through a strict rolling restart, but does not reassign existing replicas.
+Set this on all broker-capable nodes or none. Controller-only nodes ignore it. Changes require a strict rolling restart but do not reassign replicas.
 
 
 --------
@@ -112,7 +112,7 @@ The data root directory, defaulting to `/data/kafka`:
 kafka_data: /data/kafka
 ```
 
-The role derives `${kafka_data}/data` and `${kafka_data}/metadata` in a fixed way. This path must be a dedicated absolute path, and cannot be `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, or `/pg`. [`kafka-rm.yml`](/docs/kafka/playbook#cluster-teardown) deletes the entire root directory by default, so do not mix other services or business files into it.
+The role derives `${kafka_data}/data` and `${kafka_data}/metadata`. Use a dedicated absolute path. Forbidden roots are `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, and `/pg`. [`kafka-rm.yml`](/docs/kafka/playbook#cluster-teardown) deletes the whole root by default. Do not store other service or business files there.
 
 
 ### `kafka_heap_opts`
@@ -123,27 +123,27 @@ The Kafka JVM heap, defaulting to:
 kafka_heap_opts: '-Xms1G -Xmx1G'
 ```
 
-In production, set it according to load and memory load testing. Typically keep `Xms` and `Xmx` equal, and leave enough memory for the operating-system page cache and other processes.
+Set production heap size through load and memory tests. Usually keep `Xms` equal to `Xmx`. Reserve memory for OS page cache and other processes.
 
 
 ### `kafka_port`
 
-The broker/client listener port, defaulting to `9092`, and listening only on broker-capable nodes. `plaintext` mode uses PLAINTEXT; `scram` mode uses SASL_SSL + SCRAM-SHA-512.
+Broker/client port, default `9092`. Only broker-capable nodes listen here. `plaintext` uses PLAINTEXT; `scram` uses SASL_SSL + SCRAM-SHA-512.
 
 
 ### `kafka_controller_port`
 
-The KRaft controller listener port, defaulting to `9093` (the conventional Kafka KRaft port), and listening only on controller-capable nodes. When sharing a node with other services, verify yourself that the ports do not collide; the role does not automatically detect cross-service port usage.
+Controller port, default `9093`, the conventional KRaft port. Only controller-capable nodes listen here. Check for conflicts with other services yourself; the role does not detect them.
 
 
-The four public ports must all differ from one another. The broker listener binds `0.0.0.0`, while the controller listener, the broker advertised address, and the controller bootstrap address all use `inventory_hostname` in a fixed way, with no separate address parameters.
+All four public ports must differ. Brokers bind `0.0.0.0`. Controller listeners, broker advertised addresses, and controller bootstrap addresses use `inventory_hostname`. No separate address parameters exist.
 
 
 --------
 
 ## `kafka_parameters`
 
-Defaults to `{}`. It is the only Kafka broker-parameter escape hatch, rendered only onto broker-capable nodes:
+Default `{}`. This is the only custom broker parameter mapping, rendered only on broker-capable nodes:
 
 ```yaml
 kafka_parameters:
@@ -183,7 +183,7 @@ ssl.*
 listener.*
 ```
 
-Identity, listeners, security, storage, and replication policy must remain single-authority; when a reserved key is included, the preflight fails outright.
+The role owns identity, listeners, security, storage, and replication policy. Reserved keys cause preflight failure.
 
 
 --------
@@ -192,14 +192,14 @@ Identity, listeners, security, storage, and replication policy must remain singl
 
 ### `kafka_jmx_exporter_port`
 
-The JMX Exporter HTTP port, defaulting to `9404`. The role injects the JMX Exporter Java agent unconditionally into every Kafka JVM and registers it as `job=kafka`; there is no separate toggle parameter. The lifecycle health gate uses the role-owned Kafka CLI/metadata channel and does not depend on JMX. Infra monitoring nodes must be able to reach this port; the endpoint does not automatically enable HTTPS because of `kafka_security: scram`, so it should be protected by the monitoring network and firewall.
+JMX HTTP port, default `9404`. Every Kafka JVM receives the agent and registers as `job=kafka`; no toggle exists. Lifecycle checks use a separate Kafka CLI/metadata channel, not JMX. INFRA nodes must reach this port. `kafka_security: scram` does not enable HTTPS here. Protect the endpoint with the monitoring network and firewall.
 
 
 ### `kafka_exporter_port`
 
-The HTTP port of the protocol-level `kafka_exporter`, defaulting to `9308`. The role configures, starts, and registers it only on the first two broker-capable nodes after sorting by `kafka_seq`; a single-broker cluster runs only one. The monitoring target file is refreshed on every full run according to the current placement, but a stale Exporter service on a node that was previously selected is not stopped automatically by an ordinary playbook.
+Protocol `kafka_exporter` HTTP port, default `9308`. The role starts and registers exporters on the first two broker-capable nodes by `kafka_seq`. A single broker runs one. Full runs refresh discovery targets for current placement. Ordinary playbooks do not stop stale exporter services on previously selected nodes.
 
-The Kafka protocol version, TLS/SCRAM parameters, and replica placement used by the Exporter are all internal role conventions, with no additional public toggles or options parameters.
+Exporter protocol version, TLS/SCRAM settings, and placement are internal conventions. No additional public toggle or options parameters exist.
 
 
 --------
@@ -216,14 +216,14 @@ Defaults to `plaintext`, and accepts only:
 | `scram`     | SASL_SSL + SCRAM-SHA-512 | mutual TLS | StandardAuthorizer, deny-by-default | Production security baseline  |
 {.full-width}
 
-`scram` simultaneously configures the Pigsty CA-issued node certificates, the role-owned admin/monitoring/internal identities, and the ordering in which TLS/SCRAM and ACLs are enabled. The security profile is written into the bootstrap manifest; once the cluster is formatted, an ordinary rerun can neither switch `plaintext` to `scram` nor switch back.
+`scram` configures Pigsty CA certificates, internal/administration/monitoring identities, and TLS/SCRAM/ACL activation order together. The manifest records this profile. After formatting, ordinary reruns cannot switch between `plaintext` and `scram` in either direction.
 
-Node certificate validity follows Pigsty's shared CA parameter [`cert_validity`](/docs/infra/param#cert_validity) (`7300d` by default); the KAFKA module has no separate certificate validity parameter.
+Certificates use shared [`cert_validity`](/docs/infra/param#cert_validity), default `7300d`. KAFKA has no separate validity parameter.
 
 
 ### `kafka_users`
 
-Defaults to `[]`, and may only be declared in `scram` mode. The collection must be a list of mappings, and each mapping accepts only `name`, `password`, `acls`, and `quota`; a non-mapping item or unknown top-level key fails before resource convergence:
+Default `[]`; permitted only in `scram` mode. Supply a list of mappings with only `name`, `password`, `acls`, and `quota`. Non-mappings or unknown top-level keys fail before resource convergence:
 
 ```yaml
 kafka_users:
@@ -249,18 +249,18 @@ kafka_users:
 
 Constraints:
 
-- `name` is unique within the list; `password` is required, must be at least 12 characters, and should reference a secret management system;
-- ACL `resource` is one of `topic`, `group`, `transactional_id`, `cluster`;
-- `pattern` is `literal` (default) or `prefixed`;
-- Operations are `Read`, `Write`, `Create`, `Delete`, `Alter`, `Describe`, `ClusterAction`, `DescribeConfigs`, `AlterConfigs`, `IdempotentWrite`;
-- Quota keys are `producer_byte_rate`, `consumer_byte_rate`, `request_percentage`, `controller_mutation_rate`.
+- `name` must be unique in the list. Required `password` must contain at least 12 characters and should reference secret management.
+- ACL `resource`: `topic`, `group`, `transactional_id`, or `cluster`.
+- `pattern`: `literal` (default) or `prefixed`.
+- Operations: `Read`, `Write`, `Create`, `Delete`, `Alter`, `Describe`, `ClusterAction`, `DescribeConfigs`, `AlterConfigs`, `IdempotentWrite`.
+- Quotas: `producer_byte_rate`, `consumer_byte_rate`, `request_percentage`, `controller_mutation_rate`.
 
-The role converges the SCRAM password, the complete ACL set, and the explicitly provided quota fields for a declared user. Removing a user entry does not implicitly delete the principal or credentials; deletion/revocation requires a separate, audited operation.
+The role applies each declared user's SCRAM password, full ACL set, and specified quota fields. Removing entries does not delete principals or credentials. Deletion and revocation require separate audited operations.
 
 
 ### `kafka_topics`
 
-Defaults to `[]`. The collection must be a list of mappings, and each mapping accepts only `name`, `partitions`, `replication_factor`, and `config`; a non-mapping item or unknown top-level key fails before resource convergence:
+Default `[]`. Supply mappings with only `name`, `partitions`, `replication_factor`, and `config`. Non-mappings or unknown top-level keys fail before resource convergence:
 
 ```yaml
 kafka_topics:
@@ -273,20 +273,20 @@ kafka_topics:
       retention.ms: 604800000
 ```
 
-The identity precheck only validates that `name` is unique within the list. Partition and RF validity (at least 1, and RF not exceeding the current broker count) is decided by Kafka at creation time, so such errors surface during the resource convergence stage rather than under `--check`. The convergence semantics are:
+Identity prechecks validate only unique `name` values. Kafka checks partitions and RF at creation: both must be at least 1; RF cannot exceed current broker count. These errors appear during resource convergence, not `--check`. The rules are:
 
-- The topic is created idempotently when it does not exist;
-- Partitions may only increase; decreasing fails;
-- When RF differs from the live state, ordinary convergence is refused and an explicit reassignment is required;
-- Only the keys declared in `config` are updated;
-- Removing a topic from the list never deletes the topic.
+- Create missing topics idempotently.
+- Increase partitions only; decreases fail.
+- Reject RF differences from live state and require explicit reassignment.
+- Change only keys declared in `config`.
+- Never delete a topic because its list entry disappeared.
 
 
 --------
 
 ## Transient Protected Operational Variables
 
-The following variables are used only via the command-line `-e` for one-off operational actions. They are not part of the 15 persistent API parameters and should not be written into `pigsty.yml`:
+Use these variables only with command-line `-e` for individual operations. They are outside the 15 persistent parameters. Do not put them in `pigsty.yml`:
 
 | Action | Playbook | Transient Variable | Protection Condition |
 |:-------|:---------------|:------------------------------------------------------------------------------------|:-------------------------------|
@@ -295,19 +295,19 @@ The following variables are used only via the command-line `-e` for one-off oper
 | Tear down the cluster | `kafka-rm.yml` | `kafka_rm_data` (default `true`), `kafka_rm_pkg` (default `false`), `kafka_safeguard` (default `false`) | Explicit `-l` required; `kafka_safeguard=true` aborts all deletion |
 {.full-width}
 
-The two rotation actions are mutually exclusive, and must target a precise, complete cluster. `kafka-rm.yml` deletes the data directory and node-local `/etc/kafka` recovery state by default; `kafka_rm_data=false` retains both. Before running it, explicitly confirm the target cluster and your backup/rebuild intent. For the commands and full semantics, see [Playbooks](/docs/kafka/playbook).
+Rotation actions are mutually exclusive and require one exact complete cluster. `kafka-rm.yml` deletes data and node-local `/etc/kafka` recovery state by default. `kafka_rm_data=false` retains both. Before removal, confirm the target and backup or rebuild intent. See [Playbooks](/docs/kafka/playbook) for commands and details.
 
 
 ### `kafka_safeguard`
 
-For `kafka-rm.yml` only, `false` by default. When set to `true`, the removal role aborts before deregistration, retirement, service shutdown, and deletion. This is a boolean safety switch; it does not probe whether the cluster is alive.
+For `kafka-rm.yml` only. Default `false`. When `true`, abort before deregistration, retirement, service shutdown, or deletion. This boolean switch does not test whether the cluster is alive.
 
 
 ### `kafka_rm_data`
 
-For `kafka-rm.yml` only, `true` by default. When enabled it deletes the entire `kafka_data` directory and `/etc/kafka`, the latter holding the manifest, credential copies, and the recovery state required to re-adopt retained storage. Setting it to `false` keeps both, but monitoring targets are still deregistered, services still stopped, and runtime integration config still removed.
+For `kafka-rm.yml` only. Default `true`. Delete all of `kafka_data` and `/etc/kafka`, including the manifest, credentials, and recovery state needed to readopt retained storage. `false` keeps both paths. It still deregisters targets, stops services, and removes runtime integration configuration.
 
 
 ### `kafka_rm_pkg`
 
-For `kafka-rm.yml` only, `false` by default. When set to `true` it uninstalls the `kafka-stack` packages from the platform mapping (the Kafka, Kafka Exporter, and JMX Exporter payload); the shared Java runtime is never uninstalled.
+For `kafka-rm.yml` only. Default `false`. When `true`, uninstall mapped `kafka-stack` packages: Kafka, Kafka Exporter, and JMX Exporter. Never uninstall the shared Java runtime.

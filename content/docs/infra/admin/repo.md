@@ -7,7 +7,9 @@ categories: [Task]
 ---
 
 
-Pigsty's REPO role downloads required packages and creates a local YUM/APT repository under `/www/pigsty` that Nginx can serve. The current package candidate is **SOW 0.3.0**; the source uses SOW to generate metadata for both repository types instead of calling `createrepo_c`, `modifyrepo_c`, or `dpkg-scanpackages` separately.
+Pigsty's REPO role downloads required packages and creates a local YUM/APT repository under `/www/pigsty`. Nginx can serve this repository.
+
+The current package candidate is **SOW 0.3.0**. SOW generates metadata for both repository types. The source no longer calls `createrepo_c`, `modifyrepo_c`, or `dpkg-scanpackages` separately.
 
 
 ----------------
@@ -38,11 +40,11 @@ To rebuild metadata for packages already present without downloading new ones:
 
 ## SOW Prerequisites
 
-Both `repo_create` and `cache_create` require `sow` on the target node. A fresh online build automatically adds `infra` to the effective [`repo_modules`](/docs/infra/param#repo_modules) list and installs SOW from the Pigsty INFRA upstream repository.
+Both `repo_create` and `cache_create` require `sow` on the target node. A fresh online build automatically adds `infra` to the effective [`repo_modules`](/docs/infra/param#repo_modules) list. It installs SOW from the Pigsty INFRA upstream repository.
 
-Offline bundles and local repositories created before this change may not contain SOW. Before rebuilding from old media, refresh the bundle/local repository or install the current SOW 0.3.0 candidate from the Pigsty INFRA repository. Do not assume that older environments can still fall back to `createrepo_c`.
+Offline bundles and local repositories created before this change may not contain SOW. Before you rebuild from old media, refresh the bundle or local repository. Alternatively, install the current SOW 0.3.0 candidate from Pigsty INFRA. Do not assume that older environments can still fall back to `createrepo_c`.
 
-On a fresh installation, if `/www` does not exist, the role creates `/data/nginx` and makes `/www` point to it. Existing directories and symlinks are preserved rather than forcibly replaced.
+On a fresh installation, the role checks whether `/www` exists. If absent, it creates `/data/nginx` and points `/www` to it. It preserves existing directories and symlinks.
 
 
 ----------------
@@ -70,7 +72,7 @@ The command executed by `repo_create` is:
 sow create --pigsty --timeout 10m -- /www/pigsty
 ```
 
-`--pigsty` removes unneeded or conflict-prone packages and atomically publishes the result only after all metadata has been generated. A typical layout is:
+`--pigsty` removes unneeded packages and packages likely to cause conflicts. It atomically publishes the result only after all metadata is complete. A typical layout is:
 
 ```text
 /www/pigsty/
@@ -81,7 +83,7 @@ sow create --pigsty --timeout 10m -- /www/pigsty
 └── repo_complete        # SHA-256 manifest and completion marker
 ```
 
-Do not treat `repo_complete` as an empty sentinel; it contains SHA-256 checksums. Its presence means SOW completed publication of local repository metadata. It does not prove that remote mirrors, signed repositories, or offline bundles have been synchronized.
+`repo_complete` contains SHA-256 checksums. Do not treat it as an empty marker. Its presence means SOW completed publication of local repository metadata. It does not prove that remote mirrors, signed repositories, or offline bundles have been synchronized.
 
 
 ----------------
@@ -97,7 +99,7 @@ Pigsty no longer fabricates `modules.yaml` / ModuleMD metadata for the aggregate
   meta: { module_hotfixes: 1 }
 ```
 
-The aggregated Pigsty local repository itself is configured with `module_hotfixes=1` so local PostgreSQL packages are not hidden by system module streams. This is distinct from generating fake ModuleMD metadata.
+The aggregated local repository uses `module_hotfixes=1`. This prevents system module streams from hiding local PostgreSQL packages. It does not generate artificial ModuleMD metadata.
 
 
 ----------------
@@ -111,7 +113,7 @@ The default [`repo_packages`](/docs/infra/param#repo_packages) uses these alias 
  node-package2, node-package3, pgsql-utility, extra-modules]
 ```
 
-`node-bootstrap` includes Ansible, Python dependencies, SOW, and SSH tools. `infra-package` includes Nginx, etcd, HAProxy, Victoria exporters, Redis/Valkey, Silo, `mcli`, SOW, and Pig. Exact names vary by OS mapping; always use `roles/node_id/vars/<os>.<arch>.yml` as the authority.
+`node-bootstrap` includes Ansible, Python dependencies, SOW, and SSH tools. `infra-package` includes Nginx, etcd, HAProxy, Victoria exporters, Redis/Valkey, Silo, `mcli`, SOW, and Pig. Exact names vary by operating-system mapping. Use `roles/node_id/vars/<os>.<arch>.yml` as the authoritative source.
 
 
 ----------------

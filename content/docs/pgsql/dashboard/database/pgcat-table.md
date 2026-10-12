@@ -6,6 +6,7 @@ description: Detailed table info from database catalog
 
 > Detailed table info from catalog: [Demo](https://demo.pigsty.io/ui/d/pgcat-table)
 
-PGCAT Table shows detailed table information from database catalog including statistics and bloat analysis.
+PGCAT Table shows detailed table information from the database catalog.
+This information includes statistics and bloat analysis.
 
 [![pgcat-table](/img/panel/pgcat-table.webp)](https://demo.pigsty.io/ui/d/pgcat-table)

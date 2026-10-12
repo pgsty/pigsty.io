@@ -2,7 +2,7 @@
 title: "pgpcre"
 linkTitle: "pgpcre"
 description: "Perl Compatible Regular Expression functions"
-weight: 4230
+weight: 4240
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4230
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4230  | [**`pgpcre`**](/ext/e/pgpcre) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4240  | [**`pgpcre`**](/ext/e/pgpcre) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_trgm`](/ext/e/pg_trgm) [`re2`](/ext/e/re2) [`omni_regex`](/ext/e/omni_regex) [`pg_similarity`](/ext/e/pg_similarity) [`fuzzystrmatch`](/ext/e/fuzzystrmatch) [`smlar`](/ext/e/smlar) [`biscuit`](/ext/e/biscuit) [`pg_bigm`](/ext/e/pg_bigm) |

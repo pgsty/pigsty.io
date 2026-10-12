@@ -8,26 +8,26 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-The [**PITR principle**](/docs/concept/pitr/mechanism/) is compact; the engineering is not. WAL archiving must not stall production writes, object-storage backups need encryption, backup jobs must follow the primary after failover, shared repositories must isolate clusters, and large numbers of small objects can limit throughput.
+The [**PITR principle**](/docs/concept/pitr/mechanism/) is simple, but implementation must address several constraints. WAL archiving must not block production writes. Object storage backups need encryption. Backup jobs must follow the primary after failover, and shared repositories must isolate clusters. Large numbers of small objects can also limit throughput.
 
-Pigsty uses [**pgBackRest**](https://pgbackrest.org/) as its backup engine and ships production-oriented defaults for those concerns. This page describes the engine, repository abstraction, archive path, scheduler, and primary-aware execution model.
+Pigsty uses [**pgBackRest**](https://pgbackrest.org/) with production defaults that address these constraints. This page describes the engine, repository abstraction, archive path, scheduler, and execution on the current primary.
 
 
 ----------------
 
 ## Backup Engine: pgBackRest
 
-Pigsty uses pgBackRest for three responsibilities: create base backups with `backup`, receive WAL with `archive-push`, and restore data with `restore` plus `archive-get`.
+Pigsty uses pgBackRest to create base backups with `backup`, receive WAL with `archive-push`, and restore data with `restore` and `archive-get`.
 
 Relevant capabilities include:
 
-* **Parallelism:** backup, archive, and restore operations can use multiple processes.
-* **Backup chains:** full, differential, incremental, and block incremental backups reduce repeated transfer and storage.
-* **Compression and encryption:** zstd compression and AES-256-CBC repository encryption are built in.
-* **Repository backends:** POSIX filesystems, S3-compatible services such as Silo and MinIO, Azure, GCS, and SFTP are supported by pgBackRest.
-* **Bundling:** small files can be packed into larger repository objects, reducing object-storage overhead.
+* **Parallelism:** Backup, archive, and restore operations can use multiple processes.
+* **Backup chains:** Full, differential, incremental, and block incremental backups reduce repeated transfers and storage.
+* **Compression and encryption:** pgBackRest includes zstd compression and AES-256-CBC repository encryption.
+* **Repository backends:** pgBackRest supports POSIX filesystems, S3-compatible services such as Silo and MinIO, Azure, GCS, and SFTP.
+* **Bundling:** Pack small files into larger repository objects to reduce object storage overhead.
 
-pgBackRest separates cluster histories using a **stanza**. Pigsty maps the stanza name directly to [`pg_cluster`](/docs/pgsql/param/#pg_cluster), allowing multiple clusters to share one storage service without sharing a backup identity:
+pgBackRest separates cluster histories by **stanza**. Pigsty uses [`pg_cluster`](/docs/pgsql/param/#pg_cluster) as the stanza name. Multiple clusters can share storage while retaining separate backup identities:
 
 ```text
 repository
@@ -44,7 +44,7 @@ repository
 
 ## Repository Abstraction
 
-Two parameters define repository selection. [`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) chooses one repository name, and [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) is a dictionary of candidate definitions. Pigsty v4.5.0 renders **only the selected `pgbackrest_repo[pgbackrest_method]` entry** as pgBackRest `repo1`; listing both `local` and `minio` does not enable two active repositories.
+[`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects a repository name. [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) contains a dictionary of candidate definitions. Pigsty v4.5.0 renders **only the selected `pgbackrest_repo[pgbackrest_method]` entry** as `repo1`. Listing `local` and `minio` does not activate both repositories.
 
 ```yaml
 pgbackrest_method: local          # local, minio, or a custom key below
@@ -74,9 +74,9 @@ pgbackrest_repo:
     retention_full: 14
 ```
 
-The presets intentionally differ. `local` favors simplicity and fast local restore; it is unencrypted, unbundled, and retained by full-backup count. `minio` targets a remote Silo or compatible S3 repository, enabling encryption, bundles, block incremental backup, and time-based retention.
+The `local` preset provides simple backups and fast local restores. It has no encryption or bundling and retains backups by full-backup count. The `minio` preset uses remote Silo or compatible S3 storage. It enables encryption, bundling, block incremental backup, and time-based retention.
 
-Rendering is mechanical: underscores in the chosen repository's keys become hyphens and each key gets a `repo1-` prefix in `/etc/pgbackrest/pgbackrest.conf`. A custom cloud repository can therefore use pgBackRest options directly:
+Pigsty converts underscores in repository keys to hyphens. It adds a `repo1-` prefix and writes the keys to `/etc/pgbackrest/pgbackrest.conf`. A custom cloud repository can therefore use pgBackRest options directly:
 
 ```yaml
 pgbackrest_method: s3
@@ -103,7 +103,7 @@ See [**Backup Repository**](/docs/pgsql/backup/repository/) for Silo, external S
 
 ## Archiving and Scheduling
 
-When [`pgbackrest_enabled`](/docs/pgsql/param/#pgbackrest_enabled) is true, as it is by default, the Patroni templates configure:
+When [`pgbackrest_enabled`](/docs/pgsql/param/#pgbackrest_enabled) is true, the Patroni templates set the following configuration. This option defaults to true.
 
 ```yaml
 archive_mode: 'on'
@@ -113,36 +113,36 @@ archive_command: 'pgbackrest --stanza=<cluster> archive-push %p'
 
 Base backups enter the system in two ways:
 
-* **Initial backup:** after bootstrapping a top-level primary, Pigsty attempts a backup when [`pgbackrest_init_backup`](/docs/pgsql/param/#pgbackrest_init_backup) is true. The task ignores backup failure and writes `/etc/pgbackrest/initial.done` only after success, so the marker means “completed,” not merely “attempted.”
-* **Scheduled backup:** [`pg_crontab`](/docs/pgsql/param/#pg_crontab) installs jobs in the database superuser's crontab. Its role default is an empty list; standard example configurations usually add a daily 01:00 full backup.
+* **Initial backup:** After bootstrapping a top-level primary, Pigsty attempts a backup if [`pgbackrest_init_backup`](/docs/pgsql/param/#pgbackrest_init_backup) is true. The task ignores backup failures. It writes `/etc/pgbackrest/initial.done` only after success, so the marker confirms completion.
+* **Scheduled backup:** [`pg_crontab`](/docs/pgsql/param/#pg_crontab) installs jobs in the database superuser's crontab. The role default is an empty list. Standard examples usually add a daily full backup at 01:00.
 
 ```yaml
 pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
 ```
 
-`pg-backup [full|diff|incr]` is a small wrapper around `pgbackrest backup`. With no argument it requests an incremental backup, which pgBackRest promotes to a full backup if no usable full exists.
+`pg-backup [full|diff|incr]` wraps `pgbackrest backup`. Without an argument, it requests an incremental backup. If no usable full backup exists, pgBackRest makes a full backup instead.
 
 
 ----------------
 
 ## Backups Follow the Primary
 
-pgBackRest and the same scheduled job are installed on every PostgreSQL node, but `pg-backup` checks `/pg/bin/pg-role` and only proceeds on the current primary. Replicas fail fast rather than writing a competing backup.
+Every PostgreSQL node receives pgBackRest and the same scheduled job. However, `pg-backup` checks `/pg/bin/pg-role` and proceeds only on the current primary. Replicas exit immediately without creating competing backups.
 
-That design decouples the backup schedule from the HA topology:
+The backup schedule therefore operates independently of HA topology:
 
-* all members receive the same repository configuration and crontab;
-* after failover, the new primary becomes eligible for subsequent backups and WAL archiving without rewriting the schedule;
-* one current primary owns the authoritative write flow to a stanza.
+* All members receive the same repository configuration and crontab.
+* After failover, the new primary can run subsequent backups and archive WAL. The schedule needs no change.
+* The current primary alone controls authoritative writes to a stanza.
 
-With a non-local repository, Pigsty also adds pgBackRest after `basebackup` in Patroni's `create_replica_methods`. Patroni tries `basebackup` first; if that method fails, it can restore a replica from the repository with `pgbackrest --delta restore`, shifting the copy load away from the primary.
+For a non-local repository, Pigsty adds pgBackRest after `basebackup` in Patroni's `create_replica_methods`. Patroni tries `basebackup` first. If it fails, Patroni can restore the replica with `pgbackrest --delta restore`. This moves the copy load from the primary to the repository.
 
 
 ----------------
 
 ## Performance Defaults
 
-The shipped pgBackRest template favors light production overhead and aggressive restore throughput:
+The pgBackRest template limits overhead during normal operation and prioritizes restore throughput:
 
 | Setting | v4.5.0 behavior | Rationale |
 |:--------|:----------------|:----------|
@@ -155,14 +155,14 @@ The shipped pgBackRest template favors light production overhead and aggressive 
 | Incremental restore | `delta=y` | Reuse destination files that already match |
 {.full-width}
 
-The 4 GiB queue is a safety tradeoff: if the repository remains unavailable and the queue exceeds the limit, pgBackRest can discard queued archive files. PostgreSQL continues running, but the WAL archive becomes incomplete and a new full backup is needed to establish a new recovery chain. See [**How PITR Works**](/docs/concept/pitr/mechanism/#wal-history).
+The 4 GiB queue limit has a tradeoff. If the repository remains unavailable and the queue exceeds this limit, pgBackRest can discard queued archive files. PostgreSQL continues running, but the WAL archive has a gap. Create a new full backup to establish a new recovery chain. See [**How PITR Works**](/docs/concept/pitr/mechanism/#wal-history).
 
 
 ----------------
 
 ## Observability
 
-When both backup and exporter settings are enabled, `pgbackrest_exporter` runs on each PostgreSQL node and exposes metrics on port `9854`. The monitoring stack uses those metrics for backup age, type, size, duration, and error visibility.
+When backup and exporter settings are enabled, `pgbackrest_exporter` runs on each PostgreSQL node. It exposes metrics on port `9854`. Monitoring uses these metrics to show backup age, type, size, duration, and errors.
 
 Useful diagnostic entry points include:
 

@@ -4,7 +4,7 @@ weight: 20
 description: PostgreSQL cluster-level monitoring dashboards
 ---
 
-PostgreSQL cluster-level monitoring dashboards, including:
+Use these dashboards to monitor PostgreSQL clusters:
 
 - [PGSQL Cluster](/docs/pgsql/dashboard/cluster/pgsql-cluster): Main dashboard for a PGSQL cluster
 - [PGRDS Cluster](/docs/pgsql/dashboard/cluster/pgrds-cluster): RDS version of PGSQL Cluster, focusing on PostgreSQL-native metrics

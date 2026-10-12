@@ -8,7 +8,7 @@ module: [PIG]
 categories: [Tutorial]
 ---
 
-Here is a simple getting started tutorial to help you experience the core capabilities of the PIG package manager.
+Use this tutorial to try the main PIG package manager functions.
 
 ## Short Version
 
@@ -36,7 +36,9 @@ curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
 
-PIG binary is about 5 MB. On Linux it uses `rpm` or `dpkg` to install the latest version available on the selected mirror. In the example output below, `X.Y.Z` is that mirrored version:
+The PIG binary is about 5 MB.
+On Linux, the installer uses `rpm` or `dpkg` to install the latest version available on the selected mirror.
+In this output, `X.Y.Z` is the mirror's version:
 
 ```bash
 $ curl -fsSL https://repo.pigsty.io/pig | bash
@@ -61,7 +63,8 @@ check https://pgext.cloud for details
 
 ## Check Environment
 
-PIG is a Go-written binary program, installed by default at `/usr/bin/pig`. `pig version` prints version information:
+PIG is a Go binary. Its default installation path is `/usr/bin/pig`.
+Run `pig version` to show version information:
 
 ```bash
 $ pig version
@@ -114,7 +117,7 @@ Latest Pigsty Ver :  {{< param pigsty_version >}}
 
 ## Automation Tips
 
-For production recovery tasks, it is recommended to run `--plan` first to preview the PITR execution plan before actually executing:
+Before a production recovery, run `--plan` to review the PITR execution plan:
 
 ```bash
 pig pitr -d --plan            # preview recovery steps only, no execution
@@ -143,27 +146,30 @@ pgoutput            available  -           ETL    --s---  PostgreSQL      CONTRI
 ({{< param pgext_count >}} Rows)
 ```
 
-All extension metadata is defined in a data file named [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).
-This file is updated with each pig release. You can update it directly using the [`pig ext reload`](/docs/pig/ext/#ext-reload) command.
-The updated file is placed in `~/.pig/extension.csv` by default. You can view and modify it, and the latest online catalog is available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
+The [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv) file contains all extension metadata.
+Each pig release updates this file.
+To update it separately, run [`pig ext reload`](/docs/pig/ext/#ext-reload).
+By default, the command writes `~/.pig/extension.csv`. You can read and change this file.
+The online catalog is available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
 
 
 
 
 ## Add Repositories
 
-To install extensions, you first need to add upstream repositories. [`pig repo`](/docs/pig/repo/) can be used to manage Linux APT/YUM/DNF software repository configuration.
+Before you install extensions, add the upstream repositories.
+Use [`pig repo`](/docs/pig/repo/) to manage Linux APT/YUM/DNF repository configuration.
 
-You can use the straightforward [`pig repo set`](/docs/pig/repo/#repo-set) to overwrite existing repository configuration, ensuring only necessary repositories exist in the system:
+Use [`pig repo set`](/docs/pig/repo/#repo-set) to replace the current configuration with only the required repositories:
 
 ```bash
 pig repo set                # One-time setup for all repos including Linux system, PGDG, PIGSTY (PGSQL+INFRA)
 ```
 
-> **Warning**: `pig repo set` will back up and clear existing repository configuration, then add required repositories with overwrite semantics.
+> **Warning**: `pig repo set` backs up and clears the current repository configuration. It then writes the required repository definitions.
 
 
-Or choose the gentler [`pig repo add`](/docs/pig/repo/#repo-add) to add needed repositories:
+To add repositories to the existing configuration, use [`pig repo add`](/docs/pig/repo/#repo-add):
 
 ```bash
 pig repo add pgdg pigsty     # Add PGDG official repo and PIGSTY supplementary repo
@@ -171,8 +177,9 @@ pig repo add pgsql           # [Optional] Add PGDG and PIGSTY together as one "p
 pig repo update              # Update cache: apt update / yum makecache
 ```
 
-PIG detects your network environment and chooses Cloudflare global CDN or China cloud CDN, but you can force a specific region with `--region`.
-In China network environments, `-m|--mirror` explicitly selects the bundled `china` repository definitions, including `pigsty.cc` and maintained domestic mirrors:
+PIG detects the network environment and selects the Cloudflare global CDN or China cloud CDN.
+Use `--region` to select a region explicitly.
+In China, `-m|--mirror` selects the bundled `china` definitions, including `pigsty.cc` and maintained domestic mirrors:
 
 ```bash
 pig repo set      --region=china              # use China mirror for faster downloads
@@ -180,8 +187,9 @@ pig repo add pgdg --region=default --update   # force PGDG upstream repo
 pig repo set -m                                # overwrite repositories with China-region mirrors
 ```
 
-PIG does not support offline installation. You can download RPM/DEB packages yourself and copy them to isolated servers for installation.
-The related PIGSTY project provides local software repositories. You can use pig to install pre-downloaded extensions from local repos.
+PIG does not support offline installation directly.
+You can download RPM/DEB packages and copy them to isolated servers for installation.
+PIGSTY provides local software repositories. Use pig to install previously downloaded extensions from those repositories.
 
 
 
@@ -202,8 +210,8 @@ INFO[20:34:44] translate extension 'pg_mooncake' to package: pg_mooncake_18
 INFO[20:34:44] installing packages: dnf install -y postgresql18 postgresql18-server postgresql18-libs postgresql18-contrib postgresql18-plperl postgresql18-plpython3 postgresql18-pltcl timescaledb-tsl_18 postgis36_18 pgvector_18 pg_duckdb_18 pg_mooncake_18
 ```
 
-This uses the "alias translation" mechanism to map clean PG kernel/extension logical names into real RPM/DEB lists. If you do not need translation, use `apt/dnf` directly,
-or use the `-n|--no-translation` option with the `pig install` variant:
+Alias translation maps PostgreSQL kernel and extension names to RPM/DEB package lists.
+To skip translation, use `apt/dnf` directly, or add `-n|--no-translation` to `pig install`:
 
 ```bash
 pig install vector     # with translation, installs pgvector_18 or postgresql-18-pgvector for current PG 18
@@ -215,7 +223,8 @@ pig install vector -n  # no translation, installs a component named vector (from
 
 ## Alias Translation
 
-PostgreSQL kernels and extensions map to many RPM/DEB packages. Remembering them is painful, so pig provides common aliases to simplify installation.
+PostgreSQL kernels and extensions use many RPM/DEB package names.
+Pig provides common aliases so you do not need to remember each package name.
 
 For example, on EL systems the following aliases translate to the RPM lists on the right:
 
@@ -232,8 +241,9 @@ pg15-main:    "postgresql15 postgresql15-server postgresql15-libs postgresql15-c
 pg14-core:    "postgresql14 postgresql14-server postgresql14-libs postgresql14-contrib postgresql14-plperl postgresql14-plpython3 postgresql14-pltcl"
 ```
 
-Note the `$v` placeholder is replaced by the PG major version. When you use the `pgsql` alias, `$v` becomes 18, 17, etc.
-So when you install the `pg18-server` alias, EL actually installs `postgresql18-server`, `postgresql18-libs`, `postgresql18-contrib`, while Debian/Ubuntu installs `postgresql-18`. Pig handles all details.
+Pig replaces `$v` with the PostgreSQL major version. For `pgsql`, this can be 18, 17, or another version.
+For `pg18-server`, EL installs `postgresql18-server`, `postgresql18-libs`, and `postgresql18-contrib`.
+Debian/Ubuntu installs `postgresql-18`. Pig selects the correct packages.
 
 > [!DETAILS]- Common PostgreSQL Aliases
 > [Alias translation list for EL](https://github.com/pgsty/pig/blob/main/cli/ext/catalog.go#L206)
@@ -284,7 +294,8 @@ So when you install the `pg18-server` alias, EL actually installs `postgresql18-
 
 ## Install Extensions
 
-Pig detects your PostgreSQL installation. If there is an active PG installation (detected via `pg_config` in `PATH`), pig installs extensions for that PG major by default.
+Pig detects the active PostgreSQL installation through `pg_config` in `PATH`.
+By default, it installs extensions for that major version.
 
 ```bash
 pig install pg_smtp_client          # simplest
@@ -334,14 +345,15 @@ vector     0.8.4    RAG    -ds--r  PostgreSQL    PGDG  postgresql-18-pgvector  v
 wal2json   2.6      ETL    --s--x  BSD 3-Clause  PGDG  postgresql-18-wal2json  Changing data capture in JSON format
 ```
 
-If PostgreSQL cannot be found in your current `PATH` (via `pg_config`), it is recommended to explicitly specify PG major with `-v|-p` to avoid version detection ambiguity.
+If `pg_config` is absent from your current `PATH`, select PostgreSQL explicitly with `-v|-p`.
+This prevents ambiguous version detection.
 
 
 
 
 ## Scan Extensions
 
-[`pig ext scan`](/docs/pig/ext/#ext-scan) provides a lower-level scan. It scans shared libraries under the target PG directory to discover installed extensions:
+[`pig ext scan`](/docs/pig/ext/#ext-scan) scans shared libraries in the target PostgreSQL directory to find installed extensions:
 
 ```bash
 $ pig ext scan
@@ -368,7 +380,8 @@ wal2json   2.6      wal2json.so     Changing data capture in JSON format        
 
 ## Container Practice
 
-You can create a new VM or use the following Docker container for testing. Create a `d13` directory and a `Dockerfile`:
+For testing, create a new VM or use a Docker container.
+For the container, create a `d13` directory and a `Dockerfile`:
 
 ```dockerfile
 FROM debian:13

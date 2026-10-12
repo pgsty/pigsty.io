@@ -23,13 +23,13 @@ Article: [Analyzing Computing Costs: Has Aliyun Really Reduced Prices?](/blog/cl
 
 ## Data Source
 
-Aliyun ECS pricing can be obtained as raw CSV data from [Price Calculator - Pricing Details - Price Download](https://www.aliyun.com/price/product#/commodity/vm).
+Download Aliyun ECS prices as raw CSV data from [Price Calculator - Pricing Details - Price Download](https://www.aliyun.com/price/product#/commodity/vm).
 
 
 
 ## Schema
 
-Download Aliyun pricing details and import for analysis
+Download Aliyun pricing details, then import them for analysis:
 
 ```sql
 CREATE EXTENSION file_fdw;
@@ -90,7 +90,7 @@ CREATE FOREIGN TABLE aliyun_ecs
         ) SERVER fs OPTIONS ( filename '/tmp/aliyun-ecs.csv', format 'csv',header 'true');
 ```
 
-Similarly for AWS EC2, you can download the price list from Vantage:
+For AWS EC2, download the price list from Vantage:
 
 ```sql
 

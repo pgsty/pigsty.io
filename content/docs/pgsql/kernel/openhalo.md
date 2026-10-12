@@ -9,7 +9,8 @@ categories: [Concept]
 
 [OpenHalo](https://www.openhalo.org/) is an open-source PostgreSQL kernel that provides MySQL wire-protocol compatibility.
 
-openHalo is based on PostgreSQL 14.18 and provides wire-level compatibility with MySQL 5.7.32-log / 8.0. Pigsty delivers it through `pg_mode: mysql` and the `openhalo` package alias.
+openHalo is based on PostgreSQL 14.18 and provides wire-level compatibility with MySQL 5.7.32-log / 8.0.
+Pigsty delivers it through `pg_mode: mysql` and the `openhalo` package alias.
 
 Pigsty supports OpenHalo deployment on all supported Linux platforms.
 
@@ -56,7 +57,8 @@ pg-meta:
     pg_packages: [ openhalo, pgsql-common ]
 ```
 
-OpenHalo provides a dedicated extension, `aux_mysql`, which includes functions and types needed for MySQL compatibility. Enable it in the `postgres` database to get full compatibility behavior.
+The OpenHalo extension `aux_mysql` provides functions and types for MySQL compatibility.
+Enable it in the `postgres` database for full compatibility behavior.
 
 - aux_mysql 1.5: MySQL Supplementary Extension
 - `/usr/halo-14/share/postgresql/extension/aux_mysql.control`
@@ -67,9 +69,11 @@ OpenHalo provides a dedicated extension, `aux_mysql`, which includes functions a
 
 ## Usage
 
-For MySQL access, connections still use the `postgres` database. The MySQL "database" concept maps to PostgreSQL "schema". So `use mysql` maps to the `mysql` schema in the `postgres` database.
+MySQL connections use the `postgres` database.
+A MySQL database maps to a PostgreSQL schema.
+Thus, `use mysql` selects the `mysql` schema in the `postgres` database.
 
-MySQL usernames/passwords are the same PostgreSQL credentials.
+Use the PostgreSQL usernames and passwords for MySQL access.
 
 ### Client Access
 
@@ -81,14 +85,16 @@ Pigsty's [`conf/mysql`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml
 mysql -h 127.0.0.1 -u dbuser_dba
 ```
 
-At present, OpenHalo upstream reports Navicat works normally on this port, while IntelliJ DataGrip may fail.
+OpenHalo upstream currently reports that Navicat works normally on this port.
+IntelliJ DataGrip may fail.
 
 
 --------
 
 ## Compatibility Parameters
 
-Pigsty defaults `database_compat_mode` to `mysql`. You can further tune compatibility behavior with settings like:
+Pigsty sets `database_compat_mode` to `mysql` by default.
+To adjust compatibility behavior, use settings such as:
 
 ```ini
 mysql.listener_on = true                        # enable MySQL listener; restart required
@@ -104,22 +110,24 @@ mysql.auto_rollback_tx_on_error = false         # restart required
 
 ## Patch Notes
 
-The [OpenHalo](https://github.com/pgsty/openHalo) kernel packaged by Pigsty is based on [HaloTech-Co-Ltd/openHalo](https://github.com/HaloTech-Co-Ltd/openHalo) with small adjustments:
+Pigsty packages the [OpenHalo](https://github.com/pgsty/openHalo) kernel from [HaloTech-Co-Ltd/openHalo](https://github.com/HaloTech-Co-Ltd/openHalo) with these adjustments:
 
 - Restore default database name from `halo0root` to `postgres`
 - Remove `1.0.` prefix in the default version string, keeping `14.18`
 - Adjust default config to enable MySQL compatibility and listen on `3306`
 
-Pigsty does not provide warranty coverage for OpenHalo kernel behavior. Kernel-specific issues should be addressed with the upstream vendor.
+Pigsty does not provide warranty coverage for OpenHalo kernel behavior.
+Contact the upstream vendor about kernel-specific issues.
 
-> **Warning**: This kernel is currently in beta1 stage; evaluate risks carefully before production use.
+> **Warning**: This kernel is currently in beta1. Evaluate its risks carefully before production use.
 
 
 --------
 
 ## Available Extensions
 
-The OpenHalo kernel has **59** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The OpenHalo kernel has **59** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

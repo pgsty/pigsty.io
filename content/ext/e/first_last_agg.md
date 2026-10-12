@@ -2,7 +2,7 @@
 title: "first_last_agg"
 linkTitle: "first_last_agg"
 description: "first() and last() aggregate functions"
-weight: 4710
+weight: 4720
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4710
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4710  | [**`first_last_agg`**](/ext/e/first_last_agg) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4720  | [**`first_last_agg`**](/ext/e/first_last_agg) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`tablefunc`](/ext/e/tablefunc) [`extra_window_functions`](/ext/e/extra_window_functions) [`pg_duckdb`](/ext/e/pg_duckdb) [`argm`](/ext/e/argm) [`pg_lake`](/ext/e/pg_lake) [`duckdb_fdw`](/ext/e/duckdb_fdw) |

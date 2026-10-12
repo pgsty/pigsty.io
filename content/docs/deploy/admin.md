@@ -8,49 +8,37 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-Pigsty requires an OS **admin user** with passwordless [**SSH**](#ssh) and [**Sudo**](#sudo) privileges on all managed nodes.
-
-This user must be able to SSH to all managed nodes and execute sudo commands on them.
-
-
---------
+Pigsty uses an operating system **administration account** with [SSH](#ssh) and [sudo](#sudo) access to every managed node.
+The account must be able to log in through SSH and run sudo commands on these nodes.
+Passwordless access is the standard configuration; password prompts are also supported.
 
 ## User
 
-Typically use names like `dba` or `admin`, avoiding `root` and `postgres`:
+Use an account name such as `dba` or `admin`.
+Avoid `root` and `postgres`:
 
-- Using `root` for deployment is possible but not a production best practice.
-- Using `postgres` ([**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu)) as admin user is strictly prohibited.
-
-
---------
+- You can deploy as `root`, but this is not recommended for production.
+- Do not use `postgres` ([`pg_dbsu`](/docs/pgsql/param#pg_dbsu)) as the administration account.
 
 ## Passwordless
 
-The passwordless requirement is optional if you can accept entering a password for every `ssh` and `sudo` command.
-
-Use `-k|--ask-pass` when [**running playbooks**](/docs/setup/playbook/) to prompt for **SSH** password,
-and `-K|--ask-become-pass` to prompt for **sudo** password.
+You can enter passwords for each `ssh` and `sudo` command instead of configuring passwordless access.
+When you [run playbooks](/docs/setup/playbook/), use `-k|--ask-pass` for the SSH password prompt.
+Use `-K|--ask-become-pass` for the sudo password prompt:
 
 ```bash
 ./deploy.yml -k -K
 ```
 
-Some enterprise security policies may prohibit passwordless `ssh` or `sudo`. In such cases, use the options above,
-or consider configuring a sudoers rule with a longer password cache time to reduce password prompts.
-
-
-
-----------------
+If your security policy prohibits passwordless `ssh` or `sudo`, use these options.
+You can also configure a longer sudo password cache time in sudoers to reduce repeated prompts.
 
 ## Create Admin User
 
-Typically, your server/VM provider creates an initial admin user.
+Your server or virtual machine provider usually creates an initial administration account.
+If you need a different account, the deployment playbook can [create one](#create-admin-user).
 
-If unsatisfied with that user, Pigsty's deployment playbook can [**create a new admin user**](#create-admin-user) for you.
-
-Assuming you have root access or an existing admin user on the node, create an admin user with Pigsty itself:
+Use an existing administration account or root access to create the new account:
 
 ```bash
 ./node.yml -k -K -t node_admin \
@@ -58,7 +46,9 @@ Assuming you have root access or an existing admin user on the node, create an a
   -e node_admin_username=[new_admin_to_create]
 ```
 
-This leverages the existing admin to create a new one—a dedicated `dba` (uid=88) user described by these parameters, with sudo/ssh properly configured:
+The existing account creates a dedicated `dba` account with UID `88` by default.
+The playbook also configures sudo and SSH access.
+These parameters control the account:
 
 | Name                                                          | Description              | Default |
 |---------------------------------------------------------------|--------------------------|---------|
@@ -67,73 +57,62 @@ This leverages the existing admin to create a new one—a dedicated `dba` (uid=8
 | [`node_admin_username`](/docs/node/param#node_admin_username) | Node admin username      | `dba`   |
 {.full-width}
 
-
-
-----------------
-
 ## Sudo
 
-All [**admin users**](#user) should have `sudo` privileges on all managed nodes, preferably with passwordless execution.
+Give the [administration account](#user) `sudo` access on every managed node.
+Passwordless sudo is recommended.
 
-To configure an admin user with passwordless `sudo` from scratch, edit/create a sudoers file (assuming username `vagrant`):
+For an account named `vagrant`, create or edit its sudoers file:
 
 ```bash
 echo '%vagrant ALL=(ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/vagrant
 ```
 
-For admin user `dba`, the `/etc/sudoers.d/dba` content should be:
+For the `dba` account, use this content in `/etc/sudoers.d/dba`:
 
 ```bash
 %dba ALL=(ALL) NOPASSWD: ALL
 ```
 
-If your security policy prohibits passwordless `sudo`, remove the `NOPASSWD:` part:
+If your security policy prohibits passwordless `sudo`, remove `NOPASSWD:`:
 
 ```bash
 %dba ALL=(ALL) ALL
 ```
 
-Ansible relies on `sudo` to execute commands with root privileges on managed nodes.
-In environments where `sudo` is unavailable (e.g., inside Docker containers), install `sudo` first.
-
-
-
-----------------
+Ansible uses `sudo` to run commands with root privileges on managed nodes.
+If an environment has no `sudo`, install it first.
+This can apply to Docker containers.
 
 ## SSH
 
-Your current user should have passwordless SSH access to all managed nodes as the corresponding admin user.
-
-Your current user can be the admin user itself, but this isn't required—as long as you can SSH as the admin user.
-
-SSH configuration is Linux 101, but here are the basics:
-
+The current local account should have passwordless SSH access to the administration account on every managed node.
+The local and remote account names can differ.
+The following procedures describe the basic SSH configuration.
 
 ### Generate SSH Key
 
-If you don't have an SSH key pair, generate one:
+If you do not have an SSH key pair, generate one:
 
 ```bash
 ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 ```
 
-Pigsty will do this for you during the [`bootstrap`](/docs/setup/offline#bootstrap) stage if you lack a key pair.
-
+The [`bootstrap` script](/docs/setup/offline#bootstrap) also generates a key pair if none exists.
 
 ### Copy SSH Key
 
-Distribute your generated public key to remote (and local) servers, placing it in the admin user's `~/.ssh/authorized_keys` file on all nodes.
-Use the `ssh-copy-id` utility:
+Copy the public key to the administration account's `~/.ssh/authorized_keys` file on every node, including the local node.
+Use `ssh-copy-id`:
 
 ```bash
 ssh-copy-id <ip>                        # Interactive password entry
 sshpass -p <password> ssh-copy-id <ip>  # Non-interactive (use with caution)
 ```
 
-
 ### Using Alias
 
-When direct SSH access is unavailable (jumpserver, non-standard port, different credentials), configure SSH aliases in `~/.ssh/config`:
+If a node requires a jumpserver, another port, or different credentials, define an SSH alias in `~/.ssh/config`:
 
 ```bash
 Host meta
@@ -143,7 +122,7 @@ Host meta
     Port 24                       # Non-standard port
 ```
 
-Reference the alias in the inventory using `ansible_host` for the real SSH alias:
+Set `ansible_host` to this SSH alias in the inventory:
 
 ```yaml
 nodes:
@@ -151,48 +130,40 @@ nodes:
     10.10.10.10: { ansible_host: meta }  # Access via `ssh meta`
 ```
 
-SSH parameters work directly in Ansible. See [Ansible Inventory Guide](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters) for details.
-This technique enables accessing nodes in private networks via jumpservers, or using different ports and credentials,
-or using your local laptop as an admin node.
+Ansible can also use SSH connection parameters directly.
+See the [Ansible Inventory Guide](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#connecting-to-hosts-behavioral-inventory-parameters).
 
-
-
-----------------
+This method supports private nodes behind jumpservers and nodes with different ports or credentials.
+It also lets you use a local laptop as the administration node.
 
 ## Check Accessibility
 
-You should be able to passwordlessly `ssh` from the admin node to all managed nodes as your current user.
-The remote user (admin user) should have privileges to run passwordless `sudo` commands.
+From the administration node, the current account should reach every managed node through passwordless `ssh`.
+The remote administration account should also have passwordless `sudo` access.
 
-To verify passwordless ssh/sudo works, run this command on the admin node for all managed nodes:
+Run this command from the administration node for each managed node:
 
 ```bash
 ssh <ip|alias> 'sudo ls'
 ```
 
-If there's no password prompt or error, passwordless ssh/sudo is working as expected.
-
-
-
-
---------
+If the command returns without a password prompt or error, passwordless SSH and sudo access work.
 
 ## Firewall
 
-Production deployments typically require firewall configuration to block unauthorized port access.
+For production, configure the firewall to block unauthorized access to service ports.
+By default, block inbound access from office and Internet networks except these ports:
 
-By default, block inbound access from office/Internet networks except:
+- `22` for SSH node access.
+- `80` for HTTP and `443` for HTTPS Web UI access.
+- `5432` for PostgreSQL access.
 
-- SSH port `22` for node access
-- HTTP (`80`) / HTTPS (`443`) for WebUI services
-- PostgreSQL port `5432` for database access
+If clients use other PostgreSQL service ports, permit those ports as required.
+See the complete [port list](/docs/ref/port/).
 
-If accessing PostgreSQL via other ports, allow them accordingly.
-See [**used ports**](/docs/ref/port/) for the complete port list.
-
-- `5432`: PostgreSQL database
-- `6432`: Pgbouncer connection pooler
-- `5433`: PG primary service
-- `5434`: PG replica service
-- `5436`: PG default service
-- `5438`: PG offline service
+- `5432`: PostgreSQL database.
+- `6432`: PgBouncer connection pooler.
+- `5433`: PostgreSQL primary service.
+- `5434`: PostgreSQL replica service.
+- `5436`: PostgreSQL default service.
+- `5438`: PostgreSQL offline service.

@@ -14,7 +14,7 @@ categories: [Reference]
 
 ## Overview
 
-Every Pigsty deployment includes a set of infrastructure components that provide services for managed nodes and database clusters:
+Each Pigsty deployment includes infrastructure components that serve managed nodes and database clusters:
 
 |           Component           |   Port   | Description                                                            |
 |:-----------------------------:|:--------:|------------------------------------------------------------------------|
@@ -37,8 +37,8 @@ In Pigsty, the [PGSQL](/docs/pgsql) module uses some services on [**INFRA nodes*
 
 * Database cluster/host node domains depend on DNSMASQ on INFRA nodes for **resolution**.
 * **Installing** software on database nodes uses the local yum/apt repo hosted by Nginx on INFRA nodes.
-* Database cluster/node monitoring **metrics** are scraped and stored by VictoriaMetrics on INFRA nodes, accessible via VMUI / PromQL.
-* Database and node runtime logs are collected by Vector and pushed to VictoriaLogs on INFRA, searchable in Grafana.
+* VictoriaMetrics on INFRA nodes collects and stores database cluster and node **metrics**. Access them through VMUI / PromQL.
+* Vector collects database and node runtime logs and sends them to VictoriaLogs on INFRA nodes. Search these logs in Grafana.
 * VMAlert **evaluates** alert rules based on metrics in VictoriaMetrics and forwards events to Alertmanager.
 * Users initiate **management** of database nodes from Infra/Admin nodes using Ansible or other tools:
   * Execute cluster creation, scaling, instance/cluster recycling
@@ -53,11 +53,11 @@ In Pigsty, the [PGSQL](/docs/pgsql) module uses some services on [**INFRA nodes*
 
 ### Nginx
 
-Nginx is the access entry point for all WebUI services in Pigsty, using port 80 on the admin node by default.
+Nginx provides access to all Pigsty WebUI services. It uses port 80 on the admin node by default.
 
-Many infrastructure components with WebUI are exposed through Nginx, such as Grafana, VictoriaMetrics (VMUI), AlertManager, and HAProxy traffic management pages. Additionally, static file resources like yum/apt repos are served through Nginx.
+Nginx exposes infrastructure WebUIs, including Grafana, VictoriaMetrics (VMUI), AlertManager, and HAProxy traffic management pages. It also serves static files, including yum/apt repositories.
 
-Nginx exposes built-in Web services through subpaths under `i.pigsty` by default. It can also route access requests to corresponding upstream components based on **domain names** according to [`infra_portal`](/docs/infra/param#infra_portal) configuration.
+Nginx exposes built-in Web services through subpaths under `i.pigsty` by default. The [`infra_portal`](/docs/infra/param#infra_portal) configuration also lets Nginx route requests to upstream components by **domain name**.
 If you use other domains or public domains, you can modify them here:
 
 ```yaml
@@ -73,11 +73,11 @@ infra_portal:  # domain names and upstream servers
 ```
 
 Pigsty strongly recommends using domain names to access Pigsty UI systems rather than direct IP+port access, for these reasons:
-* Using domains makes it easy to enable HTTPS traffic encryption, consolidate access to Nginx, audit all requests, and conveniently integrate authentication mechanisms.
+* Domains simplify HTTPS encryption and centralize access through Nginx. They also simplify request auditing and authentication integration.
 * Some components only listen on 127.0.0.1 by default, so they can only be accessed through Nginx proxy.
 * Domain names are easier to remember and provide additional configuration flexibility.
 
-If you don't have available internet domains or local DNS resolution, you can add local static resolution records in `/etc/hosts` (MacOS/Linux) or `C:\Windows\System32\drivers\etc\hosts` (Windows).
+Without internet domains or local DNS, add static resolution records on the client. Use `/etc/hosts` on MacOS/Linux or `C:\Windows\System32\drivers\etc\hosts` on Windows.
 
 Nginx configuration parameters are at: [Configuration: INFRA - NGINX](/docs/infra/param#nginx)
 
@@ -88,9 +88,9 @@ Nginx configuration parameters are at: [Configuration: INFRA - NGINX](/docs/infr
 
 Pigsty creates a local software repository during installation to accelerate subsequent software installation.
 
-This repository is served by Nginx, located by default at `/www/pigsty`, accessible via `http://i.pigsty/pigsty`.
+Nginx serves this repository. Its default directory is `/www/pigsty`, and its URL is `http://i.pigsty/pigsty`.
 
-A Pigsty offline bundle is a compressed prebuilt RPM/APT repository directory. The current source uses SOW to create repositories. If `/www/pigsty/repo_complete` exists, Pigsty treats the local repository as complete and skips upstream downloads. This file contains SHA-256 checksums; it is not merely an empty marker.
+A Pigsty offline bundle is a compressed prebuilt RPM/APT repository directory. The current source uses SOW to create repositories. If `/www/pigsty/repo_complete` exists, Pigsty treats the local repository as complete and skips upstream downloads. This file contains SHA-256 checksums. It is not an empty marker.
 
 The repo definition file is at `/www/pigsty.repo`, accessible by default via `http://${admin_ip}/pigsty.repo`
 
@@ -115,13 +115,13 @@ Local repository configuration parameters are at: [Configuration: INFRA - REPO](
 
 ### Victoria Observability Suite
 
-Pigsty v4 uses the VictoriaMetrics family to replace Prometheus/Loki, providing unified monitoring, logging, and tracing capabilities:
+Pigsty v4 replaces Prometheus/Loki with the VictoriaMetrics family. These components provide integrated monitoring, logging, and tracing:
 
-* **VictoriaMetrics** listens on port `8428` by default, accessible via `https://i.pigsty/vmetrics/` for VMUI, compatible with Prometheus API. You can also configure a dedicated domain in `infra_portal`.
+* **VictoriaMetrics** listens on port `8428` by default. Access VMUI at `https://i.pigsty/vmetrics/`. Its API is compatible with Prometheus. You can also configure a dedicated domain in `infra_portal`.
 * **VMAlert** evaluates alert rules in `/infra/rules/*.yml`, listens on port `8880`, and sends alert events to Alertmanager.
-* **VictoriaLogs** listens on port `9428`, supports the `https://i.pigsty/vlogs/` query interface. All nodes run Vector by default, pushing structured system logs, PostgreSQL logs, etc. to VictoriaLogs.
-* **VictoriaTraces** listens on port `10428` for slow SQL / Trace collection, Grafana accesses it as a Jaeger datasource.
-* **Alertmanager** listens on port `9059`, accessible via `https://i.pigsty/alertmgr/` for managing alert notifications. If `a.pigsty` is configured in `infra_portal`, it can also be accessed through a dedicated domain. After configuring SMTP, Webhook, etc., it can push messages.
+* **VictoriaLogs** listens on port `9428`. Query logs through `https://i.pigsty/vlogs/`. All nodes run Vector by default to send structured system logs, PostgreSQL logs, and other logs to VictoriaLogs.
+* **VictoriaTraces** listens on port `10428` for slow SQL / Trace collection. Grafana accesses it as a Jaeger datasource.
+* **Alertmanager** listens on port `9059`. Manage alert notifications at `https://i.pigsty/alertmgr/`. To use a dedicated domain, configure `a.pigsty` in `infra_portal`. Configure SMTP, Webhook, or another receiver to send notifications.
 * **Blackbox Exporter** listens on port `9115` by default for Ping/TCP/HTTP probing, accessible via `https://i.pigsty/blackbox/`.
 
 For more information, see: [Configuration: INFRA - VICTORIA](/docs/infra/param#victoria) and [Configuration: INFRA - PROMETHEUS](/docs/infra/param#prometheus).
@@ -132,11 +132,11 @@ For more information, see: [Configuration: INFRA - VICTORIA](/docs/infra/param#v
 
 ### Grafana
 
-Grafana is the core of Pigsty's WebUI, listening on port `3000` by default. It can be accessed through `https://i.pigsty/ui/` or directly via `IP:3000`; if `g.pigsty` is configured in `infra_portal`, it can also be accessed through a dedicated domain.
+Grafana is the core of Pigsty's WebUI. It listens on port `3000` by default. Access it through `https://i.pigsty/ui/` or directly at `IP:3000`. To use a dedicated domain, configure `g.pigsty` in `infra_portal`.
 
-Pigsty comes with preconfigured datasources for VictoriaMetrics / Logs / Traces (`vmetrics-*`, `vlogs-*`, `vtraces-*`), and numerous dashboards with URL-based navigation for quick problem location.
+Pigsty includes preconfigured VictoriaMetrics / Logs / Traces datasources: `vmetrics-*`, `vlogs-*`, and `vtraces-*`. It also includes many dashboards with URL-based navigation to help locate problems quickly.
 
-Grafana can also be used as a general low-code visualization platform, so Pigsty installs plugins like ECharts and victoriametrics-datasource by default for building monitoring dashboards or inspection reports.
+Grafana also serves as a general low-code visualization platform. Pigsty installs plugins such as ECharts and victoriametrics-datasource by default. Use these plugins to build monitoring dashboards or inspection reports.
 
 Grafana configuration parameters are at: [Configuration: INFRA - GRAFANA](/docs/infra/param#grafana).
 
@@ -146,7 +146,7 @@ Grafana configuration parameters are at: [Configuration: INFRA - GRAFANA](/docs/
 
 ### Ansible
 
-Pigsty installs Ansible on the meta node by default. Ansible is a popular operations tool with declarative configuration style and idempotent playbook design that greatly reduces system maintenance complexity.
+Pigsty installs Ansible on the meta node by default. Ansible uses declarative configuration and idempotent playbooks. These features reduce system maintenance complexity.
 
 
 ----------------
@@ -185,7 +185,7 @@ For details, see the [PGSQL](/docs/pgsql) module and [Configuration: INFRA - MET
 
 ## Configuration
 
-To install the INFRA module on a node, first add it to the `infra` group in the config inventory and assign an instance number [`infra_seq`](/docs/infra/param#infra_seq)
+To install INFRA on a node, add it to the `infra` inventory group. Assign an instance number with [`infra_seq`](/docs/infra/param#infra_seq).
 
 ```yaml
 # Configure single INFRA node
@@ -315,15 +315,15 @@ The INFRA module playbook [`infra.yml`](https://github.com/pgsty/pigsty/blob/mai
 **This playbook executes on [INFRA nodes](/docs/concept/arch/node#infra-node) by default**
 
 * Pigsty uses the **current node executing this playbook** as Pigsty's [**INFRA node**](/docs/concept/arch/node#infra-node) and [**ADMIN node**](/docs/concept/arch/node#admin-node) by default.
-* During [configuration](/docs/setup/install#configure), Pigsty marks the current node as Infra/Admin node and replaces the placeholder IP `10.10.10.10` in config templates with the **current node's primary IP address**.
+* During [configuration](/docs/setup/install#configure), Pigsty marks the current node as the Infra/Admin node. It replaces `10.10.10.10` in templates with the **current node's primary IP address**.
 * Besides initiating management and hosting infrastructure, this node is no different from a regular managed node.
 * In single-node installation, ETCD is also installed on this node to provide DCS service
 
 **Notes about this playbook**
 
-* This is an idempotent playbook; repeated execution will wipe infrastructure components on meta nodes.
+* This playbook is idempotent. Repeated execution wipes infrastructure components on meta nodes.
 * To preserve historical monitoring data, first set `vmetrics_clean`, `vlogs_clean`, `vtraces_clean` to `false`.
-* When offline repo `/www/pigsty/repo_complete` exists, this playbook skips downloading software from internet. Full execution takes about 5-8 minutes depending on machine configuration.
+* If `/www/pigsty/repo_complete` exists, the playbook skips internet downloads. Full execution takes about 5-8 minutes, depending on machine configuration.
 * Downloading directly from upstream internet sources without offline package may take 10-20 minutes depending on your network conditions.
 
 [![asciicast](https://asciinema.org/a/566412.svg)](https://asciinema.org/a/566412)
@@ -352,7 +352,7 @@ Full execution has no deletion safeguard and removes `infra_data`, `nginx_data`,
 
 ### `deploy.yml`
 
-The INFRA module playbook [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) deploys the NODE, INFRA, ETCD, MINIO, and PGSQL core chain on **all nodes** in one pass. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
+The [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) playbook deploys the NODE, INFRA, ETCD, MINIO, and PGSQL core chain on **all nodes** in one pass. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
 
 This playbook is described in more detail in [Playbook: One-Time Installation](/docs/setup/playbook#deployment-playbook).
 

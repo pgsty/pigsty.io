@@ -7,11 +7,11 @@ module: [PIGSTY, INFRA, PGSQL]
 categories: [Concept]
 ---
 
-TLS can provide three separate protections: **transport encryption**, **server authentication**, and **client authentication**. Each must be configured independently. Enabling server-side TLS does not mean the client verifies the server identity, nor does it mean the server requires a client certificate.
+TLS can provide **transport encryption**, **server authentication**, and **client authentication**. Configure each protection separately. Enabling server TLS does not make clients verify the server or make the server require client certificates.
 
-The main operational cost of TLS is not the encryption algorithm but certificate issuance, distribution, trust, and rotation. Without centralized management, internal services often encrypt traffic while skipping certificate verification—or remain on plaintext connections.
+Most TLS operational work involves certificate issuance, distribution, trust, and rotation. Without central management, services often skip verification or keep plaintext connections.
 
-Pigsty brings PKI under declarative management. During deployment it creates a local self-signed CA, issues certificates for managed components, and distributes trust so TLS is ready for use after installation.
+Pigsty manages PKI declaratively. Deployment creates a local self-signed CA, issues component certificates, and distributes trust. TLS is then ready for use.
 
 
 ---------------
@@ -20,7 +20,7 @@ Pigsty brings PKI under declarative management. During deployment it creates a l
 
 ## Local CA
 
-During the first deployment, Pigsty checks for a CA on the [**admin node**](/docs/concept/arch/node#admin-node) and creates one when required:
+During initial deployment, Pigsty checks for a CA on the [**administration node**](/docs/concept/arch/node#admin-node). It creates one when required:
 
 | File | Description | Permissions |
 |:---|:---|:---|
@@ -28,28 +28,25 @@ During the first deployment, Pigsty checks for a CA on the [**admin node**](/doc
 | `files/pki/ca/ca.crt` | CA root certificate; safe to distribute | `0644` |
 {.full-width}
 
-- [`ca_create`](/docs/infra/param#ca_create) controls CA behavior. An existing private key and certificate are reused unchanged; if the certificate is missing but the private key exists, that key is used to issue a replacement certificate.
-  `ca_create: false` only prevents creation of a missing CA private key. Deployment stops if `ca.key` is absent, preventing an unexpected trust root. Always back up and restore `ca.key` and `ca.crt` together.
-- [`ca_cn`](/docs/infra/param#ca_cn) sets the CA certificate CN, which defaults to `pigsty-ca`. The key is RSA 4096.
-- The root CA is valid for 100 years, while component certificates default to 20 years ([`cert_validity`](/docs/infra/param#cert_validity): `7300d`).
-  The browser-facing Nginx certificate is an exception and currently defaults to 397 days.
+- [`ca_create`](/docs/infra/param#ca_create) controls CA behavior. Pigsty reuses an existing key and certificate unchanged. If only the key exists, it issues a replacement certificate with that key. `ca_create: false` prevents creation of a missing private key. If `ca.key` is absent, deployment stops instead of creating an unexpected trust root. Always back up and restore `ca.key` and `ca.crt` together.
+- [`ca_cn`](/docs/infra/param#ca_cn) sets the certificate CN, default `pigsty-ca`. The key is RSA 4096.
+- The root CA is valid for 100 years. Component certificates default to 20 years ([`cert_validity`](/docs/infra/param#cert_validity): `7300d`). The browser-facing Nginx certificate is an exception, with a current default of 397 days.
 
-Long default lifetimes reduce the initial maintenance burden for private infrastructure; they do not remove the need for production rotation. Organizations with an established certificate policy should shorten lifetimes and monitor expiration.
+Long default lifetimes reduce initial maintenance for private infrastructure. Production still needs certificate rotation. Organizations with a certificate policy should shorten lifetimes and monitor expiration.
 
 
 ---------------
 
 ## Trust Distribution
 
-Issuing a certificate is only half of PKI. Every [**node**](/docs/concept/arch/node) must trust it. When a node is managed, Pigsty distributes the CA certificate to `/etc/pki/ca.crt` and links it into the operating system trust store:
+Every [**node**](/docs/concept/arch/node) must trust the CA. When managing a node, Pigsty copies the CA certificate to `/etc/pki/ca.crt` and links it into the OS trust store:
 
 - EL family (RHEL, Rocky, Alma): link under `/etc/pki/ca-trust/source/anchors/` and run `update-ca-trust`
 - Debian and Ubuntu: link under `/usr/local/share/ca-certificates/` and run `update-ca-certificates`
 
-Clients that use the OS trust store, such as `curl`, can then verify certificates signed by the Pigsty CA.
-The CA certificate is also published as `ca.crt` at the site root of the [**Nginx portal**](/docs/concept/arch/infra#nginx) for browsers and external clients.
+Clients that use the OS trust store, such as `curl`, can then verify Pigsty CA certificates. The [**Nginx portal**](/docs/concept/arch/infra#nginx) also publishes `ca.crt` at its site root for browsers and external clients.
 
-PostgreSQL libpq clients require special attention: by default they look for `~/.postgresql/root.crt` and use `sslmode=prefer`, so they do not directly use the operating system trust store to verify the server identity.
+By default, PostgreSQL libpq clients look for `~/.postgresql/root.crt` and use `sslmode=prefer`. They do not directly use the OS trust store to verify server identity.
 
 
 ---------------
@@ -62,7 +59,7 @@ Security-sensitive PostgreSQL clients should use `sslmode=verify-full` and speci
 psql "host=pg-meta dbname=postgres user=dbuser_dba sslmode=verify-full sslrootcert=/etc/pki/ca.crt"
 ```
 
-`verify-full` validates both the certificate chain and the connection host name. The DNS name or IP address used by the client must therefore appear in the server certificate SAN. External clients must install `ca.crt` or specify it with `sslrootcert`.
+`verify-full` checks the certificate chain and connection hostname. The server certificate SAN must contain the client's DNS name or IP address. External clients must install `ca.crt` or specify it with `sslrootcert`.
 
 
 ---------------
@@ -71,7 +68,7 @@ psql "host=pg-meta dbname=postgres user=dbuser_dba sslmode=verify-full sslrootce
 
 ## Certificate Matrix
 
-The local CA issues certificates for the following components and places them under one trust chain:
+The local CA issues certificates for these components under one trust chain:
 
 | Component | Certificate Identity (CN) | Deployment Path | Encryption State |
 |:---|:---|:---|:---|
@@ -86,14 +83,13 @@ The local CA issues certificates for the following components and places them un
 | [**INFRA node**](/docs/concept/arch/node#infra-node) | `<node-name>` | `/etc/pki/infra.{crt,key}` | Available to infrastructure components |
 {.full-width}
 
-The encryption-state column reflects deliberate defaults:
+These defaults distinguish available TLS from enabled TLS:
 
-- **Enabled at deployment**: PostgreSQL accepts SSL connections; etcd uses TLS for client and peer traffic.
-- **Encrypted by default**: Object-storage backup traffic through the MINIO module and Nginx web traffic use HTTPS.
-- **Disabled by default, available on demand**: TLS for the Patroni REST API and PgBouncer is disabled by default, but certificates are already present. Enable it through the corresponding parameters; both are enabled in the [**`ha/safe` template**](/docs/conf/safe).
+- **Enabled at deployment:** PostgreSQL accepts SSL connections. etcd uses TLS for clients and peers.
+- **Encrypted by default:** Object storage backup traffic through MINIO and Nginx web traffic use HTTPS.
+- **Available but disabled:** Patroni API and PgBouncer TLS is disabled, with certificates already installed. Enable the corresponding parameters. [**`ha/safe`**](/docs/conf/safe) enables both.
 
-Keep three states distinct: **server-side SSL support does not force clients to use SSL, and neither state proves that the client verifies the server identity**.
-[**HBA rules**](/docs/concept/sec/auth) enforce encryption with `auth: ssl` or `cert`. Client `sslmode` and trust settings control server verification. The default rules require TLS only for administrator connections from arbitrary sources. The safe template changes the main TCP rules to `ssl` or `cert` while retaining local `ident` and selected localhost password rules.
+**SSL support, mandatory encryption, and client verification of server identity are separate states.** [**HBA**](/docs/concept/sec/auth) enforces encryption with `auth: ssl` or `cert`. Client `sslmode` and trust settings control server verification. Default rules require TLS only for administrator connections from arbitrary sources. The safe template uses `ssl` or `cert` for main TCP rules. It retains local `ident` and selected localhost password rules.
 
 
 ---------------
@@ -102,14 +98,14 @@ Keep three states distinct: **server-side SSL support does not force clients to 
 
 ## Client Certificates
 
-The built-in `cert.yml` playbook issues client certificates. The certificate CN represents the database user name for HBA `cert` authentication:
+`cert.yml` issues client certificates. For HBA `cert` authentication, the certificate CN represents the database user name:
 
 ```bash
 ./cert.yml -e cn=dbuser_dba                  # Issue a 20-year client certificate by default
 ./cert.yml -e cn=dbuser_dba -e expire=365d  # Or specify a shorter lifetime
 ```
 
-Results are stored in `files/pki/misc/<cn>.key` and `files/pki/misc/<cn>.crt`. Deliver private keys through a controlled channel and make them readable only by the corresponding user. The client certificate lets the server authenticate the client; the client must still use `verify-full` to authenticate the database server.
+The files are `files/pki/misc/<cn>.key` and `files/pki/misc/<cn>.crt`. Deliver private keys through a controlled channel and allow only the corresponding user to read them. Client certificates let the server verify clients. The client must still use `verify-full` to verify the database server.
 
 
 ---------------
@@ -118,23 +114,23 @@ Results are stored in `files/pki/misc/<cn>.key` and `files/pki/misc/<cn>.crt`. D
 
 ## Using an Enterprise CA
 
-If the organization already operates a PKI, Pigsty can issue certificates from that CA, or from an intermediate signed by the enterprise root. Place the certificate and private key at the expected paths; playbooks do not regenerate a CA when one already exists:
+Pigsty can issue certificates from an existing enterprise CA or an intermediate signed by its root. Put the certificate and private key at these paths. Playbooks reuse an existing CA:
 
 ```bash
 files/pki/ca/ca.key    # CA or intermediate CA private key
 files/pki/ca/ca.crt    # Corresponding CA certificate
 ```
 
-Also set `ca_create: false`. Deployment will then fail explicitly if the private key is missing instead of creating an unexpected trust root. This setting does not stop the role from reissuing the CA certificate when the private key exists but the certificate is missing, so verify and restore both files together.
+Also set `ca_create: false`. Deployment then stops if the private key is missing, rather than creating a new trust root. However, an existing key with a missing certificate still causes certificate reissuance. Verify and restore both files together.
 
 
 ---------------
 
 ## Key Protection and Rotation
 
-- The CA private key exists only on the admin node. Together with `pigsty.yml`, it is one of the highest-trust assets in the deployment; see [**Trust Boundaries**](/docs/concept/sec/level#trust-boundaries). Keep an offline backup.
-- If the CA private key is compromised, establish a new trust root and reissue every component and client certificate. Plan an overlap period in which both old and new CAs are trusted to avoid interrupting all connections at once.
-- Component certificate sources are stored under `files/pki/<component>/` on the admin node; node certificates are deployment copies. Deleting only a node copy restores the same certificate rather than issuing a new one. To rotate, update or remove the corresponding source on the admin node, rerun the relevant playbook, then reload or roll the component as required.
+- The CA private key exists only on the administration node. It and `pigsty.yml` are among the deployment's highest-trust assets. Keep an offline backup. See [**Trust Boundaries**](/docs/concept/sec/level#trust-boundaries).
+- If the CA key is compromised, establish a new trust root and reissue every component and client certificate. Plan a period of trust in both CAs to avoid interrupting all connections together.
+- Component certificate sources reside at `files/pki/<component>/` on the administration node. Node files are deployment copies. Deleting only a node copy restores the same certificate. To rotate, update or remove the source, rerun the relevant playbook, and reload or roll the component as required.
 
 
 ---------------

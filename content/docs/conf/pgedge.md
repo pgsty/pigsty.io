@@ -6,7 +6,7 @@ icon: fa-solid fa-network-wired
 categories: [Reference]
 ---
 
-The `pgedge` configuration template replaces native PostgreSQL with the pgEdge kernel and provides distributed, multi-master capabilities for edge deployments.
+The `pgedge` configuration template uses the pgEdge kernel instead of native PostgreSQL. The kernel provides distributed, multi-master capabilities for edge deployments.
 
 For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
 
@@ -42,12 +42,12 @@ Source: [`pigsty/conf/pgedge.yml`](https://github.com/pgsty/pigsty/blob/main/con
 
 ## Notes
 
-The `pgedge` template enables `pg_mode: pgedge` in `pg-meta` and pre-installs pgEdge core extensions for logical replication and edge distribution.
+The `pgedge` template enables `pg_mode: pgedge` in `pg-meta`. It pre-installs pgEdge core extensions for logical replication and edge distribution.
 
 **Key features**:
 
 - Uses the `pgedge` kernel package (PG15/16/17/18 compatible, default PG18)
-- Bundles `spock`, `snowflake`, and `lolor` in the `pgedge-$v` kernel package and creates them in the `meta` database by default
+- The `pgedge-$v` kernel package includes `spock`, `snowflake`, and `lolor`. The template creates these extensions in the `meta` database by default.
 - Preloads [`spock`](/ext/e/spock/) and [`lolor`](/ext/e/lolor/) for multi-master setup readiness
 - Keeps Pigsty standard backup, monitoring, and operations workflow
 
@@ -59,6 +59,6 @@ The `pgedge` template enables `pg_mode: pgedge` in `pg-meta` and pre-installs pg
 
 **Caveats**:
 
-- Current template is for single-node kernel validation; production multi-master needs explicit topology and replication strategy planning
+- Use the current template to validate the kernel on one node. For production multi-master deployment, explicitly plan the topology and replication strategy.
 - Default is `pg_version: 18`; keep consistent with target cluster versions
 - Evaluate latency and conflict policy before cross-region replication

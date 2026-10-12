@@ -72,8 +72,7 @@ series:
 | **Passive Failover** (Node crash) | Dies with node |  Cannot actively release, must wait for TTL expiration  |          `ttl`          |
 {.full-width}
 
-In passive failover scenarios, Patroni dies along with the node and **cannot actively release the Leader Key**.
-The lease in DCS can only trigger cluster election after TTL naturally expires.
+During passive failure, Patroni stops with the node and **cannot release the Leader Key**. An election waits until the DCS lease TTL expires.
 
 
 --------
@@ -82,7 +81,7 @@ The lease in DCS can only trigger cluster election after TTL naturally expires.
 
 ### Phase 1: Lease Expiration
 
-The Patroni primary refreshes the Leader Key every `loop_wait` cycle, resetting TTL to the configured value.
+Primary Patroni renews the Leader Key each `loop_wait` cycle and resets its TTL.
 
 ```text
 Timeline:
@@ -108,7 +107,7 @@ ttl & \text{Worst}
 
 ### Phase 2: Replica Detection
 
-Replicas wake up on `loop_wait` cycles and check the Leader Key status in DCS.
+Each `loop_wait` cycle, replicas check the DCS Leader Key.
 
 ```text
 Timeline:
@@ -132,11 +131,11 @@ loop & \text{Worst}
 
 ### Phase 3: Lock Contest & Promote
 
-When replicas detect Leader Key expiration, they start the election process. The replica that acquires the Leader Key executes `pg_ctl promote` to become the new primary.
+After detecting Leader Key expiration, replicas begin an election. The winner acquires the key and runs `pg_ctl promote`.
 
-1. Via REST API, parallel queries to check each replica's replication position, typically 10ms, hardcoded 2s timeout.
-2. Compare WAL positions to determine the best candidate, replicas attempt to create Leader Key (CAS atomic operation)
-3. Execute `pg_ctl promote` to become primary (very fast, typically negligible)
+1. Query replica replication positions in parallel through REST APIs. Typical response time is 10ms; the hardcoded timeout is 2s.
+2. Compare WAL positions and select the best candidate. Replicas attempt atomic CAS creation of the Leader Key.
+3. Run `pg_ctl promote`. Its duration is usually negligible.
 
 ```text
 Election Flow:
@@ -159,7 +158,7 @@ T_{elect} = \begin{cases}
 
 ### Phase 4: Health Check
 
-HAProxy detects the new primary online, requiring `rise` consecutive successful health checks.
+HAProxy requires `rise` consecutive successful checks before routing traffic to the new primary.
 
 ```text
 Detection Timeline:
@@ -185,7 +184,7 @@ T_{haproxy} = \begin{cases}
 
 ## RTO Formula
 
-Sum all phase times to get total RTO:
+Add the phase durations to calculate total RTO:
 
 **Best Case**
 
@@ -212,7 +211,7 @@ RTO_{max} = ttl + loop + 2 + inter + (rise-1) \times fastinter
 
 ## Model Calculation
 
-Substitute the four RTO model parameters into the formulas above:
+Apply the four RTO presets to these formulas:
 
 ```yaml
 pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]

@@ -12,7 +12,7 @@ Pigsty provides two playbooks related to the NODE module:
 - [`node.yml`](#nodeyml): Add nodes to Pigsty and configure them to the desired state
 - [`node-rm.yml`](#node-rmyml): Remove managed nodes from Pigsty
 
-Two wrapper scripts are also provided: `bin/node-add` and `bin/node-rm`, for quickly invoking these playbooks.
+Use `bin/node-add` and `bin/node-rm` as shortcuts to run these playbooks.
 
 
 ----------------
@@ -68,14 +68,14 @@ node_crontab   : restore default /etc/crontab (if node_crontab_overwrite=true)
 profile        : remove /etc/profile.d/node.sh
 ```
 
-`node-rm.yml` removes Pigsty management and stops NODE-related services; it is not an operating-system teardown or full uninstall:
+`node-rm.yml` removes Pigsty management and stops NODE services. It does not remove the operating system or perform a full uninstall:
 
 - It deregisters Node, Docker, Ping, VIP, and other monitoring targets, plus the HAProxy administration portal.
 - It stops and disables HAProxy, Node Exporter, Vector, and Keepalived/Exporter when enabled.
 - It removes HAProxy configuration and NODE Vector configuration, and deletes `vector_data` (default: `/data/vector`).
 - It does not uninstall packages, remove the admin user, delete `node_data`, stop Docker, or delete Docker data.
 
-The current removal role deletes `vector_data` directly and does not use the installation role's `vector_clean` switch. Confirm that no Vector buffer data must be retained before running it.
+The current removal role deletes `vector_data` directly. It does not use the installation role's `vector_clean` switch. Confirm that no Vector buffer data must be retained before running it.
 
 
 ----------------

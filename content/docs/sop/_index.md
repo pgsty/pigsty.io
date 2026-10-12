@@ -68,11 +68,17 @@ categories: [Tutorial, Reference]
 
 For production deployment, start with [**Planning**](/docs/deploy/planning/) and [**Preparation**](/docs/deploy/prepare/). These two pages cover node count, disks, filesystems, networks, VIPs, domains, and software sources.
 
-After machines are ready, read [**Administration Model**](/docs/deploy/admin/): admin users, passwordless SSH, sudo, reachability, and firewall handling are covered there. Check system versions and architectures in [**Linux Compatibility**](/docs/ref/linux/).
+After the machines are ready, read [**Administration Model**](/docs/deploy/admin/). It covers admin users, passwordless SSH, sudo, reachability, and firewall configuration. Check system versions and architectures in [**Linux Compatibility**](/docs/ref/linux/).
 
 Use [**Quick Start**](/docs/setup/install/) for the first installation. Use [**Production Deployment**](/docs/deploy/install/) for multi-node production environments. If there is no internet access, read [**Offline Installation**](/docs/setup/offline/) and [**Repository Management**](/docs/infra/admin/repo/).
 
-Do not overthink template choice at the beginning: use [**`meta`**](/docs/conf/meta/) for single-node default deployment; [**`ha/trio`**](/docs/conf/trio/) for three-node HA; [**`ha/full`**](/docs/conf/full/) for more complete HA; [**`ha/safe`**](/docs/conf/safe/) when consistency matters; and [**`ha/dual`**](/docs/conf/dual/) or [**`ha/simu`**](/docs/conf/simu/) when resources are tight.
+Select an initial template for your requirements:
+
+- Use [**`meta`**](/docs/conf/meta/) for a default single-node deployment.
+- Use [**`ha/trio`**](/docs/conf/trio/) for three-node HA.
+- Use [**`ha/full`**](/docs/conf/full/) for more complete HA.
+- Use [**`ha/safe`**](/docs/conf/safe/) when consistency matters.
+- Use [**`ha/dual`**](/docs/conf/dual/) or [**`ha/simu`**](/docs/conf/simu/) when resources are limited.
 
 
 ----------------
@@ -81,13 +87,15 @@ Do not overthink template choice at the beginning: use [**`meta`**](/docs/conf/m
 
 First distinguish three names: cluster name, database name, and service name.
 
-`pg_cluster` is the top-level name Pigsty uses to manage a PostgreSQL cluster. It affects instance names, service names, backup stanzas, monitoring labels, and many file paths. It is not a display name that can be casually changed. See [**PGSQL Cluster Model**](/docs/concept/model/pgsql/) for naming rules, [**Cluster Instance Config**](/docs/pgsql/config/cluster/) for instance roles, and [**Service/Access**](/docs/pgsql/service/) for service names and connection entrypoints.
+`pg_cluster` is the top-level name Pigsty uses to manage a PostgreSQL cluster. It affects instance names, service names, backup stanzas, monitoring labels, and many file paths. Do not treat it as a display name that you can change freely. See [**PGSQL Cluster Model**](/docs/concept/model/pgsql/) for naming rules. See [**Cluster Instance Config**](/docs/pgsql/config/cluster/) for instance roles. See [**Service/Access**](/docs/pgsql/service/) for service names and connection entrypoints.
 
-Database names and user names are logical objects inside PostgreSQL. See [**Database Config**](/docs/pgsql/config/db/) and [**Database Management**](/docs/pgsql/admin/db/) for databases; [**User/Role Config**](/docs/pgsql/config/user/) and [**User Management**](/docs/pgsql/admin/user/) for users and roles; and [**Access Control**](/docs/concept/sec/ac) plus [**ACL Config**](/docs/pgsql/config/acl/) for the privilege model.
+Database names and user names are logical objects inside PostgreSQL. See [**Database Config**](/docs/pgsql/config/db/) and [**Database Management**](/docs/pgsql/admin/db/) for databases. See [**User/Role Config**](/docs/pgsql/config/user/) and [**User Management**](/docs/pgsql/admin/user/) for users and roles. See [**Access Control**](/docs/concept/sec/ac) and [**ACL Config**](/docs/pgsql/config/acl/) for the privilege model.
 
 In practice, use lowercase letters, digits, and hyphens for cluster names, such as `pg-meta`, `pg-test`, and `pg-user-prod`. Use `snake_case` for database object names. Avoid non-ASCII names, spaces, mixed case, and SQL keywords. For more background, read [**Database Cluster Management Concepts and Entity Naming Rules**](https://vonng.com/pg/entity-and-naming/) and [**PostgreSQL Convention (2024 Edition)**](https://vonng.com/pg/pg-convention/).
 
-Follow one habit for config changes: edit `pigsty.yml` first, then run the corresponding playbook. See [**Declarative Configuration**](/docs/concept/iac/) and [**Configuration Guide**](/docs/setup/config/) for config structure; [**Configuration Parameters**](/docs/concept/iac/parameter/) and [**Parameter List**](/docs/ref/param/) for parameter meanings; [**Playbooks**](/docs/setup/playbook/) and [**Playbook List**](/docs/ref/playbook/) for playbook entrypoints.
+For configuration changes, edit `pigsty.yml` first. Then run the corresponding playbook.
+
+See [**Declarative Configuration**](/docs/concept/iac/) and [**Configuration Guide**](/docs/setup/config/) for configuration structure. See [**Configuration Parameters**](/docs/concept/iac/parameter/) and [**Parameter List**](/docs/ref/param/) for parameter meanings. See [**Playbooks**](/docs/setup/playbook/) and [**Playbook List**](/docs/ref/playbook/) for playbook entrypoints.
 
 
 ----------------
@@ -116,11 +124,11 @@ For background reading, see [**Routine PostgreSQL Maintenance**](https://vonng.c
 
 ## High Availability Drills
 
-To understand HA, start with [**PostgreSQL HA**](/docs/concept/ha/). Do not only ask "can it fail over automatically"; also read [**RPO**](/docs/concept/ha/rpo/) and [**RTO**](/docs/concept/ha/rto/): the former is the maximum acceptable data loss, and the latter is the time to restore service.
+To understand HA, start with [**PostgreSQL HA**](/docs/concept/ha/). Also read [**RPO**](/docs/concept/ha/rpo/) and [**RTO**](/docs/concept/ha/rto/). RPO is the maximum acceptable data loss. RTO is the time to restore service. Evaluate these measures as well as automatic failover.
 
 For access-layer behavior, see [**HA Service Access**](/docs/concept/ha/svc/) and [**Service/Access**](/docs/pgsql/service/). For component relationships, see [**PGSQL Architecture**](/docs/concept/arch/pgsql/). For Etcd's role, see [**ETCD Config**](/docs/etcd/config/).
 
-Drill entrypoints are concentrated in three places: [**Patroni Management**](/docs/pgsql/admin/patroni/) for planned switchover; [**Component Management**](/docs/pgsql/admin/component/) for service status; and [**3-of-2 Failure Drill**](/docs/pgsql/tutorial/drill/) for extreme failures. If you need VIP, read [**Configure PG VIP**](/docs/pgsql/tutorial/pg-vip/).
+For planned switchover drills, see [**Patroni Management**](/docs/pgsql/admin/patroni/). For service status, see [**Component Management**](/docs/pgsql/admin/component/). For extreme failures, see [**3-of-2 Failure Drill**](/docs/pgsql/tutorial/drill/). If you need VIP, read [**Configure PG VIP**](/docs/pgsql/tutorial/pg-vip/).
 
 Background article: [**How Should PostgreSQL High Availability Be Done?**](https://vonng.com/pg/pg-ha-sota/).
 
@@ -135,7 +143,12 @@ For configuration and maintenance, see [**Backup & Restore**](/docs/pgsql/backup
 
 When actually restoring, use [**Restore Operations**](/docs/pgsql/backup/restore/) for the automatic path and [**Manual Recovery**](/docs/pgsql/tutorial/pitr/) for drills. For dropped data, tables, or databases, see [**Drop Recovery**](/docs/pgsql/tutorial/drop/). If you do not want to touch the original cluster directly, start with [**Clone Database Cluster**](/docs/pgsql/backup/cluster/) or [**Fork Instance**](/docs/pgsql/tutorial/pg-fork/).
 
-Before recovery, confirm at least four things: the target timestamp or restore point is clear; backup and WAL are continuous; business writes have stopped; and you know whether you are restoring in place or first pulling up a new validation cluster.
+Before recovery, confirm at least these four conditions:
+
+- The target timestamp or restore point is clear.
+- The backup and WAL are continuous.
+- Business writes have stopped.
+- You have selected recovery in place or initial recovery to a new validation cluster.
 
 Background articles: [**Overview of Backup and Recovery Methods**](https://vonng.com/pg/backup-overview/) and [**PgBackRest2 Documentation**](https://vonng.com/pg/pgbackrest/).
 
@@ -148,7 +161,7 @@ For monitoring overview, see [**Monitoring System**](/docs/concept/monitor/). Fo
 
 Monitoring for non-database modules is documented separately: [**INFRA Monitoring**](/docs/infra/monitor/), [**NODE Monitoring**](/docs/node/monitor/), [**ETCD Monitoring**](/docs/etcd/monitor/), and [**MINIO Monitoring**](/docs/minio/monitor/).
 
-Start troubleshooting with [**PGSQL FAQ**](/docs/pgsql/faq/), then [**Troubleshooting**](/docs/pgsql/tutorial/failure/). For connection authentication issues, see [**HBA Management**](/docs/pgsql/admin/hba/); for HA status issues, see [**Patroni Management**](/docs/pgsql/admin/patroni/); for process state issues, see [**Component Management**](/docs/pgsql/admin/component/).
+Start troubleshooting with [**PGSQL FAQ**](/docs/pgsql/faq/), then [**Troubleshooting**](/docs/pgsql/tutorial/failure/). For connection authentication problems, see [**HBA Management**](/docs/pgsql/admin/hba/). For HA status problems, see [**Patroni Management**](/docs/pgsql/admin/patroni/). For process state problems, see [**Component Management**](/docs/pgsql/admin/component/).
 
 General PostgreSQL troubleshooting articles: [**Routine PG Server Logging Configuration**](https://vonng.com/pg/logging/), [**Macro Query Optimization with `pg_stat_statements`**](https://vonng.com/pg/pgss/), [**Incident File: PostgreSQL Transaction ID Wraparound**](https://vonng.com/pg/xid-wrap-around/), [**Finding Fake Indexes**](https://vonng.com/pg/find-dummy-index/), and [**Table Bloat Cleanup**](https://vonng.com/pg/bloat/).
 
@@ -159,7 +172,14 @@ General PostgreSQL troubleshooting articles: [**Routine PG Server Logging Config
 
 For capacity and topology design, see [**Planning**](/docs/deploy/planning/), [**Preparation**](/docs/deploy/prepare/), and [**PGSQL Cluster Model**](/docs/concept/model/pgsql/).
 
-When scaling by module, see [**Cluster Management**](/docs/pgsql/admin/cluster/) for PGSQL; [**NODE Management**](/docs/node/admin/) for NODE; [**ETCD Management**](/docs/etcd/admin/) for ETCD; [**MINIO Management**](/docs/minio/admin/) for MINIO; [**INFRA Administration**](/docs/infra/admin/) for INFRA; and [**REDIS Management**](/docs/redis/admin/) for REDIS.
+For module scaling, use the corresponding guide:
+
+- PGSQL: [**Cluster Management**](/docs/pgsql/admin/cluster/)
+- NODE: [**NODE Management**](/docs/node/admin/)
+- ETCD: [**ETCD Management**](/docs/etcd/admin/)
+- MINIO: [**MINIO Management**](/docs/minio/admin/)
+- INFRA: [**INFRA Administration**](/docs/infra/admin/)
+- REDIS: [**REDIS Management**](/docs/redis/admin/)
 
 For PostgreSQL upgrades, see [**Version Upgrade**](/docs/pgsql/admin/upgrade/) and [**Kernel Versions**](/docs/pgsql/config/kernel/). For extensions, see [**Extensions**](/docs/pgsql/ext/), [**Extension Management**](/docs/pgsql/admin/ext/), [**Extension Repository**](/docs/pgsql/ext/repo/), and [**Package Aliases**](/docs/pgsql/config/alias/).
 
@@ -172,11 +192,11 @@ If you need horizontal scaling, then read [**Citus Cluster Deployment**](/docs/p
 
 ## Security And Entrypoints
 
-For deployment security, start with [**Security Considerations**](/docs/deploy/security/). For the security model, see [**Security and Compliance**](/docs/concept/sec/). For PostgreSQL privileges, see [**Access Control**](/docs/concept/sec/ac) and [**ACL Config**](/docs/pgsql/config/acl/); for authentication rules, see [**Authentication**](/docs/concept/sec/auth), [**HBA Config**](/docs/pgsql/config/hba/), and [**HBA Management**](/docs/pgsql/admin/hba/).
+For deployment security, start with [**Security Considerations**](/docs/deploy/security/). For the security model, see [**Security and Compliance**](/docs/concept/sec/). For PostgreSQL privileges, see [**Access Control**](/docs/concept/sec/ac) and [**ACL Config**](/docs/pgsql/config/acl/). For authentication rules, see [**Authentication**](/docs/concept/sec/auth), [**HBA Config**](/docs/pgsql/config/hba/), and [**HBA Management**](/docs/pgsql/admin/hba/).
 
 For certificates, see [**CA & Certificates**](/docs/infra/admin/cert/). For domains, Nginx, and web entrypoints, see [**Domain Management**](/docs/infra/admin/domain/) and [**Nginx Management**](/docs/infra/admin/portal/).
 
-For production, at minimum change default passwords, tighten HBA, clearly separate business users from admin users, and confirm backup repository retention, encryption, and access permissions.
+For production, change default passwords, restrict HBA rules, and clearly separate business users from admin users. Confirm backup repository retention, encryption, and access permissions. These are minimum requirements.
 
 
 ----------------

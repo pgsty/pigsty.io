@@ -41,7 +41,7 @@ redis_join        : Join redis native cluster (cluster mode only)
 
 ### Operation Levels
 
-`redis.yml` supports three operation levels, controlled by `-l` to limit target scope and `-e redis_port=<port>` to specify a single instance:
+`redis.yml` supports three operation levels. Use `-l` to limit the target scope. Use `-e redis_port=<port>` to select one instance:
 
 | Level | Parameters | Description |
 |:------|:-----------|:------------|
@@ -84,7 +84,7 @@ Node-level operations are useful for:
 - Redeploying all instances on a specific node
 - Reinitializing after node failure recovery
 
-> **Note**: Node-level commands still enter the `redis-ha` / `redis-join` mode checks. Sentinel mode refreshes managed targets. In cluster mode, the playbook first uses the selected CLI to check the seed instance for `cluster_state:ok`; it exits for a healthy cluster and otherwise runs `--cluster create`. This guard does not replace scale-out: use `redis-cli` / `valkey-cli --cluster add-node` and `reshard` manually for an existing native cluster.
+> **Note**: Node-level commands still enter the `redis-ha` / `redis-join` mode checks. Sentinel mode refreshes managed targets. In cluster mode, the playbook uses the selected CLI to check the seed instance for `cluster_state:ok`. It exits for a healthy cluster. Otherwise, it runs `--cluster create`. This check does not scale out an existing native cluster. For that operation, run `redis-cli` / `valkey-cli --cluster add-node` and `reshard` manually.
 
 
 ### Instance-Level Operations
@@ -136,15 +136,17 @@ Use the `-t <tag>` parameter to selectively execute certain tasks:
 
 ### Idempotency
 
-Most tasks in `redis.yml` can be run repeatedly, but native-cluster initialization still requires attention to topology state:
+You can repeat most tasks in `redis.yml`. Before native-cluster initialization, check the topology state:
 
 - Re-running `redis_node` / `redis_exporter` / `redis_instance` / `redis_register` overwrites config and restarts instances
 - Re-running `redis-ha` reapplies `SENTINEL REMOVE/MONITOR` based on `redis_sentinel_monitor`
-- `redis-join` first checks whether the seed instance has reached `cluster_state:ok` and exits for a healthy cluster. The check does not repair incomplete or damaged topologies or perform scale-out, so do not treat it as a general add-node/reshard operation.
+- `redis-join` first checks the seed instance for `cluster_state:ok`. It exits for a healthy cluster. The check does not repair incomplete or damaged topologies or perform scale-out. Do not use it as a general add-node/reshard operation.
 
-> **Tip**: If you only want to update configs without restarting all instances, use `-t redis_config` to render configs only, then manually restart the instances you need.
+> **Tip**: To update configuration without restarting all instances, use `-t redis_config`. Then manually restart the required instances.
 
-Redis/Valkey units use `Type=notify`. During startup, systemd waits up to `1800s` for readiness so large RDB/AOF loads and recovery can finish. A timeout is not a reason to broaden data deletion or use a forced stop; inspect instance logs, data size, disk I/O, and memory first.
+Redis/Valkey units use `Type=notify`. During startup, systemd waits up to `1800s` for readiness. This lets large RDB/AOF loads and recovery finish.
+
+After a timeout, first inspect instance logs, data size, disk I/O, and memory. Do not extend data deletion or force a stop solely because of the timeout.
 
 
 
@@ -165,7 +167,9 @@ redis_data       : Delete data directories (when redis_rm_data=true)
 redis_pkg        : Uninstall selected engine and redis-exporter (when redis_rm_pkg=true)
 ```
 
-Tag-scoped execution follows the data/package switches. `-t redis` always enters the instance-stop phase; `-t redis_data` stops instances only when `redis_rm_data=true`, and `-t redis_pkg` stops them only when `redis_rm_pkg=true`. Thus `-t redis_data -e redis_rm_data=false` and `-t redis_pkg -e redis_rm_pkg=false` do not stop Redis merely because the tag was selected. Before any real removal, verify the exact same `-l`, tags, and extra variables.
+Tag-scoped execution follows the data/package switches. The `-t redis` tag always enters the instance-stop phase. The `-t redis_data` tag stops instances only if `redis_rm_data=true`. The `-t redis_pkg` tag stops them only if `redis_rm_pkg=true`.
+
+Thus, `-t redis_data -e redis_rm_data=false` does not stop Redis. Neither does `-t redis_pkg -e redis_rm_pkg=false`. The selected tag alone is insufficient. Before a real removal, verify the exact same `-l`, tags, and extra variables.
 
 
 ### Operation Levels
@@ -271,7 +275,7 @@ Usage examples:
 ```
 
 > [!CAUTION] Destructive Operation
-> `redis_safeguard` defaults to `false`, while `redis_rm_data` defaults to `true`. The removal playbook also tolerates several service-stop, deregistration, data-deletion, and package-removal errors. After a real run, inspect the target processes, data directories, and monitoring registration; do not treat the playbook return status alone as proof of completion.
+> `redis_safeguard` defaults to `false`, while `redis_rm_data` defaults to `true`. The removal playbook also tolerates several service-stop, deregistration, data-deletion, and package-removal errors. After a real run, inspect the target processes, data directories, and monitoring registration. The playbook return status alone does not confirm completion.
 
 
 ### Safeguard Mechanism

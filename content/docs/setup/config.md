@@ -2,26 +2,24 @@
 title: Customize Pigsty with Configuration
 linkTitle: Customize
 weight: 270
-description: Express your infra and clusters with declarative config files
+description: Define nodes, modules, databases, and users in the Pigsty inventory.
 icon: fa-solid fa-code
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+You can generate a configuration file with the [configuration wizard](/docs/concept/iac/configure/).
+You can also write the file yourself.
+This guide builds an [inventory](/docs/concept/iac/inventory/) in stages.
 
-Besides using the [**configuration wizard**](/docs/concept/iac/configure) to auto-generate configs, you can write Pigsty config files from scratch.
-This tutorial guides you through building a complex [**inventory**](/docs/concept/iac/inventory) step by step.
-
-If you define NODE, INFRA, ETCD, MINIO, and PGSQL in the [**inventory**](/docs/concept/iac/inventory) upfront, `deploy.yml` can deploy this core path in one run—but it hides the details. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
-
-This doc breaks down all modules and playbooks, showing how to incrementally build from a simple config to a complete deployment.
-
-
---------
+The `deploy.yml` playbook deploys NODE, INFRA, ETCD, MINIO, and PGSQL when the inventory defines them.
+Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
+The procedures below show the configuration and playbooks for each stage.
 
 ## Minimal Configuration
 
-The simplest valid config only defines the [**`admin_ip`**](/docs/infra/param#admin_ip) variable—the IP address of the node where Pigsty is installed (**admin node**):
+The smallest valid configuration defines [`admin_ip`](/docs/infra/param#admin_ip).
+This is the IP address of the administration node where you installed Pigsty:
 
 ```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all: { vars: { admin_ip: 10.10.10.10 } }
@@ -32,17 +30,17 @@ all: { vars: { admin_ip: 10.10.10.10 } }
 all: { vars: { admin_ip: 10.10.10.10, region: china } }
 ```
 
+This inventory defines no deployment targets.
+With this configuration, `./deploy.yml` generates a self-signed certificate authority (CA) in `files/pki/ca`.
+The CA issues certificates for the deployment.
 
-This config deploys nothing, but running `./deploy.yml` generates a self-signed **CA** in `files/pki/ca` for issuing certificates.
-
-For convenience, you can also set [**`region`**](/docs/infra/param/#region) to specify which region's software mirrors to use (`default`, `china`, `europe`).
-
-
---------
+Set [`region`](/docs/infra/param/#region) to select a software repository region.
+The available values are `default`, `china`, and `europe`.
 
 ## Add Nodes
 
-Pigsty's [**`NODE`**](/docs/node/) module manages cluster nodes. Any IP address in the inventory will be managed by Pigsty with the NODE module installed.
+The [NODE module](/docs/node/) manages the nodes in the inventory.
+Add a node IP address to include that node in NODE module deployment:
 
 ```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:  # Remember to replace 10.10.10.10 with your actual IP
@@ -62,29 +60,27 @@ all:  # Remember to replace 10.10.10.10 with your actual IP
     node_repo_modules: node,pgsql,infra   # Add node, pgsql, infra repos
 ```
 
-We added two [**global parameters**](/docs/concept/iac/parameter):
-[**`node_repo_modules`**](/docs/node/param/#node_repo_modules) specifies repos to add;
-[**`region`**](/docs/infra/param/#region) specifies which region's mirrors to use.
+These examples add two [global parameters](/docs/concept/iac/parameter/):
 
-These parameters enable the node to use correct repositories and install required packages.
-The NODE module offers many [**customization options**](/docs/node/param): node names, DNS, repos, packages, NTP, kernel params, tuning templates, monitoring, log collection, etc.
-Even without changes, the defaults are sufficient.
+- [`node_repo_modules`](/docs/node/param/#node_repo_modules) selects the software repositories to add.
+- [`region`](/docs/infra/param/#region) selects the repository region.
 
-Run `deploy.yml` or more precisely `node.yml` to bring the defined node under Pigsty management.
+The NODE module uses these repositories to install the required packages.
+Other [NODE parameters](/docs/node/param/) control node names, DNS, NTP, kernel parameters, tuning, monitoring, and log collection.
+You can use the default values for the initial deployment.
+
+Run `node.yml` to apply the NODE configuration.
+The `deploy.yml` playbook also includes this stage.
 
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:------------|
 | 1  |    `10.10.10.10`    |           -           |            -            |           -           | Add node    |
 {.full-width}
 
-
---------
-
 ## Add Infrastructure
 
-A full-featured RDS cloud database service needs infrastructure support: monitoring (metrics/log collection, alerting, visualization), NTP, DNS, and other foundational services.
-
-Define a special group `infra` to deploy the [**`INFRA`**](/docs/infra/) module:
+The infrastructure supplies monitoring, alerting, dashboards, NTP, and DNS.
+To deploy the [INFRA module](/docs/infra/), define the `infra` group:
 
 ```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:  # Simply changed group name from nodes -> infra and added infra_seq
@@ -104,10 +100,10 @@ all:  # Simply changed group name from nodes -> infra and added infra_seq
     node_repo_modules: node,pgsql,infra
 ```
 
+Set [`infra_seq`](/docs/infra/param/#infra_seq) to identify each INFRA node.
+This [identity parameter](/docs/concept/iac/parameter#identity-parameters) distinguishes nodes in deployments with multiple INFRA nodes.
 
-We also assigned an [**identity parameter**](/docs/concept/iac/parameter#identity-parameters): [**`infra_seq`**](/docs/infra/param/#infra_seq) to distinguish nodes in multi-node HA **INFRA** deployments.
-
-Run `infra.yml` to install [**INFRA `**](/docs/infra/) and [**NODE`**](/docs/node/) modules on `10.10.10.10`:
+Run `infra.yml` to install INFRA and NODE on `10.10.10.10`:
 
 ```bash title="~/pigsty"
 ./infra.yml   # Install INFRA module on infra group (includes NODE module)
@@ -115,24 +111,24 @@ Run `infra.yml` to install [**INFRA `**](/docs/infra/) and [**NODE`**](/docs/nod
 
 {{< asciinema file="demo/infra.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
 
-> NODE module is implicitly defined as long as an IP exists. NODE is idempotent—re-running has no side effects.
+The inventory IP address also defines the NODE deployment target.
+NODE tasks are idempotent: they apply the changes necessary to reach the specified configuration.
 
-After completion, you'll have complete observability infrastructure and node monitoring, but PostgreSQL database service is not yet deployed.
+After this stage, the node has monitoring services and node monitoring.
+It does not yet have a PostgreSQL database service.
 
-If your goal is just to set up this monitoring system (Grafana + Victoria), you're done! The [**`infra`**](/docs/conf/infra) template is designed for this.
-Everything in Pigsty is **modular**: you can deploy only monitoring infra without databases;
-or vice versa—run HA PostgreSQL clusters without infra—[**Slim Install**](/docs/setup/slim).
+If you only need Grafana and Victoria monitoring, you can stop here.
+The [`infra` template](/docs/conf/infra/) supports this use.
+Pigsty also supports PostgreSQL without the infrastructure through [Slim Installation](/docs/setup/slim/).
 
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description            |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:-----------------------|
 | 1  |    `10.10.10.10`    |       `infra-1`       |            -            |           -           | Add infrastructure     |
 {.full-width}
 
---------
-
 ## Deploy Database Cluster
 
-To provide PostgreSQL service, install the [**PGSQL`**](/docs/pgsql/) module and its dependency [**ETCD**](/docs/etcd/)—just two lines of config:
+To add PostgreSQL, define the [PGSQL module](/docs/pgsql/) and its [ETCD dependency](/docs/etcd/):
 
 ```yaml {tab="Minimal" group="minimal-mirror" value="minimal"}
 all:
@@ -140,7 +136,7 @@ all:
     infra:   { hosts: { 10.10.10.10: { infra_seq: 1 } } }
     etcd:    { hosts: { 10.10.10.10: { etcd_seq:  1 } } } # Add etcd cluster
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } } # Add pg cluster
-  vars: { admin_ip: 10.10.10.10, region: default, node_repo_modules: node,pgsql,infra }
+  vars: { admin_ip: 10.10.10.10, region: default, node_repo_modules: 'node,pgsql,infra' }
 ```
 
 ```yaml {tab="Mirror" value="mirror"}
@@ -149,35 +145,40 @@ all:
     infra:   { hosts: { 10.10.10.10: { infra_seq: 1 } } }
     etcd:    { hosts: { 10.10.10.10: { etcd_seq:  1 } } } # Add etcd cluster
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } } # Add pg cluster
-  vars: { admin_ip: 10.10.10.10, region: china, node_repo_modules: node,pgsql,infra }
+  vars: { admin_ip: 10.10.10.10, region: china, node_repo_modules: 'node,pgsql,infra' }
 ```
 
+The `etcd` group defines a single-node etcd cluster.
+The `pg-meta` group defines a single-node PostgreSQL cluster.
 
-We added two new groups: `etcd` and `pg-meta`, defining a single-node etcd cluster and a single-node PostgreSQL cluster.
-
-Use `./deploy.yml` to converge the defined modules in the core path again, or deploy incrementally:
+Install ETCD first.
+PGSQL uses ETCD for high-availability consensus.
+Run the module playbooks in this order:
 
 ```bash title="~/pigsty"
 ./etcd.yml  -l etcd      # Install ETCD module on etcd group
 ./pgsql.yml -l pg-meta   # Install PGSQL module on pg-meta group
 ```
 
-[**PGSQL**](/docs/pgsql/) depends on [**ETCD**](/docs/etcd/) for HA consensus, so install ETCD first.
-After completion, you have a working PostgreSQL service!
+You can also apply the core modules together with `./deploy.yml`.
+Before another deployment run, review the [effects on existing services](/docs/setup/install/#deploy).
+After these playbooks complete successfully, PostgreSQL is available.
 
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description                     |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:--------------------------------|
 | 1  |    `10.10.10.10`    |       `infra-1`       |        `etcd-1`         |     `pg-meta-1`       | Add etcd and PostgreSQL cluster |
 {.full-width}
 
-We used [**`node.yml`**](/docs/node/playbook#nodeyml), [**`infra.yml`**](/docs/infra/playbook#infrayml), [**`etcd.yml`**](/docs/etcd/playbook#etcdyml), and [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) to deploy all four core modules on a single machine.
+The procedures use four playbooks to deploy four modules on one node:
 
-
---------
+- [`node.yml`](/docs/node/playbook#nodeyml) deploys NODE.
+- [`infra.yml`](/docs/infra/playbook#infrayml) deploys INFRA.
+- [`etcd.yml`](/docs/etcd/playbook#etcdyml) deploys ETCD.
+- [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) deploys PGSQL.
 
 ## Define Databases and Users
 
-In Pigsty, you can customize PostgreSQL cluster internals like [**databases**](/docs/pgsql/config/db) and [**users**](/docs/pgsql/config/user) through the inventory:
+Define PostgreSQL [databases](/docs/pgsql/config/db/) and [users](/docs/pgsql/config/user/) in the inventory:
 
 ```yaml title="~/pigsty/pigsty.yml"
 all:
@@ -193,34 +194,42 @@ all:
           - { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [vector] }
 ```
 
-- [**`pg_users`**](/docs/pgsql/param/#pg_users): Defines a new user `dbuser_meta` with password `DBUser.Meta`
-- [**`pg_databases`**](/docs/pgsql/param/#pg_databases): Defines a new database `meta` with Pigsty [**CMDB**](/docs/concept/iac/cmdb) schema (optional) and `vector` extension
+[`pg_users`](/docs/pgsql/param/#pg_users) defines the `dbuser_meta` account with the example password `DBUser.Meta`.
+[`pg_databases`](/docs/pgsql/param/#pg_databases) defines the `meta` database with the `vector` extension.
+It also loads the optional [Pigsty CMDB schema](/docs/concept/iac/cmdb/).
+Replace the example password before deployment.
 
-Pigsty offers rich customization parameters covering all aspects of databases and users.
-If you define these parameters upfront, they're automatically created during [**`./pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) execution.
-For existing clusters, you can incrementally create or modify [**users**](/docs/pgsql/admin/user) and [**databases**](/docs/pgsql/admin/db):
+Database and user parameters control their properties.
+If you define these parameters before deployment, [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) creates the databases and users.
+
+For an existing cluster, use these commands to create or change [users](/docs/pgsql/admin/user/) and [databases](/docs/pgsql/admin/db/):
 
 ```bash title="~/pigsty"
 bin/pgsql-user pg-meta dbuser_meta      # Ensure user dbuser_meta exists in pg-meta
 bin/pgsql-db   pg-meta meta             # Ensure database meta exists in pg-meta
 ```
 
-
---------
-
 ## Configure PG Version and Extensions
 
-You can install [**different major versions**](/docs/pgsql/config/kernel) of PostgreSQL, and up to [**{{< param pgext_count >}}**](/ext/list) [**extensions**](/docs/pgsql/ext). Let's remove the current default PG 18 and install PG 16:
+Pigsty supports [multiple PostgreSQL major versions](/docs/pgsql/config/kernel/) and [{{< param pgext_count >}} extensions](/docs/pgsql/ext/).
+The example below replaces PostgreSQL 18 with PostgreSQL 16.
+This procedure recreates `pg-meta`; it is not an in-place version change.
+
+Before removal, back up the cluster and confirm the target.
+Use check mode to examine the removal tasks:
 
 ```bash
 ./pgsql-rm.yml -l pg-meta --check # Preflight old pg-meta removal; execute only after backup and target confirmation
 ```
 
-We can customize parameters to install and enable common extensions by default: `timescaledb`, `postgis`, and `pgvector`:
+The `--check` command does not perform the removal.
+Complete the required removal before you recreate the cluster.
 
-- [**`pg_extensions`**](/docs/pgsql/param/#pg_extensions): [**Install**](/docs/pgsql/ext/install) `timescaledb`, `postgis`, `pgvector` extensions.
-- [**`pg_libs`**](/docs/pgsql/param/#pg_libs): [**Configure loading**](/docs/pgsql/ext/config) `timescaledb`, `pg_stat_statements`, `auto_explain` dynamic libraries.
-- [**`pg_databases`**](/docs/pgsql/param/#pg_databases): [**Create and enable**](/docs/pgsql/ext/create) `vector`, `postgis`, `timescaledb` extensions for the `meta` database.
+Set these parameters in the new configuration:
+
+- [`pg_extensions`](/docs/pgsql/param/#pg_extensions) [installs](/docs/pgsql/ext/install/) `timescaledb`, `postgis`, and `pgvector` packages.
+- [`pg_libs`](/docs/pgsql/param/#pg_libs) [loads](/docs/pgsql/ext/config/) the `timescaledb`, `pg_stat_statements`, and `auto_explain` libraries.
+- [`pg_databases`](/docs/pgsql/param/#pg_databases) [enables](/docs/pgsql/ext/create/) `vector`, `postgis`, and `timescaledb` in the `meta` database.
 
 ```yaml
 all:
@@ -234,8 +243,8 @@ all:
         pg_version: 16   # Specify PG version as 16
         pg_extensions: [ timescaledb, postgis, pgvector ]      # Install these extensions
         pg_libs: 'timescaledb,pg_stat_statements,auto_explain'  # Preload these extension libraries
-        pg_databases: { { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [vector, postgis, timescaledb ] } }
-        pg_users: { { name: dbuser_meta ,password: DBUser.Meta ,pgbouncer: true ,roles: [dbrole_admin] ,comment: admin user } }
+        pg_databases: [ { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [vector, postgis, timescaledb ] } ]
+        pg_users: [ { name: dbuser_meta ,password: DBUser.Meta ,pgbouncer: true ,roles: [dbrole_admin] ,comment: admin user } ]
 
   vars:
     admin_ip: 10.10.10.10
@@ -244,18 +253,17 @@ all:
 
 ```
 
+Then run the PostgreSQL deployment playbook:
 
 ```bash
 ./pgsql.yml -l pg-meta   # Install PG16 and extensions, recreate pg-meta cluster
 ```
 
-
-
---------
-
 ## Add More Nodes
 
-Add more nodes to the deployment, bring them under Pigsty management, deploy monitoring, configure repos, install software...
+Add the new node definitions to the inventory.
+Run `bin/node-add` to configure monitoring and repositories and install the node packages.
+Select the complete group or individual IP addresses:
 
 ```bash
 # Add entire cluster at once, or add nodes individually
@@ -268,18 +276,16 @@ bin/node-add 10.10.10.13
 
 {{< asciinema file="demo/node.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
 
-
---------
-
 ## Deploy HA PostgreSQL Cluster
 
-Now deploy a new database cluster `pg-test` on the three newly added nodes, using a three-node HA architecture:
+Define the `pg-test` cluster on the three new nodes.
+Set one node as the primary and two nodes as replicas:
 
 ```yaml
 all:
   children:
     infra:   { hosts: { 10.10.10.10: { infra_seq: 1 } } }
-    etcd:    { hosts: { 10.10.10.10: { etcd_seq: 1 } } }, vars: { etcd_cluster: etcd } }
+    etcd:    { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
     pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } }
     pg-test:
       hosts:
@@ -289,14 +295,15 @@ all:
       vars: { pg_cluster: pg-test }
 ```
 
+Deploy the cluster with the PGSQL playbook or its `bin/pgsql-add` wrapper.
+See the [high-availability requirements](/docs/concept/ha/) for the ETCD topology.
+
 {{< asciinema file="demo/pgsql.cast" markers="4:Execute" speed="1.3" autoplay="true" loop="true" >}}
-
-
---------
 
 ## Deploy Redis Cluster
 
-Pigsty provides optional Redis support as a caching service in front of PostgreSQL:
+Pigsty supports Redis as an optional cache for PostgreSQL applications.
+After you define a Redis cluster in the inventory, run the applicable command:
 
 ```bash
 bin/redis-add redis-ms
@@ -304,36 +311,37 @@ bin/redis-add redis-meta
 bin/redis-add redis-test
 ```
 
-Redis HA requires cluster mode or sentinel mode. See [**Redis Configuration**](/docs/redis/config/).
-
-
---------
+For Redis high availability, use cluster mode or sentinel mode.
+See [Redis Configuration](/docs/redis/config/).
 
 ## Deploy Silo Object Storage
 
-Pigsty's [**MINIO module**](/docs/minio) currently deploys Silo S3-compatible object storage, which can serve as a PostgreSQL [**backup repository**](/docs/pgsql/backup/repository). The module, inventory group, and playbooks retain the compatible `minio` name.
+The [MINIO module](/docs/minio/) deploys Silo object storage.
+Silo implements the S3 interface and can store [PostgreSQL backups](/docs/pgsql/backup/repository/).
+The module, inventory group, and playbooks keep the `minio` name for compatibility.
+
+Run the module playbook:
 
 ```bash
 ./minio.yml -l minio
 ```
 
-Serious production Silo deployments typically require at least 4 nodes with 4 disks each (4N/16D).
-
-
---------
+A production Silo deployment typically requires at least four nodes with four disks per node (`4N/16D`).
 
 ## Deploy Docker Module
 
-If you want to use containers to run [**tools for managing PG**](/docs/app) or [**software using PostgreSQL**](/docs/app), install the [**`DOCKER`**](/docs/docker/) module:
+To run [PostgreSQL tools and applications](/docs/app/) in containers, install the [DOCKER module](/docs/docker/):
 
 ```bash
 ./docker.yml -l infra
 ```
 
-Use pre-made application templates to launch common software tools with one click, such as the GUI tool for PG management: [**Pgadmin**](/docs/app/pgadmin/):
+Use an application template to deploy the required software.
+For example, run this command to deploy [pgAdmin](/docs/app/pgadmin/):
 
 ```bash
 ./app.yml    -l infra -e app=pgadmin
 ```
 
-You can even self-host **enterprise-grade** [**Supabase**](/docs/app/supabase/) with Pigsty, using external HA PostgreSQL clusters as the foundation and running stateless components in containers.
+You can also deploy [Supabase](/docs/app/supabase/) with Pigsty.
+Supabase uses an external HA PostgreSQL cluster for its database and containers for its stateless components.

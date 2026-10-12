@@ -7,7 +7,8 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[**pgEdge**](https://www.pgedge.com/) is a distributed PostgreSQL distribution for edge scenarios, built on [**Spock**](https://docs.pgedge.com/spock-v5) multi-master logical replication.
+[**pgEdge**](https://www.pgedge.com/) is a distributed PostgreSQL distribution for edge deployments.
+It uses [**Spock**](https://docs.pgedge.com/spock-v5) multi-master logical replication.
 
 
 --------
@@ -21,11 +22,16 @@ Pigsty integrates pgEdge through `pg_mode: pgedge` and delivers it through the s
 - [`snowflake`](/ext/e/snowflake/): Distributed unique sequences
 - [`lolor`](/ext/e/lolor/): Large object logical replication compatibility layer
 
-The current Pigsty repository ships versioned pgEdge kernel packages for `pgedge-15`, `pgedge-16`, `pgedge-17`, and `pgedge-18`; the template defaults to `pg_version: 18`. The `spock`, `snowflake`, and `lolor` control files, SQL files, and shared libraries are bundled in the `pgedge-$v` kernel package, so they are no longer listed as separate `pg_extensions` packages to install.
-From the client side, pgEdge is still PostgreSQL wire compatible, so `psql`, JDBC/ODBC, DBeaver, and similar tools work as usual.
+The current Pigsty repository supplies the versioned kernel packages `pgedge-15`, `pgedge-16`, `pgedge-17`, and `pgedge-18`.
+The template defaults to `pg_version: 18`.
+The `pgedge-$v` kernel package includes the control files, SQL files, and shared libraries for `spock`, `snowflake`, and `lolor`.
+Thus, these extensions are no longer separate packages in `pg_extensions`.
+pgEdge supports the PostgreSQL wire protocol, so `psql`, JDBC/ODBC, DBeaver, and similar tools work as usual.
 
-The delivery model in Pigsty is: validate the kernel on a single node first, then expand to a multi-node replication topology.
-The template handles the kernel, extensions, monitoring, backup, and access control out of the box, but the actual multi-master topology still needs to be designed around your workload consistency and conflict strategy.
+First validate the kernel on one node.
+Then expand to a replication topology with multiple nodes.
+The template configures the kernel, extensions, monitoring, backup, and access control.
+Design the multi-master topology for your workload consistency requirements and conflict strategy.
 
 
 --------
@@ -39,7 +45,8 @@ Use the built-in Pigsty template:
 ./deploy.yml
 ```
 
-The template pre-installs `spock`, `snowflake`, and `lolor` in the `meta` database. After deployment, verify the kernel and extensions:
+The template installs `spock`, `snowflake`, and `lolor` in the `meta` database.
+After deployment, verify the kernel and extensions:
 
 ```bash
 psql -d meta -c "SELECT version();"
@@ -64,7 +71,7 @@ pg_databases:
   - { name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [spock, snowflake, lolor] }
 ```
 
-If you plan to grow into a multi-node multi-master topology, it is better to configure logical replication capacity and `snowflake.node` explicitly:
+For a future multi-node multi-master topology, we recommend explicit settings for logical replication capacity and `snowflake.node`:
 
 ```yaml
 pg_parameters:
@@ -74,14 +81,16 @@ pg_parameters:
   'snowflake.node': 1
 ```
 
-`snowflake.node` must be unique on every writable node, otherwise distributed IDs will collide.
+`snowflake.node` must be unique on every writable node.
+Otherwise, distributed IDs will collide.
 
 
 --------
 
 ## Usage
 
-The common workflow in Pigsty is still: validate the kernel on a single node first, then expand into a multi-node Spock replication topology.
+First validate the kernel on one node.
+Then expand to a Spock replication topology with multiple nodes.
 
 If you need these capabilities in a business database as well, create the extensions first:
 
@@ -92,19 +101,20 @@ CREATE EXTENSION IF NOT EXISTS lolor;
 ```
 
 Then use the Spock SQL API or the pgEdge CLI to create nodes, replication sets, and subscriptions.
-If your schema already uses `serial` or `identity`, plan the `snowflake` sequence migration before enabling multi-master writes, otherwise cross-node primary key collisions are likely.
+If your schema uses `serial` or `identity`, plan the `snowflake` sequence migration before you enable multi-master writes.
+Otherwise, primary key collisions between nodes are likely.
 
 
 --------
 
 ## Notes
 
-- Replication in pgEdge is organized per database, not as an instance-wide "turn everything into multi-master" switch.
+- Configure pgEdge replication for each database. There is no instance-wide switch to enable multi-master replication for all databases.
 - Replicated tables should have a `PRIMARY KEY` or an appropriate `REPLICA IDENTITY`.
 - `UNLOGGED` and `TEMPORARY` tables do not participate in Spock logical replication.
-- Spock configuration and operations typically require superuser privileges, so production deployments should define privilege boundaries clearly.
-- If your workload depends on large object replication, use `lolor` explicitly rather than assuming native large objects will replicate correctly.
-- Cross-region multi-master is not a checkbox feature. Network latency, conflict handling, and the write model all need to be evaluated first.
+- Spock configuration and operations usually require superuser privileges. Production deployments should define privilege boundaries clearly.
+- If your workload requires large object replication, use `lolor` explicitly. Do not assume that native large objects will replicate correctly.
+- Before you configure multi-master replication across regions, evaluate network latency, conflict handling, and the write model.
 
 
 --------
@@ -126,7 +136,8 @@ If your schema already uses `serial` or `identity`, plan the `snowflake` sequenc
 
 ## Available Extensions
 
-The pgEdge kernel has **63** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The pgEdge kernel has **63** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

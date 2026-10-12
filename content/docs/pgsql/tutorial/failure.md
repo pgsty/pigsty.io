@@ -8,7 +8,8 @@ categories: [Task]
 ---
 
 
-This document lists potential failures in PostgreSQL and Pigsty, as well as SOPs for locating, handling, and analyzing issues.
+This document lists possible PostgreSQL and Pigsty failures.
+It gives standard procedures to locate, resolve, and analyze them.
 
 
 --------
@@ -19,15 +20,18 @@ Disk space exhaustion is the most common type of failure.
 
 ### Symptoms
 
-When the disk space where the database resides is exhausted, PostgreSQL will not work normally and may exhibit the following symptoms: database logs repeatedly report "no space left on device" errors, new data cannot be written, and PostgreSQL may even trigger a PANIC and force shutdown.
+If the database disk is full, PostgreSQL cannot operate normally.
+Logs repeatedly report "no space left on device", and new writes fail.
+PostgreSQL may also report a PANIC and shut down.
 
-Pigsty includes a NodeFsSpaceFull alert rule that triggers when filesystem available space is less than 10%.
-Use the monitoring system's NODE Instance panel to review the FS metrics panel to locate the issue.
+The Pigsty NodeFsSpaceFull alert triggers when filesystem free space is less than 10%.
+To locate the problem, open the NODE Instance dashboard and inspect the FS metrics panel.
 
 ### Diagnosis
 
-You can also log into the database node and use `df -h` to view the usage of each mounted partition to determine which partition is full.
-For database nodes, focus on checking the following directories and their sizes to determine which category of files has filled up the space:
+You can also log in to the database node and run `df -h`.
+Identify the full partition.
+Then check these directories and their sizes to identify which files consume the space:
 
 - **Data directory** (`/pg/data/base`): Stores data files for tables and indexes; pay attention to heavy writes and temporary files
 - **WAL directory** (e.g., `pg/data/pg_wal`): Stores PG WAL; WAL accumulation/replication slot retention is a common cause of disk exhaustion.
@@ -39,13 +43,15 @@ If the issue occurs on the Pigsty admin node or monitoring node, also consider:
 - **Monitoring data**: VictoriaMetrics time-series metrics and VictoriaLogs log storage both consume disk space; check retention policies.
 - **Object storage data**: Pigsty's integrated Silo object storage may be used for PG backup storage.
 
-After identifying the directory consuming the most space, you can further use `du -sh <directory>` to drill down and find specific large files or subdirectories.
+After you identify the largest directory, use `du -sh <directory>` to locate large files or subdirectories.
 
 ### Resolution
 
-Disk exhaustion is an emergency issue requiring immediate action to free up space and ensure the database continues to operate.
-When the data disk is not separated from the system disk, a full disk may prevent shell commands from executing. In this case, you can delete the `/pg/dummy` placeholder file to free up a small amount of emergency space so shell commands can work again.
-If the database has crashed due to pg_wal filling up, you need to restart the database service after clearing space and carefully check data integrity.
+Disk exhaustion requires immediate action to free space and keep the database operating.
+If the data disk and system disk are the same, a full disk may prevent shell commands from running.
+In this case, delete the `/pg/dummy` placeholder file to free emergency space for shell commands.
+If accumulated pg_wal caused a database crash, free space and restart the database service.
+Then check data integrity carefully.
 
 
 
@@ -54,28 +60,34 @@ If the database has crashed due to pg_wal filling up, you need to restart the da
 
 ## Transaction ID Wraparound
 
-PostgreSQL cyclically uses 32-bit transaction IDs (XIDs), and when exhausted, a "transaction ID wraparound" failure occurs (XID Wraparound).
+PostgreSQL reuses 32-bit transaction IDs (XIDs) in a cycle.
+Exhaustion causes a transaction ID wraparound failure (XID Wraparound).
 
 ### Symptoms
 
-The typical sign in the first phase is when the age saturation in the [PGSQL Persist - Age Usage](https://demo.pigsty.io/ui/d/pgsql-persist) panel enters the warning zone.
-Database logs begin to show messages like: `WARNING: database "postgres" must be vacuumed within xxxxxxxx transactions`.
+The first typical sign is age saturation entering the warning zone in [PGSQL Persist - Age Usage](https://demo.pigsty.io/ui/d/pgsql-persist).
+Database logs begin to show messages such as `WARNING: database "postgres" must be vacuumed within xxxxxxxx transactions`.
 
-If the problem continues to worsen, PostgreSQL enters protection mode: when remaining transaction IDs drop to about 1 million, the database switches to read-only mode; when reaching the limit of about 2.1 billion (2^31), it refuses any new transactions and forces the server to shut down to avoid data corruption.
+If the condition gets worse, PostgreSQL enters protection mode.
+With about 1 million transaction IDs remaining, the database becomes read-only.
+At the limit of about 2.1 billion (2^31), it rejects new transactions and shuts down to prevent data corruption.
 
 ### Diagnosis
 
-PostgreSQL and Pigsty enable automatic garbage collection (AutoVacuum) by default, so the occurrence of this type of failure usually has deeper root causes.
-Common causes include: very long transactions (SAGE), misconfigured Autovacuum, replication slot blockage, insufficient resources, storage engine/extension bugs, disk bad blocks.
+PostgreSQL and Pigsty enable automatic garbage collection (AutoVacuum) by default.
+Thus, this failure usually indicates another underlying problem.
+Common causes include very long transactions (SAGE), incorrect Autovacuum settings, blocked replication slots, and insufficient resources.
+Storage engine or extension bugs and bad disk blocks can also cause it.
 
-First identify the database with the highest age, then use the Pigsty PGCAT Database - Tables panel to confirm the age distribution of tables.
-Also review the database error logs, which usually contain clues to locate the root cause.
+First, identify the database with the highest age.
+Then inspect table ages in the Pigsty PGCAT Database - Tables panel.
+Also inspect database error logs for evidence of the cause.
 
 ### Resolution
 
-1. **Immediately freeze old transactions**: If the database has not yet entered read-only protection mode, immediately execute a manual VACUUM FREEZE on the affected database. You can start by freezing the most severely aged tables one by one rather than doing the entire database at once to accelerate the effect. Connect to the database as a superuser and run `VACUUM FREEZE table_name;` on tables identified with the largest `relfrozenxid`, prioritizing tables with the highest XID age. This can quickly reclaim large amounts of transaction ID space.
-2. **Single-user mode rescue**: If the database is already refusing writes or has crashed for protection, you need to start the database in single-user mode to perform freeze operations. In single-user mode, run `VACUUM FREEZE database_name;` to freeze and clean the entire database. After completion, restart the database in multi-user mode. This can lift the wraparound lock and make the database writable again. Be very careful when operating in single-user mode and ensure sufficient transaction ID margin to complete the freeze.
-3. **Standby node takeover**: In some complex scenarios (e.g., when hardware issues prevent vacuum from completing), consider promoting a read-only standby node in the cluster to primary to obtain a relatively clean environment for handling the freeze. For example, if the primary cannot vacuum due to bad blocks, you can manually failover to promote the standby to the new primary, then perform emergency vacuum freeze on it. After ensuring the new primary has frozen old transactions, switch the load back.
+1. **Immediately freeze old transactions**: If the database is not yet in read-only protection mode, immediately run a manual VACUUM FREEZE. For faster results, first freeze the oldest tables individually. Connect as a superuser and run `VACUUM FREEZE table_name;` on tables identified with the largest `relfrozenxid`. Prioritize tables with the highest XID age. This can quickly reclaim transaction ID space.
+2. **Single-user mode rescue**: If the database rejects writes or has shut down for protection, start it in single-user mode. Run `VACUUM FREEZE database_name;` to freeze and clean the entire database. Then restart in multi-user mode. This can remove wraparound protection and permit writes again. Operate carefully in single-user mode. Make sure that enough transaction IDs remain to complete the freeze.
+3. **Standby node takeover**: If problems such as hardware failure prevent vacuum, consider promoting a read-only standby to primary. This can provide a cleaner environment for the freeze. For example, if bad blocks prevent vacuum on the primary, manually fail over to the standby and run emergency vacuum freeze. Verify that the new primary has frozen old transactions before you switch the load back.
 
 
 
@@ -84,21 +96,26 @@ Also review the database error logs, which usually contain clues to locate the r
 
 ## Connection Exhaustion
 
-PostgreSQL has a maximum connections configuration (`max_connections`). When client connections exceed this limit, new connection requests will be rejected. The typical symptom is that applications cannot connect to the database and report errors like
-**FATAL: remaining connection slots are reserved for non-replication superuser connections** or **too many clients already**.
-This indicates that regular connections are exhausted, leaving only slots reserved for superusers or replication.
+`max_connections` limits PostgreSQL connections.
+When clients exceed this limit, PostgreSQL rejects new connections.
+Applications cannot connect and report **FATAL: remaining connection slots are reserved for non-replication superuser connections** or **too many clients already**.
+Regular connection slots are exhausted.
+Only slots reserved for superusers or replication remain.
 
 ### Diagnosis
 
-Connection exhaustion is usually caused by a large number of concurrent client requests. You can directly review the database's current active sessions through PGCAT Instance / PGCAT Database / PGCAT Locks.
-Determine what types of queries are filling the system and proceed with further handling. Pay special attention to whether there are many connections in the "Idle in Transaction" state and long-running transactions (as well as slow queries).
+Connection exhaustion usually results from many concurrent client requests.
+Inspect active sessions in PGCAT Instance, PGCAT Database, or PGCAT Locks.
+Identify the query types that occupy the connections.
+Look for many "Idle in Transaction" connections, long transactions, and slow queries.
 
 ### Resolution
 
-**Kill queries**: For situations where exhaustion has already blocked business operations, typically use `pg_terminate_backend(pid)` immediately for emergency pressure relief.
-For cases using connection pooling, you can adjust the connection pool size parameters and execute a reload to reduce the number of connections at the database level.
+**Kill queries**: If connection exhaustion blocks application operations, usually use `pg_terminate_backend(pid)` for immediate relief.
+If connections use a pool, adjust its size settings and reload it to reduce database connections.
 
-You can also modify the `max_connections` parameter to a larger value, but this parameter requires a database restart to take effect.
+You can also increase `max_connections`.
+Restart the database to apply the change.
 
 
 --------
@@ -110,12 +127,16 @@ An exhausted etcd quota will cause the PG high availability control plane to fai
 
 ### Diagnosis
 
-Pigsty uses etcd as the distributed configuration store (DCS) when implementing high availability. etcd itself has a storage quota (default is about 2GB).
-When etcd storage usage reaches the quota limit, etcd will refuse write operations and report "**etcdserver: mvcc: database space exceeded**". In this case, Patroni cannot write heartbeats or update configuration to etcd, causing cluster management functions to fail.
+Pigsty uses etcd as the distributed configuration store (DCS) for high availability.
+etcd has a storage quota of about 2GB by default.
+At the limit, etcd rejects writes and reports "**etcdserver: mvcc: database space exceeded**".
+Patroni then cannot write heartbeats or configuration changes to etcd, so cluster management fails.
 
 ### Resolution
 
-Versions between Pigsty v2.0.0 and v2.5.1 are affected by this issue by default. Pigsty v2.6.0 added auto-compaction configuration for deployed etcd. If you only use it for PG high availability leases, this issue will no longer occur in regular use cases.
+Pigsty v2.0.0 through v2.5.1 are affected by default.
+Pigsty v2.6.0 added automatic compaction for deployed etcd.
+If etcd stores only PostgreSQL high-availability leases, the problem no longer occurs in regular use.
 
 
 
@@ -123,7 +144,8 @@ Versions between Pigsty v2.0.0 and v2.5.1 are affected by this issue by default.
 
 ## Defective Storage Engine
 
-Currently, TimescaleDB's experimental storage engine Hypercore has been proven to have defects, with cases of VACUUM being unable to reclaim leading to XID wraparound failures.
-Users using this feature should migrate to PostgreSQL native tables or TimescaleDB's default engine promptly.
+TimescaleDB's experimental Hypercore storage engine has confirmed defects.
+Reported cases include VACUUM failing to reclaim space and causing XID wraparound.
+If you use Hypercore, promptly migrate to native PostgreSQL tables or the default TimescaleDB engine.
 
 Detailed introduction: [PG New Storage Engine Failure Case](https://mp.weixin.qq.com/s/LdZVVyOj4BA9C892I25lQw) (Chinese)

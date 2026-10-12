@@ -2,7 +2,7 @@
 title: "aggs_for_vecs"
 linkTitle: "aggs_for_vecs"
 description: "Aggregate functions for array inputs"
-weight: 4740
+weight: 4750
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4740
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4740  | [**`aggs_for_vecs`**](/ext/e/aggs_for_vecs) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4750  | [**`aggs_for_vecs`**](/ext/e/aggs_for_vecs) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`intarray`](/ext/e/intarray) [`arraymath`](/ext/e/arraymath) [`floatvec`](/ext/e/floatvec) [`aggs_for_arrays`](/ext/e/aggs_for_arrays) |

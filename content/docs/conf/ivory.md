@@ -6,7 +6,8 @@ icon: fa-solid fa-gem
 categories: [Reference]
 ---
 
-The `ivory` configuration template uses Highgo's IvorySQL database kernel instead of native PostgreSQL, providing Oracle syntax and PL/SQL compatibility.
+The `ivory` template replaces the standard PostgreSQL kernel with Highgo's IvorySQL.
+IvorySQL supports Oracle syntax and PL/SQL.
 
 For the complete tutorial, see: **[IvorySQL (Oracle Compatible) Kernel Guide](/docs/pgsql/kernel/ivorysql/)**
 
@@ -42,7 +43,7 @@ Source: [`pigsty/conf/ivory.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `ivory` template uses Highgo's open-source IvorySQL kernel, providing Oracle database compatibility.
+Highgo's open-source IvorySQL kernel supplies Oracle database compatibility.
 
 **Key Features**:
 - Supports Oracle PL/SQL syntax
@@ -58,6 +59,6 @@ The `ivory` template uses Highgo's open-source IvorySQL kernel, providing Oracle
 
 **Notes**:
 - IvorySQL 5 is based on PostgreSQL 18
-- Using `liboracle_parser` requires loading into `shared_preload_libraries`
-- `pgbackrest` may have checksum issues in Oracle-compatible mode, PITR capability is limited
+- To use `liboracle_parser`, add it to `shared_preload_libraries`.
+- In Oracle-compatible mode, `pgbackrest` can have checksum problems. PITR support is limited.
 - The current package matrix covers EL 8/9/10, Debian 12/13, Ubuntu 22/24/26, and both architectures

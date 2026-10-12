@@ -8,13 +8,13 @@ categories: [Reference]
 ---
 
 
-Before deployment, define etcd cluster in [config inventory](/docs/setup/config). Typical choices:
+Before deployment, define the etcd cluster in the [configuration inventory](/docs/setup/config). Typical choices are:
 
 - [One Node](#one-node): No HA, suitable for dev, test, demo, or standalone deployments using external S3 backup for PITR
 - [Three Nodes](#three-nodes): Basic HA, tolerates 1 node failure, suitable for small-medium prod
 - [Five Nodes](#five-nodes): Better HA, tolerates 2 node failures, suitable for large prod
 
-An even-member Etcd cluster is technically valid, but it does not tolerate more failures than an odd-member cluster with one fewer member, while increasing deployment and quorum cost. Production therefore usually uses one, three, or five members; clusters larger than five are uncommon.
+An etcd cluster can have an even number of members. It has the same failure tolerance as a cluster with one fewer member. The extra member increases deployment and quorum costs. Thus, production clusters usually have one, three, or five members. Clusters with more than five members are uncommon.
 
 | Cluster Size | Quorum | Fault Tolerance | Use Case                |
 |:-------------|:-------|:----------------|:------------------------|
@@ -27,15 +27,15 @@ An even-member Etcd cluster is technically valid, but it does not tolerate more 
 
 ## One Node
 
-Define singleton etcd instance in Pigsty—single line of config:
+To define a single etcd instance in Pigsty, use one line of configuration:
 
 ```yaml
 etcd: { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
 ```
 
-All single-node config templates include this line. Placeholder IP `10.10.10.10` replaced with current admin node's IP.
+All single-node configuration templates include this line. The configuration process replaces placeholder IP `10.10.10.10` with the current admin node IP.
 
-Only required params: [`etcd_seq`](/docs/etcd/param#etcd_seq) and [`etcd_cluster`](/docs/etcd/param#etcd_cluster)—uniquely identify each etcd instance.
+Only [`etcd_seq`](/docs/etcd/param#etcd_seq) and [`etcd_cluster`](/docs/etcd/param#etcd_cluster) are required. Together, these parameters uniquely identify each etcd instance.
 
 
 
@@ -43,7 +43,7 @@ Only required params: [`etcd_seq`](/docs/etcd/param#etcd_seq) and [`etcd_cluster
 
 ## Three Nodes
 
-Most common config: 3-node etcd cluster tolerates 1 node failure, suitable for small-medium prod.
+The most common configuration has 3 etcd nodes. It tolerates 1 node failure and is suitable for small and medium production environments.
 
 Example: Pigsty's 3-node templates [`trio`](/docs/conf/trio) and [`safe`](/docs/conf/safe) use 3-node etcd:
 
@@ -65,7 +65,7 @@ etcd:
 
 ## Five Nodes
 
-5-node cluster tolerates 2 node failures, suitable for large prod.
+A 5-node cluster tolerates 2 node failures. It is suitable for large production environments.
 
 Example: Pigsty's production simulation template [`ha/simu`](/docs/conf/simu) uses a 5-node etcd cluster:
 
@@ -93,7 +93,7 @@ Services using etcd in Pigsty:
 | **Patroni** | PG HA, stores cluster state and config | `/etc/patroni/patroni.yml` |
 | **VIP-Manager** | Binds L2 VIP on PG clusters | `/etc/default/vip-manager.yml` |
 
-When etcd cluster membership changes permanently, [reload related service configs](/docs/etcd/admin#reload-config) to ensure correct access.
+After a permanent etcd membership change, [reload the related service configurations](/docs/etcd/admin#reload-config). This updates the endpoints that services use to access etcd.
 
 **Update Patroni's etcd endpoint ref:**
 
@@ -115,14 +115,14 @@ ansible all -f 1 -b -a 'systemctl restart vip-manager' # restart vip-manager
 
 ## RBAC Authentication Config
 
-Since v4.0, Pigsty has enabled etcd RBAC auth by default. Related params:
+Since v4.0, Pigsty enables etcd RBAC authentication by default. Related parameters:
 
 | Parameter | Description | Default |
 |:----|:----|:------|
 | [`etcd_root_password`](/docs/etcd/param#etcd_root_password) | etcd root password | `Etcd.Root` |
 | [`pg_etcd_password`](/docs/pgsql/param#pg_etcd_password) | Patroni's password for etcd | Empty (uses cluster name) |
 
-**Prod recommendations:**
+**Production recommendations:**
 
 ```yaml
 all:
@@ -145,7 +145,7 @@ etcd:
 
 ## Filesystem Layout
 
-Module creates these directories/files on target hosts:
+The module creates these directories and files on target hosts:
 
 | Path                               | Purpose                      | Permissions     |
 |:-----------------------------------|:-----------------------------|:----------------|

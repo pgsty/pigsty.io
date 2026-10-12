@@ -10,14 +10,16 @@ categories: [Task]
 
 ## Overview
 
-Pigsty uses Patroni to manage PostgreSQL clusters. It handles config changes, status checks, switchover, restart, reinit replicas, and more.
+Pigsty uses Patroni to manage PostgreSQL clusters.
+It handles configuration changes, status checks, switchovers, restarts, replica reinitialization, and other operations.
 
-To use Patroni for management, you need one of the following identities:
+To manage clusters with Patroni, use one of these identities:
 
-- From [**INFRA node**](/docs/concept/arch/node#admin-node) as [**admin user**](/docs/deploy/admin), managing all clusters in the environment.
-- From [**PGSQL node**](/docs/concept/arch/node#pgsql-node) as [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) (default `postgres`), managing the current cluster only.
+- On an [**INFRA node**](/docs/concept/arch/node#admin-node), use an [**administration user**](/docs/deploy/admin) to manage all clusters in the environment.
+- On a [**PGSQL node**](/docs/concept/arch/node#pgsql-node), use [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu), which defaults to `postgres`, to manage only the current cluster.
 
-Patroni provides [**`patronictl`**](https://patroni.readthedocs.io/en/latest/patronictl.html) CLI for management. Pigsty provides a wrapper alias `pg` to simplify operations.
+Patroni provides the [**`patronictl`**](https://patroni.readthedocs.io/en/latest/patronictl.html) administration CLI.
+Pigsty provides the `pg` wrapper alias to simplify its use.
 
 > [!DETAILS]- Using patronictl via pg alias
 > ```bash
@@ -64,7 +66,11 @@ Patroni provides [**`patronictl`**](https://patroni.readthedocs.io/en/latest/pat
 
 ## Edit Config
 
-Use [**`edit-config`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-edit-config) to interactively edit cluster Patroni and PostgreSQL config. This opens an editor to modify config stored in DCS, automatically applying changes to all members. You can change Patroni params (`ttl`, `loop_wait`, `synchronous_mode`, etc.) and PostgreSQL params in `postgresql.parameters`.
+Use [**`edit-config`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-edit-config) to edit cluster Patroni and PostgreSQL configuration interactively.
+The command opens an editor for configuration stored in DCS.
+It applies changes automatically to all members.
+You can change Patroni parameters, such as `ttl`, `loop_wait`, and `synchronous_mode`.
+You can also change PostgreSQL parameters in `postgresql.parameters`.
 
 ```bash
 pg edit-config <cls>                  # Interactive edit cluster config
@@ -102,8 +108,11 @@ pg edit-config pg-test -p shared_preload_libraries='timescaledb, pg_stat_stateme
 pg edit-config pg-test -p max_connections=200 --force
 ```
 
-Some params require PostgreSQL restart to take effect. Use `pg list` to check - instances marked with `*` need restart. Then use `pg restart` to apply.
-You can also use `curl` or programs to call Patroni [**REST API**](https://patroni.readthedocs.io/en/latest/rest_api.html):
+Some parameter changes require a PostgreSQL restart.
+Run `pg list` to find instances marked with `*`.
+These instances need a restart.
+Run `pg restart` to apply the changes.
+You can also call the Patroni [**REST API**](https://patroni.readthedocs.io/en/latest/rest_api.html) with `curl` or a program:
 
 ```bash
 # View current config
@@ -121,7 +130,9 @@ curl -u 'postgres:Patroni.API' \
 
 ## List Status
 
-Use [**`list`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-list) to view cluster members and status. Output shows each instance's name, host, role, state, timeline, and replication lag. This is the most commonly used command for checking cluster health.
+Use [**`list`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-list) to view cluster members and their status.
+The output shows each instance name, host, role, state, timeline, and replication lag.
+This is the most common command for cluster health checks.
 
 ```bash
 pg list <cls>                         # List specified cluster status
@@ -144,7 +155,13 @@ Example output:
 +-----------+-------------+---------+---------+----+--------------+
 ```
 
-Column descriptions: **Member** is instance name, composed of `pg_cluster`-`pg_seq`; **Host** is instance IP; **Role** is role type - Leader (primary), Replica, Sync Standby, Standby Leader (cascade primary); **State** is running state - `running`, `streaming`, `in archive recovery`, `starting`, `stopped`, etc.; **TL** is timeline number, incremented after each switchover; **Lag in MB** is replication lag in MB (not shown for primary).
+The output columns have these meanings:
+- **Member**: The instance name, formed from `pg_cluster`-`pg_seq`.
+- **Host**: The instance IP address.
+- **Role**: Leader (primary), Replica, Sync Standby, or Standby Leader (cascade primary).
+- **State**: The running state, such as `running`, `streaming`, `in archive recovery`, `starting`, or `stopped`.
+- **TL**: The timeline number, which increases after each switchover.
+- **Lag in MB**: Replication lag in MB. This value is not shown for the primary.
 
 Instances requiring restart show `*` after the name:
 
@@ -163,7 +180,11 @@ Instances requiring restart show `*` after the name:
 
 ## Switchover
 
-Use [**`switchover`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-switchover) for planned primary-replica switchover. Switchover is graceful: Patroni ensures replica is fully synced, demotes primary, then promotes target replica. Takes seconds with brief write unavailability. Use for primary host maintenance, upgrades, or migrating primary to better nodes.
+Use [**`switchover`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-switchover) for a planned primary-replica role change.
+Patroni first verifies that the replica is fully synchronized.
+It then demotes the primary and promotes the target replica.
+The operation takes seconds, with a short interruption to writes.
+Use it for primary host maintenance, upgrades, or migration of the primary to a better node.
 
 ```bash
 pg switchover <cls>                   # Interactive switchover, prompts for target replica
@@ -173,7 +194,8 @@ pg switchover <cls> --scheduled <time> # Scheduled switchover, format: 2024-12-0
 pg switchover <cls> --force           # Skip confirmation
 ```
 
-Before switchover, ensure all replicas are healthy (`running` or `streaming`), replication lag is acceptable, and stakeholders are notified.
+Before a switchover, verify that all replicas are healthy (`running` or `streaming`).
+Verify that replication lag is acceptable, and notify stakeholders.
 
 ```bash
 # Interactive switchover (recommended, shows topology and prompts for selection)
@@ -206,7 +228,10 @@ After switchover, use `pg list` to confirm new cluster topology.
 
 ## Failover
 
-Use [**`failover`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-failover) for emergency failover. Unlike `switchover`, `failover` is for when primary is unavailable. It directly promotes a replica without waiting for original primary confirmation. Since replicas may not be fully synced, `failover` may cause minor data loss. Use `switchover` for non-emergency situations.
+Use [**`failover`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-failover) for emergency recovery when the primary is unavailable.
+It promotes a replica directly, without confirmation from the original primary.
+Replicas may not be fully synchronized, so `failover` may cause minor data loss.
+For operations that are not emergencies, use `switchover`.
 
 ```bash
 pg failover <cls>                     # Interactive failover
@@ -228,9 +253,16 @@ pg failover pg-test --candidate pg-test-2 --force
 
 ```
 
-**Switchover vs Failover**: Switchover is for planned maintenance, requires original primary online, ensures full sync before switching, no data loss; Failover is for emergency recovery, original primary can be offline, directly promotes replica, may lose unsynced data. Use Switchover for daily maintenance/upgrades; use Failover only when primary is completely down and unrecoverable.
+**Switchover vs Failover**: Switchover supports planned maintenance and requires the original primary to be online.
+It waits for full synchronization and prevents data loss.
+Failover supports emergency recovery when the original primary can be offline.
+It promotes a replica directly and may lose data that has not replicated.
+Use Switchover for routine maintenance and upgrades.
+Use Failover only when the primary is completely down and cannot recover.
 
-> The built-in Patroni `failover` subcommand currently has no `--leader` option. Use planned `switchover --leader ...` when you need to validate or name the old primary; failover accepts only the candidate replica.
+> The built-in Patroni `failover` subcommand currently has no `--leader` option.
+> Use `switchover --leader ...` to validate or name the old primary during a planned switchover.
+> Failover accepts only the candidate replica.
 
 
 
@@ -238,7 +270,11 @@ pg failover pg-test --candidate pg-test-2 --force
 
 ## Restart
 
-Use [**`restart`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-restart) to restart PostgreSQL instances, typically to apply restart-required parameter changes. When run against the whole cluster, `patronictl` submits each selected member in turn but does not guarantee a replica-first, leader-last order. If that order matters, restart replicas by role and then restart the leader separately.
+Use [**`restart`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-restart) to restart PostgreSQL instances, usually after changes to parameters that require a restart.
+For a whole cluster, `patronictl` submits each selected member in turn.
+It does not guarantee that replicas restart before the leader.
+If this order matters, restart replicas by role first.
+Then restart the leader separately.
 
 ```bash
 pg restart <cls>                      # Restart all instances in cluster
@@ -289,7 +325,9 @@ pg restart pg-test --timeout 300 --force
 
 ## Reload
 
-Use [**`reload`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reload) to reload Patroni config without restarting PostgreSQL. This re-reads config files and applies non-restart params via `pg_reload_conf()`. Lighter than `restart` - doesn't interrupt connections or running queries.
+Use [**`reload`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reload) to reload Patroni configuration without a PostgreSQL restart.
+It reads configuration files again and applies parameters through `pg_reload_conf()`.
+It causes less disruption than `restart`: connections and running queries continue.
 
 ```bash
 pg reload <cls>                       # Reload entire cluster config
@@ -299,7 +337,8 @@ pg reload <cls> --role replica        # Reload all replicas
 pg reload <cls> --force               # Skip confirmation
 ```
 
-Most PostgreSQL params work via `reload`. Only postmaster-context params (`shared_buffers`, `max_connections`, `shared_preload_libraries`, `archive_mode`, etc.) require restart.
+Most PostgreSQL parameter changes apply through `reload`.
+Only parameters with postmaster context require a restart, such as `shared_buffers`, `max_connections`, `shared_preload_libraries`, and `archive_mode`.
 
 ```bash
 # Reload entire cluster
@@ -318,7 +357,11 @@ pg reload pg-test --force
 
 ## Reinit Replica
 
-Use [**`reinit`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reinit) to reinitialize a replica. This deletes all data on the replica and rebuilds it according to Patroni's `create_replica_methods` order. Pigsty tries `basebackup` (`pg_basebackup`) first by default; when a remote pgBackRest repository is enabled, `pgbackrest` is also configured as a fallback. Use this when replica data is corrupted, the replica is too far behind and required WAL has been removed, or replica configuration must be reset.
+Use [**`reinit`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-reinit) to reinitialize a replica.
+This deletes all replica data and rebuilds it in the order specified by Patroni `create_replica_methods`.
+By default, Pigsty tries `basebackup` (`pg_basebackup`) first.
+If a remote pgBackRest repository is enabled, Pigsty also configures `pgbackrest` as a fallback.
+Use reinitialization for corrupted replica data, missing WAL after excessive lag, or a required replica configuration reset.
 
 ```bash
 pg reinit <cls> <member>              # Reinitialize specified replica
@@ -326,7 +369,8 @@ pg reinit <cls> <member> --force      # Skip confirmation
 pg reinit <cls> <member> --wait       # Wait for rebuild to complete
 ```
 
-> Warning: This operation **deletes all data** on target instance! Can only be run on replicas, not primary.
+> Warning: This operation **deletes all data** on the target instance.
+> You can run it only on replicas, not on the primary.
 
 ```bash
 # Reinitialize replica (prompts for confirmation)
@@ -358,14 +402,18 @@ During rebuild, use `pg list` to check progress. Replica state shows `creating r
 
 ## Pause
 
-Use [**`pause`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-pause) to pause Patroni automatic failover. When paused, Patroni won't auto-promote replicas even if primary fails. Use for planned maintenance windows (prevent accidental triggers), debugging (prevent cluster state changes), or manual switchover timing control.
+Use [**`pause`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-pause) to pause Patroni automatic failover.
+While paused, Patroni does not promote replicas automatically, even if the primary fails.
+Pause during planned maintenance to prevent accidental failover.
+You can also pause for debugging to prevent cluster state changes, or to control manual switchover timing.
 
 ```bash
 pg pause <cls>                        # Pause automatic failover
 pg pause <cls> --wait                 # Pause and wait for all members to confirm
 ```
 
-> Warning: During pause, cluster **won't auto-recover** if primary fails! Remember to `resume` after maintenance.
+> Warning: While paused, the cluster **will not recover automatically** if the primary fails.
+> Run `resume` after maintenance.
 
 ```bash
 # Pause automatic failover
@@ -389,7 +437,8 @@ $ pg list pg-test
 
 ## Resume
 
-Use [**`resume`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-resume) to resume Patroni automatic failover. Execute immediately after maintenance to ensure cluster auto-recovers on primary failure.
+Use [**`resume`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-resume) to resume Patroni automatic failover.
+Run it immediately after maintenance so the cluster can recover automatically from a primary failure.
 
 ```bash
 pg resume <cls>                       # Resume automatic failover
@@ -411,7 +460,8 @@ $ pg list pg-test
 
 ## History
 
-Use [**`history`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-history) to view cluster failover history. Each switchover (auto or manual) creates a new timeline record.
+Use [**`history`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-history) to view cluster failover history.
+Each automatic or manual switchover creates a timeline record.
 
 ```bash
 pg history <cls>                      # Show failover history
@@ -430,7 +480,11 @@ $ pg history pg-test
 +----+-----------+------------------------------+---------------------------+
 ```
 
-Column descriptions: **TL** is timeline number, incremented after each switchover, distinguishes primary histories; **LSN** is Log Sequence Number at switchover, marks WAL position; **Reason** is switchover reason - `switchover to xxx` (manual), `failover to xxx` (failure), or `no recovery target specified` (init); **Timestamp** is when switchover occurred.
+The history columns have these meanings:
+- **TL**: The timeline number. It increases after each switchover to distinguish primary histories.
+- **LSN**: The Log Sequence Number at switchover, which identifies the WAL position.
+- **Reason**: `switchover to xxx` for a manual operation, `failover to xxx` for a failure, or `no recovery target specified` for initialization.
+- **Timestamp**: The time of the switchover.
 
 
 
@@ -438,7 +492,9 @@ Column descriptions: **TL** is timeline number, incremented after each switchove
 
 ## Show Config
 
-Use [**`show-config`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-show-config) to view current cluster config stored in DCS. This is read-only; use `edit-config` to modify.
+Use [**`show-config`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-show-config) to view the current cluster configuration in DCS.
+This command only reads configuration.
+To change it, use `edit-config`.
 
 ```bash
 pg show-config <cls>                  # Show cluster config
@@ -467,7 +523,8 @@ synchronous_mode: false
 
 ## Query
 
-Use [**`query`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-query) to quickly execute SQL on cluster members. Convenient for debugging - for complex production queries, use `psql` or applications.
+Use [**`query`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-query) to run SQL quickly on cluster members during debugging.
+For complex production queries, use `psql` or an application.
 
 ```bash
 pg query <cls> -c "<sql>"             # Execute on primary
@@ -506,7 +563,8 @@ pg query pg-test -c "SELECT * FROM pg_stat_replication" --format json
 
 ## Topology
 
-Use [**`topology`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-topology) to view cluster replication topology as a tree. More intuitive than `list` for showing primary-replica relationships, especially for cascading replication.
+Use [**`topology`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-topology) to view cluster replication topology as a tree.
+It shows primary-replica relationships more clearly than `list`, especially for cascading replication.
 
 ```bash
 pg topology <cls>                     # Show replication topology
@@ -523,7 +581,8 @@ $ pg topology pg-test
 +-------------+-------------+---------+---------+----+--------------+
 ```
 
-In cascading replication, topology clearly shows replication hierarchy - e.g., `pg-test-3` replicates from `pg-test-2`, which replicates from primary `pg-test-1`.
+For cascading replication, the topology shows the replication hierarchy.
+For example, `pg-test-3` replicates from `pg-test-2`, which replicates from the primary `pg-test-1`.
 
 
 
@@ -548,14 +607,18 @@ patronictl version 4.1.0
 
 ## Remove
 
-Use [**`remove`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-remove) to remove cluster or member metadata from DCS. This is dangerous - only removes DCS metadata, doesn't stop PostgreSQL or delete data files. Misuse may cause cluster state inconsistency.
+Use [**`remove`**](https://patroni.readthedocs.io/en/latest/patronictl.html#patronictl-remove) to remove cluster or member metadata from DCS.
+This operation is dangerous.
+It removes only DCS metadata; it does not stop PostgreSQL or delete data files.
+Incorrect use can make cluster state inconsistent.
 
 ```bash
 pg remove <cls>                       # Remove entire cluster metadata from DCS
 ```
 
-Normally you don't need this command. To properly remove clusters/instances, use Pigsty's [**`bin/pgsql-rm`**](/docs/pgsql/admin/cluster#remove-cluster) script or [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) playbook.
-Only consider `remove` for: orphaned DCS metadata (node physically removed but metadata remains), or cluster destroyed via other means requiring metadata cleanup.
+Normally, you do not need this command.
+To remove a cluster or instance, use [**`bin/pgsql-rm`**](/docs/pgsql/admin/cluster#remove-cluster) or [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml).
+Consider `remove` only for orphaned DCS metadata after physical node removal, or metadata left after cluster destruction by other means.
 
 ```bash
 # Remove entire cluster metadata (requires multiple confirmations)

@@ -13,18 +13,18 @@ categories: [Concept]
 
 > Split read and write operations, route traffic correctly, and deliver PostgreSQL cluster capabilities reliably.
 
-[Service](#service-overview) is an abstraction: it represents the form in which database clusters expose their capabilities externally, encapsulating underlying cluster details.
+A [service](#service-overview) exposes database cluster capabilities through a stable interface that hides the underlying cluster details.
 
-Services are crucial for [stable access](#access-services) in production environments, showing their value during automatic failover in [high availability](/docs/concept/ha) clusters. [Personal users](#personal-users) typically don't need to worry about this concept.
+Services provide [stable production access](#access-services), especially during [HA](/docs/concept/ha) failover. [Personal users](#personal-users) usually do not need this abstraction.
 
 
 ---------------
 
 ## Personal Users
 
-The concept of "service" is for production environments. Personal users with single-node clusters can skip the complexity and directly use instance names or IP addresses to access the database.
+Services are mainly for production. Personal users with one node can connect directly through the instance name or IP address.
 
-For example, Pigsty's default single-node `pg-meta`.`meta` database can be connected directly using three different users:
+For example, connect to the default single-node `pg-meta`.`meta` database with any of these three users:
 
 ```bash
 psql postgres://dbuser_dba:DBUser.DBA@10.10.10.10/meta     # Connect directly with DBA superuser
@@ -37,29 +37,25 @@ psql postgres://dbuser_view:DBUser.Viewer@pg-meta/meta     # Connect with defaul
 
 ## Service Overview
 
-In real-world production environments, we use primary-replica database clusters based on replication. Within a cluster, one and only one instance serves as the leader ([primary](/docs/pgsql/config#primary)) that can accept writes.
-Other instances ([replicas](/docs/pgsql/config#replica)) continuously fetch change logs from the cluster leader to stay synchronized. Replicas can also handle read-only requests, significantly offloading the primary in read-heavy, write-light scenarios.
-Therefore, distinguishing write requests from read-only requests is a common practice.
+Production clusters commonly use primary-replica replication. Exactly one [primary](/docs/pgsql/config#primary) accepts writes. [Replicas](/docs/pgsql/config#replica) continuously receive its change logs and can serve read-only requests. This reduces primary load for read-heavy workloads. Separate write requests from read-only requests to use this capacity.
 
-Additionally, for production environments with high-frequency, short-lived connections, we pool requests through connection pool middleware (Pgbouncer) to reduce connection and backend process creation overhead. However, for scenarios like ETL and change execution, we need to bypass the connection pool and directly access the database.
-Meanwhile, high-availability clusters may undergo failover during failures, causing cluster leadership changes. Therefore, high-availability database solutions require write traffic to automatically adapt to cluster leadership changes.
-These varying access needs (read-write separation, pooled vs. direct connections, failover auto-adaptation) ultimately lead to the abstraction of the **Service** concept.
+Pgbouncer reduces connection and backend-process overhead for frequent short connections. ETL and change operations can bypass the pool for direct access. Failover changes the primary, so write traffic must follow the new leader automatically. The **Service** abstraction combines read/write separation, pooled or direct access, and automatic failover routing.
 
-Typically, database clusters must provide this most basic service:
+Every database cluster needs this basic service:
 
 - **Read-write service (primary)**: Can read from and write to the database
 
-For production database clusters, at least these two services should be provided:
+Production clusters should provide at least these two services:
 
 - **Read-write service (primary)**: Write data: Can only be served by the primary.
 - **Read-only service (replica)**: Read data: Can be served by replicas; falls back to primary when no replicas are available
 
-Additionally, depending on specific business scenarios, there may be other services, such as:
+Depending on the workload, add services such as:
 
-- **Default direct service (default)**: Allows (admin) users to bypass the connection pool and directly access the database
-- **Offline replica service (offline)**: Dedicated replica not serving online read traffic, used for ETL and analytical queries
-- **Sync replica service (standby)**: Read-only service with no replication delay, handled by [synchronous standby](/docs/pgsql/config/cluster#sync-standby)/primary for read queries
-- **Delayed replica service (delayed)**: Access data from the same cluster as it was some time ago, handled by [delayed replicas](/docs/pgsql/config#delayed-cluster)
+- **Default direct service (default)**: Let administrators bypass the connection pool.
+- **Offline replica service (offline)**: Use a dedicated replica for ETL and analytics, separate from online reads.
+- **Sync replica service (standby)**: Serve reads without replication delay from a [synchronous standby](/docs/pgsql/config/cluster#sync-standby) or primary.
+- **Delayed replica service (delayed)**: Read earlier cluster data from [delayed replicas](/docs/pgsql/config#delayed-cluster).
 
 
 
@@ -67,13 +63,13 @@ Additionally, depending on specific business scenarios, there may be other servi
 
 ## Access Services
 
-Pigsty's service delivery boundary stops at the cluster's HAProxy. Users can access these load balancers through various means.
+Pigsty provides service access up to the cluster HAProxy endpoints. Clients can reach these load balancers in several ways.
 
-The typical approach is to use DNS or VIP access, binding them to all or any number of load balancers in the cluster.
+Typically, DNS or a VIP points to one or more cluster load balancers.
 
 ![pigsty-access.jpg](/img/pigsty/access.jpg)
 
-You can use different host & port combinations, which provide PostgreSQL service in different ways.
+Choose a host and port combination for the required access method.
 
 **Host**
 
@@ -86,7 +82,7 @@ You can use different host & port combinations, which provide PostgreSQL service
 
 **Port**
 
-Pigsty uses different **ports** to distinguish [pg services](#service-overview)
+Different **ports** select different [PostgreSQL services](#service-overview).
 
 | Port | Service | Type | Description |
 |------|---------|------|-------------|

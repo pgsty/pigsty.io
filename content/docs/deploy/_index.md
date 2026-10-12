@@ -7,17 +7,15 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+Production deployments require [Architecture Planning](/docs/deploy/planning) and [Preparation](/docs/deploy/prepare) beyond the [Getting Started](/docs/setup/) procedure.
+This chapter describes the complete deployment process and recommended practices for production.
 
-Unlike [**Getting Started**](/docs/setup/), production Pigsty deployments require more [**Architecture Planning**](/docs/deploy/planning) and [**Preparation**](/docs/deploy/prepare).
-
-This chapter helps you understand the complete deployment process and provides best practices for production environments.
-
---------
-
-Before deploying to production, we recommend testing in Pigsty's [**Sandbox**](/docs/deploy/sandbox) to fully understand the workflow.
-Use [**Vagrant**](/docs/deploy/vagrant/) to create a local 4-node sandbox, or leverage [**OpenTofu**](/docs/deploy/terraform/) to provision larger simulation environments in the cloud.
+Before production deployment, test the workflow in the Pigsty [Sandbox](/docs/deploy/sandbox).
+Use [Vagrant](/docs/deploy/vagrant/) to create a local 4-node sandbox.
+Use [OpenTofu](/docs/deploy/terraform/) to create a larger simulation environment in the cloud.
 
 [![pigsty-sandbox](/img/pigsty/sandbox.png)](/docs/concept/arch)
 
-For production, you typically need at least three [**nodes**](/docs/deploy/prepare) for high availability. You should understand Pigsty's core [**Concepts**](/docs/concept) and common administration procedures,
-including [**Configuration**](/docs/setup/config), [**Ansible Playbooks**](/docs/setup/playbook), and [**Security Hardening**](/docs/deploy/security) for enterprise compliance.
+Production high availability typically requires at least three [nodes](/docs/deploy/prepare).
+Review the core [Concepts](/docs/concept) and common administration procedures before deployment.
+These procedures include [Configuration](/docs/setup/config), [Ansible Playbooks](/docs/setup/playbook), and [Security Hardening](/docs/deploy/security) for enterprise compliance.

@@ -6,7 +6,8 @@ icon: fa-brands fa-docker
 categories: [Reference]
 ---
 
-The `docker` configuration template runs Pigsty inside a Docker container and provides a minimal single-node stack for infrastructure and PostgreSQL.
+The `docker` template runs Pigsty in a Docker container.
+It supplies the minimum single-node infrastructure and PostgreSQL components.
 
 For full workflow details, see **[Docker Deployment](/docs/setup/docker/)**.
 
@@ -42,15 +43,15 @@ Source: [`pigsty/conf/docker.yml`](https://github.com/pgsty/pigsty/blob/main/con
 
 ## Explanation
 
-The `docker` template is optimized for development and validation inside containers.
+Use the `docker` template for development and validation inside containers.
 
 **Key Features**:
-- Disables local repo build (`repo_enabled: false`) to avoid extra build overhead in containers
+- Disables local repository builds with `repo_enabled: false`. This reduces the build overhead inside the container.
 - Simplifies node behavior by disabling NTP, kernel module loading, and `/etc/hosts` rewrite
 - Uses PostgreSQL 18 by default with a broad preset extension package bundle (`pg18-*`)
 - Allows password access from both `intra` and `world` ranges in `pg_hba_rules` for fast testing
 - Keeps optional capabilities (Code-Server, Jupyter, JuiceFS, Claude CLI) as commented settings
 
 **Notes**:
-- This template is designed for development and demos; tighten `pg_hba_rules` and password policy for production
+- This template targets development and demonstrations. For production, restrict `pg_hba_rules` and strengthen the password policy.
 - Mount `/data` in the container runtime to persist PostgreSQL and component data

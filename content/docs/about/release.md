@@ -76,56 +76,59 @@ The latest Pigsty release is [**v4.5.0**](#v450).
 
 ## v4.5.0
 
-Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable data services, cluster-identity-aware orchestration, observability, and the software supply chain. It introduces Kafka KRaft and MySQL 8.4 modules, adds Valkey to REDIS, converges the MINIO module on Silo, and expands the packaged extension catalog from 531 to 575 extensions. Released on **2026-08-15**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) and the complete source comparison at [`v4.4.0...v4.5.0`](https://github.com/pgsty/pigsty/compare/v4.4.0...v4.5.0).
+Pigsty v4.5.0 adds pilot modules, replaceable data services, and orchestration based on cluster identity. It also improves observability and the software supply chain. The release adds Kafka KRaft, MySQL 8.4, and Valkey support, and makes Silo the MINIO backend. The packaged extension catalog grows from 531 to 575 extensions. Released on **2026-08-15**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) and full source comparison at [`v4.4.0...v4.5.0`](https://github.com/pgsty/pigsty/compare/v4.4.0...v4.5.0).
 
 **Highlights**
 
-- **575 extensions:** Compared with v4.4.0's 531 entries, the current catalog adds 46 and removes 2, for a net gain of 44. It now contains 575 extensions across 406 non-contrib package families, with RPM/DEB coverage tracked per platform.
-- **Kafka KRaft module:** Adds native Pigsty orchestration for Kafka, with multi-cluster support, dynamic member enrollment and retirement, SCRAM/TLS, secure credential rotation, monitoring metrics, and Grafana dashboards.
-- **MySQL 8.4 module:** Adds standalone and three-node InnoDB Cluster deployments, MySQL Router, XtraBackup, user and database provisioning, monitoring and alerting, and idempotent reconciliation.
+- **575 extensions:** Adds 46 entries and removes 2 from the 531 entries in v4.4.0, for a net increase of 44. The catalog now contains 575 extensions across 406 non-contrib package families. It tracks RPM/DEB coverage for each platform.
+- **Kafka KRaft module:** Adds native Pigsty orchestration for Kafka and supports multiple clusters. It includes dynamic member enrollment and retirement, SCRAM/TLS, secure credential rotation, monitoring metrics, and Grafana dashboards.
+- **MySQL 8.4 module:** Adds standalone and three-node InnoDB Cluster deployments. It includes MySQL Router, XtraBackup, user and database provisioning, monitoring, alerting, and idempotent reconciliation.
 - **Valkey and Silo:** REDIS adds `redis_type: valkey`; the final MINIO source accepts only `minio_type: silo`. The RustFS integration developed during this cycle was fully withdrawn before the candidate baseline.
 - **51 standalone configuration templates:** Adds `demo/kafka`, `demo/mysql`, and the eight-node `ha/octo` simulation template to the 48 standalone templates in v4.4.0. The compatibility symlink `conf/app/supa.yml` → `../supabase.yml` remains available.
-- **Safer cluster-identity orchestration:** PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks, plus every corresponding removal playbook except `mysql-rm.yml`, skip unrelated hosts by explicit cluster identity. `mysql-rm.yml` instead fails closed for any wrongly selected host. etcd delegation and DBSU key exchange now use actual cluster members as well.
-- **Observability and supply chain:** Re-exports Grafana dashboards to Dashboard API v2, moves MinIO/Silo collection to Metrics V3, and generates local repositories atomically with SOW instead of synthetic ModuleMD metadata.
-- **Kernel and toolchain updates:** Completes pgBackRest support for PostgreSQL 19 beta2, enables cluster mode for Percona PostgreSQL TDE, fixes IvorySQL initialization and WAL compression, and refreshes extension package maps, exporters, and build tooling.
+- **Safer cluster-identity orchestration:** PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks skip unrelated hosts by explicit cluster identity. Their removal playbooks do the same, except `mysql-rm.yml`. That playbook stops with an error for any incorrectly selected host. etcd delegation and DBSU key exchange now use actual cluster members.
+- **Observability and supply chain:** Re-exports Grafana dashboards to Dashboard API v2 and moves MinIO/Silo collection to Metrics V3. Generates local repositories atomically with SOW and removes synthetic ModuleMD metadata.
+- **Kernel and toolchain updates:** Completes pgBackRest support for PostgreSQL 19 beta2 and enables cluster mode for Percona PostgreSQL TDE. Fixes IvorySQL initialization and WAL compression. Updates extension package maps, exporters, and build tooling.
 
 **New Modules and Data Services**
 
-- The [Kafka module](/docs/kafka/) uses node state as the source of truth for dynamic KRaft orchestration. It manages one or more clusters in one inventory and also supports an unbounded `kafka.yml` run; partial `--limit` selections are rejected. The destructive `kafka-rm.yml` instead requires a non-empty `-l/--limit` and validates a safe absolute data path plus surviving broker/controller anchors before any partial retirement can stop services. Nodes retain authoritative manifests and secrets, with dynamic controller joins, broker admission, member retirement, three-step dead-node replacement, SCRAM-SHA-512/TLS, credential and certificate rotation, and self-tested partition health gates.
-- The [MySQL pilot module](/docs/mysql/) targets a fixed MySQL 8.4 LTS platform and accepts either a standalone node or a three-node InnoDB Cluster. It includes MySQL Shell and Router, scheduled full XtraBackup backups, TLS, account and database provisioning, primary-key policy checks, conservative member removal, and idempotent reconciliation.
-- The REDIS module retains `redis` as its default engine and can deploy Valkey with `redis_type: valkey`. Service units now use `Type=notify` with a 1,800-second startup timeout, plus stronger topology validation, password handling, tag-scoped removal semantics, and rebuild protection.
-- The MINIO module now deploys Silo and only Silo. `minio_type` remains an extension point, but `silo` is the sole accepted value in this release. Startup checks the systemd Invocation ID and `ActiveState=active` for the current restart, waits about 600 seconds by default, and then runs Silo's cluster health check. The Infra package line adds `silo` and `mcli` while preserving the S3/Admin APIs, `/minio/*` routes, `MINIO_*` environment variables, and disk format.
-- Object-storage topology is grouped by `minio_cluster`; its inventory group name may differ, and one inventory may declare multiple object-storage clusters. Use distinct `minio_alias`, `minio_domain`, and `minio_endpoint` values for each to avoid overwriting shared client aliases on INFRA nodes. `demo/minio` now selects Silo explicitly and trims its local repository to the `infra,node` modules.
+- The [Kafka module](/docs/kafka/) uses node state as the source of truth for dynamic KRaft orchestration. It manages one or more clusters in one inventory. It supports a `kafka.yml` run without a limit and rejects partial `--limit` selections.
+  The destructive `kafka-rm.yml` requires a non-empty `-l/--limit`. Before partial retirement can stop services, it validates a safe absolute data path and surviving broker/controller anchors.
+  Nodes retain authoritative manifests and secrets. Supported operations include dynamic controller joins, broker admission, member retirement, and three-step dead-node replacement. The module supports SCRAM-SHA-512/TLS, credential and certificate rotation, and self-tested partition health checks.
+- The [MySQL pilot module](/docs/mysql/) uses a fixed MySQL 8.4 LTS platform. It accepts a standalone node or a three-node InnoDB Cluster. It includes MySQL Shell and Router, scheduled full XtraBackup backups, TLS, and account and database provisioning. It also includes primary-key policy checks, conservative member removal, and idempotent reconciliation.
+- The REDIS module retains `redis` as its default engine and supports Valkey through `redis_type: valkey`. Service units now use `Type=notify` with a 1,800-second startup timeout. This release also improves topology validation, password handling, tag-scoped removal behavior, and rebuild protection.
+- The MINIO module now deploys only Silo. `minio_type` remains an extension point, but this release accepts only `silo`. At startup, the module checks the systemd Invocation ID and `ActiveState=active` for the current restart. It waits about 600 seconds by default, then runs the Silo cluster health check.
+  Infra packages add `silo` and `mcli`. They preserve the S3/Admin APIs, `/minio/*` routes, `MINIO_*` environment variables, and disk format.
+- `minio_cluster` groups the object-storage topology. Its inventory group name can differ, and one inventory can contain multiple object-storage clusters. Use distinct `minio_alias`, `minio_domain`, and `minio_endpoint` values for each cluster. This prevents shared client aliases on INFRA nodes from being overwritten. `demo/minio` now selects Silo explicitly and limits its local repository to the `infra,node` modules.
 - The standalone FERRET module is replaced by [PostgreSQL Mongo mode](/docs/conf/mongo/) and the [FerretDB Docker APP](/docs/app/ferretdb/). PostgreSQL provides the DocumentDB data layer, while Docker Compose provides the FerretDB protocol layer.
 
 **Orchestration, Security, and Tooling**
 
-- `deploy.yml`, `slim.yml`, and the PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks now skip unrelated hosts according to the corresponding `*_cluster` identity. The PGSQL, REDIS, MINIO, and KAFKA removal playbooks do the same. MySQL removal is intentionally different: `mysql-rm.yml` does not skip hosts without identity and instead fails closed in `mysql_rm_check`. Every host that enters a role still receives an internal identity check.
-- PGSQL configuration, PITR, and removal workflows delegate only when the canonical `etcd` group exists and has at least one member; they no longer silently fall back to localhost when no etcd target exists. DBSU SSH keys are exchanged through the actual `pg_cluster_members`, correctly covering cross-inventory-group topologies such as Citus.
-- PGSQL PITR and removal now delete only the etcd subtree bounded by `/<cluster>/`, avoiding adjacent clusters whose names share a prefix. The initial pgBackRest marker `/etc/pgbackrest/initial.done` is written only after the backup command succeeds.
+- `deploy.yml`, `slim.yml`, and PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks now skip unrelated hosts by their `*_cluster` identity. PGSQL, REDIS, MINIO, and KAFKA removal playbooks do the same. `mysql-rm.yml` does not skip hosts without identity. It stops with an error in `mysql_rm_check`. Every host that enters a role still receives an internal identity check.
+- PGSQL configuration, PITR, and removal workflows delegate only if the canonical `etcd` group exists and has at least one member. They no longer silently fall back to localhost when no etcd target exists. DBSU SSH key exchange uses the actual `pg_cluster_members`. This supports topologies that cross inventory groups, such as Citus.
+- PGSQL PITR and removal now delete only the etcd subtree bounded by `/<cluster>/`. This protects adjacent clusters whose names share a prefix. Pigsty writes the initial pgBackRest marker `/etc/pgbackrest/initial.done` only after the backup command succeeds.
 - HAProxy uses the fixed `/etc/haproxy/haproxy.cfg` and `/etc/haproxy/conf.d` layout, upstream master-worker mode, a master socket, and `Type=notify`. dnsmasq now binds dynamically, answers private reverse lookups locally, and handles node addresses added after INFRA initialization.
-- Rendered systemd units managed by Pigsty are consistently placed under `/etc/systemd/system`; permissions on sensitive configuration and privileged files are tightened further. Removal workflows stop services before entering the data-cleanup phase.
-- The REPO and CACHE roles now use `sow create --pigsty` to atomically generate RPM/APT metadata and the SHA-256 `repo_complete` marker, and no longer generate synthetic ModuleMD metadata. `pg_id` also compares cluster size as an explicit integer for older Ansible releases.
+- Pigsty places its rendered systemd units under `/etc/systemd/system`. This release further restricts permissions on sensitive configuration and privileged files. Removal workflows stop services before data cleanup.
+- REPO and CACHE now use `sow create --pigsty` to generate RPM/APT metadata and the SHA-256 `repo_complete` marker atomically. They no longer generate synthetic ModuleMD metadata. `pg_id` also compares cluster size as an explicit integer for older Ansible releases.
 - RPM exporter package names move from underscores to hyphens, for example `node_exporter` → `node-exporter`. Debian repository naming and PGDG YUM extension package mappings are corrected as well.
-- Tuned profiles now use the OS-specific directory: `/etc/tuned/profiles` on EL 10, Debian 13, and Ubuntu 26, and `/etc/tuned` on EL 8/9, Debian 12, and Ubuntu 22/24. Debian/Ubuntu package installation also suppresses premature starts of Silo, Redis/Valkey, and legacy log services.
-- China-region repository routing receives a systematic refresh. OS, Docker, Grafana, Percona, supported MongoDB APT, and uv/PyPI paths prefer Tencent Cloud; EL and Docker entries retain Huawei Cloud and Aliyun fallbacks where appropriate. MySQL and Kubernetes use USTC mirrors, and ClickHouse uses Huawei Cloud. MongoDB RPM no longer advertises an unavailable China-region alternative. The final per-platform choices remain defined in `roles/node_id/vars/<os>.<arch>.yml`.
+- Tuned profiles use `/etc/tuned/profiles` on EL 10, Debian 13, and Ubuntu 26. They use `/etc/tuned` on EL 8/9, Debian 12, and Ubuntu 22/24. Debian/Ubuntu package installation also prevents premature starts of Silo, Redis/Valkey, and legacy log services.
+- This release updates China-region repository routing. OS, Docker, Grafana, Percona, supported MongoDB APT, and uv/PyPI paths prefer Tencent Cloud. EL and Docker entries retain Huawei Cloud and Aliyun fallbacks where appropriate. MySQL and Kubernetes use USTC mirrors, and ClickHouse uses Huawei Cloud. MongoDB RPM no longer advertises an unavailable China-region alternative. `roles/node_id/vars/<os>.<arch>.yml` defines the final choices for each platform.
 - The Docker image moves to Debian 13.6 and Pigsty v4.5.0. Vagrant enforces a 32 GiB root disk, accepts pinned box versions, and adds the eight-node `ha/octo` lab. `docker/Makefile` fixes its data directory at `./data`, and `make purge` deletes that directory directly.
 - GitHub Actions for checkout, CodeQL, Docker build/login, and Cosign are upgraded in one batch. Release, bootstrap, install, and validation scripts also tighten file and argument handling. Release archives now derive top-level `pigsty.yml` from `conf/meta.yml`, include the Kafka/MySQL playbooks, and drop the legacy Mongo playbook.
-- The release-signing workflow must be dispatched from `main` and signs only the `pigsty-<tag>.tgz` source archive; multi-gigabyte offline bundles are outside that workflow. The package-build bootstrap matrix now matches `conf/build/oss.yml`: EL 9/10, Debian 12/13, and Ubuntu 22/24/26.
+- Run the release-signing workflow from `main`. It signs only the `pigsty-<tag>.tgz` source archive and excludes multi-gigabyte offline bundles. The package-build bootstrap matrix now matches `conf/build/oss.yml`: EL 9/10, Debian 12/13, and Ubuntu 22/24/26.
 
 **Observability**
 
 - Re-exports the dashboard set through the Pig/Grafana tooling to Dashboard API v2. Adds four Kafka and five MySQL dashboards, and refreshes links, variables, and layouts across Node, PostgreSQL, Redis, and Infra dashboards.
 - Migrates the MinIO/Silo Overview and Instance dashboards to Metrics V3. Victoria scrapes the `/minio/metrics/v3` root endpoint and drops high-cardinality samples carrying a non-empty `bucket` label.
-- Updates the `pg_exporter` configuration to 1.4.0 and fixes duplicate time series from the 1.4.1 `pg_subrel` query. For PG19 it adds `pg_sub_19`, `pg_recovery_state`, `pg_wal_19`, `pg_lock_stat`, and `pg_vacuum_score`; PG10+ gains the `pg_xact_age` transaction-age histogram, and replication-slot `idle_timeout` plus WAL Receiver `connecting` state encoding are covered. Kafka JMX/protocol exporters and the MySQL exporter also join the standard target and alert pipelines.
+- Updates the `pg_exporter` configuration to 1.4.0. Fixes duplicate time series from the 1.4.1 `pg_subrel` query. PG19 gains `pg_sub_19`, `pg_recovery_state`, `pg_wal_19`, `pg_lock_stat`, and `pg_vacuum_score`. PG10+ gains the `pg_xact_age` transaction-age histogram. The update also covers replication-slot `idle_timeout` and WAL Receiver `connecting` state encoding. Kafka JMX/protocol exporters and the MySQL exporter join the standard target and alert pipelines.
 
 **PostgreSQL Kernels and Extension Packages**
 
 - PostgreSQL 19 beta3 templates now include pgBackRest packages and backup support.
-- All four standard Patroni templates add the PostgreSQL 18.6 logical-decoding allowlist `output_plugin_libraries: 'pgoutput, test_decoding, wal2json'`; Patroni filters it on older PostgreSQL versions that do not support the setting.
+- All four standard Patroni templates add the PostgreSQL 18.6 logical-decoding allowlist `output_plugin_libraries: 'pgoutput, test_decoding, wal2json'`. Patroni filters it on older PostgreSQL versions that do not support this setting.
 - Percona PostgreSQL 18 TDE now uses cluster mode and retains Pigsty-prefixed packages to avoid conflicts with native PostgreSQL packages.
 - IvorySQL now initializes its default database correctly and enables compatible WAL compression in workload templates.
-- The PostgreSQL fact loader, per-platform `package_map`, and default extension groups are refreshed to fill package gaps and correct PGDG/YUM naming. Comparing names between the v4.4.0 PIG v1.5.1 catalog and the current catalog yields 46 additions and 2 removals:
+- Updates the PostgreSQL fact loader, per-platform `package_map`, and default extension groups. These changes fill package gaps and correct PGDG/YUM naming. Compared with the v4.4.0 PIG v1.5.1 catalog, the current catalog adds 46 names and removes 2:
 
   - 32 new primary extensions: `argm`, `cat_tools`, `cron_utils`, `fbsql`, `oidc_validator`, `online_advisor`, `pg_cjk_parser`, `pg_column_tetris`, `pg_describe`, `pg_disorder`, `pg_fts`, `pg_jieba`, `pg_kpart`, `pg_lake`, `pg_local_cache`, `pg_mentat`, `pg_oidc_validator`, `pg_policy`, `pg_roast`, `pg_tiktoken_c`, `pg_turbovec`, `pg_vault_tde`, `pgcontext`, `pgfr_record`, `pgmemento`, `pgmonitor`, `pgsqlmock`, `pgwasm`, `plruby`, `plx`, `postbis`, and `qdgc`.
   - 13 child extensions from those package families: `hstore_plruby`, `jsonb_plruby`, `ltree_plruby`, `pg_extension_base`, `pg_extension_updater`, `pg_lake_copy`, `pg_lake_engine`, `pg_lake_iceberg`, `pg_lake_table`, `pg_map`, `pgcontext_pgvector`, `pgfr_analyze`, and `qdgc_postgis`.
@@ -133,14 +136,14 @@ Pigsty v4.5.0 is a feature release focused on new pilot modules, replaceable dat
   - Two catalog removals: `pg_analytics` and `spat`. The total therefore rises from 531 to 575, a net gain of 44.
 
 - Cumulative notable upgrades include `citus` 14.2.0, `pg_search` 0.25.2, `timescaledb` 2.29.1, `vector` 0.8.6, `documentdb` 0.114, `pg_partman` 5.5.0, `pgmnemo` 0.16.1, `plpgsql_check` 2.10.4, `provsql` 1.12.0, and `pgbson` 2.1.0, plus a broad pgrx 0.19.1 rebuild.
-- Full build records and platform differences appear in the merged table below and the original [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/). New catalog entries include [`pg_local_cache`](/ext/e/pg_local_cache/) and [`pg_policy`](/ext/e/pg_policy/). Changelog dates identify package batches and should not be equated one-for-one with the current CSV `mtime`.
+- The merged table below and the original [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/) give full build records and platform differences. New catalog entries include [`pg_local_cache`](/ext/e/pg_local_cache/) and [`pg_policy`](/ext/e/pg_policy/). Changelog dates identify package batches. They do not necessarily match the current CSV `mtime` for each entry.
 - `pg_statviz` is excluded only from the default install group in [`db/reload.sql`](https://github.com/pgsty/pgext/blob/main/db/reload.sql); its detail page, platform coverage, and package-name differences remain in the online catalog.
 
 **Extension Package Update Log**
 
-The table below merges the [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/) after v4.4.0, with 231 rows aligned by batch and extension name. Records that are identical in RPM and DEB are merged; version or note differences are shown separately. An unchanged version still indicates a rebuild, package-name change, license-metadata change, or platform-coverage change.
+The table below merges the [RPM changelog](/docs/repo/pgsql/rpm/) and [DEB changelog](/docs/repo/pgsql/deb/) after v4.4.0. It has 231 rows aligned by batch and extension name. Identical RPM and DEB records share a row. Version or note differences appear separately. An unchanged version still indicates a rebuild, package-name change, license-metadata change, or platform-coverage change.
 
-The first extension batch after July 10 is July 24. That original batch covers July 7–24 without per-item dates, so it is included in full to avoid omitting post-release pgrx rebuilds and package-matrix fixes. “RPM only” or “DEB only” means only that the other changelog has no same-batch row for that extension.
+The first extension batch after July 10 is July 24. The original batch covers July 7–24 without dates for individual items. The full batch appears here to retain post-release pgrx rebuilds and package-matrix fixes. “RPM only” or “DEB only” means the other changelog has no row for that extension in the same batch.
 
 | Batch | Extension | Version Change | Notes |
 |:------|:----------|:---------------|:------|
@@ -379,9 +382,9 @@ The first extension batch after July 10 is July 24. That original batch covers J
 
 **Infrastructure Package Update Log**
 
-The following table contains all 144 Infra log records after v4.4.0, from 2026-07-16 through the latest 2026-08-12 batch. It also includes the `ferretdb2` rebuild and RPM exporter package-name migration recorded in the changelog prose. Consecutive upgrades of the same package are retained as separate batch entries.
+The following table contains all 144 Infra log records after v4.4.0, from 2026-07-16 through the latest batch on 2026-08-12. It also includes the `ferretdb2` rebuild and RPM exporter package-name migration from the changelog prose. Consecutive upgrades of the same package remain separate batch entries.
 
-Build, download, and verification status follows the wording of the original log; it does not establish repository indexing, signing, synchronization, or offline-bundle acceptance. See the [Infra changelog](/docs/repo/infra/log/) for full context.
+Build, download, and verification status uses the original log wording. It does not confirm repository indexing, signing, synchronization, or offline-bundle acceptance. For full context, see the [Infra changelog](/docs/repo/infra/log/).
 
 | Batch | Package | Old Version | New Version | Notes |
 |:------|:--------|:------------|:------------|:------|
@@ -533,18 +536,18 @@ Build, download, and verification status follows the wording of the original log
 
 **Compatibility Changes and Upgrade Notes**
 
-- Existing FERRET deployments should remove the legacy `ferretdb` systemd service and redeploy the protocol layer with `docker.yml` and `app.yml`. The old `mongo.yml` playbook, `mongo_*` parameters, scrape job, and dedicated dashboard are no longer provided.
-- Pigsty no longer renders `/etc/default/haproxy` for the HAProxy unit, although the unit can read it when present. Use only `EXTRAOPTS` for process arguments, not `OPTIONS`. Any `EXTRAOPTS` override must retain `-S /run/haproxy-master.sock` and must not include `-f`.
-- New module playbooks require target hosts to define the corresponding `pg_cluster`, `redis_cluster`, `minio_cluster`, `kafka_cluster`, or `mysql_cluster` explicitly. Custom inventories that relied on fixed group names without cluster identity variables must add those identities first.
-- The MINIO role now accepts only `minio_type: silo`; `minio` and `rustfs` fail during identity validation. Silo retains MinIO protocol and on-disk compatibility, but the package, binary, and systemd service names change. Back up existing object storage and validate in-place compatibility and rollback before upgrading; do not treat package replacement as a migration that has already passed acceptance.
-- Valkey remains opt-in. `redis_type: valkey` installs `valkey-server` and `valkey-cli`, while configuration paths, service names, monitoring jobs, and other module-facing interfaces remain under `redis` for compatibility.
-- Pigsty's core REPO/CACHE roles require SOW and use `sow create --pigsty` to generate local repositories. Older offline bundles or local repositories without SOW 0.3.0 must first install or refresh it from the Pigsty INFRA repository. `pig repo create` is a separate CLI path whose fallback behavior depends on its own version.
-- MySQL `mysql_databases` entries accept only `name`, `encoding`, and `collate`, and databases are created with `DEFAULT ENCRYPTION='N'`. `mysql_parameters` cannot use `loose_`, `skip_`, `disable_`, or `enable_` prefixes to bypass platform-owned, replication, or TLS option protection.
-- Custom RPM repositories and external automation that still reference underscore names such as `node_exporter` or `redis_exporter` must move to the hyphenated `node-exporter` and `redis-exporter` package names.
-- `docker/Makefile` no longer accepts `DATA` to redirect the cleanup target. `make purge` deletes repository-local `./data` immediately without a countdown; preserve any required data first.
-- KAFKA and MYSQL remain pilot modules. Kafka clients must resolve and reach each broker directly rather than putting the data plane behind HAProxy, a VIP, or an L4 load balancer. MySQL currently accepts exactly one or three members.
+- Existing FERRET deployments should remove the legacy `ferretdb` systemd service. Redeploy the protocol layer with `docker.yml` and `app.yml`. This release removes the old `mongo.yml` playbook, `mongo_*` parameters, scrape job, and dedicated dashboard.
+- Pigsty no longer renders `/etc/default/haproxy` for the HAProxy unit. The unit can still read this file when present. Use only `EXTRAOPTS` for process arguments, not `OPTIONS`. Any `EXTRAOPTS` override must retain `-S /run/haproxy-master.sock` and must not include `-f`.
+- New module playbooks require each target host to define its `pg_cluster`, `redis_cluster`, `minio_cluster`, `kafka_cluster`, or `mysql_cluster` explicitly. If a custom inventory uses fixed group names without these identity variables, add the variables first.
+- The MINIO role accepts only `minio_type: silo`. Values `minio` and `rustfs` fail identity validation. Silo retains MinIO protocol and disk-format compatibility, but package, binary, and systemd service names change. Back up existing object storage before upgrading. Validate in-place compatibility and rollback before upgrading. Package replacement alone does not establish migration acceptance.
+- Valkey remains optional. `redis_type: valkey` installs `valkey-server` and `valkey-cli`. Configuration paths, service names, monitoring jobs, and other module interfaces remain under `redis` for compatibility.
+- Pigsty core REPO/CACHE roles require SOW. They use `sow create --pigsty` to generate local repositories. Older offline bundles or local repositories without SOW 0.3.0 must first install or update it from the Pigsty INFRA repository. `pig repo create` is a separate CLI operation. Its fallback behavior depends on the CLI version.
+- MySQL `mysql_databases` entries accept only `name`, `encoding`, and `collate`. Pigsty creates databases with `DEFAULT ENCRYPTION='N'`. `mysql_parameters` cannot bypass protection for platform-owned, replication, or TLS options through `loose_`, `skip_`, `disable_`, or `enable_` prefixes.
+- Custom RPM repositories and external automation must replace underscore package names with hyphenated names. For example, replace `node_exporter` and `redis_exporter` with `node-exporter` and `redis-exporter`.
+- `docker/Makefile` no longer accepts `DATA` to redirect the cleanup target. `make purge` immediately deletes repository-local `./data`, without a countdown. Preserve required data first.
+- KAFKA and MYSQL remain pilot modules. Kafka clients must resolve and reach each broker directly. Do not put the data plane behind HAProxy, a VIP, or an L4 load balancer. MySQL currently accepts exactly one or three members.
 
-All 14 validated offline artifacts are published on GitHub for this release, one per [**recommended OS version**](/docs/ref/linux/) and architecture, alongside a `checksums` manifest and a detached PGP signature (`.asc`) for every file.
+GitHub publishes all 14 validated offline artifacts for this release, one per [**recommended OS version**](/docs/ref/linux/) and architecture. A `checksums` manifest accompanies them. Each file has a detached PGP signature (`.asc`).
 
 **Checksums**
 
@@ -571,7 +574,7 @@ afb5cd77903613cb945bd519e4059c76  pigsty-v4.5.0.tgz
 
 ## v4.4.0
 
-Pigsty v4.4.0 is a maintenance release centered on PostgreSQL 18.4, PostgreSQL 19 beta readiness, 531 extensions, refreshed kernel variants, and broader platform coverage.
+Pigsty v4.4.0 is a maintenance release with PostgreSQL 18.4 and PostgreSQL 19 beta support. It includes 531 extensions, updated kernel variants, and broader platform coverage.
 
 Released on **2026-07-10**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.4.0) and [all changes since v4.3.0](https://github.com/pgsty/pigsty/compare/v4.3.0...v4.4.0).
 
@@ -579,30 +582,30 @@ Released on **2026-07-10**. See the [GitHub release](https://github.com/pgsty/pi
 
 - **PostgreSQL 18.4 / 19 beta:** PostgreSQL 18.4 is now the production default, with a minimal PostgreSQL 19 beta template for evaluation.
 - **531 extensions and refreshed kernels:** The catalog adds 21 extensions and updates major PostgreSQL variants across the supported platform matrix.
-- **Safer operations with Pig 1.5.1:** New clone, fork, and PITR workflows arrive alongside automatic VIP discovery, Zstandard pgBackRest compression, and dedicated Patroni log collection.
-- **Security, applications, and tooling:** Secret handling and repository automation are hardened, with new app templates, a redesigned portal, and optional Codex support.
+- **Safer operations with Pig 1.5.1:** Adds clone, fork, and PITR workflows. Also adds automatic VIP discovery, Zstandard pgBackRest compression, and dedicated Patroni log collection.
+- **Security, applications, and tooling:** Improves secret handling and repository automation. Adds app templates, a redesigned portal, and optional Codex support.
 - **Platform validation:** All 14 offline deployment tests pass across seven OS baselines on both `x86_64` and `aarch64`.
 - **Offline artifacts:** The Community Edition publishes six dual-architecture offline packages for Debian 13, EL 10, and Ubuntu 24.04 on GitHub. Prebuilt packages for the other validated baselines are available with the Professional Edition.
 
 **Upgrade Notes**
 
-- Generated pgBackRest configurations now use `compress-type=zst`; preserve intentional local overrides before re-rendering them. [#744](https://github.com/pgsty/pigsty/issues/744)
-- Patroni logs now use `/pg/log/patroni` and `job=patroni`; update custom log queries and alert rules that use the old syslog selector.
-- VIP interfaces now default to `auto`, dnsmasq records move to `/etc/dnsmasq.d/pigsty`, and Pigsty manages `/etc/default/haproxy`; preserve explicit network overrides where needed.
-- The default etcd backend quota drops from 16 GiB to 8 GiB; check existing backend usage before applying the new configuration.
-- `pig` automation must use `-y/--yes` for destructive commands, while `pig pb restore` and `pig pitr` require one explicit recovery target. See the [`pig` v1.5](https://pigsty.io/docs/pig/release/#v150) notes.
-- Supabase analytics moves to the `_supabase` database and `_analytics` schema; existing deployments should create them before switching stacks.
+- Generated pgBackRest configurations now use `compress-type=zst`. Before rendering them again, preserve any intentional local overrides. [#744](https://github.com/pgsty/pigsty/issues/744)
+- Patroni logs now use `/pg/log/patroni` and `job=patroni`. Update custom log queries and alert rules that use the old syslog selector.
+- VIP interfaces now default to `auto`. dnsmasq records move to `/etc/dnsmasq.d/pigsty`, and Pigsty manages `/etc/default/haproxy`. Preserve explicit network overrides where needed.
+- The default etcd backend quota drops from 16 GiB to 8 GiB. Check existing backend usage before applying the new configuration.
+- `pig` automation must use `-y/--yes` for destructive commands. `pig pb restore` and `pig pitr` require one explicit recovery target. See the [`pig` v1.5](https://pigsty.io/docs/pig/release/#v150) notes.
+- Supabase analytics moves to the `_supabase` database and `_analytics` schema. Existing deployments should create them before switching stacks.
 
 **Security and Operations**
 
 - The `pg-pitr` wrapper adds safer target selection, timelines, dry runs, and stronger checks against unsafe recovery targets.
-- Application secrets are hidden from Ansible output, generated `.env` files use mode `0600`, and Grafana no longer prints the administrator password.
-- The `dbsu` sudo policy gains controlled journal access, while the repository adds a security policy, CodeQL, Dependabot, pinned actions, and release-signing automation.
+- Ansible output hides application secrets. Generated `.env` files use mode `0600`. Grafana no longer prints the administrator password.
+- The `dbsu` sudo policy adds controlled journal access. The repository adds a security policy, CodeQL, Dependabot, pinned actions, and release-signing automation.
 
 **Applications and Tooling**
 
 - Added Immich, Maybe, and JumpServer templates; refreshed Supabase, Dify, InsForge, Registry, Jupyter, Kong, Odoo, Teable, Mattermost, and related launch helpers.
-- Rebuilt the bilingual infrastructure portal and added opt-in Codex CLI support to the experimental VIBE module; Claude Code remains its default managed coding agent.
+- Rebuilt the bilingual infrastructure portal. Added optional Codex CLI support to the experimental VIBE module. Claude Code remains its default managed coding agent.
 - Removed the legacy FerretDB Compose template; the FERRET module remains available.
 
 **Bug Fixes**
@@ -616,7 +619,7 @@ Released on **2026-07-10**. See the [GitHub release](https://github.com/pgsty/pi
 
 **PostgreSQL and Extension Package Changes**
 
-The release adds 21 extensions, updates the PostgreSQL 18.4 package graph, introduces the PostgreSQL 19 beta template, and refreshes major kernel variants. Versions below are verified against final repository metadata and, where bundled, the v4.4.0 artifacts; PG major ranges describe catalog and repository coverage.
+The release adds 21 extensions and updates the PostgreSQL 18.4 package graph. It introduces a PostgreSQL 19 beta template and updates major kernel variants. The versions below were verified against final repository metadata and the v4.4.0 artifacts where bundled. PG major ranges describe catalog and repository coverage.
 
 [PostgreSQL RPM changes](https://pigsty.io/docs/repo/pgsql/rpm/) · [PostgreSQL DEB changes](https://pigsty.io/docs/repo/pgsql/deb/) · [Infrastructure package changes](https://pigsty.io/docs/repo/infra/log/)
 
@@ -766,7 +769,7 @@ The release adds 21 extensions, updates the PostgreSQL 18.4 package graph, intro
 | `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                     |
 {.stretch-last}
 
-The MD5 list below covers all 14 validated artifacts. Six Community Edition artifacts are published on GitHub, while the remaining eight are delivered with the Professional Edition. GitHub records SHA-256 digests for the uploaded Community Edition artifacts.
+The MD5 list below covers all 14 validated artifacts. GitHub publishes six Community Edition artifacts. The Professional Edition provides the remaining eight. GitHub records SHA-256 digests for the uploaded Community Edition artifacts.
 
 **Checksums**
 
@@ -796,7 +799,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 **Highlights**
 
 - Added about 50 PostgreSQL extensions, bringing the total available extension count to 510.
-- Added Ubuntu 26.04 x86_64/arm64 support, deprecated Ubuntu 20.04 support, and refreshed minor OS variants to Debian 13.4 / Ubuntu 24.04.4.
+- Added Ubuntu 26.04 x86_64/arm64 support and deprecated Ubuntu 20.04 support. Updated OS minor versions to Debian 13.4 / Ubuntu 24.04.4.
 - Kernel updates: Supabase is updated to the latest version, pgEdge to PG 18, and PolarDB to PG 17.
 - Grafana is updated to 13.0.1, and MinIO now uses the pgsty branch with CVE fixes.
 - Vagrant templates now consistently use cloud-image series images.
@@ -1071,16 +1074,16 @@ cabeeb898b56b26c0855f33d5e60411a  pigsty-v4.2.2.tgz
 
 ## v4.2.1
 
-A maintenance release that adds 3 new extensions.
+This maintenance release adds 3 extensions.
 
 **Major Changes**
 
-- **New Extensions**: `pg_eviltransform` is added to the GIS package group, `pg_pinyin` to the FTS group, and `pg_qos` to the admin group — all for PG 14–18.
-- **PG13 Removed**: All `pgdg13`, `pgdg13-nonfree` repo entries and PG13 package aliases (`pg13-*`) are removed from every platform variant (EL7/8/9/10, Debian 12/13, Ubuntu 22/24/26, both x86_64 and aarch64).
+- **New Extensions**: Added `pg_eviltransform` to the GIS package group, `pg_pinyin` to FTS, and `pg_qos` to admin. All three support PG 14–18.
+- **PG13 Removed**: Removed all `pgdg13` and `pgdg13-nonfree` repository entries and PG13 package aliases (`pg13-*`). This affects every platform variant: EL7/8/9/10, Debian 12/13, and Ubuntu 22/24/26, on both x86_64 and aarch64.
 - Config templates (`fat.yml`, `pro.yml`, `dev.yml`, `el.yml`, `debian.yml`) no longer reference PG13 packages or repos. Extension version comments are updated to reflect PG 14–18 coverage only.
 - **Percona Repo**: Origin URL updated from `ppg-18.1` to `ppg-18.3` to track the latest Percona PostgreSQL distribution.
 - **Nginx Repo**: Module tag for the Nginx upstream APT repo corrected from `infra` to `nginx` on Debian/Ubuntu platforms.
-- **UV Venv Fix**: `roles/node/tasks/pkg.yml` now checks for an existing virtualenv before running `uv venv`, preventing redundant re-creation and potential errors on re-provisioning.
+- **UV Venv Fix**: `roles/node/tasks/pkg.yml` checks for an existing virtualenv before running `uv venv`. This prevents unnecessary re-creation and potential errors during repeat provisioning.
 - **Docker Image**: `less` is added to the Pigsty Docker image base packages.
 - **Demo Config**: Default firewall rules in `el.yml` and `debian.yml` demo configs now include port `5432` for direct PostgreSQL access.
 
@@ -1090,11 +1093,11 @@ PostgreSQL 13 reached its [end of life](https://www.postgresql.org/support/versi
 The PGDG YUM repository has archived and removed the [pg13](https://yum.postgresql.org/news/pg13-end-of-life/) / [pg12](https://yum.postgresql.org/news/pg12-end-of-life/) directories.
 If you install Pigsty on EL systems (even without using PG 13), repo access failures may cause installation or update errors.
 
-You can either upgrade directly to Pigsty v4.2.1, or manually edit the `repo_upstream_default` variable in your corresponding OS file under `roles/node_id/vars/` and remove the pg13 repo line.
+Upgrade directly to Pigsty v4.2.1, or remove the pg13 repository line manually. To remove it, edit `repo_upstream_default` in the file for your OS under `roles/node_id/vars/`.
 
-Additionally, EL8 remains in the Pigsty compatible OS list, but starting from this release, offline packages for EL8 will no longer be published.
+EL8 remains a compatible Pigsty OS. Starting with this release, Pigsty no longer publishes offline packages for EL8.
 
-No other breaking API or configuration changes in this release.
+This release has no other breaking API or configuration changes.
 
 **7 commits**, 84 files changed, +4,925 / -5,351 lines (`v4.2.0..v4.2.1`, 2026-03-04 ~ 2026-03-06)
 
@@ -1169,11 +1172,11 @@ a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
 - `mssql` now defaults to Babelfish PG17 (`pg_version: 17`, `pg_packages: [babelfish, pgsql-common, sqlcmd]`) and no longer requires an extra `mssql` repo.
 - Kernel install paths are normalized in `pg_home_map`: `mssql -> /usr/babelfish-$v/`, `gpsql -> /usr/local/cloudberry`.
 - `package_map` adds a dedicated `cloudberry` mapping and fixes `babelfish*` aliases to versioned RPM/DEB package names.
-- Redis data root default changes from `/data` to `/data/redis`; deployment blocks legacy defaults, while `redis_remove` keeps backward-compatible cleanup.
-- `configure` now supports absolute `-o` output paths with auto-created parent directories, tri-state region detection (CN/global/offline fallback), and a fix for `behind_gfw()` hangs.
+- The Redis data root default changes from `/data` to `/data/redis`. Deployment blocks legacy defaults, but `redis_remove` retains backward-compatible cleanup.
+- `configure` supports absolute `-o` output paths and creates parent directories automatically. It adds tri-state region detection (CN/global/offline fallback) and fixes `behind_gfw()` hangs.
 - Debian/Ubuntu default repo URL mappings (`updates/backports/security`) and China mirror components are corrected to prevent bootstrap package failures.
 - Supabase stack is updated (including PostgREST `14.5` and Vector `0.53.0`) and now includes missing S3 protocol credential variables.
-- Rich/Sample templates explicitly define `dbuser_meta` defaults; `node.sh` systemd completion is simplified.
+- Rich/Sample templates explicitly define `dbuser_meta` defaults. This release also simplifies `node.sh` systemd completion.
 - `pgbackrest` stanza initialization now retries (2 attempts, 5-second interval) to reduce lock contention with `archive-push`.
 - Vibe template now ships `@anthropic-ai/claude-code`, `@openai/codex`, and `happy-coder`, and includes `age` in the default example.
 
@@ -1261,7 +1264,7 @@ a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
 **Compatibility Notes**
 
 - If existing Redis configs still use `redis_fs_main: /data`, migrate to `/data/redis` before deployment.
-- Grafana 12.4 changes data link merge behavior. This release moves key links into field overrides; review custom dashboards accordingly.
+- Grafana 12.4 changes how it merges data links. This release moves key links into field overrides. Review custom dashboards for these changes.
 
 **26 commits**, 122 files changed, +2,116 / -2,215 lines (`v4.1.0..v4.2.0`, 2026-02-15 ~ 2026-02-28)
 
@@ -1304,7 +1307,7 @@ curl https://pigsty.io/get | bash -s v4.1.0
 - `pig` moved from a traditional script interface to an **Agent-Native CLI** (`1.0.0 -> 1.1.0`), with explicit context and JSON/YAML output.
 - `pig` now provides unified **major/minor upgrade** workflows for PostgreSQL and OS lifecycle updates.
 - `pg_exporter` upgraded to **v1.2.0** (`1.1.2 -> 1.2.0`), with PG17/18 metric pipeline and unit fixes.
-- Default firewall security policy updated: `node_firewall_mode` now defaults to `zone`, and `node_firewall_public_port` default changed from `[22,80,443,5432]` to `[22,80,443]`.
+- Updated the default firewall security policy. `node_firewall_mode` defaults to `zone`. The `node_firewall_public_port` default changes from `[22,80,443,5432]` to `[22,80,443]`.
 - Focused PGSQL/PGCAT Grafana usability fixes: dynamic datasource `$dsn`, schema-level drilldown, age metrics, link mapping consistency.
 - Added one-click Mattermost application template, including database/storage/portal and optional PGFS/JuiceFS options.
 - Refactored `infra-rm` uninstall flow with segmented `deregister` cleanup for Victoria targets, Grafana datasources, and Vector logs.
@@ -1364,9 +1367,9 @@ curl https://pigsty.io/get | bash -s v4.1.0
 - Added `fs.nr_open=8388608` in node tuned templates and aligned `fs.file-max / fs.nr_open / LimitNOFILE`.
 - Changed postgres/patroni/minio systemd `LimitNOFILE` from `16777216` to `8388608`.
 - Added `fs.nr_open: 8388608` into default `node_sysctl_params`.
-- Changed `node_firewall_mode` default from `none` to `zone`: firewall enabled by default, intranet trusted, and only `node_firewall_public_port` exposed publicly; set `none` for fully self-managed firewall.
-- Changed `node_firewall_public_port` default from `[22,80,443,5432]` to `[22,80,443]`; add `5432` explicitly only when public DB access is required. Firewall rules are add-only, so existing nodes that already exposed `5432` must remove it manually. Single-node experience templates (such as `meta` / `vibe`) explicitly override and keep `5432` for remote usage.
-- Added `bin/validate` checks for `pg_databases[*].parameters` and `pg_hba_rules[*].order`; fixed HBA validation not returning failure properly.
+- Changed the `node_firewall_mode` default from `none` to `zone`. The firewall is enabled by default and trusts the intranet. It exposes only `node_firewall_public_port` to public networks. For a fully self-managed firewall, set `none`.
+- Changed the `node_firewall_public_port` default from `[22,80,443,5432]` to `[22,80,443]`. Add `5432` explicitly only when public database access is required. Firewall rules only add permissions. On existing nodes that already expose `5432`, remove that rule manually. Single-node trial templates, such as `meta` / `vibe`, explicitly retain `5432` for remote use.
+- Added `bin/validate` checks for `pg_databases[*].parameters` and `pg_hba_rules[*].order`. Fixed HBA validation that did not return failure correctly.
 - Added segmented tags in `infra-rm.yml`: `deregister`, `config`, `env`, etc.
 - Updated VIBE defaults: `jupyter_enabled=false`, `npm_packages` include `@anthropic-ai/claude-code` and `happy-coder`, plus `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.
 - PgBouncer alias cleanup: `pool_size_reserve -> pool_reserve`, `pool_max_db_conn -> pool_connlimit`.
@@ -1536,8 +1539,8 @@ curl https://pigsty.io/get | bash -s v4.0.0
 
 **New Modules**
 
-- **JUICE Module**: JuiceFS distributed filesystem using PostgreSQL as metadata engine, supports PITR recovery for filesystem. Multiple storage backends (PG large objects, MinIO, S3), multi-instance deployment with Prometheus metrics, new `node-juice` dashboard.
-- **VIBE Module**: AI coding sandbox with Code-Server (VS Code in browser), JupyterLab (interactive computing), Node.js (JavaScript runtime), Claude Code (AI coding assistant with OpenTelemetry observability). New `claude-code` dashboard for usage monitoring.
+- **JUICE Module**: Uses PostgreSQL as the metadata engine for the JuiceFS distributed filesystem. Supports filesystem PITR, multiple storage backends (PG large objects, MinIO, S3), and multi-instance deployment with Prometheus metrics. Adds the `node-juice` dashboard.
+- **VIBE Module**: Provides an AI coding sandbox with Code-Server (VS Code in a browser), JupyterLab (interactive computing), and Node.js (JavaScript runtime). It also includes Claude Code, an AI coding assistant with OpenTelemetry observability. Adds the `claude-code` dashboard for usage monitoring.
 
 **PostgreSQL Extension Updates**
 
@@ -1563,12 +1566,12 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 
 **Observability**
 
-- VictoriaMetrics replaces Prometheus — several times the performance with a fraction of the resources
+- VictoriaMetrics replaces Prometheus. It provides several times the performance with a fraction of the resources.
 - VictoriaLogs + Vector replaces Promtail + Loki for log collection
-- Unified log format for all components, PG logs use UTC timestamp (log_timezone)
+- Unified the log format for all components. PG logs use UTC timestamps (log_timezone).
 - PostgreSQL log rotation changed to weekly truncated rotation mode
 - Added Vector parsing configs for Nginx/Syslog/PG CSV/Pgbackrest/Grafana/Redis/etcd/MinIO logs
-- Datasource registration now runs on all Infra nodes, Victoria datasources auto-registered in Grafana
+- Datasource registration now runs on all Infra nodes. Grafana automatically registers Victoria datasources.
 - New `grafana_pgurl` parameter for using PG as Grafana backend storage
 - New `grafana_view_password` parameter for Grafana Meta datasource password
 - `pg_exporter` updated to 1.1.2 with new `pg_timeline` collector and numerous fixes
@@ -1576,7 +1579,7 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 
 **Interface Improvements**
 
-- `install.yml` playbook renamed to `deploy.yml`, new `vibe.yml` playbook for VIBE module
+- Renamed the `install.yml` playbook to `deploy.yml`. Added the `vibe.yml` playbook for the VIBE module.
 - `pg_databases`: added `state` field (create/absent/recreate), `strategy` for cloning, newer locale params support
 - `pg_users`: added `admin` parameter with `ADMIN OPTION`, `set` and `inherit` options
 - `pg_hba`: support `order` field for priority, IPv6 localhost access
@@ -1600,7 +1603,7 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 - Enhanced `/pg/bin/pg-pitr` for instance-level PITR with pre-backup
 - UV Python manager moved from `infra` to `node` module with `node_uv_env` parameter
 - Terraform templates: AWS, Azure, GCP, Hetzner, DigitalOcean, Linode, Vultr, TencentCloud
-- Simu template simplified from 36 to 20 nodes, new 10-node and Citus templates
+- Reduced the Simu template from 36 to 20 nodes. Added 10-node and Citus templates.
 
 **Security Improvements**
 
@@ -1608,7 +1611,7 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 - Replaced `node_disable_firewall` with `node_firewall_mode` (off/none/zone)
 - Replaced `node_disable_selinux` with `node_selinux_mode` (disabled/permissive/enforcing)
 - Nginx Basic Auth support for optional HTTP authentication
-- Enabled etcd RBAC, each cluster can only manage its own PG cluster
+- Enabled etcd RBAC. Each cluster can manage only its own PG cluster.
 - etcd root password stored in `/etc/etcd/etcd.pass`, admin-readable only
 - New `node_admin_sudo` parameter for admin sudo mode (all/nopass)
 - Fixed ownca certificate validity for Chrome recognition
@@ -1681,12 +1684,12 @@ f2791c96db4cc17a8a4008fc8d9ad310  pigsty-pkg-v4.0.0.u22.aarch64.tgz
 
 **Highlights**
 
-- **PostgreSQL 18 Deep Support:** Now the default major PG version, with full extension readiness!
+- **PostgreSQL 18 Deep Support:** PostgreSQL 18 is now the default major version, with full extension support.
 - **Expanded OS Support:** Added EL10 and Debian 13, bringing the total supported operating systems to 14.
 - **Extension Growth:** The PostgreSQL extension library now includes 437 entries.
 - **Ansible 2.19 Compatibility:** Full support for Ansible 2.19 following its breaking changes.
 - **Kernel Updates:** Latest versions for Supabase, PolarDB, IvorySQL, and Percona kernels.
-- **Optimized Tuning:** Refined logic for default PG parameters to maximize resource utilization.
+- **Optimized Tuning:** Improved default PG parameter logic to maximize resource use.
 - [**PGEXT.CLOUD**](/ext/): Dedicated extension website open-sourced under Apache-2.0 license
 
 **Version Updates**
@@ -1703,7 +1706,7 @@ f2791c96db4cc17a8a4008fc8d9ad310  pigsty-pkg-v4.0.0.u22.aarch64.tgz
 - Etcd 3.6.6
 - pig 0.7.4
 
-For detailed version changes, please refer to:
+For detailed version changes, see:
 
 - [INFRA Changelog](/docs/repo/infra/)
 - [RPM Changelog](/docs/repo/pgsql/rpm)
@@ -1711,7 +1714,7 @@ For detailed version changes, please refer to:
 
 **API Changes**
 
-- Implemented a refined optimization strategy for parallel execution parameters. See **[Tuning Guide](/docs/pgsql/template/tune)**.
+- Improved parallel execution parameter tuning. See the **[Tuning Guide](/docs/pgsql/template/tune)**.
 - The `citus` extension is no longer installed by default in `rich` and `full` templates (PG 18 support pending).
 - Added `duckdb` extension stubs to PostgreSQL parameter templates.
 - Capped `min_wal_size`, `max_wal_size`, and `max_slot_wal_keep_size` at 200 GB, 2000 GB, and 3000 GB, respectively.
@@ -1719,14 +1722,14 @@ For detailed version changes, please refer to:
 - Increased the default connection count for the connection pool.
 - Added `prometheus_port` (default: `9058`) to avoid conflicts with the EL10 RHEL Web Console port.
 - Changed `alertmanager_port` default to `9059` to avoid potential conflicts with Kafka SSL ports.
-- Added a `pg_pre` subtask to `pg_pkg`: removes conflicting LLVM packages (`bpftool`, `python3-perf`) on EL9+ prior to PG installation.
+- Added the `pg_pre` subtask to `pg_pkg`. It removes conflicting LLVM packages (`bpftool`, `python3-perf`) on EL9+ before PG installation.
 - Added the `llvm` module to the default repository definition for Debian/Ubuntu.
 - Fixed package removal logic in `infra-rm.yml`.
 
 **Compatibility Fixes**
 
 - **Ubuntu/Debian CA Trust:** Fixed incorrect warning return codes when trusting Certificate Authorities.
-- **Ansible 2.19 Support:** Resolved numerous compatibility issues introduced by Ansible 2.19 to ensure stability across versions:
+- **Ansible 2.19 Support:** Fixed compatibility issues introduced by Ansible 2.19 to support stable operation across versions:
   - Added explicit `int` type casting for sequence variables.
   - Migrated `with_items` syntax to `loop`.
   - Nested key exchange variables in lists to prevent character iteration on strings in newer versions.
@@ -1776,10 +1779,10 @@ curl https://repo.pigsty.io/get | bash -s v3.6.1
 
 **Highlights**
 
-- PostgreSQL 17.6, 16.10, 15.14, 14.19, 13.22, and 18 Beta 3 Released!
+- Released PostgreSQL 17.6, 16.10, 15.14, 14.19, 13.22, and 18 Beta 3.
 - PGDG APT/YUM mirror for Mainland China Users
 - New home website https://pgsty.com
-- Add el10, debian 13 stub, add el10 terraform images
+- Added EL10 and Debian 13 stubs, plus EL10 Terraform images.
 
 **Infra Package Updates**
 
@@ -1805,8 +1808,8 @@ curl https://repo.pigsty.io/get | bash -s v3.6.1
 
 **API Changes**
 
-- remove `br_filter` from default `node_kernel_modules`
-- do not use OS minor version dir for pgdg yum repos
+- Removed `br_filter` from the default `node_kernel_modules`.
+- Stopped using OS minor-version directories for PGDG YUM repositories.
 
 **Checksums**
 
@@ -1835,11 +1838,11 @@ curl https://repo.pigsty.io/get | bash -s v3.6.0
 
 **Highlights**
 
-- Brand-new documentation site: https://doc.pgsty.com
+- New documentation site: https://doc.pgsty.com
 - Added `pgsql-pitr` playbook and backup/restore tutorial, improved PITR experience
 - Added kernel support: Percona PG TDE (PG17)
-- Optimized self-hosted Supabase experience, updated to the latest version, and fixed issues with the official template
-- Simplified installation steps, online install by default, bootstrap now part of install script
+- Improved self-hosted Supabase, updated it to the latest version, and fixed issues in the official template.
+- Simplified installation. Online installation is now the default, and the installation script includes bootstrap.
 
 **Improvements**
 
@@ -1849,7 +1852,7 @@ curl https://repo.pigsty.io/get | bash -s v3.6.0
 - Faster Docker Registry mirror for users in mainland China
 - Optimized tuned OS parameter templates for modern hardware and NVMe disks
 - Added extension `pgactive` for multi-master replication and sub-second failover
-- Adjusted default values for `pg_fs_main` / `pg_fs_backup`, simplified file directory structure design
+- Adjusted defaults for `pg_fs_main` / `pg_fs_backup` and simplified the directory structure.
 
 **Bug Fixes**
 
@@ -1857,9 +1860,9 @@ curl https://repo.pigsty.io/get | bash -s v3.6.0
 - Fixed OrioleDB issues on Debian platform
 - Fixed tuned shm configuration parameter issue
 - Offline packages now use the PGDG source directly, avoiding out-of-sync mirror sites
-- Fix ivorysql [libxcrypt](https://github.com/IvorySQL/IvorySQL/issues/826) dependencies issues
-- Fix Replace the slow and broken epel mirror
-- Fix `haproxy_enabled` flag not working
+- Fixed IvorySQL [libxcrypt](https://github.com/IvorySQL/IvorySQL/issues/826) dependency issues.
+- Replaced the slow, broken EPEL mirror.
+- Fixed the `haproxy_enabled` flag.
 
 **Infra Package Updates**
 
@@ -1920,7 +1923,7 @@ Added Victoria Metrics / Victoria Logs related packages
 * `pg_fs_main`: Default value adjusted to `/data/postgres`.
 * `nginx_cert_validity`: New parameter to control Nginx self-signed certificate validity, default `397d`.
 * `minio_buckets`: Default value adjusted to create three buckets named `pgsql`, `meta`, `data`.
-* `minio_users`: Removed `dba` user, added `s3user_meta` and `s3user_data` users for `meta` and `data` buckets respectively.
+* `minio_users`: Removed the `dba` user. Added `s3user_meta` for the `meta` bucket and `s3user_data` for the `data` bucket.
 * `minio_https`: New parameter to allow MinIO to use HTTP mode.
 * `minio_provision`: New parameter to allow skipping MinIO provisioning stage (skip bucket and user creation)
 * `minio_safeguard`: New parameter, abort `minio-rm.yml` when enabled
@@ -1983,7 +1986,7 @@ curl https://repo.pigsty.io/get | bash -s v3.5.0
 - Enabled `sync_replication_slots` by default on PG 17
 - Retagged subtasks for clearer structure
 - Refactored `pg_remove` module
-- New flags `pg_rm_data`, `pg_rm_bkup`, `pg_rm_pkg` control what gets wiped
+- New flags `pg_rm_data`, `pg_rm_bkup`, and `pg_rm_pkg` control which resources to remove.
 - Clearer role layout & tagging
 - Added new `pg_monitor` module
 - pgbouncer_exporter no longer shares configuration files with `pg_exporter`
@@ -1995,7 +1998,7 @@ curl https://repo.pigsty.io/get | bash -s v3.5.0
 - Support `pgsodium` server key loading
 - fix logflare lag issue with `supa-kick` crontab
 - add `set search_path` clause for monitor functions
-- Added new `pig do` command to CLI, allowing command-line tool to replace Shell scripts in `bin/`
+- Added `pig do` to the CLI. This command replaces Shell scripts in `bin/`.
 
 **Infra Package Updates**
 
@@ -2164,7 +2167,7 @@ Introduction Blog: [**Pigsty v3.4 MySQL Compatibility and Overall Enhancements**
 - Added new software packages: Juicefs, Restic, TimescaleDB EventStreamer
 - The Apache AGE graph database extension now fully supports PostgreSQL 13–17 on EL
 - Improved the `app.yml` playbook: launch standard Docker app without extra config
-- Bump Supabase, Dify, and Odoo app templates, bump to their latest versions
+- Updated Supabase, Dify, and Odoo app templates to their latest versions.
 - Add electric app template, local-first PostgreSQL Sync Engine
 
 **Infra Packages**
@@ -2237,13 +2240,13 @@ Introduction Blog: [**Pigsty v3.4 MySQL Compatibility and Overall Enhancements**
 
 - Added new Docker parameters: `docker_data` and `docker_storage_driver` ([#521](https://github.com/pgsty/pigsty/pull/521) by [@waitingsong](https://github.com/waitingsong))
 - Added new Infra parameter: `alertmanager_port`, which lets you specify the AlertManager port
-- Added new Infra parameter: `certbot_sign`, apply for cert during nginx init? (false by default)
+- Added the Infra parameter `certbot_sign` to request certificates during Nginx initialization. The default is false.
 - Added new Infra parameter: `certbot_email`, specifying the email used when requesting certificates via Certbot
 - Added new Infra parameter: `certbot_options`, specifying additional parameters for Certbot
 - Updated IvorySQL to place its default binary under `/usr/ivory-4` starting in IvorySQL 4.4
 - Changed the default for `pg_lc_ctype` and other locale-related parameters from `en_US.UTF-8` to `C`
-- For PostgreSQL 17, if using `UTF8` encoding with `C` or `C.UTF-8` locales, PostgreSQL's built-in localization rules now take priority
-- `configure` automatically detects whether `C.utf8` is supported by both the PG version and the environment, and adjusts locale-related options accordingly
+- On PostgreSQL 17, built-in localization rules take priority when using `UTF8` encoding with `C` or `C.UTF-8` locales.
+- `configure` checks whether both the PG version and environment support `C.utf8`. It adjusts locale options to match.
 - Set the default IvorySQL binary path to `/usr/ivory-4`
 - Updated the default value of `pg_packages` to `pgsql-main patroni pgbouncer pgbackrest pg_exporter pgbadger vip-manager`
 - Updated the default value of `repo_packages` to `[node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-utility, extra-modules]`
@@ -2288,7 +2291,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 ## v3.3.0
 
-- Total available extensions increased to [**404**](/docs/pgsql/ext/)!
+- Increased available extensions to [**404**](/docs/pgsql/ext/).
 - PostgreSQL February Minor Updates: 17.4, 16.8, 15.12, 14.17, 13.20
 - New Feature: `app.yml` script for auto-installing apps like Odoo, Supabase, Dify.
 - New Feature: Further Nginx configuration customization in `infra_portal`.
@@ -2303,13 +2306,13 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 - pg_exporter 0.8.0 now supports new metrics in pgbouncer 1.24.
 - New Feature: Auto-completion for common commands like `git`, `docker`, `systemctl` [#506](https://github.com/pgsty/pigsty/pull/506) [#524](https://github.com/pgsty/pigsty/pull/524) by [@waitingsong](https://github.com/waitingsong).
 - Improvement: Refined `ignore_startup_parameters` in `pgbouncer` config template [#488](https://github.com/pgsty/pigsty/pull/488) by [@waitingsong](https://github.com/waitingsong).
-- New homepage design: Pigsty's website now features a fresh new look.
+- New homepage design: Redesigned the Pigsty website.
 - Extension Directory: Detailed information and download links for RPM/DEB binary packages.
 - Extension Build: `pig` CLI now auto-sets PostgreSQL extension build environment.
 
 **New Extensions**
 
-**12** new PostgreSQL extensions added, bringing the total to [404](/ext/list) available extensions.
+Added **12** PostgreSQL extensions. The total is now [404](/ext/list) available extensions.
 
 - [documentdb](https://github.com/microsoft/documentdb/) 0.101-0
 - [VectorChord-bm25](https://github.com/tensorchord/VectorChord-bm25) (vchord_bm25) 0.1.0
@@ -2405,7 +2408,7 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 **Highlights**
 
-- [**351**](/ext/) PostgreSQL Extensions, including the powerful [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/)
+- [**351**](/ext/) PostgreSQL extensions, including [postgresql-anonymizer 2.0](https://postgresql-anonymizer.readthedocs.io/en/stable/).
 - IvorySQL 4.0 support for EL 8/9
 - Now use the Pigsty compiled Citus, TimescaleDB and pgroonga on all distros
 - Add self-hosting Odoo template and support
@@ -2465,10 +2468,10 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 **Highlights**
 
-- **New CLI**: Introducing the `pig` command-line tool for managing extension plugins.
+- **New CLI**: Added the `pig` command-line tool to manage extensions.
 - **ARM64 Support**: 390 extensions are now available for ARM64 across five major distributions.
 - **Supabase Update**: Latest Supabase Release Week updates are now supported for self-hosting on all distributions.
-- **Grafana v11.4**: Upgraded Grafana to version 11.4, featuring a new Infinity datasource.
+- **Grafana v11.4**: Upgraded Grafana to 11.4 and added an Infinity datasource.
 
 **Package Changes**
 
@@ -2520,14 +2523,14 @@ c927238f0343cde82a4a9ab230ecd2ac  pigsty-pkg-v3.4.0.u24.aarch64.tgz
 
 **API Changes**
 
-- [`repo_url_packages`](/docs/infra/param#repo_url_packages) now defaults to an empty array; packages are installed via OS package managers.
-- `grafana_plugin_cache` is deprecated; Grafana plugins are now installed via OS package managers.
+- [`repo_url_packages`](/docs/infra/param#repo_url_packages) now defaults to an empty array. OS package managers install the packages.
+- Deprecated `grafana_plugin_cache`. OS package managers now install Grafana plugins.
 - `grafana_plugin_list` is deprecated for the same reason.
 - The 36-node "production" template has been renamed to `simu`.
 - Auto-generated code under `node_id/vars` now includes `aarch64` support.
 - `infra_packages` now includes the `pig` CLI tool.
 - The `configure` command now updates the version numbers of `pgsql-xxx` aliases in auto-generated config files.
-- Update terraform templates with Makefile shortcuts and better provision experience
+- Updated Terraform templates with Makefile shortcuts and improved provisioning.
 
 **Bug Fix**
 
@@ -2593,7 +2596,7 @@ https://github.com/pgsty/pigsty/releases/tag/v3.0.1
 
 ## v3.0.0
 
-2024-08-30 : Extension Exploding & Pluggable Kernels (MSSQL, Oracle)
+2024-08-30 : More extensions and pluggable kernels (MSSQL, Oracle)
 
 https://github.com/pgsty/pigsty/releases/tag/v3.0.0
 
@@ -2602,7 +2605,7 @@ https://github.com/pgsty/pigsty/releases/tag/v3.0.0
 
 ## v2.7.0
 
-2024-05-16 : Extension Overwhelming, new docker apps
+2024-05-16 : More extensions and new Docker apps
 
 https://github.com/pgsty/pigsty/releases/tag/v2.7.0
 
@@ -2690,7 +2693,7 @@ https://github.com/pgsty/pigsty/releases/tag/v2.0.2
 
 ## v2.0.1
 
-2023-03-21 : v2 Bug Fix, security enhance and bump grafana version
+2023-03-21 : v2 bug fixes, security improvements, and a Grafana version update
 
 https://github.com/pgsty/pigsty/releases/tag/v2.0.1
 
@@ -2698,7 +2701,7 @@ https://github.com/pgsty/pigsty/releases/tag/v2.0.1
 
 ## v2.0.0
 
-2023-02-28 : Compatibility Security Maintainability Enhancement
+2023-02-28 : Compatibility, security, and maintainability improvements
 
 https://github.com/pgsty/pigsty/releases/tag/v2.0.0
 
@@ -2723,7 +2726,7 @@ https://github.com/pgsty/pigsty/releases/tag/v1.5.0
 
 ## v1.4.1
 
-2022-04-20 : Bug fix & Full translation of English documents.
+2022-04-20 : Bug fixes and complete English documentation translation.
 
 https://github.com/pgsty/pigsty/releases/tag/v1.4.1
 
@@ -2747,7 +2750,7 @@ https://github.com/pgsty/pigsty/releases/tag/v1.3.0
 
 ## v1.2.0
 
-2021-11-03 : Upgrade default Postgres to 14, monitoring existing pg
+2021-11-03 : PostgreSQL 14 as the default, plus monitoring for existing PG instances
 
 https://github.com/pgsty/pigsty/releases/tag/v1.2.0
 
@@ -2804,7 +2807,7 @@ https://github.com/pgsty/pigsty/releases/tag/v0.6.0
 
 ## v0.5.0
 
-2021-01-07 : Database Customize Template
+2021-01-07 : Database customization template
 
 https://github.com/pgsty/pigsty/releases/tag/v0.5.0
 
@@ -2836,7 +2839,7 @@ https://github.com/pgsty/pigsty/commit/385e33a62a19817e8ba19997260e6b77d99fe2ba
 
 ## v0.1.0
 
-2020-06-20 : Validation on Testing Environment
+2020-06-20 : Validation in a test environment
 
 https://github.com/pgsty/pigsty/commit/1cf2ea5ee91db071de00ec805032928ff582453b
 

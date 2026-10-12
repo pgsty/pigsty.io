@@ -9,7 +9,7 @@ categories: [Task]
 
 VIBE provides the `vibe.yml` playbook to deploy Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.
 
-> `vibe.yml` includes only `node_id` and `vibe` roles, it does not include `node/infra`.
+> `vibe.yml` includes only the `node_id` and `vibe` roles. It does not include `node/infra`.
 > Run [`deploy.yml`](/docs/deploy/) first, or explicitly run [`node.yml`](/docs/node/playbook) and [`infra.yml`](/docs/infra/playbook).
 
 --------
@@ -58,9 +58,9 @@ vibe
 
 Notes:
 
-- `jupyter_install` uses `uv pip`, it does not create venv
+- `jupyter_install` uses `uv pip`. It does not create a venv.
 - `nodejs_pkg` installs only the additional packages declared in `npm_packages`; the list is empty by default
-- `claude_install` installs Claude CLI with `claude_package`, while `claude_config` writes the `~/.claude` configuration
+- `claude_install` installs Claude CLI with `claude_package`. The `claude_config` task writes the `~/.claude` configuration.
 - `codex_install` installs `@openai/codex` and does not manage Codex configuration
 
 --------
@@ -103,9 +103,9 @@ Skip components for this run:
 ./vibe.yml -l <host> -e codex_enabled=false
 ```
 
-These switches are task conditions. Setting one to `false` only skips the corresponding installation and configuration tasks; it does not stop, disable, or uninstall a service or package deployed earlier. To retire Code-Server or JupyterLab, run `systemctl disable --now code-server` or `systemctl disable --now jupyter` separately. VIBE currently has no dedicated removal playbook.
+These switches control task execution. If a switch is `false`, the corresponding installation and configuration tasks are skipped. This does not stop, disable, or uninstall a previously deployed service or package. To stop and disable Code-Server, run `systemctl disable --now code-server` separately. For JupyterLab, run `systemctl disable --now jupyter`. VIBE currently has no dedicated removal playbook.
 
-Node.js is a runtime dependency of Claude Code and Codex CLI. If `nodejs_enabled=false` but either `claude_enabled` or `codex_enabled` remains `true`, the `nodejs` phase still runs. It is skipped only when all three switches are `false`.
+Node.js is a runtime dependency of Claude Code and Codex CLI. The `nodejs` phase runs if either `claude_enabled` or `codex_enabled` is `true`, even with `nodejs_enabled=false`. It is skipped only when all three switches are `false`.
 
 --------
 

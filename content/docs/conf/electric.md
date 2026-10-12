@@ -6,7 +6,8 @@ icon: fa-solid fa-bolt-lightning
 categories: [Reference]
 ---
 
-The `app/electric` configuration template provides a reference configuration for deploying Electric SQL real-time sync service, enabling real-time data synchronization from PostgreSQL to clients.
+The `app/electric` template deploys the Electric SQL synchronization service.
+Electric synchronizes data from PostgreSQL to clients in real time.
 
 
 --------
@@ -40,7 +41,7 @@ Source: [`pigsty/conf/app/electric.yml`](https://github.com/pgsty/pigsty/blob/ma
 
 ## Explanation
 
-The `app/electric` template provides a one-click deployment solution for Electric SQL real-time sync service.
+Use `app/electric` to configure and deploy the Electric SQL service.
 
 **What is Electric**:
 - PostgreSQL to client real-time data sync service
@@ -71,6 +72,6 @@ http://elec.pigsty:8003/metrics
 - Real-time updates for collaborative applications
 
 **Notes**:
-- Electric user needs `replication` permission
-- PostgreSQL logical replication must be enabled
-- Production environments should use SSL connection (configured with `sslmode=require`)
+- Give the Electric user `replication` permission.
+- Enable PostgreSQL logical replication.
+- For production, use SSL connections. The template sets `sslmode=require`.

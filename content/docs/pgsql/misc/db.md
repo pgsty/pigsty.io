@@ -11,19 +11,25 @@ categories: [Reference]
 
 > In this context, Database refers to the logical object created using the SQL command `CREATE DATABASE` within a database cluster.
 
-A PostgreSQL server can serve multiple **databases** simultaneously. In Pigsty, you can [define](#define-database) the required databases in the cluster configuration.
+A PostgreSQL server can serve multiple **databases** at the same time.
+In Pigsty, [define](#define-database) the required databases in the cluster configuration.
 
-Pigsty will modify and customize the default template database `template1`, creating default schemas, installing default extensions, and configuring default privileges. Newly created databases will inherit these settings from `template1` by default.
+Pigsty customizes the default template database, `template1`.
+It creates default schemas, installs default extensions, and configures default privileges.
+New databases inherit these settings from `template1` by default.
 
-By default, all business databases will be added to the Pgbouncer connection pool in a 1:1 manner; `pg_exporter` will use an **auto-discovery** mechanism to find all business databases and monitor objects within them.
+By default, Pigsty adds each business database to the Pgbouncer connection pool with a 1:1 mapping.
+`pg_exporter` **automatically discovers** all business databases and monitors their objects.
 
 
 ----------------
 
 ## Define Database
 
-Business databases are defined in the database cluster parameter [`pg_databases`](/docs/pgsql/param#pg_databases), which is an array of database definition objects.
-Databases in the array are created sequentially according to the **definition order**, so later defined databases can use previously defined databases as **templates**.
+Define business databases in the cluster parameter [`pg_databases`](/docs/pgsql/param#pg_databases).
+This parameter is an array of database definition objects.
+Pigsty creates databases in **definition order**.
+Thus, a later database can use an earlier database as its **template**.
 
 Below is the database definition for the default `pg-meta` cluster in the Pigsty demo environment:
 
@@ -42,7 +48,8 @@ pg-meta:
       - { name: noco     ,owner: dbuser_noco     ,revokeconn: true ,comment: nocodb database }
 ```
 
-Each database definition is an object that may include the following fields, using the `meta` database as an example:
+Each database definition is an object.
+The following `meta` definition shows the available fields:
 
 ```yaml
 - name: meta                      # REQUIRED, `name` is the only mandatory field of a database definition
@@ -72,7 +79,9 @@ Each database definition is an object that may include the following fields, usi
   pool_connlimit: 100             # optional, max database connections at database level, default 100
 ```
 
-The only required field is `name`, which should be a valid and unique database name in the current PostgreSQL cluster, other parameters have reasonable defaults.
+The only required field is `name`.
+It should be a valid database name that is unique within the PostgreSQL cluster.
+Other parameters have defaults.
 
 - `name`: Database name, **required**.
 - `baseline`: SQL file path (Ansible search path, usually in `files`), used to initialize database content.
@@ -97,8 +106,9 @@ The only required field is `name`, which should be a valid and unique database n
 - `pool_size_min`: Database level pgbouncer pool size min, default is 0
 - `pool_connlimit`: Database level pgbouncer connection pool max database connections, default is 100
 
-Newly created databases are forked from the `template1` database by default. This template database will be customized during the [`PG_PROVISION`](/docs/pgsql/param#pg_provision) phase:
-configured with extensions, schemas, and default privileges, so newly created databases will also inherit these configurations unless you explicitly use another database as a template.
+By default, new databases use `template1` as their template.
+During [`PG_PROVISION`](/docs/pgsql/param#pg_provision), Pigsty configures this template with extensions, schemas, and default privileges.
+New databases inherit this configuration unless you explicitly select another template.
 
 For database access privileges, see [**Access Control: Database Isolation**](/docs/concept/sec/ac#database-isolation).
 
@@ -107,9 +117,9 @@ For database access privileges, see [**Access Control: Database Isolation**](/do
 
 ## Create Database
 
-Databases [defined](#define-database) in [`pg_databases`](/docs/pgsql/param#pg_databases) will be automatically created during cluster initialization.
-If you wish to [create database](/docs/pgsql/admin#create-database) on an existing cluster, you can use the `bin/pgsql-db` wrapper script.
-Add new database definition to `all.children.<cls>.pg_databases`, and create that database with the following command:
+Pigsty creates databases [defined](#define-database) in [`pg_databases`](/docs/pgsql/param#pg_databases) during cluster initialization.
+To [create a database](/docs/pgsql/admin#create-database) on an existing cluster, use `bin/pgsql-db`.
+Add the definition to `all.children.<cls>.pg_databases`, then run:
 
 ```bash
 bin/pgsql-db <cls> <dbname>    # pgsql-db.yml -l <cls> -e dbname=<dbname>
@@ -117,13 +127,16 @@ bin/pgsql-db <cls> <dbname>    # pgsql-db.yml -l <cls> -e dbname=<dbname>
 
 Here are some considerations when creating a new database:
 
-The create database playbook is idempotent by default, however when you use `baseline` scripts, it may not be: in this case, it's usually not recommended to re-run this on existing databases unless you're sure the provided baseline SQL is also idempotent.
+The database creation playbook is idempotent by default.
+However, a `baseline` script can change this behavior.
+Do not usually repeat the playbook on an existing database unless you know that its baseline SQL is also idempotent.
 
-We don't recommend manually creating new databases, especially when you're using the default pgbouncer connection pool: unless you're willing to manually maintain the Pgbouncer database list and keep it consistent with PostgreSQL.
-When creating new databases using the `pgsql-db` tool or `pgsql-db.yml` playbook, this database will also be added to the [Pgbouncer Database](#pgbouncer-database) list.
+Manual database creation is not recommended, especially with the default Pgbouncer connection pool.
+If you create databases manually, you must maintain the Pgbouncer database list and keep it consistent with PostgreSQL.
+The `pgsql-db` tool and `pgsql-db.yml` playbook also add new databases to the [Pgbouncer database list](#pgbouncer-database).
 
-If your database definition has a non-trivial `owner` (default is dbsu `postgres`), make sure the owner user exists before creating the database.
-Best practice is always to [create](/docs/pgsql/admin#create-user) [users](/docs/pgsql/config/user) before creating databases.
+If the database `owner` differs from the default dbsu, `postgres`, verify that the owner user exists first.
+Always [create](/docs/pgsql/admin#create-user) [users](/docs/pgsql/config/user) before you create databases.
 
 
 
@@ -131,14 +144,18 @@ Best practice is always to [create](/docs/pgsql/admin#create-user) [users](/docs
 
 ## Pgbouncer Database
 
-Pigsty will configure and enable a Pgbouncer connection pool for PostgreSQL instances in a 1:1 manner by default, communicating via `/var/run/postgresql` Unix Socket.
+By default, Pigsty enables one Pgbouncer connection pool for each PostgreSQL instance.
+The pool connects through the `/var/run/postgresql` Unix socket.
 
-Connection pools can optimize short connection performance, reduce concurrency contention, avoid overwhelming the database with too many connections, and provide additional flexibility during database migration.
+Connection pools can improve performance for short connections and reduce concurrency contention.
+They prevent excessive connections from overloading the database.
+They also provide more options during database migration.
 
-Pigsty adds all databases in [`pg_databases`](/docs/pgsql/param#pg_databases) to pgbouncer's database list by default.
-You can disable pgbouncer connection pool support for a specific database by explicitly setting `pgbouncer: false` in the database [definition](#define-database).
+By default, Pigsty adds all databases from [`pg_databases`](/docs/pgsql/param#pg_databases) to the Pgbouncer database list.
+To exclude a database, set `pgbouncer: false` in its [definition](#define-database).
 
-The Pgbouncer database list is defined in `/etc/pgbouncer/database.txt`, and connection pool parameters from the database definition are reflected here:
+The Pgbouncer database list is in `/etc/pgbouncer/database.txt`.
+This file includes pool parameters from each database definition:
 
 ```yaml
 meta                        = host=/var/run/postgresql mode=session
@@ -151,11 +168,15 @@ noco                        = host=/var/run/postgresql
 mongo                       = host=/var/run/postgresql
 ```
 
-When you [create databases](#create-database), the Pgbouncer database list definition file will be refreshed and take effect through online configuration reload, normally without affecting existing connections.
+When you [create databases](#create-database), Pigsty refreshes the Pgbouncer database list.
+An online configuration reload applies the changes, normally without affecting existing connections.
 
-Pgbouncer runs with the same `dbsu` as PostgreSQL, defaulting to the `postgres` os user. You can use the `pgb` alias to access pgbouncer management functions using dbsu.
+Pgbouncer runs as the same `dbsu` as PostgreSQL.
+The default is the `postgres` operating system user.
+As dbsu, use the `pgb` alias for Pgbouncer administration.
 
-To route a managed Pgbouncer database to another node, edit `/etc/pgbouncer/database.txt`, then reload the configuration and rebuild existing server connections:
+To route a managed Pgbouncer database to another node, edit `/etc/pgbouncer/database.txt`.
+Then reload the configuration and rebuild existing server connections:
 
 ```bash
 # Change only mydb's backend target
@@ -165,4 +186,6 @@ pgb -c "RECONNECT mydb;"
 pgb -c "WAIT_CLOSE mydb;"
 ```
 
-> The current `pgb-route` helper edits only `/etc/pgbouncer/pgbouncer.ini`, while Pigsty-managed database routes live in the included `database.txt`; it therefore does not change those managed routes.
+> The current `pgb-route` helper edits only `/etc/pgbouncer/pgbouncer.ini`.
+> Pigsty stores managed database routes in the included `database.txt` file.
+> Thus, this helper does not change managed routes.

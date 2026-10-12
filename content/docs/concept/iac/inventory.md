@@ -8,21 +8,20 @@ categories: [Tutorial]
 ---
 
 
-Every Pigsty deployment corresponds to an **Inventory** that describes key properties of the infrastructure and database clusters.
+Each Pigsty deployment has an **inventory** that describes the infrastructure and database clusters.
 
 --------
 
 ## Configuration File
 
-Pigsty uses [**Ansible YAML configuration format**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html) by default,
-with a single YAML configuration file [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) as the inventory.
+By default, Pigsty uses [**Ansible YAML configuration format**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html). The inventory is a single file, [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml).
 
 ```bash
 ~/pigsty
   ^---- pigsty.yml   # <---- Default configuration file
 ```
 
-You can directly edit this configuration file to customize your deployment, or use the [**`configure`**](/docs/concept/iac/configure) wizard script provided by Pigsty to automatically generate an appropriate configuration file.
+Edit this file to customize the deployment. Alternatively, use the [**`configure`**](/docs/concept/iac/configure) wizard to generate it automatically.
 
 
 
@@ -33,9 +32,9 @@ You can directly edit this configuration file to customize your deployment, or u
 
 ## Configuration Structure
 
-The inventory uses standard [**Ansible YAML configuration format**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html), consisting of two parts: **global parameters** (`all.vars`) and multiple **groups** (`all.children`).
+The inventory uses [**Ansible YAML configuration format**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html). It contains **global parameters** in `all.vars` and **groups** in `all.children`.
 
-You can define new clusters in `all.children` and describe the infrastructure using global variables: `all.vars`, which looks like this:
+Define clusters in `all.children`. Define infrastructure settings in `all.vars`, as this example shows:
 
 ```yaml
 all:                  # Top-level object: all
@@ -58,11 +57,9 @@ all:                  # Top-level object: all
 
 ## Cluster Definition
 
-Each Ansible group may represent a cluster, which can be a node cluster, PostgreSQL cluster, Redis cluster, Etcd cluster, Silo cluster, etc.
+Each Ansible group can represent a cluster. Examples include node, PostgreSQL, Redis, Etcd, and Silo clusters.
 
-A cluster definition consists of two parts: **cluster members** (**`hosts`**) and **cluster parameters** (**`vars`**).
-You can define cluster members in `<cls>.hosts` and describe the cluster using [**configuration parameters**](/docs/concept/iac/parameter) in `<cls>.vars`.
-Here's an example of a 3-node high-availability PostgreSQL cluster definition:
+A cluster definition contains **members** (**`hosts`**) and **parameters** (**`vars`**). Define members in `<cls>.hosts`. Set [**configuration parameters**](/docs/concept/iac/parameter) in `<cls>.vars`. This example defines a three-node HA PostgreSQL cluster:
 
 ```yaml
 all:
@@ -76,7 +73,7 @@ all:
         pg_cluster: pg-test
 ```
 
-Cluster-level `vars` (cluster parameters) override global parameters, and instance-level `vars` override both cluster parameters and global parameters.
+Cluster `vars` override global parameters. Instance `vars` override both cluster and global parameters.
 
 
 
@@ -84,8 +81,7 @@ Cluster-level `vars` (cluster parameters) override global parameters, and instan
 
 ## Splitting Configuration
 
-If your deployment is large or you want to better organize configuration files,
-you can [**split the inventory into multiple files**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html#id18) for easier management and maintenance.
+For a large deployment, you can [**split the inventory into multiple files**](https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html#id18). This can also help organize and maintain configuration.
 
 ```text
 inventory/
@@ -100,7 +96,7 @@ inventory/
     └── 10.10.10.11.yml
 ```
 
-You can place cluster member definitions in the `hosts.yml` file and put cluster-level [**configuration parameters**](/docs/concept/iac/parameter#parameter-priority) in corresponding files under the `group_vars` directory.
+Put cluster members in `hosts.yml`. Put cluster [**configuration parameters**](/docs/concept/iac/parameter#parameter-priority) in the corresponding files under `group_vars`.
 
 
 
@@ -108,20 +104,20 @@ You can place cluster member definitions in the `hosts.yml` file and put cluster
 
 ## Switching Configuration
 
-You can temporarily specify a different inventory file when running playbooks using the `-i` parameter.
+When you run a playbook, use `-i` to temporarily select a different inventory.
 
 ```bash
 ./pgsql.yml -i another_config.yml
 ./infra.yml -i nginx_config.yml
 ```
 
-Additionally, Ansible supports multiple configuration methods. You can use local `yaml|ini` configuration files, or use CMDB and any dynamic configuration scripts as configuration sources.
+Ansible also accepts local `yaml|ini` configuration files, a CMDB, or other dynamic configuration scripts.
 
-In Pigsty, we specify **`pigsty.yml`** in the same directory as the default **inventory** through [**`ansible.cfg`**](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6) in the Pigsty home directory. You can modify it as needed.
+The [**`ansible.cfg`**](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6) file in the Pigsty home directory sets the default inventory to **`pigsty.yml`** in that directory. You can change this setting.
 
 ```ini
 [defaults]
 inventory = pigsty.yml
 ```
 
-Additionally, Pigsty supports using a [**CMDB metabase**](/docs/concept/iac/cmdb) to store the inventory, facilitating integration with existing systems.
+You can store the inventory in a [**CMDB metabase**](/docs/concept/iac/cmdb) to integrate it with existing systems.

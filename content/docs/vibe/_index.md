@@ -9,8 +9,7 @@ categories: [Reference]
 aliases: [/docs/pilot/code/]
 ---
 
-The VIBE module provides a **browser-based dev environment** with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI,
-and can work with [`JUICE`](/docs/juice) shared storage and [`PGSQL`](/docs/pgsql) database capabilities.
+The VIBE module provides a **browser-based development environment**. It includes Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI. It can use [`JUICE`](/docs/juice) for shared storage and [`PGSQL`](/docs/pgsql) for database functions.
 
 VIBE depends on [`NODE`](/docs/node) and [`INFRA`](/docs/infra):
 
@@ -33,11 +32,11 @@ VIBE depends on [`NODE`](/docs/node) and [`INFRA`](/docs/infra):
 Notes:
 
 - Code-Server listens on `127.0.0.1:8443`, exposed via Nginx
-- JupyterLab listens on `0.0.0.0:8888`, base path `/jupyter/`; the current template allows any Origin and disables XSRF checks, so it is for trusted development networks only
-- Module default is `jupyter_enabled: false`, while `conf/vibe.yml` template explicitly enables Jupyter
+- JupyterLab listens on `0.0.0.0:8888` with base path `/jupyter/`. The current template allows any Origin and disables XSRF checks. Use it only on trusted development networks.
+- The module default is `jupyter_enabled: false`. The `conf/vibe.yml` template explicitly enables Jupyter.
 
 > [!WARNING] Development sandbox, not a production security baseline
-> The VIBE Jupyter template relies on its token as the default authentication barrier, and `conf/vibe.yml` does not enable additional Basic Auth on `infra_portal.home`. Set a strong random token, restrict port 8888 and portal sources, and use a trusted TLS endpoint before deployment. Never expose the default template directly to the Internet.
+> The VIBE Jupyter template uses its token as the default authentication barrier. The `conf/vibe.yml` template does not enable extra Basic Auth on `infra_portal.home`. Before deployment, set a strong random token. Restrict port 8888 and portal sources. Use a trusted TLS endpoint. Never expose the default template directly to the Internet.
 
 --------
 

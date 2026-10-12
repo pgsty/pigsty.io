@@ -84,8 +84,7 @@ series:
 | **Network Partition** (This scenario)  | Alive but cannot access DCS |   May still be running (needs active demotion)   | Passive wait for TTL expiration | **Yes, needs protection** |
 {.full-width}
 
-In network partition scenarios, the primary PostgreSQL may still be running and accepting writes, causing **split-brain** issues.
-Patroni solves this through **active demotion**: when unable to refresh Leader Key, proactively demotes PostgreSQL to read-only or shuts it down.
+During a network partition, the primary can continue accepting writes, creating **split-brain risk**. If Patroni cannot renew the Leader Key, it actively demotes PostgreSQL to read-only or shuts it down.
 
 
 --------
@@ -94,7 +93,7 @@ Patroni solves this through **active demotion**: when unable to refresh Leader K
 
 ### Phase 1: Primary Demotion
 
-When primary Patroni is network-partitioned from DCS, it cannot refresh Leader Key and starts retrying.
+If a network partition blocks DCS access, primary Patroni retries its failed Leader Key renewal.
 
 ```text
 Timeline:
@@ -103,9 +102,9 @@ Timeline:
      |←── loop ──→|←── retry ──→|
 ```
 
-- **Detection delay**: After partition occurs, must wait for next `loop_wait` cycle to detect
-- **Retry phase**: Patroni continuously retries DCS operations during `retry_timeout`
-- **Active demotion**: After retry timeout, Patroni proactively demotes PostgreSQL (prevents split-brain)
+- **Detection**: The next `loop_wait` cycle detects the partition.
+- **Retry**: Patroni retries DCS operations during `retry_timeout`.
+- **Demotion**: After retries time out, Patroni demotes PostgreSQL to prevent split brain.
 
 ```math
 T_{demote} = \begin{cases}
@@ -115,12 +114,12 @@ loop + retry & \text{worst (partition right after refresh)}
 \end{cases}
 ```
 
-**Key design**: Patroni requires constraint `loop_wait + 2 × retry_timeout ≤ ttl` to ensure primary demotes before TTL expires.
+**Design constraint**: `loop_wait + 2 × retry_timeout ≤ ttl` lets the primary demote before the lease expires.
 
 
 ### Phase 2: Lease Expiration
 
-After primary demotion, Leader Key still exists in DCS, must wait for TTL to naturally expire.
+After demotion, the Leader Key remains in DCS until its TTL expires.
 
 ```text
 Timeline:
@@ -129,18 +128,18 @@ Timeline:
      |←── ttl - (loop + retry) ──→|
 ```
 
-Since the primary has demoted, waiting time during this phase is the remaining TTL time. Since partition detection and remaining TTL are negatively correlated (earlier partition means slower detection but longer remaining TTL), their sum is constant:
+After demotion, the cluster waits for the remaining TTL. Partition detection and remaining TTL are negatively correlated in this model. An earlier partition means slower detection but more remaining TTL. Their sum is constant:
 
 ```math
 T_{expire} = ttl - loop - retry \quad \text{(approximately constant)}
 ```
 
-**Note**: Primary demotion + lease expiration total time still approximately equals `ttl`, same as expire failure.
+**Note**: Demotion plus lease expiration takes approximately `ttl`, as with an expired lease after node failure.
 
 
 ### Phase 3: Replica Detection
 
-Replica wakes up in `loop_wait` cycle and checks Leader Key status in DCS.
+Each `loop_wait` cycle, a replica checks the DCS Leader Key.
 
 ```text
 Timeline:
@@ -164,7 +163,7 @@ loop & \text{worst}
 
 ### Phase 4: Lock & Promote
 
-After replica discovers Leader Key expired, it starts the election process.
+After detecting Leader Key expiration, replicas begin an election.
 
 ```text
 Election flow:
@@ -187,7 +186,7 @@ T_{elect} = \begin{cases}
 
 ### Phase 5: Health Check
 
-HAProxy detects new primary coming online, requires `rise` consecutive successful health checks.
+HAProxy requires `rise` consecutive successful checks before it marks the new primary healthy.
 
 ```text
 Detection timeline:
@@ -213,9 +212,9 @@ T_{haproxy} = \begin{cases}
 
 ## RTO Formula
 
-Sum all phase times to get total RTO.
+Add the phase durations to calculate total RTO.
 
-Since primary demotion + lease expiration ≈ `ttl`, network partition RTO formula is same as expire failure:
+Demotion plus lease expiration is approximately `ttl`. Thus, the network-partition RTO formula matches the expired-lease failure formula:
 
 **Best Case**
 
@@ -246,7 +245,7 @@ $$RTO_{max} = ttl + loop + 2 + inter + (rise-1) \times fastinter$$
 
 ## Model Calculation
 
-Substituting the four RTO model parameters into the formulas:
+Apply the four RTO presets to these formulas:
 
 ```yaml
 pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]
@@ -278,18 +277,18 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |     **Total**      | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78`  | `104` / `127` / `150` |
 {.full-width}
 
-**Conclusion**: Network partition RTO is same as expire failure (node crash), as the bottleneck is TTL expiration time.
+Network partitions and node crashes have the same RTO in this model because both wait for TTL expiration.
 
 
 --------
 
 ## Split-brain Protection
 
-The biggest risk of network partition is **split-brain**: old primary may still be running and accepting writes. Patroni provides multiple protection mechanisms:
+**Split brain** is the main partition risk: the old primary might still accept writes. Patroni provides these protections:
 
 ### 1. Primary Self-Demotion
 
-Patroni's core protection mechanism: when unable to refresh Leader Key, proactively demotes PostgreSQL.
+If Patroni cannot renew the Leader Key, it actively demotes PostgreSQL.
 
 ```python
 # Patroni pseudo-code logic
@@ -301,7 +300,7 @@ if not can_refresh_leader_key():
 
 ### 2. Linux Watchdog
 
-If Patroni process hangs and cannot execute demotion, Linux watchdog will force system restart.
+If Patroni hangs and cannot demote PostgreSQL, Linux watchdog forces a system restart.
 
 ```yaml
 # patroni.yml configuration
@@ -313,7 +312,7 @@ watchdog:
 
 ### 3. Fencing Mechanism
 
-Can configure fencing scripts to forcibly isolate old primary (e.g., disable network interface, stop service, etc.).
+Configure fencing scripts to isolate the old primary forcibly, for example by disabling its network interface or stopping services.
 
 
 --------
@@ -322,7 +321,7 @@ Can configure fencing scripts to forcibly isolate old primary (e.g., disable net
 
 ### Scenario A: Primary partitioned from DCS, replicas normal
 
-This is the most common network partition scenario, the main focus of this article.
+The following is the most common partition scenario and the main subject of this page.
 
 ```text
 ┌─────────┐         ╳         ┌─────────┐
@@ -393,5 +392,4 @@ This is the most common network partition scenario, the main focus of this artic
 |  **Manual Switchover**  |  Normal or failed  |  Direct release/acquire  |  1s ~ 11s  |    None     |
 {.full-width}
 
-**Key Insight**: Network partition RTO is same as expire failure, but requires additional split-brain protection mechanisms.
-Ensuring `loop_wait + 2 × retry_timeout ≤ ttl` constraint is the key design to prevent split-brain.
+A network partition has the same RTO as an expired-lease failure, but also needs split-brain protection. The constraint `loop_wait + 2 × retry_timeout ≤ ttl` is central to that protection.

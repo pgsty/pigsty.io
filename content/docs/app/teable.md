@@ -8,7 +8,7 @@ categories: [Reference]
 
 [**Teable**](https://teable.io/) is a no-code database platform for team collaboration.
 
-Pigsty provides the `app/teable` template (`conf/app/teable.yml`) and depends on **PostgreSQL + Silo + Docker** by default (no Redis dependency).
+Pigsty provides the `app/teable` template (`conf/app/teable.yml`). Its default dependencies are **PostgreSQL + Silo + Docker**. It does not require Redis.
 
 ## Quick Start
 

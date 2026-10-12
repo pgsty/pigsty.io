@@ -7,7 +7,9 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig build` command simplifies the full workflow for building PostgreSQL extensions from source. It provides build infrastructure setup, dependency management, and compilation environments for standard and custom PostgreSQL extensions across supported operating systems.
+Use `pig build` to build PostgreSQL extensions from source.
+It prepares build infrastructure, manages dependencies, and configures compilation environments.
+It supports standard and custom extensions on supported operating systems.
 
 ```bash
 pig build - Build Postgres Extension
@@ -51,7 +53,7 @@ Quick Start:
 
 ## Quick Start
 
-The fastest way to set up a build environment and build an extension:
+To prepare the build environment and build an extension, run:
 
 ```bash
 # Step 1: initialize build specs
@@ -147,7 +149,9 @@ pig build repo -m                # select the built-in China-region sources
 pig build repo --beta            # also enable the PostgreSQL 19 beta repo module
 ```
 
-**What it does:** initializes build repositories with `pig repo set -ru`: remove old repositories, add required repositories, and refresh package caches. `--beta/-b` appends the `beta` module for explicit PostgreSQL 19 beta builds; the stable default path still uses PG14-18.
+**What it does:** run `pig repo set -ru` to remove old repositories, add required repositories, and refresh package caches.
+To build for PostgreSQL 19 beta, add `--beta/-b`. This appends the `beta` module.
+The default uses stable PG14-18.
 
 **Options:**
 
@@ -184,7 +188,8 @@ pig build rust -y                # force reinstall Rust toolchain
 pig build rust -m                # use China mirror mode and write Cargo mirror config
 ```
 
-**Installed components:** Rust compiler (`rustc`), Cargo, Rust standard library, and development tools. `-m|--mirror` uses mirror mode and writes `rsproxy.cn` Cargo configuration.
+**Installed components:** Rust compiler (`rustc`), Cargo, the Rust standard library, and development tools.
+Use `-m|--mirror` to enable mirror mode and write the `rsproxy.cn` Cargo configuration.
 
 
 ## build pgrx
@@ -199,7 +204,9 @@ pig build pgrx --pg init         # run cargo pgrx init without PG arguments
 pig build pgrx -b                # include PostgreSQL 19 beta pg_config during auto-detection
 ```
 
-**Prerequisites:** Rust toolchain and PostgreSQL development headers must be installed first. Default auto-detection only covers stable PG14-18; use `-b|--beta`, or explicitly pass `--pg 19`, when PG19 beta is required.
+**Prerequisites:** install the Rust toolchain and PostgreSQL development headers first.
+Automatic detection covers stable PG14-18 by default.
+For PG19 beta, add `-b|--beta` or specify `--pg 19`.
 
 
 ## build proxy
@@ -332,7 +339,10 @@ pig build get citus -f           # re-download even if the file already exists
 pig build get citus -m           # prefer the pigsty.cc China mirror
 ```
 
-Arguments to `pig build get` are extension names, package names, or source filenames. Unknown names are treated as source filenames. It does not expand `all` or `std` into built-in package sets; list the target package names explicitly for batch downloads.
+Pass extension names, package names, or source filenames to `pig build get`.
+The command treats unknown names as source filenames.
+It does not expand `all` or `std` to built-in package sets.
+For batch downloads, list the target package names explicitly.
 
 Some source packages do not map directly to extension names, so `pig build get` includes special aliases for direct source downloads.
 

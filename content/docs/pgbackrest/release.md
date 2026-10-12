@@ -13,7 +13,9 @@ categories: [Reference]
 
 ## Introduction
 
-pgBackRest release numbers consist of two parts, major and minor. A major release *may* break compatibility with the prior major release, but v2 releases are fully compatible with v1 repositories and will accept all v1 options. Minor releases can include bug fixes and features but do not change the repository format and strive to avoid changing options and naming. Documentation for the v1 release can be found [here](https://pgbackrest.org/1). The notes for a release may also contain "Additional Notes" but changes in this section are only to documentation or the test suite and have no direct impact on the pgBackRest codebase.
+pgBackRest release numbers have major and minor parts. A major release *may* break compatibility with the previous major release. However, v2 releases fully support v1 repositories and accept all v1 options. Minor releases can add features and bug fixes. They do not change the repository format and aim to preserve option names and behavior. See the [v1 documentation](https://pgbackrest.org/1).
+
+A release can include "Additional Notes". These cover only documentation or test-suite changes and do not directly affect the pgBackRest codebase.
 
 
 --------
@@ -74,7 +76,11 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released July 20, 2026*
 
-**NOTE TO PACKAGERS**: A new distribution tarball is available which simplifies the build process by providing pregenerated HTML documentation, man page, and code. The tarball is attached to each release as an asset and is named `pgbackrest-{version}.tar.gz`. See the `README.md` in the tarball for details. Please use the new distribution tarball to avoid the additional build tooling required to generate code in future releases. See [New Distribution Tarball](/docs/pgbackrest/news/#distribution-tarball) for more information. **NOTE TO PACKAGERS**: There is a new optional dependency on `libsystemd`. **IMPORTANT NOTE**: Starting with this release, only the `restore` command may be run as root by default. Use `allow-root` to run other commands as root (though this is not recommended).
+**NOTE TO PACKAGERS**: A new distribution tarball simplifies builds with pregenerated HTML documentation, a man page, and code. Each release includes a `pgbackrest-{version}.tar.gz` asset. See its `README.md` for details. Use this tarball to avoid the additional code-generation tools that future releases require. See [New Distribution Tarball](/docs/pgbackrest/news/#distribution-tarball).
+
+**NOTE TO PACKAGERS**: `libsystemd` is a new optional dependency.
+
+**IMPORTANT NOTE**: Starting with this release, only `restore` can run as root by default. Use `allow-root` for other commands, although this is not recommended.
 
 **Bug Fixes:**
 
@@ -134,7 +140,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released January 19, 2026*
 
-**IMPORTANT NOTE**: The minimum values for the `repo-storage-upload-chunk-size` option have increased. They now represent the minimum allowed by the vendors.
+**IMPORTANT NOTE**: This release increased the minimum `repo-storage-upload-chunk-size` values to the minimums permitted by storage vendors.
 
 **Bug Fixes:**
 
@@ -303,7 +309,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released October 21, 2024*
 
-**NOTE TO PACKAGERS**: This is last feature release to support the autoconf/make build. Please migrate to meson if you have not already done so. 2.54.X patch releases (if any) will continue to support autoconf/make.
+**NOTE TO PACKAGERS**: This was the last feature release with autoconf/make support. Migrate to meson. Any 2.54.X patch releases will still support autoconf/make.
 
 **Bug Fixes:**
 
@@ -356,7 +362,11 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released July 22, 2024*
 
-**IMPORTANT NOTE**: The `log-level-stderr` option default has been changed from `warn` to `off`. This makes it easier to capture errors when only redirecting `stdout`. To preserve the prior behavior set `log-level-stderr=warn`. **NOTE TO PACKAGERS**: The lz4 library is now required by the meson build. **NOTE TO PACKAGERS**: Compiler support for `__builtin_clzl()` and `__builtin_bswap64()` is now required by the meson build.
+**IMPORTANT NOTE**: This release changed the `log-level-stderr` default from `warn` to `off`. This simplifies error capture when only `stdout` is redirected. To keep the previous behavior, set `log-level-stderr=warn`.
+
+**NOTE TO PACKAGERS**: The meson build now requires the lz4 library.
+
+**NOTE TO PACKAGERS**: The meson build now requires compiler support for `__builtin_clzl()` and `__builtin_bswap64()`.
 
 **Bug Fixes:**
 
@@ -395,7 +405,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released May 27, 2024*
 
-**NOTE TO PACKAGERS**: The build system for pgBackRest is now meson. The autoconf/make build will not receive any new features and will be removed after a few releases.
+**NOTE TO PACKAGERS**: This release made meson the pgBackRest build system. The autoconf/make build would receive no new features and was scheduled for removal after a few releases.
 
 **Features:**
 
@@ -689,7 +699,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released July 18, 2022*
 
-**NOTE TO PACKAGERS**: An experimental meson build has been added but packagers should continue to use the autoconf/make build for the foreseeable future.
+**NOTE TO PACKAGERS**: This release added an experimental meson build. At this time, packagers should continue to use autoconf/make.
 
 **Improvements:**
 
@@ -769,7 +779,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released March 6, 2022*
 
-**IMPORTANT NOTE**: Repository size reported by the `info` command is now entirely based on what pgBackRest has written to storage. Previously, in certain cases, pgBackRest could detect if additional compression was being applied by the storage but this is no longer supported.
+**IMPORTANT NOTE**: Starting with this release, `info` reports repository size entirely from the data pgBackRest writes to storage. Earlier versions could sometimes detect additional storage compression. This is no longer supported.
 
 **Bug Fixes:**
 
@@ -811,7 +821,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released January 3, 2022*
 
-**IMPORTANT NOTE**: If the `restore` command is unable to find a backup that matches a specified time target then an error will be thrown, whereas before a warning was logged.
+**IMPORTANT NOTE**: In this release, `restore` reports an error if no backup matches a specified time target. Previously, it logged a warning.
 
 **Bug Fixes:**
 
@@ -871,7 +881,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released August 23, 2021*
 
-**IMPORTANT NOTE**: The log level for copied files in the `backup`/`restore` commands has been changed to `detail`. This makes the `info` log level less noisy but if these messages are required then set the log level for the `backup`/`restore` commands to `detail`
+**IMPORTANT NOTE**: This release moved copied-file messages for `backup`/`restore` to the `detail` log level. This reduces output at `info` level. To keep those messages, set the command log level to `detail`.
 
 **Bug Fixes:**
 
@@ -1065,7 +1075,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Suppress errors when closing `local`/`remote` processes. Since the command has completed it is counterproductive to throw an error but still **warn** to indicate that something unusual happened. (*Reviewed by Cynthia Shang. Reported by argdenis.*)
+- Suppress errors when closing `local`/`remote` processes. The command has already completed. Report a **warn** message to identify the unexpected condition without reporting a command error. (*Reviewed by Cynthia Shang. Reported by argdenis.*)
 - Fix issue with `=` character in file or database names. (*Reviewed by Bastian Wegge, Cynthia Shang. Reported by Brad Nicholson, Bastian Wegge.*)
 
 **Features:**
@@ -1075,7 +1085,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- PostgreSQL 13 beta3 support. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace.
+- PostgreSQL 13 beta3 support. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release.
 - Asynchronous `list`/`remove` for S3/Azure storage. (*Reviewed by Cynthia Shang, Stephen Frost.*)
 - Improve memory usage of unlogged relation detection in manifest build. (*Reviewed by Cynthia Shang, Stephen Frost, Brad Nicholson, Oscar. Suggested by Oscar, Brad Nicholson.*)
 - Proactively close file descriptors after forking async process. (*Reviewed by Stephen Frost, Cynthia Shang.*)
@@ -1102,7 +1112,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix `restore` `--force` acting like `--force --delta`. This caused `restore` to replace files based on timestamp and size rather than overwriting, which meant some files that should have been updated were left unchanged. Normal `restore` and `restore` `--delta` were not affected by this issue. (*Reviewed by Cynthia Shang.*)
+- Fix `restore` `--force` acting like `--force --delta`. The affected `restore` used timestamp and size comparisons instead of overwriting files. It left some files unchanged that needed updates. Normal `restore` and `restore` `--delta` were unaffected. (*Reviewed by Cynthia Shang.*)
 
 **Features:**
 
@@ -1114,7 +1124,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Asynchronous S3 multipart upload. (*Reviewed by Stephen Frost.*)
 - Automatic retry for `backup`, `restore`, `archive-get`, and `archive-push`. (*Reviewed by Cynthia Shang.*)
 - Disable query parallelism in PostgreSQL sessions used for backup control. (*Reviewed by Stefan Fercot.*)
-- PostgreSQL 13 beta2 support. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace.
+- PostgreSQL 13 beta2 support. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release.
 - Improve handling of invalid HTTP response status. (*Reviewed by Cynthia Shang.*)
 - Improve error when `pg1-path` option missing for `archive-get` command. (*Reviewed by Cynthia Shang.*)
 - Add hint when checksum delta is enabled after a timeline switch. (*Reviewed by Matt Bunter, Cynthia Shang.*)
@@ -1127,7 +1137,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Documentation Improvements:**
 
-- Update PostgreSQL versions used to build user guides. Also add version ranges to indicate that a user guide is accurate for a range of PostgreSQL versions even if it was built for a specific version. (*Reviewed by Stephen Frost.*)
+- Update PostgreSQL versions used to build user guides. Add version ranges to show which PostgreSQL versions a guide covers, even when examples use one specific version. (*Reviewed by Stephen Frost.*)
 - Update FAQ for expiring a specific backup set. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Update FAQ to clarify default PITR behavior. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
@@ -1160,7 +1170,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Expire WAL archive only when `repo-retention-archive` threshold is met. WAL prior to the first full backup was previously expired after the first full backup. Now it is preserved according to retention settings. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Add local MD5 implementation so S3 works when FIPS is enabled. (*Reviewed by Cynthia Shang, Stephen Frost. Suggested by Brian Almeida, John Kelly.*)
-- PostgreSQL 13 beta1 support. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace. (*Reviewed by Cynthia Shang.*)
+- PostgreSQL 13 beta1 support. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release. (*Reviewed by Cynthia Shang.*)
 - Reduce `buffer-size` default to `1MiB`. (*Reviewed by Stephen Frost.*)
 - Throw user-friendly error if `expire` is not run on repository host. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
@@ -1173,7 +1183,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Remove empty subexpression from manifest regular expression. MacOS was not happy about this though other platforms seemed to work fine. (*Fixed by David Raftis. Reviewed by David Steele.*)
+- Remove empty subexpression from manifest regular expression. This subexpression caused problems on macOS. Other platforms appeared unaffected. (*Fixed by David Raftis. Reviewed by David Steele.*)
 
 **Improvements:**
 
@@ -1199,8 +1209,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Improve performance of remote manifest build. (*Suggested by Jens Wilke.*)
 - Fix detection of keepalive options on Linux. (*Contributed by Marc Cousin. Reviewed by David Steele.*)
 - Add configure host detection to set standards flags correctly. (*Contributed by Marc Cousin. Reviewed by David Steele.*)
-- Remove `compress`/`compress-level` options from commands where unused. These commands (e.g. `restore`, `archive-get`) never used the compress options but allowed them to be passed on the command line. Now they will error when these options are passed on the command line. If these errors occur then remove the unused options. (*Reviewed by Cynthia Shang.*)
-- Limit backup file copy size to size reported at backup start. If a file grows during the backup it will be reconstructed by WAL replay during recovery so there is no need to copy the additional data. (*Reviewed by Cynthia Shang.*)
+- Remove `compress`/`compress-level` options from commands where unused. Commands such as `restore` and `archive-get` previously accepted these options without using them. This release reports an error when they are supplied. Remove the unused options if this error occurs. (*Reviewed by Cynthia Shang.*)
+- Limit backup file copy size to size reported at backup start. If a file grows during backup, WAL replay reconstructs the additional data during recovery. The backup does not need to copy it. (*Reviewed by Cynthia Shang.*)
 
 
 ### v2.24 Release Notes
@@ -1214,11 +1224,11 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Prevent defunct processes in asynchronous archive commands. (*Reviewed by Stephen Frost. Reported by Adam Brusselback, ejberdecia.*)
 - Error when `archive-get`/`archive-push`/`restore` are not run on a PostgreSQL host. (*Reviewed by Stephen Frost. Reported by Jesper St John.*)
 - Read HTTP content to eof when size/encoding not specified. (*Reviewed by Cynthia Shang. Reported by Christian ROUX.*)
-- Fix resume when the resumable backup was created by Perl. In this case the resumable backup should be ignored, but the C code was not able to load the partial manifest written by Perl since the format differs slightly. Add validations to catch this case and continue gracefully. (*Reported by Kacey Holston.*)
+- Fix resume when the resumable backup was created by Perl. The backup should be ignored in this case. However, C code could not load the partial Perl manifest because the formats differed slightly. Add checks to detect this case and continue. (*Reported by Kacey Holston.*)
 
 **Features:**
 
-- Auto-select backup set on restore when time target is specified. Auto-selection is performed only when `--set` is not specified. If a backup set for the given target time cannot not be found, the latest (default) backup set will be used. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- Auto-select backup set on restore when time target is specified. Select automatically only when `--set` is absent. If no backup set matches the target time, use the latest backup set, which is the default. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Improvements:**
 
@@ -1238,7 +1248,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix missing files corrupting the manifest. If a file was removed by PostgreSQL during the backup (or was missing from the standby) then the next file might not be copied and updated in the manifest. If this happened then the backup would error when restored. (*Reviewed by Cynthia Shang. Reported by Vitaliy Kukharik.*)
+- Fix missing files corrupting the manifest. If PostgreSQL removed a file during backup, the next file might not be copied or updated in the manifest. A file missing from the standby could cause the same problem. Restoring such a backup produced an error. (*Reviewed by Cynthia Shang. Reported by Vitaliy Kukharik.*)
 
 **Improvements:**
 
@@ -1254,7 +1264,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix error in timeline conversion. The timeline is required to verify WAL segments in the archive after a backup. The conversion was performed base `10` instead of `16`, which led to errors when the timeline was ≥ `0xA`. (*Reported by Lukas Ertl, Eric Veldhuyzen.*)
+- Fix error in timeline conversion. The timeline is required to verify WAL segments in the archive after a backup. Conversion used base `10` instead of `16`. This caused errors for timelines ≥ `0xA`. (*Reported by Lukas Ertl, Eric Veldhuyzen.*)
 
 
 ### v2.21 Release Notes
@@ -1266,7 +1276,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Bug Fixes:**
 
 - Fix options being ignored by asynchronous commands. The asynchronous `archive-get`/`archive-push` processes were not loading options configured in command configuration sections, e.g. `[global:archive-get]`. (*Reviewed by Cynthia Shang. Reported by Urs Kramer.*)
-- Fix handling of `\` in filenames. `\` was not being properly escaped when calculating the manifest checksum which prevented the manifest from loading. Since instances of `\` in cluster filenames should be rare to nonexistent this does not seem likely to be a serious problem in the field.
+- Fix handling of `\` in filenames. Manifest checksum calculation escaped `\` incorrectly, which prevented manifest loading. Cluster filenames rarely contain `\`, so a serious production problem was unlikely.
 
 **Features:**
 
@@ -1287,8 +1297,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix archive-push/archive-get when `PGDATA` is symlinked. These commands tried to use `cwd()` as `PGDATA` but this would disagree with the path configured in pgBackRest if `PGDATA` was symlinked. If `cwd()` does not match the pgBackRest path then `chdir()` to the path and make sure the next `cwd()` matches the result from the first call. (*Reported by Stephen Frost, Milosz Suchy.*)
-- Fix reference list when `backup.info` is reconstructed in `expire` command. Since the `backup` command is still using the Perl version of reconstruct this issue will not express unless **1)** there is a backup missing from `backup.info` and **2)** the `expire` command is run directly instead of running after `backup` as usual. This unlikely combination of events means this is probably not a problem in the field.
+- Fix archive-push/archive-get when `PGDATA` is symlinked. These commands used `cwd()` as `PGDATA`. For a symlinked `PGDATA`, it differed from the configured pgBackRest path. If the paths differ, call `chdir()` with the configured path. Then verify that `cwd()` matches its first result. (*Reported by Stephen Frost, Milosz Suchy.*)
+- Fix reference list when `backup.info` is reconstructed in `expire` command. At this release, `backup` still used the Perl reconstruction code. The issue required both conditions: **1)** a backup was missing from `backup.info`; **2)** `expire` ran directly instead of automatically after `backup`. This combination was unlikely in production.
 - Fix segfault on unexpected EOF in gzip decompression. (*Reported by Stephen Frost.*)
 
 
@@ -1300,12 +1310,12 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix remote timeout in delta restore. When performing a delta restore on a largely unchanged cluster the remote could timeout if no files were fetched from the repository within `protocol-timeout`. Add keep-alives to prevent remote timeout. (*Reported by James Sewell, Jens Wilke.*)
-- Fix handling of repeated HTTP headers. When HTTP headers are repeated they should be considered equivalent to a single comma-separated header rather than generating an error, which was the prior behavior. (*Reported by donicrosby.*)
+- Fix remote timeout in delta restore. During a delta restore of a mostly unchanged cluster, the remote could time out. This occurred if no repository files were fetched within `protocol-timeout`. Add keep-alives to prevent this timeout. (*Reported by James Sewell, Jens Wilke.*)
+- Fix handling of repeated HTTP headers. Treat repeated HTTP headers as one comma-separated header. Earlier versions reported an error. (*Reported by donicrosby.*)
 
 **Improvements:**
 
-- JSON output from the `info` command is no longer pretty-printed. Monitoring systems can more easily ingest the JSON without linefeeds. External tools such as `jq` can be used to pretty-print if desired. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- JSON output from the `info` command is no longer pretty-printed. JSON without linefeeds is easier for monitoring systems to ingest. For formatted output, use an external tool such as `jq`. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - The `check` command is implemented entirely in C. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Documentation Improvements:**
@@ -1329,8 +1339,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Features:**
 
 - PostgreSQL 12 support.
-- Add `info` command `set` option for detailed text output. The additional details include databases that can be used for selective restore and a list of tablespaces and symlinks with their default destinations. (*Contributed by Cynthia Shang. Reviewed by David Steele. Suggested by Stephen Frost, ejberdecia.*)
-- Add `standby` restore type. This restore type automatically adds standby_mode=on to recovery.conf for PostgreSQL < 12 and creates `standby.signal` for PostgreSQL ≥ 12, creating a common interface between PostgreSQL versions. (*Reviewed by Cynthia Shang.*)
+- Add `info` command `set` option for detailed text output. Details include databases available for selective restore. They also list tablespaces and symlinks with their default destinations. (*Contributed by Cynthia Shang. Reviewed by David Steele. Suggested by Stephen Frost, ejberdecia.*)
+- Add `standby` restore type. For PostgreSQL < 12, this type adds standby_mode=on to recovery.conf. For PostgreSQL ≥ 12, it creates `standby.signal`. This provides one interface across PostgreSQL versions. (*Reviewed by Cynthia Shang.*)
 
 **Improvements:**
 
@@ -1407,7 +1417,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - The `local` command for restore is implemented entirely in C.
 - Remove hard-coded PostgreSQL user so `$PGUSER` works. (*Suggested by Julian Zhang, Janis Puris.*)
 - Honor configure `--prefix` option. (*Suggested by Daniel Westermann.*)
-- Rename `repo-s3-verify-ssl` option to `repo-s3-verify-tls`. The new name is preferred because pgBackRest does not support any SSL protocol versions (they are all considered to be insecure). The old name will continue to be accepted.
+- Rename `repo-s3-verify-ssl` option to `repo-s3-verify-tls`. Prefer the new name because pgBackRest supports no SSL protocol versions; all are considered insecure. The old name remains accepted.
 
 **Documentation Improvements:**
 
@@ -1599,7 +1609,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Fix missing URI encoding in S3 driver. (*Reported by Dan Farrell.*)
 - Fix incorrect error message for duplicate options in configuration files. (*Reported by Jesper St John.*)
-- Fix incorrectly reported error return in `info` logging. A return code of 1 from the `archive-get` was being logged as an error message at `info` level but otherwise worked correctly.
+- Fix incorrectly reported error return in `info` logging. The `archive-get` return code 1 was logged as an error at `info` level. Operation was otherwise correct.
 
 **Features:**
 
@@ -1608,7 +1618,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- Ignore all files in a linked tablespace directory except the subdirectory for the current version of PostgreSQL. Previously an error would be generated if other files were present and not owned by the PostgreSQL user.
+- Ignore all files in a linked tablespace directory except the subdirectory for the current version of PostgreSQL. Previously, other files not owned by the PostgreSQL user caused an error.
 - Improve `info` command to display the stanza cipher type. (*Contributed by Cynthia Shang. Reviewed by David Steele. Suggested by Douglas J Hunley.*)
 - Improve support for special characters in filenames.
 - Allow `delta` option to be specified in the pgBackRest configuration file. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
@@ -1627,16 +1637,16 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fix issue where *relative* links in `$PGDATA` could be stored in the backup with the wrong path. This issue did not affect absolute links and relative tablespace links were caught by other checks. (*Reported by Cynthia Shang.*)
-- Remove incompletely implemented `online` option from the `check` command. Offline operation runs counter to the purpose of this command, which is to check if archiving and backups are working correctly. (*Reported by Jason O'Donnell.*)
+- Fix issue where *relative* links in `$PGDATA` could be stored in the backup with the wrong path. Absolute links were unaffected. Other checks detected relative tablespace links. (*Reported by Cynthia Shang.*)
+- Remove incompletely implemented `online` option from the `check` command. The command checks whether archiving and backups work correctly, which requires online operation. (*Reported by Jason O'Donnell.*)
 - Fix issue where errors raised in C were not logged when called from Perl. pgBackRest properly terminated with the correct error code but lacked an error message to aid in debugging. (*Reported by Douglas J Hunley.*)
 - Fix issue when a boolean option (e.g. `delta`) was specified more than once. (*Reported by Yogesh Sharma.*)
 
 **Features:**
 
-- Allow any option to be set in an environment variable. This includes options that previously could only be specified on the command line, e.g. `stanza`, and secret options that could not be specified on the command-line, e.g. `repo1-s3-key-secret`.
+- Allow any option to be set in an environment variable. This includes previously command-line-only options, such as `stanza`. It also includes secret options prohibited on the command line, such as `repo1-s3-key-secret`.
 - Exclude temporary and unlogged relation (table/index) files from backup. Implemented using the same logic as the patches adding this feature to PostgreSQL, [8694cc96](https://git.postgresql.org/pg/commitdiff/8694cc96b52a967a49725f32be7aa77fd3b6ac25) and [920a5e50](https://git.postgresql.org/pg/commitdiff/920a5e500a119b03356fb1fb64a677eb1aa5fc6f). Temporary relation exclusion is enabled in PostgreSQL ≥ `9.0`. Unlogged relation exclusion is enabled in PostgreSQL ≥ `9.1`, where the feature was introduced. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Allow arbitrary directories and/or files to be excluded from a backup. Misuse of this feature can lead to inconsistent backups so read the `--exclude` documentation carefully before using. (*Reviewed by Cynthia Shang.*)
+- Allow arbitrary directories and/or files to be excluded from a backup. Incorrect exclusions can make backups inconsistent. Read the `--exclude` documentation carefully before use. (*Reviewed by Cynthia Shang.*)
 - Add `log-subprocess` option to allow file logging for `local` and `remote` subprocesses.
 - PostgreSQL 11 Beta 3 support.
 
@@ -1652,7 +1662,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Documentation Improvements:**
 
-- Stop trying to arrange contributors in `release.xml` by last/first name. Contributor names have always been presented in the release notes exactly as given, but we tried to assign internal IDs based on last/first name which can be hard to determine and ultimately doesn't make sense. Inspired by Christophe's PostgresOpen 2017 talk, "Human Beings Do Not Have a Primary Key". (*Suggested by Christophe Pettus.*)
+- Stop trying to arrange contributors in `release.xml` by last/first name. Release notes always preserve contributor names as supplied. Internal IDs previously used inferred last/first names, which can be difficult to determine reliably. Inspired by Christophe's PostgresOpen 2017 talk, "Human Beings Do Not Have a Primary Key". (*Suggested by Christophe Pettus.*)
 
 **Test Suite Improvements:**
 
@@ -1665,13 +1675,15 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released July 5, 2018*
 
-**IMPORTANT NOTE**: This release fixes a critical bug in the backup resume feature. All resumed backups prior to this release should be considered inconsistent. A backup will be resumed after a prior backup fails, unless `resume=n` has been specified. A resumed backup can be identified by checking the backup log for the message "aborted backup of same type exists, will be cleaned to remove invalid files and resumed". If the message exists, do not use this backup or any backup in the same set for a restore and check the restore logs to see if a resumed backup was restored. If so, there may be inconsistent data in the cluster.
+**IMPORTANT NOTE**: This release fixed a critical backup resume bug. Treat all resumed backups from earlier releases as inconsistent. After a failed backup, pgBackRest resumes unless `resume=n` is set. Check backup logs for the exact message "aborted backup of same type exists, will be cleaned to remove invalid files and resumed". If present, do not restore that backup or any backup in the same set.
+
+Check restore logs to see whether a resumed backup was restored. If so, the cluster might contain inconsistent data.
 
 **Bug Fixes:**
 
 - Fix critical bug in resume that resulted in inconsistent backups. A regression in `v0.82` removed the timestamp comparison when deciding which files from the aborted backup to keep on resume. See note above for more details. (*Reported by David Youatt, Yogesh Sharma, Stephen Frost.*)
 - Fix error in selective restore when only one user database exists in the cluster. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Nj Baliyan.*)
-- Fix non-compliant ISO-8601 timestamp format in S3 authorization headers. AWS and some gateways were tolerant of space rather than zero-padded hours while others were not. (*Fixed by Andrew Schwartz. Reviewed by David Steele.*)
+- Fix non-compliant ISO-8601 timestamp format in S3 authorization headers. AWS and some gateways accepted space-padded hours. Others required zero-padded hours. (*Fixed by Andrew Schwartz. Reviewed by David Steele.*)
 
 **Features:**
 
@@ -1679,7 +1691,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- Improve the HTTP client to set `content-length` to 0 when not specified by the server. S3 (and gateways) always set `content-length` or `transfer-encoding` but `HTTP 1.1` does not require it and proxies (e.g. HAProxy) may not include either. (*Suggested by Adam K. Sumner.*)
+- Improve the HTTP client to set `content-length` to 0 when not specified by the server. S3 and its gateways always set `content-length` or `transfer-encoding`. `HTTP 1.1` does not require either header, and proxies such as HAProxy might omit both. (*Suggested by Adam K. Sumner.*)
 - Set `search_path = 'pg_catalog'` on PostgreSQL connections. (*Suggested by Stephen Frost.*)
 
 **Documentation Improvements:**
@@ -1724,12 +1736,12 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Add asynchronous, parallel `archive-get`. This feature maintains a queue of WAL segments to help reduce latency when PostgreSQL requests a WAL segment with restore_command.
 - Add support for additional pgBackRest configuration files. The directory is specified by the `--config-include-path` option. Add `--config-path` option for overriding the default base path of the `--config` and `--config-include-path` option. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Add `repo-s3-token` option to allow temporary credentials tokens to be configured. pgBackRest currently has no way to request new credentials so the entire command (e.g. `backup`, `restore`) must complete before the credentials expire. (*Contributed by Yogesh Sharma. Reviewed by David Steele.*)
+- Add `repo-s3-token` option to allow temporary credentials tokens to be configured. At this release, pgBackRest could not request new credentials. The complete command, such as `backup` or `restore`, had to finish before expiration. (*Contributed by Yogesh Sharma. Reviewed by David Steele.*)
 
 **Improvements:**
 
 - Update the `archive-push-queue-max`, `manifest-save-threshold`, and `buffer-size` options to accept values in `KB`, `MB`, `GB`, `TB`, or `PB` where the multiplier is a power of `1024`. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Make backup/restore path sync more efficient. Scanning the entire directory can be very expensive if there are a lot of small tables. The backup manifest contains the path list so use it to perform syncs instead of scanning the backup/restore path.
+- Make backup/restore path sync more efficient. Scanning directories with many small tables can be expensive. Use the path list in the backup manifest for syncs instead of scanning the backup/restore path.
 - Show command parameters as well as command options in initial info log message.
 - Rename archive-queue-max option to archive-push-queue-max. This is consistent with the new `archive-get-queue-max` option. The old option name will continue to be accepted.
 
@@ -1746,7 +1758,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Test Suite Features:**
 
-- Use lcov for C unit test coverage reporting. Switch from Devel::Cover because it would not report on branch coverage for reports converted from gcov. Incomplete branch coverage for a module now generates an error. Coverage of unit tests is not displayed in the report unless they are incomplete for either statement or branch coverage.
+- Use lcov for C unit test coverage reporting. Replace Devel::Cover, which omitted branch coverage from converted gcov reports. Incomplete module branch coverage now generates an error. The report shows unit-test coverage only when statement or branch coverage is incomplete.
 
 
 ### v2.01 Release Notes
@@ -1758,9 +1770,9 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Bug Fixes:**
 
 - Fix `--target-action` and `--recovery-option` options being reported as invalid when restoring with `--type=immediate`. (*Reported by Brad Nicholson.*)
-- Immediately error when a secure option (e.g. `repo1-s3-key`) is passed on the command line. Since pgBackRest would not pass secure options on to sub-processes an obscure error was thrown. The new error is much clearer and provides hints about how to fix the problem. Update command documentation to omit secure options that cannot be specified on the command-line. (*Reported by Brad Nicholson.*)
+- Immediately error when a secure option (e.g. `repo1-s3-key`) is passed on the command line. pgBackRest did not pass secure options to subprocesses, which caused an unclear error. The new error explains the problem and provides correction hints. Remove secure options that cannot be supplied on the command line from command documentation. (*Reported by Brad Nicholson.*)
 - Fix issue passing `--no-config` to embedded Perl. (*Reported by Ibrahim Edib Kokdemir.*)
-- Fix issue where specifying `log-level-stderr` > `warn` would cause a `local`/`remote` process to error on exit due to output found on stderr when none was expected. The max value for a `local`/`remote` process is now `error` since there is no reason for these processes to emit warnings. (*Reported by Clinton Adams.*)
+- Fix exit errors in `local`/`remote` processes when `log-level-stderr` > `warn`. Unexpected stderr output caused these errors. Limit subprocess logging to `error`, because these processes do not need to report warnings. (*Reported by Clinton Adams.*)
 - Fix manifest test in the `check` command when tablespaces are present. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Thomas Flatley.*)
 
 **Improvements:**
@@ -1788,14 +1800,14 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- The `archive-push` command is now partially coded in C which allows the PostgreSQL `archive_command` to run significantly faster when processing status messages from the asynchronous archive process. (*Reviewed by Cynthia Shang.*)
+- Implement part of `archive-push` in C. This substantially speeds PostgreSQL `archive_command` processing of status messages from the asynchronous archive process. (*Reviewed by Cynthia Shang.*)
 
 **Improvements:**
 
 - Improve `check` command to verify that the backup manifest can be built. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Improve performance of HTTPS client. Buffering now takes the `pending` bytes on the socket into account (when present) rather than relying entirely on `select()`. In some instances the final bytes would not be flushed until the connection was closed.
+- Improve performance of HTTPS client. Buffering now includes socket `pending` bytes, when present, instead of relying only on `select()`. Previously, final bytes sometimes remained unflushed until the connection closed.
 - Improve S3 delete performance. The constant `S3_BATCH_MAX` had been replaced with a hard-coded value of 2, probably during testing.
-- Allow any non-command-line option to be reset to default on the command-line. This allows options in `pgbackrest.conf` to be reset to default which reduces the need to write new configuration files for specific needs.
+- Allow any non-command-line option to be reset to default on the command-line. Reset options from `pgbackrest.conf` to their defaults without creating a separate configuration file for a specific operation.
 - The C library is now required. This eliminates conditional loading and eases development of new library features.
 - The `pgbackrest` executable is now a C binary instead of Perl. This allows certain time-critical commands (like async `archive-push`) to run more quickly.
 - Rename `db-*` options to `pg-*` and `backup-*` options to `repo-*` to improve consistency. `repo-*` options are now indexed although currently only one is allowed.
@@ -1816,12 +1828,14 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released July 5, 2018*
 
-**IMPORTANT NOTE**: This release fixes a critical bug in the backup resume feature. All resumed backups prior to this release should be considered inconsistent. A backup will be resumed after a prior backup fails, unless `resume=n` has been specified. A resumed backup can be identified by checking the backup log for the message "aborted backup of same type exists, will be cleaned to remove invalid files and resumed". If the message exists, do not use this backup or any backup in the same set for a restore and check the restore logs to see if a resumed backup was restored. If so, there may be inconsistent data in the cluster.
+**IMPORTANT NOTE**: This release fixed a critical backup resume bug. Treat all resumed backups from earlier releases as inconsistent. After a failed backup, pgBackRest resumes unless `resume=n` is set. Check backup logs for the exact message "aborted backup of same type exists, will be cleaned to remove invalid files and resumed". If present, do not restore that backup or any backup in the same set.
+
+Check restore logs to see whether a resumed backup was restored. If so, the cluster might contain inconsistent data.
 
 **Bug Fixes:**
 
 - Fix critical bug in resume that resulted in inconsistent backups. A regression in `v0.82` removed the timestamp comparison when deciding which files from the aborted backup to keep on resume. See note above for more details. (*Reported by David Youatt, Yogesh Sharma, Stephen Frost.*)
-- Fix non-compliant ISO-8601 timestamp format in S3 authorization headers. AWS and some gateways were tolerant of space rather than zero-padded hours while others were not. (*Fixed by Andrew Schwartz. Reviewed by David Steele.*)
+- Fix non-compliant ISO-8601 timestamp format in S3 authorization headers. AWS and some gateways accepted space-padded hours. Others required zero-padded hours. (*Fixed by Andrew Schwartz. Reviewed by David Steele.*)
 - Fix directory syncs running recursively when only the specified directory should be synced. (*Reported by Craig A. James.*)
 - Fix `--target-action` and `--recovery-option` options being reported as invalid when restoring with `--type=immediate`. (*Reported by Brad Nicholson.*)
 - Fix `archive-copy` throwing "path not found" error for incr/diff backups. (*Reported by yummyliu, Vitaliy Kukharik.*)
@@ -1831,10 +1845,10 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- Improve the HTTP client to set `content-length` to 0 when not specified by the server. S3 (and gateways) always set `content-length` or `transfer-encoding` but `HTTP 1.1` does not require it and proxies (e.g. HAProxy) may not include either. (*Suggested by Adam K. Sumner.*)
-- Improve performance of HTTPS client. Buffering now takes the `pending` bytes on the socket into account (when present) rather than relying entirely on `select()`. In some instances the final bytes would not be flushed until the connection was closed.
+- Improve the HTTP client to set `content-length` to 0 when not specified by the server. S3 and its gateways always set `content-length` or `transfer-encoding`. `HTTP 1.1` does not require either header, and proxies such as HAProxy might omit both. (*Suggested by Adam K. Sumner.*)
+- Improve performance of HTTPS client. Buffering now includes socket `pending` bytes, when present, instead of relying only on `select()`. Previously, final bytes sometimes remained unflushed until the connection closed.
 - Improve S3 delete performance. The constant `S3_BATCH_MAX` had been replaced with a hard-coded value of 2, probably during testing.
-- Make backup/restore path sync more efficient. Scanning the entire directory can be very expensive if there are a lot of small tables. The backup manifest contains the path list so use it to perform syncs instead of scanning the backup/restore path. Remove recursive path sync functionality since it is no longer used.
+- Make backup/restore path sync more efficient. Scanning directories with many small tables can be expensive. Use the path list in the backup manifest for syncs instead of scanning the backup/restore path. Remove recursive path sync functionality since it is no longer used.
 
 **Documentation Bug Fixes:**
 
@@ -1855,7 +1869,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Bug Fixes:**
 
 - Fixed inability to restore a single database contained in a tablespace using --db-include. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Chiranjeevi Ravilla.*)
-- Ensure latest `db-id` is selected on when matching `archive.info` to `backup.info`. This provides correct matching in the event there are `system-id` and `db-version` duplicates (e.g. after reverting a `pg_upgrade`). (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Adam K. Sumner.*)
+- Ensure latest `db-id` is selected on when matching `archive.info` to `backup.info`. This handles duplicate `system-id` and `db-version` values, for example after reverting a `pg_upgrade`. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Adam K. Sumner.*)
 - Fixed overly chatty error message when reporting an invalid command. (*Reported by Jason O'Donnell.*)
 
 **Features:**
@@ -1879,7 +1893,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue that suppressed locality errors for `backup` and `restore`. When a backup host is present, backups should only be allowed on the backup host and restores should only be allowed on the database host unless an alternate configuration is created that ignores the remote host. (*Reported by Lardière Sébastien.*)
+- Fixed an issue that suppressed locality errors for `backup` and `restore`. With a backup host configured, backups must run there and restores must run on the database host. An alternative configuration that ignores the remote host can override this restriction. (*Reported by Lardière Sébastien.*)
 - Fixed an issue where WAL was not expired on PostgreSQL 10. This was caused by a faulty regex that expected all PostgreSQL major versions to be X.X. (*Reported by Adam Brusselback.*)
 - Fixed an issue where the `--no-config` option was not passed to child processes. This meant the child processes would still read the local config file and possibly cause unexpected behaviors.
 - Fixed `info` command to eliminate `"db (prior)"` output if no backups or archives exist for a prior version of the cluster. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Stephen Frost.*)
@@ -1900,9 +1914,9 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Fixed an issue that could cause copying large manifests to fail during restore. (*Reported by Craig A. James.*)
 - Fixed incorrect WAL offset for 32-bit architectures. (*Fixed by Javier Wilson. Reviewed by David Steele.*)
-- Fixed an issue retrieving WAL for old database versions. After a `stanza-upgrade` it should still be possible to restore backups from the previous version and perform recovery with `archive-get`. However, archive-get only checked the most recent db version/id and failed. Also clean up some issues when the same db version/id appears multiple times in the history. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Clinton Adams.*)
-- Fixed an issue with invalid backup groups being set correctly on restore. If the backup cannot map a group to a name it stores the group in the manifest as `false` then uses either the owner of $PGDATA to set the group during restore or failing that the group of the current user. This logic was not working correctly because the selected group was overwriting the user on restore leaving the group undefined and the user incorrectly set to the group. (*Reported by Jeff McCormick.*)
-- Fixed an issue passing parameters to remotes. When more than one db was specified the path, port, and socket path would for db1 were passed no matter which db was actually being addressed. (*Reported by uspen.*)
+- Fixed an issue retrieving WAL for old database versions. After `stanza-upgrade`, backups from the previous version should still support restore and recovery with `archive-get`. However, archive-get checked only the latest db version/id and failed. Also fix repeated db version/id values in history. (*Fixed by Cynthia Shang. Reviewed by David Steele. Reported by Clinton Adams.*)
+- Fixed an issue with invalid backup groups being set correctly on restore. When a group cannot be mapped to a name, the backup manifest stores `false`. Restore then uses the group from the owner of $PGDATA, or the current user's group if unavailable. Previously, this logic assigned the selected group to the user field. It left the group undefined and set the user incorrectly. (*Reported by Jeff McCormick.*)
+- Fixed an issue passing parameters to remotes. With multiple databases configured, pgBackRest passed the db1 path, port, and socket path regardless of the selected database. (*Reported by uspen.*)
 
 **Features:**
 
@@ -1940,7 +1954,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Improve performance of list requests on S3. Any beginning literal portion of a filter expression is used to generate a search prefix which often helps keep the request small enough to avoid rate limiting. (*Suggested by Mihail Shvein.*)
+- Improve performance of list requests on S3. Use the initial literal part of a filter expression as the search prefix. This often reduces request size enough to avoid rate limiting. (*Suggested by Mihail Shvein.*)
 
 **Test Suite Features:**
 
@@ -1965,7 +1979,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- Open log file after async process is completely separated from the main process to prevent the main process from also logging to the file. (*Suggested by Jens Wilke.*)
+- Open the log file after the asynchronous process fully separates from the main process. This prevents the main process from writing to that file. (*Suggested by Jens Wilke.*)
 
 **Documentation Features:**
 
@@ -2022,12 +2036,12 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- The `archive_status` directory is now recreated on restore to support PostgreSQL 8.3 which does not recreate it automatically like more recent versions do. (*Reported by Stephen Frost.*)
+- Recreate `archive_status` during restore for PostgreSQL 8.3. Later PostgreSQL versions recreate it automatically. (*Reported by Stephen Frost.*)
 - Fixed an issue that could cause the empty archive directory for an old PostgreSQL version to be left behind after a `stanza-upgrade`. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Features:**
 
-- Modified the `info` command (both text and JSON output) to display the archive ID and minimum/maximum WAL currently present in the archive for the current and prior, if any, database cluster version. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- Modify `info` text and JSON output to show the archive ID and minimum/maximum archived WAL. Include the current database cluster version and any previous versions. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Added `--backup-ssh-port` and `--db-ssh-port` options to support non-default SSH ports. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Improvements:**
@@ -2062,7 +2076,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Add `s3-repo-ca-path` and `s3-repo-ca-file` options to accommodate systems where CAs are not automatically found by `IO::Socket::SSL`, i.e. RHEL7, or to load custom CAs. (*Suggested by Scott Frazer.*)
+- Add `s3-repo-ca-path` and `s3-repo-ca-file` for custom CAs and systems where `IO::Socket::SSL` cannot find CAs automatically, such as RHEL7. (*Suggested by Scott Frazer.*)
 
 **Test Suite Features:**
 
@@ -2078,7 +2092,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Bug Fixes:**
 
 - Fixed the `info` command so the WAL archive min/max displayed is for the current database version. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
-- Fixed the `backup` command so the `backup-standby` option is reset (and the backup proceeds on the primary) if the standby is not configured and/or reachable. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
+- Fix `backup` to reset `backup-standby` when the standby is unconfigured or unreachable. The backup then runs on the primary. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
 - Fixed config warnings raised from a remote process causing errors in the master process. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Features:**
@@ -2099,16 +2113,16 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where read-only operations that used local worker processes (i.e. `restore`) were creating write locks that could interfere with parallel `archive-push`. (*Reported by Jens Wilke.*)
+- Fix write locks created by read-only operations with local workers, such as `restore`. These locks could interfere with parallel `archive-push`. (*Reported by Jens Wilke.*)
 
 **Features:**
 
-- Added the stanza-upgrade command to provide a mechanism for upgrading a stanza after upgrading to a new major version of PostgreSQL. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- Add stanza-upgrade to update a stanza after a PostgreSQL major version upgrade. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Added validation of `pgbackrest.conf` to display warnings if options are not valid or are not in the correct section. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
 **Improvements:**
 
-- Simplify locking scheme. Now, only the master process will hold write locks (for `archive-push` and `backup` commands) and not all local and remote worker processes as before.
+- Simplify locking scheme. Only the master process now holds write locks for `archive-push` and `backup`. Previously, all local and remote workers held them.
 - Do not set timestamps of files in the backup directories to match timestamps in the cluster directory. This was originally done to enable backup resume, but that process is now implemented with checksums.
 - Improved error message when the `restore` command detects the presence of `postmaster.pid`. (*Suggested by Yogesh Sharma.*)
 - Renumber return codes between 25 and 125 to avoid PostgreSQL interpreting some as fatal signal exceptions. (*Suggested by Yogesh Sharma.*)
@@ -2150,7 +2164,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed a regression introduced in v1.13 that could cause backups to fail if files were removed (e.g. tables dropped) while the manifest was being built. (*Reported by Navid Golpayegani.*)
+- Fix a v1.13 regression that could fail backups when files disappeared during manifest creation, for example after tables were dropped. (*Reported by Navid Golpayegani.*)
 
 
 ### v1.14 Release Notes
@@ -2161,8 +2175,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where an archive-push error would not be retried and would instead return errors to PostgreSQL indefinitely (unless the `.error` file was manually deleted). (*Reported by Jens Wilke.*)
-- Fixed a race condition in parallel archiving where creation of new paths generated an error when multiple processes attempted to do so at the same time. (*Reported by Jens Wilke.*)
+- Fix archive-push errors that were not retried. They caused repeated PostgreSQL errors until the `.error` file was deleted manually. (*Reported by Jens Wilke.*)
+- Fix a parallel archive race condition. Simultaneous attempts to create the same path caused an error. (*Reported by Jens Wilke.*)
 
 **Improvements:**
 
@@ -2179,7 +2193,9 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released February 5, 2017*
 
-**IMPORTANT NOTE**: The new implementation of asynchronous archiving no longer copies WAL to a separate queue. If there is any WAL left over in the old queue after upgrading to `1.13`, it will be abandoned and **not** pushed to the repository. To prevent this outcome, stop archiving by setting `archive_command = false`. Next, drain the async queue by running `pgbackrest --stanza=[stanza-name] archive-push` and wait for the process to complete. Check that the queue in `[spool-path]/archive/[stanza-name]/out` is empty. Finally, install `1.13` and restore the original `archive_command`. **IMPORTANT NOTE**: The `stanza-create` command is not longer optional and must be executed before backup or archiving can be performed on a **new** stanza. Pre-existing stanzas do not require `stanza-create` to be executed.
+**IMPORTANT NOTE**: This asynchronous archive implementation stopped copying WAL to a separate queue. After upgrading to `1.13`, WAL remaining in the old queue would be abandoned and **not** archived. Before upgrading, stop archiving with `archive_command = false`. Run `pgbackrest --stanza=[stanza-name] archive-push` to drain the queue, and wait for completion. Check that `[spool-path]/archive/[stanza-name]/out` is empty. Then install `1.13` and restore the original `archive_command`.
+
+**IMPORTANT NOTE**: This release made `stanza-create` mandatory before backups or archiving for a **new** stanza. Existing stanzas did not need this command.
 
 **Bug Fixes:**
 
@@ -2193,7 +2209,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Improved, multi-process implementation of asynchronous archiving.
 - Improved `stanza-create` command so that it can repair broken repositories in most cases and is robust enough to be made mandatory. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Improved `check` command to run on a standby, though only basic checks are done because `pg_switch_xlog()` cannot be executed on a replica. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- Allow `check` to run on a standby. Only basic checks run because a replica cannot execute `pg_switch_xlog()`. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Added archive and backup WAL ranges to the `info` command.
 - Added warning to update `pg_tablespace.spclocation` when remapping tablespaces in PostgreSQL < 9.2. (*Contributed by blogh. Reviewed by David Steele.*)
 - Remove remote lock requirements for the `archive-get`, `restore`, `info`, and `check` commands since they are read-only operations. (*Suggested by Michael Vitale.*)
@@ -2218,25 +2234,25 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released December 12, 2016*
 
-**IMPORTANT NOTE**: In prior releases it was possible to specify options on the command-line that were invalid for the current command without getting an error. An error will now be generated for invalid options so it is important to carefully check command-line options in your environment to prevent disruption.
+**IMPORTANT NOTE**: Earlier releases accepted command-line options that were invalid for the selected command. This release reports errors for those options. Check your command lines carefully to prevent disruption.
 
 **Bug Fixes:**
 
-- Fixed an issue where options that were invalid for the specified command could be provided on the command-line without generating an error. The options were ignored and did not cause any change in behavior, but it did lead to some confusion. Invalid options will now generate an error. (*Reported by Nikhilchandra Kulkarni.*)
-- Fixed an issue where internal symlinks were not being created for tablespaces in the repository. This issue was only apparent when trying to bring up clusters in-place manually using filesystem snapshots and did not affect normal backup and restore.
-- Fixed an issue that prevented errors from being output to the console before the logging system was initialized, i.e. while parsing options. Error codes were still being returned accurately so this would not have made a process look like it succeeded when it did not. (*Reported by Adrian Vondendriesch.*)
+- Fixed an issue where options that were invalid for the specified command could be provided on the command-line without generating an error. Previously, these options were ignored without changing behavior. They now produce an error to prevent confusion. (*Reported by Nikhilchandra Kulkarni.*)
+- Fixed an issue where internal symlinks were not being created for tablespaces in the repository. This affected manual, in-place cluster startup from filesystem snapshots. Normal backups and restores were unaffected.
+- Fixed an issue that prevented errors from being output to the console before the logging system was initialized, i.e. while parsing options. Error codes were correct, so failed processes did not appear successful. (*Reported by Adrian Vondendriesch.*)
 - Fixed an issue where the `db-port` option specified on the backup server would not be properly passed to the remote unless it was from the first configured database. (*Reported by Michael Vitale.*)
 
 **Features:**
 
-- Added the `--checksum-page` option to allow pgBackRest to validate page checksums in data files when checksums are enabled on PostgreSQL >= 9.3. Note that this functionality requires a C library which may not initially be available in OS packages. The option will automatically be enabled when the library is present and checksums are enabled on the cluster. (*Suggested by Stephen Frost.*)
-- Added the `--repo-link` option to allow internal symlinks to be suppressed when the repository is located on a filesystem that does not support symlinks. This does not affect any pgBackRest functionality, but the convenience link `latest` will not be created and neither will internal tablespace symlinks, which will affect the ability to bring up clusters in-place manually using filesystem snapshots.
+- Add `--checksum-page` to validate data-file page checksums on PostgreSQL >= 9.3 when cluster checksums are enabled. This requires a C library that might initially be absent from OS packages. Enable the option automatically when both the library and cluster checksums are available. (*Suggested by Stephen Frost.*)
+- Added the `--repo-link` option to allow internal symlinks to be suppressed when the repository is located on a filesystem that does not support symlinks. This preserves pgBackRest functions but omits `latest` and internal tablespace symlinks. Their absence affects manual, in-place cluster startup from filesystem snapshots.
 - Added the `--repo-sync` option to allow directory syncs in the repository to be disabled for file systems that do not support them, e.g. NTFS.
 - Added a predictable log entry to signal that a command has completed successfully. For example a backup ends successfully with: `INFO: backup command end: completed successfully`. (*Suggested by Jens Wilke.*)
 
 **Improvements:**
 
-- For simplicity, the `pg_control` file is now copied with the rest of the files instead of by itself of at the end of the process. The `backup` command does not require this behavior and the `restore` copies to a temporary file which is renamed at the end of the restore.
+- Copy `pg_control` with other files instead of separately at the end. The `backup` command does not need special ordering. The `restore` command copies to a temporary file and renames it at completion.
 
 **Documentation Bug Fixes:**
 
@@ -2256,7 +2272,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where asynchronous archiving was transferring one file per execution instead of transferring files in batches. This regression was introduced in v1.09 and affected efficiency only, all WAL segments were correctly archived in asynchronous mode. (*Reported by Stephen Frost.*)
+- Fixed an issue where asynchronous archiving was transferring one file per execution instead of transferring files in batches. The v1.09 regression reduced efficiency only. Asynchronous mode still archived all WAL segments correctly. (*Reported by Stephen Frost.*)
 
 
 ### v1.10 Release Notes
@@ -2289,14 +2305,14 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Fixed the `check` command to prevent an error message from being logged if the backup directory does not exist. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
 - Fixed error message to properly display the archive command when an invalid archive command is detected. (*Reported by Jason O'Donnell.*)
-- Fixed an issue where the async archiver would not be started if `archive-push` did not have enough space to queue a new WAL segment. This meant that the queue would never be cleared without manual intervention (such as calling `archive-push` directly). PostgreSQL now receives errors when there is not enough space to store new WAL segments but the async process will still be started so that space is eventually freed. (*Reported by Jens Wilke.*)
-- Fixed a remote timeout that occurred when a local process generated checksums (during resume or restore) but did not copy files, allowing the remote to go idle. (*Reported by Jens Wilke.*)
+- Fixed an issue where the async archiver would not be started if `archive-push` did not have enough space to queue a new WAL segment. The queue then required manual action, such as a direct `archive-push` call, to clear it. PostgreSQL still receives errors when space is insufficient. However, the asynchronous process now starts to free space. (*Reported by Jens Wilke.*)
+- Fix remote timeouts during local checksum calculation in resume or restore. Without file transfers, the remote became idle. (*Reported by Jens Wilke.*)
 
 **Features:**
 
 - Non-exclusive backups will automatically be used on PostgreSQL 9.6.
 - Added the `cmd-ssh` option to allow the ssh client to be specified. (*Suggested by Jens Wilke.*)
-- Added the `log-level-stderr` option to control whether console log messages are sent to `stderr` or `stdout`. By default this is set to `warn` which represents a change in behavior from previous versions, even though it may be more intuitive. Setting `log-level-stderr=off` will preserve the old behavior. (*Suggested by Sascha Biberhofer.*)
+- Added the `log-level-stderr` option to control whether console log messages are sent to `stderr` or `stdout`. The new default, `warn`, changes previous behavior. Set `log-level-stderr=off` to preserve the old behavior. (*Suggested by Sascha Biberhofer.*)
 - Set `application_name` to `"pgBackRest [command]"` for database connections. (*Suggested by Jens Wilke.*)
 - Check that archive_mode is enabled when `archive-check` option enabled.
 
@@ -2345,7 +2361,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Exclude contents of `$PGDATA/pg_replslot` directory so that replication slots on the primary do not become part of the backup.
 - The `archive-start` and `archive-stop` settings are now filled in `backup.manifest` even when `archive-check=n`. (*Suggested by Jens Wilke.*)
 - Additional warnings when archive retention settings may not have the intended effect or would allow indefinite retention. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Experimental support for non-exclusive backups in PostgreSQL 9.6 rc1. Changes to the control/catalog/WAL versions in subsequent release candidates may break compatibility but pgBackRest will be updated with each release to keep pace.
+- Experimental support for non-exclusive backups in PostgreSQL 9.6 rc1. Later release candidates could change control/catalog/WAL versions and break compatibility. pgBackRest updates were planned for each release.
 
 **Documentation Bug Fixes:**
 
@@ -2370,10 +2386,10 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Backup from a standby cluster. A connection to the primary cluster is still required to start/stop the backup and copy files that are not replicated, but the vast majority of files are copied from the standby in order to reduce load on the primary.
-- More flexible configuration for databases. Master and standby can both be configured on the backup server and pgBackRest will automatically determine which is the primary. This means no configuration changes for backup are required after failing over from a primary to standby when a separate backup server is used.
+- Backup from a standby cluster. A primary connection remains necessary to start/stop backup and copy unreplicated files. Most files come from the standby to reduce primary load.
+- More flexible configuration for databases. Configure both primary and standby on the backup server. pgBackRest detects the primary automatically. With a separate backup server, failover then requires no backup configuration changes.
 - Exclude directories during backup that are cleaned, recreated, or zeroed by PostgreSQL at startup. These include `pgsql_tmp` and `pg_stat_tmp`. The `postgresql.auto.conf.tmp` file is now excluded in addition to files that were already excluded: `backup_label.old`, `postmaster.opts`, `postmaster.pid`, `recovery.conf`, `recovery.done`.
-- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta4. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace.
+- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta4. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release.
 
 **Improvements:**
 
@@ -2390,7 +2406,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where tablespace paths that had $PGDATA as a substring would be identified as a subdirectories of $PGDATA even when they were not. Also hardened relative path checking a bit. (*Reported by Chris Fort.*)
+- Fix tablespace paths incorrectly identified as $PGDATA subdirectories because their names contained $PGDATA. Also strengthen relative path checks. (*Reported by Chris Fort.*)
 
 **Documentation Features:**
 
@@ -2409,16 +2425,16 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue an where an extraneous remote was created causing threaded backup/restore to possibly timeout and/or throw a lock conflict. (*Reported by Michael Vitale.*)
-- Fixed an issue where db-path was not required for the `check` command so an assert was raised when it was missing rather than a polite error message. (*Reported by Michael Vitale.*)
+- Fix an unnecessary remote process that could cause threaded backup/restore timeouts or lock conflicts. (*Reported by Michael Vitale.*)
+- Require db-path for `check`. Previously, its absence caused an assertion instead of a useful error message. (*Reported by Michael Vitale.*)
 - Fixed `check` command to throw an error when database version/id does not match that of the archive. (*Fixed by Cynthia Shang. Reviewed by David Steele.*)
-- Fixed an issue where a remote could try to start its own remote when the `backup-host` option was not present in `pgbackrest.conf` on the database server. (*Reported by Lardière Sébastien.*)
+- Fix a remote starting another remote when the database server's `pgbackrest.conf` lacked `backup-host`. (*Reported by Lardière Sébastien.*)
 - Fixed an issue where the contents of `pg_xlog` were being backed up if the directory was symlinked. This didn't cause any issues during restore but was a waste of space.
 - Fixed an invalid `log()` call in lock routines.
 
 **Features:**
 
-- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta3. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace.
+- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta3. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release.
 
 **Improvements:**
 
@@ -2440,8 +2456,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where `keep-alives` could be starved out by lots of small files during multi-threaded `backup`. They were also completely absent from single/multi-threaded `backup` resume and `restore` checksumming. (*Reported by Janice Parkinson, Chris Barber.*)
-- Fixed an issue where the `expire` command would refuse to run when explicitly called from the command line if the `db-host` option was set. This was not an issue when `expire` was run automatically after a `backup` (*Reported by Chris Barber.*)
+- Fix delayed `keep-alives` when multi-threaded `backup` processes many small files. They were also completely absent from single/multi-threaded `backup` resume and `restore` checksumming. (*Reported by Janice Parkinson, Chris Barber.*)
+- Fix manual `expire` calls failing when `db-host` was set. Automatic expiration after `backup` was unaffected. (*Reported by Chris Barber.*)
 - Fixed an issue where validation was being running on archive_command even when the `archive-check` option was disabled.
 
 **Features:**
@@ -2449,12 +2465,12 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Added `check` command to validate that pgBackRest is configured correctly for archiving and backups. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 - Added the `protocol-timeout` option. Previously `protocol-timeout` was set as `db-timeout` + 30 seconds.
 - Failure to shutdown remotes at the end of the backup no longer throws an exception. Instead a warning is generated that recommends a higher `protocol-timeout`.
-- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta2. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace.
+- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta2. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release.
 
 **Improvements:**
 
 - Improved handling of users/groups captured during backup that do not exist on the restore host. Also explicitly handle the case where user/group is not mapped to a name.
-- Option handling is now far more strict. Previously it was possible for a command to use an option that was not explicitly assigned to it. This was especially true for the `backup-host` and `db-host` options which are used to determine locality.
+- Option handling is now far more strict. Previously, commands could use unassigned options. This particularly affected `backup-host` and `db-host`, which determine locality.
 
 **Documentation Improvements:**
 
@@ -2483,7 +2499,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Release notes are now broken into sections so that bugs, features, and refactors are clearly delineated. An "Additional Notes" section has been added for changes to documentation and the test suite that do not affect the core code.
 - Added man page generation. (*Contributed by Adrian Vondendriesch, David Steele.*)
-- The change log was the last piece of documentation to be rendered in Markdown only. Wrote a converter so the document can be output by the standard renderers. The change log will now be located on the website and has been renamed to "Releases". (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
+- Convert the change log, formerly the last Markdown-only document, for the standard renderers. Publish it on the website under the name "Releases". (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
 
 
 ### v1.01 Release Notes
@@ -2495,8 +2511,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Features:**
 
 - Enhanced text output of `info` command to include timestamps, sizes, and the reference list for all backups. (*Contributed by Cynthia Shang. Reviewed by David Steele.*)
-- Allow selective restore of databases from a cluster backup. This feature can result in major space and time savings when only specific databases are restored. Unrestored databases will not be accessible but must be manually dropped before they will be removed from the shared catalogue. (*Reviewed by Cynthia Shang, Greg Smith, Stephen Frost. Suggested by Stephen Frost.*)
-- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta1. Changes to the control/catalog/WAL versions in subsequent betas may break compatibility but pgBackRest will be updated with each release to keep pace. (*Reviewed by Cynthia Shang.*)
+- Allow selective restore of databases from a cluster backup. Restoring selected databases can save substantial space and time. Other databases are inaccessible. Drop them manually to remove them from the shared catalogue. (*Reviewed by Cynthia Shang, Greg Smith, Stephen Frost. Suggested by Stephen Frost.*)
+- Experimental support for non-exclusive backups in PostgreSQL 9.6 beta1. Later beta changes to control/catalog/WAL versions could break compatibility. pgBackRest updates were planned for each release. (*Reviewed by Cynthia Shang.*)
 
 
 ### v1.00 Release Notes
@@ -2505,16 +2521,18 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released April 14, 2016*
 
-**IMPORTANT NOTE**: This flag day release breaks compatibility with older versions of pgBackRest. The manifest format, on-disk structure, configuration scheme, and the exe/path names have all changed. You must create a new repository to hold backups for this version of pgBackRest and keep your older repository for a time in case you need to do a restore. Restores from the prior repository will require the prior version of pgBackRest but because of name changes it is possible to have `1.00` and a prior version of pgBackRest installed at the same time. See the notes below for more detailed information on what has changed.
+**IMPORTANT NOTE**: This release broke compatibility with earlier pgBackRest versions. It changed the manifest format, on-disk structure, configuration scheme, and executable/path names. Create a new repository for this version. Keep the old repository temporarily in case you need to restore from it. Older repositories require their original pgBackRest version.
+
+The name changes allow `1.00` and an earlier version to be installed together. See the following notes for details.
 
 **Features:**
 
-- Implemented a new configuration scheme which should be far simpler to use. See the User Guide and Configuration Reference for details but for a simple configuration all options can now be placed in the `stanza` section. Options that are shared between stanzas can be placed in the `[global]` section. More complex configurations can still make use of command sections though this should be a rare use case. (*Suggested by Michael Renner.*)
-- The `repo-path` option now always refers to the repository where backups and archive are stored, whether local or remote, so the `repo-remote-path` option has been removed. The new `spool-path` option can be used to define a location for queueing WAL segments when archiving asynchronously. A local repository is no longer required.
+- Introduce a simpler configuration scheme. For a simple configuration, place all options in `stanza`. See the User Guide and Configuration Reference for details. Options that are shared between stanzas can be placed in the `[global]` section. More complex configurations can still make use of command sections though this should be a rare use case. (*Suggested by Michael Renner.*)
+- Make `repo-path` identify the backup and archive repository, whether local or remote. Remove `repo-remote-path`. The new `spool-path` option can be used to define a location for queueing WAL segments when archiving asynchronously. A local repository is no longer required.
 - The default configuration filename is now `pgbackrest.conf` instead of `pg_backrest.conf`. This was done for consistency with other naming changes but also to prevent old config files from being loaded accidentally when migrating to `1.00`. (*Suggested by Michael Renner, Stephen Frost.*)
 - The default repository name was changed from `/var/lib/backup` to `/var/lib/pgbackrest`. (*Suggested by Michael Renner, Stephen Frost.*)
-- Lock files are now stored in `/tmp/pgbackrest` by default. These days `/run/pgbackrest` is the preferred location but that would require init scripts which are not part of this release. The `lock-path` option can be used to configure the lock directory.
-- Log files are now stored in `/var/log/pgbackrest` by default and no longer have the date appended so they can be managed with `logrotate`. The `log-path` option can be used to configure the log directory. (*Suggested by Stephen Frost.*)
+- Lock files are now stored in `/tmp/pgbackrest` by default. The preferred location, `/run/pgbackrest`, requires init scripts absent from this release. The `lock-path` option can be used to configure the lock directory.
+- Store logs in `/var/log/pgbackrest` by default. Remove date suffixes so `logrotate` can manage them. The `log-path` option can be used to configure the log directory. (*Suggested by Stephen Frost.*)
 - Executable filename changed from `pg_backrest` to `pgbackrest`. (*Suggested by Michael Renner, Stephen Frost.*)
 - All files and directories linked from PGDATA are now included in the backup. By default links will be restored directly into PGDATA as files or directories. The `--link-all` option can be used to restore all links to their original locations. The `--link-map` option can be used to remap a link to a new location.
 - Removed `--tablespace` option and replaced with `--tablespace-map-all` option which should more clearly indicate its function.
@@ -2534,7 +2552,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where the master process was passing `--repo-remote-path` instead of `--repo-path` to the remote and causing the lock files to be created in the default repository directory (`/var/lib/backup`), generally ending in failure. This was only an issue when `--repo-remote-path` was defined on the command line rather than in `pg_backrest.conf`. (*Reported by Jan Wieck.*)
+- Fix the master passing `--repo-remote-path` instead of `--repo-path` to the remote. This created locks in the default repository directory, `/var/lib/backup`, and usually failed. This was only an issue when `--repo-remote-path` was defined on the command line rather than in `pg_backrest.conf`. (*Reported by Jan Wieck.*)
 
 
 ### v0.91 Release Notes
@@ -2543,7 +2561,9 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released March 22, 2016*
 
-**IMPORTANT BUG FIX FOR TABLESPACES**: A change to the repository format was accidentally introduced in 0.90 which means the on-disk backup was no longer a valid PostgreSQL cluster when the backup contained tablespaces. This only affected users who directly copied the backups to restore PostgreSQL clusters rather than using the restore command. However, the fix breaks compatibility with older backups that contain tablespaces no matter how they are being restored (pgBackRest will throw errors and refuse to restore). New full backups should be taken immediately after installing version 0.91 for any clusters that contain tablespaces. If older backups need to be restored then use a version of pgBackRest that matches the backup version.
+**IMPORTANT BUG FIX FOR TABLESPACES**: Version 0.90 accidentally changed the repository format. Backups with tablespaces were no longer valid PostgreSQL data directories on disk. This affected direct-copy restores, but not restores through the restore command. However, this fix breaks compatibility with older tablespace backups for every restore method. pgBackRest reports an error and refuses to restore them.
+
+Immediately after installing 0.91, take a new full backup of each cluster with tablespaces. To restore an older backup, use the pgBackRest version that created it.
 
 **Bug Fixes:**
 
@@ -2570,14 +2590,14 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 - Fixed an issue where specifying `--no-archive-check` would throw a configuration error. (*Reported by Jason O'Donnell.*)
 - Fixed an issue where a temp WAL file left over after a well-timed system crash could cause the next `archive-push` to fail.
-- The `retention-archive` option can now be safely set to less than backup retention (`retention-full` or `retention-diff`) without also specifying `archive-copy=n`. The WAL required to make the backups that fall outside of archive retention consistent will be preserved in the archive. However, in this case PITR will not be possible for the backups that fall outside of archive retention.
+- Allow `retention-archive` below backup retention (`retention-full` or `retention-diff`) without requiring `archive-copy=n`. The WAL required to make the backups that fall outside of archive retention consistent will be preserved in the archive. However, in this case PITR will not be possible for the backups that fall outside of archive retention.
 
 **Features:**
 
-- When backing up and restoring tablespaces pgBackRest only operates on the subdirectory created for the version of PostgreSQL being run against. Since multiple versions can live in a tablespace (especially during a binary upgrade) this prevents too many files from being copied during a backup and other versions possibly being wiped out during a restore. This only applies to PostgreSQL >= 9.0 — prior versions of PostgreSQL could not share a tablespace directory.
+- For tablespace backup and restore, operate only on the subdirectory for the current PostgreSQL version. Multiple versions can share a tablespace, especially during binary upgrades. This prevents unnecessary backup copies and deletion of other versions during restore. It applies to PostgreSQL >= 9.0; earlier versions could not share tablespace directories.
 - Generate an error when `archive-check=y` but `archive_command` does not execute `pg_backrest`. (*Contributed by Jason O'Donnell. Reviewed by David Steele.*)
 - Improved error message when `repo-path` or `repo-remote-path` does not exist.
-- Added checks for `--delta` and `--force` restore options to ensure that the destination is a valid $PGDATA directory. pgBackRest will check for the presence of `PG_VERSION` or `backup.manifest` (left over from an aborted restore). If neither file is found then `--delta` and `--force` will be disabled but the restore will proceed unless there are files in the $PGDATA directory (or any tablespace directories) in which case the operation will be aborted.
+- Added checks for `--delta` and `--force` restore options to ensure that the destination is a valid $PGDATA directory. pgBackRest will check for the presence of `PG_VERSION` or `backup.manifest` (left over from an aborted restore). If neither file exists, disable `--delta` and `--force`. Continue only when $PGDATA and tablespace directories are empty; otherwise, stop the restore.
 - When restore `--set=latest` (the default) the actual backup restored will be output to the log.
 - Support for PostgreSQL 9.5 partial WAL segments and `recovery_target_action` setting. The `archive_mode = 'always'` setting is not yet supported.
 - Support for `recovery_target = 'immediate'` recovery setting introduced in PostgreSQL 9.4.
@@ -2592,7 +2612,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed an issue where longer-running backups/restores would timeout when remote and threaded. Keepalives are now used to make sure the remote for the main process does not timeout while the thread remotes do all the work. The error message for timeouts was also improved to make debugging easier. (*Reported by Stephen Frost.*)
+- Fixed an issue where longer-running backups/restores would timeout when remote and threaded. Use keep-alives so the main process remote does not time out while thread remotes work. The error message for timeouts was also improved to make debugging easier. (*Reported by Stephen Frost.*)
 
 **Features:**
 
@@ -2634,7 +2654,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Documentation Features:**
 
-- Added a new user guide that covers pgBackRest basics and some advanced topics including PITR. Much more to come, but it's a start. (*Contributed by David Steele, Stephen Frost. Reviewed by Michael Renner, Cynthia Shang, Eric Radman, Dmitry Didovicher.*)
+- Added a new user guide that covers pgBackRest basics and some advanced topics including PITR. Further documentation was planned. (*Contributed by David Steele, Stephen Frost. Reviewed by Michael Renner, Cynthia Shang, Eric Radman, Dmitry Didovicher.*)
 
 
 ### v0.85 Release Notes
@@ -2650,8 +2670,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Added `stop` and `start` commands to prevent pgBackRest processes from running on a system where PostgreSQL is shutdown or the system needs to be quiesced for some other reason.
-- Experimental support for PostgreSQL 9.5 beta1. This may break when the control version or WAL magic changes in future versions but will be updated in each pgBackRest release to keep pace. All regression tests pass except for `--target-resume` tests (this functionality has changed in 9.5) and there is no testing yet for `.partial` WAL segments.
+- Add `stop` and `start` to control pgBackRest execution when PostgreSQL is shut down or the system needs inactivity for another reason.
+- Experimental support for PostgreSQL 9.5 beta1. Future control-version or WAL-magic changes could break support; updates were planned for each pgBackRest release. All regression tests passed except `--target-resume`, whose behavior changed in 9.5. Tests for `.partial` WAL segments were not yet available.
 
 
 ### v0.82 Release Notes
@@ -2672,7 +2692,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Experimental support for PostgreSQL 9.5 alpha2. This may break when the control version or WAL magic changes in future versions but will be updated in each pgBackRest release to keep pace. All regression tests pass except for `--target-resume` tests (this functionality has changed in 9.5) and there is no testing yet for `.partial` WAL segments.
+- Experimental support for PostgreSQL 9.5 alpha2. Future control-version or WAL-magic changes could break support; updates were planned for each pgBackRest release. All regression tests passed except `--target-resume`, whose behavior changed in 9.5. Tests for `.partial` WAL segments were not yet available.
 
 **Improvements:**
 
@@ -2701,8 +2721,8 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Added the `stop-auto` option to allow failed backups to automatically be stopped when a new backup starts.
 - Added the `db-timeout` option to limit the amount of time pgBackRest will wait for `pg_start_backup()` and `pg_stop_backup()` to return.
 - Remove `pg_control` file at the beginning of the restore and copy it back at the very end. This prevents the possibility that a partial restore can be started by PostgreSQL.
-- Added checks to be sure the `db-path` setting is consistent with `db-port` by comparing the `data_directory` as reported by the cluster against the `db-path` setting and the version as reported by the cluster against the value read from `pg_control`. The `db-socket-path` setting is checked to be sure it is an absolute path.
-- Experimental support for PostgreSQL 9.5 alpha1. This may break when the control version or WAL magic changes in future versions but will be updated in each pgBackRest release to keep pace. All regression tests pass except for `--target-resume` tests (this functionality has changed in 9.5) and there is no testing yet for `.partial` WAL segments.
+- Check consistency between `db-path` and `db-port`. Compare the cluster-reported `data_directory` with `db-path`. Also compare the reported version with `pg_control`. The `db-socket-path` setting is checked to be sure it is an absolute path.
+- Experimental support for PostgreSQL 9.5 alpha1. Future control-version or WAL-magic changes could break support; updates were planned for each pgBackRest release. All regression tests passed except `--target-resume`, whose behavior changed in 9.5. Tests for `.partial` WAL segments were not yet available.
 
 **Improvements:**
 
@@ -2721,7 +2741,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Improvements:**
 
-- Removed dependency on CPAN packages for multi-threaded operation. While it might not be a bad idea to update the `threads` and `Thread::Queue` packages, it is no longer necessary.
+- Removed dependency on CPAN packages for multi-threaded operation. Updating `threads` and `Thread::Queue` can still be useful, but is no longer required.
 - Modified wait backoff to use a Fibonacci rather than geometric sequence. This will make wait time grow less aggressively while still giving reasonable values.
 
 **Test Suite Features:**
@@ -2748,7 +2768,9 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 *Released June 14, 2015*
 
-**IMPORTANT NOTE**: This flag day release breaks compatibility with older versions of pgBackRest. The manifest format, on-disk structure, and the binary names have all changed. You must create a new repository to hold backups for this version of pgBackRest and keep your older repository for a time in case you need to do a restore. The `pg_backrest.conf` file has not changed but you'll need to change any references to `pg_backrest.pl` in cron (or elsewhere) to `pg_backrest` (without the `.pl` extension).
+**IMPORTANT NOTE**: This release broke compatibility with earlier pgBackRest versions. It changed the manifest format, on-disk structure, and binary names. Create a new repository for this version. Keep the old repository temporarily in case you need a restore. The `pg_backrest.conf` file format did not change.
+
+In cron and elsewhere, replace references to `pg_backrest.pl` with `pg_backrest`, without the `.pl` extension.
 
 **Features:**
 
@@ -2770,7 +2792,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 **Bug Fixes:**
 
 - Fixed an issue where `archive-copy` would fail on an incr/diff backup when `hardlink=n`. In this case the `pg_xlog` path does not already exist and must be created. (*Reported by Michael Renner.*)
-- Fixed an issue in async archiving where `archive-push` was not properly returning 0 when `archive-max-mb` was reached and moved the async check after transfer to avoid having to remove the stop file twice. Also added unit tests for this case and improved error messages to make it clearer to the user what went wrong. (*Reported by Michael Renner.*)
+- Fix asynchronous `archive-push` failing to return 0 when `archive-max-mb` was reached. Move the asynchronous check after transfer to avoid removing the stop file twice. Add unit tests and clearer error messages for this case. (*Reported by Michael Renner.*)
 - Fixed a locking issue that could allow multiple operations of the same type against a single stanza. This appeared to be benign in terms of data integrity but caused spurious errors while archiving and could lead to errors in backup/restore. (*Reported by Michael Renner.*)
 
 **Features:**
@@ -2801,7 +2823,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- Better resume support. Resumed files are checked to be sure they have not been modified and the manifest is saved more often to preserve checksums as the backup progresses. More unit tests to verify each resume case.
+- Better resume support. Check resumed files for changes. Save the manifest more frequently to retain checksums during backup. More unit tests to verify each resume case.
 - Resume is now optional. Use the `resume` setting or `--no-resume` from the command line to disable.
 - More info messages during restore. Previously, most of the restore messages were debug level so not a lot was output in the log.
 - Added `tablespace` setting to allow tablespaces to be restored into the `pg_tblspc` path. This produces compact restores that are convenient for development, staging, etc. Currently these restores cannot be backed up as pgBackRest expects only links in the `pg_tblspc` path.
@@ -2815,7 +2837,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed a buffering error that could occur on large, highly-compressible files when copying to an uncompressed remote destination. The error was detected in the decompression code and resulted in a failed backup rather than corruption so it should not affect successful backups made with previous versions.
+- Fixed a buffering error that could occur on large, highly-compressible files when copying to an uncompressed remote destination. Decompression detected the error and failed the backup without corrupting it. Successful backups from earlier versions should be unaffected.
 
 
 ### v0.60 Release Notes
@@ -2845,7 +2867,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Fixed broken checksums and now they work with normal and resumed backups. Finally realized that checksums and checksum deltas should be functionally separated and this simplified a number of things. Issue #28 has been created for checksum deltas.
+- Fixed broken checksums and now they work with normal and resumed backups. Separate checksums from checksum deltas to simplify the implementation. Track checksum deltas in issue #28.
 - Fixed an issue where a backup could be resumed from an aborted backup that didn't have the same type and prior backup.
 
 **Features:**
@@ -2853,7 +2875,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 - Added restore functionality.
 - All options can now be set on the command-line making `pg_backrest.conf` optional.
 - De/compression is now performed without threads and checksum/size is calculated in stream. That means file checksums are no longer optional.
-- Added option `--no-start-stop` to allow backups when Postgres is shut down. If `postmaster.pid` is present then `--force` is required to make the backup run (though if Postgres is running an inconsistent backup will likely be created). This option was added primarily for the purpose of unit testing, but there may be applications in the real world as well.
+- Added option `--no-start-stop` to allow backups when Postgres is shut down. If `postmaster.pid` exists, `--force` is required. If Postgres is running, the backup will probably be inconsistent. This option mainly supported unit testing but might also have production uses.
 - Checksum for `backup.manifest` to detect a corrupted/modified manifest.
 - Link `latest` always points to the last backup. This has been added for convenience and to make restores simpler.
 
@@ -2874,7 +2896,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Test Suite Features:**
 
-- Fairly comprehensive unit tests for all the basic operations. More work to be done here for sure, but then there is always more work to be done on unit tests.
+- Add broad unit-test coverage for basic operations. Further unit-test work remained necessary.
 
 
 ### v0.19 Release Notes
@@ -2885,7 +2907,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Found and squashed a nasty bug where `file_copy()` was defaulted to ignore errors. There was also an issue in `file_exists()` that was causing the test to fail when the file actually did exist. Together they could have resulted in a corrupt backup with no errors, though it is very unlikely.
+- Fix `file_copy()`, which ignored errors by default. Also fix `file_exists()`, which sometimes reported an existing file as absent. Together, these bugs could have produced a corrupted backup without errors, although this was very unlikely.
 
 
 ### v0.18 Release Notes
@@ -2896,7 +2918,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- The `archive-get` command now returns a 1 when the archive file is missing to differentiate from hard errors (ssh connection failure, file copy error, etc.) This lets PostgreSQL know that the archive stream has terminated normally. However, this does not take into account possible holes in the archive stream. (*Reported by Stephen Frost.*)
+- Return 1 from `archive-get` for a missing archive file. This distinguishes it from hard errors, such as SSH connection or file-copy failures. PostgreSQL can then recognize a normal end of the archive stream. Gaps in that stream are not considered. (*Reported by Stephen Frost.*)
 
 
 ### v0.17 Release Notes
@@ -2907,7 +2929,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- If an archive directory which should be empty could not be deleted backrest was throwing an error. There's a good fix for that coming, but for the time being it has been changed to a warning so processing can continue. This was impacting backups as sometimes the final archive file would not get pushed if the first archive file had been in a different directory (plus some bad luck).
+- Report a warning when an archive directory expected to be empty cannot be deleted. Previously, this caused an error. The temporary change allowed processing to continue until a more complete fix was available. Under some conditions, the error prevented the final WAL file from being archived when the first file used a different directory.
 
 
 ### v0.16 Release Notes
@@ -2918,7 +2940,7 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Bug Fixes:**
 
-- Added `RequestTTY=yes` to ssh sessions. Hoping this will prevent random lockups.
+- Add `RequestTTY=yes` to SSH sessions in an attempt to prevent intermittent lockups.
 
 
 ### v0.15 Release Notes
@@ -2953,12 +2975,12 @@ pgBackRest release numbers consist of two parts, major and minor. A major releas
 
 **Features:**
 
-- No restore functionality, but the backup directories are consistent PostgreSQL data directories. You'll need to either uncompress the files or turn off compression in the backup. Uncompressed backups on a ZFS (or similar) filesystem are a good option because backups can be restored locally via a snapshot to create logical backups or do spot data recovery.
-- Archiving is single-threaded. This has not posed an issue on our multi-terabyte databases with heavy write volume. Recommend a large WAL volume or to use the async option with a large volume nearby.
-- Backups are multi-threaded, but the `Net::OpenSSH` library does not appear to be 100% thread-safe so it will very occasionally lock up on a thread. There is an overall process timeout that resolves this issue by killing the process. Yes, very ugly.
-- Checksums are lost on any resumed backup. Only the final backup will record checksum on multiple resumes. Checksums from previous backups are correctly recorded and a full backup will reset everything.
-- The `backup.manifest` is being written as `Storable` because `Config::IniFile` does not seem to handle large files well. Would definitely like to save these as human-readable text.
+- This release had no restore command, but backup directories were consistent PostgreSQL data directories. Decompress files or disable backup compression. Uncompressed backups on ZFS or similar filesystems support local snapshot restores for logical backups or targeted data recovery.
+- Archiving used one thread. It caused no problems on the authors' multi-terabyte databases with heavy writes. Use a large WAL volume or asynchronous archiving with a large nearby volume.
+- Backups used multiple threads. `Net::OpenSSH` appeared not to be 100% thread-safe and very occasionally locked a thread. An overall timeout killed the process to resolve this.
+- A resumed backup lost checksums. With multiple resumes, only the final backup recorded checksums. Checksums from previous backups remained correct, and a full backup reset everything.
+- The `backup.manifest` used `Storable` because `Config::IniFile` appeared to handle large files poorly. The authors wanted human-readable text.
 
 **Documentation Features:**
 
-- Absolutely no documentation (outside the code). Well, excepting these release notes.
+- Documentation existed only in the code and these release notes.

@@ -7,16 +7,18 @@ category: [Tutorial]
 description: Get pg_exporter running and see PostgreSQL metrics in Prometheus within ten minutes
 ---
 
-This page is the shortest path: install `pg_exporter`, connect it to a PostgreSQL instance, verify metrics output, and hook it into Prometheus.
+Follow these steps to install `pg_exporter`, connect to PostgreSQL, check metrics, and configure Prometheus.
 
-You only need two things: a reachable PostgreSQL 10-19+ (or pgBouncer 1.8+) instance, and permission to create a user in it. For older PostgreSQL 9.1-9.6 instances, see [Compatibility](/docs/pg_exporter/install/#compatibility).
+You need a reachable PostgreSQL 10-19+ or pgBouncer 1.8+ instance and permission to create a user in it.
+For PostgreSQL 9.1-9.6, see [Compatibility](/docs/pg_exporter/install/#compatibility).
 
 
 --------
 
 ## Step 1: Install
 
-On Linux amd64 you can download the binary directly (for other platforms and RPM/DEB/Docker options, see the [Installation guide](/docs/pg_exporter/install/)):
+On Linux amd64, download the binary directly.
+For other platforms and RPM/DEB/Docker options, see the [Installation guide](/docs/pg_exporter/install/).
 
 ```bash
 VERSION=$(curl -fsSL https://api.github.com/repos/pgsty/pg_exporter/releases/latest | sed -n 's/.*"tag_name": "v\([^"]*\)".*/\1/p')
@@ -39,21 +41,22 @@ pg_exporter --version
 
 ## Step 2: Create a Monitoring User
 
-Create a dedicated monitoring user on the target PostgreSQL. The built-in `pg_monitor` role (PostgreSQL 10+) covers all read permissions the default collectors need:
+Create a dedicated monitoring user on the target PostgreSQL instance.
+The built-in `pg_monitor` role in PostgreSQL 10+ gives the user all read permissions that the default collectors need:
 
 ```sql
 CREATE USER monitor WITH PASSWORD 'S3cret';
 GRANT pg_monitor TO monitor;
 ```
 
-If you are just trying it out locally as a superuser like `postgres`, you can skip this step.
+For a local test with a superuser such as `postgres`, you can skip this step.
 
 
 --------
 
 ## Step 3: Run and Verify
 
-Use `--dry-run` to confirm the configuration parses, then start for real:
+Use `--dry-run` to check that the configuration parses correctly. Then start the exporter:
 
 ```bash
 export PG_EXPORTER_URL='postgres://monitor:S3cret@localhost:5432/postgres'
@@ -62,9 +65,11 @@ pg_exporter --dry-run     # print parsed collector config, then exit
 pg_exporter               # start for real, listening on :9630 by default
 ```
 
-Without any URL, `pg_exporter` falls back to the local-first default `postgresql:///?sslmode=disable`, which fits running on the same host as PostgreSQL. The full URL source precedence (`--url` > `PG_EXPORTER_URL` > `PGURL` > `PG_EXPORTER_URL_FILE` > default) is documented in the [Deployment guide](/docs/pg_exporter/deploy/).
+If you do not specify a URL, `pg_exporter` uses `postgresql:///?sslmode=disable` to connect on the same host.
+The URL source order is `--url` > `PG_EXPORTER_URL` > `PGURL` > `PG_EXPORTER_URL_FILE` > default.
+See the [Deployment guide](/docs/pg_exporter/deploy/) for details.
 
-Pull the metrics from another terminal:
+Get the metrics from another terminal:
 
 ```bash
 curl -s http://localhost:9630/metrics | grep -E '^pg_(up|version|in_recovery) '
@@ -78,7 +83,9 @@ pg_version 170000    # version in server_version_num format
 pg_in_recovery 0     # 1 on replicas, 0 on primaries
 ```
 
-`pg_up 1` means the pipeline works — the remaining 600+ metrics (`pg_db_*`, `pg_table_*`, `pg_wal_*`, ...) all come from the declarative collector definitions in `pg_exporter.yml`. If `pg_up` is `0`, restart with `pg_exporter --log.level=debug` and inspect the connection error.
+`pg_up 1` shows that the connection and metric collection work.
+The remaining 600+ metrics (`pg_db_*`, `pg_table_*`, `pg_wal_*`, ...) come from collector definitions in `pg_exporter.yml`.
+If `pg_up` is `0`, restart with `pg_exporter --log.level=debug` and examine the connection error.
 
 
 --------
@@ -95,9 +102,12 @@ scrape_configs:
       - targets: ['localhost:9630']
 ```
 
-Collectors cache results per their `ttl` (most realtime collectors use `ttl: 10`): as long as the TTL is below the scrape interval, every scrape gets fresh data, while high-frequency scraping can never overwhelm the database. This is also why setting `scrape_interval` below the common TTLs is not recommended.
+Collectors cache results for their `ttl`. Most realtime collectors use `ttl: 10`.
+If the TTL is less than the scrape interval, each scrape gets fresh data.
+The cache also prevents high-frequency scrapes from overloading the database.
+Do not set `scrape_interval` below the common collector TTLs.
 
-That's it. For Grafana, you can reuse the PostgreSQL dashboards from [Pigsty](https://pigsty.io), or explore the [live demo](https://g.pgsty.com).
+For Grafana, use the PostgreSQL dashboards from [Pigsty](https://pigsty.io), or view the [live demo](https://g.pgsty.com).
 
 
 --------
@@ -112,7 +122,9 @@ That's it. For Grafana, you can reuse the PostgreSQL dashboards from [Pigsty](ht
 | Scrapes are slow            | Find the slow collector in `/stat`, raise its `ttl`, or set `skip: true`                                   |
 {.full-width}
 
-`/stat`, `/explain`, and `/reload` are management endpoints — protect them with `--web.config.file` (TLS/auth) or keep them on a trusted network in production. See the [API Reference](/docs/pg_exporter/api/).
+`/stat`, `/explain`, and `/reload` are management endpoints.
+In production, protect them with `--web.config.file` for TLS/auth, or keep them on a trusted network.
+See the [API Reference](/docs/pg_exporter/api/).
 
 
 --------

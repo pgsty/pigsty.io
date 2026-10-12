@@ -8,7 +8,7 @@ categories: [Task]
 ---
 
 
-> Pigsty provides a series of playbooks for cluster provisioning, scaling, user/database management, monitoring, backup & recovery, and migration.
+> Pigsty provides playbooks for cluster provisioning, scaling, user and database management, monitoring, backup, recovery, and migration.
 
 | Playbook                                     | Function                                                      |
 |----------------------------------------------|---------------------------------------------------------------|
@@ -25,14 +25,15 @@ categories: [Task]
 
 ## Safeguard
 
-Be **extra cautious** when using [`PGSQL`](/docs/pgsql) playbooks. Misuse of [`pgsql.yml`](#pgsqlyml) and [`pgsql-rm.yml`](#pgsql-rmyml) can lead to accidental database deletion!
+Use [`PGSQL`](/docs/pgsql) playbooks **with care**.
+Incorrect use of [`pgsql.yml`](#pgsqlyml) or [`pgsql-rm.yml`](#pgsql-rmyml) can accidentally delete databases.
 
-* Always add the `-l` parameter to limit the execution scope, and ensure you're executing the right tasks on the right targets.
-* Limiting scope to a single cluster is recommended. Running `pgsql.yml` without parameters in production is a high-risk operation—think twice before proceeding.
-* Before removal, inspect `pig pg list <cluster>` and `pig pb info`, verify a recent backup, and have the operator enter the exact target.
+* Always use `-l` to limit execution scope. Verify that the tasks and targets are correct.
+* Limit execution to one cluster when possible. Running `pgsql.yml` without parameters in production is a high-risk operation. Review it carefully.
+* Before removal, inspect `pig pg list <cluster>` and `pig pb info`. Verify a recent backup and have the operator enter the exact target.
 
-To prevent accidental deletion, Pigsty's PGSQL module provides a safeguard mechanism controlled by the [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) parameter.
-When `pg_safeguard` is set to `true`, the [`pgsql-rm.yml`](#pgsql-rmyml) playbook will abort immediately, protecting your database cluster.
+The PGSQL module uses [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) to prevent accidental deletion.
+When `pg_safeguard` is `true`, [`pgsql-rm.yml`](#pgsql-rmyml) stops immediately to protect the cluster.
 
 ```bash
 # Will abort execution, protecting data
@@ -69,7 +70,7 @@ These parameters allow precise control over removal behavior:
 
 ## `pgsql.yml`
 
-The [`pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql.yml) playbook is used to initialize PostgreSQL clusters or add new replicas.
+Use [`pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql.yml) to initialize PostgreSQL clusters or add replicas.
 
 Here's a demo of initializing a PostgreSQL cluster in the sandbox environment:
 
@@ -87,7 +88,7 @@ Here's a demo of initializing a PostgreSQL cluster in the sandbox environment:
 
 **Wrapper Scripts**
 
-Pigsty provides convenient wrapper scripts to simplify common operations:
+Pigsty provides wrapper scripts for common operations:
 
 ```bash
 bin/pgsql-add pg-meta             # Initialize pgsql cluster pg-meta
@@ -189,12 +190,12 @@ This playbook contains the following subtasks:
 
 **Notes**
 
-* When running this playbook on a single replica, ensure the **cluster primary is already initialized!**
-* After scaling out, you need to [Reload Service](/docs/pgsql/admin#reload-service) and [Reload HBA](/docs/pgsql/admin#reload-hba). The wrapper script `bin/pgsql-add` handles these tasks automatically.
+* Before you run this playbook on one replica, verify that the **cluster primary is initialized**.
+* After you scale out, [reload services](/docs/pgsql/admin#reload-service) and [reload HBA](/docs/pgsql/admin#reload-hba). The `bin/pgsql-add` wrapper does this automatically.
 
-When scaling a cluster, if Patroni takes too long to bring up a replica, the Ansible playbook may abort due to timeout:
-* Typical error message: `wait for postgres/patroni replica` task runs for a long time before aborting
-* However, the replica creation process continues. For scenarios where replica creation takes more than a day, see [FAQ](/docs/pgsql/faq): Replica creation failed.
+During cluster expansion, the Ansible playbook may time out while Patroni creates a replica.
+* The `wait for postgres/patroni replica` task typically runs for a long time before it stops.
+* Replica creation continues in the background. For creation that takes more than a day, see the replica creation failure entry in [FAQ](/docs/pgsql/faq).
 
 
 
@@ -202,7 +203,7 @@ When scaling a cluster, if Patroni takes too long to bring up a replica, the Ans
 
 ## `pgsql-rm.yml`
 
-The [`pgsql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-rm.yml) playbook is used to remove PostgreSQL clusters or specific instances.
+Use [`pgsql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-rm.yml) to remove PostgreSQL clusters or specific instances.
 
 Here's a demo of removing a PostgreSQL cluster in the sandbox environment:
 
@@ -275,8 +276,8 @@ This playbook contains the following subtasks:
 
 **Notes**
 
-* **Do not run this playbook on a primary that still has replicas**—otherwise, remaining replicas will trigger automatic failover. Always remove all replicas first, then remove the primary. This is not a concern when removing the entire cluster at once.
-* **Refresh cluster services after removing instances**. When you remove a replica from a cluster, it remains in the load balancer configuration file. Since health checks will fail, the removed instance won't affect cluster services. However, you should [Reload Service](/docs/pgsql/admin#reload-service) at an appropriate time to ensure consistency between the production environment and configuration inventory.
+* **Do not remove a primary while replicas remain.** The remaining replicas will trigger automatic failover. Remove all replicas before the primary. Whole-cluster removal already handles this order.
+* **Refresh services after instance removal.** A removed replica remains in the load balancer configuration, but failed health checks prevent it from affecting services. [Reload services](/docs/pgsql/admin#reload-service) at an appropriate time to keep the production environment consistent with the inventory.
 
 
 
@@ -284,7 +285,7 @@ This playbook contains the following subtasks:
 
 ## `pgsql-user.yml`
 
-The [`pgsql-user.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-user.yml) playbook is used to add new business users to existing PostgreSQL clusters.
+Use [`pgsql-user.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-user.yml) to add business users to an existing PostgreSQL cluster.
 
 **Basic Usage**
 
@@ -340,7 +341,7 @@ For details, see: [Admin SOP: Create User](/docs/pgsql/admin#create-user)
 
 ## `pgsql-db.yml`
 
-The [`pgsql-db.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-db.yml) playbook is used to add new business databases to existing PostgreSQL clusters.
+Use [`pgsql-db.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-db.yml) to add business databases to an existing PostgreSQL cluster.
 
 **Basic Usage**
 
@@ -401,7 +402,7 @@ For details, see: [Admin SOP: Create Database](/docs/pgsql/admin#create-database
 
 ## `pgsql-monitor.yml`
 
-The [`pgsql-monitor.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-monitor.yml) playbook is used to bring remote PostgreSQL instances into Pigsty's monitoring system.
+Use [`pgsql-monitor.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-monitor.yml) to add remote PostgreSQL instances to Pigsty monitoring.
 
 **Basic Usage**
 
@@ -487,7 +488,8 @@ For details, see: [Admin SOP: Monitor RDS](/docs/pgsql/monitor#monitor-rds)
 
 ## `pgsql-migration.yml`
 
-The [`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml) playbook generates migration manuals and scripts for zero-downtime logical replication-based migration of existing PostgreSQL clusters.
+[`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml) generates migration manuals and scripts for existing PostgreSQL clusters.
+They use logical replication for migration without downtime.
 
 **Basic Usage**
 
@@ -497,9 +499,9 @@ The [`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migr
 
 **Workflow**
 
-1. Define migration task configuration file (e.g., `files/migration/pg-meta.yml`)
-2. Execute playbook to generate migration manual and scripts
-3. Follow the manual to execute scripts step by step for migration
+1. Define a migration task file, such as `files/migration/pg-meta.yml`.
+2. Run the playbook to generate the migration manual and scripts.
+3. Follow the manual and run the scripts in order.
 
 **Migration Task Definition Example**
 

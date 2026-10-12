@@ -12,7 +12,7 @@ categories: [Reference]
 ## Concepts and Implementation
 
 JuiceFS consists of a **metadata engine** and **data storage**.
-In the current version, `meta` is passed through to `juicefs` as the metadata engine URL, and PostgreSQL is typically used in production.
+The current version passes `meta` to `juicefs` as the metadata engine URL. Production deployments typically use PostgreSQL.
 Data storage is defined by `data` options passed to `juicefs format`.
 
 JUICE module core commands:
@@ -28,8 +28,8 @@ juicefs mount <mount_opts> --cache-dir <juice_cache> --metrics 0.0.0.0:<port> <m
 Notes:
 
 - `--no-update` ensures existing filesystems are not overwritten.
-- `data` is only used for **initial format**; it does not affect existing filesystems.
-- `mount` is only used during mount, you can pass cache and concurrency options.
+- `data` applies only to the **initial format**. It does not affect existing filesystems.
+- `mount` applies only during mounting. Use it to pass cache and concurrency options.
 
 --------
 
@@ -44,7 +44,7 @@ JUICE module has only two parameters:
 {.full-width}
 
 - `juice_cache`: shared local cache directory for all instances, default `/data/juice`
-- `juice_instances`: instance-level dict, key is filesystem name; an empty dict means no instances are managed
+- `juice_instances`: Instance-level dictionary. Each key is a filesystem name. An empty dictionary means that the module manages no instances.
 
 --------
 
@@ -67,7 +67,7 @@ Each entry in `juice_instances` represents a JuiceFS instance:
 {.full-width}
 
 > [!WARNING] Important
-> - It's recommended to explicitly set `data` on **first format** to make the storage backend clear.
+> - We recommend that you explicitly set `data` on the **first format**. This makes the storage backend clear.
 > - Multiple instances on the same node must use different `port` values.
 
 Example:
@@ -85,7 +85,7 @@ juice_instances:
 
 ## Storage Backends
 
-`data` is appended to `juicefs format`, any supported backend works. Common examples:
+The module appends `data` to `juicefs format`. You can use any supported backend. Common examples follow.
 
 ### PostgreSQL Data Backend
 
@@ -97,7 +97,7 @@ juice_instances:
     data: --storage postgres --bucket 10.10.10.10:5432/meta --access-key dbuser_meta --secret-key DBUser.Meta
 ```
 
-JuiceFS creates a `jfs_blob` table in the database selected by `--bucket` for file data. This PostgreSQL data backend and the `meta` metadata engine are separate roles; they may use one database or be deployed separately. The database and a user with read/write privileges must already exist.
+JuiceFS creates a `jfs_blob` table in the database selected by `--bucket` for file data. The PostgreSQL data backend and the `meta` metadata engine have separate roles. They can use one database or separate deployments. The database and a user with read/write privileges must already exist.
 
 ### Silo / MinIO-Compatible Object Storage
 
@@ -152,12 +152,12 @@ app:
     10.10.10.12: { juice_instances: { shared: { path: /shared, meta: "postgres://...", port: 9567 } } }
 ```
 
-Only one node needs to format the filesystem; others will skip via `--no-update`.
+Only one node needs to format the filesystem. Other nodes skip this operation because of `--no-update`.
 
 --------
 
 ## Notes
 
 - `port` is exposed on `0.0.0.0`. Use firewall or security group to restrict access.
-- Changing `data` will not update an existing filesystem; handle migration manually.
-- `meta` and `data` may contain database or object-storage credentials. Restrict access to `pigsty.yml`, use dedicated least-privilege accounts, and never keep example passwords in production.
+- A change to `data` does not update an existing filesystem. Migrate the data manually.
+- `meta` and `data` can contain database or object-storage credentials. Restrict access to `pigsty.yml`. Use dedicated accounts with the minimum required privileges. Never keep example passwords in production.

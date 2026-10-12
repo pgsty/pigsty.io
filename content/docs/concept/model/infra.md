@@ -9,15 +9,14 @@ categories: [Concept]
 ---
 
 
-The INFRA module plays a special role in Pigsty: it's not a traditional "cluster" but rather a management hub composed of a group of **infrastructure nodes**, providing core services for the entire Pigsty deployment.
-Each INFRA node is an **autonomous** infrastructure service unit running core components like Nginx, Grafana, and VictoriaMetrics, collectively providing observability and management capabilities for managed database clusters.
+The INFRA module is a management hub made of **infrastructure nodes**, rather than a traditional cluster. It provides core services for the deployment. Each node is an **autonomous** service unit that runs components such as Nginx, Grafana, and VictoriaMetrics. Together, these nodes provide observability and management for database clusters.
 
 There are two core entities in Pigsty's INFRA module:
 
-- **Node**: A server running infrastructure components—can be bare metal, VM, container, or Pod.
-- **Component**: Various infrastructure services running on nodes, such as Nginx, Grafana, VictoriaMetrics, etc.
+- **Node**: A server that runs infrastructure components. It can be a physical server, VM, container, or Pod.
+- **Component**: An infrastructure service on a node, such as Nginx, Grafana, or VictoriaMetrics.
 
-INFRA nodes typically serve as Admin Nodes, the control plane of Pigsty.
+INFRA nodes usually also serve as administration nodes, which form the Pigsty control plane.
 
 
 ----------------
@@ -47,7 +46,7 @@ These components together form Pigsty's observability infrastructure.
 
 ## Examples
 
-Let's look at a concrete example with a two-node INFRA deployment:
+This example defines a two-node INFRA deployment:
 
 ```yaml
 infra:
@@ -56,7 +55,7 @@ infra:
     10.10.10.11: { infra_seq: 2 }
 ```
 
-The above config fragment defines a two-node INFRA deployment:
+The configuration defines these entities:
 
 |      <span class="text-secondary">**Group**</span>         | <span class="text-secondary">**Description**</span> |
 |:----------------------------------------------------------:|-----------------------------------------------------|
@@ -66,36 +65,35 @@ The above config fragment defines a two-node INFRA deployment:
 |                      **`infra-2`**                         | `10.10.10.11` INFRA node #2                         |
 {.full-width}
 
-For production environments, deploying at least two INFRA nodes is recommended for infrastructure component redundancy.
+For production, use at least two INFRA nodes for component redundancy.
 
 
 ----------------
 
 ## Identity Parameters
 
-Pigsty uses the [**`INFRA_ID`**](/docs/infra/param#infra_id) parameter group to assign deterministic identities to each INFRA module entity. One parameter is required:
+The [**`INFRA_ID`**](/docs/infra/param#infra_id) parameter group assigns deterministic identities to INFRA entities. One parameter is required:
 
 | Parameter                                          |  Type  | Level | Description                      | Format                                  |
 |:---------------------------------------------------|:------:|:-----:|:---------------------------------|:----------------------------------------|
 | [**`infra_seq`**](/docs/infra/param#infra_seq)     | `int`  | Node  | INFRA node sequence, required    | Natural number, starting from 1, unique within group |
 {.full-width}
 
-With node sequence assigned at node level, Pigsty automatically generates unique identifiers for each entity based on rules:
+Set the node sequence number at node level. Pigsty generates unique identifiers with these rules:
 
 | Entity   | Generation Rule             | Example                 |
 |----------|:----------------------------|:------------------------|
 | **Node** | `infra-{{ infra_seq }}`     | `infra-1`, `infra-2`    |
 {.full-width}
 
-The INFRA module assigns `infra-N` format identifiers to nodes for distinguishing multiple infrastructure nodes in the monitoring system.
-However, this doesn't change the node's hostname or system identity; nodes still use their existing hostname or IP address for identification.
+INFRA assigns `infra-N` identifiers to distinguish infrastructure nodes in monitoring. This does not change their hostname or system identity. Nodes retain their existing hostname or IP address for identification.
 
 
 ----------------
 
 ## Service Portal
 
-INFRA nodes provide unified web service entry through Nginx. The [**`infra_portal`**](/docs/infra/param#infra_portal) parameter defines services exposed through Nginx.
+INFRA nodes provide web access through Nginx. [**`infra_portal`**](/docs/infra/param#infra_portal) defines the services that Nginx exposes.
 
 The default configuration only defines the home server:
 
@@ -104,7 +102,7 @@ infra_portal:
   home : { domain: i.pigsty }
 ```
 
-Pigsty automatically configures reverse proxy endpoints for enabled components (Grafana, VictoriaMetrics, AlertManager, etc.). If you need to access these services via separate domains, you can explicitly add configurations:
+Pigsty configures reverse proxy endpoints for enabled components, including Grafana, VictoriaMetrics, and AlertManager. To access them through separate domains, add explicit configuration:
 
 ```yaml
 infra_portal:
@@ -122,7 +120,7 @@ infra_portal:
 | `a.pigsty`    | Alertmanager    | Alert management UI    |
 {.full-width}
 
-Accessing Pigsty services via domain names is recommended over direct IP + port.
+Use domain names to access Pigsty services where possible, instead of an IP address and port.
 
 
 ----------------
@@ -139,16 +137,14 @@ The number of INFRA nodes depends on deployment scale and HA requirements:
 | Large Prod | 3+          | Multiple INFRA nodes, component separation |
 {.full-width}
 
-In [**singleton deployment**](/docs/setup/install), INFRA components share the same node with PGSQL, ETCD, etc.
-In small-scale deployments, INFRA nodes typically also serve as "[**Admin Node**](/docs/concept/arch/node#admin-node)" / backup admin node and local software repository (`/www/pigsty`).
-In larger deployments, these responsibilities can be separated to dedicated nodes.
+In a [**single-node deployment**](/docs/setup/install), INFRA shares a node with PGSQL, ETCD, and other modules. Small deployments usually use INFRA nodes as the [**administration node**](/docs/concept/arch/node#admin-node), backup administration node, and local software repository (`/www/pigsty`). Larger deployments can assign these responsibilities to dedicated nodes.
 
 
 ----------------
 
 ## Monitoring Label System
 
-Pigsty's monitoring system collects metrics from INFRA components themselves. Unlike database modules, each **component** in the INFRA module is treated as an independent monitoring object, distinguished by the `cls` (class) label.
+Pigsty collects metrics from INFRA components themselves. Unlike database modules, INFRA treats each **component** as a separate monitoring object. The `cls` (class) label distinguishes component types.
 
 | Label | Description                           | Example         |
 |:------|:--------------------------------------|:----------------|
@@ -158,7 +154,7 @@ Pigsty's monitoring system collects metrics from INFRA components themselves. Un
 | `job` | VictoriaMetrics scrape job, fixed as `infra` | `infra`    |
 {.full-width}
 
-Using a two-node INFRA deployment (`infra_seq: 1` and `infra_seq: 2`) as example, component monitoring labels are:
+A two-node INFRA deployment with `infra_seq: 1` and `infra_seq: 2` uses these component labels:
 
 | Component           | `cls`          | `ins` Example                             | Port    |
 |:--------------------|:---------------|:------------------------------------------|:--------|
@@ -172,7 +168,7 @@ Using a two-node INFRA deployment (`infra_seq: 1` and `infra_seq: 2`) as example
 | **Blackbox**        | `blackbox`     | `blackbox-1`, `blackbox-2`                | `9115`  |
 {.full-width}
 
-All INFRA component metrics use a unified `job="infra"` label, distinguished by the `cls` label:
+All INFRA component metrics have `job="infra"`. The `cls` label distinguishes components:
 
 ```text
 nginx_up{cls="nginx", ins="nginx-1", ip="10.10.10.10", job="infra"}

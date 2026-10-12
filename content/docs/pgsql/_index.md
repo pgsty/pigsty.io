@@ -8,9 +8,15 @@ categories: [Reference]
 feedback: false
 ---
 
-PGSQL is Pigsty's core module. Ansible inventory declares PostgreSQL clusters; Patroni and etcd provide HA orchestration; pgBackRest provides backup and PITR; HAProxy, VIP, DNS, PgBouncer, and the observability stack expose and monitor database services.
+PGSQL is the core Pigsty module.
+An Ansible inventory declares PostgreSQL clusters.
+Patroni and etcd manage high availability.
+pgBackRest provides backup and PITR.
+HAProxy, VIP, DNS, PgBouncer, and the observability stack expose and monitor database services.
 
-This page follows the Pigsty v4.5.0 source layout. Exact defaults live only in the [parameter reference](/docs/pgsql/param/) so the module landing page does not become a second stale parameter snapshot.
+This page follows the Pigsty v4.5.0 source layout.
+For exact defaults, use the [parameter reference](/docs/pgsql/param/).
+Keeping defaults in one reference prevents conflicting or outdated copies.
 
 
 ----------------
@@ -43,7 +49,10 @@ This page follows the Pigsty v4.5.0 source layout. Exact defaults live only in t
 | Remove an instance or cluster | [Safe removal workflow](/docs/pgsql/admin/cluster/#remove-cluster) · [`pgsql-rm.yml`](/docs/pgsql/playbook/#pgsql-rmyml) |
 {.full-width}
 
-Real runs of `pgsql.yml`, `pgsql-user.yml`, `pgsql-db.yml`, and related playbooks change the target environment; `pgsql-rm.yml` can delete data and backups by default. Resolve the exact cluster/node and recent backup first. Removal also requires the operator to type and confirm the exact target.
+`pgsql.yml`, `pgsql-user.yml`, `pgsql-db.yml`, and related playbooks change the target environment when run.
+By default, `pgsql-rm.yml` can delete data and backups.
+First identify the exact cluster or node and verify a recent backup.
+For removal, the operator must also type and confirm the exact target.
 
 
 ----------------
@@ -57,14 +66,17 @@ Real runs of `pgsql.yml`, `pgsql-user.yml`, `pgsql-db.yml`, and related playbook
 - [Restore operations](/docs/pgsql/backup/restore/): cluster-level `pgsql-pitr.yml`, node-local `pig pitr`, and low-level `pig pb restore`.
 - [Manual drill](/docs/pgsql/tutorial/pitr/): validate PITR in explicit stages inside a disposable sandbox.
 
-Restore is destructive. Production recovery requires an independent recent tested backup and separate gates for shutdown, restore, data validation, timeline promotion, DCS rebuild, replica rebuild, and a fresh full backup.
+Restore is destructive.
+Production recovery requires an independent, recent backup that has passed a restore test.
+Confirm each stage separately: shutdown, restore, data validation, timeline promotion, DCS rebuild, replica rebuild, and a new full backup.
 
 
 ----------------
 
 ## Monitoring
 
-The current source contains 29 PostgreSQL/PGCAT dashboards under `files/grafana/pgsql`, covering fleet, cluster, instance, database, table, query, session, transaction, replication, service, PgBouncer, PITR, and alerts.
+The current source contains 29 PostgreSQL and PGCAT dashboards in `files/grafana/pgsql`.
+They cover fleets, clusters, instances, databases, tables, queries, sessions, transactions, replication, services, PgBouncer, PITR, and alerts.
 
 - [Monitoring and dashboards](/docs/pgsql/monitor/)
 - [Metric reference](/docs/pgsql/metric/)

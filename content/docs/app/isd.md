@@ -9,9 +9,9 @@ module: [APP]
 categories: [Reference]
 ---
 
-If you have a database and don't know what to do with it, why not try this open-source project: [Vonng/isd](https://github.com/Vonng/isd)
+Use the open-source [Vonng/isd](https://github.com/Vonng/isd) project to explore weather data in your database.
 
-You can directly reuse the monitoring system Grafana to interactively browse sub-hourly meteorological data from nearly 30,000 surface weather stations over the past 120 years.
+Use the existing Grafana monitoring system to browse sub-hourly weather data interactively. It covers nearly 30,000 surface stations over the past 120 years.
 
 This is a fully functional data application that can query meteorological observation records from 30,000 global surface weather stations since 1901.
 
@@ -42,7 +42,7 @@ psql "${PGURL}" -c 'SELECT 1'  # Check if connection is available
 
 **Fetch and import ISD weather station metadata**
 
-This is a daily-updated weather station metadata file containing station longitude/latitude, elevation, name, country, province, and other information. Use the following command to download and import:
+This metadata file updates daily. It contains station longitude, latitude, elevation, name, country, province, and other information. Download and import it with:
 
 ```bash
 make reload-station   # Equivalent to downloading the latest station data then loading: get-station + load-station
@@ -50,8 +50,7 @@ make reload-station   # Equivalent to downloading the latest station data then l
 
 **Fetch and import the latest `isd.daily` data**
 
-`isd.daily` is a daily-updated dataset containing daily observation data summaries from global weather stations. Use the following command to download and import.
-Note that raw data downloaded directly from the NOAA website needs to be **parsed** before it can be loaded into the database, so you need to download or build an ISD data parser.
+`isd.daily` updates daily with summaries of observations from global weather stations. Raw NOAA downloads must be **parsed** before database loading. Download or build the ISD parser, then download and import the data:
 
 ```bash
 make get-parser       # Download the parser binary from Github, or you can build directly with go using make build
@@ -60,7 +59,7 @@ make reload-daily     # Download and import the latest isd.daily data for this y
 
 **Load pre-parsed CSV dataset**
 
-The ISD Daily dataset has some dirty data and [duplicate data](https://github.com/Vonng/isd/blob/master/doc/isd-daily-caveat.md). If you don't want to manually parse and clean it, a stable pre-parsed CSV dataset is also provided here.
+ISD Daily contains invalid data and [duplicates](https://github.com/Vonng/isd/blob/master/doc/isd-daily-caveat.md). Use the provided stable CSV dataset to avoid manual parsing and cleanup.
 
 This dataset contains `isd.daily` data up to 2023-06-24. You can download and import it directly into PostgreSQL without needing a parser.
 
@@ -77,7 +76,7 @@ make load-stable      # Load the downloaded stable historical dataset into the P
 
 Two parts of the ISD dataset are updated daily: weather station metadata and the latest year's `isd.daily` (e.g., the 2023 tarball).
 
-You can use the following command to download and refresh these two parts. If the dataset hasn't been updated, these commands won't re-download the same data package:
+Use this command to refresh both datasets. It does not download unchanged data packages again:
 
 ```bash
 make reload           # Actually: reload-station + reload-daily
@@ -241,10 +240,9 @@ CREATE TABLE IF NOT EXISTS isd.daily
 
 ## Parser
 
-The raw data provided by NOAA ISD is in a highly compressed proprietary format that needs to be processed through a parser before it can be converted into database table format.
+NOAA ISD raw data uses a highly compressed proprietary format. A parser must convert it to database table format.
 
-For the Daily and Hourly datasets, two parsers are provided here: [`isdd`](https://github.com/Vonng/isd/blob/master/parser/isdd/isdd.go) and [`isdh`](https://github.com/Vonng/isd/blob/master/parser/isdh/isdh.go).
-Both parsers take annual data compressed packages as input, produce CSV results as output, and work in pipeline mode as shown below:
+Use [`isdd`](https://github.com/Vonng/isd/blob/master/parser/isdd/isdd.go) for Daily data and [`isdh`](https://github.com/Vonng/isd/blob/master/parser/isdh/isdh.go) for Hourly data. Both accept annual compressed packages and produce CSV output. They support pipelines as shown below:
 
 ```bash
 NAME
@@ -280,7 +278,7 @@ OPTIONS
 
 ## User Interface
 
-Several dashboards made with Grafana are provided here for exploring the ISD dataset and querying weather stations and historical meteorological data.
+Use these Grafana dashboards to explore ISD data, weather stations, and historical observations.
 
 
 -----------
@@ -312,7 +310,7 @@ Display detailed information for a single weather station, including metadata an
 
 **ISD Detail**
 
-Display raw sub-hourly observation metric data for a weather station, requires the `isd.hourly` dataset.
+Display raw sub-hourly observation metrics for one station. This requires `isd.hourly`.
 
 > [!DETAILS]- ISD Station Dashboard
 > ![isd-detail.jpg](/img/docs/app/isd-detail.jpg)

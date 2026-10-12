@@ -10,8 +10,7 @@ module: [INFRA]
 categories: [Concept]
 ---
 
-Pigsty's monitoring system has three pillars—metrics, logs, and alerting—and is available out of the box. Logs and alerts are also important inputs for [**audit and traceability**](/docs/concept/sec/data#audit-and-traceability).
-It can monitor clusters managed by Pigsty, existing PostgreSQL clusters, and external RDS services.
+The built-in monitoring system provides metrics, logs, and alerting. Logs and alerts also support [**audit and traceability**](/docs/concept/sec/data#audit-and-traceability). It can monitor Pigsty-managed clusters, existing PostgreSQL clusters, and external RDS services.
 
 
 --------
@@ -44,7 +43,7 @@ Pigsty monitoring covers these core targets:
 
 ## Onboarding Modes
 
-Pigsty supports three monitoring onboarding modes:
+Pigsty supports three ways to add monitoring:
 
 | Mode | Use Case | Entry |
 |:-----|:---------|:------|

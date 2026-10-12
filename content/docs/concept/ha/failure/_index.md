@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-Patroni failures can be classified into 10 categories by failure target, and further consolidated into five categories based on detection path, which are detailed in this section.
+Patroni failures have 10 categories by failure target. Detection paths group them into five categories, described here.
 
 | #  | Failure Scenario              | Description                            | Final Path                           |
 |----|-------------------------------|----------------------------------------|--------------------------------------|
@@ -23,7 +23,7 @@ Patroni failures can be classified into 10 categories by failure target, and fur
 | 10 | Manual switchover             | Switchover/Failover                    | **Manual Trigger**                   |
 {.full-width}
 
-However, for RTO calculation purposes, all failures ultimately converge to two paths. This section explores the upper bound, lower bound, and average RTO for these two scenarios.
+For RTO calculations, all failures follow two paths. This section calculates their minimum, maximum, and average recovery times.
 
 - [**Passive election triggered after Patroni loses contact**](/docs/concept/ha/failure/passive)
 - [**Patroni actively detects failure and triggers switchover**](/docs/concept/ha/failure/active)

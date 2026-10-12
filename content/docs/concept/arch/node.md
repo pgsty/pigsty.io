@@ -8,11 +8,11 @@ categories: [Concept]
 ---
 
 
-A **node** is an abstraction of hardware resources and operating systems. It can be a physical machine, bare metal, virtual machine, or container/pod.
+A **node** represents hardware resources and an operating system. It can be a physical server, virtual machine, container, or pod.
 
-Any machine running a [**Linux OS**](/docs/ref/linux) (with systemd daemon) and standard CPU/memory/disk/network resources can be treated as a node.
+A node needs a [**Linux OS**](/docs/ref/linux), systemd, and standard CPU, memory, disk, and network resources.
 
-Nodes can have [**modules**](/docs/ref/module) installed. Pigsty has several node types, distinguished by which modules are deployed:
+Install [**modules**](/docs/ref/module) on nodes. The installed modules determine the node type:
 
 |            Type            | Description                                                     |
 |:--------------------------:|:----------------------------------------------------------------|
@@ -25,15 +25,14 @@ Nodes can have [**modules**](/docs/ref/module) installed. Pigsty has several nod
 |            ...             | Nodes with other modules...                                     |
 {.full-width}
 
-In a [**singleton**](/docs/setup/install) Pigsty deployment, multiple roles converge on one node: it serves as the regular node, admin node, infra node, ETCD node, and database node simultaneously.
+In a [**single-node deployment**](/docs/setup/install), one node has all roles: regular, administration, infrastructure, ETCD, and database.
 
 
 ------
 
 ## Regular Node
 
-Nodes managed by Pigsty can have modules installed. The [**`node.yml`**](/docs/node/playbook#nodeyml) playbook configures nodes to the desired state.
-A regular node may run the following services:
+Use [**`node.yml`**](/docs/node/playbook#nodeyml) to configure managed nodes to the target state. A regular node can run these services:
 
 |          Component          |  Port  | Description                         | Status      |
 |:---------------------------:|:------:|-------------------------------------|-------------|
@@ -45,24 +44,22 @@ A regular node may run the following services:
 | **`keepalived_exporter`**   | `9650` | Keepalived status monitor           | Optional    |
 {.full-width}
 
-Here, `node_exporter` exposes host metrics, `vector` sends logs to the collection system, and `haproxy` provides load balancing. These three are enabled by default.
-[**Docker**](/docs/docker), `keepalived`, and `keepalived_exporter` are optional and can be enabled as needed.
+`node_exporter`, `vector`, and `haproxy` are enabled by default. They export host metrics, collect logs, and balance traffic. [**Docker**](/docs/docker), `keepalived`, and `keepalived_exporter` are optional.
 
 
 ------
 
 ## ADMIN Node
 
-A Pigsty deployment has exactly **one admin node**—the node that runs Ansible playbooks and issues control/deployment commands.
+A deployment has exactly **one administration node** that runs Ansible playbooks and issues deployment or management commands.
 
-This node has `ssh/sudo` access to all other nodes. Admin node security is critical and access must be strictly controlled; see [**Security Model: Trust Boundaries**](/docs/concept/sec/level#trust-boundaries) for its trust scope and critical assets.
+This node has `ssh/sudo` access to every other node. Restrict access carefully. See [**Security Model: Trust Boundaries**](/docs/concept/sec/level#trust-boundaries) for its trusted access and critical assets.
 
-During [**single-node installation**](/docs/setup/install) and [**configuration**](/docs/concept/iac/configure), the current node becomes the admin node.
-However, alternatives exist. For example, if your laptop can SSH to all managed nodes and has Ansible installed, it can serve as the admin node—though this isn't recommended for production.
+During [**single-node installation**](/docs/setup/install) and [**configuration**](/docs/concept/iac/configure), the current node becomes the administration node. A laptop with Ansible and SSH access to all managed nodes can also serve this role. This is not recommended for production.
 
-For instance, you might use your laptop to manage a Pigsty VM in the cloud. In this case, your laptop is the admin node.
+For example, a laptop managing a cloud Pigsty VM is the administration node.
 
-In serious production environments, the admin node is typically 1-2 dedicated DBA machines. In resource-constrained setups, [**INFRA nodes**](#infra-node) often double as admin nodes since all INFRA nodes have Ansible installed by default.
+Production installations usually reserve 1–2 DBA machines for administration. With limited resources, [**INFRA nodes**](#infra-node) can also perform administration. All infrastructure nodes have Ansible by default.
 
 
 ----------------
@@ -88,8 +85,7 @@ The **`infra`** group in the [**inventory**](/docs/concept/iac/inventory) define
 |      `ansible`        |   `-`      | Playbook execution                  |
 {.full-width}
 
-Nginx serves as the module's entry point, providing the web UI and local software repository.
-With multiple INFRA nodes, services on each are independent, but you can access all monitoring data sources from any INFRA node's Grafana.
+Nginx provides the module Web UI and software repository. Services on multiple infrastructure nodes are independent. Each Grafana can access all monitoring data sources.
 
 Pigsty is licensed under [**Apache-2.0**](/docs/about/license), though embedded Grafana component uses AGPLv3.
 
@@ -129,9 +125,9 @@ The **`minio`** inventory group defines MINIO module nodes. In v4.5.0, these nod
 
 ## PGSQL Node
 
-Nodes with the [**PGSQL**](/docs/pgsql/) module are called PGSQL nodes. Node and PostgreSQL instance have a 1:1 deployment—one PG instance per node.
+A [**PGSQL node**](/docs/pgsql/) has the PGSQL module. Each node runs one PostgreSQL instance, giving a 1:1 mapping.
 
-PGSQL nodes can borrow **identity** from their PostgreSQL instance—controlled by [`node_id_from_pg`](/docs/node/param/#node_id_from_pg), defaulting to `true`, meaning the node name is set to the PG instance name.
+[`node_id_from_pg`](/docs/node/param/#node_id_from_pg) lets a PGSQL node use its PostgreSQL instance name. The default is `true`.
 
 PGSQL nodes run these additional components beyond [**regular node**](#regular-node) services:
 
@@ -151,8 +147,7 @@ PGSQL nodes run these additional components beyond [**regular node**](#regular-n
 | **`{{ pg_cluster }}-<service>`**   | `543x` | HAProxy service: custom PostgreSQL services    | Custom      |
 {.full-width}
 
-The `vip-manager` is only enabled when users configure a **PG VIP**.
-Additional [**custom services**](/docs/pgsql/service#defining-services) can be defined in [**`pg_services`**](/docs/pgsql/service), exposed via `haproxy` using additional service ports.
+`vip-manager` runs only when a **PG VIP** is configured. Define [**custom services**](/docs/pgsql/service#defining-services) through [**`pg_services`**](/docs/pgsql/service). `haproxy` exposes them on additional ports.
 
 
 
@@ -160,8 +155,7 @@ Additional [**custom services**](/docs/pgsql/service#defining-services) can be d
 
 ## Node Relationships
 
-Regular nodes typically reference an [**INFRA node**](#infra-node) via the [**`admin_ip`**](/docs/infra/param/#admin_ip) parameter as their infrastructure provider.
-For example, with global `admin_ip = 10.10.10.10`, all nodes use infrastructure services at this IP.
+Regular nodes normally select an [**INFRA node**](#infra-node) with [**`admin_ip`**](/docs/infra/param/#admin_ip). For example, global `admin_ip = 10.10.10.10` directs nodes to services at that address.
 
 Parameters that reference `${admin_ip}`:
 
@@ -178,10 +172,9 @@ Parameters that reference `${admin_ip}`:
 
 {.full-width}
 
-Typically the admin node and INFRA node coincide. With multiple INFRA nodes, the admin node is usually the first one; others serve as backups.
+The administration node usually also provides infrastructure. With multiple infrastructure nodes, the first usually administers the environment and others provide backups.
 
-In large-scale production deployments, you might separate the Ansible admin node from INFRA module nodes.
-For example, use 1-2 small dedicated hosts under the DBA team as the control hub (ADMIN nodes), and 2-3 high-spec physical machines as monitoring infrastructure (INFRA nodes).
+Large deployments can separate administration from infrastructure. For example, use 1–2 small DBA-managed administration hosts and 2–3 high-capacity physical monitoring servers.
 
 Typical node counts by deployment scale:
 

@@ -8,35 +8,35 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-Pigsty runs on nodes (physical machines or VMs). This document covers the planning and preparation required for deployment.
-
-
-----------------
+Pigsty runs on nodes, which can be physical machines or virtual machines.
+This document describes the planning and preparation for deployment.
 
 ## Node
 
-Pigsty currently runs on `Linux` kernel with `x86_64` / `aarch64` architecture.
-A "**node**" refers to an SSH [**accessible**](/docs/deploy/admin#check-accessibility) resource that provides a bare Linux OS environment.
-It can be a physical machine, virtual machine, or a systemd-enabled container equipped with `systemd`, `sudo`, and `sshd`.
+Pigsty runs on the `Linux` kernel with `x86_64` or `aarch64` architecture.
+A **node** supplies a bare Linux operating system that you can [access through SSH](/docs/deploy/admin#check-accessibility).
+It can be a physical machine, virtual machine, or container with systemd support.
+The node must have `systemd`, `sudo`, and `sshd`.
 
-Deploying Pigsty requires at least **1** node. You can prepare more and deploy everything in one pass via [**playbooks**](/docs/setup/playbook#playbooks), or add nodes later.
-The minimum spec requirement is `1C1G`, but at least `1C2G` is recommended. Higher is better—no upper limit. **Parameters are auto-tuned based on available resources**.
+A deployment requires at least **1** node.
+You can deploy to multiple nodes in one [playbook run](/docs/setup/playbook#playbooks), or add nodes later.
+The minimum resources are `1C1G`; we recommend at least `1C2G`.
+There is no upper resource limit.
+Pigsty automatically tunes parameters for the available resources.
 
-The number of nodes you need depends on your requirements. See [**Architecture Planning**](/docs/deploy/planning) for details.
-Although a [**single-node deployment**](/docs/setup/install) with [**external backup**](/docs/pgsql/backup/repository) provides reasonable recovery guarantees,
-we recommend multiple nodes for production. A functioning [**HA setup**](/docs/deploy/planning#three-node-setup) requires at least **3** nodes; **2** nodes provide [**Semi-HA**](/docs/deploy/planning#two-node-setup).
-
-
-
---------
+Select the node count for your requirements; see [Architecture Planning](/docs/deploy/planning).
+A [single-node deployment](/docs/setup/install) with [external backups](/docs/pgsql/backup/repository) provides recovery protection.
+For production, we recommend multiple nodes.
+A working [HA deployment](/docs/deploy/planning#three-node-setup) requires at least **3** nodes.
+A **2**-node deployment provides [Semi-HA](/docs/deploy/planning#two-node-setup).
 
 ## Disk
 
-Pigsty uses **`/data`** as the default data directory. If you have a dedicated data disk, mount it there.
-Use `/data1`, `/data2`, `/dataN` for additional disk drives.
+Pigsty uses **`/data`** as the default data directory.
+If you have a dedicated data disk, mount it at `/data`.
+Use `/data1`, `/data2`, and `/dataN` for additional disks.
 
-To use a different data directory, configure these parameters:
+To change a data directory, set the applicable parameter:
 
 | Name                                                   | Description              | Default            |
 |--------------------------------------------------------|--------------------------|--------------------|
@@ -51,139 +51,130 @@ To use a different data directory, configure these parameters:
 | [**`kafka_data`**](/docs/kafka/param#kafka_data)       | Kafka data directory     | `/data/kafka`      |
 {.full-width}
 
-The native MySQL 8.4 pilot module does not currently expose a data-directory parameter and always uses `/var/lib/mysql`.
-
---------
+The native MySQL 8.4 pilot module always uses `/var/lib/mysql`.
+It does not currently expose a data-directory parameter.
 
 ## Filesystem
 
-You can use any supported Linux filesystem for data disks. For production, we recommend **`xfs`**.
+You can use any supported Linux filesystem for data disks.
+For production, we recommend **`xfs`**.
 
-`xfs` is a Linux standard with excellent performance and CoW capabilities for instant large database cluster cloning. Multi-drive Silo deployments require `xfs`.
-`ext4` is another viable option with a richer data recovery tool ecosystem, but lacks CoW.
-`zfs` provides RAID and snapshot features but with significant performance overhead and requires separate installation.
+`xfs` is a standard Linux filesystem with good performance.
+Its copy-on-write (CoW) support permits instant cloning of large database clusters.
+Silo deployments with multiple drives require `xfs`.
 
-Choose among these three based on your needs. Avoid NFS for database services.
+`ext4` is another supported choice.
+It has more data recovery tools but does not support CoW.
+`zfs` supplies RAID and snapshots, but adds significant performance overhead and requires separate installation.
 
-Pigsty assumes `/data` is owned by `root:root` with `755` permissions.
-Admins can assign ownership for first-level directories; each application runs with a dedicated user in its subdirectory.
-See [**FHS**](/docs/ref/fhs) for the directory structure reference.
+Select the filesystem for your requirements.
+Avoid NFS for database services.
 
-
-
-----------------
+Pigsty expects `root:root` ownership and `755` permissions on `/data`.
+Administrators can assign ownership to directories directly under `/data`.
+Each application runs with a dedicated account in its own subdirectory.
+See [FHS](/docs/ref/fhs) for the directory structure.
 
 ## Network
 
-Pigsty defaults to online installation mode, requiring outbound Internet access.
-[**Offline installation**](/docs/setup/offline/) eliminates the Internet requirement.
+The default online installation requires outbound Internet access.
+[Offline installation](/docs/setup/offline/) does not require Internet access.
 
-Internally, Pigsty requires a **static network**. Assign a **fixed** IPv4 address to each node.
+Assign a fixed IPv4 address to each node for internal communication.
+Pigsty uses this primary address on the main network interface as the unique node identifier.
+If a [single-node deployment](/docs/setup/install) has no fixed IP address, use `127.0.0.1`.
 
-The IP address serves as the node's **unique identifier**—the primary IP bound to the main network interface for **internal** communications.
-
-For [**single-node deployment**](/docs/setup/install) without a fixed IP, use the loopback address `127.0.0.1` as a workaround.
-
-> [!CAUTION] Never use Public IP as identifier
-> Using public IP addresses as node identifiers can cause security and connectivity issues. Always use internal IP addresses.
-
-
-
-----------------
+> [!CAUTION] Use an internal node address
+> Public IP addresses as node identifiers can cause security and connection problems.
+> Always use internal IP addresses for node identifiers.
 
 ## VIP
 
-Pigsty supports optional L2 VIP for NODE clusters (`keepalived`) and PGSQL clusters (`vip-manager`).
+Pigsty supports optional Layer 2 virtual IP addresses (L2 VIPs).
+NODE clusters use `keepalived`; PGSQL clusters use `vip-manager`.
 
-To use L2 VIP, you must explicitly assign an L2 VIP address for each node/database cluster.
-This is straightforward on your own hardware but may be challenging in public cloud environments.
+To use this feature, assign an L2 VIP address to each node or database cluster.
+This is usually straightforward on your own hardware.
+Public cloud networks can make this configuration difficult.
 
-> [!WARNING] L2 VIP requires L2 Networking
-> To use optional Node VIP and PG VIP features, ensure all nodes are on the same L2 network.
-
-
-----------------
+> [!WARNING] L2 VIP requires an L2 network
+> For Node VIP or PG VIP, all participating nodes must use the same L2 network.
 
 ## CA
 
-Pigsty generates a self-signed [**CA infrastructure**](/docs/concept/sec/ca/) for each deployment, issuing all encryption certificates.
+Pigsty creates a self-signed [certificate authority (CA)](/docs/concept/sec/ca/) for each deployment.
+The CA issues the encryption certificates.
 
-If you have an existing enterprise CA or self-signed CA, you can use it to issue the certificates Pigsty requires.
-
-
-----------------
+You can instead use an existing enterprise CA or self-signed CA to issue the required certificates.
 
 ## Domain
 
-Pigsty uses a local static domain `i.pigsty` by default for WebUI access. This is optional—IP addresses work too.
+Pigsty uses the local static domain `i.pigsty` for the Web UI by default.
+You can also use the node IP address.
 
-For production, domain names are recommended to enable HTTPS and encrypted data transmission.
-Domains also allow multiple services on the same port, differentiated by domain name.
+For production, we recommend a domain name to enable HTTPS and encrypted data transfer.
+Domain names also let multiple services share one port.
 
-For **Internet-facing** deployments, use public DNS providers (Cloudflare, AWS Route53, etc.) to manage resolution.
-Point your domain to the Pigsty node's **public IP address**.
-For **LAN/office network** deployments, use internal DNS servers with the node's **internal IP address**.
+For Internet access, use a public DNS provider, such as Cloudflare or AWS Route53.
+Point the domain to the node's public IP address.
+For LAN or office access, use internal DNS with the node's internal IP address.
 
-For local-only access, add the following to `/etc/hosts` on machines accessing the Pigsty WebUI:
+For local access, add this entry to `/etc/hosts` on each computer that accesses the Web UI:
 
 ```bash
 10.10.10.10 i.pigsty    # Replace with your domain and Pigsty node IP
 ```
 
-
-
---------
-
 ## Linux
 
-Pigsty runs on **Linux**. It currently targets **16** platform combinations: eight distribution major versions across two architectures. See the [**Compatible OS List**](/docs/ref/linux/).
+Pigsty runs on **Linux** and currently targets **16** platform combinations.
+These combinations cover eight distribution major versions and two architectures.
+See the [Compatible OS List](/docs/ref/linux/).
 
-We recommend **Rocky Linux 9.8 / 10.2**, **Debian 12.15 / 13.6**, or **Ubuntu 22.04.5 / 24.04.4 / 26.04.0** as default options.
+The recommended operating system versions are:
 
-On macOS and Windows, use VM software or Docker systemd images to run Pigsty.
+- **Rocky Linux 9.8 / 10.2**.
+- **Debian 12.15 / 13.6**.
+- **Ubuntu 22.04.5 / 24.04.4 / 26.04.0**.
 
-We **strongly recommend** a fresh OS installation. If your server already runs Nginx, PostgreSQL, or similar services, consider deploying on new nodes.
+On macOS or Windows, use a virtual machine or a Docker image with systemd.
 
-> [!WARNING] Use the same OS version on all nodes
-> For multi-node deployments, ensure all nodes use the same Linux distribution, architecture, and version. Heterogeneous deployments may work but are unsupported and may cause unpredictable issues.
+We strongly recommend a fresh operating system installation.
+If the server already runs Nginx, PostgreSQL, or similar services, consider a new node.
 
---------
+> [!WARNING] Use the same operating system on all nodes
+> In a multi-node deployment, use the same Linux distribution, architecture, and version on every node.
+> Mixed environments can work, but they are unsupported and can cause unpredictable problems.
 
 ## Locale
 
-We recommend setting `en_US` as the primary OS language, or **at minimum ensuring this locale is available**, so PostgreSQL logs are in English.
+We recommend `en_US` as the primary operating system language so PostgreSQL writes logs in English.
+At minimum, make sure that this locale is available.
 
-Some distributions (e.g., Debian) may not provide the `en_US` locale by default. Enable it with:
+Some distributions, including Debian, do not always supply `en_US` by default.
+Use these commands to enable it:
 
 ```bash
 localedef -i en_US -f UTF-8 en_US.UTF-8
 localectl set-locale LANG=en_US.UTF-8
 ```
 
-For PostgreSQL, we strongly recommend using the built-in `C.UTF-8` collation (PG 17+) as the default.
-
-The [**configuration wizard**](/docs/setup/playbook#configure) automatically sets `C.UTF-8` as the collation when PG version and OS support are detected.
-
-
-
-
-----------------
+For PostgreSQL 17 and later, we strongly recommend the built-in `C.UTF-8` collation as the default.
+The [configuration wizard](/docs/setup/playbook#configure) selects `C.UTF-8` when the PostgreSQL version and operating system support it.
 
 ## Ansible
 
-Pigsty uses [**Ansible**](/docs/setup/playbook/) to control all managed nodes from the admin node.
-See [**Installing Ansible**](/docs/setup/playbook#install-ansible) for details.
+Pigsty uses [Ansible](/docs/setup/playbook/) on the administration node to control all managed nodes.
+See [Installing Ansible](/docs/setup/playbook#install-ansible).
 
-Pigsty installs Ansible on Infra nodes by default, making them usable as admin nodes (or backup admin nodes).
-For [**single-node deployment**](/docs/setup/install), the installation node serves as both the [**admin node**](/docs/concept/arch/node#admin-node) running Ansible and the [**INFRA node**](/docs/concept/arch/node#infra-node) hosting infrastructure.
-
-
-
-----------------
+By default, Pigsty installs Ansible on INFRA nodes.
+These nodes can serve as administration nodes or backup administration nodes.
+In a [single-node deployment](/docs/setup/install), one node has both roles.
+It is the [administration node](/docs/concept/arch/node#admin-node) that runs Ansible and the [INFRA node](/docs/concept/arch/node#infra-node) that hosts infrastructure.
 
 ## Pigsty
 
-You can [**install**](/docs/deploy/install#install) the current default Pigsty source with:
+Use one of these commands to [install](/docs/deploy/install#install) the current default Pigsty source:
 
 ```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash;
@@ -193,7 +184,7 @@ curl -fsSL https://repo.pigsty.io/get | bash;
 curl -fsSL https://repo.pigsty.cc/get | bash;
 ```
 
-To [**install**](/docs/deploy/install#install) a specific version, use the **`-s <version>`** parameter:
+To [install](/docs/deploy/install#install) a specific version, supply **`-s <version>`**:
 
 ```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
@@ -203,7 +194,7 @@ curl -fsSL https://repo.pigsty.io/get | bash -s <version>  # Install a specific 
 curl -fsSL https://repo.pigsty.cc/get | bash -s <version>  # Install a specific version (current stable: {{< param stable_version >}})
 ```
 
-To [**install**](/docs/deploy/install#install) the latest beta version:
+To [install](/docs/deploy/install#install) the latest beta version, use one of these commands:
 
 ```bash {tab="pigsty.io (Global)" group="pigstyio-global-pigstycc-china" value="pigstyio-global"}
 curl -fsSL https://repo.pigsty.io/beta | bash;
@@ -213,14 +204,14 @@ curl -fsSL https://repo.pigsty.io/beta | bash;
 curl -fsSL https://repo.pigsty.cc/beta | bash;
 ```
 
-For developers or the latest development version, clone the repository directly:
+For development, you can clone the repository directly:
 
 ```bash
 git clone https://github.com/pgsty/pigsty.git;
 cd pigsty; git checkout <tag>  # Use a released version (current stable tag: {{< param stable_version >}})
 ```
 
-If your environment lacks Internet access, download the source tarball from [**GitHub Releases**](https://github.com/pgsty/pigsty/releases/) or the Pigsty repository:
+For an environment without Internet access, obtain the source tarball from [GitHub Releases](https://github.com/pgsty/pigsty/releases/) or a Pigsty repository:
 
 ```bash
 wget https://repo.pigsty.io/src/pigsty-v<version>.tgz

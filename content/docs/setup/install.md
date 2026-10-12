@@ -2,23 +2,23 @@
 title: Single-Node Installation
 linkTitle: Quick Start
 weight: 255
-description: Get started with Pigsty—complete single-node install on a fresh Linux host!
+description: Install, configure, and deploy Pigsty on one Linux node.
 icon: fa-solid fa-cloud-arrow-down
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+This guide installs Pigsty on one Linux node. {{< badge text="Single Node" tone="info" >}}
+For production deployments with multiple nodes, use the [Deployment Guide](/docs/deploy/).
 
-This is the Pigsty single-node install guide {{< badge text="Single Node" tone="info" >}}. For multi-node HA production deployment, refer to the [**Deployment**](/docs/deploy/) docs.
-
-Pigsty single-node installation consists of three steps: [**Install**](#install), [**Configure**](#configure), and [**Deploy**](#deploy).
-
-
-----------------
+The procedure has three stages: [Install](#install), [Configure](#configure), and [Deploy](#deploy).
 
 ## Summary
 
-[**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**compatible OS**](/docs/ref/linux/), and run as an [**admin user**](/docs/deploy/admin) with nopass [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo):
+[Prepare a node](/docs/deploy/prepare#node) with a [supported operating system](/docs/ref/linux/).
+Use an [administration account](/docs/deploy/admin) with passwordless [SSH](/docs/deploy/admin#ssh) and [sudo](/docs/deploy/admin#sudo) access.
+
+Select a download source and run its command:
 
 ```bash {tab="pigsty.io (Global)" group="download-mirror" value="global" copy="all"}
 curl -fsSL https://repo.pigsty.io/get | bash
@@ -28,11 +28,16 @@ curl -fsSL https://repo.pigsty.io/get | bash
 curl -fsSL https://repo.pigsty.cc/get | bash
 ```
 
-This command runs the [**install**](#install) script, downloads and extracts Pigsty source to your home directory and installs dependencies. Then complete [**Configure**](#configure) and [**Deploy**](#deploy):
+The [installation script](#install) downloads and extracts Pigsty into your home directory.
+It also installs the deployment dependencies.
+
+Then do these steps:
 
 {{% steps %}}
 
 ### Enter the Source Directory
+
+Run this command:
 
 ```bash {title="Terminal" copy="all"}
 cd ~/pigsty
@@ -40,13 +45,17 @@ cd ~/pigsty
 
 ### Generate the Inventory
 
+Run this command to generate the configuration file and random passwords:
+
 ```bash {title="Terminal" copy="all"}
 ./configure -g
 ```
 
-Skip this step if you already have a prepared `pigsty.yml`.
+If you already have a prepared `pigsty.yml`, skip this step.
 
 ### Run the Deployment Playbook
+
+Run this command:
 
 ```bash {title="Terminal" copy="all"}
 ./deploy.yml
@@ -54,23 +63,24 @@ Skip this step if you already have a prepared `pigsty.yml`.
 
 {{% /steps %}}
 
-After installation, access the [**Web UI**](/docs/setup/webui/) via IP/domain + port `80/443` through Nginx,
-and access the default [**PostgreSQL service**](/docs/setup/pgsql/) via port `5432`.
+After deployment, open the [Web UI](/docs/setup/webui/) through Nginx on port `80` or `443`.
+Use the node IP address or domain name.
+Connect to the default [PostgreSQL service](/docs/setup/pgsql/) on port `5432`.
 
-The complete process takes 3–10 minutes depending on server specs/network. [**Offline installation**](/docs/setup/offline/) speeds this up significantly; for monitoring-free setups, use [**Slim Install**](/docs/setup/slim/) for even faster deployment.
+The procedure usually takes 3–10 minutes.
+The duration depends on the server resources and network speed.
+[Offline installation](/docs/setup/offline/) can reduce the duration.
+If you do not need monitoring, use [Slim Installation](/docs/setup/slim/) to install fewer components.
 
-**Video Example: Online Single-Node Installation (Debian 13, x86_64)**
+**Example: online installation on Debian 13, x86_64**
 
 {{< asciinema file="demo/install-hero.cast" markers="4.5:Install,20.0:Configure,24:Deploy,170:Complete" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
-
-----------------
-
 ## Prepare
 
-Installing Pigsty involves some [**preparation work**](/docs/deploy/). Here's a checklist.
-
-For single-node installations, many constraints can be relaxed—typically you only need to know your **IP address**. If you don't have a static IP, use `127.0.0.1`.
+Review the [preparation requirements](/docs/deploy/).
+For a single-node installation, first identify the node IP address.
+If the node has no static IP address, you can use `127.0.0.1`.
 
 |                 Item                  | Requirement                                    |                    Item                     | Requirement                                                   |
 |:-------------------------------------:|:-----------------------------------------------|:-------------------------------------------:|:--------------------------------------------------------------|
@@ -79,16 +89,12 @@ For single-node installations, many constraints can be relaxed—typically you o
 |   [**SSH**](/docs/deploy/admin#ssh)   | `nopass` SSH login via public key              |     [**SUDO**](/docs/deploy/admin#sudo)     | sudo privilege, preferably with `nopass` option               |
 {.full-width}
 
-
-Typically, you only need to focus on your **local IP address**—as an exception, for single-node deployment, use `127.0.0.1` if no static IP available.
-
-
-
-----------------
+The `127.0.0.1` exception applies to single-node installations.
 
 ## Install
 
-Use the following commands to auto-install Pigsty source to `~/pigsty` (recommended). Deployment dependencies (Ansible) are installed automatically.
+Use one of these commands to install Pigsty into `~/pigsty`.
+The script also installs Ansible and other deployment dependencies.
 
 ```bash {tab="pigsty.io (Global)" group="download-mirror" value="global" copy="all"}
 curl -fsSL https://repo.pigsty.io/get | bash            # Install current default version
@@ -100,39 +106,41 @@ curl -fsSL https://repo.pigsty.cc/get | bash            # Install current defaul
 curl -fsSL https://repo.pigsty.cc/get | bash -s {{< param stable_version >}}  # Pin current public stable release
 ```
 
-If you prefer not to run a remote script, you can manually [**download**](https://github.com/pgsty/pigsty/releases) or clone the source. When using `git`, always checkout a specific version before use.
+You can also [download a release](https://github.com/pgsty/pigsty/releases) or clone the source repository.
+If you use Git, select a released version before deployment:
 
 ```bash {title="Terminal" copy="all" label="Install Pigsty from Git"}
 git clone https://github.com/pgsty/pigsty; cd pigsty;
 git checkout {{< param stable_version >}};  # Always checkout a released tag when using git
 ```
 
-For manual download/clone installations, run the [**`bootstrap`**](/docs/setup/offline#bootstrap) script to install Ansible and other dependencies. You can also [**install them yourself**](/docs/setup/playbook#install-ansible).
+If you download or clone the source manually, run [bootstrap](/docs/setup/offline#bootstrap) to install the dependencies:
 
 ```bash {title="Terminal" copy="all"}
 ./bootstrap           # Install ansible for subsequent deployment
 ```
 
-
-
-----------------
+You can also [install Ansible manually](/docs/setup/playbook#install-ansible).
 
 ## Configure
 
-In Pigsty, deployment blueprints are defined by the [**inventory**](/docs/setup/config/), the [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) configuration file. You can customize through declarative configuration.
+The [inventory](/docs/setup/config/) defines the deployment.
+Pigsty uses [`pigsty.yml`](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) as the default inventory file.
+Edit this file to change the deployment configuration.
 
-Pigsty provides the [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) script as an optional [**configuration wizard**](/docs/concept/iac/configure),
-which generates an [**inventory**](/docs/concept/iac/inventory/) with good defaults based on your environment and input:
+The [`configure` script](https://github.com/pgsty/pigsty/blob/main/configure) is an optional [configuration wizard](/docs/concept/iac/configure).
+It generates an [inventory](/docs/concept/iac/inventory/) from your environment and input.
+Run it with `-g` to generate random passwords:
 
 ```bash {title="Terminal" copy="all" label="Run the Pigsty Configuration Wizard"}
 ./configure -g                # Use config wizard to generate config with random passwords
 ```
 
-The generated config file is at `~/pigsty/pigsty.yml` by default. Review and customize as needed before installation.
+The default output file is `~/pigsty/pigsty.yml`.
+Examine this file and make the necessary changes before deployment.
 
-
-
-Many [**configuration templates**](/docs/concept/iac/template/) are available for reference. You can skip the wizard and directly edit `pigsty.yml`:
+Use the [configuration templates](/docs/concept/iac/template/) as examples.
+You can also edit `pigsty.yml` directly without the wizard.
 
 ```bash {title="Terminal" copy="all" collapse=6 label="Common configure Commands"}
 ./configure                  # Default template, install PG 18 with essential extensions
@@ -146,11 +154,12 @@ Many [**configuration templates**](/docs/concept/iac/template/) are available fo
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-The output below is from {{< param version >}}. If you install another version, the first line reports that version.
+The output below is from {{< param version >}}.
+If you install a different version, the first line shows that version.
 
-{{< eg num="1" id="configure-output" caption="Example configure output from the current release" >}}
+{{< eg num="1" id="configure-output" caption="Configuration output from the current release" >}}
 
-> [!DETAILS]- Current configure output
+> [!DETAILS]- Configuration output
 > ```console {title="configure output" copy="command" collapse=12 label="configure Example Output"}
 > vagrant@meta:~/pigsty$ ./configure
 >
@@ -180,52 +189,56 @@ The output below is from {{< param version >}}. If you install another version, 
 
 {{< fields label="Common configure Arguments" >}}
   {{< field name="-i | --ip" type="IPv4" >}}
-  The primary private IP of the current host, used to replace the `10.10.10.10` placeholder in the inventory.
+  Set the primary private IPv4 address of the current node.
+  The script replaces `10.10.10.10` in the inventory with this address.
   {{< /field >}}
 
   {{< field name="-c | --conf" type="string" >}}
-  A [**configuration template**](/docs/conf/) name relative to `conf/`, without the `.yml` suffix.
+  Select a [configuration template](/docs/conf/) relative to `conf/`.
+  Omit the `.yml` suffix.
   {{< /field >}}
 
   {{< field name="-v | --version" type="integer" >}}
-  PostgreSQL major version `14` through `19`; PG19 is Beta, so use the dedicated [`pg19`](/docs/conf/pg19/) template.
+  Select a PostgreSQL major version from `14` through `19`.
+  PostgreSQL 19 is Beta.
+  Use the dedicated [`pg19` template](/docs/conf/pg19/) for that version.
   {{< /field >}}
 
   {{< field name="-r | --region" type="enum" default="default" >}}
-  Upstream repository region for faster downloads: `default`, `china`, or `europe`.
+  Select the upstream repository region: `default`, `china`, or `europe`.
+  Use the region that gives faster downloads.
   {{< /field >}}
 
   {{< field name="-n | --non-interactive" type="boolean" default=false >}}
-  Use command-line arguments for the primary IP and skip the interactive wizard.
+  Supply the primary IP address through command-line arguments.
+  Skip the interactive wizard.
   {{< /field >}}
 
   {{< field name="-x | --proxy" type="boolean" default=false >}}
-  Use current environment variables to configure [`proxy_env`](/docs/infra/param#proxy_env).
+  Use the current environment variables to configure [`proxy_env`](/docs/infra/param#proxy_env).
   {{< /field >}}
 {{< /fields >}}
 
-If your machine has multiple IPs bound, use `-i|--ip <ipaddr>` to explicitly specify the primary IP, or provide it in the interactive prompt.
-The script replaces the placeholder `10.10.10.10` with your node's primary IPv4 address. Choose a static IP; do not use public IPs.
+If the node has multiple IP addresses, specify the primary address with `-i|--ip <ipaddr>`.
+You can also enter the address at the interactive prompt.
+Use a static private IPv4 address.
+Do not use a public IP address.
 
-
-> [!WARNING] Change default passwords!
-> We strongly recommend modifying default passwords and credentials in the config file before installation. See [**Security Recommendations**](/docs/setup/security/) for details.
-
-
-
-
---------
+> [!WARNING] Replace default credentials before deployment
+> Default credentials are public.
+> Replace them in `pigsty.yml` before deployment.
+> See [Security Recommendations](/docs/setup/security/) for the credentials that `configure -g` does not replace.
 
 ## Deploy
 
-Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/playbook/) applies the blueprint from [**Configure**](#configure) to target nodes.
+The [`deploy.yml` playbook](/docs/setup/playbook/) applies the inventory to the target nodes.
+Run it from the Pigsty source directory:
 
 ```bash {title="Terminal" copy="all" label="Run the Pigsty Deployment Playbook"}
 ./deploy.yml     # Deploy the defined modules in the core path at once
 ```
 
-
-> [!DETAILS]- Example deployment output
+> [!DETAILS]- Deployment output
 > ```console {title="deploy output" copy=false collapse=10 label="Pigsty Deployment Output"}
 > ......
 >
@@ -243,40 +256,40 @@ Pigsty's [**`deploy.yml`**](/docs/setup/playbook/) [**playbook**](/docs/setup/pl
 > localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 > ```
 >
-> When you see `pgsql init done`, `PLAY RECAP` and similar output at the end, installation is complete!
+> At the end, look for `pgsql init done` and `PLAY RECAP`.
+> Make sure that the target nodes report `failed=0` and `unreachable=0`.
 
-> [!WARNING] Upstream repo changes may cause online installation failures!
-> Upstream repos used by Pigsty (like Linux/PGDG repos) can sometimes enter a broken state due to improper updates, causing deployment failures (this has happened multiple times)!
-> You can wait for upstream fixes or use pre-made [**offline packages**](/docs/setup/offline#offline-packages) to solve this.
+> [!WARNING] Upstream repository changes can stop installation
+> Changes to Linux or PGDG repositories can break package dependencies.
+> If installation fails for this reason, wait for the upstream correction.
+> You can also use [offline packages](/docs/setup/offline#offline-packages).
 
-> [!WARNING] Avoid re-running the deployment playbook!
-> Warning: Running [**`deploy.yml`**](https://github.com/pgsty/pigsty/blob/main/deploy.yml) again on an existing deployment may restart services and overwrite configurations!
-
-
---------
+> [!WARNING] Repeated deployment can change running services
+> If Pigsty is already deployed, another run of [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) can restart services.
+> It can also overwrite configuration files.
+> Examine the required changes before you run the playbook again.
 
 ## Interface
 
-After single-node installation, you typically have four modules installed on the current node:
-[**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), and [**`ETCD`**](/docs/etcd/).
+A default single-node installation puts four modules on the current node:
+[PGSQL](/docs/pgsql/), [INFRA](/docs/infra/), [NODE](/docs/node/), and [ETCD](/docs/etcd/).
 
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
 | 1  |    `10.10.10.10`    |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         |
 {.full-width}
 
-The [**`INFRA`**](/docs/infra) module provides a [**graphical management interface**](/docs/setup/webui), accessible via Nginx on ports **80/443**.
+[INFRA](/docs/infra/) supplies the [Web UI](/docs/setup/webui/) through Nginx on ports `80` and `443`.
+[PGSQL](/docs/pgsql/) supplies the [PostgreSQL service](/docs/setup/pgsql/) on port `5432`.
+You can also connect through [PgBouncer or HAProxy](/docs/pgsql/service/).
 
-The [**`PGSQL`**](/docs/pgsql/) module provides a [**PostgreSQL database server**](/docs/setup/pgsql), listening on **5432**, also accessible via Pgbouncer/HAProxy [**proxies**](/docs/pgsql/service).
-
-[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io/)
-
-
-----------------
+[![Pigsty demonstration homepage](/img/pigsty/home.png)](https://demo.pigsty.io/)
 
 ## More
 
-Use the current node as a base to deploy and monitor [**more clusters**](/docs/conf/full): add cluster definitions to the [**inventory**](/docs/setup/config/) and run:
+Use the current node to deploy and monitor [additional clusters](/docs/conf/full/).
+First add their definitions to the [inventory](/docs/setup/config/).
+Then run the applicable commands:
 
 ```bash
 bin/node-add   pg-test      # Add the 3 nodes of cluster pg-test to Pigsty management
@@ -284,7 +297,6 @@ bin/pgsql-add  pg-test      # Initialize a 3-node pg-test HA PG cluster
 bin/redis-add  redis-ms     # Initialize Redis cluster: redis-ms
 ```
 
-Most modules require the [**`NODE`**](/docs/node/) module installed first. See available [**modules**](/docs/ref/module/) for details:
-
-[**`PGSQL`**](/docs/pgsql/), [**`INFRA`**](/docs/infra/), [**`NODE`**](/docs/node/), [**`ETCD`**](/docs/etcd/),
-[**`MINIO`**](/docs/minio/), [**`REDIS`**](/docs/redis/), [**`DOCKER`**](/docs/docker/)……
+Install the [NODE module](/docs/node/) first when the target module requires it.
+See the [module reference](/docs/ref/module/) for dependencies.
+Available modules include [PGSQL](/docs/pgsql/), [INFRA](/docs/infra/), [ETCD](/docs/etcd/), [MINIO](/docs/minio/), [REDIS](/docs/redis/), and [DOCKER](/docs/docker/).

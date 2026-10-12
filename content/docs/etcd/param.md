@@ -13,14 +13,14 @@ The ETCD module has **13** parameters, divided into two sections:
 - [**`ETCD_REMOVE`**](#etcd_remove): 3 parameters for controlling etcd cluster removal
 
 > [!NOTE] Architecture Change: Pigsty v3.6+
-> Since Pigsty v3.6, the `etcd.yml` playbook no longer includes removal functionality—removal parameters have been migrated to a standalone `etcd_remove` role. Starting from v4.0, RBAC authentication is enabled by default, with a new `etcd_root_password` parameter.
+> Since Pigsty v3.6, `etcd.yml` does not handle removal. Removal parameters belong to the separate `etcd_remove` role. Since v4.0, Pigsty enables RBAC authentication by default and provides the `etcd_root_password` parameter.
 
 
 ----------------
 
 ## Parameter Overview
 
-The [`ETCD`](#etcd) parameter group is used for etcd cluster deployment and configuration, including instance identification, cluster name, data directory, ports, and authentication password.
+Use the [`ETCD`](#etcd) parameter group to deploy and configure etcd clusters. It controls instance identification, cluster name, data directory, ports, and authentication password.
 
 | Parameter                                             |    Type    | Level | Description                                      |
 |:------------------------------------------------------|:----------:|:-----:|:-------------------------------------------------|
@@ -73,7 +73,7 @@ etcd_root_password: Etcd.Root     # etcd root user password for RBAC authenticat
 
 Parameter: `etcd_seq`, Type: `int`, Level: `I`
 
-etcd instance identifier. This is a **required** parameter—you must assign a unique identifier to each etcd instance.
+etcd instance identifier. This parameter is **required**. You must assign a unique identifier to each etcd instance.
 
 Here is an example of a 3-node etcd cluster with identifiers 1 through 3:
 
@@ -105,14 +105,14 @@ You can modify this parameter when you want to deploy an additional etcd cluster
 
 Parameter: `etcd_learner`, Type: `bool`, Level: `I/A`
 
-Initialize etcd instance as learner? Default value is `false`.
+Specifies whether to initialize the etcd instance as a learner. The default is `false`.
 
-When set to `true`, the etcd instance will be initialized as a learner, meaning it cannot participate in voting elections within the etcd cluster.
+If this parameter is `true`, Pigsty initializes the instance as a learner. A learner cannot vote in etcd cluster elections.
 
 **Use Cases**:
 
-- **Cluster Expansion**: When adding new members to an existing cluster, using learner mode prevents affecting cluster quorum before data synchronization completes
-- **Safe Migration**: In rolling upgrade or migration scenarios, join as a learner first, then promote after confirming data synchronization
+- **Cluster Expansion**: Add members as learners to preserve the current quorum requirements until data synchronization completes.
+- **Safe Migration**: During a rolling upgrade or migration, add the member as a learner. Confirm data synchronization before you promote it.
 
 **Workflow**:
 
@@ -121,7 +121,7 @@ When set to `true`, the etcd instance will be initialized as a learner, meaning 
 3. Use `etcdctl member promote <member_id>` to promote it to a full member
 
 > [!NOTE] Note
-> Learner instances do not count toward cluster quorum. For example, in a 3-node cluster with 1 learner, the actual voting members are 2, which cannot tolerate any node failure.
+> Learners do not count toward cluster quorum. A 3-node cluster with 1 learner has 2 voting members. It cannot tolerate a voting member failure.
 
 
 
@@ -163,7 +163,7 @@ etcd peer port, default is `2380`.
 
 Parameter: `etcd_init`, Type: `enum`, Level: `C`
 
-etcd initial cluster state, can be `new` or `existing`, default value: `new`.
+Initial etcd cluster state. Set it to `new` or `existing`. The default is `new`.
 
 **Option Values**:
 
@@ -175,7 +175,7 @@ etcd initial cluster state, can be `new` or `existing`, default value: `new`.
 **Important Notes**:
 
 > [!WARNING] Must use existing when expanding
-> When adding new members to an existing etcd cluster, you **must** set `etcd_init=existing`. Otherwise, the new instance will attempt to create an independent new cluster, causing split-brain or initialization failure.
+> When adding new members to an existing etcd cluster, you **must** set `etcd_init=existing`. Otherwise, the new instance attempts to create a separate cluster. This causes split-brain or initialization failure.
 
 **Usage Examples**:
 
@@ -242,7 +242,7 @@ Since v4.0, Pigsty has enabled etcd RBAC (Role-Based Access Control) authenticat
 > etcd_root_password: 'YourSecurePassword'
 > ```
 >
-> Using `configure -g` will automatically generate and replace `etcd_root_password`
+> Run `configure -g` to generate and replace `etcd_root_password` automatically.
 
 
 
@@ -269,7 +269,7 @@ etcd_rm_pkg: false                # uninstall etcd packages during removal?
 
 Parameter: `etcd_safeguard`, Type: `bool`, Level: `G/C/A`
 
-Removal safeguard, default `false`. When set to `true`, [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) aborts before deregistration, leaving the cluster, stopping the service, or deleting data. It is a static boolean switch and does not probe whether the instance is running.
+Removal safeguard. The default is `false`. If set to `true`, [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) aborts before deregistration, cluster departure, service shutdown, or data deletion. This static boolean switch does not check whether the instance is running.
 Override it explicitly with `-e etcd_safeguard=false`.
 
 **Recommended Settings**:
@@ -292,9 +292,9 @@ In emergencies, you can override the configuration with command-line parameters:
 
 Parameter: `etcd_rm_data`, Type: `bool`, Level: `G/C/A`
 
-Remove etcd data and configuration files during removal? Default value is `true`.
+Specifies whether to delete etcd data and configuration files during removal. The default is `true`.
 
-When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will delete the following contents when removing a cluster or member:
+If enabled, [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) deletes these files and directories when it removes a cluster or member:
 
 - `/etc/etcd/` - Configuration directory (including certificates and password files)
 - `/var/lib/etcd/` - Alternate data directory
@@ -322,9 +322,9 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 
 Parameter: `etcd_rm_pkg`, Type: `bool`, Level: `G/C/A`
 
-Uninstall etcd packages during removal? Default value is `false`.
+Specifies whether to uninstall etcd packages during removal. The default is `false`.
 
-When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will uninstall etcd packages when removing a cluster or member.
+If enabled, [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) uninstalls etcd packages when it removes a cluster or member.
 
 **Use Cases**:
 
@@ -339,4 +339,4 @@ When enabled, the [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook will 
 ```
 
 > [!NOTE] Tip
-> Usually there's no need to uninstall etcd packages. Keeping the packages speeds up subsequent redeployments since no re-download or installation is required.
+> Usually, you do not need to uninstall etcd packages. If you keep them, subsequent redeployments are faster because no download or installation is necessary.

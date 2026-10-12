@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Extension updates involve two levels: **package updates** (operating system level) and **extension object updates** (database level).
+Update extensions at two levels: **packages** in the operating system, and **extension objects** in the database.
 
 
 --------
@@ -24,7 +24,7 @@ sudo yum update pgvector_18*
 sudo apt update && sudo apt upgrade postgresql-18-pgvector
 ```
 
-Batch update using Pigsty:
+Use Pigsty to update packages on multiple nodes:
 
 ```bash
 # Update extension packages for specified cluster
@@ -39,7 +39,7 @@ pig update pgvector
 
 ## Update Extension Objects
 
-After package updates, extension objects in the database may need to be synchronized.
+After you update packages, you may also need to update the extension objects in the database.
 
 ### View Updatable Extensions
 
@@ -78,15 +78,15 @@ SELECT * FROM pg_extension_update_paths('pgvector');
 
 ## Important Notes
 
-1. **Backup first**: Backup the database before updating extensions, especially for extensions involving data type changes.
+1. **Backup first**: Back up the database before you update extensions. This is particularly important if the update changes data types.
 
-2. **Check compatibility**: Some extension major version upgrades may be incompatible. Consult the extension's upgrade documentation.
+2. **Check compatibility**: Some major version upgrades may be incompatible. Read the extension's upgrade documentation.
 
-3. **Preloaded extensions**: If updating a preloaded extension (like `timescaledb`), a database restart may be required after the update.
+3. **Preloaded extensions**: If you update a preloaded extension, such as `timescaledb`, you may need to restart the database.
 
 4. **Dependencies**: If other extensions depend on the updated extension, update them in dependency order.
 
-5. **Replication environments**: In master-slave replication environments, test updates on slaves first, then update the master after confirmation.
+5. **Replication environments**: Test updates on replicas first. After you verify the results, update the primary.
 
 
 --------
@@ -108,7 +108,8 @@ SELECT * FROM pg_depend WHERE refobjid = (SELECT oid FROM pg_extension WHERE ext
 
 ### Rollback Update
 
-PostgreSQL extensions typically don't support direct rollback. To rollback:
+PostgreSQL extensions usually do not support direct rollback.
+To roll back, use one of these methods:
 
 1. Restore from backup
-2. Or: Uninstall new version extension, install old version package, recreate extension
+2. Uninstall the new extension version, install the old package version, and recreate the extension.

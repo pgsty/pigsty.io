@@ -7,9 +7,10 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[PostgreSQL](https://www.postgresql.org/) is the world's most advanced and popular open-source database.
+[PostgreSQL](https://www.postgresql.org/) is a widely used open-source database.
 
-Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provides {{< param pgext_count >}} PG extensions.
+Pigsty installs PostgreSQL 18 by default.
+It supports PostgreSQL 14 ~ 18 and provides {{< param pgext_count >}} PG extensions.
 
 
 ------
@@ -23,7 +24,8 @@ Pigsty installs PostgreSQL 18 by default, supports PostgreSQL 14 ~ 18, and provi
 ./deploy.yml             # Deploy the Pigsty core chain with native PostgreSQL
 ```
 
-Most [configuration templates](/docs/conf/) use PostgreSQL kernel by default, for example:
+Most [configuration templates](/docs/conf/) use the PostgreSQL kernel by default.
+Examples include:
 
 - [`meta`](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml) : **Default**, postgres with core extensions (vector, postgis, timescale)
 - [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) : postgres with all extensions installed
@@ -36,7 +38,7 @@ Most [configuration templates](/docs/conf/) use PostgreSQL kernel by default, fo
 
 ## Configuration
 
-Vanilla PostgreSQL kernel requires no special adjustments:
+The native PostgreSQL kernel requires no special configuration changes:
 
 ```yaml
 pg-meta:
@@ -61,7 +63,7 @@ pg-meta:
 
 ## Version Selection
 
-To use a different PostgreSQL major version, you can configure it using the `-v` parameter:
+To select a different PostgreSQL major version, use `-v`:
 
 ```bash
 ./configure -c pgsql            # Default is postgresql 18, no need to specify explicitly
@@ -72,7 +74,7 @@ To use a different PostgreSQL major version, you can configure it using the `-v`
 ./configure -c pgsql -v 14      # Use postgresql 14
 ```
 
-If a PostgreSQL cluster is already installed, you need to uninstall it before installing a new version:
+If a PostgreSQL cluster is already installed, uninstall it before you install a new version:
 
 ```bash
 ./pgsql-rm.yml -l pg-meta # Uninstall cluster pg-meta
@@ -83,4 +85,5 @@ If a PostgreSQL cluster is already installed, you need to uninstall it before in
 
 ## Extension Ecosystem
 
-Pigsty provides a rich extension ecosystem for PostgreSQL. See the [Extension Catalog](/ext/list/) for details.
+Pigsty provides PostgreSQL extensions.
+See the [Extension Catalog](/ext/list/) for details.

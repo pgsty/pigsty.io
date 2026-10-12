@@ -159,7 +159,7 @@ media:
 
 ## PostgreSQL Distribution Impact Metrics
 
-Sorted by GitHub stars in descending order, with commercial products that do not publish stars listed last. Last updated: 2026-09-20 (Beijing time).
+Projects appear in descending order of GitHub stars. Commercial products that do not publish stars appear last. Last updated: 2026-09-20 (Beijing time).
 
 | Project                                                                                                   |                                     Star                                     | Vendor        | Type         | License     | Summary                                                                |
 |-----------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------:|---------------|--------------|-------------|------------------------------------------------------------------------|
@@ -185,7 +185,7 @@ Sorted by GitHub stars in descending order, with commercial products that do not
 
 ### Star History and Growth
 
-The Star History chart below was exported on 2026-09-20 and covers eight PostgreSQL distribution and high-availability projects. The chart uses the former repository name `vitabaks/autobase`, which has moved to `autobase-tech/autobase`.
+The Star History chart below was exported on 2026-09-20. It covers eight PostgreSQL distribution and high-availability projects. The chart uses the former repository name `vitabaks/autobase`. This repository has moved to `autobase-tech/autobase`.
 
 ![Star History of PostgreSQL distributions and high-availability projects (2026-09-20)](/img/pigsty/star-history-20260920.png)
 

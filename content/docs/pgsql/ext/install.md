@@ -14,16 +14,17 @@ Pigsty uses the operating system's package manager (yum/apt) to install extensio
 
 ## Related Parameters
 
-Two parameters are used to specify extensions to install:
+Use these two parameters to specify which extensions to install:
 
 | Parameter | Purpose | Default Behavior |
 |:-----|:-----|:---------|
 | [`pg_packages`](/docs/pgsql/param#pg_packages) | Global common packages | Ensure present (no upgrade) |
 | [`pg_extensions`](/docs/pgsql/param#pg_extensions) | Cluster-specific extensions | Install latest version |
 
-`pg_packages` is typically used to specify base components needed by all clusters (PostgreSQL kernel, Patroni, pgBouncer, etc.) and essential extensions.
+Use `pg_packages` for essential extensions and base components that all clusters need.
+Typical components include the PostgreSQL kernel, Patroni, and pgBouncer.
 
-`pg_extensions` is used to specify extensions needed by specific clusters.
+Use `pg_extensions` for extensions that specific clusters need.
 
 ```yaml
 pg_packages:                           # Global base packages
@@ -37,7 +38,8 @@ pg_extensions:                         # Cluster extensions
 
 ## Install During Cluster Initialization
 
-Declare extensions in cluster configuration, and they will be automatically installed during initialization:
+Declare extensions in the cluster configuration.
+Pigsty installs them automatically during initialization:
 
 ```yaml
 pg-meta:
@@ -47,14 +49,14 @@ pg-meta:
     pg_extensions: [ postgis, timescaledb, pgvector, pg_duckdb ]
 ```
 
-When executing `./pgsql.yml` to initialize the cluster, extensions will be automatically installed.
+When you run `./pgsql.yml` to initialize the cluster, Pigsty installs the extensions automatically.
 
 
 --------
 
 ## Install Extensions on Existing Cluster
 
-For initialized clusters, there are multiple ways to install extensions:
+For an initialized cluster, use one of these methods to install extensions:
 
 ### Using Pigsty Playbook
 
@@ -91,7 +93,8 @@ sudo apt install -y postgresql-18-pg-duckdb
 
 ## Using Package Aliases
 
-Pigsty supports using standardized package aliases, automatically translating to package names for the corresponding PG version:
+Pigsty supports standard package aliases.
+It converts each alias to the package name for the applicable PostgreSQL version:
 
 ```yaml
 pg_extensions:
@@ -122,7 +125,7 @@ For package alias definitions, see:
 
 ## Verify Installation
 
-After installation, verify in the database:
+After installation, run these checks in the database:
 
 ```sql
 -- Check installed extensions

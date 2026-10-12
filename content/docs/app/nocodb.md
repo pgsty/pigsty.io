@@ -8,7 +8,7 @@ categories: [Reference]
 
 [**NocoDB**](https://nocodb.com/) is an open-source Airtable alternative that turns any database into a smart spreadsheet.
 
-It provides a rich user interface that allows you to create powerful database applications without writing code. NocoDB supports PostgreSQL, MySQL, SQL Server, and more, making it ideal for building internal tools and data management systems.
+Use its visual interface to create database applications without code. NocoDB supports PostgreSQL, MySQL, SQL Server, and other databases. You can use it for internal tools and data management systems.
 
 
 ## Quick Start
@@ -36,7 +36,7 @@ Access NocoDB:
 
 ## Management Commands
 
-Pigsty provides convenient Makefile commands to manage NocoDB:
+Use these Makefile commands to manage NocoDB:
 
 ```bash
 make up      # Start NocoDB service
@@ -68,7 +68,7 @@ Password: your_password
 SSL: Disabled (or enable as needed)
 ```
 
-After successful connection, NocoDB will automatically read the database table structure, and you can manage data through the visual interface.
+After connecting, NocoDB reads the table structure automatically. You can then manage data through the visual interface.
 
 
 ## Features
@@ -101,7 +101,7 @@ NC_DISABLE_TELE=true
 
 ## Data Persistence
 
-NocoDB metadata is stored by default in an external PostgreSQL database, and application data can also be stored in PostgreSQL.
+By default, NocoDB stores metadata in external PostgreSQL. It can also store application data in PostgreSQL.
 
 If using local storage, data is saved in the `/data/nocodb` directory.
 

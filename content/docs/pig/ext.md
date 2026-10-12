@@ -7,7 +7,8 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig ext` command is an all-in-one tool for managing PostgreSQL extensions. It lets you search, install, remove, update, and manage PostgreSQL extensions, and it can also handle PostgreSQL kernel packages.
+Use `pig ext` to search, install, remove, update, and manage PostgreSQL extensions.
+The command also manages PostgreSQL kernel packages.
 
 ```bash
 pig ext - Manage PostgreSQL Extensions
@@ -102,7 +103,8 @@ pig ext ls gis -v 16             # list GIS extensions for PG 16
 pig ext ls rag                   # list RAG category extensions
 ```
 
-Category filtering is done by passing the category name as the query. Supported categories include: `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `func`, `util`, `admin`, `stat`, `sec`, `fdw`, `sim`, and `etl`.
+To filter by category, use the category name as the query.
+Supported categories are `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `type`, `func`, `util`, `admin`, `stat`, `sec`, `fdw`, `sim`, and `etl`.
 
 **Options:**
 
@@ -117,7 +119,8 @@ Category filtering is done by passing the category name as the query. Supported 
 
 The default extension catalog is defined in [**`cli/ext/assets/extension.csv`**](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).
 
-Use `pig ext reload` to refresh to the latest catalog. The downloaded catalog is stored at `~/.pig/extension.csv`; the latest online catalog is also published at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
+Run `pig ext reload` to download the latest catalog to `~/.pig/extension.csv`.
+The online catalog is also available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
 
 
 ## ext info
@@ -174,7 +177,10 @@ This command scans the PostgreSQL extension directory and finds extensions that 
 
 ## ext add
 
-Install one or more PostgreSQL extensions. Same-level aliases for `pig ext add` include `pig ext install`, `pig ext ins`, and `pig ext a`. The top-level [`pig install`](/docs/pig/cmd/#install) command is a separate native package-manager wrapper that also supports PostgreSQL and extension alias translation.
+Install one or more PostgreSQL extensions with `pig ext add`.
+The commands `pig ext install`, `pig ext ins`, and `pig ext a` are aliases at the same level.
+The top-level [`pig install`](/docs/pig/cmd/#install) command is a separate wrapper for the native package manager.
+It also translates PostgreSQL and extension aliases.
 
 ```bash
 pig ext add pg_duckdb            # install pg_duckdb
@@ -222,7 +228,8 @@ pig ext rm pgvector --plan       # preview remove plan without executing
 
 ## ext update
 
-Update explicitly selected installed extensions to the latest version. For safety, `pig ext update` with no arguments is a no-op; you must name the targets explicitly.
+Update the specified installed extensions to the latest version.
+You must name the targets. Without arguments, `pig ext update` makes no changes.
 
 ```bash
 pig ext update                   # no-op: explicit targets are required

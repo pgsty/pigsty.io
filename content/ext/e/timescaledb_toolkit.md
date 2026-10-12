@@ -45,7 +45,7 @@ weight: 1010
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `timescaledb_toolkit` | - |
+| [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "16,17,18" >}} | `timescaledb_toolkit` | - |
 | [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `timescaledb-toolkit_$v` | - |
 | [**DEB**](/ext/deb#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.26.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-timescaledb-toolkit` | - |
 {.ext-table}

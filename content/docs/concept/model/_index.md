@@ -7,18 +7,15 @@ module: [PIGSTY]
 categories: [Concept]
 ---
 
-The largest entity concept in Pigsty is a **Deployment**. The main entities and relationships (E-R diagram) in a deployment are shown below:
+A **deployment** is the largest entity in Pigsty. This entity-relationship diagram shows its main entities and their relationships:
 
 ![Pigsty full data model ER diagram](/img/pigsty/er-full.svg)
 
-A deployment can also be understood as an **Environment**. For example, Production (Prod), User Acceptance Testing (UAT), Staging, Testing, Development (Devbox), etc.
-Each environment corresponds to a Pigsty [**inventory**](/docs/concept/iac/inventory) that describes all entities and attributes in that environment.
+A deployment is also an **environment**. Examples include Production (Prod), User Acceptance Testing (UAT), Staging, Testing, and Development (Devbox). Each environment has a Pigsty [**inventory**](/docs/concept/iac/inventory) that describes all its entities and attributes.
 
-Typically, an environment includes shared infrastructure ([**`INFRA`**](/docs/infra)), which broadly includes [**`ETCD`**](/docs/etcd) (HA DCS) and [**`MINIO`**](/docs/minio) (centralized backup repository),
-serving multiple PostgreSQL database clusters (and other database module components). (Exception: there are also [**deployments without infrastructure**](/docs/setup/slim))
+An environment usually has shared infrastructure ([**`INFRA`**](/docs/infra)). This includes [**`ETCD`**](/docs/etcd) for the HA DCS and [**`MINIO`**](/docs/minio) for centralized backup storage. Infrastructure serves multiple PostgreSQL clusters and other database modules. [**Deployments without infrastructure**](/docs/setup/slim) are also possible.
 
-In Pigsty, almost all database modules are organized as "**Clusters**". Each cluster is an Ansible group containing several node resources.
-For example, PostgreSQL HA database clusters, Redis, Etcd, and Silo all exist as clusters. An environment can contain multiple clusters.
+Pigsty organizes almost all database modules into **clusters**. Each cluster is an Ansible group with node resources. PostgreSQL HA, Redis, Etcd, and Silo use this model. An environment can contain multiple clusters.
 
 - [**PostgreSQL Cluster**](/docs/concept/model/pgsql)
 - [**ETCD Cluster**](/docs/concept/model/etcd)

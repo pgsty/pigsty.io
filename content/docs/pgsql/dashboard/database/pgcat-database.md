@@ -6,6 +6,6 @@ description: Database info retrieved directly from database catalog
 
 > Database info from database catalog: [Demo](https://demo.pigsty.io/ui/d/pgcat-database)
 
-PGCAT Database shows database-level information retrieved directly from PostgreSQL system catalog.
+PGCAT Database reads database-level information directly from the PostgreSQL system catalog and shows it.
 
 [![pgcat-database](/img/panel/pgcat-database.webp)](https://demo.pigsty.io/ui/d/pgcat-database)

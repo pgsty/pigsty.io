@@ -6,7 +6,8 @@ icon: fa-solid fa-dice-four
 categories: [Reference]
 ---
 
-The `ha/full` configuration template is Pigsty's recommended sandbox demonstration environment, deploying two PostgreSQL clusters across four nodes for testing and demonstrating various Pigsty capabilities.
+The `ha/full` template defines the recommended Pigsty sandbox.
+It deploys two PostgreSQL clusters on four nodes for tests and feature demonstrations.
 
 Most Pigsty tutorials and examples are based on this template's sandbox environment.
 
@@ -44,7 +45,7 @@ Source: [`pigsty/conf/ha/full.yml`](https://github.com/pgsty/pigsty/blob/main/co
 
 ## Explanation
 
-The `ha/full` template is Pigsty's **complete feature demonstration configuration**, showcasing the collaboration of various components.
+The `ha/full` template shows how the Pigsty components work together.
 
 **Components Overview**:
 
@@ -71,5 +72,6 @@ The `ha/full` template is Pigsty's **complete feature demonstration configuratio
 - Infrastructure uses single node (instead of three nodes)
 
 **Notes**:
-- This template is mainly for demonstration and testing; for production, refer to [`ha/trio`](/docs/conf/trio/) or [`ha/safe`](/docs/conf/safe/)
-- MINIO object-storage backup is enabled by default. The current source defaults to Silo; comment out the related configuration if it is not needed
+- Use this template for demonstrations and testing. For production, see [`ha/trio`](/docs/conf/trio/) or [`ha/safe`](/docs/conf/safe/).
+- Object-storage backups through MINIO are enabled by default, with Silo as the backend.
+  If you do not need them, comment out the related configuration.

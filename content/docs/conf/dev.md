@@ -6,9 +6,10 @@ icon: fa-solid fa-hammer
 categories: [Reference]
 ---
 
-The `build/dev` configuration template is Pigsty's three-node local build and development environment. It is used to validate repository build and package download workflows across EL9, Debian 12, and Ubuntu 24 nodes.
+The `build/dev` template defines a local environment with three nodes for Pigsty development.
+It tests repository builds and package downloads on EL9, Debian 12, and Ubuntu 24.
 
-This template is intended only for developers and contributors.
+Use this template only for development and contribution work.
 
 
 --------
@@ -44,7 +45,8 @@ Source: [`pigsty/conf/build/dev.yml`](https://github.com/pgsty/pigsty/blob/main/
 
 ## Explanation
 
-`build/dev` is mainly used to validate the Pigsty software repository build pipeline, not for ordinary production installation.
+Use `build/dev` to validate the Pigsty software repository build process.
+It is not intended for ordinary production installation.
 
 **Key Features**:
 - Default `pg_version: 18`

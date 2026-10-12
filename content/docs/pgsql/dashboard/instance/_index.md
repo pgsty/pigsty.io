@@ -4,7 +4,7 @@ weight: 30
 description: PostgreSQL instance-level monitoring dashboards
 ---
 
-PostgreSQL instance-level monitoring dashboards, including:
+Use these dashboards to monitor PostgreSQL instances:
 
 - [PGSQL Instance](/docs/pgsql/dashboard/instance/pgsql-instance): Main dashboard for a single PGSQL instance
 - [PGRDS Instance](/docs/pgsql/dashboard/instance/pgrds-instance): RDS version of PGSQL Instance, focusing on PostgreSQL-native metrics

@@ -7,7 +7,8 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[AgensGraph](https://github.com/skaiworldwide-oss/agensgraph) is a property graph database kernel built on PostgreSQL, supporting openCypher queries and mixed Cypher/SQL workflows.
+[AgensGraph](https://github.com/skaiworldwide-oss/agensgraph) is a property graph database kernel built on PostgreSQL.
+It supports openCypher queries and mixed Cypher/SQL workflows.
 
 
 --------
@@ -23,8 +24,9 @@ Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of t
 - Built-in template: `agens`
 - Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
-From the client side, AgensGraph still speaks the PostgreSQL wire protocol, so normal PostgreSQL clients, drivers, and connection pools can connect directly.
-The real difference from vanilla PostgreSQL is not how you connect, but that the database now contains graph objects, Cypher syntax, and the `agtype` data type.
+AgensGraph uses the PostgreSQL wire protocol.
+Standard PostgreSQL clients, drivers, and connection pools can connect directly.
+AgensGraph adds graph objects, Cypher syntax, and the `agtype` data type to the database.
 
 
 --------
@@ -38,7 +40,8 @@ Use the built-in Pigsty template:
 ./deploy.yml
 ```
 
-The `agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package. After deployment, verify the kernel version:
+The `agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package.
+After deployment, verify the kernel version:
 
 ```bash
 psql -d meta -c "SELECT version();"
@@ -64,15 +67,17 @@ all:
         pg_packages: [ agensgraph, pgsql-common ]
 ```
 
-AgensGraph does not require a special preload stack like pgEdge or Babelfish, so most standard Pigsty patterns for HA, backup, monitoring, access control, and IaC remain unchanged.
-If your workload is dominated by graph traversal and complex path queries, focus on `work_mem`, `shared_buffers`, and planner cost settings instead of assuming default OLTP habits will fit.
+AgensGraph does not require a special preload stack, unlike pgEdge or Babelfish.
+Most standard Pigsty procedures for HA, backup, monitoring, access control, and IaC remain applicable.
+If graph traversal and complex path queries dominate the workload, examine `work_mem`, `shared_buffers`, and planner cost settings.
+Do not assume that the default OLTP settings are suitable.
 
 
 --------
 
 ## Usage
 
-After connecting to the database, the usual first step is to create a graph and set `graph_path`:
+After you connect to the database, usually create a graph first and set `graph_path`:
 
 ```sql
 CREATE GRAPH g;
@@ -106,19 +111,20 @@ SELECT *
 FROM cypher('g', $$ MATCH (v:person) RETURN v.name $$) AS (name agtype);
 ```
 
-In real projects, the more common pattern is to mix "relational tables + graph labels + Cypher queries":
-transactions, privileges, and backup workflows still follow PostgreSQL, while graph analysis logic lives in AgensGraph graph objects and the `cypher()` interface.
+Projects commonly combine relational tables, graph labels, and Cypher queries.
+Transactions, privileges, and backup procedures still follow PostgreSQL.
+Graph analysis uses AgensGraph graph objects and the `cypher()` interface.
 
 
 --------
 
 ## Notes
 
-- AgensGraph is currently fixed to the PG17-compatible line, so do not assume PG18 extension availability will carry over.
-- The default `agens` template is single-node for quick validation; production deployments should extend to an HA topology.
-- Not all third-party PostgreSQL extensions are guaranteed to work on the AgensGraph kernel; verify compatibility first.
-- Graph objects and relational objects can coexist in the same database, but in production it is usually better to define clear database or naming conventions so they do not become tangled together.
-- Tune memory and cost parameters based on your graph model scale; do not blindly use defaults.
+- AgensGraph currently uses the PG17-compatible line. Do not assume that PG18 extensions are available.
+- The default `agens` template uses one node for quick validation. Production deployments should use an HA topology.
+- Third-party PostgreSQL extensions may be incompatible with AgensGraph. Verify compatibility first.
+- Graph objects and relational objects can coexist in one database. For production, clear database or naming conventions usually help you distinguish them.
+- Tune memory and cost parameters for the size of your graph model. Check that the defaults are suitable before you use them.
 - For compatibility or semantic issues with the AgensGraph kernel, consult the official manual and upstream issues first.
 
 
@@ -138,7 +144,8 @@ transactions, privileges, and backup workflows still follow PostgreSQL, while gr
 
 ## Available Extensions
 
-The AgensGraph kernel has **60** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The AgensGraph kernel has **60** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

@@ -7,29 +7,31 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-[**OpenTofu**](https://opentofu.org/) is an open-source "Infrastructure as Code" tool that you can use to create virtual machines on public clouds with one click.
+[OpenTofu](https://opentofu.org/) is an open-source infrastructure-as-code tool.
+It creates public cloud virtual machines from configuration files.
 
-Pigsty uses OpenTofu by default and provides Terraform-compatible `.tf` templates for Alibaba Cloud, AWS (global and China), Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode. The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3/pgBackRest scenarios.
-
-
-----------------
+Pigsty uses OpenTofu by default.
+It supplies Terraform-compatible `.tf` templates for Alibaba Cloud, global AWS, AWS China, Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode.
+The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3 and pgBackRest.
 
 ## Quick Start
 
 ### Install OpenTofu
 
-On macOS, you can use [**Homebrew**](https://brew.sh/) to install OpenTofu:
+On macOS, install OpenTofu with [Homebrew](https://brew.sh/):
 
 ```bash
 brew install opentofu
 tofu version
 ```
 
-For Debian, Ubuntu, RHEL, and other platforms, refer to the [**OpenTofu installation guide**](https://opentofu.org/docs/intro/install/). The package and command name is `tofu`.
+For Debian, Ubuntu, RHEL, or another platform, use the [OpenTofu installation guide](https://opentofu.org/docs/intro/install/).
+The package and command name is `tofu`.
 
 ### Initialize and Apply
 
-Enter the cloud-template directory, select a template, initialize provider plugins, and apply the configuration:
+Enter the cloud template directory.
+Select a template, initialize the provider plugins, and examine the deployment plan:
 
 ```bash
 cd ~/pigsty/terraform
@@ -39,11 +41,13 @@ tofu plan                              # Review the execution plan
 tofu apply                             # Create resources after interactive confirmation
 ```
 
-After reviewing the plan, run `tofu apply` and type `yes` to confirm. OpenTofu will then create VMs and related cloud resources.
+After you review the plan, run `tofu apply`.
+Enter `yes` to confirm.
+OpenTofu then creates the virtual machines and related cloud resources.
 
 ### Get IP Address
 
-After creation, print the public IP address of the admin node:
+After creation, print the administration node's public IP address:
 
 ```bash
 tofu output -raw meta_ip
@@ -51,23 +55,29 @@ tofu output -raw meta_ip
 
 ### Configure SSH Access
 
-Global-cloud templates usually also provide an executable `ssh_command` output:
+Global cloud templates usually supply an executable `ssh_command` output:
 
 ```bash
 tofu output -raw ssh_command
 ```
 
-The repository's `./ssh` script is a compatibility tool for legacy templates whose outputs are all IP addresses and whose root password is `PigstyDemo4`. It iterates over the IaC outputs, treats them as IP addresses, writes them to `~/.ssh/pigsty_config`, and distributes keys with `sshpass`. It is suitable for compatibility templates such as `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`. Do not run it against modern templates that output `ssh_command`, private IPs, or access keys.
+The repository's `./ssh` script supports legacy templates whose outputs contain only IP addresses.
+These templates use the root password `PigstyDemo4`.
+The script treats each infrastructure-as-code output as an IP address and writes it to `~/.ssh/pigsty_config`.
+It then distributes keys with `sshpass`.
 
-When using a compatible template:
+Compatible templates include `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`.
+Do not use this script with modern templates that output `ssh_command`, private IP addresses, or access keys.
+
+For a compatible template, run:
 
 ```bash
 ./ssh       # Write SSH config and distribute keys
 ssh meta    # Login using hostname instead of IP
 ```
 
-> [!NOTE] Using SSH Config File
-> If you want to use the configuration in `~/.ssh/pigsty_config`, ensure your `~/.ssh/config` includes:
+> [!NOTE] Load the SSH configuration
+> To use `~/.ssh/pigsty_config`, include it from `~/.ssh/config`:
 >
 > ```bash
 > Include ~/.ssh/pigsty_config
@@ -75,24 +85,24 @@ ssh meta    # Login using hostname instead of IP
 
 ### Destroy Resources
 
-After testing, you can destroy all created cloud resources with one click:
+After testing, use this command to remove the cloud resources:
 
 ```bash
 tofu destroy
 ```
 
-
-----------------
-
 ## Terraform Compatibility and Migration
 
-The directory and file names remain `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate` because OpenTofu intentionally supports these compatibility names. Terraform remains available as an explicit compatibility option:
+OpenTofu supports the existing names `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate` for compatibility.
+The repository keeps these names.
+You can explicitly select Terraform as a compatibility option:
 
 ```bash
 make IAC_CLI=terraform plan
 ```
 
-Use only one CLI in a working directory at a time. Before migrating existing state, preserve it and compare both plans:
+Use only one infrastructure command-line tool in a working directory at a time.
+Before you migrate existing state, preserve it and compare both plans:
 
 ```bash
 cp -p terraform.tfstate "terraform.tfstate.pre-tofu.$(date +%Y%m%d%H%M%S)"
@@ -101,14 +111,12 @@ tofu init
 tofu plan
 ```
 
-Continue only when the OpenTofu plan contains the changes you expect. Never delete `terraform.tfstate` while reinitializing providers.
-
-
-----------------
+Continue only if the OpenTofu plan contains the expected changes.
+Do not delete `terraform.tfstate` when you initialize providers again.
 
 ## Template Specs
 
-Pigsty provides multiple predefined cloud resource templates in the [`terraform/spec/`](https://github.com/pgsty/pigsty/tree/main/terraform/spec) directory:
+The [`terraform/spec/` directory](https://github.com/pgsty/pigsty/tree/main/terraform/spec) contains predefined cloud resource templates:
 
 | Template File | Cloud Provider | Description |
 |---------------|----------------|-------------|
@@ -128,7 +136,7 @@ Pigsty provides multiple predefined cloud resource templates in the [`terraform/
 | [`linode.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/linode.tf) | Linode | Single node, Debian 12/13, currently AMD only |
 {.full-width}
 
-When using a template, copy the template file to `terraform.tf`:
+Copy the selected template to `terraform.tf`:
 
 ```bash
 cd ~/pigsty/terraform
@@ -136,12 +144,13 @@ cp spec/aliyun-full.tf terraform.tf   # Use Alibaba Cloud 4-node sandbox templat
 tofu init && tofu apply
 ```
 
-
-----------------
-
 ## Variable Configuration
 
-Variables differ between templates. Alibaba Cloud templates support the full multi-distribution matrix and default to `u26`. Global AWS, Azure, GCP, Tencent Cloud, and Hetzner support Debian 12/13 with AMD/ARM selection and generally default to `d12`/`amd64`. Vultr, DigitalOcean, and Linode currently expose AMD instance choices only.
+Available variables depend on the template.
+Alibaba Cloud supports the full distribution matrix and defaults to `u26`.
+Global AWS, Azure, GCP, Tencent Cloud, and Hetzner support Debian 12/13 with AMD or ARM selection.
+Their defaults are generally `d12` and `amd64`.
+Vultr, DigitalOcean, and Linode currently offer only AMD instance choices.
 
 ### Architecture and Distribution
 
@@ -162,7 +171,9 @@ variable "distro" {
 
 ### Resource Configuration
 
-Alibaba Cloud templates expose the following resource parameters in a `locals` block. Other cloud templates use provider-specific instance, disk, and network variables or local values; consult the selected `.tf` file.
+Alibaba Cloud templates define these resource parameters in a `locals` block.
+Other cloud templates use provider-specific variables or local values for instances, disks, and networks.
+Read the selected `.tf` file for its parameters.
 
 ```hcl
 locals {
@@ -173,14 +184,12 @@ locals {
 }
 ```
 
-
-----------------
-
 ## Alibaba Cloud Configuration
 
 ### Credential Setup
 
-Add your Alibaba Cloud credentials to environment variables, for example in `~/.bash_profile` or `~/.zshrc`:
+Set Alibaba Cloud credentials in environment variables.
+For example, add them to `~/.bash_profile` or `~/.zshrc`:
 
 ```bash
 export ALICLOUD_ACCESS_KEY="<your_access_key>"
@@ -190,9 +199,12 @@ export ALICLOUD_REGION="cn-shanghai"
 
 ### Supported Images
 
-The following are commonly used [**ECS Public OS Image**](https://help.aliyun.com/zh/ecs/user-guide/public-mirroring-overview) prefixes in Alibaba Cloud:
+The table lists common Alibaba Cloud [ECS Public OS Image](https://help.aliyun.com/zh/ecs/user-guide/public-mirroring-overview) prefixes.
+The recommended and validated versions are:
 
-The currently recommended and validated baselines are Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+- Rocky Linux 9.8 / 10.2.
+- Debian 12.15 / 13.6.
+- Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
 
 | Distro | Code | x86_64 Image Prefix | aarch64 Image Prefix |
 |--------|------|---------------------|----------------------|
@@ -212,21 +224,18 @@ The currently recommended and validated baselines are Rocky Linux 9.8 / 10.2, De
 
 ### OSS Storage Configuration
 
-The `aliyun-s3.tf` template additionally creates an OSS bucket and related permissions for PostgreSQL PITR backup:
+The `aliyun-s3.tf` template creates an OSS bucket and permissions for PostgreSQL PITR backups:
 
-- **OSS Bucket**: Creates a private bucket named `pigsty-oss`
-- **RAM User**: Creates a dedicated `pigsty-oss-user` user
-- **Access Key**: Generates AccessKey and saves to `~/pigsty.sk`
-- **RAM Policy**: Grants the user `oss:*` permissions on the bucket and its objects for read/write use
-
-
-----------------
+- A private OSS bucket named `pigsty-oss`.
+- A dedicated RAM user named `pigsty-oss-user`.
+- An AccessKey saved to `~/pigsty.sk`.
+- A RAM policy with `oss:*` permissions on the bucket and its objects for read/write operations.
 
 ## AWS Configuration
 
 ### Credential Setup
 
-Both global and China-region templates can read standard AWS environment variables or credential files:
+The global and China-region templates can read standard AWS environment variables or credential files:
 
 ```bash
 export AWS_ACCESS_KEY_ID="<your_access_key>"
@@ -243,23 +252,23 @@ aws_access_key_id = <YOUR_AWS_ACCESS_KEY>
 aws_secret_access_key = <AWS_ACCESS_SECRET>
 ```
 
-`aws.tf` reads `~/.ssh/id_rsa.pub` by default. The legacy China-region `aws-cn.tf` instead reads this dedicated public key:
+By default, `aws.tf` reads `~/.ssh/id_rsa.pub`.
+The legacy `aws-cn.tf` template reads this dedicated public key instead:
 
 ```bash
 ~/.aws/pigsty-key.pub
 ```
 
-> [!WARNING] AWS templates may need adjustments
-> `aws.tf` uses a rolling lookup for official Debian AMIs. `aws-cn.tf` uses a hard-coded China-region AMI and `~/.aws/pigsty-key.pub`; verify the target region, AMI, and key before deployment.
-
-
-----------------
+> [!WARNING] Verify AWS template settings
+> The `aws.tf` template looks up current official Debian AMIs.
+> The `aws-cn.tf` template uses a hard-coded China-region AMI and `~/.aws/pigsty-key.pub`.
+> Verify the region, AMI, and key before deployment.
 
 ## Tencent Cloud Configuration
 
 ### Credential Setup
 
-Add Tencent Cloud credentials to environment variables:
+Set Tencent Cloud credentials in environment variables:
 
 ```bash
 export TENCENTCLOUD_SECRET_ID="<your_secret_id>"
@@ -267,8 +276,9 @@ export TENCENTCLOUD_SECRET_KEY="<your_secret_key>"
 export TENCENTCLOUD_REGION="ap-beijing"
 ```
 
-> [!WARNING] Tencent Cloud templates may need adjustments
-> Tencent Cloud templates are community-contributed examples and may need adjustments based on your specific requirements.
+> [!WARNING] Adjust Tencent Cloud examples when necessary
+> The community supplies the Tencent Cloud templates as examples.
+> You may need to adjust them for your requirements.
 
 ### Other Cloud Credentials
 
@@ -289,14 +299,14 @@ export DIGITALOCEAN_TOKEN="<api_token>"
 export LINODE_TOKEN="<api_token>"
 ```
 
-The GCP template also requires a `project` variable, for example `tofu apply -var="project=my-project"`. Except for AWS China, current key-based templates read `~/.ssh/id_rsa.pub` by default; edit the selected template to use another public-key path.
-
-
-----------------
+The GCP template also requires `project`, for example `tofu apply -var="project=my-project"`.
+Except for AWS China, the current templates with key authentication read `~/.ssh/id_rsa.pub` by default.
+To use another public key, edit the path in the selected template.
 
 ## Shortcut Commands
 
-Pigsty provides OpenTofu-first Makefile shortcuts. Set `IAC_CLI=terraform` explicitly to use Terraform instead.
+The Makefile shortcuts use OpenTofu by default.
+To use Terraform, explicitly set `IAC_CLI=terraform`.
 
 ```bash
 cd ~/pigsty/terraform
@@ -313,30 +323,38 @@ make ssh        # Run ssh script to configure SSH access
 make r          # Reset terraform.tf to repository state
 ```
 
-For modern templates with `ssh_command`, private-IP, or other non-IP outputs, run `tofu apply` directly; do not use `make u`, which invokes the legacy `./ssh` script afterward. Automatic confirmation is available only through deliberately named `up-auto`, `apply-auto`, and `destroy-auto` targets.
-
-----------------
+For modern templates with `ssh_command`, private-IP, or other non-IP outputs, run `tofu apply` directly.
+Do not use `make u`: it runs the legacy `./ssh` script after deployment.
+Automatic confirmation is available only through `up-auto`, `apply-auto`, and `destroy-auto`.
 
 ## Notes
 
-> [!WARNING] Cloud Resource Costs
-> Cloud resources created with OpenTofu incur costs. After testing, promptly use `tofu destroy` to destroy resources to avoid unnecessary expenses.
->
-> It's recommended to use pay-as-you-go instance types for testing. Templates default to using Spot Instances to reduce costs.
+> [!WARNING] Cloud resource costs
+> Cloud resources created by OpenTofu incur charges.
+> After testing, run `tofu destroy` promptly to avoid unnecessary charges.
+> Pay-as-you-go instances are recommended for tests.
+> The templates use Spot Instances by default to reduce costs.
 
-> [!NOTE] Default Password
-> Alibaba Cloud and Tencent Cloud templates set the default root password to `PigstyDemo4`; Linode uses `PigstyDemo4!` to satisfy its password-complexity rules.
-> Current AWS, Azure, GCP, Hetzner, Vultr, and DigitalOcean templates primarily use SSH public-key authentication and do not share a default root password. Example passwords are for temporary tests only; change them or disable password login in production.
+> [!NOTE] Default passwords
+> Alibaba Cloud and Tencent Cloud templates set the root password to `PigstyDemo4`.
+> Linode uses `PigstyDemo4!` to meet its password complexity rules.
+> Current AWS, Azure, GCP, Hetzner, Vultr, and DigitalOcean templates primarily use SSH keys and share no default root password.
+> Use example passwords only for temporary tests.
+> For production, replace them or disable password login.
 
-> [!NOTE] Security Group Configuration
-> These templates target demonstration and development. Their current security groups or cloud firewalls allow all or nearly all inbound traffic from `0.0.0.0/0` (some also include `::/0`), not just the ports Pigsty requires.
-> Restrict source networks and ports before deployment; do not use these defaults unchanged in production.
+> [!NOTE] Security groups
+> These templates target demonstrations and development.
+> Their security groups or cloud firewalls permit all or nearly all inbound traffic from `0.0.0.0/0`.
+> Some also permit `::/0`.
+> Before deployment, restrict the permitted source networks and ports.
+> Do not use the default access rules unchanged in production.
 
-> [!NOTE] SSH Access
-> After creation, SSH login to the admin node using:
+> [!NOTE] SSH access
+> After creation, use this command to log in to the administration node:
 >
 > ```bash
 > ssh root@<public_ip>
 > ```
 >
-> Alibaba Cloud templates that retain the legacy output and password conventions can also use `./ssh` or `make ssh` to write SSH aliases. For other templates, use their `ssh_command` output.
+> Alibaba Cloud templates with the legacy outputs and passwords can use `./ssh` or `make ssh` to write SSH aliases.
+> For other templates, use their `ssh_command` output.

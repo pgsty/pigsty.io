@@ -9,7 +9,9 @@ categories: [Reference]
 main_menu: True
 ---
 
-Use `-c` with [**`configure`**](/docs/concept/iac/configure) to select a template. Its value is a path relative to `conf/` without the `.yml` suffix. If omitted, Pigsty uses the default [**`meta`**](/docs/conf/meta/) template.
+Use `-c` with [**`configure`**](/docs/concept/iac/configure) to select a template.
+Specify its path relative to `conf/`, without the `.yml` suffix.
+If you omit `-c`, Pigsty uses the [**`meta`**](/docs/conf/meta/) template.
 
 | Category         | Templates                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

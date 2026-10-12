@@ -9,10 +9,11 @@ aliases: [/docs/pilot/kafka/start]
 ---
 
 
-This tutorial starts from a minimal single-node cluster, walking through topic creation and message read/write; it then deploys a separate, secured three-node cluster with application users, ACLs, quotas, and production topics; finally, it demonstrates core parameter changes, client access, monitoring verification, and pre-launch checks.
+First build a single-node cluster, create a topic, and read and write messages. Then build a separate secure three-node cluster with users, ACLs, quotas, and production topics. Finally, change parameters, connect clients, verify monitoring, and perform pre-launch checks.
 
 > [!NOTE] Tutorial Scope
-> Here, "from scratch" means starting before any Kafka is deployed. You will need a working Pigsty admin node with the base [`INFRA`](/docs/infra) services already deployed; if you don't have one yet, complete the [Pigsty quick install](/docs/setup/install) first. The target nodes require SSH/sudo access and must be manageable by the [`NODE`](/docs/node) module.
+> Start before deploying Kafka. You need a working Pigsty administration node with [`INFRA`](/docs/infra) installed. Otherwise, complete [quick installation](/docs/setup/install) first.
+> Target nodes need SSH/sudo access and must be manageable by [`NODE`](/docs/node).
 
 
 --------
@@ -29,14 +30,16 @@ This tutorial starts from a minimal single-node cluster, walking through topic c
 {.full-width}
 
 > [!WARNING] The Two Examples Are Separate Clusters
-> The `kf-dev` and `kf-main` below are two separate, brand-new clusters. If you do need it, you can also grow the single-node `kf-dev` into a three-controller cluster in place: declare two new combined nodes and rerun `./kafka.yml -l kf-dev`, and the role formats each one, catches it up as an observer, and promotes it with `add-controller`, one at a time — but for a demo it is still simpler to build a fresh cluster. See [Expand Cluster](/docs/kafka/admin#expand-cluster) for the semantics.
+> `kf-dev` and `kf-main` are separate new clusters. You can also expand `kf-dev` to three controllers in place.
+> Declare two combined nodes and rerun `./kafka.yml -l kf-dev`. Each new node formats, catches up as an observer, and promotes with `add-controller`, one at a time.
+> A fresh cluster is simpler for this demonstration. See [Expand Cluster](/docs/kafka/admin#expand-cluster).
 
 
 --------
 
 ## Before You Begin
 
-Unless noted otherwise, the following commands are run from the project directory on the Pigsty admin node:
+Unless stated otherwise, run commands from the project directory on the Pigsty administration node:
 
 ```bash
 cd ~/pigsty
@@ -44,15 +47,15 @@ cd ~/pigsty
 
 Before you start, confirm that:
 
-- `pigsty.yml` is the source of configuration for the current environment — back it up and review its existing contents first;
-- each Kafka node's `inventory_hostname` can be resolved and routed directly by every Kafka member and client;
-- the admin node and the Kafka nodes have synchronized clocks;
-- ports `9092`, `9093`, `9308`, and `9404` are free of conflicts;
-- `/data/kafka` maps to a dedicated data disk or directory that holds nothing else;
-- every `kafka.yml` run uses `-l` to select exactly all members of one Kafka cluster;
-- before any real change, you run `--check` first, review the output, and obtain approval for the change.
+- Confirm `pigsty.yml` describes this environment. Back it up and review existing contents.
+- Ensure all members and clients can resolve and route directly to each `inventory_hostname`.
+- Synchronize administration and Kafka node clocks.
+- Check `9092`, `9093`, `9308`, and `9404` for conflicts.
+- Use `/data/kafka` exclusively for Kafka data.
+- Select exactly all members of one cluster with `-l` on every `kafka.yml` run.
+- Before changes, run `--check`, review results, and obtain change approval.
 
-The inventory must keep the `all.children` hierarchy. Merge the groups below into your existing `pigsty.yml`; do not let the examples overwrite your existing `all.vars`, `infra`, `etcd`, `pgsql`, or other configuration.
+Retain the `all.children` inventory structure. Merge these groups into `pigsty.yml`. Do not overwrite existing `all.vars`, `infra`, `etcd`, `pgsql`, or other configuration.
 
 
 --------
@@ -61,7 +64,7 @@ The inventory must keep the `all.children` hierarchy. Merge the groups below int
 
 ### 1. Define the Cluster
 
-Add the following `kf-dev` group to `all.children`. This node omits `kafka_role`, so it uses the default `combined` and serves as both broker and controller:
+Add `kf-dev` under `all.children`. Omitting `kafka_role` selects `combined`, so this node runs broker and controller:
 
 ```yaml
 all:
@@ -91,7 +94,7 @@ This configuration yields:
 - a single-partition topic named `quickstart.events`;
 - a JMX exporter on `:9404` and a protocol exporter on `:9308`.
 
-`plaintext` has no transport encryption, authentication, or ACLs, so use it only for local development or a trusted, isolated network.
+`plaintext` provides no encryption, authentication, or ACLs. Use it only for local development or trusted isolated networks.
 
 
 ### 2. Bring the Node Under Management
@@ -108,7 +111,7 @@ After reviewing the results and getting approval, bring the node under managemen
 ./node.yml -l kf-dev
 ```
 
-You can skip this step for a node that Pigsty already manages and whose package repository and time synchronization are healthy. For full NODE preparation and day-to-day management, see [Node Administration](/docs/node/admin).
+Skip this step if Pigsty already manages the node and its repository access and time synchronization work. See [Node Administration](/docs/node/admin) for preparation and operations.
 
 
 ### 3. Deploy Kafka
@@ -119,13 +122,13 @@ Run a check against the full cluster first:
 ./kafka.yml --check -l kf-dev
 ```
 
-Confirm the target is exactly the full membership of `kf-dev`, review the data path, packages, ports, and configuration changes, then run:
+Verify that the target includes exactly every `kf-dev` member. Review data paths, packages, ports, and configuration changes, then run:
 
 ```bash
 ./kafka.yml -l kf-dev
 ```
 
-The role installs Java and `kafka-stack`, generates a random identity and bootstrap manifest, formats the KRaft storage, starts the service, creates the topics, and registers the monitoring targets.
+The role installs Java and `kafka-stack`, generates random identity and manifest, formats KRaft storage, starts Kafka, creates topics, and registers monitoring.
 
 
 ### 4. Verify the Service and Quorum
@@ -145,7 +148,7 @@ sudo -u kafka /usr/local/bin/pigsty-kafka-health cluster \
   --command-config /etc/kafka/admin.properties
 ```
 
-The returned JSON should contain `"healthy": true`. Continue by checking the dynamic quorum and the topic:
+JSON should include `"healthy": true`. Then check quorum and the topic:
 
 ```bash
 /opt/kafka/bin/kafka-metadata-quorum.sh \
@@ -159,7 +162,7 @@ The returned JSON should contain `"healthy": true`. Continue by checking the dyn
   --describe --topic quickstart.events
 ```
 
-You should see a valid `LeaderId`, a `CurrentVoters` list that includes this node, and `quickstart.events` with RF=1 and ISR=1.
+Expect a valid `LeaderId`, this node in `CurrentVoters`, and `quickstart.events` with RF=1 and ISR=1.
 
 
 ### 5. Produce and Consume Messages
@@ -173,7 +176,7 @@ Start a console producer:
   --topic quickstart.events
 ```
 
-Type a few lines of messages, then press `Ctrl-D` to finish. Consume them from another terminal:
+Enter several messages and press `Ctrl-D`. Read them from another terminal:
 
 ```bash
 /opt/kafka/bin/kafka-console-consumer.sh \
@@ -184,14 +187,14 @@ Type a few lines of messages, then press `Ctrl-D` to finish. Consume them from a
   --from-beginning
 ```
 
-At this point, the single-node deployment, topic convergence, and message read/write are complete. For further status checks, see [Day-to-Day Administration](/docs/kafka/admin).
+Single-node deployment, topic convergence, and message read/write are complete. See [Day-to-Day Administration](/docs/kafka/admin) for more checks.
 
 
 --------
 
 ## Part 2: Deploy a Three-Node Production Baseline
 
-The three-node example is a brand-new `kf-main` cluster built from three combined nodes. It can tolerate the loss of one controller; business topics use RF=3/minISR=2, and the `scram` production security profile is enabled.
+The new `kf-main` cluster has three combined nodes and tolerates one controller failure. Business topics use RF=3/minISR=2. Security uses `scram`.
 
 
 ### 1. Define the Secured Cluster and Its Resources
@@ -250,19 +253,19 @@ all:
               retention.ms: 604800000
 ```
 
-`vault_kafka_quickstart_password` must be supplied by your existing Ansible Vault, KMS, or another secret-injection mechanism, and must be at least 12 characters. Never commit a real password directly to Git, logs, or tickets.
+Supply `vault_kafka_quickstart_password` through Ansible Vault, KMS, or another secret injection method. It must contain at least 12 characters. Never put real passwords in Git, logs, or tickets.
 
-The key semantics of this configuration:
+This configuration has these effects:
 
-- all three nodes omit `kafka_role`, so they consistently use `combined`;
-- the new cluster is bootstrapped directly as dynamic KRaft;
-- `scram` enables node TLS, controller mTLS, SCRAM-SHA-512, ACLs, and deny-by-default all at once;
-- with three brokers, the initial replication policy is automatically derived as RF=3 and minISR=2;
-- `quickstart.events` is created explicitly with 12 partitions and 3 replicas;
-- `quickstart-app` can read and write `quickstart.*` topics, read `quickstart.*` groups, and use the idempotent producer;
-- at most two brokers run `kafka_exporter`, while all three Kafka JVMs run the JMX exporter.
+- All nodes omit `kafka_role` and use `combined`.
+- Bootstrap uses dynamic KRaft directly.
+- `scram` enables node TLS, controller mTLS, SCRAM-SHA-512, ACLs, and default denial together.
+- Three brokers set initial RF=3 and minISR=2.
+- `quickstart.events` explicitly has 12 partitions and three replicas.
+- `quickstart-app` can read/write `quickstart.*` topics, read `quickstart.*` groups, and use idempotent production.
+- At most two brokers run `kafka_exporter`. All three JVMs run JMX Exporter.
 
-If the three brokers truly reside in different failure domains, you may add `kafka_rack: az-a/az-b/az-c` to **all** nodes respectively. Do not use fictitious rack labels to manufacture a disaster-recovery guarantee that does not exist; for the detailed rules, see [Cluster Configuration: Rack](/docs/kafka/config#storage-heap-and-rack).
+If brokers occupy separate failure domains, set `kafka_rack: az-a/az-b/az-c` respectively on **all** nodes. Fictitious labels cannot provide disaster protection. See [Rack configuration](/docs/kafka/config#storage-heap-and-rack).
 
 
 ### 2. Bring Under Management and Deploy
@@ -281,12 +284,12 @@ When deploying Kafka, you must select all three members:
 ./kafka.yml -l kf-main
 ```
 
-You cannot use `-l 10.10.10.11` alone: every selected cluster must be complete, and a partial selection is refused. Selecting several complete clusters at once (`-l kf-dev,kf-main`) or running bare against all clusters is allowed.
+Do not select only `-l 10.10.10.11`. Partial clusters are rejected. You can select several complete clusters with `-l kf-dev,kf-main`, or all clusters without a limit.
 
 
 ### 3. Verify the Health of All Three Nodes
 
-From the admin node, check the three Kafka services:
+From the administration node, check all three Kafka services:
 
 ```bash
 ansible kf-main -b -m command -a 'systemctl is-active kafka'
@@ -314,7 +317,7 @@ Query the quorum and the topic:
   --describe --topic quickstart.events
 ```
 
-Before launch, you should see one active controller, three current voters, and three available brokers; every `quickstart.events` partition has three replicas with ISR=3, and there are no offline, under-replicated, or under-min-ISR partitions.
+Before launch, verify one active controller, three voters, and three available brokers. Every `quickstart.events` partition must have three replicas and ISR=3. No partitions should be offline, under-replicated, or under-min-ISR.
 
 
 --------
@@ -329,7 +332,7 @@ Securely copy the public CA certificate from the admin node to the application h
 files/pki/ca/ca.crt  ->  /etc/kafka-client/pigsty-ca.crt
 ```
 
-`ca.crt` is a public certificate that is safe to distribute. **Never copy, expose, or distribute `files/pki/ca/ca.key`.** On the application host, the CA file should be owned by root and set read-only. An application host already managed by Pigsty needs no copy: the NODE module has installed the same CA at `/etc/pki/ca.crt`, which the client can reference directly.
+`ca.crt` is public and safe to distribute. **Never copy, expose, or distribute `files/pki/ca/ca.key`.** On application hosts, make the CA file root-owned and read-only. Pigsty-managed hosts already have it at `/etc/pki/ca.crt`; clients can use that path directly.
 
 
 ### 2. Create the Client Configuration
@@ -348,19 +351,19 @@ ssl.truststore.location=/etc/kafka-client/pigsty-ca.crt
 ssl.endpoint.identification.algorithm=https
 ```
 
-The Kafka Java client supports `SASL_SSL` + SCRAM and a PEM truststore. A real application should inject the password from a secret manager at runtime rather than committing a file containing the password to the repository. For the complete set of fields, see the Kafka 4.3 [SASL/SCRAM](https://kafka.apache.org/43/security/authentication-using-sasl/) and [producer configuration](https://kafka.apache.org/43/generated/producer_config.html) references.
+Kafka Java clients support `SASL_SSL`, SCRAM, and PEM truststores. Applications should inject passwords from secret management at runtime. Do not commit password files to repositories. See Kafka 4.3 [SASL/SCRAM](https://kafka.apache.org/43/security/authentication-using-sasl/) and [producer settings](https://kafka.apache.org/43/generated/producer_config.html) for all fields.
 
 
 ### 3. Why Applications Should Connect Directly to Multiple Brokers
 
-The Kafka client is itself cluster-aware. `bootstrap.servers` is used only to obtain the initial metadata; once connected, the client uses that metadata to connect directly to the leader broker of each partition and refreshes its routing whenever a leader changes. The standard practice in production is therefore to:
+Clients use `bootstrap.servers` only for initial metadata. They then connect directly to partition leaders and refresh routing after leadership changes. In production:
 
-- configure at least two, and usually three, broker addresses in `bootstrap.servers`, located in different failure domains;
-- allow the application to reach `9092` on **all brokers**, and ensure that each broker's advertised `inventory_hostname` is resolvable and routable;
-- let producers and consumers rely on the Kafka client's own retry, metadata-refresh, idempotence, and consumer-group protocols;
-- not place HAProxy, a Keepalived VIP, a layer-4 load balancer, or a layer-7 reverse proxy in front of the Kafka data plane.
+- Set at least two, usually three, `bootstrap.servers` addresses in different failure domains.
+- Permit application access to `9092` on **all brokers**. Ensure each advertised `inventory_hostname` resolves and routes correctly.
+- Use client retry, metadata refresh, idempotence, and consumer-group protocols.
+- Do not put HAProxy, Keepalived VIP, L4 load balancers, or L7 reverse proxies in the Kafka data plane.
 
-A single VIP or LB can neither substitute for the broker addresses in Kafka's metadata nor transparently forward a connection to the correct partition leader; it only adds complexity around long-lived connection state, fault localization, and capacity planning. If your platform must provide a unified discovery entry point, a DNS name or TCP load balancer can serve as a bootstrap-only entry point, but each broker's `advertised.listeners` must still return an address the client can reach directly, and the application must not be permitted to reach only the LB. Scenarios that span NAT, the public internet, Kubernetes, or multiple networks require a dedicated externally reachable address and an additional listener per broker; the current module fixes the inventory address as `advertised.listeners` and does not support such mappings.
+A VIP or load balancer cannot replace metadata broker addresses or transparently select partition leaders. It adds connection-state, diagnostic, and capacity-planning complexity. A DNS name or TCP load balancer can provide bootstrap discovery if required. However, every `advertised.listeners` address must remain directly reachable, not only the load balancer. NAT, public internet, Kubernetes, and multiple networks need per-broker external addresses and additional listeners. The module fixes advertised addresses to inventory addresses and does not support these mappings.
 
 
 ### 4. Authenticate and Read/Write with the Application Identity
@@ -385,7 +388,7 @@ kafka-console-consumer.sh \
   --from-beginning
 ```
 
-A production application should also explicitly review its client semantics:
+Explicitly review these production client settings:
 
 | Client Setting | Suggested Starting Point | Notes |
 |:---|:---|:---|
@@ -396,14 +399,14 @@ A production application should also explicitly review its client semantics:
 | `client.id` | An identifiable instance name | Helps with logs, quotas, and client diagnostics |
 {.full-width}
 
-Client-side `acks`, retries, idempotence, batching, compression, and offset strategy are application configuration and should not be written into the broker's `kafka_parameters`.
+Set `acks`, retries, idempotence, batching, compression, and offset strategy in applications. Do not put them in broker `kafka_parameters`.
 
 
 --------
 
 ## Part 4: Change Core Parameters
 
-Always express persistent intent for Kafka by editing `pigsty.yml`, never by editing `/etc/kafka/server.properties` directly. Common intents map as follows:
+Declare persistent changes in `pigsty.yml`. Never edit `/etc/kafka/server.properties` directly. Use these parameters:
 
 | Goal | Parameter | Behavior |
 |:---|:---|:---|
@@ -418,7 +421,7 @@ Always express persistent intent for Kafka by editing `pigsty.yml`, never by edi
 
 ### Example: Adjust the Heap and Broker Default Parameters
 
-Suppose that after load testing you decide to raise the heap to 6G, increase the thread counts, and change the default retention for new topics to 72 hours:
+This example raises heap to 6G, increases threads, and sets new-topic default retention to 72 hours after load testing:
 
 ```yaml
 kf-main:
@@ -433,7 +436,7 @@ kf-main:
       log.segment.bytes: 1073741824
 ```
 
-Do not copy 6G/8/24 verbatim; these values must be determined by load-testing against your CPU, memory, connection count, message size, partition count, disk, and page cache.
+Do not copy 6G/8/24 without testing. Choose values from CPU, memory, connections, message size, partitions, disk, and page-cache measurements.
 
 
 ### Example: Add Partitions and Shorten Topic Retention
@@ -451,7 +454,7 @@ kafka_topics:
       retention.ms: 259200000
 ```
 
-Partitions cannot be reduced. When `replication_factor` differs from what is live, the role refuses ordinary convergence and requires an explicit partition reassignment; it never relocates existing replicas automatically.
+Partitions cannot decrease. If `replication_factor` differs from live state, ordinary convergence fails and requires explicit reassignment. The role never relocates replicas automatically.
 
 
 ### Apply the Change
@@ -463,7 +466,7 @@ Whether you change static parameters or dynamic resources, run the full state ma
 ./kafka.yml -l kf-main
 ```
 
-Do not run `-t kafka_config` alone. The role decides automatically: a static change triggers a strict node-by-node rolling restart; when only dynamic resources such as topics or users change, Kafka is not restarted.
+Do not run only `-t kafka_config`. The role rolls nodes for static changes. Topic or user changes alone do not restart Kafka.
 
 The following keys belong to the role itself and must not be placed in `kafka_parameters`:
 
@@ -483,34 +486,34 @@ For all 15 public parameters, their defaults, and the reserved keys, see the [Pa
 
 ### Topology and Data Safety
 
-- Production uses at least three brokers and an odd number of controllers; for critical or large clusters, consider a separated 3-controller + N-broker topology;
-- topic RF, minISR, and the producer's `acks` form a consistent failure model;
-- `kafka_rack` expresses only real failure domains, and replica placement has been verified;
-- data-disk capacity, throughput, latency, retention, peak write rate, and recovery time have been load-tested;
-- there is an explicit reassignment plan for after a new broker joins, since existing topics' RF is not raised automatically;
-- the procedures for Kafka data backup/rebuild and disaster recovery are defined, and [failed-node replacement](/docs/kafka/admin#replace-failed-node) and member retirement have been rehearsed.
+- Use at least three production brokers and an odd controller count. Consider three separate controllers plus N brokers for critical or large clusters.
+- Align topic RF, minISR, and producer `acks` with one failure model.
+- Set `kafka_rack` only for real failure domains and verify replica placement.
+- Load-test capacity, throughput, latency, retention, peak writes, and recovery time.
+- Plan reassignment after broker admission. Existing topic RF does not increase automatically.
+- Define backup/rebuild and disaster recovery procedures. Rehearse [failed-node replacement](/docs/kafka/admin#replace-failed-node) and retirement.
 
 
 ### Security and Network
 
-- a new production cluster uses `kafka_security: scram` from bootstrap onward;
-- application passwords are injected by Vault/KMS/a secret manager and never reach Git or logs;
-- only the CA public certificate is distributed to clients, never the CA private key;
-- clients can resolve and reach the `inventory_hostname` of every broker directly;
-- `9092/9093` are open only to the principals that need them, and `9308/9404` only to the monitoring network;
-- a review checklist for application principals, topic/group/cluster ACLs, and quotas is in place;
-- a [protected rotation](/docs/kafka/playbook#protected-rotation) of internal credentials and certificates is scheduled.
+- Bootstrap new production clusters with `kafka_security: scram`.
+- Inject passwords through Vault, KMS, or secret management. Keep them out of Git and logs.
+- Distribute only the public CA certificate, never its private key.
+- Verify direct client resolution and routing to every `inventory_hostname`.
+- Restrict `9092/9093` to authorized participants and `9308/9404` to monitoring.
+- Review principals, topic/group/cluster ACLs, and quotas through a checklist.
+- Schedule [protected rotation](/docs/kafka/playbook#protected-rotation) of internal credentials and certificates.
 
 
 ### Operations and Monitoring
 
-- `/usr/local/bin/pigsty-kafka-health cluster` reports healthy;
-- the dynamic quorum has exactly one leader, and every expected controller is in the current voters;
-- there are no offline, under-replicated, or under-min-ISR partitions;
-- produce/consume verification is done over the real application network with a real principal;
-- the [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview), [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance), [Kafka Topic](https://demo.pigsty.cc/ui/d/kafka-topic), and [Kafka Consumer](https://demo.pigsty.cc/ui/d/kafka-consumer) dashboards show healthy data;
-- alert routing, log search, capacity thresholds, on-call responsibilities, and rollback conditions are confirmed;
-- upgrades, feature-level changes, topic deletion, user deletion, and cluster teardown each have a separate approval process.
+- Verify `/usr/local/bin/pigsty-kafka-health cluster` reports health.
+- Verify exactly one quorum leader and all expected controllers in current voters.
+- Confirm no offline, under-replicated, or under-min-ISR partitions.
+- Test production and consumption from the real application network with a real principal.
+- Check healthy data in [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview), [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance), [Kafka Topic](https://demo.pigsty.cc/ui/d/kafka-topic), and [Kafka Consumer](https://demo.pigsty.cc/ui/d/kafka-consumer).
+- Confirm alert routing, log search, capacity thresholds, on-call duties, and rollback conditions.
+- Define separate approvals for upgrades, feature changes, topic/user deletion, and cluster teardown.
 
 For detailed alerts and PromQL, see [Monitoring and Alerting](/docs/kafka/monitor); for metric semantics, see [Metric Definitions](/docs/kafka/metric).
 
@@ -519,7 +522,7 @@ For detailed alerts and PromQL, see [Monitoring and Alerting](/docs/kafka/monito
 
 ## Documentation Index and Next Steps
 
-We recommend continuing along the following path:
+Use these pages for the next task:
 
 | What You Want to Do Next | Document |
 |:---|:---|
@@ -533,4 +536,4 @@ We recommend continuing along the following path:
 | Return to the overview of module capabilities, default ports, and boundaries | [Kafka Module Home](/docs/kafka) |
 {.full-width}
 
-One recommended reading path is: **Quick Start → Cluster Configuration → Parameter Reference → Day-to-Day Administration → Playbook → Monitoring and Alerting → FAQ**.
+Recommended reading order: **Quick Start → Cluster Configuration → Parameter Reference → Day-to-Day Administration → Playbook → Monitoring and Alerting → FAQ**.

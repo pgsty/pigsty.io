@@ -8,7 +8,7 @@ categories: [Reference]
 
 [**Mattermost**](https://mattermost.com/) is an open-source team collaboration platform and a private alternative to Slack.
 
-Pigsty provides `app/mattermost` (`conf/app/mattermost.yml`), which stores app state in external PostgreSQL and persists file directories on host paths.
+Pigsty provides `app/mattermost` (`conf/app/mattermost.yml`). It stores application state in external PostgreSQL and keeps file directories on host paths.
 
 ## Quick Start
 

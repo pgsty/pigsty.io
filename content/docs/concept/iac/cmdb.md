@@ -9,18 +9,17 @@ categories: [Concept]
 ---
 
 
-Pigsty allows you to use a PostgreSQL **metabase** as a dynamic configuration source, replacing static YAML configuration files for more powerful configuration management capabilities.
+Use a PostgreSQL **metabase** as a dynamic configuration source instead of static YAML files.
 
 ------
 
 ## Overview
 
-**CMDB** (Configuration Management Database) is a method of storing configuration information in a database for management.
+A **CMDB** (Configuration Management Database) stores configuration in database tables.
 
-In Pigsty, the default configuration source is a static YAML file `pigsty.yml`,
-which serves as Ansible's [**inventory**](/docs/concept/iac/inventory/).
+By default, Pigsty uses static `pigsty.yml` as the Ansible [**inventory**](/docs/concept/iac/inventory/).
 
-This approach is simple and direct, but when infrastructure scales and requires complex, fine-grained management and external integration, a single static file becomes insufficient.
+A static file is simple. Larger deployments can need finer control, concurrent editing, and external integration beyond one file's practical limits.
 
 |    Feature    | Static YAML File           | CMDB Metabase                          |
 |:-------------:|:---------------------------|:---------------------------------------|
@@ -32,7 +31,7 @@ This approach is simple and direct, but when infrastructure scales and requires 
 | **Scalability** | Difficult to maintain when file becomes too large | Scales to physical limits |
 | **Dynamic Generation** | Static file, changes require manual application | Immediate effect, real-time configuration changes |
 
-Pigsty provides the CMDB database schema in the sample database [**`pg-meta.meta`**](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml#L52) schema baseline definition.
+The sample [**`pg-meta.meta`**](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml#L52) database baseline defines the CMDB schema.
 
 
 
@@ -41,18 +40,16 @@ Pigsty provides the CMDB database schema in the sample database [**`pg-meta.meta
 
 ## How It Works
 
-The core idea of CMDB is to replace the static configuration file with a **dynamic script**.
-Ansible supports using executable scripts as inventory, as long as the script outputs inventory data in JSON format.
-When you enable CMDB, Pigsty creates a dynamic inventory script named `inventory.sh`:
+CMDB replaces the static inventory with an executable **script** that returns JSON, as Ansible supports. Enabling CMDB creates `inventory.sh`:
 
 ```bash
 #!/bin/bash
 psql ${METADB_URL} -AXtwc 'SELECT text FROM pigsty.inventory;'
 ```
 
-This script's function is simple: every time Ansible needs to read the inventory, it queries configuration data from the PostgreSQL database's `pigsty.inventory` view and returns it in JSON format.
+Whenever Ansible reads the inventory, this script queries `pigsty.inventory` in PostgreSQL and returns JSON.
 
-The overall architecture is as follows:
+The architecture is:
 
 ```mermaid
 flowchart LR
@@ -162,7 +159,7 @@ CREATE TABLE pigsty.host_var (
 
 ### Core Views
 
-CMDB provides a series of views for querying and displaying configuration data:
+These views expose configuration data:
 
 | View | Description |
 |:---:|:---|
@@ -179,7 +176,7 @@ CMDB provides a series of views for querying and displaying configuration data:
 | `pigsty.pg_hba` | PostgreSQL HBA rules view |
 | `pigsty.pg_remote` | Remote PostgreSQL instance view |
 
-**`pigsty.inventory`** is the core view that converts database configuration data to the JSON format required by Ansible:
+**`pigsty.inventory`** converts database configuration to Ansible inventory JSON:
 
 ```sql
 SELECT text FROM pigsty.inventory;
@@ -191,7 +188,7 @@ SELECT text FROM pigsty.inventory;
 
 ## Utility Scripts
 
-Pigsty provides three convenience scripts for managing CMDB:
+Use these three scripts to manage the CMDB:
 
 | Script | Function |
 |:---:|:---|
@@ -202,7 +199,7 @@ Pigsty provides three convenience scripts for managing CMDB:
 
 ### inventory_load
 
-Parse and import YAML configuration file into CMDB:
+Parse a YAML configuration file and import it into the CMDB:
 
 ```bash
 bin/inventory_load                     # Load default pigsty.yml to default CMDB
@@ -211,7 +208,7 @@ bin/inventory_load -d "postgres://..."   # Specify database connection URL
 bin/inventory_load -n myconfig           # Specify configuration name
 ```
 
-The script performs the following operations:
+The script performs these operations:
 
 1. Clears existing data in the `pigsty` schema
 2. Parses the YAML configuration file
@@ -235,12 +232,12 @@ Switch Ansible to use CMDB as the configuration source:
 bin/inventory_cmdb
 ```
 
-The script performs the following operations:
+The script performs these operations:
 
 1. Creates dynamic inventory script `${PIGSTY_HOME}/inventory.sh`
 2. Modifies `ansible.cfg` to set `inventory` to `inventory.sh`
 
-The generated `inventory.sh` contents:
+The generated `inventory.sh` contains:
 
 ```bash
 #!/bin/bash
@@ -250,7 +247,7 @@ psql ${METADB_URL} -AXtwc 'SELECT text FROM pigsty.inventory;'
 
 ### inventory_conf
 
-Switch back to using static YAML configuration file:
+Switch back to a static YAML configuration file:
 
 ```bash
 bin/inventory_conf
@@ -266,13 +263,13 @@ The script modifies `ansible.cfg` to set `inventory` back to `pigsty.yml`.
 
 ### First-time CMDB Setup
 
-1. **Initialize CMDB schema** (usually done automatically during Pigsty installation):
+1. **Initialize the CMDB schema**. Pigsty installation usually does this automatically:
 
 ```bash
 psql -f ~/pigsty/files/cmdb.sql
 ```
 
-2. **Load configuration to database**:
+2. **Load configuration into the database**:
 
 ```bash
 bin/inventory_load
@@ -294,7 +291,7 @@ ansible-inventory --list          # View complete inventory
 
 ### Query Configuration
 
-After enabling CMDB, you can flexibly query configuration using SQL:
+After you enable CMDB, use SQL to query the configuration:
 
 ```sql
 -- View all clusters
@@ -325,7 +322,7 @@ SELECT cls, name, login, superuser FROM pigsty.pg_users;
 
 ### Modify Configuration
 
-You can modify configuration directly via SQL:
+Use SQL to change the configuration directly:
 
 ```sql
 -- Add new cluster
@@ -350,12 +347,12 @@ UPDATE pigsty.global_var SET value = '"new-value"' WHERE key = 'some_param';
 DELETE FROM pigsty.group WHERE cls = 'pg-old';
 ```
 
-Changes take effect immediately without reloading or restarting any service.
+Configuration changes are immediately available. You do not need to reload or restart a service.
 
 
 ### Switch Back to Static Configuration
 
-To switch back to static configuration file mode:
+Switch back to a static configuration file:
 
 ```bash
 bin/inventory_conf
@@ -398,12 +395,12 @@ WHERE mtime > '2024-01-01'::timestamptz;
 
 ### Integration with External Systems
 
-CMDB uses standard PostgreSQL, making it easy to integrate with other systems:
+CMDB uses standard PostgreSQL. You can integrate it with these systems:
 
-- **Web Management Interface**: Expose configuration data through REST API (e.g., PostgREST)
-- **CI/CD Pipelines**: Read/write database directly in deployment scripts
-- **Monitoring & Alerting**: Generate monitoring rules based on configuration data
-- **ITSM Systems**: Sync with enterprise CMDB systems
+- **Web Management Interface**: Expose configuration data through a REST API, such as PostgREST.
+- **CI/CD Pipelines**: Read and write database data directly from deployment scripts.
+- **Monitoring & Alerting**: Generate monitoring rules from configuration data.
+- **ITSM Systems**: Synchronize data with enterprise CMDB systems.
 
 
 
@@ -411,15 +408,15 @@ CMDB uses standard PostgreSQL, making it easy to integrate with other systems:
 
 ## Considerations
 
-1. **Data Consistency**: After modifying configuration, you need to re-run the corresponding Ansible playbooks to apply changes to the actual environment
+1. **Data Consistency**: After you change configuration, run the corresponding Ansible playbooks again to apply it to the environment.
 
-2. **Backup**: Configuration data in CMDB is critical, ensure regular backups
+2. **Backup**: CMDB configuration data is critical. Back it up regularly.
 
-3. **Permissions**: Configure appropriate database access permissions for CMDB to avoid accidental modifications
+3. **Permissions**: Set appropriate CMDB database access permissions to prevent accidental changes.
 
-4. **Transactions**: When making batch configuration changes, perform them within a transaction for rollback on errors
+4. **Transactions**: Make batch configuration changes in a transaction. This permits rollback if an error occurs.
 
-5. **Connection Pooling**: The `inventory.sh` script creates a new connection on each execution; if Ansible runs frequently, consider using connection pooling
+5. **Connection Pooling**: `inventory.sh` opens a new connection each time it runs. Consider connection pooling if Ansible runs frequently.
 
 
 
@@ -427,7 +424,7 @@ CMDB uses standard PostgreSQL, making it easy to integrate with other systems:
 
 ## Summary
 
-CMDB is Pigsty's advanced configuration management solution, suitable for scenarios requiring large-scale cluster management, complex queries, external integration, or fine-grained access control. By storing configuration data in PostgreSQL, you can fully leverage the database's powerful capabilities to manage infrastructure configuration.
+Use CMDB for large cluster deployments, complex queries, external integration, or fine-grained access control. PostgreSQL stores the configuration and provides database functions to manage it.
 
 |      Feature      |           Description           |
 |:-----------------:|:-------------------------------:|

@@ -8,14 +8,14 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/playbook]
 ---
 
-The MYSQL module ships two playbooks: [`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) deploys and converges, while [`mysql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml) performs protected member retirement and cluster teardown. Re-running the former converges toward declared state; the latter is a separate lifecycle operation whose target, backups, and exact confirmation value must be checked again before every real run.
+[`mysql.yml`](https://github.com/pgsty/pigsty/blob/main/mysql.yml) deploys and adjusts clusters to declared state. Separate [`mysql-rm.yml`](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml) retires members or clusters with safeguards. Before every removal, recheck the target, backups, and exact confirmation value.
 
 
 --------
 
 ## `mysql.yml`
 
-Runs the full check → install → bootstrap → access → provision → backup → monitor convergence on the selected clusters:
+Selected clusters follow check → install → bootstrap → access → provision → backup → monitor:
 
 ```bash
 ./mysql.yml -l my-test --check     # preflight: validate declarations against the live state
@@ -25,10 +25,10 @@ Runs the full check → install → bootstrap → access → provision → backu
 
 Usage rules:
 
-- **HA clusters must be selected whole**: a `-l` that covers only some members is rejected at preflight (guarding against topology divergence). Multiple complete clusters, or no `-l` at all, are fine;
-- **Idempotent**: a converged cluster reruns as `changed=0` in seconds. The run immediately after an AdminAPI membership operation (rejoin/clone) may report one convergence `changed` — the replication seed list being pinned back to the declaration — which is expected;
-- **Check mode**: on fresh nodes it can only preview up to package installation (later steps need the installed platform); on deployed clusters it previews fully;
-- Initial three-node deployment takes ~2 minutes: certificates → config and initialization → AdminAPI cluster creation → cloning two members → Router bootstrap on each → business objects → backup and monitoring.
+- **Complete HA clusters:** Partial `-l` selection fails preflight to prevent topology divergence. Multiple complete clusters or no `-l` are permitted.
+- **Idempotent:** Converged clusters return `changed=0` within seconds. After AdminAPI rejoin/clone, one expected `changed` can restore declared replication seeds.
+- **Check mode:** Fresh nodes preview through package installation only; later stages need installed components. Deployed clusters support full previews.
+- Initial three-node deployment takes approximately two minutes: certificates, configuration/init, AdminAPI creation, two clones, Router bootstrap, business objects, backup, and monitoring.
 
 
 --------
@@ -60,27 +60,27 @@ Common tag-scoped runs:
 ./mysql.yml -l my-test -t mysql_monitor      # exporter and target registration only
 ```
 
-For parameter and configuration changes, run the full playbook — they involve the rolling-restart orchestration described below.
+Run the full playbook for parameter and configuration changes. They require the rolling-restart workflow below.
 
 
 --------
 
 ## Config Changes and Rolling Restarts
 
-The `mysql_launch` stage orchestrates restarts whenever the config file, certificates, or systemd units change:
+`mysql_launch` orchestrates restarts after configuration, certificate, or Systemd unit changes:
 
-1. **Health precondition**: an HA cluster must have all 3 members `ONLINE` before a rolling restart; degraded clusters are refused (repair first, then change);
-2. **Secondaries first**: ordered by live runtime role (not `mysql_seq`), each secondary restarts and must return `ONLINE` before the next;
-3. **Primary last**: the final restart triggers one automatic failover with a seconds-long write pause.
+1. **Health:** All three HA members must be `ONLINE`. Degraded clusters reject restarts; repair first.
+2. **Secondaries:** Use live roles, not `mysql_seq`. Restart one secondary at a time and wait for `ONLINE`.
+3. **Primary:** Restart last. One automatic failover pauses writes for a few seconds.
 
-Standalone instances restart in place. `mysqld --validate-config` at render time guarantees invalid options fail before any service is touched.
+Standalone restarts in place. Render-time `mysqld --validate-config` rejects invalid options before service changes.
 
 
 --------
 
 ## Guardrails
 
-`mysql.yml` **refuses to act** in the following situations, with errors that state the reason and the way forward:
+`mysql.yml` **rejects** these conditions and reports the cause and next steps:
 
 | Refused scenario | Rationale |
 |:---|:---|
@@ -97,14 +97,14 @@ Standalone instances restart in place. `mysqld --validate-config` at render time
 | Complete outage | Quorum is never rebuilt automatically; the error prints the manual recovery steps |
 {.full-width}
 
-These guardrails significantly reduce operational risk, but they are not a guarantee that data can never be lost. Every bypass—such as deleting markers or wiping data directories—must be a deliberate decision made after verifying backups and the exact scope.
+These checks reduce risk but cannot guarantee against data loss. Before bypassing checks, verify backups and exact scope. Marker deletion and datadir erasure must be deliberate decisions.
 
 
 --------
 
 ## `mysql-rm.yml`
 
-The retirement playbook accepts three scopes, each requiring double confirmation (`mysql_safeguard=false` plus `mysql_rm_confirm` exactly matching the target):
+Retirement accepts three scopes. Each requires `mysql_safeguard=false` and `mysql_rm_confirm` exactly matching its target:
 
 ```bash
 # Retire one member of an HA cluster (target must be reachable: an ONLINE SECONDARY or an already-detached member)
@@ -118,21 +118,21 @@ The retirement playbook accepts three scopes, each requiring double confirmation
 ./mysql-rm.yml -l my-meta -e mysql_safeguard=false -e mysql_rm_confirm=my-meta
 ```
 
-What it does — and does not do:
+Retirement behavior:
 
-- Single-member retirement removes an `ONLINE SECONDARY` via AdminAPI (`force: false`), or verifies an already-detached member, then stops local services. The removal script runs on the target itself, so **the target must be reachable** — for a dead machine, use manual force removal instead ([Replace a Failed Member](/docs/mysql/admin#replace-a-failed-member)). **Retiring the primary directly is refused** (switch it away first with [`setPrimaryInstance`](/docs/mysql/admin#switchover)); so is retiring 2 of 3 members at once;
-- Whole-cluster retirement stops the Router and backup timer, stops secondaries before the primary, and deregisters exporters and monitoring targets;
-- Every datadir gets the retirement marker `.pigsty-mysql-retired`, blocking ordinary `mysql.yml` reruns;
-- **All data is preserved**: datadirs, backups, config, certificates, packages, metadata, and Router identities stay untouched. Actual destruction is a separate, manual, backup-verified decision.
+- Single-member retirement uses AdminAPI `force: false` for an `ONLINE SECONDARY`, or verifies an already detached member, then stops local services. The script runs on the target, which **must be reachable**. For dead hardware, use [manual force removal](/docs/mysql/admin#replace-a-failed-member). **Primary retirement is rejected**; first switch with [`setPrimaryInstance`](/docs/mysql/admin#switchover). Removing two of three members together is also rejected.
+- Full-cluster retirement stops Router and backup timers, then secondaries before the primary. It deregisters exporters and monitoring targets.
+- Each datadir receives `.pigsty-mysql-retired`, blocking ordinary `mysql.yml` reruns.
+- **All data remains:** datadirs, backups, configuration, certificates, packages, metadata, and Router identities. Destruction requires a separate manual decision after backup verification.
 
-`--check` previews the complete plan without touching anything.
+`--check` previews the full plan without changes.
 
 
 --------
 
 ## Playbook Boundaries
 
-The following are **out of playbook scope** by design; manual procedures live in [Administration](/docs/mysql/admin):
+These operations remain **outside playbook scope**. Follow manual [Administration](/docs/mysql/admin) procedures:
 
 - Planned switchover (`setPrimaryInstance`);
 - Force removal of dead, unreachable members (`removeInstance` with `force: true`);

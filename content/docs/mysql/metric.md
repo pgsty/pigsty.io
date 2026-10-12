@@ -8,14 +8,14 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/metric]
 ---
 
-MYSQL metrics come from `mysqld_exporter` (raw metrics, `mysql_` prefix) and vmalert recording rules (`mysql:ins:*` / `mysql:cls:*`). Dashboards and alerts are built on the derived metrics; this page is their dictionary.
+`mysqld_exporter` supplies raw `mysql_` metrics. vmalert derives `mysql:ins:*` and `mysql:cls:*` metrics for dashboards and alerts. This page defines those metrics.
 
 
 --------
 
 ## Common Labels
 
-Every metric carries `job=mysql` and the identity labels `cls` / `ins` / `ip` / `topology` (`standalone` or `innodb_cluster`). Instance-level derived metrics keep all identity labels; cluster-level metrics aggregate to `cls` + `topology`.
+Metrics carry `job=mysql`, `cls`, `ins`, `ip`, and `topology` (`standalone` or `innodb_cluster`). Instance-derived metrics retain all identity labels. Cluster metrics aggregate to `cls` and `topology`.
 
 
 --------
@@ -32,7 +32,7 @@ Every metric carries `job=mysql` and the identity labels `cls` / `ins` / `ip` / 
 | `mysql:cls:health` | Cluster health: 2 healthy / 1 degraded-writable / 0 critical |
 {.full-width}
 
-For HA clusters, `mysql:cls:health` combines quorum, single-primary, and full-membership status; for standalones it is `2 × mysql:cls:up`.
+For HA, `mysql:cls:health` combines quorum, single-primary, and full-membership state. For standalone, it equals `2 × mysql:cls:up`.
 
 
 --------
@@ -110,7 +110,7 @@ For HA clusters, `mysql:cls:health` combines quorum, single-primary, and full-me
 
 ## Group Replication
 
-Instance-level membership flags (value 1 or absent — the series does not exist when the condition is false, which is why alerts use `unless`):
+Instance membership flags have value 1 or are absent. False conditions produce no series, so alerts use `unless`:
 
 | Metric | Meaning |
 |:---|:---|
@@ -144,7 +144,7 @@ Replication pipeline (certification and apply):
 
 ## Raw Metric Families
 
-For anything not covered by derived metrics, query the exporter's raw families:
+For data not covered by derived metrics, query raw exporter families:
 
 | Prefix | Content |
 |:---|:---|

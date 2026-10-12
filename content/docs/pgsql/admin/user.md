@@ -10,7 +10,9 @@ categories: [Task]
 
 ## Quick Start
 
-Pigsty uses declarative management: first [**define users**](/docs/pgsql/config/user) in the [**inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-user <cls> <username>` to create or modify.
+Pigsty manages users declaratively.
+First [**define users**](/docs/pgsql/config/user) in the [**inventory**](/docs/concept/iac/inventory).
+Then run `bin/pgsql-user <cls> <username>` to create or modify them.
 
 ```yaml
 pg-meta:
@@ -35,7 +37,11 @@ bin/pgsql-user pg-meta dbuser_app    # Create/modify dbuser_app user on pg-meta 
 
 For the complete user definition reference, see [**User Configuration**](/docs/pgsql/config/user). See [**Access Control**](/docs/concept/sec/ac#role-system) for roles and privileges, and [**Authentication**](/docs/concept/sec/auth) for credential management.
 
-`name` is the key used by `pgsql-user.yml` to look up a user definition; the playbook does not rename roles. For a rename, create the replacement role, migrate ownership, memberships, and client credentials, validate the cutover, and only then remove the old role. Do not treat delete-and-create as a lossless rename.
+`pgsql-user.yml` uses `name` to find a user definition.
+The playbook does not rename roles.
+To rename a role, create a replacement role.
+Migrate ownership, memberships, and client credentials, then validate the change before you remove the old role.
+Deletion followed by creation is not a lossless rename.
 
 | Action                          | Command                           | Description                              |
 |:--------------------------------|:----------------------------------|:-----------------------------------------|
@@ -52,9 +58,10 @@ For the complete user definition reference, see [**User Configuration**](/docs/p
 
 ## Create User
 
-Users defined in [**`pg_users`**](/docs/pgsql/param#pg_users) are auto-created during PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster) in the `pg_user` task.
+During PostgreSQL [**cluster creation**](/docs/pgsql/admin/cluster#create-cluster), the `pg_user` task automatically creates users defined in [**`pg_users`**](/docs/pgsql/param#pg_users).
 
-To create a new user on an existing cluster, add [**user definition**](/docs/pgsql/config/user) to `all.children.<cls>.pg_users`, then execute:
+To create a user on an existing cluster, add its [**definition**](/docs/pgsql/config/user) to `all.children.<cls>.pg_users`.
+Then run:
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <username>   # Create user <username>
@@ -79,7 +86,8 @@ bin/pgsql-user pg-meta dbuser_app    # Create dbuser_app user in pg-meta cluster
     comment: application user for myapp
 ```
 
-**Result**: Creates `dbuser_app` user on primary, sets password, grants `dbrole_readwrite` role, adds to Pgbouncer pool, reloads Pgbouncer config on all instances.
+**Result**: Pigsty creates `dbuser_app` on the primary, sets its password, and grants it the `dbrole_readwrite` role.
+It adds the user to the Pgbouncer pool and reloads Pgbouncer configuration on all instances.
 
 > [!NOTE] Recommendation: Use playbook
 > For manual user creation, you must ensure Pgbouncer user list sync yourself.
@@ -89,7 +97,9 @@ bin/pgsql-user pg-meta dbuser_app    # Create dbuser_app user in pg-meta cluster
 
 ## Modify User
 
-Same command as create - playbook is idempotent. When target user exists, Pigsty modifies properties to match config.
+Use the same command as for creation.
+The playbook is idempotent.
+If the target user exists, Pigsty changes its properties to match the configuration.
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <user>   # Modify user <user> properties
@@ -104,11 +114,15 @@ bin/pgsql-user pg-meta dbuser_app    # Modify dbuser_app to match config
 ```
 
 
-**Not directly mutable**: `name` is the identity key in the declarative definition. The playbook does not rename an existing role. Use a controlled create, ownership/privilege and client migration, validation, and old-role removal sequence.
+**Not directly mutable**: `name` is the identity key in the declarative definition.
+The playbook does not rename an existing role.
+Create a replacement role, then migrate ownership, privileges, and clients.
+Validate the change before you remove the old role.
 
 All other properties can be modified. Common examples:
 
-**Modify password**: Update `password` field. Logging is temporarily disabled during password change to prevent leakage.
+**Modify password**: Change the `password` field.
+Pigsty temporarily disables logging during the change to prevent password disclosure.
 
 ```yaml
 - name: dbuser_app
@@ -128,7 +142,10 @@ All other properties can be modified. Common examples:
   connlimit: 50              # Connection limit, -1 unlimited
 ```
 
-**Modify expiration**: Use `expire_in` for relative expiry (N days), or `expire_at` for absolute date. `expire_in` takes priority and recalculates on each playbook run - good for temp users needing periodic renewal.
+**Modify expiration**: Use `expire_in` for expiration after N days, or `expire_at` for a fixed date.
+`expire_in` takes priority.
+Each playbook run recalculates its expiration date.
+Use it for temporary users that need periodic renewal.
 
 ```yaml
 - name: temp_user
@@ -141,7 +158,9 @@ All other properties can be modified. Common examples:
   expire_at: 'infinity'           # Never expires
 ```
 
-**Modify role membership**: Use `roles` array with simple or extended format. Role membership is additive - won't remove undeclared existing roles. Use `state: absent` to explicitly revoke.
+**Modify role membership**: Use the `roles` array with simple or extended definitions.
+Membership changes are additive: Pigsty keeps existing memberships that the array does not declare.
+To revoke a membership explicitly, use `state: absent`.
 
 ```yaml
 - name: dbuser_app
@@ -152,7 +171,9 @@ All other properties can be modified. Common examples:
     - { name: old_role, state: absent }     # Revoke role membership
 ```
 
-**Manage user parameters**: Use `parameters` dict for user-level params, generates `ALTER USER ... SET`. Use `DEFAULT` to reset.
+**Manage user parameters**: Use the `parameters` dictionary for user-level parameters.
+Pigsty generates `ALTER USER ... SET` commands.
+Use `DEFAULT` to reset a parameter.
 
 ```yaml
 - name: dbuser_analyst
@@ -163,7 +184,8 @@ All other properties can be modified. Common examples:
     log_statement: DEFAULT        # Reset to default
 ```
 
-**Connection pool config**: Set `pgbouncer: true` to add user to pool. Optional `pool_mode` and `pool_connlimit`.
+**Connection pool config**: Set `pgbouncer: true` to add the user to the pool.
+You can also set `pool_mode` and `pool_connlimit`.
 
 ```yaml
 - name: dbuser_app
@@ -177,7 +199,10 @@ All other properties can be modified. Common examples:
 
 ## Delete User
 
-Deleting a user terminates sessions, transfers object ownership, revokes grants, and runs `DROP ROLE`; it is irreversible. Confirm the exact cluster, role, successor owner, and a recent backup before setting the user to `state: absent` and applying the change.
+User deletion terminates sessions, transfers object ownership, revokes grants, and runs `DROP ROLE`.
+This operation is irreversible.
+Confirm the exact cluster, role, successor owner, and a recent backup.
+Then set the user to `state: absent` and apply the change.
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-user <cls> <user>   # Actual deletion after confirmation; config must say state: absent
@@ -199,21 +224,36 @@ pg_users:
     state: absent
 ```
 
-**Deletion process**: On the primary, the task runs `pg-drop-role <user> postgres --force`. It disables login, terminates active sessions, transfers database and tablespace ownership plus objects in each connectable database to `postgres`, runs `DROP OWNED` to remove grants, revokes role memberships, and finally runs `DROP ROLE`. A pre-change audit snapshot is written to `/tmp/pg_drop_role_<user>_<timestamp>.log`.
+**Deletion process**: On the primary, the task runs `pg-drop-role <user> postgres --force`.
+It disables login and terminates active sessions.
+It transfers database and tablespace ownership, and objects in each connectable database, to `postgres`.
+It runs `DROP OWNED` to remove grants, revokes role memberships, then runs `DROP ROLE`.
+Before changes, it writes an audit snapshot to `/tmp/pg_drop_role_<user>_<timestamp>.log`.
 
-**Protection**: The Ansible task skips `postgres` and the replication, admin, and monitor usernames configured in inventory. When invoked directly, `pg-drop-role` protects only the hard-coded default names `postgres`, `replicator`, `dbuser_dba`, and `dbuser_monitor`; renamed system accounts are not recognized automatically.
+**Protection**: The Ansible task skips `postgres` and the replication, administration, and monitoring usernames configured in the inventory.
+Direct calls to `pg-drop-role` protect only the fixed default names: `postgres`, `replicator`, `dbuser_dba`, and `dbuser_monitor`.
+The script does not recognize renamed system accounts automatically.
 
 > [!WARNING] Dependency-aware, not transactional
-> `pg-drop-role` skips `DROP OWNED` in a database if its preceding `REASSIGN OWNED` fails, but the cross-database procedure is not one transaction. A mid-run failure can leave the role `NOLOGIN`, some ownership already transferred, or dependencies still present. The v4.5 Ansible task also uses `ignore_errors`, so a playbook result is not sufficient evidence. Verify role absence, successor ownership, application cutover, and the audit log afterward.
+> If `REASSIGN OWNED` fails in a database, `pg-drop-role` skips `DROP OWNED` in that database.
+> However, the procedure across databases is not one transaction.
+> A failure partway through can leave the role `NOLOGIN`, transfer only some ownership, or leave dependencies.
+> The v4.5 Ansible task also uses `ignore_errors`.
+> Thus, a successful playbook result does not prove complete deletion.
+> Afterward, verify role absence, successor ownership, application migration, and the audit log.
 
-In v4.5, `pgsql-user.yml` reloads Pgbouncer but does not reliably prune a deleted role from `/etc/pgbouncer/userlist.txt`. Check every cluster instance after deletion:
+In v4.5, `pgsql-user.yml` reloads Pgbouncer.
+However, it does not reliably remove a deleted role from `/etc/pgbouncer/userlist.txt`.
+Check every cluster instance after deletion:
 
 ```bash
 sudo -iu postgres psql -AXtwc "SELECT 1 FROM pg_roles WHERE rolname = 'dbuser_old';"
 grep -n '^"dbuser_old"[[:space:]]' /etc/pgbouncer/userlist.txt
 ```
 
-If an exact Pgbouncer entry remains, remove that single line under change control, reload Pgbouncer, and validate application connections. Do not use a broad pattern to delete entries.
+If the exact Pgbouncer entry remains, remove only that line through the change control procedure.
+Reload Pgbouncer and validate application connections.
+Do not delete entries with a broad pattern.
 
 
 ----------------
@@ -352,16 +392,20 @@ ORDER BY rolvaliduntil;
 
 [**Connection pool params**](/docs/pgsql/config/user#pgbouncer) in user definitions are applied to Pgbouncer when creating/modifying users.
 
-Users with `pgbouncer: true` are added to `/etc/pgbouncer/userlist.txt`. User-level pool params (`pool_mode`, `pool_connlimit`) are configured via `/etc/pgbouncer/useropts.txt`.
+Pigsty adds users with `pgbouncer: true` to `/etc/pgbouncer/userlist.txt`.
+It sets user-level `pool_mode` and `pool_connlimit` in `/etc/pgbouncer/useropts.txt`.
 
-Use `postgres` OS user with `pgb` alias to access Pgbouncer admin database. For more pool management, see [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer).
+As the `postgres` operating system user, use the `pgb` alias to access the Pgbouncer administration database.
+For more operations, see [**Pgbouncer Management**](/docs/pgsql/admin/pgbouncer).
 
 
 ----------------
 
 ## Manage Default-User Passwords
 
-For a business user, follow [**Modify User**](#modify-user): persist the new `password` in its `pg_users` definition, preview the scoped playbook, and then apply it. The three default users require extra coordination because other services consume their credentials.
+For a business user, follow [**Modify User**](#modify-user).
+Save the new `password` in its `pg_users` definition, preview the playbook for that user, then apply it.
+The three default users need extra coordination because other services use their credentials.
 
 | Parameter | Default | Role | Consumers |
 |:----------|:--------|:-----|:----------|
@@ -370,14 +414,17 @@ For a business user, follow [**Modify User**](#modify-user): persist the new `pa
 | [**`pg_replication_password`**](/docs/pgsql/param#pg_replication_password) | `DBUser.Replicator` | `replicator` | Patroni replication and `.pgpass` files |
 {.full-width}
 
-These accounts belong to [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles), not `pg_users`. `pgsql-user.yml` looks up only `pg_users`, so do not rotate a default password by overriding `pg_users` on the command line: that changes the business-user list visible to that run and exposes plaintext in shell history.
+These accounts belong to [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles), not `pg_users`.
+`pgsql-user.yml` searches only `pg_users`.
+Do not change a default password by overriding `pg_users` on the command line.
+This changes the business-user list for that run and exposes plaintext passwords in shell history.
 
 Rotate one account at a time:
 
-1. Persist the new parameter in `pigsty.yml` or the inventory actually in use; never put the plaintext password on the command line.
-2. On the current primary, open interactive `psql` as a superuser and run `\password <username>`; the meta-command reads the secret interactively.
-3. Run the corresponding refresh playbooks below after verifying the `-l` cluster/node scope.
-4. Keep the current administration session open and verify direct PostgreSQL, Pgbouncer, replication, exporters, and Grafana data sources before rotating another account.
+1. Save the new parameter in `pigsty.yml` or the active inventory. Never put the plaintext password on the command line.
+2. On the current primary, open interactive `psql` as a superuser. Run `\password <username>` to enter the secret interactively.
+3. Verify the `-l` cluster or node scope, then run the corresponding refresh playbooks below.
+4. Keep the current administration session open. Verify direct PostgreSQL, Pgbouncer, replication, exporters, and Grafana data sources before you change another account.
 
 ```bash
 # On the current primary of the target cluster
@@ -401,7 +448,10 @@ Refresh every consumer for the account. Replace `<cls>` and constrain `infra` to
 ./infra.yml -l infra -t env_pgpass
 ```
 
-A mismatch between the replication role and Patroni nodes prevents new replication connections, so rotate that credential in a maintenance window and validate promptly. If VIBE or another module has rendered an admin connection string into its workspace context, rerender that module's files as well.
+If replication credentials differ between the role and Patroni nodes, new replication connections fail.
+Change this credential during a maintenance window and validate it promptly.
+VIBE or another module may have generated an administration connection string in its workspace context.
+If so, generate that module's files again.
 
 > [!WARNING] Check for duplicate Infra .pgpass entries
 > In v4.5, `env_pgpass` adds the new line with `lineinfile`; it does not remove older lines by username. Because libpq uses the first matching line, inspect every target Infra node after the refresh and remove obsolete entries through controlled editing without printing secrets:
@@ -410,7 +460,9 @@ A mismatch between the replication role and Patroni nodes prevents new replicati
 > awk -F: '$4=="dbuser_dba" || $4=="dbuser_monitor" || $4=="replicator" {print NR, $4}' ~/.pgpass
 > ```
 
-[**`patroni_password`**](/docs/pgsql/param#patroni_password) protects the Patroni REST API; it is not a PostgreSQL role password. After changing it in inventory, refresh the target PostgreSQL cluster and Infra management side separately:
+[**`patroni_password`**](/docs/pgsql/param#patroni_password) protects the Patroni REST API.
+It is not a PostgreSQL role password.
+After you change it in the inventory, refresh the target PostgreSQL cluster and the Infra administration configuration separately:
 
 ```bash
 ./pgsql.yml -l <cls> -t pg_conf,patroni_reload -e pg_reload=true

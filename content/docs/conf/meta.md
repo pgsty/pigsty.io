@@ -6,9 +6,9 @@ icon: fa-solid fa-cube
 categories: [Reference]
 ---
 
-The `meta` configuration template is Pigsty's default template, designed to fulfill Pigsty's core functionality—deploying PostgreSQL—on a single node.
+The `meta` configuration template is the default Pigsty template. It deploys PostgreSQL on one node, which is the core function of Pigsty.
 
-To maximize compatibility, `meta` installs only the **minimum required** software set to ensure it runs across all operating system distributions and architectures.
+For compatibility across operating system distributions and architectures, `meta` installs only the **minimum required** software.
 
 
 --------
@@ -22,13 +22,13 @@ To maximize compatibility, `meta` installs only the **minimum required** softwar
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`slim`](/docs/conf/slim/), [`fat`](/docs/conf/fat/)
 
-Usage: This is the default config template, so there's no need to specify `-c meta` explicitly during [**configure**](/docs/setup/install#configure):
+Usage: This is the default template. You do not need to specify `-c meta` during [**configure**](/docs/setup/install#configure):
 
 ```bash
 ./configure [-i <primary_ip>]
 ```
 
-For example, if you want to install PostgreSQL 16 rather than the default 18, you can use the `-v` arg in `configure`:
+To install PostgreSQL 16 instead of the default version 18, use the `-v` argument in `configure`:
 
 ```bash
 ./configure -v 16   # or 17, 15, 14; use the pg19 template for PG19 Beta
@@ -48,7 +48,7 @@ Source: [`pigsty/conf/meta.yml`](https://github.com/pgsty/pigsty/blob/main/conf/
 
 ## Explanation
 
-The `meta` template is Pigsty's **default getting-started configuration**, designed for quick onboarding.
+Use `meta` as the **default getting-started configuration** for a quick initial deployment.
 
 **Use Cases**:
 - First-time Pigsty users
@@ -61,9 +61,9 @@ The `meta` template is Pigsty's **default getting-started configuration**, desig
 - Default installs PostgreSQL 18 with `postgis` and `pgvector` extensions
 - Includes complete observability infrastructure (Grafana, VictoriaMetrics, VictoriaLogs, etc.)
 - Preconfigured Docker and pgAdmin application examples
-- Silo backup storage disabled by default, can be enabled as needed
+- Silo backup storage is disabled by default. Enable it if needed.
 
 **Notes**:
-- Default passwords are sample passwords; **must be changed** for production environments
-- Single-node etcd has no high availability guarantee, suitable for development and testing
+- The default passwords are examples. You **must change** them before production use.
+- Single-node etcd does not provide high availability. It is suitable for development and testing.
 - If you need to build a local software repository, use the [`rich`](/docs/conf/rich/) template

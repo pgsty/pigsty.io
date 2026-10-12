@@ -74,8 +74,7 @@ series:
 | **Passive Failure** (node down) | Dies with node |     Cannot actively release, must wait for TTL expiry      |          `ttl`          |
 {.full-width}
 
-In active failure scenarios, Patroni remains alive and can **actively detect PG crash and attempt restart**.
-If restart succeeds, service self-heals; if timeout expires without recovery, Patroni **actively releases the Leader Key**, triggering cluster election.
+During active failure, Patroni remains available. It detects a PostgreSQL crash and attempts a restart. If restart succeeds, service recovers locally. If recovery times out, Patroni releases the **Leader Key** and triggers an election.
 
 
 --------
@@ -84,7 +83,7 @@ If restart succeeds, service self-heals; if timeout expires without recovery, Pa
 
 ### Phase 1: Failure Detection
 
-Patroni checks PostgreSQL status every `loop_wait` cycle (via `pg_isready` or process check).
+Each `loop_wait` cycle, Patroni checks PostgreSQL through `pg_isready` or a process check.
 
 ```text
 Timeline:
@@ -108,7 +107,7 @@ loop & \text{Worst}
 
 ### Phase 2: Restart Timeout
 
-After Patroni detects PG crash, it attempts to restart PostgreSQL. This phase has two possible outcomes:
+After detecting a crash, Patroni attempts to restart PostgreSQL. There are two possible results:
 
 ```text
 Timeline:
@@ -118,14 +117,14 @@ Timeline:
 ```
 
 **Path A: Self-healing Success** (Best case)
-- PG restarts successfully, service recovers
-- No failover triggered, extremely short RTO
-- Wait time: `0` (relative to Failover path)
+- PostgreSQL restarts and service recovers.
+- No failover occurs, so RTO is very short.
+- Wait: `0` relative to the failover path.
 
 **Path B: Failover Required** (Average/Worst case)
-- PG still not recovered after `primary_start_timeout`
-- Patroni actively releases Leader Key
-- Wait time: `start`
+- PostgreSQL does not recover before `primary_start_timeout`.
+- Patroni releases the Leader Key.
+- Wait: `start`.
 
 ```math
 T_{restart} = \begin{cases}
@@ -135,12 +134,12 @@ start & \text{Worst}
 \end{cases}
 ```
 
-> **Note**: Average case assumes failover is required. If PG can quickly self-heal, overall RTO will be significantly lower.
+> **Note**: The average assumes failover is necessary. A quick local restart can substantially reduce RTO.
 
 
 ### Phase 3: Standby Detection
 
-Standbys wake up on `loop_wait` cycle and check Leader Key status in DCS. When primary Patroni releases the Leader Key, standbys discover this and begin election.
+Standbys check the DCS Leader Key each `loop_wait` cycle. After the primary releases it, they detect its absence and begin an election.
 
 ```text
 Timeline:
@@ -164,11 +163,11 @@ loop & \text{Worst}
 
 ### Phase 4: Lock & Promote
 
-After standbys discover Leader Key vacancy, election begins. The standby that acquires the Leader Key executes `pg_ctl promote` to become the new primary.
+When the Leader Key is absent, standbys begin an election. The winner acquires the key and runs `pg_ctl promote`.
 
-1. Via REST API, parallel queries to check each standby's replication position, typically 10ms, hardcoded 2s timeout.
-2. Compare WAL positions to determine best candidate, standbys attempt to create Leader Key (CAS atomic operation)
-3. Execute `pg_ctl promote` to become primary (very fast, typically negligible)
+1. Query standby replication positions in parallel through REST APIs. Typical response time is 10ms; the hardcoded timeout is 2s.
+2. Compare WAL positions and select the best candidate. Standbys attempt atomic CAS creation of the Leader Key.
+3. Run `pg_ctl promote`. Its duration is usually negligible.
 
 ```text
 Election process:
@@ -191,7 +190,7 @@ T_{elect} = \begin{cases}
 
 ### Phase 5: Health Check
 
-HAProxy detects new primary online, requires `rise` consecutive successful health checks.
+HAProxy requires `rise` consecutive successful checks before it marks the new primary healthy.
 
 ```text
 Check timeline:
@@ -217,7 +216,7 @@ T_{haproxy} = \begin{cases}
 
 ## RTO Formula
 
-Sum all phase times to get total RTO:
+Add the phase durations to calculate total RTO:
 
 **Best Case** (PG instant self-healing)
 
@@ -242,7 +241,7 @@ RTO_{max} = loop \times 2 + start + 2 + inter + (rise-1) \times fastinter
 
 ## Model Calculation
 
-Substituting the four RTO model parameters into the formulas above:
+Apply the four RTO presets to these formulas:
 
 ```yaml
 pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]
@@ -287,6 +286,6 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |  wide  |    122s      |    127s      | -5s    |
 {.full-width}
 
-> **Analysis**: In `fast` and `norm` modes, active failure RTO is slightly higher than passive failure because it waits for `primary_start_timeout` (`start`);
-> but in `safe` and `wide` modes, since `start < ttl - loop`, active failure is actually faster.
-> However, active failure has the possibility of self-healing, with potentially extremely short RTO in best case scenarios.
+> **Analysis**: In `fast` and `norm`, active failures wait for `primary_start_timeout` (`start`), making RTO slightly longer than for passive failures.
+> In `safe` and `wide`, `start < ttl - loop`, so active recovery is faster.
+> A successful local restart can make the best-case active RTO much shorter.

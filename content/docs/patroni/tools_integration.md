@@ -11,28 +11,28 @@ categories: [Concept]
 > Source: https://patroni.readthedocs.io/en/latest/tools_integration.html
 
 <a id="tools_integration"></a>
-Patroni is able to integrate with other tools in your stack. In this section you will find a list of examples, which although not an exhaustive list, might provide you with ideas on how Patroni can integrate with other tools.
+Patroni can integrate with other tools in your stack. These examples show possible integrations. The list is not complete.
 
 --------
 
 ## Barman
 
-Patroni delivers an application named `patroni_barman` which has logic to communicate with `pg-backup-api`, so you are able to perform Barman operations remotely.
+Patroni provides `patroni_barman`. This application communicates with `pg-backup-api` to run Barman operations remotely.
 
-This application currently has a couple of sub-commands: `recover` and `config-switch`.
+The application has two subcommands: `recover` and `config-switch`.
 
 ### patroni_barman recover
 
-The `recover` sub-command can be used as a custom bootstrap or custom replica creation method. You can find more information about that in [replica_imaging_and_bootstrap](/docs/patroni/replica_bootstrap#replica_imaging_and_bootstrap).
+Use the `recover` subcommand as a custom bootstrap method or replica creation method. See [replica_imaging_and_bootstrap](/docs/patroni/replica_bootstrap#replica_imaging_and_bootstrap) for details.
 
 ### patroni_barman config-switch
 
-The `config-switch` sub-command is designed to be used as an `on_role_change` callback in Patroni. As an example, assume you are streaming WALs from your current primary to your Barman host. In the event of a failover in the cluster you might want to start streaming WALs from the new primary. You can accomplish this by using `patroni_barman config-switch` as the `on_role_change` callback.
+Use the `config-switch` subcommand as an `on_role_change` callback in Patroni. For example, you may stream WALs from the primary to your Barman host. After a failover, you may want to stream from the new primary. Use `patroni_barman config-switch` as the `on_role_change` callback for this change.
 
 > [!NOTE]
-> That sub-command relies on the `barman config-switch` command, which is in charge of overriding the configuration of a Barman server by applying a pre-defined model on top of it. This command is available since Barman 3.10. Please consult the Barman documentation for more details.
+> This subcommand uses `barman config-switch`, available since Barman 3.10. The command overrides a Barman server configuration with a predefined model. See the Barman documentation for details.
 
-This is an example of how you can configure Patroni to apply a configuration model in case this Patroni node is promoted to primary:
+This example applies a configuration model when the Patroni node becomes primary:
 
 ```yaml
 postgresql:
@@ -47,4 +47,4 @@ postgresql:
 ```
 
 > [!NOTE]
-> `patroni_barman config-switch` requires that you have both Barman and `pg-backup-api` configured in the Barman host, so it can execute a remote `barman config-switch` through the backup API. Also, it requires that you have pre-configured Barman models to be applied. The above example uses a subset of the available parameters. You can get more information running `patroni_barman config-switch --help`, and by consulting the Barman documentation.
+> Configure Barman and `pg-backup-api` on the Barman host before you use `patroni_barman config-switch`. This lets it run `barman config-switch` remotely through the backup API. You must also configure the Barman models in advance. The example uses only some available parameters. Run `patroni_barman config-switch --help` or see the Barman documentation for details.

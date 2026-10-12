@@ -6,7 +6,7 @@ icon: fa-solid fa-bolt
 categories: [Reference]
 ---
 
-The `supabase` configuration template provides a reference configuration for self-hosting Supabase, using Pigsty-managed PostgreSQL as the underlying storage.
+The `supabase` template provides a reference configuration to self-host Supabase. It uses PostgreSQL managed by Pigsty for the underlying storage.
 
 For more details, see **[Supabase Self-Hosting Tutorial](/docs/app/supabase/)**
 
@@ -51,7 +51,7 @@ Source: [`pigsty/conf/supabase.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 ## Explanation
 
-The `supabase` template provides a complete self-hosted Supabase solution, allowing you to run this open-source Firebase alternative on your own infrastructure.
+The `supabase` template provides a complete self-hosted Supabase configuration. Run this open-source Firebase alternative on your own infrastructure.
 
 **Architecture**:
 - **PostgreSQL**: Production-grade Pigsty-managed PostgreSQL (with HA support)
@@ -97,7 +97,7 @@ psql postgres://supabase_admin:DBUser.Supa@10.10.10.10:5432/postgres
 - Compliance or cost concerns with Supabase cloud service
 
 **Notes**:
-- **Must change JWT_SECRET**: Use at least 32-character random string, and regenerate ANON_KEY and SERVICE_ROLE_KEY
+- **Must change JWT_SECRET**: Use a random string with at least 32 characters. Regenerate ANON_KEY and SERVICE_ROLE_KEY.
 - Configure proper domain names (`SITE_URL`, `API_EXTERNAL_URL`)
 - Production environments should enable HTTPS (can use certbot for auto certificates)
 - Docker networks need PostgreSQL access. The template allows `172.16.0.0/12` for `postgres` and `_supabase`; narrow this range to match your actual network.

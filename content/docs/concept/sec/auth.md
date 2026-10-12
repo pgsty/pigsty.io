@@ -7,12 +7,11 @@ module: [PIGSTY, PGSQL]
 categories: [Concept]
 ---
 
-PostgreSQL uses `pg_hba.conf` for **Host-Based Authentication**: who may connect, from where, to which database, and how they must prove their identity.
+`pg_hba.conf` defines PostgreSQL **Host-Based Authentication**. It controls who can connect, the source address, the database, and the required identity check.
 
-The mechanism is powerful, but expensive to maintain manually across a cluster. Primary and replica instances may require different rules, and every instance stores its own configuration in the data directory.
-Without a common declaration and refresh process, rules can drift between instances.
+Manual HBA maintenance across a cluster requires care. Primary and replica rules can differ, and each instance stores its configuration in its data directory. Without a shared declaration and refresh process, instance rules can diverge.
 
-Pigsty applies the same [**declarative configuration**](/docs/concept/iac/) model here: HBA rules are part of the inventory and are rendered and distributed consistently by playbooks.
+Pigsty declares HBA rules in the inventory through [**declarative configuration**](/docs/concept/iac/). Playbooks render and distribute them consistently.
 
 
 ---------------------
@@ -22,38 +21,36 @@ Pigsty applies the same [**declarative configuration**](/docs/concept/iac/) mode
 
 ## HBA as Code
 
-Cluster HBA policy combines two parameter groups: the global defaults in [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) and cluster-specific additions in [`pg_hba_rules`](/docs/pgsql/param#pg_hba_rules).
-The [**PgBouncer connection pool**](/docs/concept/arch/pgsql#pgbouncer) has two independent counterparts: [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules) and [`pgb_hba_rules`](/docs/pgsql/param#pgb_hba_rules).
+Cluster HBA combines global defaults in [`pg_default_hba_rules`](/docs/pgsql/param#pg_default_hba_rules) with cluster additions in [`pg_hba_rules`](/docs/pgsql/param#pg_hba_rules). [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) has separate equivalents: [`pgb_default_hba_rules`](/docs/pgsql/param#pgb_default_hba_rules) and [`pgb_hba_rules`](/docs/pgsql/param#pgb_hba_rules).
 
-A rule can use either of two forms. The recommended **alias form** keeps one semantic rule on one line:
+Rules support two forms. The recommended **alias form** expresses one rule per line:
 
 ```yaml
 pg_hba_rules:
   - { user: dbuser_app ,db: app ,addr: 10.1.0.0/16 ,auth: ssl ,order: 50 ,title: 'app user access via ssl' }
 ```
 
-The **raw form** supplies a literal `pg_hba.conf` line for cases the aliases cannot express.
+Use the **raw form** for cases aliases cannot express. It contains a literal `pg_hba.conf` line.
 
 In addition to user, address, database, and authentication method, each rule has two control fields:
 
-- **`order`**: render order. HBA uses first-match semantics, so order is priority. By convention, `0-99` is reserved for high-priority user rules, `100-999` for defaults, and rules without `order` come last.
-- **`role`**: instance-role filter. `common` and `default` apply to every instance; `primary`, `replica`, `offline`, `standby`, and `delayed` apply only to matching instances.
-  A `role: offline` rule is also rendered on instances marked with `pg_offline_query`. The same declaration therefore produces the appropriate rules for each instance role without maintaining primary and replica files manually.
+- **`order`** sets render order. HBA uses the first matching rule, so order sets priority. By convention, `0-99` is for high-priority user rules and `100-999` for defaults. Rules without `order` come last.
+- **`role`** filters by instance role. `common` and `default` apply everywhere. `primary`, `replica`, `offline`, `standby`, and `delayed` apply only to matching instances. `role: offline` also applies to instances marked with `pg_offline_query`. One declaration therefore generates appropriate rules without separate manual primary and replica files.
 
-After editing the declaration, apply it with the wrapper script. The rules are rendered again and reloaded:
+After editing the declaration, run the wrapper script to render and reload the rules:
 
 ```bash
 bin/pgsql-hba pg-meta          # Render and apply HBA rules for pg-meta
 ```
 
-`pg_hba_rules` appends rules; it does not automatically narrow broader defaults. To establish a stricter boundary, review `pg_default_hba_rules` as well, then inspect the generated `pg_hba.conf` on every instance.
+`pg_hba_rules` adds rules but does not automatically restrict broader defaults. For stricter access, also review `pg_default_hba_rules`. Inspect the resulting `pg_hba.conf` on every instance.
 
 
 ---------------------
 
 ## Address and Authentication Aliases
 
-The alias form gives common cases semantic names. Values in `addr` expand into concrete address blocks:
+Aliases name common cases. Each `addr` value expands into address blocks:
 
 | Alias | Expands To | Meaning |
 |:---|:---|:---|
@@ -83,17 +80,16 @@ Values in `auth` select the authentication method and whether TLS is mandatory:
 | `peer` | `peer` | Local OS user |
 {.full-width}
 
-The user field supports four placeholders, replaced with actual user names during rendering: `${dbsu}` (superuser), `${repl}` (replication user), `${monitor}` (monitoring user), and `${admin}` (administration user).
-A `+role` prefix matches all members of that role.
+The user field supports four placeholders: `${dbsu}` (superuser), `${repl}` (replication user), `${monitor}` (monitoring user), and `${admin}` (administration user). Rendering replaces them with actual names. `+role` matches all members of that role.
 
-Do not confuse transport enforcement with server verification: `auth: ssl` requires TLS but does not require the client to verify the server identity. Security-sensitive clients should also use `sslmode=verify-full` with a trusted CA; see [**Encrypted Communication**](/docs/concept/sec/ca#server-identity-verification).
+`auth: ssl` requires TLS but does not require client verification of the server identity. Security-sensitive clients should use `sslmode=verify-full` with a trusted CA. See [**Encrypted Communication**](/docs/concept/sec/ca#server-identity-verification).
 
 
 ---------------------
 
 ## Default Rules Explained
 
-Pigsty's default HBA policy follows a simple rule: **the farther the source, the stronger the requirement**. These are the PostgreSQL defaults from the source configuration:
+The default HBA policy requires stronger authentication for more distant sources. These PostgreSQL defaults come from the source configuration:
 
 ```yaml
 pg_default_hba_rules:             # postgres default host-based authentication rules, order by `order`
@@ -113,16 +109,15 @@ pg_default_hba_rules:             # postgres default host-based authentication r
 
 Layer by layer:
 
-- **Local access is most trusted**: `postgres` can enter only through a local Unix socket with `ident`. No password is required, but remote login is impossible. This is why dbsu has no password by default.
-- **The intranet comes next**: replication and application accounts use SCRAM password authentication on the intranet. Remote monitoring and administration access primarily originates from INFRA nodes.
-- **Public sources are strictest**: only the administrator may connect from any address by default, and the connection requires both a password and TLS.
+- **Local access:** `postgres` can connect only through a local Unix socket with `ident`. It needs no password and cannot log in remotely. Thus, dbsu has no default password.
+- **Intranet access:** Replication and application accounts use SCRAM password authentication. Remote monitoring and administration connections mainly come from INFRA nodes.
+- **Public access:** Only the administrator can connect from any address by default. Both a password and TLS are required.
 
-PgBouncer defaults are more restrictive: public access for monitoring and administration accounts is explicitly denied, while application users are limited to localhost and intranet sources.
+PgBouncer explicitly denies public access for monitoring and administration accounts. Application users can connect only from localhost and intranet sources.
 
-The default `+dbrole_offline` rule does not set `role` and therefore applies to every instance. To restrict offline users to `pg_role: offline` or instances with `pg_offline_query: true`, add `role: offline` explicitly to the corresponding HBA rule.
+The default `+dbrole_offline` rule has no `role` filter and applies to every instance. Add `role: offline` to restrict it to `pg_role: offline` or `pg_offline_query: true` instances.
 
-This default policy favors usability: application accounts can connect from the intranet with password authentication.
-The [**`ha/safe` template**](/docs/conf/safe) changes the main TCP rules to `ssl` and requires administrators outside the intranet to present a client certificate (`cert`); local `ident` and selected localhost password rules remain.
+The default policy lets application accounts connect from the intranet with passwords. [**`ha/safe`**](/docs/conf/safe) changes the main TCP rules to `ssl`. Administrators outside the intranet must present a client certificate (`cert`). Local `ident` and selected localhost password rules remain.
 
 
 ---------------------
@@ -132,20 +127,21 @@ The [**`ha/safe` template**](/docs/conf/safe) changes the main TCP rules to `ssl
 
 ## Password Policy
 
-Pigsty uses PostgreSQL's recommended `scram-sha-256` password storage by default ([`pg_pwd_enc`](/docs/pgsql/param#pg_pwd_enc)). Downgrade to `md5` only for legacy client compatibility.
+Pigsty defaults to PostgreSQL's recommended `scram-sha-256` password storage through [`pg_pwd_enc`](/docs/pgsql/param#pg_pwd_enc). Use `md5` only for legacy clients.
 
-Before executing `ALTER USER ... PASSWORD`, the password workflow temporarily disables statement logging (`SET log_statement TO 'none'`) to keep passwords out of PostgreSQL logs.
-Plaintext passwords still appear in the inventory, and rendered user SQL is written to `/pg/tmp/pg-user-<name>.sql` with mode `0640`. The related Ansible tasks do not use `no_log` consistently. Restrict access to the admin node, configuration repository, and automation output, and avoid `--diff` on tasks containing credentials.
+Before `ALTER USER ... PASSWORD`, the workflow runs `SET log_statement TO 'none'` to temporarily disable statement logging. This keeps passwords out of PostgreSQL logs. The inventory still contains plaintext passwords. Rendered user SQL is stored at `/pg/tmp/pg-user-<name>.sql` with mode `0640`. Related Ansible tasks do not consistently use `no_log`. Restrict access to the administration node, configuration repository, and automation output.
 
-Password strength is not enforced by default. If required, preload [**`passwordcheck`**](/ext/e/passwordcheck/) or the more configurable [**`credcheck`**](/ext/e/credcheck/):
+Avoid `--diff` for tasks that contain credentials.
+
+Password strength checks are disabled by default. If required, preload [**`passwordcheck`**](/ext/e/passwordcheck/) or the more configurable [**`credcheck`**](/ext/e/credcheck/):
 
 ```yaml
 pg_libs: '$libdir/passwordcheck, pg_stat_statements, auto_explain'   # Reject weak passwords
 ```
 
-The `ha/safe` template sets this `pg_libs` value explicitly. Selecting the CRIT parameter template alone does not load `passwordcheck`.
+`ha/safe` sets this `pg_libs` value explicitly. Selecting CRIT alone does not load `passwordcheck`.
 
-Declare account lifetime with `expire_in` (days after creation) or `expire_at` (absolute date), then combine it with the organization's rotation process:
+Set account lifetime with `expire_in` (days after creation) or `expire_at` (absolute date). Combine this with your organization's rotation process:
 
 ```yaml
 pg_users:
@@ -159,8 +155,7 @@ pg_users:
 
 ## Certificate Authentication
 
-Passwords can be phished, reused, or guessed. For privileged accounts such as administrators, use `auth: cert` in HBA to require **client certificate authentication**.
-The client must present a certificate signed by the local CA whose CN matches the database user name. When the HBA rule accepts only `cert`, a leaked password alone cannot authenticate.
+Passwords can be phished, reused, or guessed. For privileged accounts, such as administrators, set HBA `auth: cert` to require **client certificates**. The local CA must sign the certificate, and its CN must match the database user name. If the rule accepts only `cert`, a leaked password alone cannot authenticate.
 
 Issue client certificates with the built-in `cert.yml` playbook:
 
@@ -169,7 +164,7 @@ Issue client certificates with the built-in `cert.yml` playbook:
 ./cert.yml -e cn=dbuser_dba -e expire=365d  # Or specify a shorter lifetime
 ```
 
-The certificate and key are stored in `files/pki/misc/<cn>.crt` and `files/pki/misc/<cn>.key`. Deliver the private key through a controlled channel. The client should still use `verify-full` to authenticate the database server; see [**Encrypted Communication**](/docs/concept/sec/ca).
+The files are `files/pki/misc/<cn>.crt` and `files/pki/misc/<cn>.key`. Deliver the private key through a controlled channel. The client should use `verify-full` to verify the database server. See [**Encrypted Communication**](/docs/concept/sec/ca).
 
 
 ---------------------
@@ -181,12 +176,11 @@ The certificate and key are stored in `files/pki/misc/<cn>.crt` and `files/pki/m
 
 The database is not the only authenticated entry point.
 
-The **PgBouncer connection pool** uses an independent HBA policy and user list. `pgbouncer_auth_query` is disabled by default, so only users declared with `pgbouncer: true` are written to `userlist.txt` and can authenticate through the pool. Re-evaluate the login scope before enabling dynamic authentication queries.
+**PgBouncer** has separate HBA rules and a separate user list. `pgbouncer_auth_query` is disabled by default. Only users with `pgbouncer: true` enter `userlist.txt` and can authenticate through the pool. Review permitted logins before enabling dynamic authentication queries.
 
-The [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) carries high-availability control operations such as restart, switchover, and configuration reload. Write operations require HTTP Basic authentication ([`patroni_username`](/docs/pgsql/param#patroni_username) and [`patroni_password`](/docs/pgsql/param#patroni_password)) and are restricted by source-address allowlists.
-When [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) is enabled, the API uses HTTPS throughout.
+The [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) controls operations such as restart, switchover, and configuration reload. Writes require HTTP Basic authentication through [`patroni_username`](/docs/pgsql/param#patroni_username) and [`patroni_password`](/docs/pgsql/param#patroni_password). Source-address allowlists also restrict writes. Enable [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) to use HTTPS throughout.
 
-Credentials for Grafana, the HAProxy administration interface, the object-storage backend selected by the MINIO module, etcd, and other components are also declared in the inventory. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the full list and update guidance.
+The inventory also declares credentials for Grafana, HAProxy administration, the MINIO-selected object storage backend, etcd, and other components. See the [**Default Credentials Checklist**](/docs/concept/sec/compliance#default-credentials-checklist) for the full list and update instructions.
 
 
 ---------------------

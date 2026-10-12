@@ -6,7 +6,7 @@ icon: fa-solid fa-lock
 categories: [Reference]
 ---
 
-The `pgtde` configuration template uses Percona PostgreSQL database kernel, providing Transparent Data Encryption (TDE) capability.
+The `pgtde` configuration template uses the Percona PostgreSQL database kernel. This kernel provides Transparent Data Encryption (TDE).
 
 
 --------
@@ -45,7 +45,7 @@ alias. Pigsty links the private `/usr/pgtde-$v` prefix (currently
 `/usr/pgtde-18`) to its stable `/usr/pgsql` entry point.
 
 **Key Features**:
-- **Transparent Data Encryption**: Data automatically encrypted on disk, transparent to applications
+- **Transparent Data Encryption**: The kernel automatically encrypts data on disk. Applications do not need to manage this encryption.
 - **Key Management**: Supports local keys and external Key Management Systems (KMS)
 - **Table-level Encryption**: Selectively encrypt sensitive tables
 - **Full Compatibility**: Fully compatible with native PostgreSQL
@@ -79,6 +79,6 @@ ALTER TABLE existing_table SET ACCESS METHOD tde_heap;
 
 **Notes**:
 - Percona PostgreSQL is based on PostgreSQL 18
-- Encryption brings some performance overhead (typically 5-15%)
+- Encryption adds some performance overhead, typically 5-15%.
 - Encryption keys must be properly managed
 - Both `x86_64` and `aarch64` packages are available on the listed distributions

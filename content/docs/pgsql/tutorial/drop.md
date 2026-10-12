@@ -10,7 +10,7 @@ categories: [Task]
 
 ## Accidental Data Deletion
 
-If it's a small-scale `DELETE` misoperation, you can consider using the [`pg_surgery`](/ext/e/pg_surgery) or [`pg_dirtyread`](/ext/e/pg_dirtyread) extension for in-place surgical recovery.
+For a small accidental `DELETE`, consider [`pg_surgery`](/ext/e/pg_surgery) or [`pg_dirtyread`](/ext/e/pg_dirtyread) for selective recovery in place.
 
 ```sql
 -- Immediately disable Auto Vacuum on this table and abort Auto Vacuum worker processes for this table
@@ -25,19 +25,20 @@ If the deleted data has already been reclaimed by VACUUM, then use the general a
 
 ## Accidental Object Deletion
 
-When `DROP/DELETE` type misoperations occur, typically decide on a recovery plan according to the following process:
+For accidental `DROP/DELETE` operations, usually select a recovery method in this order:
 
-1. Confirm whether this data can be recovered from the business system or other data systems. If yes, recover directly from the business side.
-2. Confirm whether there is a delayed replica. If yes, advance the delayed replica to the time point before deletion and query the data for recovery.
-3. If the data has been confirmed deleted, confirm backup information and whether the backup range covers the deletion time point. If it does, start PITR.
-4. Confirm whether to perform in-place cluster [PITR rollback](/docs/pgsql/backup/restore), or start a new server for replay, or use a replica for replay, and execute the recovery strategy.
+1. Check whether the application or another data system can supply the data. If so, recover it from that system.
+2. Check whether a delayed replica exists. If so, advance it to the time before deletion and query the data for recovery.
+3. If deletion is confirmed, check the backups and their recovery window. If the window covers the deletion time, start PITR.
+4. Select where to replay: an in-place cluster [PITR rollback](/docs/pgsql/backup/restore), a new server, or a replica. Then perform recovery.
 
 
 ## Accidental Cluster Deletion
 
-If an entire database cluster is accidentally deleted through Pigsty management commands, for example, incorrectly executing the [`pgsql-rm.yml`](/docs/pgsql/playbook#pgsql-rmyml) playbook or the `bin/pgsql-rm` command.
-Unless you have set the [`pg_rm_backup`](/docs/pgsql/param#pg_rm_backup) parameter to `false`, the backup will be deleted along with the database cluster.
+Pigsty management commands can delete an entire cluster, for example [`pgsql-rm.yml`](/docs/pgsql/playbook#pgsql-rmyml) or `bin/pgsql-rm`.
+Unless [`pg_rm_backup`](/docs/pgsql/param#pg_rm_backup) is `false`, these commands also delete the cluster backups.
 
-> **Warning**: In this situation, your data will be unrecoverable! **Please think three times before proceeding!**
+> **Warning**: In this situation, you cannot recover the data. Review the target and the deletion consequences carefully before you proceed.
 
-Recommendation: For production environments, you can globally configure this parameter to `false` in the configuration manifest to preserve backups when removing clusters.
+For production, we recommend that you set this parameter to `false` globally in the inventory.
+This preserves backups when you remove clusters.

@@ -9,8 +9,11 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[**Neon**](https://github.com/neondatabase/neon) adopts a storage and compute separation architecture, providing seamless autoscaling, scale to zero, and unique database branching capabilities.
+[**Neon**](https://github.com/neondatabase/neon) separates storage from compute.
+It provides automatic scaling, scale-to-zero operation, and database branching.
 
 Neon official website: https://neon.tech/
 
-Neon binaries are currently too large to include in the open-source package set. This support path remains in pilot stage; contact Pigsty sales if you need it.
+Neon binaries are currently too large for the open-source package set.
+This support remains in the pilot stage.
+If you need it, contact Pigsty sales.

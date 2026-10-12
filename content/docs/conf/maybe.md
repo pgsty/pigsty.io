@@ -6,7 +6,8 @@ icon: fa-solid fa-wallet
 categories: [Reference]
 ---
 
-The `app/maybe` configuration template provides a reference configuration for deploying Maybe open-source personal finance management system, using Pigsty-managed PostgreSQL as the database.
+The `app/maybe` template deploys Maybe, an open-source personal finance management system.
+It uses Pigsty-managed PostgreSQL as its database.
 
 
 --------
@@ -40,13 +41,13 @@ Source: [`pigsty/conf/app/maybe.yml`](https://github.com/pgsty/pigsty/blob/main/
 
 ## Explanation
 
-The `app/maybe` template provides a one-click deployment solution for Maybe open-source personal finance management system.
+Use `app/maybe` to configure and deploy the Maybe finance management system.
 
 **What is Maybe**:
 - Open-source personal and family finance management system
 - Supports multi-account, multi-currency asset tracking
 - Provides investment portfolio analysis and net worth calculation
-- Beautiful modern web interface
+- Web interface for finance management
 
 **Key Features**:
 - Uses Pigsty-managed PostgreSQL instead of Maybe's built-in database
@@ -71,6 +72,6 @@ https://maybe.pigsty
 - Alternative to commercial services like Mint, YNAB
 
 **Notes**:
-- Must change `SECRET_KEY_BASE`, generate with `openssl rand -hex 64`
-- First access requires registering an admin account
+- Replace `SECRET_KEY_BASE`. Generate a value with `openssl rand -hex 64`.
+- On the first visit, register an administration account.
 - Optionally configure Synth API for stock price data

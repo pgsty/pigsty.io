@@ -1,9 +1,7 @@
 ---
 title: Citus
 weight: 2303
-description: Deploy native high-availability Citus horizontally sharded clusters with
-  Pigsty, seamlessly scaling PostgreSQL across multiple shards and accelerating OLTP/OLAP
-  queries.
+description: Deploy high-availability Citus clusters with Pigsty. Scale PostgreSQL across shards and accelerate OLTP/OLAP queries.
 icon: fas fa-lemon
 module: [PGSQL]
 categories: [Concept]
@@ -19,7 +17,8 @@ Pigsty natively supports Citus. This is a distributed horizontal scaling extensi
 
 ## Installation
 
-Citus is a PostgreSQL [extension plugin](/docs/pgsql/ext/) that can be installed and enabled on a native PostgreSQL cluster following the standard plugin installation process.
+Citus is a PostgreSQL [extension plugin](/docs/pgsql/ext/).
+Use the standard extension installation procedure to install and enable it on a native PostgreSQL cluster.
 
 ```bash
 ./pgsql.yml -t pg_extension -e '{"pg_extensions":["citus"]}'
@@ -29,16 +28,17 @@ Citus is a PostgreSQL [extension plugin](/docs/pgsql/ext/) that can be installed
 
 ## Configuration
 
-To define a citus cluster, you need to specify the following parameters:
+To define a Citus cluster, set these parameters:
 
 - [`pg_mode`](/docs/pgsql/param#pg_mode) must be set to `citus` instead of the default `pgsql`
 - You must define the shard name [`pg_shard`](/docs/pgsql/param#pg_shard) and shard number [`pg_group`](/docs/pgsql/param#pg_group) on each shard cluster
 - You must define [`pg_primary_db`](/docs/pgsql/param#pg_primary_db) to specify the database managed by Patroni
-- If you want to use `postgres` from [`pg_dbsu`](/docs/pgsql/param#pg_dbsu) instead of the default [`pg_admin_username`](/docs/pgsql/param#pg_admin_username) to execute admin commands, then [`pg_dbsu_password`](/docs/pgsql/param#pg_dbsu_password) must be set to a non-empty plaintext password
+- You can run administration commands as `postgres` from [`pg_dbsu`](/docs/pgsql/param#pg_dbsu), instead of the default [`pg_admin_username`](/docs/pgsql/param#pg_admin_username). If you use this account, you must set [`pg_dbsu_password`](/docs/pgsql/param#pg_dbsu_password) to a non-empty plaintext password.
 
-Additionally, you need extra hba rules to allow SSL access from localhost and other data nodes.
+You also need HBA rules that allow SSL access from localhost and other data nodes.
 
-You can define each Citus cluster as a separate group, like standard PostgreSQL clusters. The current complete template is [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml):
+You can define each Citus cluster as a separate group, as with standard PostgreSQL clusters.
+The current complete template is [`conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ha/citus.yml):
 
 ```yaml
 all:
@@ -109,21 +109,23 @@ pg-citus: # citus group
 
 ## Usage
 
-You can access any node just like accessing a regular cluster:
+Connect to any node as you would connect to a regular cluster:
 
 ```bash
 pgbench -i postgres://test:test@pg-citus0/test
 pgbench -nv -P1 -T1000 -c 2 postgres://test:test@pg-citus0/test
 ```
 
-By default, changes you make to one Shard only occur on that cluster and are not synchronized to other Shards.
+By default, changes to one shard affect only that cluster.
+These changes do not synchronize to other shards.
 
-If you want to distribute writes across all Shards, you can use the API functions provided by Citus to mark tables as:
+To distribute writes across all shards, use Citus API functions to mark tables as one of these types:
 
 - **Distributed tables** (automatic partitioning, requires specifying partition key)
 - **Reference tables** (full replication: does not require specifying partition key)
 
-Starting from Citus 11.2, any Citus database node can play the role of coordinator, meaning any primary node can write:
+From Citus 11.2, any Citus database node can act as coordinator.
+Thus, any primary node can write:
 
 ```bash
 psql -h pg-citus0 -d test -c "SELECT create_distributed_table('pgbench_accounts', 'aid'); SELECT truncate_local_data_after_distributing_table('public.pgbench_accounts');"
@@ -138,7 +140,7 @@ After distributing the tables, you can also access them on other nodes:
 psql -h pg-citus1 -d test -c '\dt+'
 ```
 
-For example, a full table scan will show that the execution plan has become a distributed plan:
+For example, this full table scan shows a distributed execution plan:
 
 ```bash
 vagrant@meta-1:~$ psql -h pg-citus3 -d test -c 'explain select * from pgbench_accounts'
@@ -162,7 +164,8 @@ pgbench -nv -P1 -T1000 -c 2 postgres://test:test@pg-citus3/test
 pgbench -nv -P1 -T1000 -c 2 postgres://test:test@pg-citus4/test
 ```
 
-When a node fails, the native high availability support provided by Patroni will promote the standby node and automatically take over.
+When a node fails, Patroni promotes the standby node.
+The standby automatically takes over through native high availability support.
 
 ```bash
 test=# select * from  pg_dist_node;

@@ -31,7 +31,9 @@ Silo retains the stable `job="minio"`, `cls`, `ins`, `ip`, and `instance` identi
 
 Each instance's FileSD target is written to `/infra/targets/minio/<minio_cluster>-<minio_seq>.yml`.
 
-Silo registers one Metrics V3 root endpoint, which exposes cluster, system, API, and aggregated usage metrics. Pigsty drops samples with a non-empty `bucket` label and does not register separate per-bucket or replication endpoints, keeping time-series cardinality under control.
+Silo registers one Metrics V3 root endpoint. It exposes cluster, system, API, and aggregated usage metrics.
+
+Pigsty drops samples with a non-empty `bucket` label. It does not register separate per-bucket or replication endpoints. These limits control the number of time series.
 
 
 ---------

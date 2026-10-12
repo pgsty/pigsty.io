@@ -7,14 +7,12 @@ module: [DOCKER]
 categories: [Reference]
 ---
 
+[Docker](https://www.docker.com/) is a widely used containerization platform. It provides a standard way to deliver software.
 
-[Docker](https://www.docker.com/) is the most popular containerization platform, providing standardized software delivery capabilities.
+**Pigsty provides Docker as an optional module.** Pigsty does not require Docker to deploy its components.
 
-**Pigsty does not rely on Docker to deploy any of its components; instead, it provides the ability to deploy and install Docker** — this is an **optional module**.
+Select the [Docker software, tool, and application templates](/docs/app/) that you need. These templates quickly start stateless software in containers to provide extra functions. You can connect these applications to external, highly available database clusters managed by Pigsty.
 
-Pigsty offers a series of [Docker software/tool/application templates](/docs/app/) for you to choose from as needed.
-This allows users to quickly spin up various containerized stateless software templates, adding extra functionality.
-You can use external, Pigsty-managed highly available database clusters while placing stateless applications inside containers.
+When you run `configure`, Pigsty selects suitable upstream repositories and mirror settings from `region`. For example, it adjusts these settings for networks in mainland China. This improves image download speed and availability.
 
-When running `configure`, Pigsty automatically selects suitable upstream repositories and mirror acceleration settings based on `region` (for example, mainland China network environments), to improve image pull speed and availability.
-You can easily configure Registry and Proxy settings to flexibly access different image sources.
+Configure the Registry and Proxy settings to access the image sources you need.

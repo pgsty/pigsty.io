@@ -2,7 +2,7 @@
 title: "hashtypes"
 linkTitle: "hashtypes"
 description: "sha1, md5 and other data types for PostgreSQL"
-weight: 3750
+weight: 3770
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 3750
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 3750  | [**`hashtypes`**](/ext/e/hashtypes) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 3770  | [**`hashtypes`**](/ext/e/hashtypes) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pgcrypto`](/ext/e/pgcrypto) [`md5hash`](/ext/e/md5hash) [`hashlib`](/ext/e/hashlib) [`xxhash`](/ext/e/xxhash) [`pgsodium`](/ext/e/pgsodium) [`shacrypt`](/ext/e/shacrypt) [`cryptint`](/ext/e/cryptint) [`pguecc`](/ext/e/pguecc) |

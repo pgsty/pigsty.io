@@ -19,7 +19,7 @@ pgBackRest aims to have complete function/branch/line coverage for the core C co
 
 Function/line coverage is complete with no exceptions.
 
-Branch coverage excludes branches inside macros and `assert()` calls. Macros have their own unit tests so they do not need to be tested everywhere they appear. Asserts are not expected to have complete branch coverage since they test cases that should always be true.
+Branch coverage excludes branches inside macros and `assert()` calls. Macros have separate unit tests, so each occurrence does not need testing. Asserts test conditions that should always be true and do not require complete branch coverage.
 
 | Directory            |           Functions |             Branches |                 Lines |
 |----------------------|--------------------:|---------------------:|----------------------:|
@@ -77,4 +77,4 @@ Branch coverage excludes branches inside macros and `assert()` calls. Macros hav
 | storage/sftp         |     39/39 (100.00%) |    408/408 (100.00%) |     762/762 (100.00%) |
 | TOTAL                | 1705/1705 (100.00%) | 10616/10618 (99.98%) | 25163/25163 (100.00%) |
 
-The C unit test modules in `/test/src/module` also have complete function/line coverage but are not included in the report.
+C unit test modules in `/test/src/module` also have complete function and line coverage. The report excludes them.

@@ -7,9 +7,9 @@ categories: [Reference]
 ---
 
 
-The INFRA module is responsible for deploying Pigsty's infrastructure components: local software repository, Nginx, DNSMasq, VictoriaMetrics, VictoriaLogs, Grafana, Alertmanager, Blackbox Exporter, and other monitoring and alerting infrastructure.
+The INFRA module deploys Pigsty infrastructure. This includes the local software repository, Nginx, DNSMasq, VictoriaMetrics, VictoriaLogs, Grafana, Alertmanager, and Blackbox Exporter. It also deploys other monitoring and alerting components.
 
-> Pigsty v4.x uses VictoriaMetrics to replace Prometheus and VictoriaLogs to replace Loki, providing a superior observability solution.
+> Pigsty v4.x replaces Prometheus with VictoriaMetrics and Loki with VictoriaLogs for observability.
 
 
 | Section                           | Description                                                 |
@@ -196,7 +196,7 @@ name: `admin_ip`, type: `ip`, level: `G`
 
 Admin node IP address, default is the placeholder IP address: `10.10.10.10`
 
-The node specified by this parameter will be treated as the admin node, typically pointing to the first node where Pigsty is installed, i.e., the control node.
+This parameter identifies the admin node. It usually points to the first Pigsty node, which is the control node.
 
 The default value `10.10.10.10` is a placeholder that will be replaced with the actual admin node IP address during [configure](/docs/setup/install#configure).
 
@@ -209,7 +209,7 @@ Many parameters reference this parameter, such as:
 - [`node_default_etc_hosts`](/docs/node/param#node_default_etc_hosts)
 - [`node_etc_hosts`](/docs/node/param#node_etc_hosts)
 
-In these parameters, the string `${admin_ip}` will be replaced with the actual value of `admin_ip`. Using this mechanism, you can specify different admin nodes for different nodes.
+Pigsty replaces `${admin_ip}` in these parameters with the actual `admin_ip` value. This lets you specify different admin nodes for different nodes.
 
 
 
@@ -219,12 +219,13 @@ In these parameters, the string `${admin_ip}` will be replaced with the actual v
 
 name: `region`, type: `enum`, level: `G`
 
-Upstream mirror region, available options: `default`, `china`, `europe`, default is `default`
+Upstream mirror region. The options are `default`, `china`, and `europe`. The default is `default`.
 
-If a region other than `default` is set, and there's a corresponding entry in [`repo_upstream`](#repo_upstream) with a matching `baseurl`, it will be used instead of the `default` baseurl.
+If you select another region, Pigsty looks for its matching `baseurl` in [`repo_upstream`](#repo_upstream). If found, it uses that URL instead of the `default` baseurl.
 
-For example, if your region is set to `china`, Pigsty will attempt to use Chinese mirror sites to accelerate downloads. If an upstream repository doesn't have a corresponding China region mirror, the default upstream mirror site will be used instead.
-Additionally, URLs defined in [`repo_url_packages`](#repo_url_packages) will be replaced from `repo.pigsty.io` to `repo.pigsty.cc` to use domestic mirrors.
+If the region is `china`, Pigsty tries Chinese mirrors to accelerate downloads. If a repository has no China mirror, Pigsty uses its default upstream mirror.
+
+For [`repo_url_packages`](#repo_url_packages), Pigsty also changes `repo.pigsty.io` to `repo.pigsty.cc` to use domestic mirrors.
 
 
 
@@ -235,11 +236,11 @@ Additionally, URLs defined in [`repo_url_packages`](#repo_url_packages) will be 
 
 name: `language`, type: `enum`, level: `G`
 
-Default language setting, options are `en` (English) or `zh` (Chinese), default is `en`.
+Default language. The options are `en` (English) and `zh` (Chinese). The default is `en`.
 
 This parameter affects the language preference of some Pigsty-generated configurations and content, such as the initial language setting of Grafana dashboards.
 
-If you are a Chinese user, it is recommended to set this parameter to `zh` for a better Chinese support experience.
+For Chinese content, we recommend that you set this parameter to `zh`.
 
 
 
@@ -248,7 +249,7 @@ If you are a Chinese user, it is recommended to set this parameter to `zh` for a
 
 name: `proxy_env`, type: `dict`, level: `G`
 
-Global proxy environment variables used when downloading packages, default value specifies `no_proxy`, which is the list of addresses that should not use a proxy:
+Global proxy environment variables for package downloads. The default sets `no_proxy`, which lists addresses that should bypass the proxy:
 
 ```yaml
 proxy_env:
@@ -260,9 +261,9 @@ proxy_env:
 
 When installing from the Internet in mainland China, certain packages may be blocked. You can use a proxy to solve this problem.
 
-Note that if the Docker module is used, the proxy server configuration here will also be written to the Docker Daemon configuration file.
+If you use the Docker module, Pigsty also writes these proxy settings to the Docker Daemon configuration file.
 
-Note that if the `-x` parameter is specified during `./configure`, the proxy configuration information in the current environment will be automatically filled into the generated `pigsty.yaml` file.
+If you run `./configure` with `-x`, Pigsty reads the proxy settings from the current environment. It writes them to the generated `pigsty.yaml` file.
 
 
 
@@ -285,7 +286,7 @@ cert_validity: 7300d              # certificate validity, default 20 years
 
 name: `ca_create`, type: `bool`, level: `G`
 
-Allow CA creation when the private key is missing? The default is `true`.
+Specifies whether to create a CA private key if it is missing. The default is `true`.
 
 When set to `true`, Pigsty creates a new CA private key if `files/pki/ca/ca.key` is absent. If `ca.crt` is absent, it uses the existing or newly created private key to issue the CA certificate.
 
@@ -296,9 +297,9 @@ If you already have a CA public-private key pair, you can copy them to the `file
 
 Pigsty reuses an existing CA key pair. If the private key is absent and this parameter is `false`, deployment stops with an error. If only `ca.crt` is missing, Pigsty still reissues it with the existing private key. Always back up and restore the matching `ca.key` and `ca.crt` together to avoid a certificate/key mismatch.
 
-**Be sure to retain and backup the newly generated CA private key file during deployment, as it is crucial for issuing new certificates later.**
+**Keep and back up the new CA private key during deployment. You need it to issue certificates later.**
 
-> Note: Pigsty v3.x used the `ca_method` parameter (with values `create`/`recreate`/`copy`), v4.x simplifies this to the boolean `ca_create`.
+> Note: Pigsty v3.x used `ca_method` with values `create`/`recreate`/`copy`. Version v4.x replaces it with the boolean `ca_create`.
 
 
 
@@ -308,7 +309,7 @@ Pigsty reuses an existing CA key pair. If the private key is absent and this par
 
 name: `ca_cn`, type: `string`, level: `G`
 
-CA CN (Common Name), fixed as `pigsty-ca`, not recommended to modify.
+CA CN (Common Name). It is fixed at `pigsty-ca`. We do not recommend changes.
 
 You can use the following command to view the Pigsty CA certificate details on a node:
 
@@ -324,7 +325,7 @@ openssl x509 -text -in /etc/pki/ca.crt
 
 name: `cert_validity`, type: `interval`, level: `G`
 
-Certificate validity period for issued certificates, default is 20 years, sufficient for most scenarios. Default value: `7300d`
+Validity period for issued certificates. The default is `7300d`, or 20 years. This is sufficient for most scenarios.
 
 This parameter affects the validity of all certificates issued by the [**Pigsty CA**](/docs/concept/sec/ca), including:
 
@@ -333,7 +334,7 @@ This parameter affects the validity of all certificates issued by the [**Pigsty 
 - etcd server/client certificates
 - Other internal service certificates
 
-Note: The validity of HTTPS certificates used by Nginx is controlled separately by [`nginx_cert_validity`](#nginx_cert_validity), because modern browsers have stricter requirements for website certificate validity (maximum 397 days).
+Note: [`nginx_cert_validity`](#nginx_cert_validity) separately controls the validity of Nginx HTTPS certificates. Modern browsers impose stricter website certificate limits: a maximum of 397 days.
 
 
 
@@ -362,9 +363,9 @@ infra_extra_services: []          # additional home navigation entries
 
 name: `infra_seq`, type: `int`, level: `I`
 
-Infrastructure node sequence number, REQUIRED identity parameter that must be explicitly specified on infrastructure nodes, so no default value is provided.
+Infrastructure node sequence number. This identity parameter is REQUIRED and has no default. Set it explicitly on each infrastructure node.
 
-This parameter is used to uniquely identify each node in multi-infrastructure node deployments, typically using positive integers starting from 1.
+This parameter uniquely identifies each infrastructure node. Typically, use positive integers starting at 1.
 
 Example configuration:
 
@@ -389,46 +390,46 @@ infra_portal:
   home : { domain: i.pigsty }     # default home server definition
 ```
 
-Pigsty will automatically configure the corresponding reverse proxies based on the actually enabled components. Users typically only need to define the home domain name.
+Pigsty configures reverse proxies for the enabled components automatically. Usually, you only need to define the home domain name.
 
-Each record consists of a Key and a Value dictionary, where `name` is the key representing the component name, and the value is an object that can configure the following parameters:
+Each record has a key and a value dictionary. The key, `name`, identifies the component. The value defines these parameters:
 
 - `name`: **REQUIRED**, specifies the name of the Nginx server
   - Default record: `home` is a fixed name, please do not modify it.
   - Used as part of the Nginx configuration file name, corresponding to: `/etc/nginx/conf.d/<name>.conf`
   - Nginx servers without a `domain` field will not generate configuration files but will be used as references.
-- `domain`: **OPTIONAL**, when the service needs to be exposed via Nginx, this is a **REQUIRED** field specifying the domain name to use
+- `domain`: **OPTIONAL** for a reference-only entry. It is **REQUIRED** to expose a service through Nginx and specifies its domain name.
   - In Pigsty self-signed Nginx HTTPS certificates, the domain will be added to the SAN field of the Nginx SSL certificate
   - Pigsty web page cross-references will use the default domain name here
-- `endpoint`: Usually used as an alternative to `path`, specifies the upstream server address. Setting endpoint indicates this is a reverse proxy server
+- `endpoint`: Upstream server address for a reverse proxy. Usually, use it as an alternative to `path`.
   - `${admin_ip}` can be used as a placeholder in the configuration and will be dynamically replaced with [`admin_ip`](#admin_ip) during deployment
   - Default reverse proxy servers use [endpoint.conf](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/nginx/endpoint.conf) as the configuration template
   - Reverse proxy servers can also configure `websocket` and `schema` parameters
-- `path`: Usually used as an alternative to `endpoint`, specifies the local file server path. Setting path indicates this is a local web server
+- `path`: Local directory for a file server. Usually, use it as an alternative to `endpoint`.
   - Local web servers use [path.conf](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/nginx/path.conf) as the configuration template
   - Local web servers can also configure the `index` parameter to enable file index pages
 - `certbot`: Certbot certificate name; if configured, Certbot will be used to apply for certificates
-  - If multiple servers specify the same certbot, Pigsty will merge certificate applications; the final certificate name will be this certbot value
+  - If servers share a certbot value, Pigsty combines their certificate requests. This value becomes the certificate name.
 - `cert`: Certificate file path; if configured, will override the default certificate path
 - `key`: Certificate key file path; if configured, will override the default certificate key path
 - `websocket`: Whether to enable WebSocket support
-  - Only reverse proxy servers can configure this parameter; if enabled, upstream WebSocket connections will be allowed
+  - Only reverse proxies can use this parameter. If enabled, it permits upstream WebSocket connections.
 - `schema`: Protocol used by the upstream server; if configured, will override the default protocol
   - Default is http; if configured as https, it will force HTTPS connections to the upstream server
 - `index`: Whether to enable file index pages
-  - Only local web servers can configure this parameter; if enabled, autoindex configuration will be enabled to automatically generate directory index pages
+  - Only local file servers can use this parameter. If enabled, autoindex generates directory index pages.
 - `log`: Nginx log file path
-  - If specified, access logs will be written to this file; otherwise, the default log file will be used based on server type
+  - If specified, Nginx writes access logs to this file. Otherwise, the server type determines the default log file.
   - Reverse proxy servers use `/var/log/nginx/<name>.log` as the default log file path
   - Local web servers use the default Access log
 - `conf`: Nginx configuration file path
-  - Explicitly specifies the configuration template file to use, located in [roles/infra/templates/nginx](https://github.com/pgsty/pigsty/tree/main/roles/infra/templates/nginx) or [templates/nginx](https://github.com/pgsty/pigsty/tree/main/templates/nginx) directory
+  - Specifies a configuration template in [roles/infra/templates/nginx](https://github.com/pgsty/pigsty/tree/main/roles/infra/templates/nginx) or [templates/nginx](https://github.com/pgsty/pigsty/tree/main/templates/nginx).
   - If this parameter is not specified, the default configuration template will be used
 - `config`: Nginx configuration code block
   - Configuration text directly injected into the Nginx Server configuration block
 - `enforce_https`: Redirect HTTP to HTTPS
   - Global configuration can be specified via nginx_sslmode: enforce
-  - This configuration does not affect the default home server, which will always listen on both ports 80 and 443 to ensure compatibility
+  - This setting does not affect the default home server. For compatibility, that server always listens on both ports 80 and 443.
 
 
 
@@ -446,7 +447,7 @@ This directory is used to store data files for infrastructure components, includ
 - VictoriaTraces trace data
 - Other infrastructure component persistent data
 
-It is recommended to place this directory on a separate data disk for easier management and expansion.
+We recommend a separate data disk for this directory. This simplifies management and expansion.
 
 
 
@@ -456,7 +457,7 @@ name: `infra_services`, type: `service[]`, level: `G`
 
 Built-in navigation entries on the Pigsty home page. Current defaults include Metrics, Logs, Traces, Monitor Targets, Alert Rules, Alert Manager, CA Certificate, Software Repo, and Explain Visualizer.
 
-Each item can use `name`, `url`, `desc`, and `icon`, plus the Chinese display fields `name_cn` and `desc_cn`. This parameter replaces the entire default list; use [`infra_extra_services`](#infra_extra_services) if you only want to append entries.
+Each item can use `name`, `url`, `desc`, and `icon`, plus the Chinese display fields `name_cn` and `desc_cn`. This parameter replaces the entire default list. To append entries, use [`infra_extra_services`](#infra_extra_services).
 
 
 
@@ -480,13 +481,15 @@ infra_extra_services:
 
 This section is about local software repository configuration. Pigsty enables a local software repository (APT/YUM) on infrastructure nodes by default.
 
-During initialization, Pigsty downloads all packages and their dependencies (specified by [`repo_packages`](#repo_packages)) from the Internet upstream repository (specified by [`repo_upstream`](#repo_upstream)) to [`{{ nginx_home }}`](#nginx_home) / [`{{ repo_name }}`](#repo_name) (default `/www/pigsty`). The total size of all software and dependencies is approximately 1GB.
+During initialization, Pigsty downloads packages and dependencies from the internet. [`repo_packages`](#repo_packages) specifies the packages, and [`repo_upstream`](#repo_upstream) specifies the upstream repositories. The destination is [`{{ nginx_home }}`](#nginx_home) / [`{{ repo_name }}`](#repo_name), which defaults to `/www/pigsty`. The total software and dependency size is approximately 1GB.
 
-The current package candidate is SOW 0.3.0, and the source uses SOW to generate RPM/APT metadata. After a successful build, `repo_complete` is both a SHA-256 manifest and a completion marker. When it is present, Pigsty skips downloading and rebuilding by default and uses the existing repository. Force a rebuild with `./infra.yml -t repo_build -e repo_build=true`.
+The current package candidate is SOW 0.3.0. The source uses SOW to generate RPM/APT metadata. After a successful build, `repo_complete` is both a SHA-256 manifest and a completion marker. When it is present, Pigsty skips downloading and rebuilding by default and uses the existing repository. Force a rebuild with `./infra.yml -t repo_build -e repo_build=true`.
 
-Both `repo_create` and `cache_create` invoke `sow create --pigsty` directly, with no fallback to `createrepo_c` or `dpkg-scanpackages`. If an older offline bundle or local repository does not contain SOW, refresh the media or install SOW from the Pigsty INFRA repository first.
+Both `repo_create` and `cache_create` run `sow create --pigsty` directly. They do not fall back to `createrepo_c` or `dpkg-scanpackages`.
 
-If some packages download too slowly, you can set a download proxy using the [`proxy_env`](#proxy_env) configuration to complete the initial download, or directly download the pre-packaged [offline package](/docs/setup/offline), which is essentially a local software repository built on the same operating system.
+Older offline bundles or local repositories might lack SOW. First, refresh the media or install SOW from the Pigsty INFRA repository.
+
+If package downloads are too slow, set a proxy with [`proxy_env`](#proxy_env) for the initial download. You can also download a prebuilt [offline package](/docs/setup/offline). This is a local repository built on the same operating system.
 
 
 ```yaml
@@ -509,9 +512,9 @@ repo_url_packages: []             # extra packages downloaded via URL
 
 name: `repo_enabled`, type: `bool`, level: `G/I`
 
-Create a local software repository on this infrastructure node? Default is `true`, meaning all Infra nodes will set up a local software repository.
+Specifies whether to create a local repository on this infrastructure node. The default is `true`, which creates a repository on every Infra node.
 
-If you have multiple infrastructure nodes, you can keep only 1-2 nodes as software repositories; other nodes can set this parameter to `false` to avoid duplicate software download builds.
+With multiple infrastructure nodes, you can keep repositories on only 1-2 nodes. Set this parameter to `false` elsewhere to avoid duplicate downloads and builds.
 
 
 
@@ -523,7 +526,7 @@ name: `repo_home`, type: `path`, level: `G`
 
 Local software repository home directory, defaults to Nginx's root directory: `/www`.
 
-On a fresh installation, if this path does not exist, the role creates a symlink to [`nginx_data`](#nginx_data). Existing directories and symlinks are preserved unchanged. Modification is generally discouraged; if required, keep it consistent with [`nginx_home`](#nginx_home).
+On a fresh installation, if this path does not exist, the role creates a symlink to [`nginx_data`](#nginx_data). Existing directories and symlinks are preserved unchanged. We generally recommend that you preserve this value. If you change it, keep it consistent with [`nginx_home`](#nginx_home).
 
 
 
@@ -548,7 +551,7 @@ Endpoint used by other nodes to access this repository, default value: `http://$
 
 Pigsty starts Nginx on infrastructure nodes at ports 80/443 by default, providing local software repository (static files) service.
 
-If you modify [`nginx_port`](#nginx_port) or [`nginx_ssl_port`](#nginx_ssl_port), or use a different infrastructure node from the control node, adjust this parameter accordingly.
+Adjust this parameter after changes to [`nginx_port`](#nginx_port) or [`nginx_ssl_port`](#nginx_ssl_port). Also adjust it if the infrastructure node differs from the control node.
 
 If you use a domain name, you can add resolution in [`node_default_etc_hosts`](/docs/node/param#node_default_etc_hosts), [`node_etc_hosts`](/docs/node/param#node_etc_hosts), or [`dns_records`](#dns_records).
 
@@ -560,13 +563,13 @@ If you use a domain name, you can add resolution in [`node_default_etc_hosts`](/
 
 name: `repo_remove`, type: `bool`, level: `G/A`
 
-Remove existing upstream repository definitions when building the local repository? Default value: `true`.
+Specifies whether to remove existing upstream repository definitions during a local repository build. The default is `true`.
 
 When this parameter is enabled, all existing repository files in `/etc/yum.repos.d` will be moved and backed up to `/etc/yum.repos.d/backup`. On Debian systems, `/etc/apt/sources.list` and `/etc/apt/sources.list.d` are removed and backed up to `/etc/apt/backup`.
 
-Since existing OS sources have uncontrollable content, using Pigsty-validated upstream software sources can improve the success rate and speed of downloading packages from the Internet.
+Pigsty does not control the content of existing operating-system sources. Pigsty-validated upstream sources can improve package download speed and success rate.
 
-In certain situations (e.g., your OS is some EL/Deb compatible variant that uses private sources for many packages), you may need to keep existing upstream repository definitions. In such cases, set this parameter to `false`.
+Some EL/Deb-compatible variants use private sources for many packages. If you need to preserve existing upstream repository definitions, set this parameter to `false`.
 
 
 
@@ -604,7 +607,7 @@ Modules are comma-separated. Available module lists can be found in the `repo_up
 
 name: `repo_upstream`, type: `upstream[]`, level: `G`
 
-Where to download upstream packages when building the local repository? This parameter has no default value. If not explicitly specified by the user in the configuration file, it will be loaded from the `repo_upstream_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) based on the current node's OS family.
+Upstream package sources for the local repository build. This parameter has no direct default. If unset, Pigsty loads `repo_upstream_default` from [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/). It selects the definition for the current node's operating-system family.
 
 Pigsty provides complete upstream repository definitions for currently supported OS versions (EL 8/9/10, Debian 12/13, Ubuntu 22/24/26), including:
 
@@ -627,7 +630,7 @@ Each upstream repository definition contains the following fields:
   # meta: { module_hotfixes: 1 } # enable only when explicitly replacing an EL module stream
 ```
 
-RPM upstream repositories retain native DNF module filtering by default. Set `meta.module_hotfixes` only on a repository that must actually replace an EL module stream. Pigsty's aggregated local repository itself is consumed with `module_hotfixes=1`, but Pigsty no longer generates fake `modules.yaml` / ModuleMD metadata.
+RPM upstream repositories retain native DNF module filtering by default. Set `meta.module_hotfixes` only on a repository that must actually replace an EL module stream. Clients use `module_hotfixes=1` for Pigsty's aggregated local repository. Pigsty no longer generates artificial `modules.yaml` / ModuleMD metadata.
 
 Users typically don't need to modify this parameter unless they have special repository requirements. For detailed repository definitions, refer to the configuration files for corresponding operating systems in the [`roles/node_id/vars/`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/) directory.
 
@@ -638,9 +641,9 @@ Users typically don't need to modify this parameter unless they have special rep
 
 name: `repo_packages`, type: `string[]`, level: `G`
 
-String array type, where each line is a **space-separated** list of software packages, specifying packages (and their dependencies) to download using `repotrack` or `apt download`.
+String array of packages to download with their dependencies. Each entry is a **space-separated** package list. Downloads use `repotrack` or `apt download`.
 
-This parameter has no default value, meaning its default state is undefined. If not explicitly defined, Pigsty will load the default from the `repo_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/):
+This parameter has no direct default. If unset, Pigsty loads `repo_packages_default` from [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/):
 
 ```yaml
 [ node-bootstrap, infra-package, infra-addons, node-package1, node-package2, node-package3, pgsql-utility, extra-modules ]
@@ -654,7 +657,7 @@ infra-package:           "nginx dnsmasq etcd haproxy vip-manager node-exporter k
 infra-addons:            "grafana grafana-plugins grafana-victoriametrics-ds grafana-victorialogs-ds victoria-metrics victoria-logs victoria-traces vlogscli vmutils vector alertmanager"
 ```
 
-As a convention, `repo_packages` typically includes packages unrelated to the PostgreSQL major version (such as Infra, Node, and PGDG Common parts), while PostgreSQL major version-related packages (kernel, extensions) are usually specified in `repo_extra_packages` to facilitate switching PG major versions.
+By convention, `repo_packages` contains packages independent of the PostgreSQL major version, including Infra, Node, and PGDG Common packages. Put version-specific kernels and extensions in `repo_extra_packages`. This simplifies PostgreSQL major-version changes.
 
 
 
@@ -666,7 +669,7 @@ As a convention, `repo_packages` typically includes packages unrelated to the Po
 
 name: `repo_extra_packages`, type: `string[]`, level: `G/C/I`
 
-Used to specify additional packages to download without modifying [`repo_packages`](#repo_packages) (typically PG major version-related packages), default value is an empty list.
+Additional packages to download without changing [`repo_packages`](#repo_packages). These are typically specific to a PostgreSQL major version. The default is an empty list.
 
 If not explicitly defined, Pigsty will load the default from the `repo_extra_packages_default` variable defined in [`roles/node_id/vars`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/):
 
@@ -674,7 +677,7 @@ If not explicitly defined, Pigsty will load the default from the `repo_extra_pac
 [ pgsql-main ]
 ```
 
-Elements in this parameter undergo package name translation, where `$v` will be replaced with [`pg_version`](/docs/pgsql/param#pg_version), i.e., the current PG major version (default `18`).
+Pigsty translates these package names. It replaces `$v` with [`pg_version`](/docs/pgsql/param#pg_version), the current PostgreSQL major version. The default version is `18`.
 
 The `pgsql-main` here translates on EL systems to:
 
@@ -697,7 +700,7 @@ Packages downloaded directly from the Internet using URLs, default is an empty a
 
 You can use URL strings directly as array elements in this parameter, or use object structures to explicitly specify URLs and filenames.
 
-Note that this parameter is affected by the [`region`](#region) variable. If you're in mainland China, Pigsty will automatically replace URLs, changing `repo.pigsty.io` to `repo.pigsty.cc`.
+The [`region`](#region) variable affects this parameter. For mainland China, Pigsty automatically changes `repo.pigsty.io` URLs to `repo.pigsty.cc`.
 
 
 
@@ -715,9 +718,9 @@ These RPM/DEB packages are installed only on INFRA nodes.
 
 name: `infra_packages`, type: `string[]`, level: `G`
 
-String array type, where each line is a **space-separated** list of software packages, specifying packages to install on Infra nodes.
+Packages to install on Infra nodes. Each array entry is a **space-separated** package list.
 
-This parameter has no single cross-platform default. If not explicitly specified, Pigsty loads `infra_packages_default` from the platform-specific file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars), based on the operating-system version and CPU architecture.
+The default varies by platform. If unset, Pigsty loads `infra_packages_default` from the matching file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars). It selects the file by operating-system version and CPU architecture.
 
 For example, the current mapping for `EL 9 x86_64` is:
 
@@ -741,9 +744,9 @@ infra_packages_default:
 
 ## `NGINX`
 
-Pigsty proxies all web service access through Nginx: Home Page, Grafana, VictoriaMetrics, etc., as well as other optional tools like PGWeb, Jupyter Lab, Pgadmin, Bytebase, and static resources and reports like `pev`, `schemaspy`, and `pgbadger`.
+Nginx proxies Pigsty web services, including the Home Page, Grafana, and VictoriaMetrics. It also proxies optional tools such as PGWeb, Jupyter Lab, Pgadmin, and Bytebase. It serves static resources and reports, including `pev`, `schemaspy`, and `pgbadger`.
 
-Most importantly, Nginx also serves as the web server for the local software repository (Yum/Apt), used to store and distribute Pigsty packages.
+Nginx also serves the local Yum/Apt repository, which stores and distributes Pigsty packages.
 
 ```yaml
 nginx_enabled: true               # enable Nginx on this infra node?
@@ -768,7 +771,7 @@ certbot_options: ''               # certbot extra options
 
 name: `nginx_enabled`, type: `bool`, level: `G/I`
 
-Enable Nginx on this Infra node? Default value: `true`.
+Specifies whether to enable Nginx on this Infra node. The default is `true`.
 
 Nginx is a core component of Pigsty infrastructure, responsible for:
 - Providing local software repository service
@@ -783,9 +786,9 @@ Nginx is a core component of Pigsty infrastructure, responsible for:
 
 name: `nginx_clean`, type: `bool`, level: `G/A`
 
-Clean existing Nginx configuration during initialization? Default value: `false`.
+Specifies whether to delete existing Nginx configuration during initialization. The default is `false`.
 
-When set to `true`, all existing configuration files under `/etc/nginx/conf.d/` will be deleted during Nginx initialization, ensuring a clean start.
+If set to `true`, Pigsty deletes all configuration files under `/etc/nginx/conf.d/` during Nginx initialization. This starts with an empty configuration directory.
 
 If you're deploying for the first time or want to completely rebuild Nginx configuration, you can set this parameter to `true`.
 
@@ -796,7 +799,7 @@ If you're deploying for the first time or want to completely rebuild Nginx confi
 
 name: `nginx_exporter_enabled`, type: `bool`, level: `G/I`
 
-Enable nginx_exporter on this infrastructure node? Default value: `true`.
+Specifies whether to enable nginx_exporter on this infrastructure node. The default is `true`.
 
 If this option is disabled, the `/nginx` health check stub will also be disabled. Consider disabling this when your Nginx version doesn't support this feature.
 
@@ -819,7 +822,7 @@ nginx_exporter is used to collect Nginx operational metrics for VictoriaMetrics 
 
 name: `nginx_sslmode`, type: `enum`, level: `G`
 
-Nginx SSL operating mode. Three options: `disable`, `enable`, `enforce`, default value is `enable`, meaning SSL is enabled but not enforced.
+Nginx SSL operating mode. The options are `disable`, `enable`, and `enforce`. The default, `enable`, enables SSL but does not require it.
 
 * `disable`: Only listen on the port specified by [`nginx_port`](#nginx_port) to serve HTTP requests.
 * `enable`: Also listen on the port specified by [`nginx_ssl_port`](#nginx_ssl_port) to serve HTTPS requests.
@@ -835,7 +838,7 @@ name: `nginx_cert_validity`, type: `duration`, level: `G`
 
 Nginx self-signed certificate validity, default value is `397d` (approximately 13 months).
 
-Modern browsers require website certificate validity to be at most 397 days, hence this default value. Setting a longer validity is not recommended, as browsers may refuse to trust such certificates.
+The default follows the modern browser limit of 397 days for website certificates. We do not recommend longer validity because browsers can reject these certificates.
 
 
 
@@ -848,7 +851,7 @@ Nginx server static content directory, default: `/www`
 
 This is a symlink that actually points to the [`nginx_data`](#nginx_data) directory. This directory contains static resources and software repository files.
 
-It's best not to modify this parameter arbitrarily. If modified, it should be consistent with the [`repo_home`](#repo_home) parameter.
+Avoid unnecessary changes to this parameter. If changed, keep it consistent with [`repo_home`](#repo_home).
 
 
 
@@ -859,9 +862,9 @@ name: `nginx_data`, type: `path`, level: `G`
 
 Nginx actual data directory, default is `/data/nginx`.
 
-This is the actual storage location for Nginx static files; [`nginx_home`](#nginx_home) is a symlink pointing to this directory.
+This directory stores Nginx static files. The [`nginx_home`](#nginx_home) symlink points to it.
 
-It's recommended to place this directory on a data disk for easier management of large package files.
+We recommend a data disk for this directory to simplify management of large package files.
 
 
 
@@ -889,9 +892,9 @@ These users can be used to protect certain Nginx endpoints that require authenti
 
 name: `nginx_port`, type: `port`, level: `G`
 
-Nginx default listening port (serving HTTP), default is port `80`. It's best not to modify this parameter.
+Nginx HTTP listen port. The default is `80`. We recommend that you keep the default.
 
-When your server's port 80 is occupied, you can consider using another port, but you need to also modify [`repo_endpoint`](#repo_endpoint) and keep [`node_repo_local_urls`](/docs/node/param#node_repo_local_urls) consistent with the port used here.
+If port 80 is occupied, you can use another port. Also update [`repo_endpoint`](#repo_endpoint) and [`node_repo_local_urls`](/docs/node/param#node_repo_local_urls) to match the new port.
 
 
 
@@ -902,7 +905,7 @@ When your server's port 80 is occupied, you can consider using another port, but
 
 name: `nginx_ssl_port`, type: `port`, level: `G`
 
-Nginx SSL default listening port, default is `443`. It's best not to modify this parameter.
+Nginx SSL listen port. The default is `443`. We recommend that you keep the default.
 
 
 
@@ -911,18 +914,20 @@ Nginx SSL default listening port, default is `443`. It's best not to modify this
 
 name: `certbot_sign`, type: `bool`, level: `G/A`
 
-Use certbot to sign Nginx certificates during installation? Default value is `false`.
+Specifies whether Certbot signs Nginx certificates during installation. The default is `false`.
 
-When set to `true`, Pigsty will use certbot to automatically apply for free SSL certificates from Let's Encrypt during the execution of `infra.yml` and `deploy.yml` playbooks (in the `nginx` role).
+If set to `true`, Pigsty uses Certbot to request free Let's Encrypt SSL certificates automatically. The `nginx` role does this during `infra.yml` and `deploy.yml`.
 
-For domains defined in [`infra_portal`](#infra_portal), if a `certbot` parameter is defined, Pigsty will use certbot to apply for a certificate for that `domain`. The certificate name will be the value of the `certbot` parameter. If multiple servers/domains specify the same `certbot` parameter, Pigsty will merge and apply for certificates for these domains, using the `certbot` parameter value as the certificate name.
+For an [`infra_portal`](#infra_portal) entry with `certbot` set, Pigsty requests a certificate for its `domain`. The `certbot` value becomes the certificate name.
+
+If multiple servers or domains share the same `certbot` value, Pigsty combines them in one request. It uses that value as the certificate name.
 
 Enabling this option requires:
 
-- The current node can be accessed through a public domain name, and DNS resolution is correctly pointed to the current node's public IP
+- A public domain resolves to the current node's public IP and provides access to the node.
 - The current node can access the Let's Encrypt API interface
 
-This option is disabled by default. You can manually execute the `make cert` command after installation, which actually calls the rendered `/etc/nginx/sign-cert` script to update or apply for certificates using certbot.
+This option is disabled by default. After installation, run `make cert` manually if needed. It calls the generated `/etc/nginx/sign-cert` script to request or update certificates with Certbot.
 
 
 
@@ -944,7 +949,7 @@ name: `certbot_options`, type: `string`, level: `G/A`
 
 Additional configuration parameters passed to certbot, default value is an empty string.
 
-You can pass additional command-line options to certbot through this parameter, for example `--dry-run`, which makes certbot perform a preview and test without actually applying for certificates.
+Use this parameter for extra Certbot command-line options. For example, `--dry-run` previews and tests the operation without requesting actual certificates.
 
 
 
@@ -954,7 +959,7 @@ You can pass additional command-line options to certbot through this parameter, 
 
 ## `DNS`
 
-Pigsty enables DNSMASQ on Infra nodes by default to resolve auxiliary names such as `i.pigsty`, `m.pigsty`, and `api.pigsty`; `sss.pigsty` can optionally provide the Silo endpoint.
+Pigsty enables DNSMASQ on Infra nodes by default. It resolves auxiliary names such as `i.pigsty`, `m.pigsty`, and `api.pigsty`. The optional `sss.pigsty` name can provide the Silo endpoint.
 
 Resolution records are stored in the `/etc/dnsmasq.d/pigsty/default` file on Infra nodes. To use this DNS server, you must add `nameserver <ip>` to `/etc/resolv.conf`. The [`node_dns_servers`](/docs/node/param#node_dns_servers) parameter handles this.
 
@@ -972,9 +977,9 @@ dns_records:                      # dynamic DNS records
 
 name: `dns_enabled`, type: `bool`, level: `G/I`
 
-Enable DNSMASQ service on this Infra node? Default value: `true`.
+Specifies whether to enable DNSMASQ on this Infra node. The default is `true`.
 
-If you don't want to use the default DNS server (e.g., you already have an external DNS server, or your provider doesn't allow you to use a DNS server), you can set this value to `false` to disable it, and use [`node_default_etc_hosts`](/docs/node/param#node_default_etc_hosts) and [`node_etc_hosts`](/docs/node/param#node_etc_hosts) static resolution records instead.
+Set this value to `false` if you do not need the default DNS server. For example, you might have an external server or a provider that prohibits DNS servers. Use static records in [`node_default_etc_hosts`](/docs/node/param#node_default_etc_hosts) and [`node_etc_hosts`](/docs/node/param#node_etc_hosts) instead.
 
 
 
@@ -1020,7 +1025,7 @@ Common domain name purposes:
 
 ## `VICTORIA`
 
-Pigsty v4.x uses the VictoriaMetrics suite to replace Prometheus and Loki, providing a superior observability solution:
+Pigsty v4.x uses the VictoriaMetrics suite for observability in place of Prometheus and Loki:
 
 - **VictoriaMetrics**: Replaces Prometheus as the time series database for storing monitoring metrics
 - **VictoriaLogs**: Replaces Loki as the log aggregation storage
@@ -1060,7 +1065,7 @@ vmalert_options: ''               # extra CLI options
 
 name: `vmetrics_enabled`, type: `bool`, level: `G/I`
 
-Enable VictoriaMetrics on this Infra node? Default value is `true`.
+Specifies whether to enable VictoriaMetrics on this Infra node. The default is `true`.
 
 VictoriaMetrics is the core monitoring component in Pigsty v4.x, replacing Prometheus as the time series database, responsible for:
 
@@ -1074,7 +1079,7 @@ VictoriaMetrics is the core monitoring component in Pigsty v4.x, replacing Prome
 
 name: `vmetrics_clean`, type: `bool`, level: `G/A`
 
-Clean existing VictoriaMetrics data during initialization? Default value is `false`.
+Specifies whether to delete existing VictoriaMetrics data during initialization. The default is `false`.
 
 When set to `true`, existing time series data will be deleted during initialization. Use this option carefully unless you're sure you want to rebuild monitoring data.
 
@@ -1098,7 +1103,7 @@ name: `vmetrics_scrape_interval`, type: `interval`, level: `G`
 
 VictoriaMetrics global metrics scrape interval, default value is `10s`.
 
-In production environments, 10-30 seconds is a suitable scrape interval. If you need finer monitoring data granularity, you can adjust this parameter, but it will increase storage and CPU overhead.
+A 10-30 second scrape interval is suitable for production. A shorter interval gives more detailed monitoring data but increases storage and CPU overhead.
 
 
 ### `vmetrics_scrape_timeout`
@@ -1107,7 +1112,7 @@ name: `vmetrics_scrape_timeout`, type: `interval`, level: `G`
 
 VictoriaMetrics global scrape timeout, default is `8s`.
 
-Setting a scrape timeout can effectively prevent avalanches caused by monitoring system queries. The principle is that this parameter must be less than and close to [`vmetrics_scrape_interval`](#vmetrics_scrape_interval) to ensure each scrape duration doesn't exceed the scrape interval.
+A scrape timeout helps prevent monitoring queries from accumulating. Set it below and close to [`vmetrics_scrape_interval`](#vmetrics_scrape_interval). This keeps each scrape shorter than the interval.
 
 
 ### `vmetrics_options`
@@ -1134,7 +1139,7 @@ You can add other VictoriaMetrics-supported parameters as needed.
 
 name: `vlogs_enabled`, type: `bool`, level: `G/I`
 
-Enable VictoriaLogs on this Infra node? Default value is `true`.
+Specifies whether to enable VictoriaLogs on this Infra node. The default is `true`.
 
 VictoriaLogs replaces Loki as the log aggregation storage, responsible for:
 
@@ -1148,7 +1153,7 @@ VictoriaLogs replaces Loki as the log aggregation storage, responsible for:
 
 name: `vlogs_clean`, type: `bool`, level: `G/A`
 
-Clean existing VictoriaLogs data during initialization? Default value is `false`.
+Specifies whether to delete existing VictoriaLogs data during initialization. The default is `false`.
 
 
 ### `vlogs_port`
@@ -1184,16 +1189,16 @@ Common parameter descriptions:
 
 name: `vtraces_enabled`, type: `bool`, level: `G/I`
 
-Enable VictoriaTraces on this Infra node? Default value is `true`.
+Specifies whether to enable VictoriaTraces on this Infra node. The default is `true`.
 
-VictoriaTraces is used for distributed trace data storage and query, supporting Jaeger, Zipkin, and other trace protocols.
+VictoriaTraces stores and queries distributed trace data. It supports Jaeger, Zipkin, and other trace protocols.
 
 
 ### `vtraces_clean`
 
 name: `vtraces_clean`, type: `bool`, level: `G/A`
 
-Clean existing VictoriaTraces data during initialization? Default value is `false`.
+Specifies whether to delete existing VictoriaTraces data during initialization. The default is `false`.
 
 
 ### `vtraces_port`
@@ -1220,9 +1225,9 @@ vtraces_options: >-
 
 name: `vmalert_enabled`, type: `bool`, level: `G/I`
 
-Enable VMAlert on this Infra node? Default value is `true`.
+Specifies whether to enable VMAlert on this Infra node. The default is `true`.
 
-VMAlert is responsible for alert rule evaluation, replacing Prometheus Alerting functionality, working with Alertmanager.
+VMAlert evaluates alert rules and works with Alertmanager. It replaces Prometheus Alerting.
 
 
 ### `vmalert_port`
@@ -1248,7 +1253,7 @@ VMAlert extra command line options, default value is an empty string.
 
 This section now primarily contains Blackbox Exporter and Alertmanager configuration.
 
-> Note: Pigsty v4.x uses VictoriaMetrics instead of Prometheus. The legacy `prometheus_*` and `pushgateway_*` parameters are no longer part of the current interface; use the `vmetrics_*` and `vmalert_*` parameters under [`VICTORIA`](#victoria) for metric storage and rule evaluation.
+> Note: Pigsty v4.x uses VictoriaMetrics instead of Prometheus. The current interface no longer includes `prometheus_*` and `pushgateway_*`. Use `vmetrics_*` and `vmalert_*` under [`VICTORIA`](#victoria) for metric storage and rule evaluation.
 
 ```yaml
 blackbox_enabled: true            # enable blackbox_exporter?
@@ -1265,7 +1270,7 @@ exporter_metrics_path: /metrics   # exporter metrics path
 
 name: `blackbox_enabled`, type: `bool`, level: `G/I`
 
-Enable BlackboxExporter on this Infra node? Default value is `true`.
+Specifies whether to enable BlackboxExporter on this Infra node. The default is `true`.
 
 BlackboxExporter sends ICMP packets to node IP addresses, VIP addresses, and PostgreSQL VIP addresses to test network connectivity. It can also perform HTTP, TCP, DNS, and other probes.
 
@@ -1289,9 +1294,9 @@ BlackboxExporter extra command line options, default value: empty string.
 
 name: `alertmanager_enabled`, type: `bool`, level: `G/I`
 
-Enable AlertManager on this Infra node? Default value is `true`.
+Specifies whether to enable AlertManager on this Infra node. The default is `true`.
 
-AlertManager is responsible for receiving alert notifications from VMAlert and performing alert grouping, inhibition, silencing, routing, and other processing.
+AlertManager receives alerts from VMAlert. It groups, inhibits, silences, routes, and otherwise processes these alerts.
 
 
 ### `alertmanager_port`
@@ -1326,7 +1331,7 @@ This parameter defines the standard path for all exporters to expose monitoring 
 
 ## `GRAFANA`
 
-Pigsty uses Grafana as the monitoring system frontend. It can also serve as a data analysis and visualization platform, or for low-code data application development and data application prototyping.
+Grafana provides the monitoring system frontend. It also supports data analysis, visualization, low-code data application development, and application prototyping.
 
 
 ```yaml
@@ -1346,7 +1351,7 @@ grafana_view_password: DBUser.Viewer  # PG datasource password
 
 name: `grafana_enabled`, type: `bool`, level: `G/I`
 
-Enable Grafana on Infra node? Default value: `true`, meaning all infrastructure nodes will install and enable Grafana by default.
+Specifies whether to enable Grafana on this Infra node. The default is `true`, which installs and enables Grafana on all infrastructure nodes.
 
 
 
@@ -1365,7 +1370,7 @@ If you need to access Grafana directly (not through Nginx reverse proxy), you ca
 
 name: `grafana_clean`, type: `bool`, level: `G/A`
 
-Clean Grafana data files during initialization? Default: `false`.
+Specifies whether to delete Grafana data files during initialization. The default is `false`.
 
 This operation removes `/var/lib/grafana/grafana.db`, ensuring a fresh Grafana installation.
 
@@ -1391,7 +1396,7 @@ name: `grafana_admin_password`, type: `password`, level: `G`
 
 Grafana admin password, default is `pigsty`.
 
-> **IMPORTANT: Be sure to change this password parameter before deploying to production!**
+> **IMPORTANT: Change this password before production deployment.**
 
 
 
@@ -1400,9 +1405,9 @@ Grafana admin password, default is `pigsty`.
 
 name: `grafana_auth_proxy`, type: `bool`, level: `G`
 
-Enable Grafana auth proxy? Default is `false`.
+Specifies whether to enable the Grafana authentication proxy. The default is `false`.
 
-When enabled, Grafana will trust user identity information passed by the reverse proxy (Nginx), enabling single sign-on (SSO) functionality.
+If enabled, Grafana trusts user identity information from the Nginx reverse proxy. This supports single sign-on (SSO).
 
 This is typically used for integration with external identity authentication systems.
 

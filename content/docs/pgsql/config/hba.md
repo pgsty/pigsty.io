@@ -9,10 +9,11 @@ categories: [Reference]
 
 ## Overview
 
-HBA (Host-Based Authentication) controls "who can connect to the database, from where, and how". See [**Authentication**](/docs/concept/sec/auth) for the authentication model and default rules.
-Pigsty manages HBA rules declaratively through [**`pg_default_hba_rules`**](#pg_default_hba_rules) and [**`pg_hba_rules`**](#pg_hba_rules).
+HBA (Host-Based Authentication) controls who can connect to a database, from which source, and with which authentication method.
+For the authentication model and default rules, see [**Authentication**](/docs/concept/sec/auth).
+Pigsty manages HBA rules through [**`pg_default_hba_rules`**](#pg_default_hba_rules) and [**`pg_hba_rules`**](#pg_hba_rules).
 
-Pigsty renders the following config files during cluster init or HBA refresh:
+Pigsty generates these files during cluster initialization or HBA refresh:
 
 | Config File    | Path                          | Description                 |
 |:---------------|:------------------------------|:----------------------------|
@@ -39,7 +40,7 @@ Rule features:
 
 ## Refresh HBA
 
-After modifying config, re-render config files and reload services:
+After you change the inventory, generate the configuration files again and reload the services:
 
 ```bash
 bin/pgsql-hba <cls>                   # Refresh entire cluster HBA (recommended)
@@ -57,8 +58,9 @@ Script executes the following playbook:
 **PgBouncer only**: `./pgsql.yml -l <cls> -t pgbouncer_hba,pgbouncer_reload`
 
 > [!WARNING] Don't edit config files directly
-> Don't directly edit `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` - they'll be overwritten on next playbook run.
-> All changes should be made in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
+> Do not edit `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` directly.
+> The next playbook run will overwrite these files.
+> Make changes in `pigsty.yml`, then run `bin/pgsql-hba` to refresh them.
 
 
 ----------------
@@ -67,7 +69,8 @@ Script executes the following playbook:
 
 ### `pg_default_hba_rules`
 
-PostgreSQL global default HBA rule list, usually defined in `all.vars`, provides base access control for all clusters.
+This global PostgreSQL HBA rule list provides base access control for all clusters.
+It is usually defined in `all.vars`.
 
 - Type: `rule[]`, Level: Global (G)
 
@@ -89,7 +92,9 @@ pg_default_hba_rules:
 
 ### `pg_hba_rules`
 
-PostgreSQL cluster/instance-level additional HBA rules, can override at cluster or instance level, merged with default rules and sorted by `order`.
+This list adds PostgreSQL HBA rules.
+You can override it at cluster or instance level.
+Pigsty merges it with the default rules and sorts the result by `order`.
 
 - Type: `rule[]`, Level: Global/Cluster/Instance (G/C/I), Default: `[]`
 
@@ -100,7 +105,8 @@ pg_hba_rules:
 
 ### `pgb_default_hba_rules`
 
-PgBouncer global default HBA rule list, usually defined in `all.vars`.
+This is the global default PgBouncer HBA rule list.
+It is usually defined in `all.vars`.
 
 - Type: `rule[]`, Level: Global (G)
 
@@ -191,14 +197,15 @@ Pigsty provides auth method aliases for simplified config:
 | `ident`     | `ident`                    | `host`          | OS user mapping (PostgreSQL)   |
 | `peer`      | `peer`                     | `local`         | OS user mapping (PgBouncer/local) |
 
-> `pg_pwd_enc` defaults to `scram-sha-256`, can be set to `md5` for legacy client compatibility.
+> `pg_pwd_enc` defaults to `scram-sha-256`.
+> For legacy client compatibility, you can set it to `md5`.
 
 
 ----------------
 
 ## User Variables
 
-HBA rules support these user placeholders, auto-replaced with actual usernames during rendering:
+During configuration generation, Pigsty replaces these user placeholders with the actual usernames:
 
 | Placeholder  | Default          | Corresponding Param         |
 |:-------------|:-----------------|:----------------------------|
@@ -223,7 +230,8 @@ The `role` field in HBA rules controls which instances the rule applies to:
 | `standby` | Standby instance                                                    |
 | `delayed` | Delayed replica instance                                            |
 
-Role filtering matches based on instance's `pg_role` variable. Non-matching rules are commented out (prefixed with `#`).
+Role filtering uses the instance `pg_role` variable.
+Pigsty comments out non-matching rules with the prefix `#`.
 
 ```yaml
 pg_hba_rules:
@@ -239,7 +247,9 @@ pg_hba_rules:
 
 ## Order Sorting
 
-PostgreSQL HBA is **first-match-wins**, rule order is critical. Pigsty controls rule rendering order via the `order` field.
+PostgreSQL uses the **first matching HBA rule**.
+Rule order therefore affects authentication.
+Pigsty uses `order` to sort the generated rules.
 
 **Order Interval Convention**
 

@@ -6,7 +6,7 @@ icon: fa-solid fa-bolt
 categories: [Reference]
 ---
 
-`demo/redis` demonstrates standalone/replica, Sentinel, and native Cluster modes supported by Pigsty's Redis module in one configuration.
+The `demo/redis` configuration demonstrates the standalone/replica, Sentinel, and native Cluster modes of Pigsty's Redis module.
 
 
 --------
@@ -41,4 +41,4 @@ Source: [`pigsty/conf/demo/redis.yml`](https://github.com/pgsty/pigsty/blob/main
 - `redis-test`: a native Redis Cluster across two nodes with three instances per node
 - Small per-instance memory limits keep the topology suitable for demonstrations
 
-The IP addresses, passwords, and memory limits are demonstration values. Adjust them to the real topology, then install the Redis module with the [`redis.yml`](/docs/redis/) playbook.
+The IP addresses, passwords, and memory limits are demonstration values. Adjust these values for the real topology. Then install the Redis module with the [`redis.yml`](/docs/redis/) playbook.

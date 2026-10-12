@@ -6,9 +6,64 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-10-11
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| agentsview | 0.44.0 | 0.45.0 | Both architectures; imported locally |
+| blackbox-exporter | 0.28.0 | 0.29.0 | Both architectures; imported locally |
+| claude | 2.1.289 | 2.1.296 | Both architectures; imported locally |
+| cloudflared | 2026.9.3 | 2026.10.0 | Both architectures; imported locally |
+| code | 1.140.0 | 1.141.0 | Upstream DEB/RPM; imported locally |
+| code-server | 4.140.0 | 4.141.0 | Upstream DEB/RPM; imported locally |
+| codex | 0.160.0 | 0.162.1 | Both architectures; imported locally |
+| crush | 0.97.1 | 0.98.1 | Both architectures; imported locally |
+| dblab | 0.51.0 | 0.52.1 | Both architectures; imported locally |
+| golang | 1.27.1 | 1.27.2 | Both architectures; imported locally |
+| grafana-infinity-ds | 4.0.0 | 4.1.1 | Both architectures; imported locally |
+| grafana-plugins | 13.2.2 | 13.2.3 | Noarch; JSON datasource 1.4.3; imported locally |
+| jmx-exporter | 1.6.0 | 1.7.0 | Noarch; imported locally |
+| mcp-toolbox | 1.13.1 | 1.14.0 | CGO source build; glibc 2.28; imported locally |
+| opencode | 1.18.34 | 1.18.35 | Both architectures; imported locally |
+| pig | 1.8.1 | 1.9.0 | Both architectures; imported locally |
+| pushgateway | 1.11.3 | 1.11.4 | Both architectures; imported locally |
+| rclone | 1.75.1 | 1.75.2 | Both architectures; imported locally |
+| stalwart | 0.16.24 | 0.16.25 | Both architectures; imported locally |
+| uv | 0.12.23 | 0.13.0 | Both architectures; imported locally |
+| vector | 0.58.0 | 0.59.0 | Upstream DEB/RPM; imported locally |
+
+## 2026-10-05
+
+Local build batch: 22 recipes upgraded, producing 96 RPM/DEB artifacts for 24 packages. All downloads used the port 8888 Xray proxy; MCP Toolbox was built from source for both architectures with CGO enabled. All 96 artifacts were imported into the local `repo/apt/infra` and `repo/yum/infra` repositories, with Pigsty RPM/metadata signatures and dual-architecture APT/DNF client verification. Vendor byte preservation below refers to the cached/build artifacts; repository RPM copies are signed separately. Online upload has not been performed.
+
+| Name | Old | New | Comment |
+|---|---|---|---|
+| caddy | 2.11.4 | 2.11.7 | Verified and built dual-architecture RPM/DEB |
+| claude | 2.1.284 | 2.1.289 | Official manifest SHA256 and both Linux binary versions verified |
+| code | 1.139.1 | 1.140.0 | Official native dual-arch DEB/RPM preserved byte-for-byte |
+| code-server | 4.139.1 | 4.140.0 | Official native dual-arch DEB/RPM preserved byte-for-byte |
+| codex | 0.159.0 | 0.160.0 | Verified and built dual-architecture RPM/DEB |
+| crush | 0.96.1 | 0.97.1 | Verified and built dual-architecture RPM/DEB |
+| grafana | 13.2.2 | 13.2.3 | Official native dual-arch DEB/RPM preserved byte-for-byte |
+| k3s | 1.37.0 | 1.37.1 | Upstream v1.37.1+k3s1; stable channel remains 1.36.5+k3s1 |
+| k3s-images | 1.37.0 | 1.37.1 | Dual-arch air-gap images and exact K3s dependency updated together |
+| maddy | 0.9.5 | 0.9.6 | Verified and built dual-architecture RPM/DEB |
+| mcp-toolbox | 1.12.0 | 1.13.1 | Dual-arch source build with Go 1.27.1, CGO and Zig 0.15.2; glibc 2.28 target; release 2PGSTY preserves the existing repository build |
+| mtail | 3.4.14 | 3.4.15 | Verified and built dual-architecture RPM/DEB |
+| openbao | 2.7.0 | 2.7.1 | Official native dual-arch DEB/RPM preserved byte-for-byte |
+| opencode | 1.18.33 | 1.18.34 | Verified and built dual-architecture RPM/DEB |
+| opentofu | 1.12.6 | 1.13.1 | Official native dual-arch DEB/RPM preserved byte-for-byte |
+| pg-hardstorage | 1.4.2 | 1.5.0 | Verified and built dual-architecture RPM/DEB |
+| redis-exporter | 1.92.1 | 1.93.0 | Verified and built dual-architecture RPM/DEB |
+| rust-toolchain | 1.98.1 | 1.99.0 | Upstream signatures and dual-architecture ELF ABI checks passed |
+| rustfs | 1.0.0 | 1.0.1 | Verified and built dual-architecture RPM/DEB |
+| uv | 0.12.20 | 0.12.23 | Verified and built dual-architecture RPM/DEB |
+| victoria-logs | 1.52.0 | 1.53.0 | victoria-logs, vlogscli and vlagent updated together |
+| victoria-traces | 0.11.1 | 0.12.0 | Verified and built dual-architecture RPM/DEB |
+
 ## 2026-09-29
 
-Local build batch: 26 recipes upgraded and cargo-pgrx-0193 added, producing 116 RPM/DEB artifacts for 29 packages. Downloads used the port 8888 Xray proxy. MCP Toolbox is handled separately. This entry does not imply publication to the live repository.
+This local build batch upgraded 26 recipes and added cargo-pgrx-0193. It produced 116 RPM/DEB artifacts for 29 packages. Downloads used the port 8888 Xray proxy. MCP Toolbox is handled separately. This entry does not imply publication to the live repository.
 
 | Name | Old | New | Comment |
 |---|---|---|---|
@@ -42,7 +97,7 @@ Local build batch: 26 recipes upgraded and cargo-pgrx-0193 added, producing 116 
 
 ## 2026-09-19
 
-Local build batch; all downloads used the port 8118 proxy. This entry does not imply publication to the live repository.
+This was a local build batch. All downloads used the port 8118 proxy. This entry does not imply publication to the live repository.
 
 | Name | Old | New | Comment |
 |---|---|---|---|
@@ -239,7 +294,7 @@ Local build batch; all downloads used the port 8118 proxy. This entry does not i
 | `victoria-metrics`         | 1.148.0        | 1.149.0        | Main, cluster, and vmutils packages built for both arches |
 {.stretch-last}
 
-`ferretdb2` was also rebuilt at the current `2.7.0` version for both architectures. `silo` now officially replaces `minio` and is included in the Infra repository together with `mcli`.
+The batch also rebuilt `ferretdb2` version `2.7.0` for both architectures. The `silo` package officially replaced `minio`. The Infra repository includes `silo` and `mcli`.
 
 -------
 
@@ -332,7 +387,7 @@ Local build batch; all downloads used the port 8118 proxy. This entry does not i
 
 ## 2026-07-20
 
-Rename `xxx_exporter` rpm packages to `xxx-exporter` style to keep consistent with deb packaging convention.
+Renamed `xxx_exporter` RPM packages to `xxx-exporter` to match the DEB package naming convention.
 
 | Name                       | Old              | New              | Comment                                                              |
 |:---------------------------|:-----------------|:-----------------|:---------------------------------------------------------------------|

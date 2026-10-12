@@ -9,37 +9,42 @@ categories: [Reference]
 ---
 
 
-Pigsty provides four scenario-based parameter templates by default, which can be specified and used through the [`pg_conf`](/docs/pgsql/param#pg_conf) parameter.
+Pigsty provides four parameter templates for different workloads.
+Select a template with [`pg_conf`](/docs/pgsql/param#pg_conf).
 
 - `tiny.yml`: Optimized for small nodes, VMs, and demos (the template is labeled for 1-3 cores)
 - `oltp.yml`: Optimized for OLTP workloads and latency-sensitive applications (4C8GB+) (default template)
 - `olap.yml`: Optimized for OLAP workloads and throughput (4C8G+)
 - `crit.yml`: Optimized for data consistency and critical applications (4C8G+)
 
-Pigsty adopts different parameter optimization strategies for these four default scenarios, as shown below:
+The following sections describe the optimization settings for these four templates.
 
 
 --------
 
 ## Memory Parameter Tuning
 
-Pigsty automatically detects the system's memory size and uses it as the basis for setting the maximum number of connections and memory-related parameters.
+Pigsty detects the system's memory size.
+It uses this value to set the maximum number of connections and memory-related parameters.
 
 - [`pg_max_conn`](/docs/pgsql/param#pg_max_conn): PostgreSQL maximum connections, `auto` will use recommended values for different scenarios
 - [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio): Shared buffer memory ratio, default is 0.25
 
-By default, Pigsty uses 25% of memory as PostgreSQL shared buffers. The rest is shared among connections, `work_mem`, background processes, and the operating-system cache.
+By default, Pigsty assigns 25% of memory to PostgreSQL shared buffers.
+Connections, `work_mem`, background processes, and the operating-system cache share the remaining memory.
 
-By default, if the user has not set a [`pg_max_conn`](/docs/pgsql/param#pg_max_conn) maximum connections value, Pigsty will use defaults according to the following rules:
+If you do not set [`pg_max_conn`](/docs/pgsql/param#pg_max_conn), Pigsty selects the maximum connections from these defaults:
 
 - oltp: 500 (pgbouncer) / 1000 (postgres)
 - crit: 500 (pgbouncer) / 1000 (postgres)
 - tiny: 250
 - olap: 500
 
-For OLTP and CRIT templates, if the service is not pointing to the pgbouncer connection pool but directly connects to the postgres database, the maximum connections will be doubled to 1000.
+For OLTP and CRIT, the maximum is 500 when the service connects through PgBouncer.
+If the service connects directly to PostgreSQL, the maximum doubles to 1000.
 
-After determining the maximum connections, `work_mem` is calculated from shared memory size / maximum connections and limited to the range of 64MB ~ 1GB.
+Pigsty calculates `work_mem` as shared memory size divided by maximum connections.
+It limits the result to 64MB ~ 1GB.
 
 ```jinja2
 {% raw %}
@@ -58,8 +63,11 @@ After determining the maximum connections, `work_mem` is calculated from shared 
 
 ## CPU Parameter Tuning
 
-In PostgreSQL, there are 4 important parameters related to parallel queries. Pigsty automatically optimizes parameters based on the current system's CPU cores.
-The templates first calculate a parallel/extension worker budget and then add another eight reserved slots when writing `max_worker_processes`. The final GUC is therefore eight higher than the intermediate variable defined near the top of each template.
+PostgreSQL has 4 important parameters for parallel queries.
+Pigsty sets them from the number of CPU cores.
+The templates first calculate a worker budget for parallel queries and extensions.
+They add eight reserved slots when they write `max_worker_processes`.
+The final GUC is therefore eight higher than the intermediate variable near the start of each template.
 
 | OLTP                               | Setting Logic                    | Range Limits                           |
 |------------------------------------|----------------------------------|----------------------------------------|
@@ -89,10 +97,11 @@ The templates first calculate a parallel/extension worker budget and then add an
 | `max_parallel_maintenance_workers` | max(floor(33% CPU), 1) | 33% CPU rounded down, minimum 1  |
 | `max_parallel_workers_per_gather`  | 0                       | Disables parallel gather per query |
 
-Note that the CRIT and TINY templates disable parallel queries by setting `max_parallel_workers_per_gather = 0`.
-Users can enable parallel queries as needed by setting this parameter.
+The CRIT and TINY templates set `max_parallel_workers_per_gather = 0` to disable parallel queries.
+To enable parallel queries, change this parameter as required.
 
-Both OLTP and CRIT templates additionally set the following parameters, doubling the parallel query cost to reduce the tendency to use parallel queries.
+The OLTP and CRIT templates set the following parameters.
+They double parallel query costs to make the planner less likely to choose parallel queries.
 
 ```yaml
 parallel_setup_cost: 2000           # double from 100 to increase parallel cost
@@ -101,8 +110,10 @@ min_parallel_table_scan_size: 32MB  # 4x default 8MB, prefer non-parallel scan
 min_parallel_index_scan_size: 2MB   # 4x default 512kB, prefer non-parallel scan
 ```
 
-Note that adjustments to the `max_worker_processes` parameter only take effect after a restart. Additionally, when a replica's configuration value for this parameter is higher than the primary's, the replica will fail to start.
-This parameter must be adjusted through Patroni configuration management, which ensures consistent primary-replica configuration and prevents new replicas from failing to start during failover.
+Changes to `max_worker_processes` take effect only after a restart.
+A replica fails to start if its value is higher than the primary value.
+Change this parameter through Patroni configuration management.
+Patroni keeps primary and replica settings consistent and prevents new replicas from failing to start during failover.
 
 
 
@@ -110,7 +121,8 @@ This parameter must be adjusted through Patroni configuration management, which 
 
 ## Storage Space Parameters
 
-Pigsty automatically detects the total space of the disk where the `/data/postgres` main data directory is located and uses it as the basis for specifying the following parameters:
+Pigsty detects the total disk capacity for the `/data/postgres` main data directory.
+It uses this value to set these parameters:
 
 ```jinja2
 {% raw %}
@@ -127,14 +139,16 @@ temp_file_limit: {{ ([pg_size_twentieth, 200])|min }}GB               # 1/20 of 
 - The effective cap for `max_wal_size` is 400GB.
 - The effective cap for `max_slot_wal_keep_size` is 600GB.
 
-The OLAP template sets `temp_file_limit` to `pg_size_twentieth × 4`, for an effective cap of 400GB. Existing 200GB/2TB/3TB comments at the ends of template lines do not account for the 100GB cap already applied to `pg_size_twentieth`; the rendered expression is authoritative.
+The OLAP template sets `temp_file_limit` to `pg_size_twentieth × 4`, with an effective limit of 400GB.
+Existing 200GB/2TB/3TB comments at the ends of template lines omit the 100GB limit already applied to `pg_size_twentieth`.
+Use the rendered expression as the authoritative value.
 
 
 --------
 
 ## Manual Parameter Tuning
 
-In addition to using Pigsty's automatically configured parameters, you can also manually tune PostgreSQL parameters.
+You can manually adjust PostgreSQL parameters in addition to the values that Pigsty sets automatically.
 
 Use the `pg edit-config <cluster>` command to interactively edit cluster configuration:
 

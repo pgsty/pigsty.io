@@ -13,7 +13,7 @@ categories: [Reference]
 
 ## Overview
 
-The cost data below is intended to illustrate order-of-magnitude differences. Cloud vendor pricing and discounts vary over time, region, instance size, and purchase model.
+The following data shows approximate differences in cost. Cloud prices and discounts vary with time, region, instance size, and purchase model.
 
 |              EC2               |    Core·Month    |              RDS               |   Core·Month   |
 |:------------------------------:|:---------:|:------------------------------:|:-------:|
@@ -48,7 +48,7 @@ The cost data below is intended to illustrate order-of-magnitude differences. Cl
 | AWS China/Ningxia 1-Year No Prepaid  | ¥143,176 / month    | 171       |
 | AWS China/Ningxia 3-Year Full Prepaid  | ¥647K + ¥116K/month  | 160.6     |
 
-Here's a comparison of self-hosted vs cloud database costs:
+The following table compares self-hosted and cloud database costs:
 
 | Method                                                                 | Annualized (¥10K)  |
 |--------------------------------------------------------------------|-----------|
@@ -64,7 +64,7 @@ Here's a comparison of self-hosted vs cloud database costs:
 
 ### Pure Compute Price Comparison (Excluding NVMe SSD / ESSD PL3)
 
-Using Aliyun as an example, the monthly pure compute price is 5-7x the self-hosted baseline, while 5-year prepaid is 2x self-hosted
+For Aliyun, the monthly price for compute alone is 5-7x the self-hosted baseline. The 5-year prepaid price is 2x the self-hosted baseline.
 
 |    Payment Model    | Unit Price (¥/Core·Month) | Relative to Standard | Self-Hosted Premium Multiple   |
 |:----------:|:---------:|:-------:|:----------:|
@@ -82,7 +82,7 @@ Using Aliyun as an example, the monthly pure compute price is 5-7x the self-host
 
 ### Equivalent Price Comparison Including NVMe SSD / ESSD PL3
 
-Including common NVMe SSD specs, the monthly pure compute price is 11-14x the self-hosted baseline, while 5-year prepaid is about 9x.
+With common NVMe SSD specifications included, the monthly price is 11-14x the self-hosted baseline. The 5-year prepaid price is about 9x.
 
 |    Payment Model    | Unit Price (¥/Core·Month) | + 40GB ESSD PL3 |   Self-Hosted Premium Multiple    |
 |:----------:|:---------:|:---------------:|:-----------:|
@@ -137,7 +137,7 @@ Including common NVMe SSD specs, the monthly pure compute price is 11-14x the se
 
 ## Cloud Exit Collection
 
-There was a time when "**moving to the cloud**" was almost politically correct in tech circles, and an entire generation of app developers had their vision obscured by the cloud. Let's use real data analysis and firsthand experience to explain the value and pitfalls of the public cloud rental model — for your reference in this era of cost reduction and efficiency improvement — please see "[Cloud Computing Mudslide: Collection](/blog/cloud/exit)"
+Developers once widely accepted "**moving to the cloud**" and often overlooked alternatives. This collection uses data analysis and firsthand experience to explain the benefits and risks of public cloud rental. Use it as a reference for cost control and efficiency: [Cloud Computing Mudslide: Collection](/blog/cloud/exit).
 
 **Cloud Infrastructure Basics**
 

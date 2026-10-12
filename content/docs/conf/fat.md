@@ -6,9 +6,9 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-The `fat` configuration template is Pigsty's **Feature-All-Test** template, installing all extension plugins on a single node and building a local software repository containing all extensions for PostgreSQL 14-18 (five major versions).
+The `fat` configuration template is Pigsty's **Feature-All-Test** template. It installs all extension plugins on one node. It also builds a local software repository with all extensions for PostgreSQL 14-18, which covers five major versions.
 
-This is a full-featured configuration for testing and development, suitable for scenarios requiring complete software package cache or testing all extensions.
+Use this configuration for testing and development. It provides a complete software package cache and supports tests of all extensions.
 
 
 --------
@@ -48,7 +48,7 @@ Source: [`pigsty/conf/fat.yml`](https://github.com/pgsty/pigsty/blob/main/conf/f
 
 ## Explanation
 
-The `fat` template is Pigsty's **full-featured test configuration**, designed for completeness testing and offline package building.
+The `fat` template provides a **full-featured test configuration**. Use it to test completeness and build offline packages.
 
 **Key Features**:
 - **All Extensions**: Installs all categorized extension packages for PostgreSQL 18
@@ -66,7 +66,7 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 | Database Kernels | PolarDB, IvorySQL |
 
 **Differences from rich**:
-- `fat` contains all five versions of PostgreSQL 14-18, `rich` only contains current default version
+- `fat` contains all five versions of PostgreSQL 14-18. The `rich` template contains only the current default version.
 - `fat` contains additional enterprise components (Kafka, PolarDB, IvorySQL, etc.)
 - `fat` requires larger disk space and longer build time
 
@@ -80,4 +80,4 @@ The `fat` template is Pigsty's **full-featured test configuration**, designed fo
 - Requires large disk space (100GB+ recommended) for storing all packages
 - Building local software repository requires longer time
 - Some extensions unavailable on ARM64 architecture
-- Default passwords are sample passwords, must be changed for production
+- The default passwords are examples. Change them before production use.

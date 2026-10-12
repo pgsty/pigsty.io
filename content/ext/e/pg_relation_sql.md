@@ -2,7 +2,7 @@
 title: "pg_relation_sql"
 linkTitle: "pg_relation_sql"
 description: "Generate inlinable SQL functions for navigating PostgreSQL foreign-key relations"
-weight: 4210
+weight: 4220
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4210
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4210  | [**`pg_relation_sql`**](/ext/e/pg_relation_sql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 4220  | [**`pg_relation_sql`**](/ext/e/pg_relation_sql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pg_readme`](/ext/e/pg_readme) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_get_functiondef`](/ext/e/pg_get_functiondef) [`pg_rewrite`](/ext/e/pg_rewrite) [`pg_query_rewrite`](/ext/e/pg_query_rewrite) [`ddl_historization`](/ext/e/ddl_historization) [`data_historization`](/ext/e/data_historization) |

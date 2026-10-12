@@ -6,19 +6,18 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Immich**](https://github.com/immich-app/immich) is a high-performance, self-hosted photo and video management application and one of the most popular open-source alternatives to Google Photos.
-It provides web and mobile uploads, album sharing, timelines, maps, EXIF and RAW support, LivePhoto, semantic search, facial recognition, and automatic backups under the AGPL-3.0 license.
+[**Immich**](https://github.com/immich-app/immich) is a high-performance, self-hosted photo and video management application. It is a popular open-source alternative to Google Photos, licensed under AGPL-3.0. Features include web and mobile uploads, album sharing, timelines, maps, EXIF and RAW support, and LivePhoto. It also provides semantic search, facial recognition, and automatic backups.
 
 Pigsty's `app/immich` template runs the Immich application layer with Docker Compose and stores metadata in Pigsty-managed PostgreSQL.
 The template follows Immich `v3` and uses VectorChord by default for similar-image search, smart search, and face-search vectors. On 2026-10-08, both Server and ML images resolved to `3.3.0`. Validation used a new media library on Linux amd64 with PostgreSQL 18.6 and covered uploads, thumbnails, and real machine-learning inference.
 
-Unlike Immich's official single-node Compose template, PostgreSQL does not run in an application container. Pigsty manages it instead, providing monitoring, backups, PITR, extension management, and high-availability access.
+Immich's official single-node Compose template runs PostgreSQL in an application container. Pigsty manages PostgreSQL separately, with monitoring, backups, PITR, extension management, and high-availability access.
 
 ------
 
 ## Quick Start
 
-Immich recommends at least 2 CPU cores and 6 GB of RAM, or 4 CPU cores and 8 GB of RAM for smooth operation. The v3 amd64 machine-learning image requires the x86-64-v2 instruction set. Linux with local SSD storage is recommended for production.
+Immich recommends at least 2 CPU cores and 6 GB RAM. For smooth operation, it recommends 4 CPU cores and 8 GB RAM. The v3 amd64 machine-learning image requires x86-64-v2 instructions. Linux with local SSD storage is recommended for production.
 
 On a fresh x86 or ARM Linux server running a [compatible operating system](/docs/deploy/prepare/):
 
@@ -71,9 +70,9 @@ Immich state is divided into three layers that must be managed separately:
 - **PostgreSQL**: metadata for users, albums, assets, EXIF, file paths, job state, people, faces, and smart-search vectors.
 - **Valkey/Redis**: queues, cache, and runtime state; it must not be treated as an authoritative data source.
 
-Photo and video files are not stored in PostgreSQL. Conversely, Immich cannot reconstruct its complete application state simply by rescanning the media directory; the paths and metadata in the database are equally important.
+Photo and video files are not stored in PostgreSQL. Rescanning the media directory cannot reconstruct complete application state. Database paths and metadata are also required.
 
-A recoverable Immich backup must therefore include both PostgreSQL and the media directory. Backing up only the database loses the photos, while backing up only the files cannot reliably restore albums, users, shares, faces, and search state.
+A recoverable Immich backup requires both PostgreSQL and the media directory. A database-only backup omits photos. A file-only backup cannot reliably restore albums, users, shares, faces, and search state.
 
 ------
 
@@ -105,7 +104,7 @@ pg_libs: 'vchord.so, pg_stat_statements, auto_explain'
 
 The default connection goes directly to PostgreSQL on port `5432`. Do not point Immich at PgBouncer transaction pooling. Direct PostgreSQL connections or session pooling are more reliable for migrations, indexes, and prepared statements.
 
-Immich still treats pre-existing PostgreSQL as an advanced deployment option, but explicitly notes that it enables WAL-based backup tools such as pgBackRest and Barman. The Pigsty template uses a non-superuser path: Pigsty creates the database, user, and extensions in advance, so the Immich application user does not need PostgreSQL superuser privileges.
+Immich treats pre-existing PostgreSQL as an advanced deployment option. It notes that this enables WAL backup tools such as pgBackRest and Barman. Pigsty creates the database, user, and extensions in advance. The Immich application user therefore does not need PostgreSQL superuser privileges.
 
 ------
 
@@ -165,7 +164,7 @@ To pin a specific Immich version, set the following in `pigsty.yml`:
 IMMICH_VERSION: v3.3.0  # optional exact pin; the template defaults to v3
 ```
 
-Read the upstream release notes before upgrading Immich or VectorChord. After upgrading the VectorChord package, you will usually also need to update the extension and rebuild the related indexes in the `immich` database:
+Read the upstream release notes before upgrading Immich or VectorChord. After a VectorChord package upgrade, you will usually need to update the extension and rebuild related indexes in `immich`:
 
 ```sql
 ALTER EXTENSION vchord UPDATE;

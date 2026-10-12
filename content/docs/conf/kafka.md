@@ -6,7 +6,9 @@ icon: fa-solid fa-stream
 categories: [Reference]
 ---
 
-`demo/kafka` declares two Kafka 4.x dynamic KRaft clusters across four nodes: the plaintext single-node development cluster `kf-meta`, and the three-node TLS/SCRAM/ACL demonstration cluster `kf-test`.
+The `demo/kafka` template defines two Kafka 4.x dynamic KRaft clusters on four nodes.
+The development cluster `kf-meta` uses one node and plaintext connections.
+The demonstration cluster `kf-test` uses three nodes with TLS, SCRAM, and ACLs.
 
 
 --------
@@ -26,7 +28,10 @@ categories: [Reference]
 ./kafka.yml -l kf-test
 ```
 
-`deploy.yml` only deploys the core path and does not run the KAFKA playbook automatically. Each `kafka.yml` run must select one complete Kafka cluster; the role rejects convergence against only part of a cluster.
+The `deploy.yml` playbook deploys only the core modules.
+It does not run the KAFKA playbook.
+For each `kafka.yml` run, select one complete Kafka cluster.
+The role rejects operations that select only part of a cluster.
 
 
 --------
@@ -44,7 +49,8 @@ Source: [`pigsty/conf/demo/kafka.yml`](https://github.com/pgsty/pigsty/blob/main
 
 - `kf-meta` creates `quickstart.events` for single-node development and connectivity tests.
 - `kf-test` creates the `test-app` SCRAM user, prefix ACLs, and the three-replica `test.events` topic.
-- Online installation maps the platform packages `kafka-stack` and `java-runtime`; when using only a local repository, cache both complete package groups first.
+- Online installation maps the platform packages `kafka-stack` and `java-runtime`.
+  For installation with only a local repository, cache both complete package groups first.
 - Addresses and passwords in the template are demonstration values. Replace them for your topology and security requirements before deployment.
 
 See the [KAFKA module](/docs/kafka/) for operations, security, and scaling constraints.

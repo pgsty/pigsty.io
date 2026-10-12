@@ -10,7 +10,7 @@ categories: [Reference]
 
 ------------------
 
-> **Note**: Pigsty v4.0 has replaced Prometheus/Loki with VictoriaMetrics/Logs/Traces. The following metric list is still based on v3.x generation, for reference when troubleshooting older versions only. To get the latest metrics, query directly in `https://p.pigsty` (VMUI) or Grafana. Future versions will regenerate metric reference sheets consistent with the Victoria suite.
+> **Note**: Pigsty v4.0 replaced Prometheus/Loki with VictoriaMetrics/Logs/Traces. This metric list comes from v3.x. Use it only to troubleshoot older versions. For current metrics, query `https://p.pigsty` (VMUI) or Grafana directly. Future versions will regenerate the metric references for the Victoria suite.
 
 ## INFRA Metrics
 

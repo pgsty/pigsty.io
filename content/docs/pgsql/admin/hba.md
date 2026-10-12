@@ -10,7 +10,9 @@ categories: [Task]
 
 ## Quick Start
 
-Pigsty uses declarative management: first [**define HBA rules**](/docs/pgsql/config/hba) in the [**inventory**](/docs/concept/iac/inventory), then use `bin/pgsql-hba <cls>` to refresh.
+Pigsty manages HBA rules declaratively.
+First [**define HBA rules**](/docs/pgsql/config/hba) in the [**inventory**](/docs/concept/iac/inventory).
+Then run `bin/pgsql-hba <cls>` to refresh them.
 
 ```yaml
 pg-meta:
@@ -59,7 +61,7 @@ For rule syntax, see [**HBA Configuration**](/docs/pgsql/config/hba). For authen
 
 ## Refresh HBA Rules
 
-After modifying HBA rules in `pigsty.yml`, re-render config files and reload services.
+After you change HBA rules in `pigsty.yml`, generate the configuration files again and reload the services.
 
 ```bash {tab="Script" group="script-playbook-example" value="script"}
 bin/pgsql-hba <cls>              # Refresh entire cluster HBA (PostgreSQL + Pgbouncer)
@@ -77,7 +79,8 @@ bin/pgsql-hba pg-meta                      # Refresh pg-meta cluster
 bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 ```
 
-**Result**: Renders PostgreSQL and Pgbouncer HBA config files based on inventory definitions, then reloads services to apply.
+**Result**: Pigsty generates PostgreSQL and Pgbouncer HBA configuration files from inventory definitions.
+It then reloads the services to apply the rules.
 
 **Config file locations**
 
@@ -88,7 +91,9 @@ bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 {.full-width}
 
 > [!WARNING] Don't edit config files directly
-> Directly editing `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` works temporarily, but will be overwritten next time Ansible playbook runs. All HBA rule changes should be in `pigsty.yml`, then execute `bin/pgsql-hba` to refresh.
+> Direct changes to `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` work temporarily.
+> The next Ansible playbook run overwrites them.
+> Make all HBA rule changes in `pigsty.yml`, then run `bin/pgsql-hba` to refresh the rules.
 
 **Related Tags**
 
@@ -105,7 +110,7 @@ bin/pgsql-hba pg-meta 10.10.10.10          # Refresh 10.10.10.10 instance only
 
 ## Verify HBA Rules
 
-After refreshing HBA rules, verify config is correctly applied.
+After you refresh HBA rules, verify that the configuration applies correctly.
 
 **View current HBA rules**
 
@@ -153,7 +158,8 @@ tail -f /pg/log/postgresql-*.log
 
 ### Add New HBA Rule
 
-Add rule to cluster config's `pg_hba_rules`, then refresh:
+Add the rule to `pg_hba_rules` in the cluster configuration.
+Then refresh the rules:
 
 ```yaml
 pg-meta:
@@ -169,7 +175,7 @@ bin/pgsql-hba pg-meta
 
 ### Emergency IP Block
 
-When detecting malicious IP, add high-priority (`order: 0`) deny rule:
+If you detect a malicious IP address, add a deny rule with high priority (`order: 0`):
 
 ```yaml
 pg_hba_rules:
@@ -193,12 +199,13 @@ pg_hba_rules:
   - {user: reader, db: all, addr: world, auth: ssl, role: replica, title: 'reader on replica'}
 ```
 
-After refresh, rules auto-enable/disable based on instance's `pg_role`.
+After a refresh, the instance `pg_role` determines which rules are enabled.
 
 
 ### Refresh HBA After Expansion
 
-When cluster adds new instances, rules using `addr: cluster` need refresh to include new members:
+After you add cluster instances, refresh rules that use `addr: cluster`.
+The refreshed rules include the new members:
 
 ```bash
 ./pgsql.yml -l 10.10.10.14       # Add new instance
@@ -208,7 +215,8 @@ bin/pgsql-hba pg-meta            # Refresh all instances' HBA (includes new memb
 
 ### Refresh HBA After Failover
 
-After Patroni failover, instance `pg_role` may not match config. If HBA rules use `role` filtering, update config and refresh:
+After a Patroni failover, instance roles may differ from `pg_role` values in the configuration.
+If HBA rules filter by `role`, update the configuration and refresh the rules:
 
 ```bash
 # Update role definitions in pigsty.yml then refresh
@@ -274,7 +282,8 @@ head -20 /pg/data/pg_hba.conf
 
 ### Rule Order Issues
 
-HBA uses first-match-wins. If rules not working as expected:
+HBA uses the first matching rule.
+If rules do not work as expected:
 
 1. Check `order` values in rule definitions
 2. Use `psql -c "TABLE pg_hba_file_rules"` to view actual order
@@ -315,13 +324,13 @@ cat /etc/pgbouncer/pgb_hba.conf    # View Pgbouncer HBA rules
 
 ## Best Practices
 
-1. **Always manage in config files**: Don't edit `pg_hba.conf` directly - all changes through `pigsty.yml`
-2. **Test environment first**: HBA changes can cause connection issues - verify in test env first
-3. **Use order for priority**: Blocklist rules use `order: 0` to ensure priority matching
-4. **Refresh promptly**: Refresh HBA after adding/removing instances or failover
-5. **Principle of least privilege**: Only open necessary access - avoid `addr: world` + `auth: trust`
-6. **Monitor auth failures**: Watch for auth failures in `pg_stat_activity`
-7. **Backup config**: Backup `pigsty.yml` before important changes
+1. **Manage rules in the inventory**: Make all changes in `pigsty.yml`. Do not edit `pg_hba.conf` directly.
+2. **Test first**: Verify HBA changes in a test environment first. Changes can cause connection problems.
+3. **Set rule priority**: Use `order: 0` for blocklist rules to match them first.
+4. **Refresh promptly**: Refresh HBA after you add or remove instances, or after failover.
+5. **Grant minimum access**: Allow only necessary access. Avoid `addr: world` with `auth: trust`.
+6. **Monitor authentication failures**: Check `pg_stat_activity` for authentication failures.
+7. **Back up configuration**: Back up `pigsty.yml` before important changes.
 
 
 ----------------

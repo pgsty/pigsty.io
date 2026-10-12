@@ -8,24 +8,27 @@ module: [PIG]
 categories: [Concept]
 ---
 
-Have you ever struggled with installing or upgrading PostgreSQL extensions? Digging through outdated documentation, cryptic configuration scripts, or searching GitHub for forks and patches?
-Postgres's rich extension ecosystem also means complex deployment processes, especially across multiple distributions and architectures. PIG can solve these headaches for you.
+PostgreSQL extensions can be difficult to install and upgrade.
+Documentation can be outdated, configuration scripts can be unclear, and forks or patches can be difficult to find.
+Deployment is more complex across multiple Linux distributions and architectures. PIG helps with these tasks.
 
-This is exactly why **Pig** was created. Developed in Go, Pig is dedicated to one-stop management of Postgres and its [{{< param pgext_count >}} packaged extensions](/ext/list).
-Whether it's TimescaleDB, Citus, PGVector, 30+ Rust extensions, or all the components needed to self-host Supabase, Pig's unified CLI makes everything accessible.
-It completely eliminates source compilation and messy repositories, directly providing version-aligned RPM/DEB packages that perfectly support Debian, Ubuntu, RedHat, and other mainstream distributions on both x86 and Arm architectures, no guessing, no hassle.
+**Pig** is a Go tool that manages PostgreSQL and its [{{< param pgext_count >}} packaged extensions](/ext/list) through one CLI.
+It supports TimescaleDB, Citus, PGVector, 30+ Rust extensions, and the components needed to host Supabase yourself.
+Pig supplies RPM/DEB packages for each PostgreSQL version. You do not need to compile these packages from source or manage separate repositories.
+The packages support Debian, Ubuntu, RedHat, and other mainstream distributions on x86 and Arm.
 
-Pig isn't reinventing the wheel; it fully leverages native system package managers (APT, YUM, DNF) and strictly follows [PGDG official](/docs/repo/pgdg/) packaging standards for seamless integration.
-You do not need to choose between "the standard way" and "shortcuts". Pig respects existing repositories, follows OS best practices, and coexists harmoniously with existing repositories and packages.
-If your Linux system and PostgreSQL major version are not in the [supported list](#linux-compatibility), you can use [`pig build`](/docs/pig/build/) to compile extensions for your specific combination.
+Pig uses native package managers (APT, YUM, DNF) and follows [PGDG official](/docs/repo/pgdg/) packaging standards.
+It follows OS practices and works with existing repositories and packages.
+If your Linux system and PostgreSQL major version are absent from the [supported list](#linux-compatibility), use [`pig build`](/docs/pig/build/) to compile extensions for that combination.
 
-Want to supercharge your Postgres and escape the hassle? Visit the [PIG official documentation](https://pigsty.io/docs/pig/) for guides, and check out the extensive [extension list](/ext/list),
-turning your local Postgres database into an all-capable multi-modal data platform with one click.
-If [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4), then Pig is the magic lamp that helps you unlock it. After all, no one ever complains about "too many extensions".
+Use the [PIG official documentation](https://pigsty.io/docs/pig/) for instructions and the [extension list](/ext/list) to find available extensions.
+These extensions let your local PostgreSQL database handle multiple data models.
+The article [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4) describes this direction. Pig makes these extension capabilities easier to use.
 
 ## Automation-Friendly
 
-PIG's command system is automation-ready out of the box: consistent argument conventions, stable output behavior, `--plan` previews, and confirmation flows for high-risk operations to reduce mistakes.
+PIG supports automation through consistent arguments, stable output, and `--plan` previews.
+High-risk operations use confirmation steps to reduce mistakes.
 
 
 > [ANNOUNCE pig: The Postgres Extension Wizard](https://www.postgresql.org/about/news/announce-pig-the-postgres-extension-wizard-2988/)
@@ -62,7 +65,7 @@ PIG and the Pigsty extension repository support the following Linux distribution
 
 **Notes:**
 
-- **EL** refers to RHEL-compatible distributions, including RHEL, CentOS, RockyLinux, AlmaLinux, OracleLinux, etc.
-- **EOL** indicates the operating system has reached or is about to reach end of support; upgrading to a newer version is recommended
-- **✅** indicates full support; recommended for use
-- PG versions 14-18 means support for PostgreSQL 14, 15, 16, 17, and 18 major versions
+- **EL** means RHEL-compatible distributions, including RHEL, CentOS, RockyLinux, AlmaLinux, and OracleLinux.
+- **EOL** means the OS has reached, or will soon reach, the end of support. Upgrade to a newer version.
+- **✅** means full support. These versions are recommended.
+- PG versions 14-18 means PostgreSQL major versions 14, 15, 16, 17, and 18.

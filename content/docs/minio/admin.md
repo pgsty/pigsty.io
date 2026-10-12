@@ -37,10 +37,10 @@ To destroy a cluster, run the dedicated [`minio-rm.yml`](/docs/minio/playbook#mi
 ./minio-rm.yml -l minio -e minio_type=silo -e minio_rm_pkg=true
 ```
 
-The removal role also defaults `minio_type` to `silo`; other values are rejected. The examples still spell it out so the backend, cluster identity, and paths are visible during review.
+The removal role also defaults `minio_type` to `silo`. It rejects other values. The examples still spell it out so the backend, cluster identity, and paths are visible during review.
 
 > [!NOTE] Architecture Change: Pigsty v3.6+
-> Starting from Pigsty v3.6, cluster removal has been migrated from `minio.yml` playbook to the dedicated `minio-rm.yml` playbook. The old `minio_clean` task has been deprecated.
+> Since Pigsty v3.6, the dedicated `minio-rm.yml` playbook handles cluster removal instead of `minio.yml`. The old `minio_clean` task is deprecated.
 
 The removal playbook attempts these operations in order:
 - Deregisters object-storage targets from VictoriaMetrics monitoring
@@ -49,7 +49,7 @@ The removal playbook attempts these operations in order:
 - Deletes data directories and Silo configuration (`minio_rm_data`, enabled by default)
 - Uninstalls Silo and `mcli` packages (`minio_rm_pkg`, disabled by default)
 
-The playbook tolerates errors. Its return status alone does not prove that the service, data, DNS records, and monitoring targets were all handled as intended; inspect each item after a real run.
+The playbook tolerates errors. The return status alone does not verify the final service, data, DNS, and monitoring state. Inspect each item after a real run.
 
 
 
@@ -61,9 +61,9 @@ This section uses the MinIO-compatible administration interfaces retained by Sil
 
 - [Expand Cluster Tutorial](https://min.io/docs/minio/linux/operations/install-deploy-manage/expand-minio-deployment.html)
 
-Silo cannot directly change the node or disk count of an existing storage pool, but it can expand by adding a new pool.
+Silo cannot directly change the node or disk count of an existing storage pool. To expand, add a new pool.
 
-Assume you have a [four-node](/docs/minio/config#multi-node-multi-disk) Silo cluster and want to double capacity by adding a new four-node storage pool.
+This example starts with a [four-node](/docs/minio/config#multi-node-multi-disk) Silo cluster. It doubles capacity by adding a new four-node storage pool.
 
 ```yaml
 minio:
@@ -105,8 +105,7 @@ minio:
           - { name: minio-4 ,ip: 10.10.10.13 ,port: 9000 ,options: 'check-ssl ca-file /etc/pki/ca.crt check port 9000' }
 ```
 
-First, modify the Silo cluster definition to add four new nodes, assigning sequence numbers 5 to 8.
-The key step is to modify the [`minio_volumes`](/docs/minio/param#minio_volumes) parameter to designate the new four nodes as a new **storage pool**.
+First, add four nodes to the Silo cluster definition. Assign sequence numbers 5 to 8. Set [`minio_volumes`](/docs/minio/param#minio_volumes) to define these four nodes as a new **storage pool**.
 
 ```yaml
 minio:
@@ -211,7 +210,7 @@ Silo cannot directly reduce the node or disk count of an existing storage pool. 
 
 - [Upgrade Cluster Tutorial](https://min.io/docs/minio/linux/operations/install-deploy-manage/upgrade-minio-deployment.html)
 
-First, download the new `silo` and `mcli` packages to the local repository on the INFRA node, then rebuild repository metadata with SOW:
+First, download the new `silo` and `mcli` packages to the local repository on the INFRA node. Then rebuild repository metadata with SOW:
 
 ```bash
 ./infra.yml -t repo_create
@@ -230,7 +229,7 @@ Finally, have the role restart the complete Silo cluster:
 ./minio.yml -l minio -t minio_config,minio_launch
 ```
 
-A package upgrade and migration from legacy MinIO to Silo are different operations. The former applies to a cluster already running Silo; the latter requires separate data-compatibility validation, backups, a maintenance window, and a rehearsed rollback plan. Do not reuse this upgrade procedure for migration.
+A package upgrade applies to a cluster that already runs Silo. Migration from legacy MinIO to Silo requires separate data-compatibility validation, backups, a maintenance window, and a rehearsed rollback plan. Do not use this upgrade procedure for migration.
 
 
 

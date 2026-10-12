@@ -6,9 +6,9 @@ icon: fa-solid fa-gem
 categories: [Reference]
 ---
 
-The [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) configuration template is an enhanced version of [`meta`](/docs/conf/meta/), designed for users who need to experience complete functionality.
+The [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) configuration template extends [`meta`](/docs/conf/meta/). Use it to try the complete set of features.
 
-If you want to build a local software repository, use Silo for backup storage, run Docker applications, or need preconfigured business databases, use this template.
+Use this template to build a local software repository, use Silo backup storage, or run Docker applications. It also provides preconfigured business databases.
 
 
 --------
@@ -51,7 +51,7 @@ Source: [`pigsty/conf/rich.yml`](https://github.com/pgsty/pigsty/blob/main/conf/
 
 ## Explanation
 
-The `rich` template is Pigsty's **complete functionality showcase configuration**, suitable for users who want to deeply experience all features.
+The `rich` template provides a **complete functionality showcase configuration**. Use it to learn how all features work.
 
 **Use Cases**:
 - Offline environments requiring local software repository
@@ -68,6 +68,6 @@ The `rich` template is Pigsty's **complete functionality showcase configuration*
 - Preconfigures HA cluster stub configuration (pg-test)
 
 **Notes**:
-- Some extensions unavailable on ARM64 architecture, adjust as needed
+- Some extensions are unavailable on ARM64. Adjust the configuration as needed.
 - Building local software repository requires longer time and larger disk space
-- Default passwords are sample passwords, must be changed for production
+- The default passwords are examples. Change them before production use.

@@ -9,7 +9,7 @@ aliases: [/docs/pilot/kafka/monitor]
 ---
 
 
-Pigsty gives the KAFKA module a unified observability stack that combines metrics, logs, dashboards, and alerts. Monitoring covers both the Kafka JVM internals and the Kafka protocol view, so you never end up seeing only that the process is alive without visibility into partitions, ISR, and consumer lag, nor seeing only cluster metadata without visibility into the JVM, request queues, and KRaft controller health.
+Kafka monitoring combines metrics, logs, dashboards, and alerts. It covers JVM internals and the Kafka protocol view. You can inspect partitions, ISR, and consumer lag together with JVM state, request queues, and KRaft controller health.
 
 
 --------
@@ -26,20 +26,20 @@ The KAFKA module uses two complementary exporters:
 | Logs | Journald → Vector → VictoriaLogs | `syslog` | All Kafka nodes | Structured, searchable Kafka and exporter logs |
 {.full-width}
 
-On each Infra node, the role generates one file-discovery target per instance. The JMX target and the protocol exporter target (on the selected nodes) both live in the same file, under the same `kafka` scrape job:
+On each INFRA node, the role creates one discovery file per instance. JMX and any selected protocol target share that file and `kafka` scrape job:
 
 ```text
 /infra/targets/kafka/<kafka_instance>.yml
 ```
 
-A single-broker cluster runs only one protocol exporter; a multi-broker cluster runs at most two. Controller-only nodes register only the JMX target; brokers that were not selected and controller-only nodes have no protocol exporter target, which is expected behavior. The target file is refreshed to match the current placement on every full run; deletion of an instance target is handled by the deregistration step in `kafka-rm.yml`.
+Single-broker clusters run one protocol exporter; larger clusters run at most two. Controllers register only JMX. Controllers and unselected brokers have no protocol target by design. Full runs refresh target files for current placement. `kafka-rm.yml` deregistration removes instance targets.
 
 
 --------
 
 ## Label Model
 
-Both target types are registered under the same `job=kafka` scrape job, and are distinguished by the presence or absence of the `role` label.
+Both targets use `job=kafka`. JMX has a `role` label; protocol targets do not.
 
 ### JMX Target
 
@@ -56,9 +56,9 @@ Both target types are registered under the same `job=kafka` scrape job, and are 
 
 ### Protocol Exporter Target
 
-A protocol exporter target carries only `cls`, `ins`, `ip`, and `instance` (`10.10.10.11:9308`); it has no `role` or `node_id` labels. The recording rules on the vmagent side use this to distinguish the two availability types: `kafka_up` is `up{job="kafka",role=~".+"}`, and `kafka_exporter_up` is `up{job="kafka",role=""}`.
+Protocol targets carry `cls`, `ins`, `ip`, and `instance` (`10.10.10.11:9308`), without `role` or `node_id`. vmagent-side rules distinguish availability by those labels. `kafka_up` is `up{job="kafka",role=~".+"}`. `kafka_exporter_up` is `up{job="kafka",role=""}`.
 
-The exporter queries the entire Kafka cluster through a broker, so the two exporters of the same cluster may return an identical view of topics, partitions, and consumer groups. The cluster-level recording rules first deduplicate across exporter instances, then aggregate the logical cluster rates. In `scram` mode, the TLS/SCRAM parameters the exporter needs to connect to Kafka are generated automatically from the role's own monitoring identity.
+Each exporter queries the whole cluster through a broker. Both can return identical topic, partition, and consumer-group state. Recording rules deduplicate exporters before aggregating cluster rates. In `scram` mode, the role generates exporter TLS/SCRAM settings from its monitoring identity.
 
 
 --------
@@ -69,7 +69,7 @@ Pigsty ships four complementary dashboards:
 
 ### [Kafka Overview](https://demo.pigsty.cc/ui/d/kafka-overview)
 
-Cluster and global overview. `cls=All` is the overview across all Kafka clusters; once you select a specific `cls`, the same dashboard becomes the overview for that Kafka cluster, rather than a separate set of panels.
+`cls=All` shows all Kafka clusters. Selecting one `cls` changes the same panels to that cluster's overview.
 
 Main content:
 
@@ -85,7 +85,7 @@ Common variables: `cls`, `members`, `topic`, `group`, `topk`.
 
 ### [Kafka Instance](https://demo.pigsty.cc/ui/d/kafka-instance)
 
-Use the `ins` variable to select any Kafka broker/controller JVM, including controller-only nodes, correlated with host resources.
+Use `ins` to select a broker or controller JVM, including controller-only nodes. The dashboard also shows related host resources.
 
 Main content:
 
@@ -100,7 +100,7 @@ Common variables: `cls`, `ins`, `ip`.
 
 ### [Kafka Topic](https://demo.pigsty.cc/ui/d/kafka-topic)
 
-Use `cls` and `topic` to select a logical topic and inspect topic/partition state from the protocol view.
+Use `cls` and `topic` to select a logical topic and inspect its topic/partition protocol state.
 
 Main content:
 
@@ -114,7 +114,7 @@ Common variables: `cls`, `topic`, `topk`.
 
 ### [Kafka Consumer](https://demo.pigsty.cc/ui/d/kafka-consumer)
 
-Use `cls` and `group` to select a consumer group and inspect members, committed offsets, consumption progress, and backlog.
+Use `cls` and `group` to inspect consumer-group members, committed offsets, progress, and backlog.
 
 Main content:
 
@@ -168,7 +168,7 @@ The Kafka rule file lives at `/infra/rules/kafka.yml`. The main recorded metrics
 | `kafka:cls:offline_partitions` | Offline partitions in the cluster |
 {.full-width}
 
-Rates derived from offset changes represent progress, not client request counts. Log truncation, offset rollback, or an exporter restart can produce a transient negative change; the rules use `clamp_min(..., 0)` to keep only forward progress.
+Offset-change rates measure progress, not client requests. Truncation, offset rollback, and exporter restarts can briefly produce negative changes. Rules use `clamp_min(..., 0)` to retain forward progress only.
 
 
 --------
@@ -194,7 +194,7 @@ Rates derived from offset changes represent progress, not client request counts.
 | `KafkaConsumerLagGrowing` | Group lag > 100000 and still growing after 30m | 30m | WARN | Kafka Consumer / `group` |
 {.full-width}
 
-An unclean leader election can mean data loss. Immediately preserve the controller/broker logs, confirm the affected topics and replicas, and only then decide on a recovery action.
+An unclean leader election can indicate data loss. Immediately preserve controller and broker logs. Identify affected topics and replicas before choosing recovery actions.
 
 
 --------
@@ -237,7 +237,7 @@ max by (ins,request,quantile) (
 
 ## Log Queries
 
-Kafka services write stdout and stderr to Journald; the node's Vector Journald source forwards them to VictoriaLogs, all under `job:syslog`.
+Kafka writes stdout and stderr to Journald. Vector forwards these records to VictoriaLogs under `job:syslog`.
 
 ```text
 job:syslog unit:kafka
@@ -246,7 +246,7 @@ job:syslog unit:kafka_exporter
 ip:10.10.10.11 job:syslog (unit:kafka OR app:kafka)
 ```
 
-The log panel on the Kafka Instance dashboard uses similar queries and shows time, level, systemd unit, and message. When diagnosing, align the logs with the KRaft, ISR, request queue, GC, disk I/O, and network metrics from the same time window.
+Kafka Instance log panels use similar queries and show time, level, Systemd unit, and message. Compare the same time window across logs, KRaft, ISR, request queues, GC, disk I/O, and network metrics.
 
 
 --------
@@ -260,13 +260,13 @@ curl -fsS http://<kafka-ip>:9404/metrics | grep '^jmx_scrape_error'
 curl -fsS http://127.0.0.1:9308/metrics | grep '^kafka_brokers'
 ```
 
-Check file discovery on an Infra node (one file per instance; the file for a selected node contains both the JMX and the protocol exporter targets):
+Check discovery files on an INFRA node. Each instance has one file; selected nodes include both JMX and protocol targets:
 
 ```bash
 ls -l /infra/targets/kafka/
 cat /infra/targets/kafka/kf-main-1.yml
 ```
 
-Then query `up{job="kafka"}` in VictoriaMetrics (or the recorded metrics `kafka_up` and `kafka_exporter_up`). After a failed scrape, custom exporter metrics may briefly retain stale samples, so endpoint liveness should be judged by Prometheus's native `up`. If the raw endpoints are fine but the recorded metrics are missing, check file discovery, the VictoriaMetrics target, network reachability, rule loading, and labels, in that order. If the JMX HTTP endpoint is fine but `jmx_scrape_error` is `1`, check the Kafka logs and the MBean matching in `/etc/kafka/jmx_exporter.yml`.
+Query `up{job="kafka"}` in VictoriaMetrics, or recording metrics `kafka_up` and `kafka_exporter_up`. Use native Prometheus `up` for endpoint availability; custom exporter samples can remain briefly after failed scrapes. If raw endpoints work but recording metrics are absent, check discovery files, target state, network, rule loading, and labels in order. If JMX HTTP works but `jmx_scrape_error` is `1`, inspect Kafka logs and MBean matching in `/etc/kafka/jmx_exporter.yml`.
 
 For complete metric semantics, see [Metric Definitions](/docs/kafka/metric).

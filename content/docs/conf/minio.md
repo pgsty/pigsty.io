@@ -7,7 +7,9 @@ categories: [Reference]
 aliases: [/docs/conf/rustfs/]
 ---
 
-`demo/minio` demonstrates a highly available S3 object-storage cluster with four nodes and four drives per node, for 16 drives total. The template retains MINIO module compatibility naming and explicitly sets `minio_type: silo`; the current v4.5.0 source accepts only this value, and both deployment and removal roles default to `silo`. Still verify it together with the exact target, cluster identity, and data paths before removal.
+`demo/minio` demonstrates a highly available S3 object-storage cluster. The cluster has four nodes and four drives per node, for a total of 16 drives.
+
+The template retains MINIO module names for compatibility and explicitly sets `minio_type: silo`. The current v4.5.0 source accepts only this value. The deployment and removal roles both default to `silo`. Before removal, verify this value, the exact target, the cluster identity, and the data paths.
 
 For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 
@@ -29,7 +31,7 @@ Usage:
 ./configure -c demo/minio
 ```
 
-> Note: This is a four-node template. You need to modify the IP addresses of the other three nodes after generating the configuration.
+> Note: This template has four nodes. After you generate the configuration, change the IP addresses of the other three nodes.
 
 
 --------
@@ -45,7 +47,7 @@ Source: [`pigsty/conf/demo/minio.yml`](https://github.com/pgsty/pigsty/blob/main
 
 ## Explanation
 
-`demo/minio` is a reference configuration for production object storage using the Multi-Node Multi-Drive (MNMD) architecture. Its volume layout, HAProxy health checks, and clients retain MinIO-compatible interfaces.
+`demo/minio` provides a reference configuration for production object storage. It uses the Multi-Node Multi-Drive (MNMD) architecture. Its volume layout, HAProxy health checks, and clients retain MinIO-compatible interfaces.
 
 **Key Features**:
 - **Multi-Node Multi-Drive Architecture**: 4 nodes × 4 drives = 16-drive erasure coding group
@@ -74,5 +76,5 @@ mcli ls sss/
 
 **Notes**:
 - Each node requires 4 independent disks mounted at `/data1` - `/data4`
-- Production environments recommend at least 4 nodes for erasure coding redundancy
+- We recommend at least 4 nodes for erasure coding redundancy in production.
 - VIP requires proper network interface configuration (`vip_interface`)

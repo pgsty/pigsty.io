@@ -14,13 +14,13 @@ categories: [Reference]
 
 ## GitHub
 
-Our GitHub repository is: [https://github.com/pgsty/pigsty](https://github.com/pgsty/pigsty). Please give us a ⭐️ [**star**](https://github.com/pgsty/pigsty/stargazers)!
+Find the project at [github.com/pgsty/pigsty](https://github.com/pgsty/pigsty). You can support it with a [**star**](https://github.com/pgsty/pigsty/stargazers).
 
-We welcome anyone to [submit new Issues](https://github.com/pgsty/pigsty/issues/new) or create [Pull Requests](https://github.com/pgsty/pigsty/pulls), propose feature suggestions, and contribute to Pigsty.
+Contribute feature suggestions, [new issues](https://github.com/pgsty/pigsty/issues/new), or [pull requests](https://github.com/pgsty/pigsty/pulls).
 
 [![Star History Chart](https://api.star-history.com/svg?repos=pgsty/pigsty&type=Date)](https://star-history.com/#pgsty/pigsty&Date)
 
-Please note that for issues related to Pigsty documentation, please submit [Issues](https://github.com/pgsty/pigsty.cc/issues) in the [github.com/pgsty/pigsty.cc](https://github.com/pgsty/pigsty.cc) repository.
+For documentation problems, submit [issues](https://github.com/pgsty/pigsty.cc/issues) to [github.com/pgsty/pigsty.cc](https://github.com/pgsty/pigsty.cc).
 
 Press {{< kbd "⌘" "K" >}} on macOS, or {{< kbd "Ctrl" "K" >}}, to search the documentation, extension catalog, and blog directly.
 
@@ -38,9 +38,9 @@ Pigsty is built by its maintainers and community.
 
 ## WeChat Groups
 
-Chinese users are mainly active in WeChat groups. Currently, there are seven active groups. Groups 1-4 are full; for other groups, you need to add the assistant's WeChat to be invited.
+Chinese users mainly use WeChat groups. There are seven active groups. Groups 1-4 are full. Add the assistant on WeChat for an invitation to another group.
 
-To join the WeChat community, search for "Pigsty小助手" (WeChat ID: `pigsty-cc`), note or send "加群" (join group), and the assistant will invite you to the group.
+To join, search for "Pigsty小助手" on WeChat (ID: `pigsty-cc`). Include or send "加群" (join group). The assistant will send an invitation.
 
 ![Pigsty Chinese community](/img/pigsty/pigsty-cc.jpg)
 
@@ -63,9 +63,9 @@ You can also contact me via email: rh@vonng.com
 
 ## Community Help
 
-When you encounter problems using Pigsty, you can seek help from the community. The more information you provide, the more likely you are to get help from the community.
+For problems with Pigsty, ask the community for help. More diagnostic information improves the chance of a useful response.
 
-Please refer to the [Community Help Guide](https://github.com/pgsty/pigsty/discussions/338) and provide as much information as possible so that community members can help you solve the problem. Here is a reference template for asking for help:
+Follow the [Community Help Guide](https://github.com/pgsty/pigsty/discussions/338) and provide enough information to diagnose the problem. Use this request template:
 
 
 **What happened?** (**Required**)
@@ -80,8 +80,7 @@ $ cat /etc/os-release
 $ uname -a
 ```
 
-Some cloud providers have customized standard OS distributions. You can tell us which cloud provider's OS image you are using.
-If you have customized and modified the environment after installing the OS, or if there are specific security rules and firewall configurations in your LAN, please also inform us when asking questions.
+Some cloud providers customize operating system images. Identify the provider and image that you use. Describe any changes made after OS installation and any relevant LAN security or firewall rules.
 
 
 **Pigsty configuration file**
@@ -107,7 +106,7 @@ cat ~/pigsty/pigsty.yml
 
 **Error logs**
 
-Please provide logs related to the error as much as possible. **Please do not paste content like "Failed to start xxx service" that has no informational value**.
+Provide logs that explain the error. **A message such as "Failed to start xxx service" alone does not identify the cause**.
 
 You can query logs from Grafana / VictoriaLogs, or get logs from the following locations:
 

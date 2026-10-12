@@ -7,14 +7,18 @@ category: [Task]
 description: Production deployment — connection & credentials, systemd / Docker / Kubernetes, auto-discovery and alerting
 ---
 
-This page covers what it takes to run `pg_exporter` in production: process arguments and environment variables, monitoring user and credential management, the systemd / Docker / Kubernetes deployment forms, pgBouncer and auto-discovery, plus scrape and alerting configuration on the Prometheus side.
+Use this page to deploy `pg_exporter` in production.
+It describes process arguments, environment variables, monitoring users, credentials, and deployment with systemd, Docker, or Kubernetes.
+It also describes pgBouncer monitoring, auto-discovery, Prometheus scrapes, and alerts.
 
-Process-level configuration comes from two sources, in decreasing precedence:
+The exporter reads process configuration from two sources. Command-line arguments take precedence:
 
 1. **Command-line arguments** (`--url`, `--config`, ...)
 2. **Environment variables** (every flag has a corresponding `PG_EXPORTER_*` variable)
 
-Metric collection behavior is entirely driven by YAML collector definitions (default `/etc/pg_exporter.yml`, or a config directory) — see the [Configuration reference](/docs/pg_exporter/config/).
+YAML collector definitions control metric collection.
+The default file is `/etc/pg_exporter.yml`. You can also use a configuration directory.
+See the [Configuration reference](/docs/pg_exporter/config/).
 
 
 --------
@@ -60,14 +64,14 @@ Flags:
       --[no-]version             Show application version.
 ```
 
-Two deployment-relevant behaviors worth knowing:
+These behaviors affect deployment:
 
-- **Startup policy**: non-blocking startup is the default — when the target database is temporarily unreachable, the HTTP endpoints come up anyway and a background probe keeps retrying until recovery. If you prefer "fail on unreachable" (e.g. delegating restart decisions to systemd or an orchestrator), set `--fail-fast`.
-- **Telemetry path validation**: since v1.4.0, `--web.telemetry-path` is strictly validated at startup — empty paths, conflicts with built-in endpoints, or non-canonical paths like `//metrics` that could never match fail immediately with a clear error.
+- **Startup policy**: startup is non-blocking by default. If the database is unreachable, HTTP endpoints still start. A background probe retries until recovery. To fail when the database is unreachable, set `--fail-fast`. For example, use this option when systemd or an orchestrator controls restarts.
+- **Telemetry path validation**: from v1.4.0, startup validates `--web.telemetry-path`. Empty paths, conflicts with built-in endpoints, and non-canonical paths such as `//metrics` fail immediately with an error. Non-canonical paths cannot match requests.
 
 ### Connection URL Sources
 
-The connection string resolves from the following sources, first non-empty value wins:
+The exporter uses the first non-empty connection string from this list:
 
 1. `--url` / `-u` command-line argument
 2. `PG_EXPORTER_URL` environment variable
@@ -75,7 +79,10 @@ The connection string resolves from the following sources, first non-empty value
 4. Content of the file pointed to by `PG_EXPORTER_URL_FILE` (fits container Secret mounts)
 5. Default `postgresql:///?sslmode=disable` (local-first, fits same-host deployment)
 
-When the URL omits `sslmode`, `sslmode=disable` is appended automatically. Also, libpq service-file environment variables (`PGSERVICE` / `PGSERVICEFILE`, etc.) are cleared at startup with a log line — service files could override the explicit connection target, and `pg_exporter` guarantees that the URL announced in logs is the URL actually connected to.
+If the URL omits `sslmode`, the exporter appends `sslmode=disable`.
+At startup, it also clears libpq service-file environment variables, such as `PGSERVICE` / `PGSERVICEFILE`, and logs this action.
+Service files can override an explicit connection target.
+Clearing these variables ensures that the exporter connects to the URL shown in the log.
 
 
 --------
@@ -89,11 +96,12 @@ CREATE ROLE monitor WITH LOGIN PASSWORD 'S3cret' CONNECTION LIMIT 5;
 GRANT pg_monitor TO monitor;   -- built-in monitoring role (PostgreSQL 10+), covers all default collectors
 ```
 
-Keeping `CONNECTION LIMIT` is recommended: the exporter normally holds only one to a few connections (one per database with auto-discovery), and the limit prevents connection exhaustion on misconfiguration.
+Keep `CONNECTION LIMIT` to prevent connection exhaustion if the configuration is incorrect.
+The exporter normally uses one to a few connections. With auto-discovery, it uses one connection per database.
 
 ### Manage Passwords with .pgpass
 
-Take the password out of the URL and let libpq's `.pgpass` provide it:
+Remove the password from the URL. Use libpq's `.pgpass` file to supply it:
 
 ```bash
 # Create as the OS user that runs the exporter
@@ -105,7 +113,9 @@ PG_EXPORTER_URL='postgres://monitor@localhost:5432/postgres'
 ```
 
 > [!NOTE] RPM/DEB package installs
-> Packaged services run as the `prometheus` system user. Since v1.4.0 its HOME points to `/var/lib/prometheus` (where libpq looks up `~/.pgpass`), but the package does **not** create that directory. Before using `.pgpass`, run:
+> Packaged services run as the `prometheus` system user.
+> From v1.4.0, its HOME is `/var/lib/prometheus`. Libpq looks for `~/.pgpass` there.
+> The package does **not** create this directory. Before you use `.pgpass`, run:
 > `install -d -o prometheus -g prometheus /var/lib/prometheus`
 
 ### TLS for the Database Connection
@@ -116,14 +126,18 @@ PG_EXPORTER_URL='postgres://monitor:S3cret@db.example.com:5432/postgres?sslmode=
 
 ### Protecting the HTTP Port
 
-Beyond `/metrics`, the `/reload`, `/explain`, and `/stat` management endpoints let anyone with port access read configuration and runtime state, or trigger reloads. If the exporter is reachable from a shared network, enable TLS / Basic Auth via `--web.config.file` ([exporter-toolkit web configuration](https://github.com/prometheus/exporter-toolkit/blob/master/docs/web-configuration.md)), or restrict access at the firewall / reverse-proxy layer.
+The HTTP port provides `/metrics` and the management endpoints `/reload`, `/explain`, and `/stat`.
+Anyone with access to the port can read configuration and runtime state, or start a reload.
+On a shared network, enable TLS / Basic Auth with `--web.config.file` ([exporter-toolkit web configuration](https://github.com/prometheus/exporter-toolkit/blob/master/docs/web-configuration.md)).
+You can also restrict access through a firewall or reverse proxy.
 
 
 --------
 
 ## Systemd Deployment (RPM/DEB packages)
 
-The RPM/DEB packages ship a service unit and an environment file; after installation, edit the environment file and start:
+RPM/DEB packages include a service unit and an environment file.
+After installation, edit the environment file and start the service:
 
 ```ini
 # /usr/lib/systemd/system/pg_exporter.service
@@ -160,7 +174,8 @@ PG_EXPORTER_TELEMETRY_PATH="/metrics"
 PG_EXPORTER_OPTS='--log.level=info'
 ```
 
-Every command-line flag has a corresponding environment variable — append what you need here (e.g. `PG_EXPORTER_DISABLE_INTRO`). The file is packaged as `noreplace`, so upgrades never overwrite your edits.
+Each command-line flag has an environment variable. Add the variables you need, such as `PG_EXPORTER_DISABLE_INTRO`.
+The file uses the `noreplace` package option. Upgrades do not overwrite your changes.
 
 Common operations:
 
@@ -204,7 +219,9 @@ services:
 ```
 
 > [!WARNING] Note
-> The official image is built from `scratch` and contains no system CA certificates. When connecting to remote PostgreSQL with `sslmode=verify-ca` / `verify-full`, mount a CA certificate explicitly and point `sslrootcert` at it, or TLS verification cannot complete.
+> The official image is built from `scratch`. It contains no system CA certificates.
+> To connect to remote PostgreSQL with `sslmode=verify-ca` / `verify-full`, mount a CA certificate and set `sslrootcert` to its path.
+> Without the certificate, TLS verification cannot complete.
 
 
 --------
@@ -259,14 +276,15 @@ spec:
   selector: { app: pg-exporter }
 ```
 
-You can also use `PG_EXPORTER_URL_FILE` pointing at a Secret-mounted file, keeping the connection string out of environment variables.
+To keep the connection string out of environment variables, set `PG_EXPORTER_URL_FILE` to a Secret-mounted file.
 
 
 --------
 
 ## Auto-Discovery
 
-Auto-discovery (enabled by default) lets one exporter instance monitor every database in the target PostgreSQL:
+Auto-discovery is enabled by default.
+It lets one exporter instance monitor every database in the target PostgreSQL instance:
 
 ```bash
 pg_exporter --auto-discovery \
@@ -285,13 +303,15 @@ Behavior:
 
 ## Monitoring pgBouncer
 
-Set the database name in the URL to `pgbouncer` to switch to pgBouncer mode (this is what triggers the detection):
+Set the database name in the URL to `pgbouncer`. This name activates pgBouncer mode:
 
 ```bash
 PG_EXPORTER_URL='postgres://stats_user:S3cret@localhost:6432/pgbouncer' pg_exporter
 ```
 
-In pgBouncer mode, the exporter uses the `pgbouncer` metric prefix and runs only pgBouncer-specific collectors (`SHOW STATS` / `SHOW POOLS`, etc.). The usual pattern is one exporter instance for PostgreSQL and another for pgBouncer, on different ports.
+In pgBouncer mode, the exporter uses the `pgbouncer` metric prefix.
+It runs only pgBouncer collectors, such as `SHOW STATS` / `SHOW POOLS`.
+Usually, you run one exporter for PostgreSQL and another for pgBouncer. Give each exporter a different port.
 
 
 --------
@@ -324,11 +344,13 @@ scrape_configs:
         replacement: ${1}:9630
 ```
 
-Keep the scrape interval at or above the common collector `ttl` (mostly 10 seconds in the default bundle): TTL caching means more frequent scrapes would only receive cached results anyway.
+Set the scrape interval equal to or greater than the common collector `ttl`.
+Most collectors in the default bundle use 10 seconds.
+More frequent scrapes return cached results until the TTL expires.
 
 ### Alert Rules
 
-All rules below are based on metrics that actually exist:
+The following rules use available metrics:
 
 ```yaml
 groups:
@@ -369,6 +391,10 @@ groups:
 
 ### Role-Based Traffic Routing
 
-The `/primary`, `/replica`, and `/read` health-check endpoints can serve directly as health probes for HAProxy and similar load balancers, enabling primary/replica read-write splitting. Endpoint semantics and a complete HAProxy example are in the [API Reference](/docs/pg_exporter/api/#traffic-routing).
+Use `/primary`, `/replica`, and `/read` as health probes for HAProxy or similar load balancers.
+These endpoints support primary/replica routing to separate read and write traffic.
+For endpoint behavior and a complete HAProxy example, see the [API Reference](/docs/pg_exporter/api/#traffic-routing).
 
-Note: open-source Nginx does not support active out-of-band HTTP health checks (`health_check` is an NGINX Plus feature). For role-based PostgreSQL traffic routing, prefer HAProxy, or solutions like Patroni + vip-manager.
+Open-source Nginx does not support active HTTP health checks outside the traffic connection.
+The `health_check` directive requires NGINX Plus.
+To route PostgreSQL traffic by role, use HAProxy or a solution such as Patroni + vip-manager.

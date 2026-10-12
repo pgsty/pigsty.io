@@ -10,18 +10,18 @@ categories: [Task]
 > Source: https://patroni.readthedocs.io/en/latest/standby_cluster.html
 
 <a id="standby_cluster"></a>
-Patroni also support running cascading replication to a remote datacenter (region) using a feature that is called "standby cluster". This type of clusters has:
+Patroni supports cascading replication to a remote datacenter or region through the standby cluster feature. A standby cluster has:
 
-- "standby leader", that behaves pretty much like a regular cluster leader, except it replicates from a remote node.
-- cascade replicas, that are replicating from standby leader.
+- A standby leader, which behaves like a regular cluster leader but replicates from a remote node.
+- Cascade replicas, which replicate from the standby leader.
 
-Standby leader holds and updates a leader lock in DCS. If the leader lock expires, cascade replicas will perform an election to choose another leader from the standbys.
+The standby leader holds and updates a leader lock in the DCS. If the lock expires, the cascade replicas elect another leader from the standbys.
 
-There is no further relationship between the standby cluster and the primary cluster it replicates from, in particular, they must not share the same DCS scope if they use the same DCS. They do not know anything else from each other apart from replication information. Also, the standby cluster is not being displayed in [patronictl_list](/docs/patroni/patronictl#patronictl_list) or [patronictl_topology](/docs/patroni/patronictl#patronictl_topology) output on the primary cluster.
+The standby and primary clusters share only replication information. If they use the same DCS, they must use different DCS scopes. The primary cluster does not show the standby cluster in [patronictl_list](/docs/patroni/patronictl#patronictl_list) or [patronictl_topology](/docs/patroni/patronictl#patronictl_topology) output.
 
-For the sake of flexibility, you can specify methods of creating a replica and recovery WAL records when a cluster is in the "standby mode" by providing [create_replica_methods](/docs/patroni/replica_bootstrap#custom_replica_creation) key in [standby_cluster](/docs/patroni/standby_cluster#standby_cluster) section. It is distinct from creating replicas, when cluster is detached and functions as a normal cluster, which is controlled by `create_replica_methods` in `postgresql` section. Both "standby" and "normal" `create_replica_methods` reference keys in `postgresql` section.
+Use [create_replica_methods](/docs/patroni/replica_bootstrap#custom_replica_creation) in the [standby_cluster](/docs/patroni/standby_cluster#standby_cluster) section to specify replica creation and WAL recovery methods in standby mode. After the cluster detaches and operates normally, replica creation uses `create_replica_methods` in the `postgresql` section. Both standby and normal `create_replica_methods` refer to keys in the `postgresql` section.
 
-To configure such cluster you need to specify the section [standby_cluster](/docs/patroni/standby_cluster#standby_cluster) in a patroni configuration:
+To configure a standby cluster, add a [standby_cluster](/docs/patroni/standby_cluster#standby_cluster) section to the Patroni configuration:
 
 ```yaml
 bootstrap:
@@ -34,23 +34,23 @@ bootstrap:
             - basebackup
 ```
 
-Note, that these options will be applied only once during cluster bootstrap, and the only way to change them afterwards is through DCS.
+These options apply only during cluster bootstrap. After bootstrap, change them through the DCS.
 
-Patroni expects to find `postgresql.conf` or `postgresql.conf.backup` in PGDATA of the remote primary and will not start if it does not find it after a basebackup. If the remote primary keeps its `postgresql.conf` elsewhere, it is your responsibility to copy it to PGDATA.
+Patroni expects `postgresql.conf` or `postgresql.conf.backup` in PGDATA on the remote primary. It will not start if this file is missing after a basebackup. If the primary stores `postgresql.conf` elsewhere, copy it to PGDATA.
 
-If you use replication slots on the standby cluster, you must also create the corresponding replication slot on the primary cluster. It will not be done automatically by the standby cluster implementation. You can use Patroni's permanent replication slots feature on the primary cluster to maintain a replication slot with the same name as `primary_slot_name`, or its default value if `primary_slot_name` is not provided.
+If the standby cluster uses replication slots, create the corresponding slot on the primary cluster. The standby cluster does not create it automatically. You can use permanent replication slots on the primary cluster to maintain it. Use the name from `primary_slot_name`, or its default if you did not set `primary_slot_name`.
 
-In case the remote site doesn't provide a single endpoint that connects to a primary, one could list all hosts of the source cluster in the `standby_cluster.host` section. When `standby_cluster.host` contains multiple hosts separated by commas, Patroni will:
+If the remote site has no single primary endpoint, list all source cluster hosts in `standby_cluster.host`. For multiple comma-separated hosts, Patroni will:
 
-- add `target_session_attrs=read-write` to the `primary_conninfo` on the standby leader node.
-- use `target_session_attrs=read-write` when trying to determine whether we need to run `pg_rewind` or when executing `pg_rewind` on all nodes of the standby cluster.
-- It is important to note that for `pg_rewind` to operate successfully, either the cluster must be initialized with `data page checksums` (`--data-checksums` option for `initdb`) and/or `wal_log_hints` must be set to `on`. Otherwise, `pg_rewind` will not function properly.
+- Add `target_session_attrs=read-write` to `primary_conninfo` on the standby leader.
+- Use `target_session_attrs=read-write` when it checks whether `pg_rewind` is necessary or runs `pg_rewind` on any standby cluster node.
+- Require `data page checksums` and/or `wal_log_hints` set to `on` for successful `pg_rewind` operation. Enable checksums with the `--data-checksums` option for `initdb`. Otherwise, `pg_rewind` cannot operate correctly.
 
-There is also a possibility to replicate the standby cluster from another standby cluster or from a standby member of the primary cluster: for that, you need to define a single host in the `standby_cluster.host` section. However, you need to beware that in this case `pg_rewind` will fail to execute on the standby cluster.
+To replicate from another standby cluster or a standby member of the primary cluster, specify one host in `standby_cluster.host`. However, `pg_rewind` will fail on the standby cluster in this configuration.
 
 > [!WARNING]
-> Member names (the `name` field in each node's Patroni configuration) must be unique across the primary cluster and all standby clusters connected to it.
+> Member names must be unique across the primary cluster and all connected standby clusters. Set each member name in the `name` field of its Patroni configuration.
 >
-> Patroni sets `synchronous_standby_names` on the primary using member names, which also become the `application_name` of each replication connection in `pg_stat_replication`. If a standby cluster node shares the same name as a primary cluster member, PostgreSQL will see two connections with identical `application_name` values. This ambiguity can cause PostgreSQL to satisfy the synchronous replication requirement using the standby cluster's connection instead of the intended primary cluster member, leading PostgreSQL to prematurely acknowledge transactions as synchronously committed when they are not durable on the correct standby.
+> Patroni sets `synchronous_standby_names` on the primary with member names. These names also become the `application_name` of each replication connection in `pg_stat_replication`. Duplicate names create two connections with identical `application_name` values. PostgreSQL can then use a standby cluster connection to satisfy synchronous replication instead of the intended primary cluster member. It can acknowledge synchronous commits before transactions are durable on the correct standby.
 >
-> This is a silent failure: replication continues and no errors are logged, but the cluster is effectively operating without a valid synchronous standby, which is a potential data loss scenario if the primary fails.
+> This failure is silent: replication continues and logs contain no errors. The cluster effectively has no valid synchronous standby. Data loss can occur if the primary fails.

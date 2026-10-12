@@ -11,10 +11,10 @@ weight: 5300
     <div class="ext-card__title">Manuelreyesbravo/pg_living_assertions</div>
     <div class="ext-card__desc">https://github.com/Manuelreyesbravo/pg_living_assertions</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_living_assertions-0.5.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_living_assertions-0.5.10.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_living_assertions-0.5.1.tar.gz</div>
-    <div class="ext-card__desc">pg_living_assertions-0.5.1.tar.gz</div>
+    <div class="ext-card__title">pg_living_assertions-0.5.10.tar.gz</div>
+    <div class="ext-card__desc">pg_living_assertions-0.5.10.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 5300
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_living_assertions`**](/ext/e/pg_living_assertions) | `0.5.1` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_living_assertions`**](/ext/e/pg_living_assertions) | `0.5.10` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -46,9 +46,9 @@ weight: 5300
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_living_assertions` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_living_assertions_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-living-assertions` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.10` | {{< pgvers "18,17,16,15,14" >}} | `pg_living_assertions` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.10` | {{< pgvers "18,17,16,15,14" >}} | `pg_living_assertions_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.5.10` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-living-assertions` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -210,15 +210,14 @@ CREATE EXTENSION pg_living_assertions;
 
 Sources:
 
-- [README.md](https://github.com/Manuelreyesbravo/pg_living_assertions/blob/7bf075c6de879b05ec0ed8d135304ece83519317/README.md)
-- [pg_living_assertions.control](https://github.com/Manuelreyesbravo/pg_living_assertions/blob/7bf075c6de879b05ec0ed8d135304ece83519317/pg_living_assertions.control)
-- [pg_living_assertions--0.4.1--0.5.0.sql](https://github.com/Manuelreyesbravo/pg_living_assertions/blob/7bf075c6de879b05ec0ed8d135304ece83519317/pg_living_assertions--0.4.1--0.5.0.sql)
-- [pg_living_assertions--0.5.0--0.5.1.sql](https://github.com/Manuelreyesbravo/pg_living_assertions/blob/7bf075c6de879b05ec0ed8d135304ece83519317/pg_living_assertions--0.5.0--0.5.1.sql)
-- [test/sql/read_only.sql](https://github.com/Manuelreyesbravo/pg_living_assertions/blob/7bf075c6de879b05ec0ed8d135304ece83519317/test/sql/read_only.sql)
+- [README.md](https://api.pgxn.org/src/pg_living_assertions/pg_living_assertions-0.5.10/README.md)
+- [pg_living_assertions.control](https://api.pgxn.org/src/pg_living_assertions/pg_living_assertions-0.5.10/pg_living_assertions.control)
+- [CHANGELOG.md](https://api.pgxn.org/src/pg_living_assertions/pg_living_assertions-0.5.10/CHANGELOG.md)
+- [pg_living_assertions--0.5.9--0.5.10.sql](https://api.pgxn.org/src/pg_living_assertions/pg_living_assertions-0.5.10/pg_living_assertions--0.5.9--0.5.10.sql)
 
-`pg_living_assertions` 0.5.1 stores SQL checks, verdicts, verification times and replacement history. These are checks run on demand, not SQL ASSERTION constraints evaluated on every write. It is a pure SQL extension with no preload requirement.
+`pg_living_assertions` 0.5.10 stores named SQL assertions, results and replacement history. Checks run on demand; they are not constraints evaluated on every write. This pure SQL extension needs no preload.
 
-### Register and Verify
+### Core Workflow
 
 ```sql
 CREATE EXTENSION pg_living_assertions;
@@ -229,16 +228,10 @@ SELECT living_assertions.run('simple_check');
 SELECT name, state, age FROM living_assertions.status;
 ```
 
-### Results and History
+### Operational Boundaries
 
-A check must return exactly one row with boolean `holds` and optional text `detail`. `living_assertions.run_all()` evaluates registered checks. `living_assertions.state()` distinguishes holds, broken, unknown, erroring, unchecked, retired and unregistered; `living_assertions.stale()` separates never-checked assertions from old results. `living_assertions.declare_unchanged()` records an expression for later text comparison, so the author must canonicalize its output. Definitions are superseded with a reason; results and registry data are included in database dumps.
+A check returns one boolean `holds` and optional text `detail`. `living_assertions.run_all()` evaluates the registry; `living_assertions.state()`, `living_assertions.status` and `living_assertions.stale()` distinguish failures, unknown/erroring results and stale or absent checks. `living_assertions.declare_unchanged()` fingerprints a canonicalized expression; a value disappearing to NULL is broken. Checks run as their recorded author in a read-only, rolled-back subtransaction with the author search path and temporary schemas last. The caller must be allowed to `SET ROLE` to that author. Session advisory locks acquired during evaluation are released, but external effects and temporary-sequence changes are not a sandboxed resource. Only trusted authors should register SQL. Registration and checks are server-dated, tables reject TRUNCATE, and retirement/replacement is restricted to the author or an authorized role. Upgrade through the complete matching SQL chain; old assertions retain their existing fingerprint algorithm. Current releases use Apache-2.0; releases through 0.5.3 retain their original PostgreSQL License.
 
-### Execution and Privileges
+### Role Isolation in 0.5.10
 
-Since 0.5.0 the evaluator runs read-only inside a subtransaction that is always rolled back, preserving its verdict. This repairs the older STABLE-only evaluator, which did not stop side effects through volatile functions. It is not a sandbox for untrusted SQL: temporary-sequence changes, session advisory locks and external effects can survive. Only trusted administrators should register checks; they execute with the privileges of the later caller. Registry tables belong to the extension owner and write functions are revoked from `PUBLIC` by default.
-
-### Upgrade
-
-After installing the matching files, use `ALTER EXTENSION pg_living_assertions UPDATE TO '0.5.1'`. The 0.4.1→0.5.0→0.5.1 chain replaces evaluator functions without changing registry tables. The final patch qualifies row types in `run()` so type-cache invalidation does not resolve them under an assertion's unrelated search path.
-
-Fresh installation also uses an earlier base SQL script followed by the packaged upgrade chain; keep the complete set of matching scripts installed.
+Version 0.5.10 evaluates a check in a temporary `SECURITY DEFINER` function owned by its recorded author when role isolation is needed. PostgreSQL then refuses attempts to reset the role or session authorization inside that frame; the frame is created and rolled back with the read-only check. The author needs `TEMP` on the database when a frame is required, and the caller still needs authority to act as that author. A `SECURITY DEFINER` caller can now run another author's checks under that authority. This closes the role-reset escape in 0.5.8/0.5.9; it does not make external effects safe.

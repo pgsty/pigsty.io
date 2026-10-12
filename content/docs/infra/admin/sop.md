@@ -8,7 +8,7 @@ categories: [Task]
 ---
 
 
-This document covers daily management operations for the INFRA module, including installation, uninstallation, scaling, and component maintenance.
+Use this guide for daily INFRA administration. It covers installation, removal, scaling, and component maintenance.
 
 
 ----------------
@@ -147,7 +147,7 @@ Common maintenance commands:
 
 ## Manage Grafana Passwords
 
-Grafana uses two password parameters: [**`grafana_admin_password`**](/docs/infra/param/#grafana_admin_password), whose public default is `pigsty`, and [**`grafana_view_password`**](/docs/infra/param/#grafana_view_password), whose default is `DBUser.Viewer`.
+Grafana uses two password parameters. [**`grafana_admin_password`**](/docs/infra/param/#grafana_admin_password) defaults to the public value `pigsty`. [**`grafana_view_password`**](/docs/infra/param/#grafana_view_password) defaults to `DBUser.Viewer`.
 
 | Parameter | Rendered configuration |
 |:----------|:-----------------------|
@@ -155,10 +155,10 @@ Grafana uses two password parameters: [**`grafana_admin_password`**](/docs/infra
 | `grafana_view_password` | `/etc/grafana/provisioning/datasources/pigsty.yml` |
 {.full-width}
 
-Change the public defaults before production. After Grafana initializes, changing `grafana_admin_password` in inventory does not by itself reset the live Grafana account password; change it through Grafana (or its supported administration interface), keep the inventory consistent, and rerender the environment when needed:
+Change the public defaults before production. After initialization, a change to `grafana_admin_password` in the inventory does not reset the live Grafana account password. Change it through Grafana or a supported administration interface. Keep the inventory consistent and regenerate the environment when needed:
 
 ```bash
 ./infra.yml -t env_var            # Re-render environment variables
 ```
 
-`grafana_view_password` is the password used by the default PostgreSQL metadb data source as `dbuser_view`. If that database role password changes, update both the declared value and the Grafana data source; changing only one side breaks the dashboard connection.
+`grafana_view_password` is the password used by the default PostgreSQL metadb data source as `dbuser_view`. If the database role password changes, update both the declared value and the Grafana data source. A change on only one side breaks the dashboard connection.

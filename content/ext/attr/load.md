@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **130** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **131** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -49,7 +49,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
 | [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | Durable SQL functions for PostgreSQL |
 | [`pg_disorder`](/ext/e/pg_disorder) | `pg_disorder` | Perturb unordered SELECT row order to expose order-dependent tests |
-| [`pg_local_cache`](/ext/e/pg_local_cache) | `pg_local_cache` | Transaction-aware shared-memory cache for ordinary PostgreSQL primary-key reads |
+| [`pg_local_cache`](/ext/e/pg_local_cache) | `pg_local_cache` | Transaction-aware shared-memory cache serving PostgreSQL primary-key rows over RESP2 MGET |
 | [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and probability management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
@@ -92,6 +92,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pgnodemx`](/ext/e/pgnodemx) | `pgnodemx` | Capture node OS metrics via SQL queries |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | `bgw_replstatus` | Small PostgreSQL background worker to report whether a node is a replication master or standby |
 | [`pg_relusage`](/ext/e/pg_relusage) | `pg_relusage` | Log all the queries that reference a particular column |
+| [`powa`](/ext/e/powa) | `powa` | PostgreSQL Workload Analyser-core |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | `pg_overexplain` | Allow EXPLAIN to dump even more details |
 | [`auto_explain`](/ext/e/auto_explain) | `auto_explain` | Provides a means for logging execution plans of slow statements automatically |
 | [`pg_stat_statements`](/ext/e/pg_stat_statements) | `pg_stat_statements` | track planning and execution statistics of all SQL statements executed |

@@ -11,9 +11,12 @@ categories: [Task]
 
 ## Overview
 
-Pigsty uses [**Pgbouncer**](https://www.pgbouncer.org/) as PostgreSQL connection pooling middleware, listening on port `6432` by default, proxying access to local PostgreSQL on port `5432`.
+Pigsty uses [**Pgbouncer**](https://www.pgbouncer.org/) for PostgreSQL connection pooling.
+By default, it listens on port `6432` and proxies connections to local PostgreSQL on port `5432`.
 
-This is an **optional component**. If you don't have massive connections or need transaction pooling and query metrics, you can disable it, connect directly to the database, or keep it unused.
+This component is **optional**.
+If you do not need many connections, transaction pooling, or query metrics, you can disable it.
+You can also connect directly to the database or leave Pgbouncer unused.
 
 
 
@@ -21,9 +24,11 @@ This is an **optional component**. If you don't have massive connections or need
 
 ## User & Database Management
 
-Pgbouncer users and databases are auto-managed by Pigsty, applying [**database config**](/docs/pgsql/config/db) and [**user config**](/docs/pgsql/config/user) when [**creating databases**](/docs/pgsql/admin/db) and [**creating users**](/docs/pgsql/admin/user).
+Pigsty automatically manages Pgbouncer users and databases.
+When you [**create databases**](/docs/pgsql/admin/db) or [**users**](/docs/pgsql/admin/user), it applies the [**database configuration**](/docs/pgsql/config/db) and [**user configuration**](/docs/pgsql/config/user).
 
-**Database Management**: Databases defined in [**`pg_databases`**](/docs/pgsql/param#pg_databases) are auto-added to Pgbouncer by default. Set [**`pgbouncer: false`**](/docs/pgsql/admin/db#pgbouncer) to exclude specific databases.
+**Database Management**: By default, Pigsty adds databases from [**`pg_databases`**](/docs/pgsql/param#pg_databases) to Pgbouncer.
+To exclude a database, set [**`pgbouncer: false`**](/docs/pgsql/admin/db#pgbouncer).
 
 ```yaml
 pg_databases:
@@ -38,7 +43,7 @@ pg_databases:
     pgbouncer: false          # Excluded from connection pool
 ```
 
-**User Management**: Users defined in [**`pg_users`**](/docs/pgsql/param#pg_users) need explicit [**`pgbouncer: true`**](/docs/pgsql/admin/user#pgbouncer) to be added to connection pool user list.
+**User Management**: To add a user from [**`pg_users`**](/docs/pgsql/param#pg_users) to the pool user list, explicitly set [**`pgbouncer: true`**](/docs/pgsql/admin/user#pgbouncer).
 
 ```yaml
 pg_users:
@@ -49,15 +54,17 @@ pg_users:
     pool_connlimit: 50        # User-level max connections
 ```
 
-> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
+> Since Pigsty `v4.1.0`, use `pool_reserve` and `pool_connlimit` for database pool fields.
+> These names replace the legacy aliases `pool_size_reserve` and `pool_max_db_conn`.
 
 
 ----------------
 
 ## Service Management
 
-In Pigsty, PostgreSQL cluster [**Primary Service**](/docs/concept/ha/svc#primary-service) and Replica Service default to Pgbouncer port 6432.
-To bypass connection pool and access PostgreSQL directly, customize [**`pg_services`**](/docs/pgsql/param#pg_services), or set [**`pg_default_service_dest`**](/docs/pgsql/param#pg_default_service_dest) to `postgres`.
+By default, the PostgreSQL [**Primary Service**](/docs/concept/ha/svc#primary-service) and Replica Service connect to Pgbouncer on port 6432.
+To connect directly to PostgreSQL, customize [**`pg_services`**](/docs/pgsql/param#pg_services).
+Alternatively, set [**`pg_default_service_dest`**](/docs/pgsql/param#pg_default_service_dest) to `postgres`.
 
 
 ----------------
@@ -75,9 +82,10 @@ Pgbouncer config files are in `/etc/pgbouncer/`, generated and managed by Pigsty
 | `pgb_hba.conf`    | HBA access control rules             |
 {.full-width}
 
-Pigsty auto-manages `database.txt` and `userlist.txt`, updating them when [**creating databases**](/docs/pgsql/admin/db#create-database) or [**creating users**](/docs/pgsql/admin/user#create-user).
+Pigsty automatically manages `database.txt` and `userlist.txt`.
+It updates them when you [**create databases**](/docs/pgsql/admin/db#create-database) or [**users**](/docs/pgsql/admin/user#create-user).
 
-You can manually edit config then `RELOAD` to apply:
+You can edit configuration manually, then run `RELOAD` to apply the changes:
 
 ```bash
 # Edit config
@@ -96,13 +104,16 @@ $ pgb -c "RELOAD;"
 
 ## Pool Management
 
-Pgbouncer runs as the same `dbsu` as PostgreSQL, default `postgres` OS user. Pigsty provides `pgb` alias for easy management:
+Pgbouncer runs as the same `dbsu` as PostgreSQL.
+The default is the `postgres` operating system user.
+Pigsty provides the `pgb` alias for administration:
 
 ```bash
 alias pgb='psql -p6432 -dpgbouncer'
 ```
 
-Use `pgb` on database nodes to connect to Pgbouncer admin console for management commands and monitoring queries.
+On database nodes, use `pgb` to connect to the Pgbouncer administration console.
+You can then run administration commands and monitoring queries.
 
 ```bash
 $ pgb
@@ -132,7 +143,10 @@ pgbouncer=# SHOW SERVERS;
 
 ### PAUSE
 
-Use `PAUSE` to pause database connections. Pgbouncer waits for active txn/session to complete based on pool mode, then disconnects server connections. New client requests are blocked until `RESUME`.
+Use `PAUSE` to pause database connections.
+Pgbouncer waits for the active transaction or session to finish, according to the pool mode.
+It then disconnects server connections.
+New client requests wait until `RESUME`.
 
 ```sql
 PAUSE [db];           -- Pause specified database, or all if not specified
@@ -163,7 +177,8 @@ pgbouncer=# SHOW DATABASES;
 
 ### RESUME
 
-Use `RESUME` to restore databases paused by `PAUSE`, `KILL`, or `SUSPEND`, allowing new connections and resuming normal service.
+Use `RESUME` to restore databases paused by `PAUSE`, `KILL`, or `SUSPEND`.
+This allows new connections and resumes normal service.
 
 ```sql
 RESUME [db];          -- Resume specified database, or all if not specified
@@ -179,7 +194,8 @@ $ pgb -c "RESUME;"            # Resume all databases
 
 ### DISABLE
 
-Use `DISABLE` to disable a database, rejecting all new client connection requests. Existing connections are unaffected.
+Use `DISABLE` to reject all new client connections for a database.
+Existing connections continue.
 
 ```sql
 DISABLE db;           -- Disable specified database (database name required)
@@ -200,7 +216,8 @@ $ pgb -c "DISABLE mydb;"      # Disable mydb, new connections rejected
 
 ### ENABLE
 
-Use `ENABLE` to enable a database previously disabled by `DISABLE`, accepting new client connections again.
+Use `ENABLE` to enable a database that `DISABLE` stopped.
+The database accepts new client connections again.
 
 ```sql
 ENABLE db;            -- Enable specified database (database name required)
@@ -215,7 +232,9 @@ $ pgb -c "ENABLE mydb;"       # Enable mydb, allow new connections
 
 ### RECONNECT
 
-Use `RECONNECT` to gracefully rebuild server connections. Pgbouncer closes connections when released back to pool, creating new ones when needed.
+Use `RECONNECT` to rebuild server connections gracefully.
+Pgbouncer closes connections when they return to the pool.
+It creates new connections as needed.
 
 ```sql
 RECONNECT [db];       -- Rebuild server connections for database, or all if not specified
@@ -239,7 +258,8 @@ After `RECONNECT`, use `WAIT_CLOSE` to wait for old connections to fully release
 
 ### KILL
 
-Use `KILL` to immediately disconnect all client and server connections for a database. Unlike `PAUSE`, `KILL` doesn't wait for transaction completion - forces immediate disconnect.
+Use `KILL` to disconnect all client and server connections for a database immediately.
+Unlike `PAUSE`, it does not wait for transactions to finish.
 
 ```sql
 KILL [db];            -- Kill all connections for database, or all (except admin) if not specified
@@ -257,7 +277,8 @@ After `KILL`, new connections are blocked until `RESUME`.
 
 ### KILL_CLIENT
 
-Use `KILL_CLIENT` to terminate a specific client connection. Client ID can be obtained from `SHOW CLIENTS` output.
+Use `KILL_CLIENT` to terminate a specific client connection.
+Get the client ID from `SHOW CLIENTS`.
 
 ```sql
 KILL_CLIENT id;       -- Terminate client connection with specified ID
@@ -276,7 +297,8 @@ $ pgb -c "KILL_CLIENT 0x1234567890;"
 
 ### SUSPEND
 
-Use `SUSPEND` to suspend Pgbouncer. Flushes all socket buffers and stops listening until `RESUME`.
+Use `SUSPEND` to suspend Pgbouncer.
+It flushes all socket buffers and stops listening until `RESUME`.
 
 ```sql
 SUSPEND;              -- Suspend Pgbouncer
@@ -299,7 +321,8 @@ $ pgbouncer -R /etc/pgbouncer/pgbouncer.ini
 
 ### SHUTDOWN
 
-Use `SHUTDOWN` to shut down Pgbouncer process. Multiple shutdown modes supported:
+Use `SHUTDOWN` to stop the Pgbouncer process.
+The command supports several shutdown modes:
 
 ```sql
 SHUTDOWN;                      -- Immediate shutdown
@@ -323,7 +346,8 @@ $ pgb -c "SHUTDOWN WAIT_FOR_CLIENTS;"   # Graceful shutdown, wait for clients
 
 ### RELOAD
 
-Use `RELOAD` to reload Pgbouncer config files. Dynamically updates most config params without process restart.
+Use `RELOAD` to read the Pgbouncer configuration files again.
+It dynamically updates most parameters without a process restart.
 
 ```sql
 RELOAD;               -- Reload config files
@@ -346,7 +370,8 @@ Pigsty provides playbook task to reload Pgbouncer config:
 
 ### WAIT_CLOSE
 
-Use `WAIT_CLOSE` to wait for server connections to finish closing. Typically used after `RECONNECT` or `RELOAD` to ensure old connections are fully released.
+Use `WAIT_CLOSE` to wait until server connections finish closing.
+Usually, run it after `RECONNECT` or `RELOAD` to verify that old connections have closed.
 
 ```sql
 WAIT_CLOSE [db];      -- Wait for server connections to close, or all if not specified
@@ -363,7 +388,7 @@ $ pgb -c "WAIT_CLOSE mydb;"    # Wait for old connections to release
 
 ### Monitoring
 
-Pgbouncer provides rich `SHOW` commands for monitoring pool status:
+Pgbouncer provides these `SHOW` commands to monitor pool status:
 
 | Command                 | Description                         |
 |-------------------------|-------------------------------------|
@@ -414,7 +439,7 @@ For more monitoring command details, see [**Pgbouncer official docs**](https://w
 
 ### Unix Signals
 
-Pgbouncer supports Unix signal control, useful when admin console is unavailable:
+Use Unix signals to control Pgbouncer when the administration console is unavailable:
 
 | Signal    | Equivalent Command          | Description                     |
 |-----------|-----------------------------|---------------------------------|
@@ -446,7 +471,9 @@ $ kill -SIGUSR2 $(cat /run/postgresql/pgbouncer.pid)
 
 ## Traffic Switching
 
-Pigsty-managed database routes live in `/etc/pgbouncer/database.txt`. To move one database's Pgbouncer traffic to another node, edit that file, reload the configuration, then drain and rebuild existing server connections:
+Pigsty stores managed database routes in `/etc/pgbouncer/database.txt`.
+To move Pgbouncer traffic for one database to another node, edit this file and reload the configuration.
+Then drain and rebuild the existing server connections:
 
 ```bash
 # 1. Change only mydb's backend target to 10.10.10.12
@@ -460,4 +487,7 @@ $ pgb -c "RECONNECT mydb;"
 $ pgb -c "WAIT_CLOSE mydb;"
 ```
 
-> The `pgb-route` function currently shipped in the source only edits `/etc/pgbouncer/pgbouncer.ini`. That file merely includes `database.txt` and does not contain the generated per-database `host=` routes, so the function does not change managed database backends. Do not use it in place of the procedure above.
+> The `pgb-route` function currently shipped in the source edits only `/etc/pgbouncer/pgbouncer.ini`.
+> That file includes `database.txt` but does not contain the generated `host=` routes for each database.
+> Thus, the function does not change managed database backends.
+> Use the procedure above instead.

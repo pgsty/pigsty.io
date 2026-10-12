@@ -8,7 +8,7 @@ categories: [Task]
 ---
 
 
-Common etcd admin SOPs:
+Use these standard procedures to administer etcd:
 
 - [Create Cluster](#create-cluster): Initialize an etcd cluster
 - [Destroy Cluster](#destroy-cluster): Destroy an etcd cluster
@@ -43,9 +43,9 @@ Run [`etcd.yml`](/docs/etcd/playbook#etcdyml) playbook:
 ```
 
 > [!NOTE] Architecture Change: Pigsty v3.6+
-> Since v3.6, `etcd.yml` focuses on cluster install and member addition—no longer includes removal. Use dedicated `etcd-rm.yml` for all removals.
+> Since v3.6, `etcd.yml` installs clusters and adds members. It does not remove them. Use the dedicated `etcd-rm.yml` for all removals.
 
-For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) to prevent accidental deletion.
+For production etcd clusters, enable the safeguard [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) to prevent accidental deletion.
 
 
 
@@ -53,7 +53,7 @@ For prod etcd clusters, enable safeguard [`etcd_safeguard`](/docs/etcd/param#etc
 
 ## Destroy Cluster
 
-Use the dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy an Etcd cluster. The default `etcd_rm_data: true` deletes local data and configuration. First confirm that no PostgreSQL cluster still uses it as DCS, verify a recent backup, and check the exact target name.
+Use the dedicated [`etcd-rm.yml`](/docs/etcd/playbook#etcd-rmyml) playbook to destroy an Etcd cluster. The default `etcd_rm_data: true` deletes local data and configuration. First, confirm that no PostgreSQL cluster still uses it as DCS. Verify a recent backup and check the exact target name.
 
 ```bash
 ./etcd-rm.yml -l etcd                            # Destroy the entire Etcd cluster after confirmation
@@ -66,10 +66,10 @@ Or use utility script:
 bin/etcd-rm                           # remove entire etcd cluster
 ```
 
-The removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If `true`, it aborts before leaving the cluster, deregistering, stopping the service, or deleting files. Its default is `false`, so the absence of an explicit override is not itself a confirmation.
+The removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). If this parameter is `true`, the playbook aborts before any cluster-leave, deregistration, service-stop, or file-deletion operation. The default is `false`. The absence of an explicit override does not confirm removal.
 
 > [!WARNING] Warning
-> Before removing etcd cluster, ensure no PG clusters use it as DCS. PG HA will break otherwise.
+> Before you remove the etcd cluster, make sure no PostgreSQL cluster uses it as DCS. Otherwise, PostgreSQL HA will fail.
 
 
 
@@ -78,7 +78,7 @@ The removal playbook respects [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard
 
 ## CLI Environment
 
-Uses etcd v3 API by default (v2 removed in v3.6+). Pigsty auto-configures env script `/etc/profile.d/etcdctl.sh` on etcd nodes, loaded on login.
+Pigsty uses the etcd v3 API by default. Etcd v3.6+ removed the v2 API. Pigsty automatically configures `/etc/profile.d/etcdctl.sh` on etcd nodes. The shell loads this environment script at login.
 
 Example client env config:
 
@@ -91,13 +91,13 @@ export ETCDCTL_CERT=/etc/etcd/server.crt
 export ETCDCTL_KEY=/etc/etcd/server.key
 ```
 
-Since v4.0, Pigsty has enabled RBAC auth for etcd by default, so user auth is still required:
+Since v4.0, Pigsty enables RBAC authentication for etcd by default. User authentication is still required:
 
 ```bash
 export ETCDCTL_USER="root:$(cat /etc/etcd/etcd.pass)"
 ```
 
-After configuring client env, run etcd CRUD ops:
+After you configure the client environment, run etcd CRUD operations:
 
 ```bash
 e put a 10 ; e get a; e del a   # basic KV ops
@@ -112,11 +112,11 @@ e endpoint status                # view endpoint status
 
 ## RBAC Authentication
 
-Since v4.0, Pigsty has enabled etcd RBAC auth by default. During cluster init, `etcd_auth` task auto-creates root user and enables auth.
+Since v4.0, Pigsty enables etcd RBAC authentication by default. During cluster initialization, the `etcd_auth` task creates the root user and enables authentication.
 
-**Root user password** set by [`etcd_root_password`](/docs/etcd/param#etcd_root_password), default: `Etcd.Root`. Stored in `/etc/etcd/etcd.pass` with `0640` perms (root-owned, etcd-group readable).
+Set the **root user password** with [`etcd_root_password`](/docs/etcd/param#etcd_root_password). The default is `Etcd.Root`. Pigsty stores it in `/etc/etcd/etcd.pass` with `0640` permissions. Root owns the file, and the etcd group can read it.
 
-**Strongly recommended to change default password in prod:**
+**We strongly recommend that you change the default password in production:**
 
 ```yaml
 etcd:
@@ -141,7 +141,7 @@ etcdctl --user root:YourSecurePassword member list
 
 **Patroni and etcd auth:**
 
-Patroni uses [`pg_etcd_password`](/docs/pgsql/param#pg_etcd_password) to configure etcd connection password. If empty, Patroni uses cluster name as password (not recommended). Configure separate etcd password per PG cluster in prod.
+Patroni uses [`pg_etcd_password`](/docs/pgsql/param#pg_etcd_password) as the etcd connection password. If it is empty, Patroni uses the cluster name as the password. We do not recommend this default. In production, set a separate etcd password for each PostgreSQL cluster.
 
 
 
@@ -149,7 +149,7 @@ Patroni uses [`pg_etcd_password`](/docs/pgsql/param#pg_etcd_password) to configu
 
 ## Reload Config
 
-If etcd cluster membership changes (add/remove members), refresh etcd service endpoint references. These etcd refs in Pigsty need updates:
+After you add or remove etcd members, update the service endpoint references. Update these etcd references in Pigsty:
 
 | Config Location | Config File | Update Method |
 |:--------|:--------|:--------|
@@ -186,7 +186,7 @@ ansible all -f 1 -b -a 'systemctl restart vip-manager' # restart vip-manager
 ```
 
 > [!NOTE] Tip
-> Using `bin/etcd-add` / `bin/etcd-rm` utility scripts? Scripts prompt config refresh commands after completion.
+> After `bin/etcd-add` or `bin/etcd-rm` completes, the script shows commands to refresh the configuration.
 
 
 
@@ -207,10 +207,10 @@ bin/etcd-add <ip1> <ip2> ...   # add multiple new members
 ```
 
 The script attempts these operations in order:
-- Validates IP address validity
-- Executes `etcd.yml` playbook (auto-sets `etcd_init=existing`)
+- Validates the IP address
+- Sets `etcd_init=existing` automatically and runs the `etcd.yml` playbook
 - Provides safety warnings and countdown
-- Prompts config refresh commands after completion
+- Shows configuration refresh commands after completion
 
 ### Manual: Step-by-Step
 
@@ -231,10 +231,10 @@ etcdctl member promote <new_ins_server_id>
 ```
 
 > [!WARNING] Important
-> When adding new members, must use `etcd_init=existing` parameter. New instance will create new cluster instead of joining existing one otherwise.
+> When you add members, you must set `etcd_init=existing`. Otherwise, the new instance creates a new cluster instead of joining the existing cluster.
 
 > [!DETAILS]- Detailed: Add member to etcd cluster
-> Detailed steps. Start from single-instance etcd cluster:
+> This example starts with a single-instance etcd cluster:
 >
 > ```yaml
 > etcd:
@@ -250,7 +250,7 @@ etcdctl member promote <new_ins_server_id>
 > $ bin/etcd-add 10.10.10.11
 > ```
 >
-> Or manual. First use `etcdctl member add` to announce new learner instance `etcd-2` to existing etcd cluster:
+> For manual addition, first run `etcdctl member add`. This announces the new learner instance `etcd-2` to the existing etcd cluster:
 >
 > ```bash
 > $ etcdctl member add etcd-2 --learner=true --peer-urls=https://10.10.10.11:2380
@@ -262,14 +262,14 @@ etcdctl member promote <new_ins_server_id>
 > ETCD_INITIAL_CLUSTER_STATE="existing"
 > ```
 >
-> Check member list with `etcdctl member list` (or `em list`), see `unstarted` new member:
+> Run `etcdctl member list` or `em list`. The new member appears with the `unstarted` state:
 >
 > ```bash
 > 33631ba6ced84cf8, unstarted, , https://10.10.10.11:2380, , true       # unstarted new member here
 > 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
 > ```
 >
-> Next, use `etcd.yml` playbook to initialize new etcd instance `etcd-2`. After completion, new member has started:
+> Run the `etcd.yml` playbook to initialize the new instance, `etcd-2`. When the playbook completes, the new member is running:
 >
 > ```bash
 > $ ./etcd.yml -l 10.10.10.11 -e etcd_init=existing    # must add existing parameter
@@ -278,7 +278,7 @@ etcdctl member promote <new_ins_server_id>
 > 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
 > ```
 >
-> After new member initialized and running stably, promote from learner to follower:
+> After the new member initializes and runs stably, promote it from learner to follower:
 >
 > ```bash
 > $ etcdctl member promote 33631ba6ced84cf8   # promote learner to follower
@@ -289,9 +289,9 @@ etcdctl member promote <new_ins_server_id>
 > 429ee12c7fbab5c1, started, etcd-1, https://10.10.10.10:2380, https://10.10.10.10:2379, false
 > ```
 >
-> New member added. Don't forget to [reload config](#reload-config) so all clients know new member.
+> The new member is now part of the cluster. [Reload the configuration](#reload-config) so all clients can find it.
 >
-> Repeat steps to add more members. Prod environments need at least 3 members.
+> Repeat these steps to add more members. Production environments need at least 3 members.
 
 
 
@@ -309,20 +309,20 @@ bin/etcd-rm <ip1> <ip2> ...   # remove multiple members
 bin/etcd-rm                   # remove entire etcd cluster
 ```
 
-Script auto-performs:
+The script automatically performs these operations:
 - Gracefully removes members from cluster
 - Stops and disables etcd service
 - Cleans up data and config files
 - Deregisters from monitoring system
 
-The underlying removal role tolerates some leave and cleanup errors. After the script finishes, inspect `etcdctl member list`, endpoint health, remaining quorum, and the actual service and data-directory state on the target.
+The underlying removal role tolerates some leave and cleanup errors. After the script finishes, inspect `etcdctl member list`, endpoint health, and remaining quorum. Also inspect the actual service and data-directory state on the target.
 
 ### Manual: Step-by-Step
 
 Remove member instance from etcd cluster:
 
 1. **Keep the member in the inventory**: The removal playbook needs its `etcd_seq`, cluster members, and connection endpoints
-2. **Clean up the instance**: Run `etcd-rm.yml` against the target; it attempts `member remove`, stops the service, and cleans up according to the removal flags
+2. **Clean up the instance**: Run `etcd-rm.yml` against the target. It attempts `member remove` and stops the service. It then cleans up according to the removal flags.
 3. **Update the inventory**: Comment out or delete the member only after the playbook succeeds
 4. **Reload references**: Follow [Reload Config](#reload-config) for the remaining etcd members and the Patroni/VIP-Manager endpoints
 
@@ -332,8 +332,9 @@ Remove member instance from etcd cluster:
 # After success, remove the member from pigsty.yml and refresh the remaining members and clients
 ```
 
-Do not delete the target from the inventory before running the removal playbook. The `hosts: etcd` scope in `etcd-rm.yml` would no longer select it, and the playbook could not derive the instance identity or cluster endpoints from inventory.
-There is also no need to repeat `etcdctl member remove` before or after the playbook.
+Do not delete the target from the inventory before you run the removal playbook. Without the target, the `hosts: etcd` scope in `etcd-rm.yml` cannot select it. The playbook also cannot get the instance identity or cluster endpoints from the inventory.
+
+You do not need to repeat `etcdctl member remove` before or after the playbook.
 
 > [!DETAILS]- Detailed: Remove member from etcd cluster
 > Example: 3-node etcd cluster, remove instance 3.
@@ -372,11 +373,11 @@ There is also no need to repeat `etcdctl member remove` before or after the play
 > Member 93fcf23b220473fb removed from cluster 6646fbcf5debc68f
 > ```
 >
-> After a manual member removal, run `./etcd-rm.yml -l 10.10.10.12` while the target remains in inventory to stop, deregister, and clean it up. Its leave step skips a member that has already been removed.
+> After manual member removal, keep the target in the inventory. Run `./etcd-rm.yml -l 10.10.10.12` to stop, deregister, and clean it up. The leave step skips a member that is already removed.
 >
-> Only after confirming that the member has left the live cluster, the remaining members retain quorum, and the target service and files match expectations should you delete `10.10.10.12` from the inventory. Then follow [Reload Config](#reload-config) to refresh the remaining Etcd members and all client references.
+> Confirm that the member has left the live cluster and the remaining members retain quorum. Also confirm that the target service and files have the expected state. Only then delete `10.10.10.12` from the inventory. Follow [Reload Config](#reload-config) to update the remaining etcd members and all client references.
 >
-> Repeat to remove more members. Combined with [Add Member](#add-member), perform rolling upgrades and migrations of etcd cluster.
+> Repeat these steps to remove more members. Combine this procedure with [Add Member](#add-member) for rolling upgrades and migrations of the etcd cluster.
 
 
 
@@ -399,7 +400,7 @@ Script features:
 - Validates IP addresses in config inventory
 - Auto-sets `etcd_init=existing` parameter
 - Executes `etcd.yml` playbook to complete member addition
-- Prompts config refresh commands after completion
+- Shows configuration refresh commands after completion
 
 ### `bin/etcd-rm`
 
@@ -426,13 +427,13 @@ Script features:
 
 The [`etcd_root_password`](/docs/etcd/param#etcd_root_password) parameter defines the password of the etcd `root` user.
 
-To change it, reach an etcd endpoint and run the following as the [admin user](/docs/deploy/admin) on an [INFRA node](/docs/concept/arch/node#infra-node) or [ETCD node](/docs/concept/arch/node#etcd-node):
+To change it, use an [INFRA node](/docs/concept/arch/node#infra-node) or [ETCD node](/docs/concept/arch/node#etcd-node) that can reach an etcd endpoint. Run this command as the [admin user](/docs/deploy/admin):
 
 ```bash
 e user passwd root  # change the etcd root user password
 ```
 
-Then refresh every reference to the etcd root password, including the Patroni client configuration on INFRA nodes and the etcdctl client environment:
+Update every reference to the etcd root password. Include the Patroni client configuration on INFRA nodes and the etcdctl client environment:
 
 ```bash
 ./infra.yml -t env_patroni    # refresh the etcd root password in /infra/conf/patronictl.yml

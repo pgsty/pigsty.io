@@ -8,9 +8,7 @@ module: [PIGSTY]
 categories: [Reference]
 ---
 
-According to Google Analytics PV and download statistics, Pigsty currently has approximately **100,000 users**, with half from mainland China and half from other regions globally.
-They span across multiple industries including internet, cloud computing, finance, autonomous driving, manufacturing, tech innovation, ISV, and defense.
-If you are using Pigsty and are willing to share your case and Logo with us, please contact us - we offer one free consultation session as a token of appreciation.
+Google Analytics page views and download statistics indicate approximately **100,000 Pigsty users**. About half are in mainland China and half in other regions. They work in internet services, cloud computing, finance, autonomous driving, manufacturing, technology, ISV, and defense. Contact us to share your use case and logo. We offer one free consultation session in return.
 
 
 ## Internet

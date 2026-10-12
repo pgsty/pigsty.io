@@ -2,7 +2,7 @@
 title: "ip4r"
 linkTitle: "ip4r"
 description: "IPv4/v6 and IPv4/v6 range index type for PostgreSQL"
-weight: 3770
+weight: 3790
 ---
 
 <div class="ext-cards">
@@ -25,7 +25,7 @@ weight: 3770
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 3770  | [**`ip4r`**](/ext/e/ip4r) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 3790  | [**`ip4r`**](/ext/e/ip4r) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`prefix`](/ext/e/prefix) [`geoip`](/ext/e/geoip) [`postgis`](/ext/e/postgis) [`uri`](/ext/e/uri) [`nominatim_fdw`](/ext/e/nominatim_fdw) [`pg_sphere`](/ext/e/pg_sphere) [`earthdistance`](/ext/e/earthdistance) [`q3c`](/ext/e/q3c) |

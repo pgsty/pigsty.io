@@ -7,14 +7,14 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty uses a **package alias** mechanism to simplify extension installation and management.
+Pigsty uses **package aliases** to simplify extension installation and management.
 
 
 --------
 
 ## Package Alias Mechanism
 
-Managing extensions involves multiple layers of name mapping:
+Extensions have different names at different layers:
 
 | Layer            | Example `pgvector`       | Example `postgis`                  |
 |:-----------------|:-------------------------|:-----------------------------------|
@@ -23,13 +23,13 @@ Managing extensions involves multiple layers of name mapping:
 | RPM Package Name | `pgvector_18`            | `postgis36_18*`                    |
 | DEB Package Name | `postgresql-18-pgvector` | `postgresql-18-postgis-3*`         |
 
-Pigsty provides a **package alias** abstraction layer, so users don't need to worry about specific RPM/DEB package names:
+Use a **package alias** to specify an extension without its RPM or DEB package name:
 
 ```yaml
 pg_extensions: [ pgvector, postgis, timescaledb ]  # Use package aliases
 ```
 
-Pigsty automatically translates to the correct package names based on the operating system and PostgreSQL version.
+Pigsty converts each alias to the correct package names for the operating system and PostgreSQL version.
 
 > Note: When using `CREATE EXTENSION`, you use the **extension name** (e.g., `vector`), not the package alias (`pgvector`).
 
@@ -38,7 +38,8 @@ Pigsty automatically translates to the correct package names based on the operat
 
 ## Category Aliases
 
-All extensions are organized into 16 categories, which can be batch installed using category aliases:
+Pigsty organizes all extensions into 16 categories.
+Use category aliases to install extensions from a category together:
 
 ```yaml
 # Use generic category aliases (auto-adapt to current PG version)
@@ -48,7 +49,8 @@ pg_extensions: [ pgsql-gis, pgsql-rag, pgsql-fts ]
 pg_extensions: [ pg18-gis, pg18-rag, pg18-fts ]
 ```
 
-Except for the `olap` category, all category extensions can be installed simultaneously. Within the `olap` category, there are conflicts: `pg_duckdb` and `pg_mooncake` are mutually exclusive.
+You can install all category extensions together, except for the `olap` category.
+In the `olap` category, `pg_duckdb` and `pg_mooncake` are mutually exclusive.
 
 
 --------
@@ -79,7 +81,7 @@ Except for the `olap` category, all category extensions can be installed simulta
 
 ## Browse Extension Catalog
 
-You can browse detailed information about all available extensions on the [Pigsty Extension Catalog](/ext/list) website, including:
+Use the [Pigsty Extension Catalog](/ext/list) to find these details for all available extensions:
 
 - Extension name, description, version
 - Supported PostgreSQL versions

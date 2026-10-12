@@ -7,7 +7,7 @@ module: [JUICE]
 categories: [Task]
 ---
 
-JUICE module provides `juice.yml` playbook to deploy and remove JuiceFS instances.
+The JUICE module provides the `juice.yml` playbook to deploy and remove JuiceFS instances.
 
 --------
 
@@ -107,14 +107,14 @@ juice_instances:
 ./juice.yml -l <host> -e fsname=jfs -t juice_clean,juice_register
 ```
 
-Removal includes stopping the service, lazy unmounting, removing systemd unit and environment files, and reloading systemd. `juice_register` then rewrites the node's target file and removes stale scrape endpoints. Running only `juice_clean` does not update monitoring targets.
+Removal stops the service and performs a lazy unmount. It removes the systemd unit and environment files, then reloads systemd. The `juice_register` task then rewrites the node's target file and removes stale scrape endpoints. If you run only `juice_clean`, monitoring targets remain unchanged.
 **PostgreSQL metadata, PostgreSQL `jfs_blob` data tables, and object-storage data are not deleted.**
 
 --------
 
 ## Monitoring Registration
 
-`juice_register` writes target file on **infra node**:
+`juice_register` writes the target file on the **infra node**:
 
 ```text
 /infra/targets/juice/<hostname>.yml

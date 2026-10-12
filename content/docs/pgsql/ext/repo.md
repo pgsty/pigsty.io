@@ -7,14 +7,15 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty provides supplementary extension repositories, offering additional extension packages on top of the PGDG official repository.
+Pigsty provides supplementary extension repositories.
+They supply extension packages in addition to those in the official PGDG repository.
 
 
 --------
 
 ## YUM Repository
 
-Applicable to EL 8/9/10 and compatible systems (RHEL, Rocky, AlmaLinux, CentOS, etc.).
+Use this repository with EL 8/9/10 and compatible systems, such as RHEL, Rocky, AlmaLinux, and CentOS.
 
 ### Add Repository
 
@@ -46,7 +47,7 @@ curl -fsSL https://repo.pigsty.cc/yum/repo | sudo tee /etc/yum.repos.d/pigsty.re
 
 ## APT Repository
 
-Applicable to Debian 12/13 and Ubuntu 22.04/24.04/26.04 and compatible systems.
+Use this repository with Debian 12/13, Ubuntu 22.04/24.04/26.04, and compatible systems.
 
 ### Add Repository
 
@@ -99,10 +100,10 @@ All packages are signed with GPG:
 
 The Pigsty repository follows these principles:
 
-1. **Supplementary**: Only includes extensions not present in the PGDG repository
-2. **Consistency**: Once an extension enters the PGDG repository, the Pigsty repository will remove it or keep it consistent
-3. **Compatibility**: Supports multiple major versions of PostgreSQL 14-18
-4. **Multi-platform**: Supports x86_64 and aarch64 architectures
+1. **Supplementary**: The repository only includes extensions that are absent from the PGDG repository.
+2. **Consistency**: If PGDG adds an extension, Pigsty will remove its package or keep it consistent with PGDG.
+3. **Compatibility**: The repository supports PostgreSQL major versions 14-18.
+4. **Multi-platform**: The repository supports x86_64 and aarch64 architectures.
 
 
 --------

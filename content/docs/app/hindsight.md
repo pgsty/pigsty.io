@@ -8,7 +8,7 @@ categories: [Reference]
 
 [**Hindsight**](https://github.com/vectorize-io/hindsight) is a PostgreSQL-native long-term memory service for AI agents.
 
-Pigsty provides the `app/hindsight` configuration template (`conf/app/hindsight.yml`), using Pigsty-managed PostgreSQL by default instead of Hindsight's built-in development database.
+Pigsty provides the `app/hindsight` configuration template (`conf/app/hindsight.yml`). By default, it uses Pigsty-managed PostgreSQL instead of Hindsight's built-in development database.
 
 ## Quick Start
 
@@ -39,7 +39,7 @@ Default access URLs:
 - `HINDSIGHT_API_LLM_PROVIDER`: default `none`
 - `HF_HUB_OFFLINE`: defaults to `1` to use bundled models; set it to `0` and provide outbound network access to download uncached models
 
-The default `none` LLM provider allows Hindsight to retain text and recall it using local embedding/reranker models. Fact extraction, reflection, and consolidation require configuring Ollama or an OpenAI-compatible API.
+With the default LLM provider, `none`, Hindsight can retain text and recall it using local embedding/reranker models. Fact extraction, reflection, and consolidation require Ollama or an OpenAI-compatible API.
 
 The template preserves bundled and downloaded models in the `hindsight-cache` named volume. The database needs `vector`, plus `pg_trgm` installed in `public`. Check the `pg_trgm` location when reusing a database from another template; `CREATE EXTENSION IF NOT EXISTS` does not move an existing extension.
 

@@ -2,51 +2,48 @@
 title: Slim Installation
 linkTitle: Slim
 weight: 285
-description: Install only HA PostgreSQL clusters with minimal dependencies
+description: Install PostgreSQL clusters without the monitoring infrastructure.
 icon: fa-solid fa-minimize
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+Use Slim Installation to deploy PostgreSQL without the monitoring infrastructure.
+It installs [ETCD](/docs/etcd/), [PGSQL](/docs/pgsql/), and part of [NODE](/docs/node/).
+It does not install [INFRA](/docs/infra/), monitoring services, or a [local software repository](/docs/setup/offline/).
 
-If you only want HA PostgreSQL database cluster itself without monitoring, infra, etc., consider **Slim Installation**.
+> [!TIP] When to use Slim Installation
+> - You only need PostgreSQL.
+> - You have limited CPU or memory resources.
+> - You already have an external monitoring system.
+> - You do not need Grafana dashboards.
+>
+> On one node, the omitted infrastructure uses approximately `0.2` vCPU and `500 MB` of memory.
 
-Slim installation has no [**`INFRA`**](/docs/infra/) module, no monitoring, no [**local repo**](/docs/setup/offline/)—just [**`ETCD`**](/docs/etcd/) and [**`PGSQL`**](/docs/pgsql/) and partial [**`NODE`**](/docs/node/) functionality.
-
-> [!TIP] Slim installation is suitable for:
-> - Only needing PostgreSQL database itself, no observability infra required.
-> - Extremely resource-constrained envs unwilling to bear infra overhead (~0.2 vCPU / 500MB on single node).
-> - Already having external monitoring system, wanting to use your own unified monitoring framework.
-> - Not needing the Grafana visualization dashboard component.
-
-> [!WARNING] Limitations of slim installation:
-> - No [**INFRA**](/docs/infra) module, cannot use WebUI and local software repo features.
-> - [**Offline Install**](/docs/setup/offline) is limited to single-node mode; multi-node slim install can only be done online.
-
-
---------
+> [!WARNING] Installation limits
+> The Web UI and local software repository require INFRA.
+> Slim Installation does not supply these features.
+> [Offline installation](/docs/setup/offline/) supports only one node in this mode.
+> For multiple nodes, Slim Installation requires online package access.
 
 ## Overview
 
-To use slim installation, you need to:
-
-1. Use the [**`slim.yml`**](/docs/conf/slim) slim install config template (`configure -c slim`)
-2. Run the `slim.yml` playbook instead of the default `deploy.yml`
+1. Download Pigsty and enter the source directory.
+2. Select the [`slim` configuration template](/docs/conf/slim/) with `./configure -g -c slim`.
+3. Run `./slim.yml` instead of `./deploy.yml`.
 
 ```bash
 curl https://repo.pigsty.io/get | bash
+cd ~/pigsty
 ./configure -g -c slim
 ./slim.yml
 ```
 
 {{< asciinema file="demo/install-slim.cast" markers="3:Install,13:Configure,22:Deploy" theme="solarized-light" speed="1.3" autoplay="true" loop="true" >}}
 
-
---------
-
 ## Description
 
-Slim installation only installs/configures these components:
+Slim Installation configures these components:
 
 |     Component     |  Required   | Description                                                                 |
 |:-----------------:|:-----------:|:----------------------------------------------------------------------------|
@@ -59,42 +56,36 @@ Slim installation only installs/configures these components:
 |    **`tuned`**    | ✔️ Optional | Node tuning template and kernel parameter management                        |
 {.full-width}
 
-You can disable all optional components via configuration, keeping only the required `patroni` and `etcd`.
+You can disable all optional components through the configuration.
+Patroni and etcd remain required.
 
-Because there's no INFRA module's Nginx providing local repo service, [**offline installation**](/docs/setup/offline/) only works in single-node mode.
-
-
---------
+Without INFRA, Nginx does not serve a local software repository to other nodes.
+Thus, offline Slim Installation supports only one node.
 
 ## Configuration
 
-Slim installation config file example: [**`conf/slim.yml`**](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml):
+The [`conf/slim.yml` template](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml) defines this single-node deployment:
 
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
 | 1  |    `10.10.10.10`    |      `pg-meta-1`      |     **No INFRA module**  |        `etcd-1`         |
 {.full-width}
 
-
 {{< include file="/docs/conf/yaml/slim.yml" code=true lang="yaml" >}}
-
-
---------
 
 ## Deployment
 
-Slim installation uses the [`slim.yml`](https://github.com/pgsty/pigsty/blob/main/slim.yml) playbook instead of [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml):
+Use the [`slim.yml` playbook](https://github.com/pgsty/pigsty/blob/main/slim.yml) for deployment.
+Run it from the Pigsty source directory:
 
 ```bash
 ./slim.yml
 ```
 
-
---------
-
 ## HA Cluster
 
-Slim installation can also deploy HA clusters—just add more nodes to the `etcd` and `pg-meta` groups. A three-node deployment example:
+To deploy an HA cluster, add nodes to both the `etcd` and `pg-meta` groups.
+This example uses three nodes:
 
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
@@ -102,7 +93,6 @@ Slim installation can also deploy HA clusters—just add more nodes to the `etcd
 | 2  |    `10.10.10.11`    |      `pg-meta-2`      |     **No INFRA module**  |        `etcd-2`         |
 | 3  |    `10.10.10.12`    |      `pg-meta-3`      |     **No INFRA module**  |        `etcd-3`         |
 {.full-width}
-
 
 ```yaml
 all:

@@ -35,7 +35,7 @@ Press {{< kbd "⌘" "K" >}} on macOS, or {{< kbd "Ctrl" "K" >}}, to open local s
 
 ## Getting Started
 
-Learn the project, understand the concepts, get hands-on on a single node, then go to production — four steps to master Pigsty:
+Learn Pigsty in four steps: read about the project, understand the concepts, try a single-node installation, and deploy to production.
 
 {{< cards >}}
 {{< card title="About" link="/docs/about/" icon="fa-solid fa-circle-info" >}}
@@ -49,18 +49,18 @@ Understand Pigsty's architecture and design philosophy: high availability, backu
 [Architecture](/docs/concept/arch) [Cluster Model](/docs/concept/model) [Monitoring](/docs/concept/monitor) [IaC](/docs/concept/iac) [HA](/docs/concept/ha) [PITR](/docs/concept/pitr) [Service Access](/docs/pgsql/misc/svc) [Security](/docs/concept/sec)
 {{< /card >}}
 {{< card title="Setup" link="/docs/setup/" icon="fa-solid fa-rocket" >}}
-Spin up a single-node Pigsty on your laptop or cloud server, and access database services and the web UI.
+Install Pigsty on one node on your laptop or cloud server. Then access the database services and web UI.
 
 [Install](/docs/setup/install) [Offline Install](/docs/setup/offline) [Configuration](/docs/setup/config) [Playbooks](/docs/setup/playbook) [Web UI](/docs/setup/webui) [FAQ](/docs/pgsql/faq)
 {{< /card >}}
 {{< card title="Deploy" link="/docs/deploy/" icon="fa-solid fa-download" >}}
-Plan, prepare, and roll out multi-node, high-availability Pigsty deployments in production environments.
+Plan and prepare a multi-node, high-availability Pigsty deployment. Then deploy it to production.
 
 [Planning](/docs/deploy/planning) [Preparation](/docs/deploy/prepare) [Production](/docs/deploy/install) [Sandbox](/docs/deploy/sandbox) [Vagrant](/docs/deploy/vagrant) [OpenTofu](/docs/deploy/terraform)
 {{< /card >}}
 {{< /cards >}}
 
-[**Get Started**](/docs/setup/install): [**Prepare**](/docs/deploy/prepare) a node with a fresh [**Linux**](/docs/ref/linux) installation, and run as a user with passwordless `ssh` and `sudo` privileges:
+[**Get Started**](/docs/setup/install): [**Prepare**](/docs/deploy/prepare) a node with a fresh [**Linux**](/docs/ref/linux) installation. Run these commands as a user with passwordless `ssh` and `sudo` privileges:
 
 ```bash {title="Terminal" copy="all" label="Pigsty Quick Install"}
 curl -fsSL https://repo.pigsty.io/get | bash -s {{< param stable_version >}}   # download the public stable source
@@ -69,20 +69,20 @@ cd ~/pigsty      # enter source dir
 ./deploy.yml     # run installation
 ```
 
-[**Download**](/docs/setup/install#install), [**Configure**](/docs/setup/install#configure) and [**Deploy**](/docs/setup/install#deploy) — Pigsty completes installation in minutes! You can [**add more nodes**](/docs/deploy/install) and database clusters later.
+[**Download**](/docs/setup/install#install), [**Configure**](/docs/setup/install#configure), and [**Deploy**](/docs/setup/install#deploy) Pigsty. Installation takes minutes. You can [**add more nodes**](/docs/deploy/install) and database clusters later.
 
-Next, explore the [**Web UI**](/docs/setup/webui), access [**PostgreSQL services**](/docs/pgsql/service/) on port `5432`, and Grafana dashboards on port `3000` (username / password: `admin` / `pigsty`).
+Next, explore the [**Web UI**](/docs/setup/webui). Access [**PostgreSQL services**](/docs/pgsql/service/) on port `5432` and Grafana dashboards on port `3000`. The Grafana username and password are `admin` and `pigsty`.
 
 You can also wrap PostgreSQL [**kernel**](/docs/pgsql/kernel/) flavors as RDS services: [**Citus**](/docs/pgsql/kernel/citus), [**WiltonDB**](/docs/pgsql/kernel/babelfish), [**IvorySQL**](/docs/pgsql/kernel/ivorysql), [**OpenHalo**](/docs/pgsql/kernel/openhalo), [**Percona**](/docs/pgsql/kernel/percona), [**OrioleDB**](/docs/pgsql/kernel/orioledb), [**PolarDB**](/docs/pgsql/kernel/polardb), and [**Supabase**](/docs/pgsql/kernel/supabase).
 
 
 ## Modules
 
-Pigsty is composed of [**modules**](/docs/ref/module). Among them, `PGSQL` / `INFRA` / `NODE` / `ETCD` (the PINE stack) are **required** for self-hosting PostgreSQL RDS services:
+Pigsty consists of [**modules**](/docs/ref/module). The `PGSQL`, `INFRA`, `NODE`, and `ETCD` modules form the PINE stack. These modules are **required** to self-host complete PostgreSQL RDS services:
 
 {{< cards >}}
 {{< card title="PGSQL" link="/docs/pgsql/" icon="fa-brands fa-postgresql" badge="REQUIRED" >}}
-Self-healing HA PostgreSQL clusters: HA, PITR, IaC, ACL, and monitoring included, with massive extension support out of the box.
+PostgreSQL clusters with automatic failure recovery. Includes HA, PITR, IaC, ACL, monitoring, and a large selection of extensions.
 
 [Configuration](/docs/pgsql/config/) [Administration](/docs/pgsql/admin/) [Backup & PITR](/docs/pgsql/backup/) [Services](/docs/pgsql/service/) [Kernels](/docs/pgsql/kernel/) [Parameters](/docs/pgsql/param/)
 {{< /card >}}
@@ -92,7 +92,7 @@ Nginx, local software repo, DNS, NTP, and the VictoriaMetrics & Grafana observab
 [Config](/docs/infra/config) [Admin](/docs/infra/admin/) [Playbooks](/docs/infra/playbook) [Monitoring](/docs/infra/monitor) [Parameters](/docs/infra/param)
 {{< /card >}}
 {{< card title="NODE" link="/docs/node/" icon="fa-solid fa-server" badge="REQUIRED" >}}
-Manage host nodes into the desired state: node monitoring, log collection, VIP, and HAProxy load balancing.
+Configure host nodes to the required state. Includes node monitoring, log collection, VIP, and HAProxy load balancing.
 
 [Config](/docs/node/config) [Admin](/docs/node/admin) [Playbooks](/docs/node/playbook) [Monitoring](/docs/node/monitor) [Parameters](/docs/node/param)
 {{< /card >}}
@@ -103,7 +103,7 @@ Reliable distributed consensus storage (DCS), providing cluster metadata for Pos
 {{< /card >}}
 {{< /cards >}}
 
-There are also **optional** modules that work well alongside PostgreSQL, bringing extra value to your data infrastructure:
+**Optional** modules provide additional functions for your PostgreSQL data infrastructure:
 
 {{< cards >}}
 {{< card title="MINIO" link="/docs/minio/" icon="fa-solid fa-boxes-stacked" badge="OPTIONAL" >}}

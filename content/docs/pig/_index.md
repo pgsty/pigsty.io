@@ -8,15 +8,18 @@ module: [PIG]
 sidebar_root_for: self
 ---
 
-— **Postgres Install Genius, the missing extension package manager for the PostgreSQL ecosystem**
+**Postgres Install Genius manages extension packages for the PostgreSQL ecosystem.**
 
-PIG is a command-line tool specifically designed for installing, managing, and building PostgreSQL and its extensions. Developed in Go, it is ready to use out of the box, simple, and lightweight (about 5 MB).
-PIG is not a reinvented wheel, but rather a **PiggyBack** - a high-level abstraction layer that leverages existing Linux distribution package managers (`apt`/`dnf`).
-It abstracts away the differences between operating systems, chip architectures, and PG major versions, allowing you to install and manage PG kernels and {{< param pgext_count >}} packaged extensions with just a few simple commands.
+PIG is a command-line tool that installs, manages, and builds PostgreSQL and its extensions.
+It is written in Go, works without additional setup, and uses about 5 MB.
+PIG acts as a **PiggyBack** layer over existing Linux package managers (`apt`/`dnf`).
+It handles differences between operating systems, chip architectures, and PostgreSQL major versions.
+Use a few commands to install and manage PostgreSQL kernels and {{< param pgext_count >}} packaged extensions.
 
-PIG is also automation-friendly by design: consistent parameter styles, clear error messages, preview switches like `--plan`, and confirmation steps.
+PIG supports automation with consistent parameter styles, clear errors, preview options such as `--plan`, and confirmation steps.
 
-Please note: for extension installation, **pig is not a mandatory component**. You can still use apt/dnf package managers to directly access the [**Pigsty PGSQL**](/docs/repo/pgsql/) repository.
+**pig is optional** for extension installation.
+You can use apt/dnf directly with the [**Pigsty PGSQL**](/docs/repo/pgsql/) repository.
 
 - [**Introduction**](/docs/pig/intro/): Why do we need a dedicated PG package manager?
 - [**Getting Started**](/docs/pig/start/): Quick start guide and examples
@@ -39,7 +42,8 @@ curl -fsSL https://repo.pigsty.io/pig | bash
 curl -fsSL https://repo.pigsty.cc/pig | bash
 ```
 
-After installation, you can [**get started**](/docs/pig/start/) with just a few commands. For example, to install PG 18 and the [**`pg_duckdb`**](/ext/e/pg_duckdb) extension:
+After installation, follow [**Getting Started**](/docs/pig/start/).
+For example, install PG 18 and the [**`pg_duckdb`**](/ext/e/pg_duckdb) extension:
 
 ```bash
 $ pig repo set                        # One-time setup for Linux, Pigsty + PGDG repos (overwrites!)
@@ -74,9 +78,10 @@ Run `pig help <command>` to get detailed help for subcommands.
 
 ## About
 
-The `pig` CLI tool is developed by [Vonng](https://vonng.com/en/) (rh@vonng.com) and is open-sourced under the [Apache 2.0](https://github.com/pgsty/pig/?tab=Apache-2.0-1-ov-file#readme) license.
+[Vonng](https://vonng.com/en/) (rh@vonng.com) develops the `pig` CLI tool.
+The source code uses the [Apache 2.0](https://github.com/pgsty/pig/?tab=Apache-2.0-1-ov-file#readme) license.
 
-You can also check out the [**PIGSTY**](https://pgsty.com) project, which provides a complete PostgreSQL RDS DBaaS experience including extension delivery.
+The [**PIGSTY**](https://pgsty.com) project provides a complete PostgreSQL RDS DBaaS system, including extension delivery.
 
 - [**PGEXT**](https://github.com/pgsty/pgext): Extension data and management tools
 - [**PIG**](https://github.com/pgsty/pig): PostgreSQL package manager

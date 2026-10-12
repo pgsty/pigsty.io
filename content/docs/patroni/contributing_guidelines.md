@@ -17,7 +17,7 @@ categories: [Task]
 
 ## Chatting
 
-If you have a question, looking for an interactive troubleshooting help or want to chat with other Patroni users, join us on channel [\#patroni](https://postgresteam.slack.com/archives/C9XPYG92A) in the [PostgreSQL Slack](https://pgtreats.info/slack-invite).
+For questions, interactive troubleshooting, or discussion with other users, join [\#patroni](https://postgresteam.slack.com/archives/C9XPYG92A) on [PostgreSQL Slack](https://pgtreats.info/slack-invite).
 
 <a id="reporting_bugs"></a>
 
@@ -25,7 +25,7 @@ If you have a question, looking for an interactive troubleshooting help or want 
 
 ## Reporting bugs
 
-Before reporting a bug please make sure to **reproduce it with the latest Patroni version**! Also please double check if the issue already exists in our [Issues Tracker](https://github.com/patroni/patroni/issues).
+Before you report a bug, **reproduce it with the latest Patroni version**. Check the [Issues Tracker](https://github.com/patroni/patroni/issues) for an existing report.
 
 --------
 
@@ -33,9 +33,9 @@ Before reporting a bug please make sure to **reproduce it with the latest Patron
 
 Requirements for running behave tests:
 
-1.  PostgreSQL packages including [contrib](https://www.postgresql.org/docs/current/contrib.html) modules need to be installed.
-2.  PostgreSQL binaries must be available in your `PATH`. You may need to add them to the path with something like `PATH=/usr/lib/postgresql/11/bin:\$PATH python -m behave`.
-3.  If you'd like to test with external DCSs (e.g., Etcd, Consul, and Zookeeper) you'll need the packages installed and respective services running and accepting unencrypted/unprotected connections on localhost and default port. In the case of Etcd or Consul, the behave test suite could start them up if binaries are available in the `PATH`.
+1.  Install PostgreSQL packages, including [contrib](https://www.postgresql.org/docs/current/contrib.html) modules.
+2.  Add PostgreSQL binaries to `PATH`. For example, use `PATH=/usr/lib/postgresql/11/bin:\$PATH python -m behave`.
+3.  For external DCS tests, install the relevant packages, such as Etcd, Consul, or Zookeeper. Run their services on localhost and the default port, with unencrypted, unprotected connections. For Etcd and Consul, the behave suite can start the services if their binaries are in `PATH`.
 
 Install dependencies:
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 pip install -r requirements.dev.txt
 ```
 
-After you have all dependencies installed, you can run the various test suites:
+After you install the dependencies, run the test suites:
 
 ``` bash
 # You may want to use Virtualenv or specify python3.
@@ -72,15 +72,15 @@ DCS=raft python -m behave
 
 ## Testing with tox
 
-To run tox tests you only need to install one dependency (other than Python)
+Tox tests require one dependency in addition to Python:
 
 ``` bash
 pip install tox>=4
 ```
 
-If you wish to run `behave` tests then you also need docker installed.
+For `behave` tests, also install Docker.
 
-Tox configuration in `tox.ini` has "environments" to run the following tasks:
+The environments in `tox.ini` run these tasks:
 
 - lint: Python code lint with `flake8`
 - test: unit tests for all available python interpreters with `pytest`, generates XML reports or HTML reports if a TTY is detected
@@ -95,7 +95,7 @@ Tox configuration in `tox.ini` has "environments" to run the following tasks:
 
 ### Running tox
 
-To run the default env list; dep, lint, test, and docs, just run:
+Run the default environments (dep, lint, test, and docs):
 
 ``` bash
 tox
@@ -122,7 +122,7 @@ tox -e lint
 tox -e py39-test-lin
 ```
 
-It is also possible to select partial env lists using `factors`. For example, if you want to run all envs for python 3.10:
+Use `factors` to select some environments. For example, run all Python 3.10 environments:
 
 ``` bash
 tox -f py310
@@ -143,13 +143,13 @@ py310-behave-etcd-win
 py310-behave-etcd-mac
 ```
 
-You can list all configured combinations of environments with tox (\>=v4) like so
+With tox \>=v4, list all configured environment combinations:
 
 ``` bash
 tox l
 ```
 
-The envs `test` and `docs` will attempt to open the HTML output files when the job completes, if tox is run with an active terminal. This is intended to be for benefit of the developer running this env locally. It will attempt to run `open` on a mac and `xdg-open` on Linux. To use a different command set the env var `OPEN_CMD` to the name or path of the command. If this step fails it will not fail the run overall. If you want to disable this facility set the env var `OPEN_CMD` to the `:` no-op command.
+With an active terminal, the `test` and `docs` environments try to open their HTML output after completion. This helps developers who run them locally. They use `open` on Mac and `xdg-open` on Linux. To use another command, set `OPEN_CMD` to its name or path. A failure to open the output does not fail the test run. To disable this behavior, set `OPEN_CMD` to the `:` no-op command.
 
 ``` bash
 OPEN_CMD=: tox -m docs
@@ -157,30 +157,28 @@ OPEN_CMD=: tox -m docs
 
 ### Behave tests
 
-Behave tests with `-m behave` will build docker images based on PG_MAJOR version 11 through 16 and then run all behave tests. This can take quite a long time to run so you might want to limit the scope to a select version of Postgres or to a specific feature set or steps.
+The `-m behave` tests build Docker images for PG_MAJOR versions 11 through 16, then run all behave tests. This can take a long time. You may limit tests to one Postgres version, feature set, or group of steps.
 
-To specify the version of postgres include the full name of the dependent image build env that you want and then the behave env name. For instance if you want Postgres 14 use:
+To select a Postgres version, specify the full dependent image build environment name, then the behave environment name. For Postgres 14, use:
 
 ``` bash
 tox -e pg14-docker-build,pg14-docker-behave-etcd-lin
 ```
 
-If on the other hand you want to test a specific feature you can pass positional arguments to behave. This will run the watchdog behave feature test scenario with all versions of Postgres.
+To test one feature, pass positional arguments to behave. This example tests the watchdog feature with all Postgres versions:
 
 ``` bash
 tox -m behave -- features/watchdog.feature
 ```
 
-Of course you can combine the two.
+You can combine the version and feature selections.
 
 --------
 
 ## Contributing a pull request
 
-1.  Fork the repository, develop and test your code changes.
-2.  Reflect changes in the user documentation.
-3.  Submit a pull request with a clear description of the changes objective. Link an existing issue if necessary.
+1.  Fork the repository. Develop and test your changes.
+2.  Update the user documentation.
+3.  Submit a pull request that clearly describes the purpose of the changes. Link an existing issue if necessary.
 
-You'll get feedback about your pull request as soon as possible.
-
-Happy Patroni hacking ;-)
+The maintainers will review your pull request as soon as possible.

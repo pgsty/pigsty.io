@@ -11,10 +11,10 @@ weight: 1890
     <div class="ext-card__title">Manuelreyesbravo/pg_grammar_guard</div>
     <div class="ext-card__desc">https://github.com/Manuelreyesbravo/pg_grammar_guard</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_grammar_guard-0.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_grammar_guard-0.4.9.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_grammar_guard-0.4.1.tar.gz</div>
-    <div class="ext-card__desc">pg_grammar_guard-0.4.1.tar.gz</div>
+    <div class="ext-card__title">pg_grammar_guard-0.4.9.tar.gz</div>
+    <div class="ext-card__desc">pg_grammar_guard-0.4.9.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1890
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_grammar_guard`**](/ext/e/pg_grammar_guard) | `0.4.1` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`pg_grammar_guard`**](/ext/e/pg_grammar_guard) | `0.4.9` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 1890
 {.ext-table .ext-table--rel}
 
 
-> Requires pg_living_assertions, despite older README text claiming no dependencies.
+> Requires pg_living_assertions >= 0.5.9.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_grammar_guard` | `pg_living_assertions` |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_grammar_guard_$v` | `pg_living_assertions_$v` |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-grammar-guard` | `postgresql-$v-pg-living-assertions` |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.9` | {{< pgvers "18,17,16,15,14" >}} | `pg_grammar_guard` | `pg_living_assertions` |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.9` | {{< pgvers "18,17,16,15,14" >}} | `pg_grammar_guard_$v` | `pg_living_assertions_$v` |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.9` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-grammar-guard` | `postgresql-$v-pg-living-assertions` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -209,11 +209,13 @@ CREATE EXTENSION pg_grammar_guard CASCADE;  -- requires: pg_living_assertions
 
 Sources:
 
-- [PGXN 0.4.1](https://pgxn.org/dist/pg_grammar_guard/0.4.1/)
+- [README.md](https://api.pgxn.org/src/pg_grammar_guard/pg_grammar_guard-0.4.8/README.md)
+- [pg_grammar_guard.control](https://api.pgxn.org/src/pg_grammar_guard/pg_grammar_guard-0.4.8/pg_grammar_guard.control)
+- [CHANGELOG.md](https://api.pgxn.org/src/pg_grammar_guard/pg_grammar_guard-0.4.8/CHANGELOG.md)
 
-`pg_grammar_guard` generates GBNF or JSON Schema from catalog identifiers and detects drift from approved grammars. It is pure SQL, needs no preload and is packaged for PostgreSQL 14–18. Its control file requires `pg_living_assertions`.
+`pg_grammar_guard` 0.4.8 creates GBNF or JSON Schema from catalog identifiers and watches approved grammars for drift. It is pure SQL and requires `pg_living_assertions` 0.5.9 or later.
 
-### Generate a grammar
+### Core Workflow
 
 ```sql
 CREATE EXTENSION pg_grammar_guard CASCADE;
@@ -224,10 +226,6 @@ SELECT grammar_guard.grammar_for_json(ARRAY[
 ]::grammar_guard.grammar_field[]);
 ```
 
-The catalog helpers enumerate actual tables, columns and enum labels. Generation supports nested objects and bounded arrays; open-ended values such as arbitrary SQL or file paths need separate validation.
+### Operational Boundaries
 
-### Detect changes
-
-`grammar_guard.watch()` stores the query that rebuilds a grammar, and `grammar_guard.check_grammar()` evaluates it against the live catalog. Results and their age are available through `living_assertions.status`.
-
-Register baseline SQL only through trusted administrators. A grammar limits valid identifiers; it cannot prove that a selected table, join or answer is semantically correct. Baselines from the old 0.2 series lack the original generating query and require manual re-approval when upgrading.
+`grammar_guard.catalog_tables()` and `grammar_guard.catalog_columns()` expose catalog names; `grammar_guard.grammar_for_json()` assembles typed fields, nested structures and bounded arrays. `grammar_guard.watch()` records the SQL that regenerates a grammar, and `grammar_guard.check_grammar()` compares it with the approved state in `living_assertions.status`. The generating query resolves with its author search path and executes as that author. Input NULLs, empty/duplicate field names, empty pivots and invalid bounds are rejected; `max_items` is capped at 1000. Version 0.4.8 changes canonical fingerprints, and the ordered catalog list can make an existing watch fail once: inspect and re-approve it. A grammar controls allowed tokens, not semantic correctness or authorization. Register trusted SQL only. No preload is required. Current Apache-2.0 licensing begins at 0.4.4; earlier releases retain their original license.

@@ -7,7 +7,7 @@ module: [JUICE]
 categories: [Reference]
 ---
 
-JUICE module has **2** parameters:
+The JUICE module has **2** parameters:
 
 - [`juice_cache`](#juice_cache): shared cache directory
 - [`juice_instances`](#juice_instances): instance definition dict
@@ -57,8 +57,7 @@ juice_cache: /data/juice
 
 Parameter: `juice_instances`, type: `dict`, level: `I`
 
-Instance definition dict, usually defined at instance level.
-Default is an empty dict (meaning no instances are deployed). Key is filesystem name, value is instance config object.
+Dictionary of instance definitions, usually set at the instance level. The default is an empty dictionary, which deploys no instances. Each key is a filesystem name. Each value is an instance configuration object.
 
 ```yaml
 juice_instances:
@@ -86,5 +85,5 @@ Instance fields:
 {.full-width}
 
 > [!WARNING] Note
-> - `data` is only used by `juicefs format`, it will not update an existing filesystem.
+> - Only `juicefs format` uses `data`. It does not update an existing filesystem.
 > - Multiple instances on the same node must use different `port` values.

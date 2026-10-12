@@ -7,18 +7,21 @@ module: [PGSQL]
 categories: [Task, Reference]
 ---
 
-You can define an **OPTIONAL** L2 VIP on a PostgreSQL cluster, provided that all nodes in the cluster are in the same L2 network.
+If all cluster nodes share one L2 network, you can optionally define an **L2 VIP** for the PostgreSQL cluster.
 
-This VIP works on Master-Backup mode and always points to the node where the primary instance of the database cluster is located.
+The VIP uses Master-Backup mode.
+It always points to the node that runs the cluster primary instance.
 
-This VIP is managed by the [VIP-Manager](https://github.com/cybertec-postgresql/vip-manager), which reads the Leader Key written by Patroni from DCS (etcd) to determine whether it is the master.
+[VIP-Manager](https://github.com/cybertec-postgresql/vip-manager) manages the VIP.
+It reads the Leader Key that Patroni writes to DCS (etcd) to determine whether the local node is primary.
 
 
 ------
 
 ## Enable VIP
 
-Define [`pg_vip_enabled`](/docs/pgsql/param#pg_vip_enabled) parameter as `true` in the cluster level to enable the VIP component on the cluster. You can also enable this configuration in the global configuration.
+To enable VIP for a cluster, set [`pg_vip_enabled`](/docs/pgsql/param#pg_vip_enabled) to `true` at cluster level.
+You can also enable it globally.
 
 ```bash
 # pgsql 3 node ha cluster: pg-test
@@ -38,11 +41,13 @@ pg-test:
     #pg_vip_interface: auto
 ```
 
-Beware that [`pg_vip_address`](/docs/pgsql/param#pg_vip_address) must be a valid IP address with subnet and available in the current L2 network.
+[`pg_vip_address`](/docs/pgsql/param#pg_vip_address) must be an available, valid IP address with a subnet in the current L2 network.
 
-[`pg_vip_interface`](/docs/pgsql/param#pg_vip_interface) defaults to `auto`, in which case Pigsty detects the interface for each instance from the IPv4 address in the inventory.
+[`pg_vip_interface`](/docs/pgsql/param#pg_vip_interface) defaults to `auto`.
+With this setting, Pigsty detects each instance interface from its inventory IPv4 address.
 
-If auto-detection is unsuitable for non-standard or policy-routing environments, explicitly specify a valid interface name for each instance, for example:
+If automatic detection is unsuitable for a non-standard or policy-routing environment, specify a valid interface name for each instance.
+For example:
 
 ```yaml
 pg-test:

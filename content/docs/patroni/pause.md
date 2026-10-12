@@ -16,21 +16,21 @@ categories: [Task]
 
 ## The goal
 
-Under certain circumstances Patroni needs to temporarily step down from managing the cluster, while still retaining the cluster state in DCS. Possible use cases are uncommon activities on the cluster, such as major version upgrades or corruption recovery. During those activities nodes are often started and stopped for reasons unknown to Patroni, some nodes can be even temporarily promoted, violating the assumption of running only one primary. Therefore, Patroni needs to be able to "detach" from the running cluster, implementing an equivalent of the maintenance mode in Pacemaker.
+Patroni sometimes needs to suspend cluster management while it retains cluster state in the DCS. Examples include major version upgrades and corruption recovery. During these operations, nodes often start and stop for reasons that Patroni does not know. Temporary promotions can also violate the assumption that only one primary runs. Pause mode lets Patroni detach from the running cluster, like maintenance mode in Pacemaker.
 
 --------
 
 ## The implementation
 
-When Patroni runs in a paused mode, it does not change the state of PostgreSQL, except for the following cases:
+In pause mode, Patroni does not change PostgreSQL state, with these exceptions:
 
-- For each node, the member key in DCS is updated with the current information about the cluster. This causes Patroni to run read-only queries on a member node if the member is running.
-- For the Postgres primary with the leader lock Patroni updates the lock. If the node with the leader lock stops being the primary (i.e. is demoted manually), Patroni will release the lock instead of promoting the node back.
-- Manual unscheduled restart, manual unscheduled failover/switchover and reinitialize are allowed. No scheduled action is allowed. Manual switchover is only allowed if the node to switch over to is specified.
-- If 'parallel' primaries are detected by Patroni, it emits a warning, but does not demote the primary without the leader lock.
-- If there is no leader lock in the cluster, the running primary acquires the lock. If there is more than one primary node, then the first primary to acquire the lock wins. If there are no primary altogether, Patroni does not try to promote any replicas. There is an exception in this rule: if there is no leader lock because the old primary has demoted itself due to the manual promotion, then only the candidate node mentioned in the promotion request may take the leader lock. When the new leader lock is granted (i.e. after promoting a replica manually), Patroni makes sure the replicas that were streaming from the previous leader will switch to the new one.
-- When Postgres is stopped, Patroni does not try to start it. When Patroni is stopped, it does not try to stop the Postgres instance it is managing.
-- Patroni will not try to remove replication slots that don't represent the other cluster member or are not listed in the configuration of the permanent slots.
+- Patroni updates each node's member key in the DCS with current cluster information. It runs read-only queries on each running member.
+- Patroni updates the leader lock for the Postgres primary that holds it. If that node is manually demoted, Patroni releases the lock instead of promoting the node again.
+- Manual unscheduled restarts, failovers, switchovers, and reinitialization are allowed. Scheduled actions are not allowed. A manual switchover must specify the target node.
+- If Patroni detects multiple primaries, it logs a warning. It does not demote a primary that lacks the leader lock.
+- If the cluster has no leader lock, a running primary acquires it. With multiple primaries, the first to acquire the lock wins. With no primary, Patroni does not promote a replica. One exception applies if the old primary released the lock by demoting itself for a manual promotion. Only the candidate named in that request may acquire the lock. After a new leader acquires the lock, Patroni redirects replicas from the previous leader to the new leader.
+- Patroni does not start a stopped Postgres instance. When Patroni stops, it does not stop the Postgres instance that it manages.
+- Patroni does not remove replication slots that do not represent another cluster member or are absent from the permanent slot configuration.
 
 --------
 
@@ -38,4 +38,4 @@ When Patroni runs in a paused mode, it does not change the state of PostgreSQL, 
 
 [patronictl](/docs/patroni/patronictl#patronictl) supports [pause](/docs/patroni/patronictl#patronictl_pause) and [resume](/docs/patroni/patronictl#patronictl_resume) commands.
 
-One can also issue a `PATCH` request to the `{namespace}/{cluster}/config` key with `{"pause": true/false/null}`
+You can also send a `PATCH` request to `{namespace}/{cluster}/config` with `{"pause": true/false/null}`.

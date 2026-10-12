@@ -6,7 +6,8 @@ icon: fa-solid fa-brain
 categories: [Reference]
 ---
 
-The `app/hindsight` configuration template deploys Hindsight and replaces its built-in development database with Pigsty-managed external PostgreSQL.
+The `app/hindsight` template deploys Hindsight.
+It replaces the built-in development database with external PostgreSQL managed by Pigsty.
 
 For details, see: **[Hindsight Deployment Tutorial](/docs/app/hindsight/)**
 

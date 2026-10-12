@@ -11,7 +11,7 @@ categories: [Task]
 
 You can use PostgreSQL as Grafana's backend database.
 
-This is a great opportunity to understand Pigsty's deployment system. By completing this tutorial, you'll learn:
+This tutorial explains the Pigsty deployment system through these tasks:
 
 * How to [create a new database cluster](#create-database-cluster)
 * How to [create new business users](#create-grafana-business-user) in an existing cluster
@@ -46,7 +46,7 @@ systemctl restart grafana-server
 
 ## Create Database Cluster
 
-We can define a new database `grafana` on `pg-meta`, or create a dedicated Grafana database cluster `pg-grafana` on new nodes.
+You can define a `grafana` database on `pg-meta`. You can also create a dedicated `pg-grafana` cluster on new nodes.
 
 ### Define Cluster
 
@@ -82,7 +82,7 @@ Use this command to create the `pg-grafana` cluster: [`pgsql.yml`](/docs/pgsql/p
 
 This command is the Ansible Playbook [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) for creating database clusters.
 
-Users and databases defined in [`pg_users`](/docs/pgsql/param#pg_users) and [`pg_databases`](/docs/pgsql/param#pg_databases) are automatically created during cluster initialization. With this config, after cluster creation (without DNS), you can [access](/docs/concept/sec/ac) the database using these connection strings (any one works):
+Cluster initialization automatically creates the users and databases in [`pg_users`](/docs/pgsql/param#pg_users) and [`pg_databases`](/docs/pgsql/param#pg_databases). After cluster creation, any of these connection strings provides [database access](/docs/concept/sec/ac) without DNS:
 
 ```bash
 postgres://dbuser_grafana:DBUser.Grafana@10.10.10.11:5432/grafana # Direct primary connection
@@ -94,7 +94,7 @@ postgres://dbuser_grafana:DBUser.Grafana@10.10.10.12:5436/grafana # Direct defau
 postgres://dbuser_grafana:DBUser.Grafana@10.10.10.12:5433/grafana # Primary read-write service
 ```
 
-Since Pigsty is installed on a **single meta node** by default, the following steps will create Grafana's user and database on the existing `pg-meta` cluster, not the `pg-grafana` cluster created here.
+Pigsty defaults to a **single meta node**. The following steps use its existing `pg-meta` cluster for the Grafana user and database. They do not use the `pg-grafana` cluster created above.
 
 
 
@@ -102,8 +102,7 @@ Since Pigsty is installed on a **single meta node** by default, the following st
 
 ## Create Grafana Business User
 
-The usual convention for business object management: create user first, then database.
-Because if the database has an `owner` configured, it depends on the corresponding user.
+Create the user before the database. A database with an `owner` depends on that user.
 
 ### Define User
 
@@ -223,8 +222,9 @@ Then restart Grafana:
 systemctl restart grafana-server
 ```
 
-When you see activity in the newly added [`grafana`](http://g.pigsty/d/pgsql-database/pgsql-database?var-cls=pg-meta&var-ins=pg-meta-1&var-datname=grafana) database from the monitoring system, Grafana is now using Postgres as its primary backend database.
-But there's a new issue—the original Dashboards and Datasources in Grafana have disappeared! You need to re-import [dashboards](#manage-grafana-dashboards) and [Postgres datasources](#manage-postgres-datasources).
+Activity in the new [`grafana`](http://g.pigsty/d/pgsql-database/pgsql-database?var-cls=pg-meta&var-ins=pg-meta-1&var-datname=grafana) database indicates that Grafana now uses PostgreSQL as its main backend.
+
+The original Grafana dashboards and datasources are absent from this new backend. Import the [dashboards](#manage-grafana-dashboards) and [Postgres datasources](#manage-postgres-datasources) again.
 
 
 
@@ -256,7 +256,7 @@ init dashboard: pgsql / pgsql-replication.json
 ...
 ```
 
-This script detects the current environment (defined in `~/pigsty` during installation), gets Grafana access info, and replaces dashboard URL placeholder domains (`*.pigsty`) with actual domains used.
+The script detects the environment defined in `~/pigsty` during installation. It gets Grafana access information and replaces dashboard URL placeholders (`*.pigsty`) with actual domains.
 
 ```bash
 export GRAFANA_ENDPOINT=http://10.10.10.10:3000
@@ -271,11 +271,11 @@ export NGINX_UPSTREAM_GRAFANA=g.pigsty
 export NGINX_UPSTREAM_HAPROXY=h.pigsty
 ```
 
-As a side note, use `grafana.py clean` to clear target dashboards, and `grafana.py load` to load all dashboards from the current directory. When Pigsty dashboards change, use these two commands to upgrade all dashboards.
+Use `grafana.py clean` to delete target dashboards. Use `grafana.py load` to load all dashboards from the current directory. When Pigsty dashboards change, use these two commands to upgrade all dashboards.
 
 ## Manage Postgres Datasources
 
-When creating a new PostgreSQL cluster with [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) or a new business database with [`pgsql-db.yml`](/docs/pgsql/playbook#pgsql-dbyml), Pigsty registers new PostgreSQL datasources in Grafana. You can directly access target database instances through Grafana using the default monitoring user. Most `pgcat` application features depend on this.
+Pigsty registers PostgreSQL datasources in Grafana when [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml) creates a cluster or [`pgsql-db.yml`](/docs/pgsql/playbook#pgsql-dbyml) creates a business database. You can directly access target database instances through Grafana using the default monitoring user. Most `pgcat` application features depend on this.
 
 To register Postgres databases, use the `register_grafana` task in [`pgsql.yml`](/docs/pgsql/playbook#pgsqlyml):
 
@@ -292,7 +292,7 @@ To register Postgres databases, use the `register_grafana` task in [`pgsql.yml`]
 
 ## One-Step Grafana Upgrade
 
-You can directly modify the Pigsty config file to change Grafana's backend datasource, completing the database switch in one step. Edit the [`grafana_pgurl`](/docs/infra/param#grafana_pgurl) parameter in `pigsty.yml`:
+Change the Pigsty configuration to switch the Grafana backend database in one step. Edit the [`grafana_pgurl`](/docs/infra/param#grafana_pgurl) parameter in `pigsty.yml`:
 
 ```yaml
 grafana_pgurl: postgres://dbuser_grafana:DBUser.Grafana@meta:5436/grafana

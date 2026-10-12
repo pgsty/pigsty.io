@@ -9,18 +9,18 @@ categories: [Concept]
 ---
 
 
-The PGSQL module organizes PostgreSQL in production as **clusters**—**logical entities** composed of a group of database **instances** associated by **primary-replica** relationships.
+PGSQL organizes PostgreSQL as **clusters**. Each cluster is a logical group of database **instances** connected through **primary-replica** relationships.
 
-Each cluster is an **autonomous** business unit consisting of at least one **primary instance**, exposing capabilities through services.
+Each cluster is an **autonomous** business unit with at least one **primary instance**. It exposes database capabilities through services.
 
 There are four core entities in Pigsty's PGSQL module:
 
-- **Cluster**: An autonomous PostgreSQL business unit serving as the top-level namespace for other entities.
-- **Service**: A named abstraction that exposes capabilities, routes traffic, and exposes services using node ports.
-- **Instance**: A single PostgreSQL server consisting of running processes and database files on a single node.
-- **Node**: A hardware resource abstraction running Linux + Systemd environment—can be bare metal, VM, container, or Pod.
+- **Cluster**: An autonomous PostgreSQL business unit and the top-level namespace for other entities.
+- **Service**: A named abstraction that exposes capabilities and routes traffic through node ports.
+- **Instance**: One PostgreSQL server, including its running processes and database files, on one node.
+- **Node**: A hardware resource that runs Linux and Systemd. It can be a physical server, VM, container, or Pod.
 
-Along with two business entities—"Database" and "Role"—these form the complete logical view as shown below:
+Two business entities, **Database** and **Role**, complete this logical model:
 
 ![er-pgsql](/img/pigsty/er-pgsql.svg)
 
@@ -29,7 +29,7 @@ Along with two business entities—"Database" and "Role"—these form the comple
 
 ## Examples
 
-Let's look at two concrete examples. Using the four-node Pigsty [**sandbox**](/docs/deploy/sandbox), there's a three-node `pg-test` cluster:
+The following two examples show the model. The four-node Pigsty [**sandbox**](/docs/deploy/sandbox) contains a three-node `pg-test` cluster:
 
 ```yaml
     pg-test:
@@ -40,7 +40,7 @@ Let's look at two concrete examples. Using the four-node Pigsty [**sandbox**](/d
       vars: { pg_cluster: pg-test }
 ```
 
-The above config fragment defines a [**high-availability**](/docs/concept/ha/) PostgreSQL cluster with these related entities:
+This configuration defines a [**high-availability**](/docs/concept/ha/) PostgreSQL cluster with these entities:
 
 |       <span class="text-secondary">**Cluster**</span>       | <span class="text-secondary">**Description**</span> |
 |:-----------------------------------------------------------:|------------------------------------------------------|
@@ -67,7 +67,7 @@ The above config fragment defines a [**high-availability**](/docs/concept/ha/) P
 
 ## Identity Parameters
 
-Pigsty uses the [**`PG_ID`**](/docs/pgsql/param#pg_id) parameter group to assign deterministic identities to each PGSQL module entity. Three parameters are required:
+The [**`PG_ID`**](/docs/pgsql/param#pg_id) parameter group assigns deterministic identities to PGSQL entities. Three parameters are required:
 
 | Parameter                                            |   Type   | Level | Description              | Format                                          |
 |:-----------------------------------------------------|:--------:|:-----:|:-------------------------|------------------------------------------------|
@@ -76,7 +76,7 @@ Pigsty uses the [**`PG_ID`**](/docs/pgsql/param#pg_id) parameter group to assign
 | [**`pg_role`**](/docs/pgsql/param#pg_role)           |  `enum`  | Instance | PG instance role, required | Enum: `primary`, `replica`, `offline`          |
 {.full-width}
 
-With cluster name defined at cluster level and instance number/role assigned at instance level, Pigsty automatically generates unique identifiers for each entity based on rules:
+Set the cluster name at cluster level. Set each instance number and role at instance level. Pigsty generates unique identifiers with these rules:
 
 | Entity       | Generation Rule                          | Example                                                 |
 |--------------|------------------------------------------|---------------------------------------------------------|
@@ -85,19 +85,18 @@ With cluster name defined at cluster level and instance number/role assigned at 
 | **Node**     | Explicitly specified or borrowed from PG | `pg-test-1`, `pg-test-2`, `pg-test-3`                   |
 {.full-width}
 
-Because Pigsty adopts a 1:1 exclusive deployment model for nodes and PG instances, by default the host node identifier borrows from the PG instance identifier ([**`node_id_from_pg`**](/docs/node/param#node_id_from_pg)).
-You can also explicitly specify [**`nodename`**](/docs/node/param#nodename) to override, or disable [**`nodename_overwrite`**](/docs/node/param#nodename_overview) to use the current default.
+Pigsty uses an exclusive 1:1 mapping between nodes and PostgreSQL instances. By default, the node inherits its PostgreSQL instance identifier through [**`node_id_from_pg`**](/docs/node/param#node_id_from_pg). Set [**`nodename`**](/docs/node/param#nodename) to override this name. Alternatively, disable [**`nodename_overwrite`**](/docs/node/param#nodename_overview) to retain the current default.
 
 
 --------
 
 ## Sharding Identity Parameters
 
-When using multiple PostgreSQL clusters (**sharding**) to serve the same business, two additional identity parameters are used: [**`pg_shard`**](/docs/pgsql/param#pg_shard) and [**`pg_group`**](/docs/pgsql/param#pg_group).
+To serve one business with multiple PostgreSQL clusters (**sharding**), use two additional identity parameters: [**`pg_shard`**](/docs/pgsql/param#pg_shard) and [**`pg_group`**](/docs/pgsql/param#pg_group).
 
-In this case, this group of PostgreSQL clusters shares the same `pg_shard` name with their own `pg_group` numbers, like this [**Citus cluster**](/docs/pgsql/config/#citus-cluster):
+These clusters share one `pg_shard` name. Each has its own `pg_group` number, as in this [**Citus cluster**](/docs/pgsql/config/#citus-cluster):
 
-In this case, `pg_cluster` cluster names are typically composed of: `{{ pg_shard }}{{ pg_group }}`, e.g., `pg-citus0`, `pg-citus1`, etc.
+A `pg_cluster` name usually combines `{{ pg_shard }}{{ pg_group }}`, for example `pg-citus0` or `pg-citus1`.
 
 ```yaml
 all:
@@ -116,10 +115,16 @@ all:
       vars: { pg_cluster: pg-citus3 , pg_group: 3 }
 ```
 
-Pigsty provides dedicated monitoring dashboards for horizontal sharding clusters, making it easy to compare performance and load across shards, but this requires using the above entity naming convention.
+Pigsty has dedicated dashboards for horizontally sharded clusters. Use this naming convention to compare shard performance and load in those dashboards.
 
-There are also other identity parameters for special scenarios, such as [`pg_upstream`](/docs/pgsql/param#pg_upstream) for specifying backup clusters/cascading replication upstream, [`gp_role`](/docs/pgsql/param#gp_role) for Greenplum cluster identity,
-[`pg_exporters`](/docs/pgsql/param#pg_exporters) for external monitoring instances, [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) for offline query instances, etc. See [**`PG_ID` parameter docs**](/docs/pgsql/param#pg_id).
+Other identity parameters support specific uses:
+
+- [`pg_upstream`](/docs/pgsql/param#pg_upstream): Set the upstream for a backup cluster or cascading replication.
+- [`gp_role`](/docs/pgsql/param#gp_role): Identify a Greenplum cluster role.
+- [`pg_exporters`](/docs/pgsql/param#pg_exporters): Define external monitoring instances.
+- [`pg_offline_query`](/docs/pgsql/param#pg_offline_query): Define offline query instances.
+
+See the [**`PG_ID` parameter documentation**](/docs/pgsql/param#pg_id).
 
 
 
@@ -127,7 +132,7 @@ There are also other identity parameters for special scenarios, such as [`pg_ups
 
 ## Monitoring Label System
 
-Pigsty provides an out-of-box monitoring system that uses the above [**identity parameters**](#identity-parameters) to identify various PostgreSQL entities.
+The built-in monitoring system uses these [**identity parameters**](#identity-parameters) to identify PostgreSQL entities.
 
 ```text
 pg_up{cls="pg-test", ins="pg-test-1", ip="10.10.10.11", job="pgsql"}
@@ -135,15 +140,18 @@ pg_up{cls="pg-test", ins="pg-test-2", ip="10.10.10.12", job="pgsql"}
 pg_up{cls="pg-test", ins="pg-test-3", ip="10.10.10.13", job="pgsql"}
 ```
 
-For example, the `cls`, `ins`, `ip` labels correspond to cluster name, instance name, and node IP—the identifiers for these three core entities.
-They appear along with the `job` label in **all** native monitoring metrics collected by [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics) and [**VictoriaLogs**](/docs/concept/arch/infra#victorialogs) log streams.
+The labels `cls`, `ins`, and `ip` identify the cluster name, instance name, and node IP. They accompany `job` in **all** native [**VictoriaMetrics**](/docs/concept/arch/infra#victoriametrics) metrics and [**VictoriaLogs**](/docs/concept/arch/infra#victorialogs) log streams.
 
-The `job` name for collecting PostgreSQL metrics is fixed as `pgsql`;
-The `job` name for monitoring remote PG instances is fixed as `pgrds`.
-The `job` name for collecting PostgreSQL CSV logs is fixed as `postgres`;
-The `job` name for collecting pgbackrest logs is fixed as `pgbackrest`, other PG components collect logs via `job: syslog`.
+These `job` values are fixed:
 
-Additionally, some entity identity labels appear in specific entity-related monitoring metrics, such as:
+- `pgsql`: PostgreSQL metrics.
+- `pgrds`: Remote PostgreSQL instance metrics.
+- `postgres`: PostgreSQL CSV logs.
+- `pgbackrest`: pgBackRest logs.
+
+Other PostgreSQL components collect logs through `job: syslog`.
+
+Specific entity metrics also have these identity labels:
 
 - `datname`: Database name, if a metric belongs to a specific database.
 - `relname`: Table name, if a metric belongs to a specific table.

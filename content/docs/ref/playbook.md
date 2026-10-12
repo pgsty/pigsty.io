@@ -87,9 +87,11 @@ Several modules provide deletion safeguards through `*_safeguard` parameters:
 - **KAFKA**: [**`kafka_safeguard`**](/docs/kafka/param#kafka_safeguard)
 - **MYSQL (pilot)**: [`mysql_safeguard`](/docs/mysql/) and an exact-match `mysql_rm_confirm` jointly protect native MySQL retirement
 
-The PGSQL, ETCD, MINIO, REDIS, and KAFKA role defaults are explicitly `false`; set them to `true` for initialized production clusters. Native MySQL is the exception: `mysql_safeguard` defaults to `true`, and even after disabling it you must provide a `mysql_rm_confirm` value that exactly matches the target instance or cluster.
+The PGSQL, ETCD, MINIO, REDIS, and KAFKA role defaults are explicitly `false`. Set their safeguards to `true` for initialized production clusters.
 
-When safeguard is `true`, corresponding `*-rm.yml` playbooks abort immediately. You can force override via CLI:
+Native MySQL uses `mysql_safeguard: true` by default. After you disable it, you must still set `mysql_rm_confirm` to exactly match the target instance or cluster.
+
+If the safeguard is `true`, the corresponding `*-rm.yml` playbook aborts immediately. To override it, use the command line:
 
 ```bash
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
@@ -111,14 +113,14 @@ Use `-l` to limit execution targets:
 ./redis.yml -l redis-test         # run only on redis-test cluster
 ```
 
-For large-scale rollout, validate on one cluster first, then deploy in batches.
+For a large deployment, validate one cluster first. Then deploy in batches.
 
 
 ### Idempotency
 
 Most playbooks are idempotent and safe to rerun, with caveats:
 
-- `infra.yml` does **not** clean data by default; all clean parameters (`vmetrics_clean`, `vlogs_clean`, `vtraces_clean`, `grafana_clean`, `nginx_clean`) default to `false`
+- `infra.yml` does **not** clean data by default. All cleanup parameters default to `false`: `vmetrics_clean`, `vlogs_clean`, `vtraces_clean`, `grafana_clean`, and `nginx_clean`.
 - To rebuild from a clean state, explicitly set relevant clean parameters to `true`
 - Re-running `*-rm.yml` deletion playbooks requires extra caution
 
@@ -216,7 +218,7 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 ./kafka-rm.yml -l <ip>           # retire a single member from the cluster
 ```
 
-For ordinary convergence, `-l` must cover every declared member of the selected Kafka cluster; only `kafka-rm.yml` accepts a single member, for retirement.
+For ordinary convergence, `-l` must include every declared member of the selected Kafka cluster. Only `kafka-rm.yml` accepts a single member for retirement.
 
 ### MYSQL Pilot Module
 
@@ -229,4 +231,4 @@ For ordinary convergence, `-l` must cover every declared member of the selected 
   -e mysql_safeguard=false -e mysql_rm_confirm=<cls>
 ```
 
-`mysql-rm.yml` stops the service, writes a retirement marker, and deregisters monitoring, but does not delete data directories, backups, configuration, certificates, packages, or InnoDB Cluster metadata.
+`mysql-rm.yml` stops the service, writes a retirement marker, and deregisters monitoring. It preserves data directories, backups, configuration, certificates, packages, and InnoDB Cluster metadata.

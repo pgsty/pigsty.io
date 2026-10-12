@@ -7,9 +7,9 @@ module: [PGSQL]
 categories: [Tutorial]
 ---
 
-Using extensions in Pigsty requires four steps: **Download**, **Install**, **Config**, and **Create**.
+To use extensions in Pigsty, complete four steps: **Download**, **Install**, **Config**, and **Create**.
 
-1. **Download**: Download extension packages to the local repository (the default local repository only guarantees the base kernel and `pgsql-main` package set)
+1. **Download**: Download extension packages to the local repository. The default local repository only guarantees the base kernel and `pgsql-main` package set.
 2. **Install**: Install extension packages on cluster nodes
 3. **Config**: Some extensions need to be preloaded or configured with parameters
 4. **Create**: Execute `CREATE EXTENSION` in the database to create the extension
@@ -18,7 +18,8 @@ Using extensions in Pigsty requires four steps: **Download**, **Install**, **Con
 
 ## Declarative Configuration
 
-Declare extensions in the Pigsty configuration manifest, and they will be automatically installed and created during cluster initialization:
+Declare extensions in the Pigsty inventory.
+During cluster initialization, Pigsty installs their packages and creates the extensions automatically:
 
 ```yaml
 pg-meta:
@@ -32,14 +33,15 @@ pg-meta:
     pg_extensions: [ postgis, timescaledb, pgvector ]  # Install extension packages
 ```
 
-After executing `./pgsql.yml` to initialize the cluster, the three extensions `postgis`, `timescaledb`, and `vector` will be available in the `meta` database.
+Run `./pgsql.yml` to initialize the cluster.
+The three extensions `postgis`, `timescaledb`, and `vector` will then be available in the `meta` database.
 
 
 --------
 
 ## Imperative Operations
 
-For existing clusters, you can add extensions using command-line methods:
+For an existing cluster, you can use commands to add extensions:
 
 ```bash
 # 1. Install extension packages
@@ -52,7 +54,8 @@ pg edit-config pg-meta --force -p shared_preload_libraries='timescaledb, pg_stat
 psql -d meta -c 'CREATE EXTENSION vector;'
 ```
 
-You can also use the [pig](/docs/pig/) package manager to install extension packages, then run `CREATE EXTENSION` inside the database:
+You can also install extension packages with the [pig](/docs/pig/) package manager.
+Then run `CREATE EXTENSION` in the database:
 
 ```bash
 pig install pgvector                         # Install extension package
@@ -71,4 +74,4 @@ psql -d meta -c 'CREATE EXTENSION vector;'   # Create extension in database
 |  Config  | [`pg_libs`](/docs/pgsql/param#pg_libs)                         | Preload extensions to `shared_preload_libraries`           |
 |  Create  | [`pg_databases.extensions`](/docs/pgsql/config/db)             | Automatically execute `CREATE EXTENSION` in database       |
 
-> For detailed instructions, please refer to each subsection: [Download](/docs/pgsql/ext/download/), [Install](/docs/pgsql/ext/install/), [Config](/docs/pgsql/ext/config/), [Create](/docs/pgsql/ext/create/)
+> For detailed instructions, see each subsection: [Download](/docs/pgsql/ext/download/), [Install](/docs/pgsql/ext/install/), [Config](/docs/pgsql/ext/config/), [Create](/docs/pgsql/ext/create/)

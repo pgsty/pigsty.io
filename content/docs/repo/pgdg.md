@@ -5,8 +5,7 @@ description: "The official PostgreSQL APT/YUM repository"
 weight: 5410
 ---
 
-The Pigsty PGSQL Repo is designed to work together with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repo.
-Together, they can provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/) out-of-the-box.
+Use the Pigsty PGSQL repository with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repository. Together, they provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/).
 
 > The PGDG mirror is continuously synchronized. Refer to each repository's `InRelease` or `repomd.xml` metadata for its actual state.
 
@@ -15,7 +14,7 @@ Together, they can provide [{{< param pgext_count >}} packaged PostgreSQL extens
 
 ## Quick Start
 
-You can install [pig](/docs/pig/) - the CLI tool, and add pgdg repo with it (recommended):
+We recommend that you install the [pig](/docs/pig/) CLI tool. Use it to add the PGDG repository:
 
 ```bash
 pig repo add pgdg                           # add pgdg repo file
@@ -31,11 +30,11 @@ pig repo add -u                             # all = node + pgsql (pgdg + pigsty)
 
 ## Mirror
 
-Since 2025-05, PGDG has closed the rsync/ftp sync channel, which makes almost all mirror sites out-of-sync.
+In 2025-05, PGDG closed the rsync/ftp synchronization channel. As a result, almost all mirror sites stopped receiving updates.
 
-Currently, Pigsty, Yandex, and Xtom are providing regular synced mirror service.
+Currently, Pigsty, Yandex, and Xtom provide regularly synchronized mirrors.
 
-The Pigsty PGDG mirror is a subset of the official PGDG repo, covering EL 7-10, Debian 11-13, and Ubuntu 22.04 - 26.04 on x86_64 and arm64. The stable repository covers supported PostgreSQL 14 - 18 releases, while the `beta` module additionally provides PostgreSQL 19 Beta.
+The Pigsty PGDG mirror contains part of the official PGDG repository. It covers EL 7-10, Debian 11-13, and Ubuntu 22.04 - 26.04 on x86_64 and arm64. The stable repository covers supported PostgreSQL 14 - 18 releases. The `beta` module also provides PostgreSQL 19 Beta.
 
 > [!NOTE] 2025-11 Update Notice: Aliyun/Tsinghua TUNA Resumed
 > Currently, the Aliyun/Tsinghua TUNA mirror sites have resumed PGDG repository synchronization.
@@ -123,4 +122,4 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresq
 
 ## YUM GPG Key
 
-PGDG YUM repo is signed with a series of keys from `https://ftp.postgresql.org/pub/repos/yum/keys/`. Please choose and use as needed.
+PGDG signs its YUM repository with keys from `https://ftp.postgresql.org/pub/repos/yum/keys/`. Select the keys that you need.

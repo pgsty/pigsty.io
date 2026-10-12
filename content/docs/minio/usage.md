@@ -7,7 +7,7 @@ module: [MINIO]
 categories: [Reference]
 ---
 
-After you [configure](/docs/minio/config/) and deploy Silo with the [playbook](/docs/minio/playbook/), use this page to access it through the compatible S3 and `mcli` interfaces.
+First, [configure](/docs/minio/config/) Silo and deploy it with the [playbook](/docs/minio/playbook/). Then use this page to access its compatible S3 and `mcli` interfaces.
 
 
 
@@ -27,7 +27,7 @@ Then, run the [`minio.yml`](/docs/minio/playbook/) playbook provided by Pigsty a
 ./minio.yml -l minio
 ```
 
-Note that [`deploy.yml`](/docs/setup/playbook#deploy-playbook) automatically creates predefined Silo clusters, so you do not need to run the `minio.yml` playbook again manually.
+[`deploy.yml`](/docs/setup/playbook#deploy-playbook) automatically creates predefined Silo clusters. You do not need to run `minio.yml` again manually.
 
 For a production multi-node deployment, read Pigsty's [configuration documentation](/docs/minio/config/) and verify the operational constraints of the Silo version you deploy.
 
@@ -37,18 +37,18 @@ For a production multi-node deployment, read Pigsty's [configuration documentati
 
 ## Access Cluster
 
-Production environments should access object storage through a domain name and HTTPS, which is also the default configuration. If you explicitly set [`minio_https`](/docs/minio/param#minio_https) to `false`, HTTP is available instead. In either case, ensure that the object-storage service domain (default `sss.pigsty`) points to the service node or load balancer.
+Production environments should access object storage through a domain name and HTTPS. This is also the default configuration. If you explicitly set [`minio_https`](/docs/minio/param#minio_https) to `false`, HTTP is available instead. In either case, ensure that the object-storage service domain (default `sss.pigsty`) points to the service node or load balancer.
 
 1. You can add static resolution records in [`node_etc_hosts`](/docs/node/param#node_etc_hosts), or manually modify the `/etc/hosts` file
 2. You can add a record on the internal DNS server if you already have an existing DNS service
 3. If you have enabled the DNS server on Infra nodes, you can add records in [`dns_records`](/docs/infra/param#dns_records)
 
-For production, we recommend the first method—static DNS records—so object storage does not depend on dynamic DNS.
+For production, we recommend the first method: static DNS records. This removes the dependency on dynamic DNS.
 
 Point the S3 service domain to the IP address and service port of a Silo node or load balancer.
-Pigsty uses `sss.pigsty` as the default S3 service domain and serves it on port `9000`. The role does not automatically create a global DNS record for `minio_domain`; configure resolution explicitly as described above.
+Pigsty uses `sss.pigsty` as the default S3 service domain and serves it on port `9000`. The role does not automatically create a global DNS record for `minio_domain`. Configure resolution explicitly as described above.
 
-Some examples deploy HAProxy on the Silo cluster to expose the service; those templates use port `9002` as the unified service port.
+Some examples deploy HAProxy on the Silo cluster to expose the service. These templates use `9002` as the common service port.
 
 
 
@@ -70,7 +70,7 @@ mcli alias set sss https://sss.pigsty:9002 minioadmin S3User.MinIO            # 
 mcli alias set pgbackrest https://sss.pigsty:9000 pgbackrest S3User.Backup    # use backup user
 ```
 
-After a full `minio.yml` run with `minio_provision` enabled, the role configures the default alias for the Ansible execution user on every Infra node and every actual object-storage member discovered by `minio_cluster`. A host in both sets is configured only once.
+A full `minio.yml` run configures the default alias if `minio_provision` is enabled. The role writes it for the Ansible execution user on every Infra node. It also writes it on every actual object-storage member found through `minio_cluster`. A host in both sets receives the configuration only once.
 
 For the full `mcli` command reference, see the upstream [MinIO Client documentation](https://min.io/docs/minio/linux/reference/minio-mc.html).
 
@@ -83,7 +83,7 @@ For the full `mcli` command reference, see the upstream [MinIO Client documentat
 
 ## User Management
 
-You can manage Silo application users with `mcli`. Default provisioning already creates `pgbackrest`, `s3user_meta`, and `s3user_data`; the example below creates one additional user and attaches the generated policy for the default `data` bucket:
+You can manage Silo application users with `mcli`. Default provisioning creates `pgbackrest`, `s3user_meta`, and `s3user_data`. The example below creates one additional user. It attaches the generated policy for the default `data` bucket:
 
 ```bash
 mcli admin user list sss
@@ -145,7 +145,7 @@ rclone ls sss:/
 ```
 
 > [!WARNING] Note: HTTPS and Certificate Trust
-> If Silo uses HTTPS (the default), ensure that the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`), or add `no_check_certificate = true` to the rclone configuration to skip certificate verification (not recommended for production).
+> If Silo uses HTTPS, which is the default, make sure the client trusts Pigsty's CA certificate (`/etc/pki/ca.crt`). Alternatively, add `no_check_certificate = true` to the rclone configuration to skip certificate verification. We do not recommend this alternative for production.
 
 
 ----------------

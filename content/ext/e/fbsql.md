@@ -2,7 +2,7 @@
 title: "fbsql"
 linkTitle: "fbsql"
 description: "Closure-preserving formula-based statistical modeling in SQL"
-weight: 4695
+weight: 4705
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4695
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4695  | [**`fbsql`**](/ext/e/fbsql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `fbsql` |
+| 4705  | [**`fbsql`**](/ext/e/fbsql) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `fbsql` |
 {.ext-table}
 
 | **Related** | [`plr`](/ext/e/plr) [`weighted_statistics`](/ext/e/weighted_statistics) [`pg_math`](/ext/e/pg_math) [`vasco`](/ext/e/vasco) [`xicor`](/ext/e/xicor) |

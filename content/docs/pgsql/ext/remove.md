@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Removing extensions involves two levels: **dropping extension objects** (database level) and **uninstalling packages** (operating system level).
+Extension removal has two levels: **drop extension objects** from the database, and **uninstall packages** from the operating system.
 
 
 --------
@@ -28,7 +28,7 @@ DROP EXTENSION pgvector CASCADE;
 
 ### Check Extension Dependencies
 
-It's recommended to check dependencies before dropping:
+We recommend that you check dependencies before you drop an extension:
 
 ```sql
 -- View objects that depend on an extension
@@ -55,7 +55,7 @@ WHERE t.typname = 'vector';
 
 ## Remove Preload
 
-If the extension is in `shared_preload_libraries`, it must be removed from the preload list after dropping:
+If the extension is in `shared_preload_libraries`, remove it from the preload list after you drop it:
 
 ```bash
 # Modify shared_preload_libraries, remove extension
@@ -83,27 +83,27 @@ sudo apt remove postgresql-18-pgvector
 pig remove pgvector
 ```
 
-> Typically keeping the package doesn't cause issues. Only uninstall when you need to free disk space or resolve conflicts.
+> You can usually keep the package without problems. Uninstall it only to free disk space or resolve conflicts.
 
 
 --------
 
 ## Important Notes
 
-1. **Data loss risk**: Using `CASCADE` will drop dependent objects, potentially causing data loss.
+1. **Data loss risk**: `CASCADE` drops dependent objects. This can cause data loss.
 
-2. **Application compatibility**: Ensure applications no longer use the extension's functionality before dropping.
+2. **Application compatibility**: Before you drop the extension, make sure that applications no longer use its features.
 
-3. **Preload order**: If dropping a preloaded extension, be sure to also remove it from `shared_preload_libraries`, otherwise the database may fail to start.
+3. **Preload order**: If you drop a preloaded extension, also remove it from `shared_preload_libraries`. Otherwise, the database may fail to start.
 
-4. **Master-slave environments**: In replication environments, `DROP EXTENSION` automatically replicates to slaves.
+4. **Replication environments**: In replication environments, `DROP EXTENSION` automatically replicates to replicas.
 
 
 --------
 
 ## Operation Sequence
 
-Complete extension removal workflow:
+Use this sequence to remove an extension completely:
 
 ```bash
 # 1. Check dependencies

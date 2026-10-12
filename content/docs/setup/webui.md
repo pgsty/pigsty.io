@@ -2,58 +2,51 @@
 title: Web Interface
 linkTitle: Web UI
 weight: 260
-description: Explore Pigsty's Web graphical management interface, Grafana dashboards, and how to access them via domain names and HTTPS.
+description: Open the Web UI, view monitoring dashboards, and configure domain access.
 icon: fa-solid fa-desktop
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-After [**single-node installation**](/docs/setup/install), you'll have the [**`INFRA`**](/docs/infra/) module installed on the current node, which includes an out-of-the-box Nginx web server.
-
-The default server configuration provides a WebUI graphical interface for displaying monitoring dashboards and unified proxy access to other component web interfaces.
-
-
-------
+The default [single-node installation](/docs/setup/install/) includes the [INFRA module](/docs/infra/).
+This module installs an Nginx web server on the node.
+Nginx supplies the Web UI and proxies requests to the monitoring services and other component interfaces.
 
 ## Access
 
-You can access this graphical interface by entering the deployment node's IP address in your browser. By default, Nginx serves on standard ports `80/443`.
+Enter the deployment node IP address in your browser.
+By default, Nginx uses port `80` for HTTP and port `443` for HTTPS.
+Replace `10.10.10.10` in these examples with your node IP address.
 
 |                Direct IP Access                |              Domain (HTTP)               |               Domain (HTTPS)               |                          Demo                          |
 |:----------------------------------------------:|:----------------------------------------:|:------------------------------------------:|:------------------------------------------------------:|
 | [**`http://10.10.10.10`**](http://10.10.10.10) | [**`http://i.pigsty`**](http://i.pigsty) | [**`https://i.pigsty`**](https://i.pigsty) | [**`https://demo.pigsty.io`**](https://demo.pigsty.io/zh) |
 {.full-width}
 
-
-[![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io/zh)
-
-
-------
+[![Pigsty demonstration homepage](/img/pigsty/home.png)](https://demo.pigsty.io/zh)
 
 ## Monitoring
 
-To access Pigsty's monitoring system dashboards (Grafana), visit the `/ui` endpoint on the server.
+To open the Grafana dashboards, add `/ui` to the server address:
 
 |                   Direct IP Access                   |                 Domain (HTTP)                  |                  Domain (HTTPS)                  |                             Demo                             |
 |:----------------------------------------------------:|:----------------------------------------------:|:------------------------------------------------:|:------------------------------------------------------------:|
 | [**`http://10.10.10.10/ui`**](http://10.10.10.10/ui) | [**`http://i.pigsty/ui`**](http://i.pigsty/ui) | [**`https://i.pigsty/ui`**](https://i.pigsty/ui) | [**`https://demo.pigsty.io/ui`**](https://demo.pigsty.io/ui) |
 {.full-width}
 
-If your service is exposed to Internet or office network, we recommend accessing via [**domain names**](/docs/infra/admin/domain/) and enabling [**HTTPS**](/docs/infra/admin/cert) encryption—only minimal configuration is needed.
-
-
-
----------
+If the service is accessible from the Internet or an office network, use a [domain name](/docs/infra/admin/domain/).
+Enable [HTTPS](/docs/infra/admin/cert/) to encrypt the connection.
 
 ## Endpoints
 
-By default, Nginx exposes the following endpoints via different paths on the default server at ports `80/443`:
+Nginx uses these paths to proxy requests to the components.
+Open each path through the server HTTP or HTTPS address.
+The native port is the port of the component behind Nginx.
 
 | Endpoint     | Component                                  | Native Port | Description                          | Public Demo                                                    |
 |:-------------|:-------------------------------------------|:------------|:-------------------------------------|----------------------------------------------------------------|
 | `/`          | [**Nginx**](/docs/infra/)                  | `80/443`    | Homepage, local repo, file service   | [`demo.pigsty.io`](https://demo.pigsty.io)                     |
-| `/ui/`       | [**Grafana**](#grafana)                    | `3000`      | Grafana dashboard portal             | [`demo.pigsty.io/ui/`](https://demo.pigsty.io/ui/)             |
+| `/ui/`       | [**Grafana**](/docs/setup/pgsql/#grafana)                    | `3000`      | Grafana dashboard portal             | [`demo.pigsty.io/ui/`](https://demo.pigsty.io/ui/)             |
 | `/vmetrics/` | [**VictoriaMetrics**](/docs/infra/)        | `8428`      | Time series database Web UI          | [`demo.pigsty.io/vmetrics/`](https://demo.pigsty.io/vmetrics/) |
 | `/vlogs/`    | [**VictoriaLogs**](/docs/infra/)           | `9428`      | Log database Web UI                  | [`demo.pigsty.io/vlogs/`](https://demo.pigsty.io/vlogs/)       |
 | `/vtraces/`  | [**VictoriaTraces**](/docs/infra/)         | `10428`     | Distributed tracing Web UI           | [`demo.pigsty.io/vtraces/`](https://demo.pigsty.io/vtraces/)   |
@@ -65,17 +58,11 @@ By default, Nginx exposes the following endpoints via different paths on the def
 | `/nginx`     | [**Nginx**](/docs/infra/)                  | `80`        | Nginx status page (for metrics)      |                                                                |
 {.full-width}
 
-
-
-
-
-----------------
-
 ## Domain Access
 
-If you have your own domain name, you can point it to Pigsty server's IP address to access various services via domain.
-
-If you want to enable HTTPS, you should modify the [**`home`**](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml#L139) server configuration in the [**`infra_portal`**](/docs/infra/param#infra_portal) parameter:
+Point your domain name to the Pigsty server IP address.
+Set the domain in the [`home` server configuration](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml#L139).
+This configuration is part of [`infra_portal`](/docs/infra/param#infra_portal):
 
 ```yaml
 all:
@@ -84,6 +71,8 @@ all:
       home : { domain: i.pigsty } # Replace i.pigsty with your domain
 ```
 
+To use a Let's Encrypt certificate, also set `certbot`:
+
 ```yaml
 all:
   vars:
@@ -91,8 +80,10 @@ all:
       home : { domain: demo.pigsty.io ,certbot: mycert }
 ```
 
-You can run `make cert` command after deployment to apply for a free Let's Encrypt certificate for the domain.
-If you don't define the `certbot` field, Pigsty will use the local CA to issue a self-signed HTTPS certificate by default.
-In this case, you must first trust Pigsty's self-signed CA to access normally in your browser.
+After deployment, run `make cert` to request the free Let's Encrypt certificate.
 
-You can also mount local directories and other upstream services to Nginx. For more management details, refer to [**INFRA Management - Nginx**](/docs/infra/admin/portal).
+If you omit `certbot`, Pigsty uses the local certificate authority (CA) to issue an HTTPS certificate.
+Add the Pigsty CA to your browser trust store before you use that certificate.
+
+You can also configure Nginx to serve local directories or proxy other upstream services.
+See [Nginx Management](/docs/infra/admin/portal/) for the procedure.

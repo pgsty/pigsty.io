@@ -18,19 +18,25 @@ Pigsty provides four preset Patroni/PostgreSQL config templates optimized for di
 | [**`/docs/pgsql/template/tiny.yml`**](/docs/pgsql/template/tiny)   | 1-3C      | Tiny instances    | Resource-constrained envs |
 {.full-width}
 
-Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template; default is [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp).
+Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template.
+The default is [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp).
 
 > The database tuning template [**`pg_conf`**](/docs/pgsql/param#pg_conf) should be paired with the OS tuning template [**`node_tune`**](/docs/node/param#node_tune).
 
-All four standard templates set `wal_level` to `logical`. PostgreSQL 18.6 adds the `output_plugin_libraries` security allowlist; Pigsty permits the built-in `pgoutput` and `test_decoding` plugins plus `wal2json`, which is installed by the default `pgsql-main` package set. To use another logical-decoding output plugin, review its code and privilege boundary, then add its exact library name through [`pg_parameters`](/docs/pgsql/param#pg_parameters). Patroni filters the template setting on older PostgreSQL versions that do not support it.
+All four standard templates set `wal_level` to `logical`.
+PostgreSQL 18.6 adds the `output_plugin_libraries` security allowlist.
+Pigsty permits the built-in `pgoutput` and `test_decoding` plugins, plus `wal2json` from the default `pgsql-main` package set.
+Before you use another logical-decoding output plugin, review its code and privilege boundary.
+Then add its exact library name through [`pg_parameters`](/docs/pgsql/param#pg_parameters).
+Patroni filters the template setting on older PostgreSQL versions that do not support it.
 
 
 ----------------
 
 ## Usage
 
-Set [**`pg_conf`**](/docs/pgsql/param#pg_conf) in your cluster definition.
-It's recommended to set [**`node_tune`**](/docs/node/param#node_tune) accordingly for OS-level tuning:
+Set [**`pg_conf`**](/docs/pgsql/param#pg_conf) in the cluster definition.
+We recommend a corresponding [**`node_tune`**](/docs/node/param#node_tune) setting for OS tuning.
 
 ```yaml
 pg-test:
@@ -152,7 +158,8 @@ The four templates differ significantly in key parameters:
 
 ## Custom Templates
 
-Create custom templates based on existing ones. Templates are in `roles/pgsql/templates/`:
+Use an existing template as the basis for a custom template.
+The templates are in `roles/pgsql/templates/`:
 
 ```bash
 roles/pgsql/templates/
@@ -162,12 +169,12 @@ roles/pgsql/templates/
 └── tiny.yml    # TINY micro template
 ```
 
-Steps to create a custom template:
+To create a custom template:
 
-1. Copy an existing template as base
-2. Modify parameters as needed
-3. Place in `roles/pgsql/templates/`
-4. Reference via [`pg_conf`](/docs/pgsql/param#pg_conf)
+1. Copy an existing template.
+2. Change the parameters as required.
+3. Put the file in `roles/pgsql/templates/`.
+4. Select it with [`pg_conf`](/docs/pgsql/param#pg_conf).
 
 Example:
 
@@ -176,7 +183,7 @@ cp roles/pgsql/templates/oltp.yml roles/pgsql/templates/myapp.yml
 # Edit myapp.yml as needed
 ```
 
-Then use in your cluster:
+Then select the template in the cluster configuration:
 
 ```yaml
 pg-myapp:
@@ -184,7 +191,8 @@ pg-myapp:
     pg_conf: myapp.yml
 ```
 
-Templates use Jinja2 syntax; parameters are dynamically computed based on node resources (CPU, memory, disk).
+Templates use Jinja2 syntax.
+They calculate parameter values from node resources: CPU, memory, and disk.
 
 
 ----------------

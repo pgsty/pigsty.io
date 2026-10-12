@@ -7,9 +7,11 @@ categories: [Task]
 ---
 
 
-The chart below combines the "Recovery Window" and "Backup Storage Usage" on a single timeline (`0~108h`) so they can be inspected together.
+The chart below shows the "Recovery Window" and "Backup Storage Usage" on one timeline (`0~108h`).
+Use it to compare the two metrics.
 
-Under the same assumptions (database size `100GB`, daily writes `10GB`), it shows how both metrics evolve over 30 days with "weekly full + daily incremental" backups and 14-day full-backup retention.
+The 30-day example uses a database size of `100GB` and daily writes of `10GB`.
+It shows both metrics with weekly full backups, daily incremental backups, and 14-day full-backup retention.
 
 - **When**: Backup schedule
 - **Where**: Backup repository
@@ -20,14 +22,17 @@ Under the same assumptions (database size `100GB`, daily writes `10GB`), it show
 
 ## When to Backup
 
-The first question is **when** to backup your database - this is a tradeoff between backup frequency and recovery time.
-Since you need to replay WAL logs from the last backup to the recovery target point, the more frequent the backups, the less WAL logs need to be replayed, and the faster the recovery.
+First, choose **when** to back up the database.
+Backup frequency affects recovery time.
+Recovery replays WAL from the last backup to the target point.
+More frequent backups reduce the amount of WAL to replay and shorten recovery.
 
 
 ### Daily Full Backup
 
-For production databases, it's recommended to start with the simplest daily full backup strategy.
-This is also Pigsty's default backup strategy, implemented via [crontab](/docs/pgsql/backup/mechanism#scheduled-backups).
+For production databases, we recommend a daily full backup as the simplest initial policy.
+This is also Pigsty's default backup policy.
+Pigsty implements it through [crontab](/docs/pgsql/backup/mechanism#scheduled-backups).
 
 ```yaml title="Full backup at 1 AM daily"
 pg_crontab: [ '00 01 * * * /pg/bin/pg-backup full' ]
@@ -39,7 +44,8 @@ pgbackrest_repo:                  # pgbackrest repository configuration: https:/
     retention_full: 2             # Keep 2, up to 3 full backups when using local filesystem repository
 ```
 
-Assume your database size is 100GB, daily writes are 10GB, and each full backup takes 1 hour. Under this daily-full local-repo strategy, recovery window and backup storage evolve as shown below:
+Assume a database size of 100GB, daily writes of 10GB, and a duration of 1 hour for each full backup.
+The chart below shows the recovery window and storage usage for this daily full backup policy with a local repository.
 
 The recovery window cycles between 25-49 hours, and storage usage is roughly `2` full backups plus around 2 days of WAL archives.
 In practice, prepare at least `3~5` times the base database size as backup disk capacity for the default policy.
@@ -182,9 +188,10 @@ pgbackrest_repo:                  # pgbackrest repository configuration: https:/
     retention_full: 14            # Keep full backups from the last 14 days
 ```
 
-With weekly full backups and time-based retention of 14 days, the steady-state recovery window is roughly 14–21 days. The exact window still depends on successful backup and WAL archival runs.
+With weekly full backups and 14-day time-based retention, the steady-state recovery window is approximately 14–21 days.
+The exact window depends on successful backups and WAL archiving.
 
-Assuming your database size is 100GB and writes 10GB of data per day, the backup size is as follows:
+For a database of 100GB with daily writes of 10GB, the following chart shows backup size:
 
 
 <script>
@@ -306,7 +313,7 @@ series:
 
 ## Backup Location
 
-By default, Pigsty provides two default backup repository definitions: `local` and `minio` backup repositories.
+Pigsty provides two default backup repository definitions: `local` and `minio`.
 
 - `local`: **Default option**, uses local `/pg/backup` directory (symlink to [`pg_fs_backup`](/docs/pgsql/param/#pg_fs_backup): `/data/backups`)
 - `minio`: Uses SNSD single-node MinIO cluster (supported by Pigsty, but not enabled by default)

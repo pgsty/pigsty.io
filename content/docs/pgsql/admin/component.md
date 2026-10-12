@@ -10,9 +10,10 @@ categories: [Task]
 
 ## Overview
 
-Pigsty's PGSQL module consists of multiple components, each running as a systemd service on nodes. ([**pgbackrest**](/docs/concept/arch/pgsql#pgbackrest) is an exception)
+The Pigsty PGSQL module has multiple components.
+Each component runs as a systemd service on nodes, except [**pgBackRest**](/docs/concept/arch/pgsql#pgbackrest).
 
-Understanding these components and their management is essential for maintaining production PostgreSQL clusters.
+To maintain production PostgreSQL clusters, learn how these components work and how to manage them.
 
 | Component          | Port       | Service Name           | Description                                    |
 |:-------------------|:-----------|:-----------------------|:-----------------------------------------------|
@@ -27,8 +28,10 @@ Understanding these components and their management is essential for maintaining
 {.full-width}
 
 > [!WARNING] Important
-> **Do NOT use systemctl directly to manage PostgreSQL service**. PostgreSQL is managed by Patroni - use [**`patronictl`**](/docs/pgsql/admin/patroni) commands instead.
-> Direct PostgreSQL operations may cause Patroni state inconsistency and trigger unexpected failover. The `postgres` service is an emergency escape hatch when Patroni fails.
+> **Do not manage the PostgreSQL service directly with systemctl.**
+> Patroni manages PostgreSQL. Use [**`patronictl`**](/docs/pgsql/admin/patroni) commands.
+> Direct PostgreSQL operations can make Patroni state inconsistent and trigger an unexpected failover.
+> Use the `postgres` service only for emergencies when Patroni fails.
 
 
 ----------------
@@ -53,8 +56,10 @@ Common service names: `patroni`, `pgbouncer`, `haproxy`, `pg_exporter`, `pgbounc
 
 ## Patroni
 
-[**Patroni**](https://patroni.readthedocs.io/) is PostgreSQL's HA manager, handling startup, shutdown, failure detection, and automatic failover.
-It's the core PGSQL module component. PostgreSQL process is managed by Patroni - don't use systemctl to manage postgres service directly.
+[**Patroni**](https://patroni.readthedocs.io/) manages PostgreSQL high availability.
+It controls startup, shutdown, failure detection, and automatic failover.
+It is the core component of the PGSQL module and manages the PostgreSQL process.
+Do not manage the postgres service directly with systemctl.
 
 **Start Patroni**
 
@@ -62,9 +67,10 @@ It's the core PGSQL module component. PostgreSQL process is managed by Patroni -
 systemctl start patroni     # Start Patroni (also starts PostgreSQL)
 ```
 
-After starting, Patroni auto-launches PostgreSQL. On first start, behavior depends on role:
-- Primary: Initialize or recover data directory
-- Replica: Clone data from primary and establish replication
+After startup, Patroni automatically starts PostgreSQL.
+On the first startup, the instance role determines the action:
+- Primary: Initialize or recover the data directory.
+- Replica: Clone data from the primary and establish replication.
 
 **Stop Patroni**
 
@@ -72,7 +78,8 @@ After starting, Patroni auto-launches PostgreSQL. On first start, behavior depen
 systemctl stop patroni      # Stop Patroni (also stops PostgreSQL)
 ```
 
-Stopping Patroni gracefully shuts down PostgreSQL. Note: If this is primary and auto-failover isn't paused, may trigger failover.
+Stopping Patroni shuts down PostgreSQL gracefully.
+If the instance is the primary and automatic failover is active, this operation may trigger a failover.
 
 **Restart Patroni**
 
@@ -80,7 +87,8 @@ Stopping Patroni gracefully shuts down PostgreSQL. Note: If this is primary and 
 systemctl restart patroni   # Restart Patroni (also restarts PostgreSQL)
 ```
 
-Restart causes brief service interruption. For production, use `pg restart` for rolling restart.
+A restart causes a short service interruption.
+For production clusters, use `pg restart` for a rolling restart.
 
 **Reload Patroni**
 
@@ -88,7 +96,8 @@ Restart causes brief service interruption. For production, use `pg restart` for 
 systemctl reload patroni    # Reload Patroni config
 ```
 
-Reload re-reads config file and applies hot-reloadable params to PostgreSQL.
+A reload reads the configuration file again.
+It applies parameters that PostgreSQL can change without a restart.
 
 **View Status & Logs**
 
@@ -107,8 +116,9 @@ journalctl -u patroni -n 100 --no-pager  # Last 100 lines
 
 ## Pgbouncer
 
-[**Pgbouncer**](https://www.pgbouncer.org/) is a lightweight PostgreSQL connection pooling middleware.
-Business traffic typically goes through Pgbouncer (6432) rather than directly to PostgreSQL (5432) for connection reuse and database protection.
+[**Pgbouncer**](https://www.pgbouncer.org/) provides lightweight PostgreSQL connection pooling.
+Business traffic usually goes through Pgbouncer on port 6432, rather than directly to PostgreSQL on port 5432.
+This reuses connections and protects the database.
 
 **Start Pgbouncer**
 
@@ -130,7 +140,8 @@ Note: Stopping Pgbouncer disconnects all pooled business connections.
 systemctl restart pgbouncer
 ```
 
-Restart disconnects all existing connections. For config changes only, use `reload`.
+A restart disconnects all existing connections.
+To apply only configuration changes, use `reload`.
 
 **Reload Pgbouncer**
 
@@ -138,7 +149,8 @@ Restart disconnects all existing connections. For config changes only, use `relo
 systemctl reload pgbouncer
 ```
 
-Reload re-reads config files (user list, pool params, etc.) without disconnecting existing connections.
+A reload reads configuration files, such as user lists and pool parameters, again.
+It does not disconnect existing connections.
 
 **View Status & Logs**
 
@@ -176,8 +188,10 @@ RESUME;          -- Resume all pools
 
 ## HAProxy
 
-[**HAProxy**](https://www.haproxy.org/) is a high-performance load balancer that routes traffic to correct PostgreSQL instances.
-Pigsty uses HAProxy to expose [**services**](/docs/pgsql/service/), routing traffic based on role (primary/replica) and health status.
+[**HAProxy**](https://www.haproxy.org/) is a high-performance load balancer.
+It routes traffic to the correct PostgreSQL instances.
+Pigsty uses HAProxy to expose [**services**](/docs/pgsql/service/).
+HAProxy routes traffic by instance role (primary or replica) and health status.
 
 **Start HAProxy**
 
@@ -205,7 +219,8 @@ systemctl restart haproxy
 systemctl reload haproxy
 ```
 
-HAProxy supports graceful reload without disconnecting existing connections. Use `reload` for config changes.
+HAProxy can reload without disconnecting existing connections.
+Use `reload` to apply configuration changes.
 
 **View Status & Logs**
 
@@ -214,7 +229,8 @@ systemctl status haproxy
 journalctl -u haproxy -f
 ```
 
-**Config files**: the main configuration is `/etc/haproxy/haproxy.cfg`; Pigsty-generated service fragments are stored under `/etc/haproxy/conf.d/`.
+**Config files**: The main configuration is `/etc/haproxy/haproxy.cfg`.
+Pigsty stores generated service fragments in `/etc/haproxy/conf.d/`.
 
 **Admin Interface**
 
@@ -224,14 +240,15 @@ HAProxy provides a web admin interface, default port 9101:
 http://<node_ip>:9101/haproxy
 ```
 
-Default auth: username `admin`, password configured by [**`haproxy_admin_password`**](/docs/node/param#haproxy_admin_password).
+The default administration username is `admin`.
+Set its password with [**`haproxy_admin_password`**](/docs/node/param#haproxy_admin_password).
 
 
 ----------------
 
 ## pg_exporter
 
-[**pg_exporter**](https://github.com/pgsty/pg_exporter) is PostgreSQL's Prometheus metrics exporter for collecting database performance metrics.
+[**pg_exporter**](https://github.com/pgsty/pg_exporter) exports PostgreSQL performance metrics for Prometheus.
 
 **Start pg_exporter**
 
@@ -245,7 +262,7 @@ systemctl start pg_exporter
 systemctl stop pg_exporter
 ```
 
-After stopping, Prometheus can't collect PostgreSQL metrics from this instance.
+After you stop the exporter, Prometheus cannot collect PostgreSQL metrics from this instance.
 
 **Restart pg_exporter**
 
@@ -301,8 +318,8 @@ curl -s localhost:9631/metrics | head -20
 
 ## vip-manager
 
-[**vip-manager**](https://github.com/cybertec-postgresql/vip-manager) is an optional component for managing L2 VIP address floating.
-When [**`pg_vip_enabled`**](/docs/pgsql/param#pg_vip_enabled) is enabled, vip-manager binds VIP to current primary node.
+[**vip-manager**](https://github.com/cybertec-postgresql/vip-manager) is an optional component that moves an L2 VIP between nodes.
+When [**`pg_vip_enabled`**](/docs/pgsql/param#pg_vip_enabled) is enabled, vip-manager binds the VIP to the current primary node.
 
 **Start vip-manager**
 
@@ -316,7 +333,7 @@ systemctl start vip-manager
 systemctl stop vip-manager
 ```
 
-After stopping, VIP address is released from current node.
+After you stop vip-manager, it releases the VIP address from the current node.
 
 **Restart vip-manager**
 
@@ -356,7 +373,8 @@ Recommended PGSQL module component startup order:
 6. vip-manager      # Finally start VIP manager (if enabled)
 ```
 
-Stop order should be reversed. Pigsty playbooks handle these dependencies automatically.
+Stop the components in reverse order.
+Pigsty playbooks handle these dependencies automatically.
 
 **Batch Start All Services**
 

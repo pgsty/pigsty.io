@@ -42,7 +42,7 @@ Source: [`pigsty/conf/ha/trio.yml`](https://github.com/pgsty/pigsty/blob/main/co
 
 ## Explanation
 
-The `ha/trio` template is Pigsty's **standard HA configuration**, providing true automatic failover capability.
+The `ha/trio` template provides the **standard HA configuration** in Pigsty. It supports automatic failover.
 
 **Architecture**:
 - Three-node INFRA: Distributed deployment of VictoriaMetrics/Grafana/Nginx
@@ -54,9 +54,9 @@ The `ha/trio` template is Pigsty's **standard HA configuration**, providing true
 **HA Guarantees**:
 - Three-node ETCD tolerates one node failure, maintains majority
 - PostgreSQL primary failure triggers automatic Patroni election for new primary
-- L2 VIP follows primary, applications don't need to modify connection config
+- The L2 VIP follows the primary. Applications do not need connection configuration changes.
 - Silo retains read and write quorum while one node or one data drive is unavailable
-- `sss.pigsty` resolves to the object-storage VIP; pgBackRest and `mcli` use `https://sss.pigsty:9002`
+- `sss.pigsty` resolves to the object-storage VIP. The pgBackRest and `mcli` clients use `https://sss.pigsty:9002`.
 
 **Object Storage**:
 
@@ -64,10 +64,10 @@ The `ha/trio` template is Pigsty's **standard HA configuration**, providing true
 - Distributed Silo rejects data paths on the root filesystem. `/data/minio` must reside on a separately mounted `/data` filesystem or be a mount point itself.
 - The backing storage may be a local disk, cloud volume, separate partition, or LVM logical volume. For production, prefer dedicated persistent drives of similar capacity on all three nodes.
 - Use `findmnt -T /data/minio` to inspect the actual mount. A result that still points to `/` means the path is only a directory on the root drive.
-- The three-node, single-drive topology provides about two-thirds raw capacity efficiency. It is compact HA; use a multi-node, multi-drive topology for greater capacity, throughput, and drive redundancy.
+- The three-node, single-drive topology provides about two-thirds raw capacity efficiency. This topology provides compact HA. For greater capacity, throughput, and drive redundancy, use a multi-node, multi-drive topology.
 - A single-node object-storage pool cannot be converted in place by adding two members. Create a new three-node cluster and migrate the objects instead.
 
-The template's S3 API endpoint is highly available. The Portal administration UI still connects to port `9001` on the first node and is outside this API HA path.
+The template's S3 API endpoint is highly available. The Portal administration UI still connects to port `9001` on the first node. It does not use this API HA path.
 
 **Use Cases**:
 - Minimum HA deployment for production environments

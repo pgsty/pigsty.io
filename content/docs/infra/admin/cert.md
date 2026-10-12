@@ -9,13 +9,13 @@ categories: [Task]
 Pigsty maintains a self-signed Certificate Authority (CA) on the admin node by default. It signs certificates for PostgreSQL, Patroni, etcd, Silo, Nginx, and other internal services. Public Nginx entries can use Certbot/Let's Encrypt certificates configured through `infra_portal`.
 
 > [!CAUTION] Protect the CA private key
-> `files/pki/ca/ca.key` is the trust-root private key for the entire deployment. Never print, commit, upload, or transmit it over an unprotected channel. Back it up together with `ca.crt`, encrypted, with tightly restricted read access.
+> `files/pki/ca/ca.key` is the trust-root private key for the entire deployment. Never print, commit, upload, or transmit it over an unprotected channel. Back it up with `ca.crt`. Encrypt the backup and tightly restrict read access.
 
 --------
 
 ## Self-Signed CA
 
-The `ca` stage of `infra.yml` creates or reuses the CA **locally on the admin node running Ansible**, not on a remote Infra node. The default layout is:
+The `ca` stage of `infra.yml` creates or reuses the CA **locally on the admin node running Ansible**. It does not create the CA on a remote Infra node. The default layout is:
 
 ```text
 files/pki/
@@ -44,7 +44,7 @@ The core defaults match the v4.5.0 roles:
 | `nginx_cert_validity`   | `397d`      | Nginx self-signed HTTPS certificate validity      |
 {.full-width}
 
-The role hard-codes the CA certificate lifetime to `36500d` (about 100 years). These long-lived certificates are for a controlled internal trust domain; they are not publicly browser-trusted. Clients must explicitly trust `ca.crt`, while public endpoints should use a publicly trusted CA.
+The role hard-codes the CA certificate lifetime to `36500d` (about 100 years). These long-lived certificates serve a controlled internal trust domain. Public browsers do not trust them by default. Clients must explicitly trust `ca.crt`. Public endpoints should use a publicly trusted CA.
 
 Initialize the local CA stage:
 
@@ -74,7 +74,7 @@ openssl pkey -in files/pki/ca/ca.key -pubout -outform PEM | openssl sha256
 openssl x509 -in files/pki/ca/ca.crt -pubkey -noout | openssl sha256
 ```
 
-`ca_create: false` prevents generation of a new private key only when `ca.key` is missing. If the key exists but `ca.crt` does not, the role still creates a new self-signed CA certificate from that key. Always restore the pair together instead of relying on certificate regeneration.
+`ca_create: false` prevents generation of a new private key only when `ca.key` is missing. If the key exists and `ca.crt` is missing, the role still creates a new self-signed CA certificate from the key. Always restore the pair together instead of relying on certificate regeneration.
 
 Before running the CA stage, verify the files that will be used, the existing CA backup, and the admin node.
 
@@ -93,9 +93,13 @@ Retain at least:
 openssl x509 -in files/pki/ca/ca.crt -noout -subject -issuer -dates -fingerprint -sha256
 ```
 
-Encrypt the backup and keep it in controlled offline media or a secrets-management system; do not leave an unencrypted tar archive. Restore into an isolated temporary directory first, then verify file count, type, permissions, public-key match, and certificate fingerprint before replacement.
+Encrypt the backup and store it on controlled offline media or in a secrets-management system. Do not keep an unencrypted tar archive.
 
-Losing `ca.key` does **not** immediately make existing certificates unverifiable: they remain verifiable while clients trust `ca.crt` and the certificates remain valid and unrevoked. You can no longer issue, renew, or revoke with the original CA, so recovery usually requires a new CA, reissuing every certificate, and rolling out a new trust chain.
+First, restore it to an isolated temporary directory. Before replacement, verify the file count, types, permissions, public-key match, and certificate fingerprint.
+
+Loss of `ca.key` does **not** immediately prevent verification of existing certificates. Verification still works if clients trust `ca.crt` and the certificates remain valid and unrevoked.
+
+You can no longer issue, renew, or revoke certificates with the original CA. Recovery usually requires a new CA, reissuance of every certificate, and deployment of a new trust chain.
 
 --------
 
@@ -151,13 +155,13 @@ openssl x509 -in files/pki/misc/myservice.crt -noout -subject -issuer -dates -ex
 openssl verify -CAfile files/pki/ca/ca.crt files/pki/misc/myservice.crt
 ```
 
-For PostgreSQL client certificates, `cn` must match the database role expected by HBA/cert authentication. Install the certificate, key, and root certificate on the client with the private key at mode `0600`. With `sslmode=verify-full`, the connection hostname must appear in the server certificate SAN.
+For PostgreSQL client certificates, `cn` must match the database role expected by HBA/cert authentication. Install the certificate, key, and root certificate on the client. Set the private key permissions to `0600`. With `sslmode=verify-full`, the connection hostname must appear in the server certificate SAN.
 
 --------
 
 ## Trust the CA Certificate
 
-Distribute only public `ca.crt`, never `ca.key`. Verify its SHA-256 fingerprint through a separate trusted channel before installation.
+Distribute only the public `ca.crt`. Never distribute `ca.key`. Verify its SHA-256 fingerprint through a separate trusted channel before installation.
 
 ### Debian / Ubuntu
 
@@ -186,13 +190,13 @@ sudo security add-trusted-cert -d -r trustRoot \
 Import-Certificate -FilePath .\ca.crt -CertStoreLocation Cert:\LocalMachine\Root
 ```
 
-Infra Nginx normally exposes the public CA certificate at `http://<infra_ip>/ca.crt`. Verify the fingerprint after download; HTTP transport alone does not prove certificate authenticity.
+Infra Nginx normally exposes the public CA certificate at `http://<infra_ip>/ca.crt`. Verify the fingerprint after download. HTTP transport alone does not prove certificate authenticity.
 
 --------
 
 ## Nginx and Let's Encrypt
 
-Each `infra_portal` entry can name a `certbot` certificate. Pigsty's `/etc/nginx/sign-cert` uses Certbot webroot mode, groups `domain` and `domains` entries that share a certificate name, and then `/etc/nginx/link-cert` links the result into Nginx.
+Each `infra_portal` entry can name a `certbot` certificate. Pigsty's `/etc/nginx/sign-cert` uses Certbot webroot mode. It groups `domain` and `domains` entries that share a certificate name. Then `/etc/nginx/link-cert` links the resulting certificate into Nginx.
 
 Prerequisites:
 
@@ -241,7 +245,7 @@ systemctl list-timers --all | grep -i certbot
 certbot renew --dry-run
 ```
 
-After Certbot replaces certificates on disk, Nginx still needs a reload to use them. Configure and verify a renewal deploy hook such as `systemctl reload nginx`, or an equivalent managed process. Treat automatic renewal as proven only after a real or staging renewal exercise.
+After Certbot replaces certificates on disk, Nginx still needs a reload to use them. Configure a renewal deploy hook, such as `systemctl reload nginx`, or an equivalent managed process. Verify that it works. Treat automatic renewal as proven only after a real or staging renewal exercise.
 
 --------
 
@@ -257,4 +261,12 @@ After Certbot replaces certificates on disk, Nginx still needs a reload to use t
 | Trust breaks after CA rotation       | Roll out client trust, then service certs, then reload services |
 {.full-width}
 
-Final acceptance should separately prove correct certificate content and SANs, successful chain validation, that the service loaded the new certificate, that target clients trust it, and that renewal exists and passes a dry run. A generated file or successful playbook alone proves none of those later layers.
+For final acceptance, verify each result separately:
+
+- The certificate content and SANs are correct.
+- Chain validation succeeds.
+- The service has loaded the new certificate.
+- Target clients trust the certificate.
+- Renewal is configured and passes a dry run.
+
+A generated file or successful playbook alone does not prove these results.

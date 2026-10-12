@@ -10,9 +10,9 @@ categories: [Task]
 
 
 
-Here are some common Redis administration task SOPs (Standard Operating Procedures):
+Use these standard operating procedures (SOPs) to administer Redis.
 
-The REDIS module defaults to `redis_type: redis`. With `redis_type: valkey`, the server and client commands become `valkey-server` and `valkey-cli`. Examples on this page use the default `redis-cli`; substitute `valkey-cli` for Valkey clusters. Playbooks choose the correct CLI automatically.
+The REDIS module defaults to `redis_type: redis`. With `redis_type: valkey`, the server and client commands become `valkey-server` and `valkey-cli`. The examples use the default `redis-cli`. For Valkey clusters, use `valkey-cli` instead. Playbooks choose the correct CLI automatically.
 
 **Basic Operations**
 - [Initialize Redis](#initialize-redis)
@@ -68,7 +68,7 @@ bin/redis-add 10.10.10.10 6379  # create redis instance '10.10.10.10:6379'
 
 You can use the [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook to remove Redis clusters, nodes, or instances:
 
-`redis_rm_data` defaults to `true`. Verify RDB/AOF backups and the current primary/replica, Sentinel, or cluster topology, then have the operator confirm the exact target. The commands below perform the corresponding removal directly.
+`redis_rm_data` defaults to `true`. Verify RDB/AOF backups and the current primary/replica, Sentinel, or cluster topology. Then have the operator confirm the exact target. The commands below perform the corresponding removal directly.
 
 ```bash
 # Remove Redis cluster `redis-test`
@@ -121,7 +121,7 @@ OK
 "10"
 ```
 
-Redis provides the `redis-benchmark` tool, which can be used for Redis performance evaluation or to generate load for testing.
+Use `redis-benchmark` to evaluate Redis performance or generate test load.
 
 ```bash
 redis-benchmark -h 10.10.10.13 -p 6379
@@ -147,11 +147,11 @@ https://redis.io/commands/replicaof/
 
 ## Configure HA with Sentinel
 
-Redis standalone master-slave clusters can be configured for automatic high availability through Redis Sentinel. For detailed information, please refer to the [Sentinel official documentation](https://redis.io/docs/management/sentinel/).
+Use Redis Sentinel to provide automatic high availability for standalone master-slave clusters. For details, see the [official Sentinel documentation](https://redis.io/docs/management/sentinel/).
 
-Using the four-node [sandbox environment](/docs/deploy/sandbox/) as an example, a Redis Sentinel cluster `redis-meta` can be used to manage multiple standalone Redis master-slave clusters.
+In the four-node [sandbox environment](/docs/deploy/sandbox/), the `redis-meta` Sentinel cluster can manage multiple standalone Redis master-slave clusters.
 
-Taking the one-master-one-slave Redis standalone cluster `redis-ms` as an example, you need to add the target on each Sentinel instance using `SENTINEL MONITOR` and provide the password using `SENTINEL SET`, and the high availability is configured.
+For example, `redis-ms` has one master and one slave. On each Sentinel instance, add the target with `SENTINEL MONITOR`. Set its password with `SENTINEL SET`. This configures high availability:
 
 ```bash
 # For each sentinel, add the redis master to sentinel management: (26379,26380,26381)
@@ -170,7 +170,9 @@ redis_sentinel_monitor:  # list of masters to be monitored, port, password, quor
   - { name: redis-dst, host: 10.10.10.48, port: 6379 ,password: redis.dst, quorum: 1 }
 ```
 
-The `redis-ha` stage in `redis.yml` will render `/tmp/<cluster>.monitor` on each sentinel instance based on this list and execute `SENTINEL REMOVE` and `SENTINEL MONITOR` commands sequentially, ensuring the sentinel management state remains consistent with the inventory. If you only want to remove a target without re-adding it, set `remove: true` on the monitor object, and the playbook will skip re-registration after `SENTINEL REMOVE`.
+The `redis-ha` stage in `redis.yml` renders `/tmp/<cluster>.monitor` on each Sentinel instance from this list. It then runs `SENTINEL REMOVE` followed by `SENTINEL MONITOR`. This keeps Sentinel management state consistent with the inventory.
+
+To remove a target without adding it again, set `remove: true` on its monitor object. The playbook then skips registration after `SENTINEL REMOVE`.
 
 Use the following command to refresh the managed master list on the Redis Sentinel cluster:
 
@@ -182,9 +184,11 @@ Use the following command to refresh the managed master list on the Redis Sentin
 
 ## Initialize Redis Native Cluster
 
-When [`redis_mode`](/docs/redis/param#redis_mode) is `cluster`, `redis.yml` also runs the `redis-join` stage. It uses the CLI selected by `redis_type` to execute `--cluster create --cluster-yes ... --cluster-replicas {{ redis_cluster_replicas }}` and assemble all inventory instances into a native cluster.
+When [`redis_mode`](/docs/redis/param#redis_mode) is `cluster`, `redis.yml` also runs the `redis-join` stage. It uses the CLI selected by `redis_type`. The command is `--cluster create --cluster-yes ... --cluster-replicas {{ redis_cluster_replicas }}`. This joins all inventory instances into a native cluster.
 
-This step runs automatically during initial deployment. A later `./redis.yml -l <cluster> -t redis-join` first checks the seed instance for `cluster_state:ok` and exits when the cluster is healthy. This guard does not perform add-node, resharding, or repair of a partially initialized topology; verify topology state before triggering the stage separately.
+This step runs automatically during initial deployment. A later `./redis.yml -l <cluster> -t redis-join` first checks the seed instance for `cluster_state:ok`. It exits if the cluster is healthy.
+
+This check does not add nodes, reshard data, or repair a partially initialized topology. Verify the topology state before you run this stage separately.
 
 
 -------------

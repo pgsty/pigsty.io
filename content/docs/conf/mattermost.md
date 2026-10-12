@@ -6,7 +6,8 @@ icon: fa-solid fa-comments
 categories: [Reference]
 ---
 
-The `app/mattermost` configuration template deploys Mattermost with Pigsty-managed PostgreSQL, Nginx, and monitoring. By default, the app and database run on the same node.
+The `app/mattermost` template deploys Mattermost with Pigsty-managed PostgreSQL, Nginx, and monitoring.
+By default, the application and database share one node.
 
 For application usage details, see **[Mattermost: Open-Source IM](/docs/app/mattermost/)**.
 
@@ -17,7 +18,7 @@ For application usage details, see **[Mattermost: Open-Source IM](/docs/app/matt
 
 - Config Name: `app/mattermost`
 - Node Count: Single node (default)
-- Description: Out-of-the-box Mattermost + PostgreSQL + Docker template
+- Description: Deployment template for Mattermost, PostgreSQL, and Docker
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`app/odoo`](/docs/conf/odoo/), [`app/registry`](/docs/conf/registry/), [`supabase`](/docs/conf/supabase/)
@@ -59,4 +60,4 @@ The `app/mattermost` template defines three key groups:
 
 **Notes**:
 - Change database credentials, domain names, and application secrets before deployment
-- If exposed to public networks, enable HTTPS and enforce ACL and firewall policies
+- If the service is accessible from public networks, enable HTTPS and enforce ACL and firewall policies.

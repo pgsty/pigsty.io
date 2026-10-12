@@ -8,27 +8,25 @@ module: [DOCKER]
 categories: [Task]
 ---
 
-The Docker module provides a default playbook [`docker.yml`](#dockeryml) for installing Docker Daemon and Docker Compose.
-
-------
+The Docker module provides the [`docker.yml`](#dockeryml) playbook to install Docker Daemon and Docker Compose.
 
 ## `docker.yml`
 
 Playbook source file: [`docker.yml`](https://github.com/pgsty/pigsty/blob/main/docker.yml)
 
-Running this playbook will install `docker-ce` and `docker-compose-plugin` on target nodes with the `docker_enabled: true` flag, and enable the `dockerd` service.
+The playbook installs `docker-ce` and `docker-compose-plugin` on target nodes that have `docker_enabled: true`. It also enables the `dockerd` service.
 
-The following are the available task subsets in the `docker.yml` playbook:
+The `docker.yml` playbook has these task subsets:
 
-- `docker_install`   : Install Docker and Docker Compose packages on the node
-- `docker_admin`     : Add specified users to the Docker admin user group
-- `docker_dir`       : Create Docker related directories
-- `docker_config`    : Generate Docker daemon service configuration file
-- `docker_launch`    : Start the Docker daemon service
-- `docker_register`  : Register Docker daemon as a monitoring target (alias tags: `register` / `add_metrics`)
-- `docker_image`     : Attempt to load pre-cached image tarballs from `/tmp/docker/*.tgz` (if they exist)
+- `docker_install`: Install Docker and Docker Compose packages on the node.
+- `docker_admin`: Add the specified users to the Docker admin user group.
+- `docker_dir`: Create Docker directories.
+- `docker_config`: Generate the Docker daemon service configuration file.
+- `docker_launch`: Start the Docker daemon service.
+- `docker_register`: Register the Docker daemon as a monitoring target. Alias tags: `register` / `add_metrics`.
+- `docker_image`: Try to load cached image tarballs from `/tmp/docker/*.tgz`, if they exist.
 
-The Docker module does not provide a dedicated uninstall playbook. If you need to uninstall Docker, you can manually stop Docker and then remove it:
+The Docker module does not provide a dedicated uninstall playbook. To uninstall Docker, manually stop it and remove it:
 
 ```bash
 systemctl stop docker                        # Stop Docker daemon service
@@ -36,13 +34,6 @@ yum remove docker-ce docker-compose-plugin   # Uninstall Docker on EL systems
 apt remove docker-ce docker-compose-plugin   # Uninstall Docker on Debian systems
 ```
 
-Changing `docker_enabled` to `false` only makes `docker.yml` skip the entire Docker role. It does not stop or uninstall an existing Docker deployment, nor delete `/data/docker`.
-The manual commands above also leave the data directory in place. Docker's VictoriaMetrics file-discovery target can be deregistered together with the node through the `node_deregister` task in `node-rm.yml`.
+If you set `docker_enabled` to `false`, `docker.yml` skips the entire Docker role. This change does not stop or uninstall an existing Docker deployment. It does not delete `/data/docker`.
 
-
-
-<br>
-
---------
-
-<br>
+The manual commands above also preserve the data directory. To deregister Docker's VictoriaMetrics file-discovery target with the node, run the `node_deregister` task in `node-rm.yml`.

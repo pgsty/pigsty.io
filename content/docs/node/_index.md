@@ -6,4 +6,4 @@ icon: fas fa-server
 categories: [Reference]
 ---
 
-Tune nodes into the desired state and monitor it, manage node, VIP, HAProxy, and exporters.
+Configure nodes to the required state and monitor them. Manage node settings, VIP, HAProxy, and exporters.

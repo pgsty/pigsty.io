@@ -7,14 +7,13 @@ module: [ETCD]
 categories: [Reference]
 ---
 
+ETCD is a distributed, reliable key-value store for critical system configuration data.
 
-ETCD is a distributed, reliable key-value store for critical system config data.
+Pigsty uses [**etcd**](https://etcd.io/) as a [**DCS**](https://patroni.readthedocs.io/en/latest/dcs_failsafe_mode.html) (Distributed Config Store). It is critical for PostgreSQL high availability and automatic failover.
 
-Pigsty uses [**etcd**](https://etcd.io/) as [**DCS**](https://patroni.readthedocs.io/en/latest/dcs_failsafe_mode.html) (Distributed Config Store), critical for PostgreSQL HA and automatic failover.
+The [`ETCD`](/docs/etcd) module depends on [`NODE`](/docs/node). The [`PGSQL`](/docs/pgsql) module requires [`ETCD`](/docs/etcd). Install [`NODE`](/docs/node) to manage nodes before you install [`ETCD`](/docs/etcd).
 
-The [`ETCD`](/docs/etcd) module depends on [`NODE`](/docs/node) module and is required by [`PGSQL`](/docs/pgsql) module. Install [`NODE`](/docs/node) module to manage nodes before installing [`ETCD`](/docs/etcd).
-
-Deploy [`ETCD`](/docs/etcd) cluster before any [`PGSQL`](/docs/pgsql) cluster—`patroni` and `vip-manager` for PG HA rely on etcd for HA and L2 VIP binding to primary.
+Deploy the [`ETCD`](/docs/etcd) cluster before any [`PGSQL`](/docs/pgsql) cluster. For PostgreSQL high availability, `patroni` and `vip-manager` depend on etcd. They use it for HA and to bind the L2 VIP to the primary.
 
 ```mermaid
 flowchart LR
@@ -43,6 +42,6 @@ flowchart LR
     style node fill:#d4b85e,stroke:#b89a4a,color:#333
 ```
 
-One etcd cluster per Pigsty deployment serves multiple PG clusters.
+One etcd cluster serves multiple PostgreSQL clusters in each Pigsty deployment.
 
-Pigsty enables RBAC by default. Each PG cluster uses independent credentials for multi-tenant isolation. Admins use etcd root user with full permissions over all PG clusters.
+Pigsty enables RBAC by default. Each PostgreSQL cluster uses separate credentials to isolate tenants. Administrators use the etcd root user, which has full permissions over all PostgreSQL clusters.

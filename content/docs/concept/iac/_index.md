@@ -9,24 +9,17 @@ categories: [Concept]
 ---
 
 
-Pigsty follows the IaC and GitOPS philosophy: use a declarative [**config inventory**](/docs/setup/config#inventory) to describe the entire environment, and materialize it through [**idempotent playbooks**](/docs/setup/playbook).
+Pigsty uses IaC and GitOps. Describe the environment in a declarative [**inventory**](/docs/setup/config#inventory). Apply it with [**idempotent playbooks**](/docs/setup/playbook).
 
-Users describe their desired state declaratively through [**parameters**](/docs/ref/param), and playbooks idempotently adjust target nodes to reach that state.
-This is similar to Kubernetes CRDs & Operators, but Pigsty implements this functionality on bare metal and virtual machines through Ansible.
+Declare the target state with [**parameters**](/docs/ref/param). Playbooks can repeatedly adjust nodes to that state. This resembles Kubernetes CRDs and Operators, implemented through Ansible on physical servers and VMs.
 
-Pigsty was born to solve the operational management problem of ultra-large-scale PostgreSQL clusters. The idea behind it is simple — we need the ability to replicate the entire infrastructure (100+ database clusters + PG/Redis + observability) on ready servers within ten minutes.
-No GUI + ClickOps can complete such a complex task in such a short time, making CLI + IaC the only choice — it provides precise, efficient control.
+Pigsty was designed to manage large PostgreSQL deployments. Its target was to reproduce more than 100 database clusters, PG/Redis services, and monitoring on prepared servers within ten minutes. Manual GUI operations cannot complete that work in the available time. CLI-based IaC provides precise, efficient control.
 
-The config inventory [`pigsty.yml`](/docs/setup/config) file describes the state of the entire deployment. Whether it's production (prod), staging, test, or development (devbox) environments,
-the difference between infrastructures lies only in the config inventory, while the deployment delivery logic is exactly the same.
+[`pigsty.yml`](/docs/setup/config) describes the deployment state. Production, staging, test, and development environments use the same deployment logic. Their inventories define the differences.
 
-You can use git for version control and auditing of this deployment "seed/gene", and Pigsty even supports storing the config inventory as database tables in PostgreSQL CMDB, further achieving Infra as Data capability.
-Seamlessly integrate with your existing workflows.
+Store this configuration in Git for version history and auditing. You can also store it in PostgreSQL CMDB tables as infrastructure data. Integrate either method with existing workflows.
 
-IaC is designed for professional users and enterprise scenarios but is also deeply optimized for individual developers and SMBs.
-Even if you're not a professional DBA, you don't need to understand these hundreds of adjustment knobs and switches. All parameters come with well-performing default values.
-You can get an out-of-the-box single-node database with **zero configuration**;
-Simply add two more IP addresses to get an enterprise-grade high-availability PostgreSQL cluster.
+IaC supports enterprise operators, individual developers, and smaller organizations. Default values avoid the need to understand every parameter. Start a single-node database with **zero configuration**. Add two IP addresses for an enterprise HA PostgreSQL cluster.
 
 
 
@@ -34,7 +27,7 @@ Simply add two more IP addresses to get an enterprise-grade high-availability Po
 
 ## Declare Modules
 
-Take the following default config snippet as an example. This config describes a node `10.10.10.10` with [**`INFRA`**](/docs/infra), [**`NODE`**](/docs/node), [**`ETCD`**](/docs/etcd), and [**`PGSQL`**](/docs/pgsql) modules installed.
+This default example installs [**`INFRA`**](/docs/infra), [**`NODE`**](/docs/node), [**`ETCD`**](/docs/etcd), and [**`PGSQL`**](/docs/pgsql) on `10.10.10.10`.
 
 ```yaml
 # monitoring, alerting, DNS, NTP and other infrastructure cluster...
@@ -50,7 +43,7 @@ etcd: { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
 pg-meta: { hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }, vars: { pg_cluster: pg-meta } }
 ```
 
-To actually install these modules, execute the following playbooks:
+Run these playbooks to install the modules:
 
 ```bash
 ./infra.yml -l 10.10.10.10  # Initialize infra module on node 10.10.10.10
@@ -64,10 +57,9 @@ To actually install these modules, execute the following playbooks:
 
 ## Declare Clusters
 
-You can declare PostgreSQL database clusters by installing the [**`PGSQL`**](/docs/pgsql/) module on multiple nodes, making them a service unit:
+Install [**`PGSQL`**](/docs/pgsql/) on multiple nodes to declare a PostgreSQL cluster as one service unit:
 
-For example, to deploy a three-node high-availability PostgreSQL cluster using streaming replication on the following three Pigsty-managed nodes,
-you can add the following definition to the `all.children` section of the config file [`pigsty.yml`](https://github.com/pgsty/pigsty/blob/main/pigsty.yml):
+For a three-node HA cluster using streaming replication, add this definition to `all.children` in [`pigsty.yml`](https://github.com/pgsty/pigsty/blob/main/pigsty.yml). The three nodes must already be managed by Pigsty.
 
 ```yaml
 pg-test:
@@ -78,7 +70,7 @@ pg-test:
   vars:  { pg_cluster: pg-test }
 ```
 
-After defining, you can use [**playbooks**](/docs/setup/playbook/) to create the cluster:
+After defining the cluster, create it with [**playbooks**](/docs/setup/playbook/):
 
 ```bash
 bin/pgsql-add pg-test   # Create the pg-test cluster
@@ -86,17 +78,16 @@ bin/pgsql-add pg-test   # Create the pg-test cluster
 
 ![pigsty-iac.jpg](/img/pigsty/iac.jpg)
 
-You can use different instance roles such as [**primary**](/docs/pgsql/config/cluster#primary), [**replica**](/docs/pgsql/config/cluster#replica), [**offline**](/docs/pgsql/config/cluster#offline), [**delayed**](/docs/pgsql/config/cluster#delayed-cluster), [**sync standby**](/docs/pgsql/config/cluster#sync-standby);
-as well as different clusters: such as [**standby clusters**](/docs/pgsql/config/cluster#standby-cluster), [**Citus clusters**](/docs/pgsql/config/cluster#citus-cluster), and even [**Redis**](/docs/redis) / [**MINIO (Silo)**](/docs/minio) / [**Etcd**](/docs/etcd) clusters
+Instance roles include [**primary**](/docs/pgsql/config/cluster#primary), [**replica**](/docs/pgsql/config/cluster#replica), [**offline**](/docs/pgsql/config/cluster#offline), [**delayed**](/docs/pgsql/config/cluster#delayed-cluster), and [**synchronous standby**](/docs/pgsql/config/cluster#sync-standby). Cluster types include [**standby**](/docs/pgsql/config/cluster#standby-cluster), [**Citus**](/docs/pgsql/config/cluster#citus-cluster), [**Redis**](/docs/redis), [**MINIO (Silo)**](/docs/minio), and [**Etcd**](/docs/etcd).
 
 
 -----------------
 
 ## Customize Cluster Content
 
-Not only can you define clusters declaratively, but you can also define databases, users, services, and [**HBA rules**](/docs/concept/sec/auth) within the cluster. For example, the following config file deeply customizes the content of the default `pg-meta` single-node database cluster:
+Declare databases, users, services, and [**HBA rules**](/docs/concept/sec/auth) inside each cluster. This example customizes the default `pg-meta` single-node cluster:
 
-Including: declaring six business databases and seven business users, adding an extra `standby` service (synchronous standby, providing read capability with no replication delay), defining some additional `pg_hba` rules, an L2 VIP address pointing to the cluster primary, and a customized backup strategy.
+It declares six business databases and seven business users. It adds a `standby` service for reads without replication delay, additional `pg_hba` rules, a primary L2 VIP, and a custom backup strategy.
 
 ```yaml
 pg-meta:
@@ -190,14 +181,11 @@ pg-meta:
 
 ## Declare Access Control
 
-You can also customize Pigsty's [**access control**](/docs/concept/sec/ac) through declarative configuration. For example, the following config file provides deep security customization for the `pg-meta` cluster:
+Declarative configuration also controls [**access permissions**](/docs/concept/sec/ac). This example customizes security for `pg-meta`:
 
-Uses the three-node core cluster template: `crit.yml`, to ensure data consistency is prioritized with zero data loss during failover.
-Enables L2 VIP and restricts database and connection pool listening addresses to local loopback IP + internal network IP + VIP three specific addresses.
-The template enables [**TLS**](/docs/concept/sec/ca) for the Patroni API and PgBouncer, and requires SSL for database access through HBA.
-It also enables `$libdir/passwordcheck` in `pg_libs` to enforce a [**password-strength policy**](/docs/concept/sec/auth#password-policy).
+The three-node `crit.yml` template prioritizes consistency and zero-loss failover. It enables L2 VIP and restricts database and pool listeners to loopback, internal, and VIP addresses. It enables [**TLS**](/docs/concept/sec/ca) for the Patroni API and PgBouncer. HBA rules require SSL for database access. `$libdir/passwordcheck` in `pg_libs` enforces the [**password policy**](/docs/concept/sec/auth#password-policy).
 
-Finally, a separate `pg-meta-delay` cluster is declared as `pg-meta`'s delayed replica from one hour ago, for emergency data deletion recovery.
+A separate `pg-meta-delay` cluster follows `pg-meta` with a one-hour delay for emergency recovery after data deletion.
 
 ```yaml
 pg-meta:      # 3 instance postgres cluster `pg-meta`
@@ -266,7 +254,7 @@ pg-meta-delay:                    # delayed instance for pg-meta (1 hour ago)
 
 ## Citus Distributed Cluster
 
-Below is a declarative configuration for a four-node Citus distributed cluster:
+This configuration declares a four-node Citus cluster:
 
 ```yaml
 all:
@@ -302,7 +290,7 @@ all:
 
 ## Redis Clusters
 
-Below are declarative configuration examples for Redis primary-replica cluster, sentinel cluster, and Redis Cluster:
+These examples declare Redis primary-replica, sentinel, and Redis Cluster deployments:
 
 ```yaml
 redis-ms: # redis classic primary & replica
@@ -331,7 +319,7 @@ redis-test: # redis native cluster: 3m x 3s
 
 ## ETCD Cluster
 
-Below is a declarative configuration example for a three-node Etcd cluster:
+This configuration declares a three-node Etcd cluster:
 
 ```yaml
 etcd: # dcs service for postgres/patroni ha consensus
@@ -350,7 +338,7 @@ etcd: # dcs service for postgres/patroni ha consensus
 
 ## MINIO (Silo) Cluster
 
-Below is a declarative configuration example for a three-node Silo cluster. The inventory group and parameters retain the MINIO module's compatibility names:
+This configuration declares a three-node Silo cluster. Inventory groups and parameters retain MINIO compatibility names:
 
 ```yaml
 minio:

@@ -43,13 +43,13 @@ Initialization steps:
 
 ## Reconfigure
 
-After changing config, it's recommended to run (update config and ensure service is online):
+After configuration changes, we recommend this command to update the configuration and make sure the service is running:
 
 ```bash
 ./juice.yml -l <host> -t juice_config,juice_launch
 ```
 
-Render config without touching service state:
+To generate the configuration without changing the service state:
 
 ```bash
 ./juice.yml -l <host> -t juice_config
@@ -57,7 +57,7 @@ Render config without touching service state:
 
 Notes:
 
-- `juice_config,juice_launch` ensures service is `started`, but does not force-restart an already running instance
+- `juice_config,juice_launch` sets the service state to `started`. It does not force a restart of a running instance.
 - `data` only takes effect on the first `format`
 - After changing `mount` options, manually restart the instance service (`systemctl restart juicefs-<name>`)
 
@@ -91,13 +91,13 @@ Removal actions:
 
 **PostgreSQL metadata, PostgreSQL `jfs_blob` data tables, and object-storage data are not deleted.**
 
-Running only `-t juice_clean` does not update monitoring targets and temporarily leaves stale scrape endpoints for removed instances. The commands above therefore run `juice_register` as well.
+If you run only `-t juice_clean`, monitoring targets remain unchanged. Removed instances temporarily retain stale scrape endpoints. The commands above also run `juice_register` to update these targets.
 
 -------------
 
 ## Add New Instance
 
-Add a new instance in config, ensure unique port:
+Add a new instance to the configuration. Give it a unique port:
 
 ```yaml
 juice_instances:
@@ -127,13 +127,13 @@ app:
     10.10.10.12: { juice_instances: { shared: { path: /shared, meta: "postgres://...", port: 9567 } } }
 ```
 
-Only one node needs to format the filesystem; others will skip via `--no-update`.
+Only one node needs to format the filesystem. Other nodes skip this operation because of `--no-update`.
 
 -------------
 
 ## PITR Recovery
 
-JuiceFS metadata and data must be restored to a mutually consistent state. Before any restore, stop every writer and unmount/stop the corresponding JuiceFS service on every client, identify the exact PostgreSQL cluster and target time, and confirm an available backup:
+Restore JuiceFS metadata and data to a mutually consistent state. Before any restore, stop every writer. Unmount or stop the corresponding JuiceFS service on every client. Identify the exact PostgreSQL cluster and target time. Confirm that a backup is available:
 
 ```bash
 # Inspect Patroni members; inspect the target stanza's backup on a database node
@@ -145,11 +145,13 @@ sudo -iu postgres pg-pitr -s <stanza> -t "2026-08-14 10:30:00+08"
 ```
 
 > [!CAUTION] PITR overwrites the PostgreSQL data directory
-> Only after confirming the exact cluster name, a recent backup, the recovery target, and a rollback plan should you follow the [PostgreSQL PITR tutorial](/docs/pgsql/tutorial/pitr/) to stop Patroni/PostgreSQL and perform the restore. `pg-pitr` does not stop services, repair Patroni/DCS, validate data, or rebuild replicas; the command above is not a complete recovery procedure.
+> First, confirm the exact cluster name, a recent backup, the recovery target, and a rollback plan. Only then follow the [PostgreSQL PITR tutorial](/docs/pgsql/tutorial/pitr/) to stop Patroni/PostgreSQL and restore the data. The `pg-pitr` command does not stop services, repair Patroni/DCS, validate data, or rebuild replicas. The command above is not a complete recovery procedure.
 
-If metadata and the `--storage postgres` `jfs_blob` table are in the same restored PostgreSQL database, database PITR can return both to one point in time. If they reside in different databases or clusters, design a coordinated recovery point for both.
+If metadata and the `--storage postgres` `jfs_blob` table share the restored PostgreSQL database, PITR can restore both to the same time. If they reside in different databases or clusters, design a coordinated recovery point for both.
 
-If file data is in Silo/S3, PostgreSQL PITR **rolls back metadata only**, not objects. Newer objects may remain, while old objects that were deleted or collected may be unavailable. Recoverability depends on object versioning, trash, and lifecycle policies; do not run garbage collection until validation is complete.
+If file data resides in Silo/S3, PostgreSQL PITR **rolls back metadata only**. It does not restore objects. Newer objects can remain. Older objects can be unavailable if they were deleted or removed by garbage collection.
+
+Recovery depends on object versioning, trash, and lifecycle policies. Do not run garbage collection until validation is complete.
 
 -------------
 

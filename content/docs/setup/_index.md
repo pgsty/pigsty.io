@@ -2,36 +2,49 @@
 title: Get Started
 linkTitle: Get Started
 weight: 100
-description: Deploy Pigsty single-node version on your laptop/cloud server, access DB and Web UI
+description: Install Pigsty on one Linux node. Read the setup guide in an ASD-STE100-inspired style.
 icon: fas fa-rocket
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
+Use this guide to install Pigsty on one Linux node.
+Start with [Quick Start](/docs/setup/install/).
+A node with 1 CPU core and 2 GB of memory is sufficient.
 
-Pigsty uses a scalable architecture design, suitable for both [**large-scale production environments**](/docs/deploy) and [**single-node development/demo environments**](/docs/setup/install). This guide focuses on the latter.
+You can use a Linux MiniPC, a cloud server, Windows WSL, or a virtual machine on your laptop.
+Pigsty supplies [Vagrant templates](/docs/deploy/vagrant/) for local virtual machines.
+It also supplies [OpenTofu templates](/docs/deploy/terraform/) for cloud servers.
 
-If you intend to learn about Pigsty, you can start with the [**Quick Start**](/docs/setup/install/) single-node deployment. A Linux virtual machine with 1C/2G is sufficient to run Pigsty.
+[![Pigsty architecture](/img/pigsty/arch.png)](/docs/concept/arch)
 
-You can use a Linux MiniPC, free/discounted virtual machines provided by cloud providers, Windows WSL, or create a virtual machine on your own laptop for Pigsty deployment.
-Pigsty provides out-of-the-box [**Vagrant**](/docs/deploy/vagrant/) templates and [**OpenTofu**](/docs/deploy/terraform/) templates to help you provision Linux VMs with one click locally or in the cloud.
+The single-node installation includes these features:
 
-[![pigsty-arch](/img/pigsty/arch.png)](/docs/concept/arch)
+- [{{< param pgext_count >}} PostgreSQL extensions](/docs/pgsql/ext).
+- Grafana and Victoria monitoring services.
+- [Infrastructure as code](/docs/concept/iac) for deployment.
+- Local [point-in-time recovery (PITR)](/docs/concept/pitr).
 
-The single-node version of Pigsty includes all core features: **{{< param pgext_count >}}** [**PG extensions**](/docs/pgsql/ext), self-contained Grafana/Victoria monitoring, [**IaC**](/docs/concept/iac) provisioning capabilities,
-and local [**PITR**](/docs/concept/pitr) point-in-time recovery. If you have external object storage (for PostgreSQL PITR backup), then for scenarios like demos, personal websites, and small services,
-even a single-node environment can provide a certain degree of [**data persistence**](/docs/concept/pitr) guarantee.
-However, single-node cannot achieve [**High Availability**](/docs/concept/ha)—automatic failover requires at least 3 nodes.
+External object storage can keep PostgreSQL backups outside the node.
+These backups improve [data durability](/docs/concept/pitr) for demonstrations, personal websites, and small services.
+A single node cannot provide [high availability](/docs/concept/ha).
+Automatic failover requires at least three nodes.
 
-If you want to install Pigsty in an environment without internet connection, please refer to the [**Offline Install**](/docs/setup/offline/) mode.
-If you only need the PostgreSQL database itself, please refer to the [**Slim Install**](/docs/setup/slim/) mode.
-If you are ready to start serious multi-node production deployment, please refer to the [**Deployment Guide**](/docs/deploy/).
+Choose the installation method that meets your requirements:
 
-------
+| Requirement | Guide |
+|:------------|:------|
+| Install Pigsty on one Linux node | [Quick Start](/docs/setup/install/) |
+| Try Pigsty on macOS or Windows | [Docker Deployment](/docs/setup/docker/) |
+| Install without Internet access | [Offline Installation](/docs/setup/offline/) |
+| Install PostgreSQL without monitoring services | [Slim Installation](/docs/setup/slim/) |
+| Deploy multiple nodes for production | [Deployment Guide](/docs/deploy/) |
 
 ## Quick Start
 
-[**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**compatible Linux system**](/docs/ref/linux/), and execute as an [**admin user**](/docs/deploy/admin) with passwordless [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo) privileges:
+1. [Prepare a node](/docs/deploy/prepare#node) with a [supported Linux operating system](/docs/ref/linux/).
+2. Use an [administration account](/docs/deploy/admin) with passwordless [SSH](/docs/deploy/admin#ssh) and [sudo](/docs/deploy/admin#sudo) access.
+3. Run the commands below.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash  # Install Pigsty and dependencies
@@ -39,6 +52,17 @@ cd ~/pigsty; ./configure -g                   # Generate config (with 1-node tem
 ./deploy.yml                                  # Execute deployment playbook
 ```
 
-Yes, it's that simple. You can use [**pre-configured templates**](/docs/concept/iac/template) to bring up Pigsty with one click without understanding any details.
+The installation script downloads Pigsty and installs its dependencies.
+The configuration script creates `pigsty.yml` and generates random passwords.
+The deployment playbook installs the modules in the configuration file.
 
-Next, you can explore the [**Graphical User Interface**](/docs/setup/webui/), access [**PostgreSQL database services**](/docs/setup/pgsql/); or perform [**configuration customization**](/docs/setup/config) and [**execute playbooks**](/docs/setup/playbook) to deploy more clusters.
+You can also select a [configuration template](/docs/concept/iac/template).
+The template supplies the initial configuration.
+
+After deployment, do these tasks:
+
+- Open the [Web UI](/docs/setup/webui/).
+- Connect to [PostgreSQL](/docs/setup/pgsql/).
+- Apply the [security recommendations](/docs/setup/security/).
+- [Change the configuration](/docs/setup/config/) to add more clusters.
+- [Run playbooks](/docs/setup/playbook/) to apply the configuration.

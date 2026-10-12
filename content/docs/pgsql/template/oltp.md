@@ -8,7 +8,8 @@ categories: [Reference]
 ---
 
 
-`oltp.yml` is Pigsty's default config template, optimized for **online transaction processing** (OLTP). Designed for 4-128 core CPUs with high concurrency, low latency, and high throughput.
+`oltp.yml` is Pigsty's default configuration template for **online transaction processing** (OLTP).
+It is designed for CPUs with 4-128 cores and provides high concurrency, low latency, and high throughput.
 
 > Pair with [**`node_tune`**](/docs/node/param#node_tune) = `oltp` for OS-level tuning.
 
@@ -17,7 +18,7 @@ categories: [Reference]
 
 ## Use Cases
 
-OLTP template is ideal for:
+Use the OLTP template for:
 
 - **E-commerce**: Order processing, inventory, user transactions
 - **Social apps**: User feeds, messaging, following relationships
@@ -37,7 +38,8 @@ OLTP template is ideal for:
 
 ## Usage
 
-[**`oltp.yml`**](/docs/pgsql/template/oltp/) is the default template, no explicit specification needed:
+[**`oltp.yml`**](/docs/pgsql/template/oltp/) is the default template.
+You do not need to select it explicitly:
 
 ```yaml
 pg-oltp:
@@ -50,7 +52,7 @@ pg-oltp:
     # node_tune: oltp    # OS tuning template (default)
 ```
 
-Or explicitly specify:
+To select it explicitly, use:
 
 ```yaml
 pg-oltp:
@@ -91,7 +93,7 @@ OLTP template memory allocation strategy:
 work_mem = min(max(shared_buffers / max_connections, 64MB), 1GB)
 ```
 
-Ensures each connection has sufficient sort/hash memory without over-allocation.
+This calculation gives each connection sufficient sort/hash memory without excessive allocation.
 
 ### Parallel Query
 
@@ -128,7 +130,7 @@ checkpoint_timeout: 15min
 checkpoint_completion_target: 0.80
 ```
 
-Balances data safety and write performance.
+These settings balance data safety and write performance.
 
 ### Vacuum Config
 
@@ -152,7 +154,7 @@ effective_io_concurrency: 200   # SSD concurrent IO
 default_statistics_target: 400  # Statistics precision
 ```
 
-Enables planner to generate better query plans.
+These settings help the planner generate better query plans.
 
 ### Logging & Monitoring
 
@@ -175,7 +177,7 @@ deadlock_timeout: 50ms
 idle_in_transaction_session_timeout: 10min
 ```
 
-10-minute idle transaction timeout prevents zombie transactions holding locks.
+The 10-minute idle transaction timeout prevents inactive transactions from keeping locks indefinitely.
 
 ### Extension Config
 

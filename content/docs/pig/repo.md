@@ -7,7 +7,8 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig repo` command is a comprehensive package repository manager. It can add, remove, create, and manage repositories on RPM systems (RHEL/CentOS/Rocky/Alma) and Debian systems (Debian/Ubuntu).
+Use `pig repo` to add, remove, create, and manage package repositories.
+It supports RPM systems (RHEL/CentOS/Rocky/Alma) and Debian systems (Debian/Ubuntu).
 
 ```bash
 pig repo - Manage Linux APT/YUM Repo
@@ -74,7 +75,7 @@ pig repo update                       # update system package cache
 
 ## Modules
 
-In pig, APT/YUM repositories are organized as **modules**: groups of repositories serving a specific purpose.
+Pig organizes APT/YUM repositories into **modules**. Each module groups repositories for a specific purpose.
 
 | Module | Description | Repository List |
 |:---:|:---|:---|
@@ -103,7 +104,9 @@ In pig, APT/YUM repositories are organized as **modules**: groups of repositorie
 
 Pig also includes APT/DNF repositories for other databases and systems such as `redis`, `kubernetes`, `grafana`, `clickhouse`, `gitlab`, `haproxy`, `mongodb`, and `mysql`.
 
-In general, `node` (Linux system repositories) and `pgsql` (PGDG + Pigsty) are required for PostgreSQL installation. The `infra` repository is optional and contains tools, IvorySQL kernel packages, and similar components. The special `all` module adds all required repositories at once and is a suitable starting point for most users.
+PostgreSQL installation usually requires `node` (Linux system repositories) and `pgsql` (PGDG + Pigsty).
+The optional `infra` repository contains tools, IvorySQL kernel packages, and similar components.
+For most users, start with `all`. This module adds all required repositories at once.
 
 ```bash
 pig repo add all      # add node, pgsql, and infra repositories
@@ -116,9 +119,15 @@ pig repo set          # set clears/backups existing definitions and overwrites w
 
 The full repository definition bundled with Pigsty is in [`cli/repo/assets/repo.yml`](https://github.com/pgsty/pig/blob/main/cli/repo/assets/repo.yml).
 
-You can create `~/.pig/repo.yml` to explicitly modify and override pig's repository definitions. When editing repository definitions, you can add extra regional mirror URLs under `baseurl`, such as China or Europe mirrors. When `--region` is specified, pig first looks for the matching regional URL and falls back to the `default` URL if the region is unavailable. Since v1.7.0, `-m|--mirror` explicitly selects the bundled `china` definitions, including `pigsty.cc` and the maintained domestic mirrors; it no longer rewrites PGDG URLs through a runtime proxy.
+Create `~/.pig/repo.yml` to override pig's repository definitions.
+You can add regional mirror URLs under `baseurl`, such as China or Europe mirrors.
+With `--region`, pig uses the matching regional URL. If that region is unavailable, it uses the `default` URL.
+From v1.7.0, `-m|--mirror` selects the bundled `china` definitions, including `pigsty.cc` and maintained domestic mirrors.
+It no longer rewrites PGDG URLs through a runtime proxy.
 
-Ordinary EL repositories keep native DNF module filtering. Only definitions that explicitly declare `module_hotfixes=1`—notably Pigsty and PGDG repositories—override module streams, and the key is removed when rendering EL7 YUM configuration.
+Ordinary EL repositories keep native DNF module filtering.
+Only definitions with `module_hotfixes=1` override module streams. These include Pigsty and PGDG repositories.
+Pig removes this key when it generates EL7 YUM configuration.
 
 
 ### Trust and configuration ownership
@@ -209,7 +218,8 @@ pig repo set all --region=china  # use China mirror
 pig repo set -m                  # explicitly select the China-region mirrors
 ```
 
-`repo set` supports the same `--region` and `-m|--mirror` region selection as `repo add`; it always uses overwrite semantics, equivalent to `repo add all --remove --update`.
+Like `repo add`, `repo set` supports `--region` and `-m|--mirror` for region selection.
+It always overwrites repository definitions, equivalent to `repo add all --remove --update`.
 
 
 ## repo rm
@@ -253,21 +263,30 @@ pig repo create                  # Linux: /www/pigsty; macOS: current directory
 pig repo create /srv/repo        # create at custom location
 ```
 
-The current implementation prefers [`sow`](https://sow.pgsty.com/docs/reference/cli/create/) when it is available in `PATH`. On Linux, the SOW backend runs the equivalent of the following with `sudo` for every target directory:
+If [`sow`](https://sow.pgsty.com/docs/reference/cli/create/) is in `PATH`, the command uses it first.
+On Linux, the SOW backend runs the following equivalent command with `sudo` for each target directory:
 
 ```bash
 sow create --pigsty --timeout 10m -- /absolute/repository/path
 ```
 
-On macOS, SOW is required, runs without `sudo`, and the default target is the current directory. On Linux, if `sow` is not installed, EL falls back to `createrepo_c` and Debian/Ubuntu falls back to `dpkg-scanpackages` from `dpkg-dev`. If neither the preferred backend nor the platform fallback is available, `pig repo create` fails. A SOW execution error is returned directly rather than retried through the legacy backend. The `10m` timeout limits the wait for SOW's directory lock; it does not cap repository indexing time.
+On macOS, SOW is required. It runs without `sudo` and uses the current directory by default.
+On Linux without `sow`, EL uses `createrepo_c`. Debian/Ubuntu uses `dpkg-scanpackages` from `dpkg-dev`.
+If neither SOW nor the platform fallback is available, `pig repo create` fails.
+If SOW execution fails, pig returns the error without trying the legacy backend.
+The `10m` timeout limits the wait for SOW's directory lock. It does not limit repository indexing time.
 
 SOW's `--pigsty` transaction:
 
-1. Scans only top-level regular `.rpm` and `.deb` files—no recursion and no symlink following.
-2. Removes parsed 32-bit x86 packages (RPM `i386/i486/i586/i686`, DEB `i386`) and packages whose binary name is exactly `patroni` with upstream version exactly `3.0.4`.
-3. Builds the applicable RPM/DEB metadata atomically and writes `repo_complete` last. The marker contains SHA-256 hashes for remaining top-level packages, sorted by basename.
+1. Scan top-level regular `.rpm` and `.deb` files. Do not scan subdirectories or follow symlinks.
+2. Remove parsed 32-bit x86 packages: RPM `i386/i486/i586/i686` and DEB `i386`. Also remove packages with binary name exactly `patroni` and upstream version exactly `3.0.4`.
+3. Build the required RPM/DEB metadata atomically. Write `repo_complete` last. This marker contains SHA-256 hashes of the remaining top-level packages, sorted by basename.
 
-Non-package files and directories are left untouched; malformed package candidates or conflicting package coordinates make the SOW transaction fail closed. The legacy fallback has different cleanup and metadata semantics and writes an MD5 package list to `repo_complete`. After either backend exits, PIG requires `repo_complete` to exist as a regular file, but it does not validate the marker contents or hashes. Consumers that use the marker as a delivery gate should perform that verification themselves.
+SOW does not change non-package files or directories.
+Malformed package candidates or conflicting package coordinates cause the transaction to fail without accepting the repository.
+The legacy backend has different cleanup and metadata behavior. It writes an MD5 package list to `repo_complete`.
+After either backend exits, PIG checks that `repo_complete` is a regular file.
+PIG does not validate its contents or hashes. If you use the marker to accept a delivery, verify them yourself.
 
 
 ## repo cache

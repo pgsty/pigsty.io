@@ -6,7 +6,7 @@ icon: fa-solid fa-sliders
 categories: [Reference]
 ---
 
-The [NODE](/docs/node) module tunes target nodes into the desired state and integrates them into the Pigsty monitoring system.
+The [NODE](/docs/node) module configures target nodes to the required state. It also adds them to the Pigsty monitoring system.
 
 ------------------------------
 
@@ -164,10 +164,11 @@ The [NODE](/docs/node) module tunes target nodes into the desired state and inte
 
 Each node has **identity parameters** that are configured through the parameters in `<cluster>.hosts` and `<cluster>.vars`.
 
-Pigsty uses **IP address** as the unique identifier for **database nodes**. **This IP address must be the one that the database instance listens on and provides services**, but should not be a public IP address.
-However, users don't have to connect to the database via this IP address. For example, managing target nodes indirectly through SSH tunnels or jump servers is feasible.
-When identifying database nodes, the primary IPv4 address remains the core identifier. **This is very important, and users should ensure this when configuring**.
-The IP address is the `inventory_hostname` in the inventory, which is the `key` of the `<cluster>.hosts` object.
+Pigsty uses the **IP address** as the unique **database node** identifier. **Use the address on which the database instance listens and provides services.** This should not be a public IP address.
+
+Users do not have to connect through this address. You can also manage nodes through SSH tunnels or jump servers. The primary IPv4 address remains the node identifier. **Check this address carefully during configuration.**
+
+This IP address is `inventory_hostname` in the inventory. It is the `key` in the `<cluster>.hosts` object.
 
 ```yaml
 node-test:
@@ -179,7 +180,7 @@ node-test:
     node_cluster: node-test
 ```
 
-In addition, nodes have two important identity parameters in the Pigsty monitoring system: [`nodename`](#nodename) and [`node_cluster`](#node_cluster), which are used as the **instance identity** (`ins`) and **cluster identity** (`cls`) in the monitoring system.
+Pigsty monitoring also uses two node identity parameters. [`nodename`](#nodename) supplies the **instance identity** (`ins`). [`node_cluster`](#node_cluster) supplies the **cluster identity** (`cls`).
 
 ```yaml
 node_load1{cls="pg-meta", ins="pg-meta-1", ip="10.10.10.10", job="nodes"}
@@ -188,7 +189,7 @@ node_load1{cls="pg-test", ins="pg-test-2", ip="10.10.10.12", job="nodes"}
 node_load1{cls="pg-test", ins="pg-test-3", ip="10.10.10.13", job="nodes"}
 ```
 
-When executing the default PostgreSQL deployment, since Pigsty uses exclusive 1:1 deployment by default, you can borrow the database instance's identity parameters ([`pg_cluster`](/docs/pgsql/param#pg_cluster)) to the node's `ins` and `cls` labels through the [`node_id_from_pg`](#node_id_from_pg) parameter.
+Pigsty defaults to one exclusive PostgreSQL instance per node. Enable [`node_id_from_pg`](#node_id_from_pg) to derive the node's `ins` and `cls` labels from database identity parameters such as [`pg_cluster`](/docs/pgsql/param#pg_cluster).
 
 |              Name               |   Type   | Level | Required     | Description           |
 |:-------------------------------:|:--------:|:-----:|:-------------|:----------------------|
@@ -212,9 +213,9 @@ node_id_from_pg: true             # use postgres identity as node identity if ap
 
 name: `nodename`, type: `string`, level: `I`
 
-Node instance identity parameter. If not explicitly set, the existing hostname will be used as the node name. This parameter is optional since it has a reasonable default value.
+Node instance identity. This parameter is optional. If unset, it defaults to the existing hostname, subject to the PostgreSQL identity rule below.
 
-If [`node_id_from_pg`](#node_id_from_pg) is enabled (default), and `nodename` is not explicitly specified, [`nodename`](#nodename) will try to use `${pg_cluster}-${pg_seq}` as the instance identity. If the PGSQL module is not defined on this cluster, it will fall back to the default, which is the node's HOSTNAME.
+If [`node_id_from_pg`](#node_id_from_pg) is enabled and `nodename` is unset, [`nodename`](#nodename) tries to use `${pg_cluster}-${pg_seq}` as the instance identity. This behavior is enabled by default. If the cluster has no PGSQL module, it uses the node's HOSTNAME.
 
 
 
@@ -223,9 +224,9 @@ If [`node_id_from_pg`](#node_id_from_pg) is enabled (default), and `nodename` is
 
 name: `node_cluster`, type: `string`, level: `C`
 
-This option allows explicitly specifying a cluster name for the node, which is only meaningful when defined at the node cluster level. Using the default empty value will use the fixed value `nodes` as the node cluster identity.
+Explicit node cluster name. Set this parameter at the node cluster level. The default empty value uses `nodes` as the cluster identity, subject to the PostgreSQL identity rule below.
 
-If [`node_id_from_pg`](#node_id_from_pg) is enabled (default), and `node_cluster` is not explicitly specified, [`node_cluster`](#node_cluster) will try to use `${pg_cluster}` as the cluster identity. If the PGSQL module is not defined on this cluster, it will fall back to the default `nodes`.
+If [`node_id_from_pg`](#node_id_from_pg) is enabled and `node_cluster` is unset, [`node_cluster`](#node_cluster) tries to use `${pg_cluster}`. This behavior is enabled by default. If the cluster has no PGSQL module, it uses `nodes`.
 
 
 
@@ -237,11 +238,11 @@ If [`node_id_from_pg`](#node_id_from_pg) is enabled (default), and `node_cluster
 
 name: `nodename_overwrite`, type: `bool`, level: `C`
 
-Overwrite node's hostname with nodename? Default is `true`. In this case, if you set a non-empty [`nodename`](#nodename), it will be used as the current host's HOSTNAME.
+Specifies whether to replace the hostname with nodename. The default is `true`. When enabled, Pigsty uses a non-empty [`nodename`](#nodename) as the host's HOSTNAME.
 
-When `nodename` is empty, if [`node_id_from_pg`](#node_id_from_pg) is `true` (default), Pigsty will try to borrow the identity parameters of the PostgreSQL instance defined 1:1 on the node as the node name, i.e., `{{ pg_cluster }}-{{ pg_seq }}`. If the PGSQL module is not installed on this node, it will fall back to not doing anything.
+If `nodename` is empty and [`node_id_from_pg`](#node_id_from_pg) is `true`, Pigsty tries to derive the node name from its exclusive PostgreSQL instance. The name is `{{ pg_cluster }}-{{ pg_seq }}`. This behavior is enabled by default. If the node has no PGSQL module, Pigsty leaves the hostname unchanged.
 
-Therefore, if you leave [`nodename`](#nodename) empty and don't enable [`node_id_from_pg`](#node_id_from_pg), Pigsty will not make any changes to the existing hostname.
+If [`nodename`](#nodename) is empty and [`node_id_from_pg`](#node_id_from_pg) is disabled, Pigsty preserves the existing hostname.
 
 
 
@@ -252,9 +253,9 @@ Therefore, if you leave [`nodename`](#nodename) empty and don't enable [`node_id
 
 name: `nodename_exchange`, type: `bool`, level: `C`
 
-Exchange nodename among play hosts? Default is `false`.
+Specifies whether playbook hosts exchange node names. The default is `false`.
 
-When enabled, nodes executing the [`node.yml`](/docs/node/playbook#nodeyml) playbook in the same batch will exchange node names with each other, writing them to `/etc/hosts`.
+If enabled, hosts in the same [`node.yml`](/docs/node/playbook#nodeyml) batch exchange node names. They write these names to `/etc/hosts`.
 
 
 
@@ -264,10 +265,9 @@ When enabled, nodes executing the [`node.yml`](/docs/node/playbook#nodeyml) play
 
 name: `node_id_from_pg`, type: `bool`, level: `C`
 
-Borrow identity parameters from the PostgreSQL instance/cluster deployed 1:1 on the node? Default is `true`.
+Specifies whether node identity comes from the PostgreSQL instance or cluster deployed 1:1 on the node. The default is `true`.
 
-PostgreSQL instances and nodes in Pigsty use 1:1 deployment by default, so you can "borrow" identity parameters from the database instance.
-This parameter is enabled by default, meaning that if a PostgreSQL cluster has no special configuration, the host node cluster and instance identity parameters will default to matching the database identity parameters. This provides extra convenience for problem analysis and monitoring data processing.
+Pigsty defaults to one PostgreSQL instance per node. Unless the PostgreSQL cluster has explicit overrides, node cluster and instance identities match the database identities. This simplifies problem analysis and monitoring data processing.
 
 
 
@@ -299,7 +299,7 @@ node_dns_options:                 # dns resolv options in `/etc/resolv.conf`
 
 name: `node_write_etc_hosts`, type: `bool`, level: `G|C|I`
 
-Modify `/etc/hosts` on the target node? Default is `true`. Container environments often prohibit modifying this file; set this parameter to `false` to skip the change.
+Specifies whether to modify `/etc/hosts` on the target node. The default is `true`. Container environments often prohibit changes to this file. Set this parameter to `false` to skip the change.
 
 
 
@@ -316,7 +316,7 @@ Static DNS records to be written to all nodes' `/etc/hosts`. Default value:
 
 [`node_default_etc_hosts`](#node_default_etc_hosts) is an array. Each element is a DNS record with format `<ip> <name>`. You can specify multiple domain names separated by spaces.
 
-This parameter is used to configure global static DNS records. If you want to configure specific static DNS records for individual clusters and instances, use the [`node_etc_hosts`](#node_etc_hosts) parameter.
+Use this parameter for global static DNS records. For records specific to a cluster or instance, use [`node_etc_hosts`](#node_etc_hosts).
 
 
 
@@ -338,7 +338,7 @@ Same format as [`node_default_etc_hosts`](#node_default_etc_hosts), but suitable
 
 name: `node_dns_method`, type: `enum`, level: `C`
 
-How to configure DNS servers? Three options: `add`, `none`, `overwrite`. Default is `add`.
+DNS server configuration method. The options are `add`, `none`, and `overwrite`. The default is `add`.
 
 * `add`: **Append** the records in [`node_dns_servers`](#node_dns_servers) to `/etc/resolv.conf` and keep existing DNS servers. (default)
 * `overwrite`: Overwrite `/etc/resolv.conf` with the records in [`node_dns_servers`](#node_dns_servers)
@@ -367,7 +367,7 @@ DNS resolution options in `/etc/resolv.conf`. Default value:
 - "options single-request-reopen timeout:1"
 ```
 
-If [`node_dns_method`](#node_dns_method) is configured as `add` or `overwrite`, the records in this configuration will be written to `/etc/resolv.conf` first. Refer to Linux documentation for `/etc/resolv.conf` format details.
+If [`node_dns_method`](#node_dns_method) is `add` or `overwrite`, Pigsty writes these options to `/etc/resolv.conf` first. Refer to Linux documentation for `/etc/resolv.conf` format details.
 
 
 
@@ -400,7 +400,7 @@ node_packages: [openssh-server]   # packages to be installed current nodes with 
 
 name: `node_repo_modules`, type: `string`, level: `C/A`
 
-List of software repository modules to be added on the node, same format as [`repo_modules`](/docs/infra/param#repo_modules). Default is `local`, using the local software repository specified in [`repo_upstream`](/docs/infra/param#repo_upstream).
+Software repository modules to add to the node. Use the same format as [`repo_modules`](/docs/infra/param#repo_modules). The default is `local`, which selects the local repository in [`repo_upstream`](/docs/infra/param#repo_upstream).
 
 When Pigsty manages nodes, it filters entries in [`repo_upstream`](/docs/infra/param#repo_upstream) based on this parameter value. Only entries whose `module` field matches this parameter value will be added to the node's software sources.
 
@@ -413,7 +413,7 @@ When Pigsty manages nodes, it filters entries in [`repo_upstream`](/docs/infra/p
 
 name: `node_repo_remove`, type: `bool`, level: `C/A`
 
-Remove existing software repository definitions on the node? Default is `true`.
+Specifies whether to remove existing repository definitions on the node. The default is `true`.
 
 When enabled, Pigsty will **remove** existing configuration files in `/etc/yum.repos.d` on the node and back them up to `/etc/yum.repos.d/backup`.
 On Debian/Ubuntu systems, it backs up `/etc/apt/sources.list(.d)` to `/etc/apt/backup`.
@@ -427,11 +427,11 @@ On Debian/Ubuntu systems, it backs up `/etc/apt/sources.list(.d)` to `/etc/apt/b
 
 name: `node_packages`, type: `string[]`, level: `C`
 
-List of software packages to install and upgrade on the current node. Default is `[openssh-server]`, which upgrades sshd to the latest version during installation (to avoid security vulnerabilities).
+Packages to install and upgrade on the current node. The default is `[openssh-server]`. During installation, this upgrades sshd to the latest version to avoid security vulnerabilities.
 
 Each array element is a string of comma-separated package names. Same format as [`node_default_packages`](#node_default_packages). This parameter is usually used to specify additional packages to install at the node/cluster level.
 
-Packages specified in this parameter will be **upgraded to the latest available version**. If you need to keep existing node software versions unchanged (just ensure they exist), use the [`node_default_packages`](#node_default_packages) parameter.
+Pigsty **upgrades these packages to the latest available version**. To preserve installed versions and only ensure that packages exist, use [`node_default_packages`](#node_default_packages).
 
 
 
@@ -442,11 +442,11 @@ Packages specified in this parameter will be **upgraded to the latest available 
 
 name: `node_default_packages`, type: `string[]`, level: `G`
 
-Default packages to install on every node. This parameter has no single cross-platform default. If it is not set explicitly, the `node_id` role loads `node_packages_default` from the corresponding `<os>.<arch>.yml` file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars), according to operating-system version and CPU architecture.
+Default packages to install on every node. The default varies by platform. If unset, the `node_id` role loads `node_packages_default` from the matching `<os>.<arch>.yml` file under [`roles/node_id/vars`](https://github.com/pgsty/pigsty/tree/main/roles/node_id/vars). It selects the file by operating-system version and CPU architecture.
 
-This is a string array in which each line is a **comma-separated** package list. Mappings differ across distributions, releases, and architectures; no single EL or Debian list should be treated as the universal default for that family.
+This is a string array in which each line is a **comma-separated** package list. Mappings vary by distribution, release, and architecture. No single EL or Debian list is the default for the whole family.
 
-Packages specified in this variable only require **existence**, not **latest**. If you need to install the latest version, use the [`node_packages`](#node_packages) parameter.
+These packages only need to **exist**. They do not need to be the **latest** version. To install the latest version, use [`node_packages`](#node_packages).
 
 For example, the current mapping for `EL 9 x86_64` is:
 
@@ -464,7 +464,8 @@ The current mapping for `Debian 13 x86_64` is:
 - zlib1g,libreadline-dev,xz-utils,locales,cron,openssh-client,node-exporter,bind9-dnsutils,iproute2,iputils-ping,netcat-openbsd,procps,vim-tiny
 ```
 
-This parameter uses the same format as [`node_packages`](#node_packages), but is normally used as a global override of the platform mapping for packages required on every node.
+This parameter uses the same format as [`node_packages`](#node_packages).
+It normally overrides the platform mapping globally for packages required on every node.
 
 
 
@@ -475,9 +476,9 @@ name: `node_uv_env`, type: `path`, level: `C`
 
 uv virtual environment path, default is `/data/venv`. Set to empty string `''` to skip uv venv configuration.
 
-When non-empty, Pigsty creates a Python virtual environment on the node using `uv venv` and installs pip packages specified in [`node_pip_packages`](#node_pip_packages).
+If non-empty, Pigsty creates a Python virtual environment with `uv venv`. It installs the pip packages from [`node_pip_packages`](#node_pip_packages).
 
-In the China region (`region: china`), `/etc/uv/uv.toml` is automatically configured to use the Tencent Cloud PyPI mirror at `https://mirrors.cloud.tencent.com/pypi/simple/`.
+If `region: china`, Pigsty configures `/etc/uv/uv.toml` to use the Tencent Cloud PyPI mirror at `https://mirrors.cloud.tencent.com/pypi/simple/`.
 
 
 
@@ -525,9 +526,9 @@ node_sysctl_params:               # sysctl parameters in k:v format in addition 
 
 name: `node_disable_numa`, type: `bool`, level: `C`
 
-Disable NUMA? Default is `false` (NUMA not disabled).
+Specifies whether to disable NUMA. The default is `false`, which keeps NUMA enabled.
 
-Note that disabling NUMA requires a machine reboot to take effect! If you don't know how to set CPU affinity, it's recommended to disable NUMA when using databases in production environments.
+A NUMA disable operation requires a reboot to take effect. If you cannot configure CPU affinity, we recommend that you disable NUMA for production databases.
 
 
 
@@ -539,11 +540,11 @@ Note that disabling NUMA requires a machine reboot to take effect! If you don't 
 
 name: `node_disable_swap`, type: `bool`, level: `C`
 
-Disable SWAP? Default is `false` (SWAP not disabled).
+Specifies whether to disable SWAP. The default is `false`, which keeps SWAP enabled.
 
-Disabling SWAP is generally not recommended. The exception is if you have enough memory for exclusive PostgreSQL deployment, you can disable SWAP to improve performance.
+We generally recommend that you keep SWAP enabled. If a node runs only PostgreSQL and has sufficient memory, you can disable SWAP for better performance.
 
-Exception: SWAP should be disabled when your node is used for Kubernetes deployments.
+For Kubernetes deployments, you should disable SWAP.
 
 
 
@@ -554,9 +555,9 @@ Exception: SWAP should be disabled when your node is used for Kubernetes deploym
 
 name: `node_static_network`, type: `bool`, level: `C`
 
-Use static DNS servers? Default is `true` (enabled).
+Specifies whether to use static DNS servers. The default is `true`.
 
-Enabling static networking means your DNS Resolv configuration won't be overwritten by machine reboots or NIC changes. Recommended to enable, or have network engineers handle the configuration.
+Static networking preserves DNS Resolv configuration across reboots and NIC changes. We recommend that you enable it or have network engineers manage the configuration.
 
 
 
@@ -566,9 +567,9 @@ Enabling static networking means your DNS Resolv configuration won't be overwrit
 
 name: `node_disk_prefetch`, type: `bool`, level: `C`
 
-Enable disk prefetch? Default is `false` (not enabled).
+Specifies whether to enable disk prefetch. The default is `false`.
 
-Can optimize performance for HDD-deployed instances. Recommended to enable when using mechanical hard drives.
+Disk prefetch can improve performance for instances on HDDs. We recommend it for mechanical hard drives.
 
 
 
@@ -578,7 +579,7 @@ Can optimize performance for HDD-deployed instances. Recommended to enable when 
 
 name: `node_kernel_modules`, type: `string[]`, level: `C`
 
-Which kernel modules to enable? Default enables the following kernel modules:
+Kernel modules to enable. The default enables these modules:
 
 ```yaml
 node_kernel_modules: [ softdog, ip_vs, ip_vs_rr, ip_vs_wrr, ip_vs_sh ]
@@ -597,11 +598,11 @@ name: `node_hugepage_count`, type: `int`, level: `C`
 
 Number of 2MB hugepages to allocate on the node. Default is `0`. Related parameter is [`node_hugepage_ratio`](#node_hugepage_ratio).
 
-If both `node_hugepage_count` and `node_hugepage_ratio` are `0` (default), hugepages will be completely disabled. This parameter has higher priority than [`node_hugepage_ratio`](#node_hugepage_ratio) because it's more precise.
+If both `node_hugepage_count` and `node_hugepage_ratio` are `0`, hugepages are completely disabled. This is the default. This parameter takes priority over [`node_hugepage_ratio`](#node_hugepage_ratio) because it is more precise.
 
-If a non-zero value is set, it will be written to `/etc/sysctl.d/hugepage.conf` to take effect. Negative values won't work, and numbers higher than 90% of node memory will be capped at 90% of node memory.
+Pigsty writes a non-zero value to `/etc/sysctl.d/hugepage.conf` to apply it. Negative values do not work. Values above 90% of node memory are capped at 90%.
 
-If not zero, it should be slightly larger than the corresponding [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio) value so PostgreSQL can use hugepages.
+For a non-zero setting, allocate slightly more memory than [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio) requires. This lets PostgreSQL use hugepages.
 
 
 
@@ -619,7 +620,7 @@ Default: `0`, which sets `vm.nr_hugepages=0` and completely disables hugepages.
 
 This parameter should equal or be slightly larger than [`pg_shared_buffer_ratio`](/docs/pgsql/param#pg_shared_buffer_ratio) if not zero.
 
-For example, if you allocate 25% of memory for Postgres shared buffers by default, you can set this value to 0.27 ~ 0.30, and use `/pg/bin/pg-tune-hugepage` after initialization to precisely reclaim wasted hugepages.
+For example, with 25% of memory allocated to PostgreSQL shared buffers, set this value to 0.27 ~ 0.30. After initialization, use `/pg/bin/pg-tune-hugepage` to reclaim unused hugepages precisely.
 
 
 
@@ -662,7 +663,9 @@ Typically, the database tuning template [`pg_conf`](/docs/pgsql/param#pg_conf) s
 
 name: `node_tuned_profile_dir`, type: `path`, level: `C`
 
-Directory where Pigsty writes the `tiny`, `oltp`, `olap`, and `crit` tuned profiles. The role default is `/etc/tuned`, then platform variables adapt it to the distribution layout: EL 10, Debian 13, and Ubuntu 26 use `/etc/tuned/profiles`; EL 8/9, Debian 12, and Ubuntu 22/24 use `/etc/tuned`.
+Directory for the `tiny`, `oltp`, `olap`, and `crit` tuned profiles. The role default is `/etc/tuned`. Platform variables adjust it for the distribution.
+
+EL 10, Debian 13, and Ubuntu 26 use `/etc/tuned/profiles`. EL 8/9, Debian 12, and Ubuntu 22/24 use `/etc/tuned`.
 
 Normally leave this unchanged. Override it only when the target system's tuned profile directory differs from Pigsty's known platform mapping.
 
@@ -672,7 +675,7 @@ Normally leave this unchanged. Override it only when the target system's tuned p
 
 name: `node_sysctl_params`, type: `dict`, level: `C`
 
-Sysctl kernel parameters in K:V format (written and applied immediately by Ansible `sysctl` module) as a supplement to the `tuned` profile.
+Kernel parameters in K:V format that supplement the `tuned` profile. The Ansible `sysctl` module writes and applies them immediately.
 
 Default:
 
@@ -681,7 +684,7 @@ node_sysctl_params:
   fs.nr_open: 8388608
 ```
 
-This default ensures the kernel per-process FD ceiling is not lower than `LimitNOFILE=8388608` used by several Pigsty systemd units, avoiding `setrlimit` failures on some distro/systemd combinations.
+This default keeps the kernel per-process FD ceiling at least as high as `LimitNOFILE=8388608`, used by several Pigsty systemd units. It prevents `setrlimit` failures on some distribution/systemd combinations.
 
 This is a KV dictionary parameter where Key is the kernel `sysctl` parameter name and Value is the parameter value. You can also consider defining extra sysctl parameters directly in the tuned templates in `roles/node/templates`.
 
@@ -725,10 +728,9 @@ Options:
 * `permissive`: Permissive mode, logs violations but doesn't block (recommended, default)
 * `enforcing`: Enforcing mode, strictly enforces SELinux policies
 
-If you don't have professional OS/security experts, it's recommended to use `permissive` or `disabled` mode.
+If you do not have operating-system or security specialists, we recommend `permissive` or `disabled` mode.
 
-Note that SELinux is only enabled by default on EL-based systems. If you want to enable SELinux on Debian/Ubuntu systems, you need to install and enable SELinux configuration yourself.
-Also, SELinux mode changes may require a system reboot to fully take effect.
+Only EL-based systems enable SELinux by default. On Debian/Ubuntu, install and enable SELinux yourself if needed. SELinux mode changes can require a reboot to take full effect.
 
 
 
@@ -747,11 +749,11 @@ Options:
 * `off`: Turn off and disable firewall (equivalent to old version's `node_disable_firewall: true`)
 * `none`: Do not manage firewall state/rules; fully self-managed by user
 
-Uses `firewalld` service on EL systems, `ufw` service on Debian/Ubuntu systems. To align behavior across distros, Pigsty now defaults to `zone`: firewall enabled by default, intranet trusted, and public access limited to [`node_firewall_public_port`](#node_firewall_public_port).
+Pigsty uses `firewalld` on EL and `ufw` on Debian/Ubuntu. The default `zone` mode provides consistent behavior across distributions. It enables the firewall, trusts intranet traffic, and limits public access to [`node_firewall_public_port`](#node_firewall_public_port).
 
-If you need full manual firewall control (for example, relying only on cloud security groups or enterprise firewall policies), set `node_firewall_mode` to `none`. Use `off` only when you explicitly want to disable the system firewall.
+For full manual firewall control, set `node_firewall_mode` to `none`. For example, use this when relying only on cloud security groups or enterprise firewall policies. Use `off` only when you explicitly want to disable the system firewall.
 
-Production environments with public network exposure should use `zone` mode with [`node_firewall_intranet`](#node_firewall_intranet) and [`node_firewall_public_port`](#node_firewall_public_port) for fine-grained access control. The `zone` mode will enable the firewall if not already running.
+For production environments exposed to public networks, use `zone` mode. Set [`node_firewall_intranet`](#node_firewall_intranet) and [`node_firewall_public_port`](#node_firewall_public_port) to control access precisely. The `zone` mode will enable the firewall if not already running.
 
 
 
@@ -802,7 +804,7 @@ If you want other users to access the database from public networks, make sure t
 If you want to expose other service ports to public networks, you can add them to this list.
 Always keep the minimum-exposure principle and open only ports you really need.
 
-Note that this parameter only takes effect when [`node_firewall_mode`](#node_firewall_mode) is set to `zone`; it is not applied in `none` or `off` mode.
+This parameter applies only if [`node_firewall_mode`](#node_firewall_mode) is `zone`. It does not apply in `none` or `off` mode.
 
 
 
@@ -813,7 +815,7 @@ Note that this parameter only takes effect when [`node_firewall_mode`](#node_fir
 
 ## `NODE_ADMIN`
 
-This section is about administrators on host nodes - who can log in and how.
+These parameters control administrator accounts and login access on host nodes.
 
 ```yaml
 node_data: /data                  # node main data directory, `/data` by default
@@ -837,7 +839,7 @@ name: `node_data`, type: `path`, level: `C`
 
 Node's main data directory. Default is `/data`.
 
-If this directory doesn't exist, it will be created. This directory should be owned by `root` with `777` permissions.
+Pigsty creates this directory if it does not exist. The directory should belong to `root` with `777` permissions.
 
 
 
@@ -848,9 +850,9 @@ If this directory doesn't exist, it will be created. This directory should be ow
 
 name: `node_admin_enabled`, type: `bool`, level: `C`
 
-Create a dedicated admin user on this node? Default is `true`.
+Specifies whether to create a dedicated admin user on this node. The default is `true`.
 
-Pigsty creates an admin user on each node by default (with password-free sudo and ssh). The default admin is named `dba (uid=88)`, which can access other nodes in the environment from the admin node via password-free SSH and execute password-free sudo.
+Pigsty creates an admin user on each node with passwordless sudo and SSH. The default identity is `dba (uid=88)`. This user can connect from the admin node to other nodes through passwordless SSH and run passwordless sudo.
 
 
 
@@ -861,7 +863,7 @@ name: `node_admin_uid`, type: `int`, level: `C`
 
 Admin user UID. Default is `88`.
 
-Please ensure the UID is the same across all nodes whenever possible to avoid unnecessary permission issues.
+Where possible, use the same UID on all nodes to prevent permission problems.
 
 If the default UID 88 is already taken, you can choose another UID. Be careful about UID namespace conflicts when manually assigning.
 
@@ -893,7 +895,7 @@ Options:
 * `nopass`: Password-free sudo privileges (default, allows all commands without password)
 * `all`: Full sudo privileges (requires password)
 
-Pigsty uses `nopass` mode by default, allowing admin users to execute any sudo command without password, which is very convenient for automated operations.
+Pigsty defaults to `nopass` mode. This lets admin users run any sudo command without a password and simplifies automation.
 
 In production environments with high security requirements, you may need to adjust this parameter to `limited` or `all` to restrict admin privileges.
 
@@ -907,7 +909,7 @@ name: `node_admin_ssh_exchange`, type: `bool`, level: `C`
 
 Exchange node admin SSH keys between node clusters. Default is `true`.
 
-When enabled, Pigsty will exchange SSH public keys between members during playbook execution, allowing admin [`node_admin_username`](#node_admin_username) to access each other from different nodes.
+If enabled, Pigsty exchanges SSH public keys between members during playbook execution. The [`node_admin_username`](#node_admin_username) user can then connect between nodes.
 
 
 
@@ -917,11 +919,11 @@ When enabled, Pigsty will exchange SSH public keys between members during playbo
 
 name: `node_admin_pk_current`, type: `bool`, level: `C`
 
-Add current node & user's public key to admin account? Default is `true`.
+Specifies whether to add the current user's public key to the admin account. The default is `true`.
 
-When enabled, the SSH public key (`~/.ssh/id_rsa.pub`) of the admin user executing this playbook on the current node will be copied to the target node admin user's `authorized_keys`.
+If enabled, Pigsty copies the current playbook user's SSH public key (`~/.ssh/id_rsa.pub`) to the target admin user's `authorized_keys`.
 
-When deploying in production environments, please pay attention to this parameter, as it will install the default public key of the user currently executing the command to the admin user on all machines.
+Review this setting for production. It installs the current command user's default public key in the admin account on all target machines.
 
 
 
@@ -938,7 +940,7 @@ List of public keys for admins who can log in. Default is `[]` (empty array).
 
 Each array element is a string containing the public key to be written to the admin user's `~/.ssh/authorized_keys`. Users with the corresponding private key can log in as admin.
 
-When deploying in production environments, please pay attention to this parameter and only add trusted keys to this list.
+For production deployments, review this list and add only trusted keys.
 
 
 
@@ -949,7 +951,7 @@ name: `node_aliases`, type: `dict`, level: `C`
 
 Shell aliases to be written to host's `/etc/profile.d/node.alias.sh`. Default is `{}` (empty dict).
 
-This parameter allows you to configure convenient shell aliases for the host's shell environment. The K:V dict defined here will be written to the target node's `profile.d` file in the format `alias k=v`.
+Use this parameter to define host shell aliases. Pigsty writes the K:V dictionary to the target node's `profile.d` file as `alias k=v`.
 
 For example, the following declares an alias named `dp` for quickly executing `docker compose pull`:
 
@@ -970,7 +972,7 @@ node_aliases:
 
 Configuration related to host time/timezone/NTP/scheduled tasks.
 
-Time synchronization is very important for database services. Please ensure the system `chronyd` time service is running properly.
+Database services require accurate time synchronization. Make sure that the system `chronyd` service is running correctly.
 
 ```yaml
 node_timezone: ''                 # setup node timezone, empty string to skip
@@ -986,9 +988,9 @@ node_crontab: [ ]                 # crontab entries in `/etc/crontab`
 
 name: `node_timezone`, type: `string`, level: `C`
 
-Set node timezone. Empty string means skip. Default is empty string, which won't modify the default timezone (usually UTC).
+Node timezone. The default empty string skips timezone configuration and preserves the system timezone, usually UTC.
 
-When using in China region, it's recommended to set to `Asia/Hong_Kong` / `Asia/Shanghai`.
+For China, we recommend `Asia/Hong_Kong` / `Asia/Shanghai`.
 
 
 
@@ -997,7 +999,7 @@ When using in China region, it's recommended to set to `Asia/Hong_Kong` / `Asia/
 
 name: `node_ntp_enabled`, type: `bool`, level: `C`
 
-Enable chronyd time sync service? Default is `true`.
+Specifies whether to enable chronyd time synchronization. The default is `true`.
 
 Pigsty will override the node's `/etc/chrony.conf` with the NTP server list specified in [`node_ntp_servers`](#node_ntp_servers).
 
@@ -1014,7 +1016,7 @@ NTP server list used in `/etc/chrony.conf`. Default: `["pool pool.ntp.org iburst
 
 This parameter is an array where each element is a string representing one line of NTP server configuration. Only takes effect when [`node_ntp_enabled`](#node_ntp_enabled) is enabled.
 
-Pigsty uses the global NTP server `pool.ntp.org` by default. You can modify this parameter according to your network environment, e.g., `cn.pool.ntp.org iburst`, or internal time services.
+Pigsty uses the global NTP server `pool.ntp.org` by default. Select a service suitable for your network, such as `cn.pool.ntp.org iburst` or an internal time service.
 
 You can also use the `${admin_ip}` placeholder in the configuration to use the time server on the admin node.
 
@@ -1030,9 +1032,9 @@ node_ntp_servers: [ 'pool ${admin_ip} iburst' ]
 
 name: `node_crontab_overwrite`, type: `bool`, level: `C`
 
-When handling scheduled tasks in [`node_crontab`](#node_crontab), append or overwrite? Default is `true` (overwrite).
+Specifies whether [`node_crontab`](#node_crontab) overwrites scheduled tasks. The default is `true`, which **overwrites all** tasks in the node crontab.
 
-If you want to append scheduled tasks on the node, set this parameter to `false`, and Pigsty will **append** rather than **overwrite all** scheduled tasks on the node's crontab.
+To **append** tasks, set this parameter to `false`.
 
 
 
@@ -1054,9 +1056,9 @@ node_crontab:
   - '00 03 * * * root /usr/bin/some-system-task'
 ```
 
-> **Note**: For PostgreSQL backup tasks and other postgres user cron jobs, use the [`pg_crontab`](/docs/pgsql/param#pg_crontab) parameter
-> instead of `node_crontab`. Because `node_crontab` is written to `/etc/crontab` during NODE initialization, the `postgres` user may not exist yet,
-> which will cause cron to report `bad username` and ignore the entire crontab file.
+> **Note**: For PostgreSQL backups and other postgres user cron jobs, use [`pg_crontab`](/docs/pgsql/param#pg_crontab) instead of `node_crontab`.
+> NODE initialization writes `node_crontab` to `/etc/crontab`. The `postgres` user might not exist yet.
+> In that case, cron reports `bad username` and ignores the entire crontab file.
 
 When [`node_crontab_overwrite`](#node_crontab_overwrite) is `true` (default), the default `/etc/crontab` will be restored when removing the node.
 
@@ -1067,14 +1069,15 @@ When [`node_crontab_overwrite`](#node_crontab_overwrite) is `true` (default), th
 
 ## `NODE_VIP`
 
-You can bind an optional L2 VIP to a node cluster. This feature is disabled by default. L2 VIP only makes sense for a group of node clusters. The VIP will switch between nodes in the cluster according to configured priorities, ensuring high availability of node services.
+You can bind an L2 VIP to a node cluster. This optional feature is disabled by default and applies to a group of nodes. The VIP moves between cluster nodes according to configured priorities. This provides high availability for node services.
 
-Note that L2 VIP can **only** be used within the same L2 network segment, which may impose additional restrictions on your network topology. If you don't want this restriction, you can consider using DNS LB or HAProxy for similar functionality.
+An L2 VIP works **only** within the same L2 network segment. This can restrict your network topology. To avoid that restriction, consider DNS LB or HAProxy for similar functions.
 
-When enabling this feature, you need to explicitly assign available [`vip_address`](#vip_address) and [`vip_vrid`](#vip_vrid) for this L2 VIP. Users should ensure both are unique within the same network segment.
+To enable this feature, explicitly assign available [`vip_address`](#vip_address) and [`vip_vrid`](#vip_vrid) values. Both must be unique in the network segment.
 
-Note that NODE VIP is different from PG VIP. PG VIP is a VIP serving PostgreSQL instances, managed by vip-manager and bound to the PG cluster primary.
-NODE VIP is managed by Keepalived and bound to node clusters. It can be in master-backup mode or load-balanced mode, and both can coexist.
+NODE VIP and PG VIP have different roles. The vip-manager service manages PG VIP and binds it to the PostgreSQL cluster primary.
+
+Keepalived manages NODE VIP for node clusters. It supports master-backup mode or load-balanced mode. Both modes can coexist.
 
 
 ```yaml
@@ -1096,7 +1099,7 @@ vip_exporter_port: 9650           # keepalived exporter listen port, 9650 by def
 
 name: `vip_enabled`, type: `bool`, level: `C`
 
-Enable an L2 VIP managed by Keepalived on this node cluster? Default is `false`.
+Specifies whether Keepalived manages an L2 VIP for this node cluster. The default is `false`.
 
 
 
@@ -1110,7 +1113,7 @@ name: `vip_address`, type: `ip`, level: `C`
 
 Node VIP address in IPv4 format (without CIDR suffix). This is a **required** parameter when [`vip_enabled`](#vip_enabled) is enabled.
 
-This parameter has no default value, meaning you must explicitly assign a unique VIP address for the node cluster.
+This parameter has no default. You must explicitly assign a unique VIP address for the node cluster.
 
 
 
@@ -1119,9 +1122,9 @@ This parameter has no default value, meaning you must explicitly assign a unique
 
 name: `vip_vrid`, type: `int`, level: `C`
 
-VRID is a positive integer from `1` to `254` used to identify a VIP in the network. This is a **required** parameter when [`vip_enabled`](#vip_enabled) is enabled.
+VRID identifies a VIP in the network. Use an integer from `1` to `254`. This parameter is **required** if [`vip_enabled`](#vip_enabled) is enabled.
 
-This parameter has no default value, meaning you must explicitly assign a unique ID within the network segment for the node cluster.
+This parameter has no default. You must assign the node cluster an ID that is unique in the network segment.
 
 
 
@@ -1144,9 +1147,9 @@ This parameter value will be set as keepalived's initial state.
 
 name: `vip_preempt`, type: `bool`, level: `C/I`
 
-Enable VIP preemption? Optional parameter. Default is `false` (no preemption).
+Specifies whether to enable VIP preemption. This parameter is optional. The default is `false`, which disables preemption.
 
-Preemption means when a `backup` node has higher priority than the currently alive and working `master` node, should it preempt the VIP?
+With preemption enabled, a `backup` node can take the VIP from a running `master` if the backup has higher priority.
 
 
 
@@ -1157,9 +1160,9 @@ Preemption means when a `backup` node has higher priority than the currently ali
 
 name: `vip_interface`, type: `string`, level: `C/I`
 
-Network interface for the node VIP. The default is `auto`; Pigsty detects the interface associated with the node IP in the inventory.
+Network interface for the node VIP. The default is `auto`. Pigsty detects the interface associated with the inventory node IP.
 
-For non-standard routing, policy routing, or other unusual network environments where auto-detection is unsuitable, explicitly override the interface name at the instance or node level.
+Automatic detection might be unsuitable for non-standard routing, policy routing, or other unusual networks. In these cases, override the interface name at the instance or node level.
 
 You should use the same interface name as the node's primary IP address (the IP address you put in the inventory).
 
@@ -1203,7 +1206,7 @@ Keepalived exporter listen port. Default is `9650`.
 
 ## `HAPROXY`
 
-HAProxy is installed and enabled on all nodes by default, exposing services in a manner similar to Kubernetes NodePort.
+Pigsty installs and enables HAProxy on all nodes by default. It exposes services in a similar way to Kubernetes NodePort.
 
 The [`PGSQL`](/docs/pgsql) module uses HAProxy for [services](/docs/pgsql/service).
 
@@ -1227,7 +1230,7 @@ haproxy_services: []              # list of haproxy services to be exposed on no
 
 name: `haproxy_enabled`, type: `bool`, level: `C`
 
-Enable haproxy on this node? Default is `true`.
+Specifies whether to enable HAProxy on this node. The default is `true`.
 
 
 
@@ -1237,7 +1240,7 @@ Enable haproxy on this node? Default is `true`.
 
 name: `haproxy_clean`, type: `bool`, level: `G/C/A`
 
-Cleanup all existing haproxy config? Default is `false`.
+Specifies whether to delete all existing HAProxy configuration. The default is `false`.
 
 
 
@@ -1246,9 +1249,9 @@ Cleanup all existing haproxy config? Default is `false`.
 
 name: `haproxy_reload`, type: `bool`, level: `A`
 
-Reload haproxy after config? Default is `true`, will reload haproxy after config changes.
+Specifies whether to reload HAProxy after configuration changes. The default is `true`.
 
-If you want to check before applying, you can disable this option with command arguments, check, then apply.
+To review changes first, disable this option with command arguments. Check the configuration, then apply it.
 
 
 
@@ -1259,7 +1262,7 @@ name: `haproxy_auth_enabled`, type: `bool`, level: `G`
 
 Enable authentication for haproxy admin page. Default is `true`, which requires HTTP basic auth for the admin page.
 
-Not recommended to disable authentication, as your traffic control page will be exposed, which is risky.
+We recommend that you keep authentication enabled. Without it, the traffic control page is exposed.
 
 
 
@@ -1281,7 +1284,7 @@ name: `haproxy_admin_password`, type: `password`, level: `G`
 
 HAProxy admin password. Default is `pigsty`.
 
-> PLEASE CHANGE THIS PASSWORD IN YOUR PRODUCTION ENVIRONMENT!
+> Change this password in production.
 
 
 
@@ -1304,7 +1307,7 @@ name: `haproxy_client_timeout`, type: `interval`, level: `C`
 
 Client connection timeout. Default is `24h`.
 
-Setting a timeout can avoid long-lived connections that are difficult to clean up. If you really need long connections, you can set it to a longer time.
+A timeout can help avoid long-lived connections that are difficult to clean up. If you need longer connections, increase the timeout.
 
 
 
@@ -1318,7 +1321,7 @@ name: `haproxy_server_timeout`, type: `interval`, level: `C`
 
 Server connection timeout. Default is `24h`.
 
-Setting a timeout can avoid long-lived connections that are difficult to clean up. If you really need long connections, you can set it to a longer time.
+A timeout can help avoid long-lived connections that are difficult to clean up. If you need longer connections, increase the timeout.
 
 
 
@@ -1357,7 +1360,7 @@ haproxy_services:                   # list of haproxy service
 
 Each service definition is rendered as `/etc/haproxy/conf.d/<service.name>.cfg` and takes effect after HAProxy reload. The main configuration remains `/etc/haproxy/haproxy.cfg`.
 
-Pigsty writes the HAProxy unit to `/etc/systemd/system/haproxy.service`. The optional environment file is `/etc/default/haproxy`, where only `EXTRAOPTS` is recognized. Do not repeat `-f` there because it conflicts with the main configuration and configuration directory fixed in the unit. If you override `EXTRAOPTS`, keep the default `-S /run/haproxy-master.sock` so seamless reload continues to work; restart the service after changing it.
+Pigsty writes the HAProxy unit to `/etc/systemd/system/haproxy.service`. The optional environment file is `/etc/default/haproxy`. It recognizes only `EXTRAOPTS`. Do not repeat `-f` there because it conflicts with the main configuration and configuration directory fixed in the unit. If you override `EXTRAOPTS`, keep `-S /run/haproxy-master.sock` to preserve seamless reload. Restart the service after this change.
 
 
 
@@ -1383,7 +1386,7 @@ node_exporter_options: '--no-collector.softnet --no-collector.nvme --collector.t
 
 name: `node_exporter_enabled`, type: `bool`, level: `C`
 
-Enable node metrics collector on current node? Default is `true`.
+Specifies whether to enable the node metrics collector. The default is `true`.
 
 
 
@@ -1456,7 +1459,7 @@ vector_log_endpoint: [ infra ]    # log endpoint, default send to infra group
 
 name: `vector_enabled`, type: `bool`, level: `C`
 
-Enable Vector log collection service? Default is `true`.
+Specifies whether to enable Vector log collection. The default is `true`.
 
 Vector is the log collection agent used by Pigsty since v4, replacing Promtail from previous versions. It collects node and service logs and sends them to VictoriaLogs.
 
@@ -1467,9 +1470,9 @@ Vector is the log collection agent used by Pigsty since v4, replacing Promtail f
 
 name: `vector_clean`, type: `bool`, level: `G/A`
 
-Clean existing data directory when installing Vector? Default is `false`.
+Specifies whether to delete the existing data directory during Vector installation. The default is `false`, which preserves the directory.
 
-By default, it won't clean. When you choose to clean, Pigsty will remove the existing data directory [`vector_data`](#vector_data) when deploying Vector. This means Vector will re-collect all logs on the current node and send them to VictoriaLogs.
+If enabled, Pigsty deletes [`vector_data`](#vector_data) during Vector deployment. Vector then collects all logs on the node again and sends them to VictoriaLogs.
 
 
 
@@ -1492,7 +1495,7 @@ name: `vector_port`, type: `port`, level: `C`
 
 Vector metrics listen port. Default is `9598`.
 
-This port is used to expose Vector's own monitoring metrics, which can be scraped by VictoriaMetrics.
+Vector exposes its own monitoring metrics on this port. VictoriaMetrics can scrape them.
 
 
 
@@ -1503,7 +1506,7 @@ name: `vector_read_from`, type: `enum`, level: `C`
 
 Vector log reading start position. Default is `beginning`.
 
-Options are `beginning` (start from beginning) or `end` (start from end). `beginning` reads the entire content of existing log files, `end` only reads newly generated logs.
+The options are `beginning` and `end`. The `beginning` option reads all content in existing log files. The `end` option reads only new logs.
 
 
 

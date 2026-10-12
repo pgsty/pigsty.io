@@ -9,9 +9,9 @@ aliases: [/docs/pilot/kafka/metric]
 ---
 
 
-The KAFKA module uses two kinds of metric sources, both registered under the same `job=kafka` scrape job: the JMX target (with a `role` label) collects the internal state of each JVM, while the protocol exporter target (without a `role` label) collects the state of the logical cluster, topics, partitions, and consumer groups over the Kafka protocol. The protocol exporter is placed only on the one or two broker-capable nodes with the smallest `kafka_seq`, and a single-broker cluster runs just one.
+Both metric sources use `job=kafka`. JMX targets have a `role` label and collect each JVM's internal state. Protocol targets lack `role` and collect logical cluster, topic, partition, and consumer-group state through Kafka protocol. Protocol exporters run on the one or two broker-capable nodes with the lowest `kafka_seq`. Single-broker clusters run one.
 
-The JMX configuration is an allow-list: it exports only the JVM baseline and a bounded set of broker, replication, request-path, and KRaft metrics. High-cardinality per-client and per-partition JMX MBeans are deliberately excluded; partition detail is supplied by the protocol exporter.
+JMX uses an allowlist for standard JVM and selected broker, replication, request-path, and KRaft metrics. It excludes per-client and per-partition MBeans to limit series counts. Protocol exporters provide partition details.
 
 
 --------
@@ -24,7 +24,7 @@ The JMX configuration is an allow-list: it exports only the JVM baseline and a b
 | Protocol exporter target (`:9308`) | `job`, `cls`, `ins`, `ip`, `instance` |
 {.full-width}
 
-The `job` for both target types is `kafka`; whether a series carries the `role` label is what distinguishes the two.
+Both target types use `job` value `kafka`. Presence of the `role` label distinguishes JMX from protocol targets.
 
 Some metrics also carry dimensions such as `topic`, `partition`, `broker`, `consumergroup`, `request`, `version`, `error`, `quantile`, `state`, or `operation`.
 
@@ -50,7 +50,7 @@ Some metrics also carry dimensions such as `topic`, `partition`, `broker`, `cons
 
 ## Protocol Exporter Metrics
 
-The following metrics come from the protocol exporter target. Multiple exporters of the same cluster see the same logical cluster state, so any direct cluster aggregation must deduplicate by semantics rather than simply summing across all `ins`.
+Protocol exporters report the same logical cluster state. Before cluster aggregation, deduplicate according to metric meaning. Do not simply sum every `ins`.
 
 ### Broker and Topic
 
@@ -68,7 +68,7 @@ The following metrics come from the protocol exporter target. Multiple exporters
 | `kafka_topic_partition_leader_is_preferred` | Gauge | `topic`, `partition` | Whether the current leader is the preferred replica |
 {.full-width}
 
-`current_offset - oldest_offset` estimates the currently retained offset span, but an offset count is not a byte count, and for a compacted topic it is not an exact message count either.
+`current_offset - oldest_offset` estimates the retained offset span. It measures neither bytes nor, for compacted topics, an exact message count.
 
 
 ### Consumer Group
@@ -82,7 +82,7 @@ The following metrics come from the protocol exporter target. Multiple exporters
 | `kafka_consumergroup_lag_sum` | Gauge | `consumergroup`, `topic` | Consumer lag aggregated per group/topic |
 {.full-width}
 
-Ephemeral consumers that never commit an offset, clients that use external offset storage, and groups that have not yet consumed a topic will not necessarily produce these time series.
+These series may be absent for consumers that never commit offsets, use external offset storage, or have not consumed the topic.
 
 
 ### Exporter Itself
@@ -135,7 +135,7 @@ Ephemeral consumers that never commit an offset, clients that use external offse
 | `kafka_server_broker_failed_fetch_requests_total` | Counter | Total failed fetch requests |
 {.full-width}
 
-These are broker-wide totals with no topic dimension, which keeps the JMX series count from growing with the number of topics. Topic-level offsets and progress come from the protocol exporter.
+Broker totals have no topic dimension. Their JMX series count therefore does not grow with topic count. Protocol exporters provide topic offsets and progress.
 
 
 --------
@@ -158,7 +158,7 @@ These are broker-wide totals with no topic dimension, which keeps the JMX series
 | `kafka_log_manager_offline_log_directories` | Gauge | Number of log directories Kafka has marked offline |
 {.full-width}
 
-`Under Replicated` means the replicas are not all in sync. `Under Min ISR` is more serious: the write-availability or durability condition has fallen below the configured minimum ISR. `At Min ISR` has not crossed the line yet, but there is no remaining replica headroom.
+`Under Replicated` means some replicas are not synchronized. `Under Min ISR` means write availability or durability has fallen below the configured minimum. `At Min ISR` still meets that minimum but has no remaining replica margin.
 
 
 --------
@@ -176,7 +176,7 @@ These are broker-wide totals with no topic dimension, which keeps the JMX series
 | `kafka_network_processor_idle_ratio` | Gauge | — | Average network-processor idle ratio |
 {.full-width}
 
-When investigating high latency, look at request volume, error codes, P95/P99, both queues, handler/processor idle, GC, CPU, disk I/O, and network together. A low idle ratio alone is not enough to pinpoint where the bottleneck is.
+For high latency, examine request volume, errors, P95/P99, both queues, thread idle ratios, GC, CPU, disk I/O, and network. A low idle ratio alone cannot locate the bottleneck.
 
 
 --------
@@ -197,7 +197,7 @@ When investigating high latency, look at request volume, error codes, P95/P99, b
 | `kafka_server_metadata_snapshot_age_seconds` | Gauge | Age of the most recent metadata snapshot |
 {.full-width}
 
-`log_end_offset - high_watermark` helps gauge metadata commit lag; also factor in the member role, current leader, epoch, and controller event latency.
+`log_end_offset - high_watermark` helps estimate metadata commit lag. Also check member role, leader, epoch, and controller event latency.
 
 
 --------
@@ -224,7 +224,7 @@ These MBeans exist only in Kafka processes that carry the controller role:
 | `kafka_controller_event_processing_time_seconds` | Gauge | Controller event processing time at P50/P95/P99 |
 {.full-width}
 
-A healthy cluster should have exactly one active controller. Any increase in `offline_partition_count`, `metadata_errors_total`, or `unclean_leader_elections_total` should be treated as a priority.
+Healthy clusters should have exactly one active controller. Prioritize increases in `offline_partition_count`, `metadata_errors_total`, and `unclean_leader_elections_total`.
 
 
 --------
@@ -267,11 +267,11 @@ A healthy cluster should have exactly one active controller. Any increase in `of
 
 ## Cardinality and Interpretation Notes
 
-- Do not directly sum multiple `kafka_exporter` results for the same `cls`; they may be duplicate views of the same cluster.
-- `kafka_topic_partition_current_offset` is an offset, not an exact count of bytes, requests, or business events.
-- Consumer lag covers only groups that are visible in Kafka and have committed an offset.
-- A controller-only node lacking broker metrics and protocol exporter metrics is a normal role difference; a broker that was not selected lacking protocol exporter metrics is a normal result of placement.
-- When a given MBean does not exist in a specific Kafka version/role, the corresponding JMX series will not appear either; interpret this together with `role`.
-- Per-client/per-partition JMX metrics are excluded by the allow-list to avoid unpredictable time-series cardinality.
+- Do not directly sum multiple `kafka_exporter` results for one `cls`. They can duplicate cluster state.
+- `kafka_topic_partition_current_offset` measures offsets, not exact bytes, requests, or business events.
+- Consumer lag covers only visible groups with committed offsets.
+- Controller-only nodes normally lack broker and protocol metrics. Unselected brokers normally lack protocol metrics.
+- A JMX series is absent if its MBean does not exist for the Kafka version or role. Interpret this with `role`.
+- The allowlist excludes per-client and per-partition JMX metrics to limit unpredictable series counts.
 
 For how to use the dashboards and alerts, see [Monitoring](/docs/kafka/monitor).

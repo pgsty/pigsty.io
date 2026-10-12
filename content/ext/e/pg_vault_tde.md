@@ -11,10 +11,10 @@ weight: 7510
     <div class="ext-card__title">labmiriade/pg_vault_tde</div>
     <div class="ext-card__desc">https://github.com/labmiriade/pg_vault_tde</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_vault_tde-1.7.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_vault_tde-1.7.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_vault_tde-1.7.1.tar.gz</div>
-    <div class="ext-card__desc">pg_vault_tde-1.7.1.tar.gz</div>
+    <div class="ext-card__title">pg_vault_tde-1.7.2.tar.gz</div>
+    <div class="ext-card__desc">pg_vault_tde-1.7.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7510
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_vault_tde`**](/ext/e/pg_vault_tde) | `1.7.1` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_vault_tde`**](/ext/e/pg_vault_tde) | `1.7.2` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,16 +38,16 @@ weight: 7510
 {.ext-table .ext-table--rel}
 
 
-> Requires PostgreSQL 17+, OpenSSL 3, libcurl, and shared_preload_libraries=pg_vault_tde; RPM excludes EL8; includes pg_dump_tde, pg_restore_tde, and pg_basebackup_tde. Package 1.7.1; SQL control version 1.7. Export existing 1.7.0 encrypted TOAST data with the old binary before upgrading.
+> Requires PostgreSQL 17+, OpenSSL 3, libcurl, and shared_preload_libraries=pg_vault_tde; RPM excludes EL8; includes pg_dump_tde, pg_restore_tde, and pg_basebackup_tde. Package 1.7.2; SQL control version 1.7. Export existing 1.7.0 encrypted TOAST data with the old binary before upgrading. Rewrite existing encrypted tables after upgrade; custom WAL users must coordinate primary/standby upgrades for resource-manager ID 128 to 161.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.1` | {{< pgvers "17,18" >}} | `pg_vault_tde` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.1` | {{< pgvers "18,17" >}} | `pg_vault_tde_$v` | `openssl-libs`, `libcurl` |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.1` | {{< pgvers "18,17" >}} | `postgresql-$v-pg-vault-tde` | `libssl3 | libssl3t64`, `libcurl4 | libcurl4t64` |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.2` | {{< pgvers "17,18" >}} | `pg_vault_tde` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.2` | {{< pgvers "18,17" >}} | `pg_vault_tde_$v` | `openssl-libs`, `libcurl` |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.7.2` | {{< pgvers "18,17" >}} | `postgresql-$v-pg-vault-tde` | `libssl3 | libssl3t64`, `libcurl4 | libcurl4t64` |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -55,48 +55,48 @@ weight: 7510
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 1.7.1 1 | AVAIL PIGSTY 1.7.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-@ el9.x86_64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.1-1PGSTY.el9.x86_64.rpm pigsty 1.7.1 344.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vault_tde_18-1.7.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.1-1PGSTY.el9.aarch64.rpm pigsty 1.7.1 338.2KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vault_tde_18-1.7.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.1-1PGSTY.el10.x86_64.rpm pigsty 1.7.1 345.6KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vault_tde_18-1.7.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.1-1PGSTY.el10.aarch64.rpm pigsty 1.7.1 339.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vault_tde_18-1.7.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~bookworm_amd64.deb pigsty 1.7.1 334.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~bookworm_arm64.deb pigsty 1.7.1 323.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~trixie_amd64.deb pigsty 1.7.1 336.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~trixie_arm64.deb pigsty 1.7.1 323.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~jammy_amd64.deb pigsty 1.7.1 355.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~jammy_arm64.deb pigsty 1.7.1 346.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~noble_amd64.deb pigsty 1.7.1 346.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~noble_arm64.deb pigsty 1.7.1 339.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~resolute_amd64.deb pigsty 1.7.1 344.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.1-1PGSTY~resolute_arm64.deb pigsty 1.7.1 335.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.1-1PGSTY~resolute_arm64.deb
-@ el9.x86_64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.1-1PGSTY.el9.x86_64.rpm pigsty 1.7.1 346.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vault_tde_17-1.7.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.1-1PGSTY.el9.aarch64.rpm pigsty 1.7.1 339.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vault_tde_17-1.7.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.1-1PGSTY.el10.x86_64.rpm pigsty 1.7.1 347.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vault_tde_17-1.7.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.1-1PGSTY.el10.aarch64.rpm pigsty 1.7.1 341.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vault_tde_17-1.7.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~bookworm_amd64.deb pigsty 1.7.1 336.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~bookworm_arm64.deb pigsty 1.7.1 325.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~trixie_amd64.deb pigsty 1.7.1 338.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~trixie_arm64.deb pigsty 1.7.1 325.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~jammy_amd64.deb pigsty 1.7.1 397.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~jammy_arm64.deb pigsty 1.7.1 388.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~noble_amd64.deb pigsty 1.7.1 349.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~noble_arm64.deb pigsty 1.7.1 341.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~resolute_amd64.deb pigsty 1.7.1 347.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.1-1PGSTY~resolute_arm64.deb pigsty 1.7.1 338.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.1-1PGSTY~resolute_arm64.deb
+| el9.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 1.7.2 1 | AVAIL PIGSTY 1.7.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+@ el9.x86_64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.2-1PGSTY.el9.x86_64.rpm pigsty 1.7.2 424.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vault_tde_18-1.7.2-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.2-1PGSTY.el9.aarch64.rpm pigsty 1.7.2 416.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vault_tde_18-1.7.2-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.2-1PGSTY.el10.x86_64.rpm pigsty 1.7.2 427.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vault_tde_18-1.7.2-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_vault_tde_18 pg_vault_tde_18-1.7.2-1PGSTY.el10.aarch64.rpm pigsty 1.7.2 418.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vault_tde_18-1.7.2-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~bookworm_amd64.deb pigsty 1.7.2 425.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~bookworm_arm64.deb pigsty 1.7.2 411.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~trixie_amd64.deb pigsty 1.7.2 426.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~trixie_arm64.deb pigsty 1.7.2 412.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~jammy_amd64.deb pigsty 1.7.2 446.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~jammy_arm64.deb pigsty 1.7.2 435.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~noble_amd64.deb pigsty 1.7.2 434.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~noble_arm64.deb pigsty 1.7.2 426.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~resolute_amd64.deb pigsty 1.7.2 432.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-vault-tde postgresql-18-pg-vault-tde_1.7.2-1PGSTY~resolute_arm64.deb pigsty 1.7.2 423.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-18-pg-vault-tde_1.7.2-1PGSTY~resolute_arm64.deb
+@ el9.x86_64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.2-1PGSTY.el9.x86_64.rpm pigsty 1.7.2 426.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vault_tde_17-1.7.2-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.2-1PGSTY.el9.aarch64.rpm pigsty 1.7.2 417.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vault_tde_17-1.7.2-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.2-1PGSTY.el10.x86_64.rpm pigsty 1.7.2 428.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vault_tde_17-1.7.2-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_vault_tde_17 pg_vault_tde_17-1.7.2-1PGSTY.el10.aarch64.rpm pigsty 1.7.2 420.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vault_tde_17-1.7.2-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~bookworm_amd64.deb pigsty 1.7.2 426.8KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~bookworm_arm64.deb pigsty 1.7.2 413.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~trixie_amd64.deb pigsty 1.7.2 427.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~trixie_arm64.deb pigsty 1.7.2 413.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~jammy_amd64.deb pigsty 1.7.2 491.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~jammy_arm64.deb pigsty 1.7.2 483.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~noble_amd64.deb pigsty 1.7.2 436.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~noble_arm64.deb pigsty 1.7.2 428.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~resolute_amd64.deb pigsty 1.7.2 433.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-vault-tde postgresql-17-pg-vault-tde_1.7.2-1PGSTY~resolute_arm64.deb pigsty 1.7.2 424.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vault-tde/postgresql-17-pg-vault-tde_1.7.2-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -155,84 +155,29 @@ CREATE EXTENSION pg_vault_tde;
 
 Sources:
 
-- [pg_vault_tde 1.7.0 README](https://api.pgxn.org/src/pg_vault_tde/pg_vault_tde-1.7.0/README.md)
-- [pg_vault_tde v1.7.0 release](https://github.com/labmiriade/pg_vault_tde/releases/tag/v1.7.0)
-- [pg_vault_tde 1.7 control file](https://api.pgxn.org/src/pg_vault_tde/pg_vault_tde-1.7.0/pg_vault_tde.control)
-- [pg_vault_tde operator documentation](https://api.pgxn.org/src/pg_vault_tde/pg_vault_tde-1.7.0/doc/pg_vault_tde.md)
+- [pg_vault_tde.control](https://github.com/labmiriade/pg_vault_tde/blob/2520a0d80fc3c4d905f57e47e2d871ed7e6b0e7d/pg_vault_tde.control)
+- [README.md](https://github.com/labmiriade/pg_vault_tde/blob/2520a0d80fc3c4d905f57e47e2d871ed7e6b0e7d/README.md)
+- [doc/pg_vault_tde.md](https://github.com/labmiriade/pg_vault_tde/blob/2520a0d80fc3c4d905f57e47e2d871ed7e6b0e7d/doc/pg_vault_tde.md)
 
-`pg_vault_tde` adds transparent tuple encryption for PostgreSQL 17 and 18 through the `encrypted_heap` table access method. It encrypts user-column data with AES-256-GCM before storage and manages per-relation data-encryption keys through HashiCorp Vault/OpenBao, a local PKCS#12 wallet, or—in v1.7—a PKCS#11 HSM. MVCC tuple headers remain plaintext.
+`pg_vault_tde` distribution 1.7.2 encrypts table values with AES-256-GCM through `encrypted_heap`, using Vault/OpenBao, a local PKCS#12 wallet or PKCS#11. SQL/control version remains 1.7. PostgreSQL 17–18, OpenSSL 3 and libcurl are required. Configure the key provider and authentication, preload the library, and restart before creating it as a superuser.
 
-### Configure and Install
+### Core Workflow
 
-```conf
+```ini
 shared_preload_libraries = 'pg_vault_tde'
-pg_vault_tde.kms_provider = 'vault'
-pg_vault_tde.vault_url = 'https://vault.example.com:8200'
-pg_vault_tde.vault_transit_mount = 'transit'
-pg_vault_tde.vault_key_name = 'pg-tde-dek'
-pg_vault_tde.vault_ca_cert = '/etc/ssl/vault/ca.pem'
 ```
-
-Configure Vault authentication through the documented token, AppRole, or Kubernetes settings without committing secrets to PostgreSQL configuration. Restart PostgreSQL, then create the extension:
 
 ```sql
 CREATE EXTENSION pg_vault_tde;
 SELECT * FROM pg_vault_tde_health_check();
+CREATE TABLE customer_secrets (id bigint, secret text) USING encrypted_heap;
+CREATE INDEX customer_secrets_id_idx ON customer_secrets USING tde_btree (id);
 ```
 
-`kms_provider` has no usable default and must be set explicitly. The extension requires OpenSSL 3 and libcurl in addition to PostgreSQL server files.
+### Operational Boundaries
 
-### Create an Encrypted Table
+This example assumes a configured provider. `pg_vault_tde_health_check`, `pg_vault_tde_verify_integrity`, `pg_vault_tde_get_rotation_status` and encrypted-size helpers expose operational state. `tde_btree` supports encrypted equality lookup, not ordering/range or index-only scans. Numeric and nondeterministic-collation encrypted indexes are unsupported; audit old unique/exclusion constraints because their checks may be ineffective. Plain indexes can expose keys, and pg_dump/COPY produce decrypted output. Protect external wallets/KMS and use the matching encrypted-backup tools where supported. Tuple headers, statistics, logs and query results are outside this protection.
 
-```sql
-CREATE TABLE customer_secrets (
-  id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
-  email text,
-  ssn text
-) USING encrypted_heap;
-```
+Before replacing an older library or restarting, follow the upstream recovery checklist: earlier rotated tables may depend on keys held only in memory; concurrent rotation may require copying data while still readable, and rotated out-of-line values need the specified rewrite. Version 1.7.0 TOAST upgrades also have a separate export requirement. Check rotated/partial indexes and wallet ownership. After upgrading to 1.7.2, every pre-existing encrypted table needs VACUUM FULL to migrate its tuple layout; reserve a maintenance window and extra disk space. When `pg_vault_tde.toast_custom_rmgr` is enabled, the WAL ID changes from 128 to 161: clean shutdown, coordinated primary/standby upgrade, slot drainage and a new base backup are required. There is no rolling upgrade across those WAL formats.
 
-Encryption is table-level: ordinary `heap` tables are unchanged. Tuple values, TOAST data, and WAL representations are encrypted; tuple headers required for MVCC remain visible.
-
-### Indexes
-
-Use `tde_btree` for equality lookup without storing plaintext keys:
-
-```sql
-CREATE UNIQUE INDEX customer_secrets_id_tde_idx
-ON customer_secrets USING tde_btree (id);
-
-CREATE INDEX customer_secrets_email_tde_idx
-ON customer_secrets USING tde_btree (email);
-```
-
-`tde_btree` uses deterministic AES-256-SIV and supports equality, not range ordering or index-only scans. Other access methods on an `encrypted_heap` table are rejected by default because they would write plaintext index keys. `PRIMARY KEY` and `UNIQUE` table constraints still create native btree indexes and produce a warning; decide whether that exposure is acceptable before defining them.
-
-### Integrity and Rotation
-
-```sql
-SELECT * FROM pg_vault_tde_verify_integrity('customer_secrets');
-SELECT * FROM pg_vault_tde_encrypted_size('customer_secrets');
-
-SELECT pg_vault_tde_rotate_online('customer_secrets', 1000);
-SELECT * FROM pg_vault_tde_get_rotation_status('customer_secrets');
-
-SELECT pg_vault_tde_rotate_kek();
-```
-
-Online DEK rotation re-encrypts a table in batches and rebuilds its `tde_btree` indexes. KEK rotation re-wraps per-table DEKs without rewriting tuples. Restrict these operations, monitor completion, and avoid concurrent key-catalog restoration.
-
-### Provider and Backup Boundaries
-
-- The local wallet defaults outside `PGDATA`; copy and protect it separately because plain `pg_basebackup` does not include it.
-- Version 1.7 adds the `pkcs11` provider and `pg_vault_tde_pkcs11_keygen()`. The standalone `pg_dump_tde` and `pg_restore_tde` tools do not support PKCS#11 in this release.
-- Plain `pg_dump` and `COPY ... TO` read decrypted rows and therefore produce plaintext without a warning. Use the supplied encrypted logical-backup tools where supported.
-- Physical backups contain encrypted relation bytes and wrapped DEKs, but not the KEK. Provision access to the Vault/HSM or copy the local wallet separately. The key-sealing functions and `pg_basebackup_tde` wrapper can accompany a physical backup with a tamper-evident DEK bundle.
-
-### Critical Caveats
-
-- Never toggle `pg_vault_tde.enabled` while an `encrypted_heap` table contains rows written under the other setting. The extension does not rewrite existing rows and mixed formats can be silently misread as corruption.
-- Ordinary indexes, statistics, logs, query results, client traffic, temporary work, and backups can expose plaintext outside the encrypted heap. TDE is one storage-layer control, not end-to-end encryption.
-- `tde_btree` disables range semantics, and encrypted tables disable HOT updates in the current design; benchmark update-heavy workloads and index maintenance.
-- Keep KMS credentials, wallet passphrases, HSM PINs, KEKs, sealed bundles, and restore procedures under separate access controls. A backup without the matching key path is unrecoverable.
-- Package release 1.7.0 installs SQL extension version `1.7`, is not relocatable, requires preloading and a restart, and supports PostgreSQL 17-18 only.
+Run key-management operations one at a time. Table rotation keeps reads available but blocks writes for one transaction; logical slots must decode the rotation before a restart or another rotation. Version 1.7.2 tightens caller privileges, but upstream documents remaining SECURITY DEFINER wrapper limitations; follow the listed grants/revokes. Do not toggle `pg_vault_tde.enabled` on a populated encrypted table. These catalog updates do not perform an operational upgrade or change the Pigsty package baseline.

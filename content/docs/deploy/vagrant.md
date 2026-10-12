@@ -7,36 +7,38 @@ module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-[**Vagrant**](https://www.vagrantup.com/) is a popular local virtualization tool that creates local virtual machines in a declarative manner.
+[Vagrant](https://www.vagrantup.com/) creates local virtual machines from declarative configuration.
+Pigsty requires Linux.
+You can use Vagrant to create local Linux virtual machines for testing.
 
-Pigsty requires a Linux environment to run. You can use Vagrant to easily create Linux virtual machines locally for testing.
+The recommended and validated versions are:
 
-The currently recommended and validated baselines are Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0. Major-version Vagrant aliases map to pinned box versions.
-
-
-----------------
+- Rocky Linux 9.8 / 10.2.
+- Debian 12.15 / 13.6.
+- Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+Major-version aliases select pinned box versions.
 
 ## Quick Start
 
 ### Install Dependencies
 
-First, ensure you have [**Vagrant**](https://www.vagrantup.com/) and a virtual machine provider (such as [**VirtualBox**](https://www.virtualbox.org/) or [**libvirt**](https://libvirt.org/)) installed on your system.
-
-On macOS, you can use [**Homebrew**](https://brew.sh/) for one-click installation:
+Install [Vagrant](https://www.vagrantup.com/) and a virtual machine provider, such as [VirtualBox](https://www.virtualbox.org/) or [libvirt](https://libvirt.org/).
+On macOS, you can install the dependencies with [Homebrew](https://brew.sh/):
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install vagrant virtualbox ansible
 ```
 
-> [!WARNING] VirtualBox requires reboot after installation
-> After installing VirtualBox, you need to restart your system and allow its kernel extensions in System Preferences.
+> [!WARNING] Restart after VirtualBox installation
+> After you install VirtualBox, restart the system.
+> Permit its kernel extensions in System Preferences.
 
-On Linux, you can use VirtualBox or [**vagrant-libvirt**](https://vagrant-libvirt.github.io/vagrant-libvirt/) as the VM provider.
+On Linux, use VirtualBox or [vagrant-libvirt](https://vagrant-libvirt.github.io/vagrant-libvirt/) as the virtual machine provider.
 
 ### Create Virtual Machines
 
-Use the Pigsty-provided `make` shortcuts to create virtual machines:
+Use the supplied `make` shortcuts to create virtual machines:
 
 ```bash
 cd ~/pigsty/vagrant
@@ -51,7 +53,7 @@ make trio       # 3 node environment
 make deci       # 10 node environment
 ```
 
-You can use variant aliases to specify different operating system images:
+To select a different operating system image, use a variant alias:
 
 ```bash
 make meta9      # Create single node with Rocky Linux 9.8
@@ -60,11 +62,16 @@ make simu24     # Create 20-node simubox with Ubuntu 24.04.4
 make full26     # Create 4-node sandbox with Ubuntu 26.04.0
 ```
 
-Available OS suffixes: `8` (EL8), `9` (EL9), `10` (EL10), `12` (Debian 12.15), `13` (Debian 13.6), `22` (Ubuntu 22.04.5), `24` (Ubuntu 24.04.4), `26` (Ubuntu 26.04.0)
+These operating system suffixes are available:
+
+- `8`: EL8; `9`: EL9; `10`: EL10.
+- `12`: Debian 12.15; `13`: Debian 13.6.
+- `22`: Ubuntu 22.04.5; `24`: Ubuntu 24.04.4; `26`: Ubuntu 26.04.0.
 
 ### Build Environment
 
-You can also use the following aliases to create Pigsty build environments. These templates won't replace the base image:
+Use these aliases to create Pigsty build environments.
+These templates retain the base image:
 
 ```bash
 make oss        # 7 node OSS build environment
@@ -74,12 +81,9 @@ make deb        # 5 node Debian12/13 Ubuntu22/24/26 build environment
 make all        # 7 node full build environment
 ```
 
-
-----------------
-
 ## Spec Templates
 
-Pigsty provides multiple predefined VM specs in the [`vagrant/spec/`](https://github.com/pgsty/pigsty/tree/main/vagrant/spec) directory:
+The [`vagrant/spec/` directory](https://github.com/pgsty/pigsty/tree/main/vagrant/spec) contains predefined virtual machine specifications:
 
 |                                  Template                                   |  Nodes   |      Spec       |          Description          |  Alias  |
 |:---------------------------------------------------------------------------:|:--------:|:---------------:|:-----------------------------:|:-------:|
@@ -97,10 +101,19 @@ Pigsty provides multiple predefined VM specs in the [`vagrant/spec/`](https://gi
 |   [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes  |    1c2g x 5     | 5-node Deb build environment  |         |
 |   [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes  |    1c2g x 7     | 7-node full build environment |         |
 
-Each spec file contains a `Specs` variable describing the VM nodes. For example, `full.rb` contains the 4-node sandbox definition:
+Each specification has a `Specs` variable that defines its nodes.
+For example, `full.rb` defines the 4-node sandbox shown below.
 
-Current Vagrant templates explicitly provision a **32 GB primary system disk** for every VM. Regular nodes also receive one data disk whose size comes from the spec's `disk` value, defaulting to 128 GB when omitted. Object-storage nodes whose names begin with `minio` instead receive four 32 GB data disks mounted at `/data1` through `/data4`.
-These disks depend on Vagrant's experimental disks feature. The repository Makefile exports `VAGRANT_EXPERIMENTAL=disks` automatically; set it yourself when invoking `vagrant` directly.
+The current templates give every virtual machine a **32 GB primary system disk**.
+Regular nodes also receive one data disk.
+Its size comes from the specification's `disk` value, with a default of 128 GB if omitted.
+
+Nodes with names that start with `minio` receive four 32 GB data disks instead.
+These disks mount at `/data1` through `/data4`.
+
+The disk configuration requires the experimental Vagrant disks feature.
+The repository Makefile automatically exports `VAGRANT_EXPERIMENTAL=disks`.
+If you run `vagrant` directly, set this environment variable yourself.
 
 ```ruby
 # full: pigsty full-featured 4-node sandbox for HA-testing & tutorial & practices
@@ -115,20 +128,17 @@ Specs = [
 
 ### simu Spec Details
 
-`simu.rb` provides a 20-node production environment simulation configuration:
+The `simu.rb` specification defines a 20-node production simulation:
 
-- 3 x infra nodes (`meta1-3`): 4c16g
-- 2 x haproxy nodes (`proxy1-2`): 1c2g
-- 4 x minio nodes (`minio1-4`): 1c2g
-- 5 x etcd nodes (`etcd1-5`): 1c2g
-- 6 x pgsql nodes (`pg-src-1-3`, `pg-dst-1-3`): 2c4g
-
-
-----------------
+- 3 infrastructure nodes (`meta1-3`): 4c16g each.
+- 2 HAProxy nodes (`proxy1-2`): 1c2g each.
+- 4 MINIO nodes (`minio1-4`): 1c2g each.
+- 5 ETCD nodes (`etcd1-5`): 1c2g each.
+- 6 PostgreSQL nodes (`pg-src-1-3`, `pg-dst-1-3`): 2c4g each.
 
 ## Config Script
 
-Use the [`vagrant/config`](https://github.com/pgsty/pigsty/blob/main/vagrant/config) script to generate the final `Vagrantfile` based on spec and options:
+Use [`vagrant/config`](https://github.com/pgsty/pigsty/blob/main/vagrant/config) to generate the `Vagrantfile` from a specification and options:
 
 ```bash
 cd ~/pigsty/vagrant
@@ -144,7 +154,7 @@ vagrant/config simu u26 1 libvirt  # Use 20-node spec with Ubuntu 26.04.0, libvi
 
 ### Image Aliases
 
-The config script supports various image aliases:
+The configuration script supports these image aliases:
 
 | Distro         | Alias                                     | Vagrant Box                |
 |----------------|-------------------------------------------|----------------------------|
@@ -162,17 +172,20 @@ The config script supports various image aliases:
 | RHEL 8 / 9     | `rhel8`, `rhel9`                          | `generic/rhel8`, `generic/rhel9` |
 | Oracle Linux 8 / 9 | `oracle8`, `oracle9`                  | `generic/oracle8`, `generic/oracle9` |
 
-The historical `d11`/`debian11`/`deb11` and `u20`/`ubuntu20`/`ubuntu2004` aliases remain visible in the script mapping, but the current script explicitly rejects them; they are not supported images.
+The mapping still contains the historical `d11`/`debian11`/`deb11` and `u20`/`ubuntu20`/`ubuntu2004` aliases.
+The current script explicitly rejects these aliases.
+They are not supported images.
 
 ### Resource Scaling
 
-You can use the `VM_SCALE` environment variable to adjust the resource multiplier (default is `1`):
+Set `VM_SCALE` to change the resource multiplier.
+The default value is `1`:
 
 ```bash
 VM_SCALE=2 vagrant/config meta     # Double the CPU/memory resources for meta spec
 ```
 
-For example, using `VM_SCALE=4` with the meta spec will adjust the default 2c4g to 8c16g:
+For example, `VM_SCALE=4` changes the meta specification from 2c4g to 8c16g:
 
 ```ruby
 Specs = [
@@ -180,15 +193,14 @@ Specs = [
 ]
 ```
 
-> [!NOTE] simu and deci specs don't support scaling
-> The `simu` and `deci` specs don't support resource scaling. The scale parameter is automatically reset to `1` because their resource configurations are already optimized for simulation scenarios.
-
-
-----------------
+> [!NOTE] The simu and deci specifications do not scale
+> The `simu` and `deci` specifications use fixed resources for their simulation environments.
+> The script automatically resets their scale parameter to `1`.
 
 ## VM Management
 
-The `vagrant/Makefile` provides shortcuts for managing virtual machines. Run the following commands from that directory:
+The `vagrant/Makefile` supplies shortcuts to manage virtual machines.
+Run these commands from the `vagrant/` directory:
 
 ```bash
 cd ~/pigsty/vagrant
@@ -207,27 +219,24 @@ make nuke      # Destroy all VMs and volumes with virsh (libvirt only)
 make info      # Show libvirt info (VMs, networks, storage volumes)
 ```
 
-
-----------------
-
 ## SSH Keys
 
-Pigsty Vagrant templates use your `~/.ssh/id_rsa[.pub]` as the SSH key for VMs by default.
-
-Before starting, ensure you have a valid SSH key pair. If not, generate one with:
+By default, the templates use `~/.ssh/id_rsa[.pub]` as the virtual machine SSH key pair.
+Before deployment, make sure that this key pair exists and is valid.
+If necessary, generate it:
 
 ```bash
 ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 ```
 
-
-----------------
-
 ## Supported Images
 
-The standard EL, Debian, Ubuntu, and AlmaLinux matrix uses `cloud-image/*` boxes from [**Vagrant Cloud**](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image). Explicit RHEL and Oracle Linux aliases use `generic/*` boxes. The current config script applies the same `cloud-image/*` mapping to VirtualBox, libvirt, `amd64`, and `arm64`; actual payload availability is still resolved by Vagrant Cloud at runtime.
+EL, Debian, Ubuntu, and AlmaLinux templates use `cloud-image/*` boxes from [Vagrant Cloud](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image).
+Explicit RHEL and Oracle Linux aliases use `generic/*` boxes.
 
-VirtualBox and libvirt use the same mapping. `vagrant/config` writes the validated versions below for every supported `cloud-image/*` image, making amd64 and arm64 environments reproducible:
+The script uses the same `cloud-image/*` mapping for VirtualBox and libvirt on `amd64` and `arm64`.
+Vagrant Cloud resolves actual payload availability at runtime.
+The `vagrant/config` script writes these validated versions for each supported image to make environments repeatable:
 
 | OS | Vagrant Box | Source Version Policy |
 |----|-------------|:---------------------:|
@@ -244,14 +253,16 @@ VirtualBox and libvirt use the same mapping. `vagrant/config` writes the validat
 | AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.2.20260526.0` |
 {.full-width}
 
-The retained but unsupported Debian 11 and Ubuntu 20.04 aliases are pinned to `20260618.2513.0` and `20250624.0.0`; experimental `generic/*` RHEL, Oracle Linux, and CentOS 7 images are pinned to their final `4.3.12` release. These legacy images are outside the current support matrix.
+The retained Debian 11 alias pins version `20260618.2513.0`.
+The retained Ubuntu 20.04 alias pins version `20250624.0.0`.
+Both aliases remain unsupported.
 
-
-----------------
+Experimental `generic/*` images for RHEL, Oracle Linux, and CentOS 7 pin the final `4.3.12` release.
+These legacy images are outside the current support matrix.
 
 ## Environment Variables
 
-You can use the following environment variables to control Vagrant behavior:
+Use these environment variables to control Vagrant:
 
 ```bash
 export VM_SPEC='meta'              # Spec name
@@ -261,20 +272,19 @@ export VM_PROVIDER='virtualbox'    # Virtualization provider
 export VAGRANT_EXPERIMENTAL=disks  # Enable disks for direct vagrant use; Makefile sets this automatically
 ```
 
-
-----------------
-
 ## Notes
 
-> [!WARNING] VirtualBox Network Configuration
-> When using older versions of VirtualBox as Vagrant provider, additional configuration is required to use `10.x.x.x` CIDR as Host-Only network:
+> [!WARNING] VirtualBox network configuration
+> Older VirtualBox versions require additional configuration to use `10.x.x.x` CIDRs for a Host-Only network:
 >
 > ```bash
 > echo "* 10.0.0.0/8" | sudo tee -a /etc/vbox/networks.conf
 > ```
 
-> [!NOTE] First-time image download is slow
-> The first time you use Vagrant to start a specific operating system, it will download the corresponding Box image file (typically 1-2 GB). After download, the image is cached and reused for subsequent VM creation.
+> [!NOTE] Initial image download
+> The first use of an operating system downloads its Box image, typically 1-2 GB.
+> Vagrant caches the image and reuses it for subsequent virtual machines.
 
-> [!NOTE] libvirt Provider
-> If you're using libvirt as the provider, you can use `make info` to view VMs, networks, and storage volume information, and `make nuke` to forcefully destroy all related resources.
+> [!NOTE] Libvirt provider
+> With libvirt, use `make info` to view virtual machines, networks, and storage volumes.
+> Use `make nuke` to forcibly destroy all related resources.

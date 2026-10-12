@@ -2,7 +2,7 @@
 title: "url_encode"
 linkTitle: "url_encode"
 description: "url_encode, url_decode functions"
-weight: 4190
+weight: 4200
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4190
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4190  | [**`url_encode`**](/ext/e/url_encode) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 4200  | [**`url_encode`**](/ext/e/url_encode) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`uri`](/ext/e/uri) [`pg_curl`](/ext/e/pg_curl) [`http`](/ext/e/http) [`pg_net`](/ext/e/pg_net) [`emailaddr`](/ext/e/emailaddr) [`pg_html5_email_address`](/ext/e/pg_html5_email_address) [`pg_smtp_client`](/ext/e/pg_smtp_client) |

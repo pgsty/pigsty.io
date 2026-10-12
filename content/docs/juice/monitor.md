@@ -8,7 +8,7 @@ categories: [Reference]
 ---
 
 JuiceFS instances expose Prometheus metrics via `juicefs mount --metrics`.
-In JUICE, metrics listen on `0.0.0.0:<port>`, default port `9567`.
+In JUICE, the metrics endpoint listens on `0.0.0.0:<port>`. The default port is `9567`.
 
 --------
 
@@ -28,7 +28,7 @@ If [`INFRA`](/docs/infra) is deployed, `juice_register` writes scrape targets to
 /infra/targets/juice/<hostname>.yml
 ```
 
-The current source includes the [Node JuiceFS](https://demo.pigsty.io/d/node-juice) dashboard (UID: `node-juice`) for capacity, cache, object-storage, metadata-transaction, and client-resource metrics across JuiceFS mounts on a node.
+The current source includes the [Node JuiceFS](https://demo.pigsty.io/d/node-juice) dashboard (UID: `node-juice`). It shows capacity, cache, object-storage, metadata-transaction, and client-resource metrics for JuiceFS mounts on a node.
 
 --------
 

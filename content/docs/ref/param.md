@@ -6,10 +6,9 @@ icon: fa-solid fa-sliders
 categories: [Reference]
 ---
 
-This is the parameter navigation page for Pigsty v4.x, without repeating full explanations for each parameter.
-For parameter details, please read each module's `param` page.
+Use this page to find Pigsty v4.x parameters. For full explanations, read each module's `param` page.
 
-Cross-checked against the current source and parameter reference pages, the 10 official modules expose **373** public parameters. Native MySQL 8.4 remains a pilot module; its 13 public parameters are listed separately and are not included in the official-module total.
+The current source and parameter reference pages confirm **373** public parameters across the 10 official modules. Native MySQL 8.4 remains a pilot module. Its 13 public parameters appear separately and are not part of the official-module total.
 
 --------
 
@@ -55,4 +54,4 @@ Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) curre
 
 - Read in this order for first deployment: [`NODE`](/docs/node/param), [`INFRA`](/docs/infra/param), [`PGSQL`](/docs/pgsql/param)
 - In production, always review: `*_safeguard`, password credentials, ports, and network exposure
-- Validate changes on one cluster first, then roll out globally in batches
+- Validate changes on one cluster first. Then apply them globally in batches.

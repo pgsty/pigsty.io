@@ -8,22 +8,22 @@ module: [PIGSTY]
 categories: [Concept]
 ---
 
-In Pigsty, deployment blueprint details are defined by the [**inventory**](/docs/setup/config/), which is the [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) configuration file. You can customize it through declarative configuration.
+The [**inventory**](/docs/setup/config/) defines the deployment through declarative configuration. Customize its [**`pigsty.yml`**](https://github.com/pgsty/pigsty/blob/main/pigsty.yml) file for your requirements.
 
-However, writing configuration files directly can be daunting for new users. To address this, we provide some ready-to-use configuration templates covering common usage scenarios.
+New users can start with ready-to-use templates for common deployment scenarios.
 
-Each template is a predefined `pigsty.yml` configuration file containing reasonable defaults suitable for specific scenarios.
+Each template is a predefined `pigsty.yml` file with defaults for a specific scenario.
 
-You can choose a template as your customization starting point, then modify it as needed to meet your specific requirements.
+Select a template, then change it to meet your requirements.
 
 
 ------
 
 ## Using Templates
 
-Pigsty provides the [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) script as an optional configuration wizard that generates an [**inventory**](/docs/setup/config/) with good defaults based on your environment and input.
+The optional [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) wizard generates an [**inventory**](/docs/setup/config/) from your environment and input, with suitable defaults.
 
-Use `./configure -c <conf>` to specify a configuration template, where `<conf>` is the path relative to the `conf` directory (the `.yml` suffix can be omitted).
+Use `./configure -c <conf>` to select a template. `<conf>` is relative to `conf`; the `.yml` suffix is optional.
 
 ```bash
 ./configure                     # Default to meta.yml configuration template
@@ -60,7 +60,7 @@ If no template is specified, Pigsty defaults to the `meta.yml` single-node confi
 
 ### Main Templates
 
-The following are single-node configuration templates for installing Pigsty on a single server:
+Use these templates to install Pigsty on one server:
 
 | Template                           | Description                                                             |
 |------------------------------------|-------------------------------------------------------------------------|
@@ -93,7 +93,7 @@ You can add more nodes later or use [HA templates](#ha-templates) to plan your c
 
 ### HA Templates
 
-You can configure Pigsty to run on multiple nodes, forming a high-availability (HA) cluster:
+Use these templates for a deployment with multiple nodes and high availability:
 
 | Template                           | Description                                              |
 |------------------------------------|----------------------------------------------------------|
@@ -110,7 +110,7 @@ You can configure Pigsty to run on multiple nodes, forming a high-availability (
 
 ### Application Templates
 
-You can use the following templates to run Docker applications/software:
+Use these templates to run applications with Docker:
 
 | Template                                       | Description                   |
 |------------------------------------------------|-------------------------------|
@@ -130,7 +130,7 @@ You can use the following templates to run Docker applications/software:
 
 ### Demo Templates
 
-Besides main templates, Pigsty provides a set of demo templates for different scenarios:
+Pigsty also provides these demonstration templates:
 
 | Template                               | Description                                                              |
 |----------------------------------------|--------------------------------------------------------------------------|
@@ -153,7 +153,7 @@ Besides main templates, Pigsty provides a set of demo templates for different sc
 
 ### Build Templates
 
-The following configuration templates are for development and testing purposes:
+Use these templates for development and testing:
 
 | Template          | Description                                                            |
 |-------------------|------------------------------------------------------------------------|

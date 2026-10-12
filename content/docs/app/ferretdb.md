@@ -6,7 +6,7 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs only the stateless protocol proxy; PostgreSQL, the `postgres` database, the DocumentDB extensions, and the backend PostgreSQL login role must already exist. The [`fork/mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
+[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs the stateless protocol proxy. PostgreSQL, the `postgres` database, DocumentDB extensions, and a backend PostgreSQL login role must already exist. The [`fork/mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
 
 ## Quick Start
 
@@ -19,7 +19,7 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./app.yml -l pg-meta
 ```
 
-After installing `mongosh` or another MongoDB-compatible client separately, connect with the dedicated login declared by the template:
+Install `mongosh` or another MongoDB-compatible client separately. Then connect with the dedicated login from the template:
 
 ```bash
 mongosh 'mongodb://mongod:DBUser.Mongo@127.0.0.1:27017/'
@@ -42,15 +42,15 @@ apps:
       FERRETDB_TELEMETRY: disabled
 ```
 
-Port `5436` is Pigsty's direct-to-current-primary PostgreSQL service. Linux `host-gateway` mapping lets the container connect through the local host while preserving Pigsty's primary routing. The MongoDB port listens on loopback by default; change `FERRETDB_BIND_ADDR` explicitly only when remote clients require access.
+Port `5436` is Pigsty's PostgreSQL service that connects directly to the current primary. Linux `host-gateway` mapping connects the container through the local host and retains this primary routing. The MongoDB port listens on loopback by default. Change `FERRETDB_BIND_ADDR` explicitly only when remote clients need access.
 
-FerretDB authenticates users through PostgreSQL, but it does not currently implement MongoDB authorization semantics, so MongoDB roles cannot provide access isolation. The template also does not enable MongoDB client TLS. Before exposing the service to an untrusted network, configure certificates and the `FERRETDB_LISTEN_TLS*` variables.
+FerretDB authenticates users through PostgreSQL. It does not currently implement MongoDB authorization, so MongoDB roles cannot isolate access. The template also does not enable MongoDB client TLS. Before exposing the service to an untrusted network, configure certificates and the `FERRETDB_LISTEN_TLS*` variables.
 
 FerretDB releases specify a preferred DocumentDB version, while Pigsty may ship a newer compatible package. After upgrading either component, rerun an authenticated CRUD smoke test.
 
 ## Optional Three-Node Topology
 
-The [`fork/mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container, and HAProxy exposes standard port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). After enabling the complete `pg-mongo` cluster and the additional etcd members, run:
+The [`fork/mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container. HAProxy exposes port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). Enable the complete `pg-mongo` cluster and the additional etcd members, then run:
 
 ```bash
 ./configure -c fork/mongo
@@ -60,7 +60,7 @@ The [`fork/mongo` template](/docs/conf/mongo/) includes a commented three-node P
 mongosh 'mongodb://mongod:DBUser.Mongo@10.10.10.4:27017/'
 ```
 
-HAProxy uses TCP health checks to exclude stopped or unreachable FerretDB processes; the image's built-in health check continues to verify the backend connection. Production deployments should also use a shared Silo or external S3-compatible pgBackRest repository so the same backup history remains available after a PostgreSQL primary failover.
+HAProxy uses TCP health checks to exclude stopped or unreachable FerretDB processes. The image's built-in health check verifies the backend connection. Production deployments should use a shared Silo or external S3-compatible pgBackRest repository. This keeps the same backup history available after a PostgreSQL primary failover.
 
 ## References
 

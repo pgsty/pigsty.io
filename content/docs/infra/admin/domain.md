@@ -41,7 +41,7 @@ Replace IP address with your actual Pigsty node's IP.
 
 **DNS Protocol**: Resolves domain names to IP addresses. Multiple domains can point to same IP.
 
-**HTTP Protocol**: Uses Host header to route requests to different sites on same port (80/443).
+**HTTP Protocol**: The Host header routes requests to different sites on the same port (80/443).
 
 
 ----------------
@@ -55,7 +55,7 @@ Pigsty predefines the following default domains:
 | `i.pigsty` | Nginx   | 80/443 | Default homepage, local repo, unified entry |
 | `m.pigsty` | Silo    | 9001   | Object storage console                      |
 
-Grafana, VictoriaMetrics, and Alertmanager are accessed by default through the `/ui/`, `/vmetrics/`, and `/alertmgr/` subpaths under `i.pigsty`. To use dedicated domains such as `g.pigsty`, `p.pigsty`, and `a.pigsty`, configure them explicitly in [`infra_portal`](/docs/infra/param#infra_portal) and [`dns_records`](/docs/infra/param#dns_records).
+By default, access Grafana, VictoriaMetrics, and Alertmanager under `i.pigsty`. Their paths are `/ui/`, `/vmetrics/`, and `/alertmgr/`, respectively. To use dedicated domains such as `g.pigsty`, `p.pigsty`, and `a.pigsty`, configure them explicitly in [`infra_portal`](/docs/infra/param#infra_portal) and [`dns_records`](/docs/infra/param#dns_records).
 
 
 ----------------

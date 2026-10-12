@@ -9,9 +9,9 @@ categories: [Reference]
 ---
 
 
-Covid is a sample Applet included with Pigsty for visualizing the World Health Organization's official pandemic data dashboard.
+Covid is a sample applet included with Pigsty. It visualizes the World Health Organization's official pandemic data.
 
-You can browse COVID-19 infection and death cases for each country and region, as well as global pandemic trends.
+Browse COVID-19 infections and deaths by country and region, and view global pandemic trends.
 
 
 
@@ -30,7 +30,7 @@ Online Demo: [https://demo.pigsty.io/d/covid](https://demo.pigsty.io/d/covid)
 
 ## Installation
 
-Enter the application directory on the admin node and execute `make` to complete the installation.
+On the administration node, enter the application directory. Run `make` to complete installation.
 
 ```bash
 make            # Complete all configuration

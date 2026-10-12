@@ -8,7 +8,7 @@ module: [PGSQL]
 categories: [Task]
 ---
 
-Pigsty uses crontab to manage scheduled tasks for routine backups, freezing aging transactions, and reorganizing bloated tables and indexes.
+Pigsty uses crontab to schedule routine backups, transaction freezing, and reorganization of bloated tables and indexes.
 
 
 ## Quick Reference
@@ -29,11 +29,13 @@ For other management tasks, see: [**Backup Management**](/docs/pgsql/backup/), [
 
 ## Configure Cron Jobs
 
-Use the [**`pg_crontab`**](/docs/pgsql/param/#pg_crontab) parameter to configure cron jobs for the PostgreSQL database superuser ([**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu), default `postgres`).
+Use [**`pg_crontab`**](/docs/pgsql/param/#pg_crontab) to configure cron jobs for the PostgreSQL database superuser.
+The [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) parameter selects this user; the default is `postgres`.
 
 **Example Configuration**
 
-The following `pg-meta` cluster configures a daily full backup at 1:00 AM, while `pg-test` configures weekly full backup on Monday with incremental backups on other days.
+The following `pg-meta` configuration schedules a full backup daily at 1:00 AM.
+The `pg-test` configuration schedules a full backup on Monday and incremental backups on other days.
 
 ```yaml
 pg-meta:
@@ -70,14 +72,17 @@ pg_crontab:
 {.full-width}
 
 > [!NOTE] Primary Only Execution
-> The `pg-backup`, `pg-vacuum`, and `pg-repack` scripts automatically detect the current node role. Only the primary will actually execute; replicas will exit directly. Therefore, you can safely configure the same cron jobs on all nodes, and after failover, the new primary will automatically continue executing maintenance tasks.
+> The `pg-backup`, `pg-vacuum`, and `pg-repack` scripts detect the current node role automatically.
+> They run only on the primary. Replicas exit immediately.
+> Thus, you can configure the same cron jobs on all nodes.
+> After failover, the new primary automatically continues the scheduled maintenance tasks.
 
 
 ----------------
 
 ## Apply Cron Jobs
 
-Cron jobs are automatically written to the default location for the corresponding OS distribution when the [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) playbook executes (the `pg_crontab` task):
+The `pg_crontab` task in [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) writes cron jobs to the default location for the operating system:
 
 - EL (RHEL/Rocky/Alma): `/var/spool/cron/postgres`
 - Debian/Ubuntu: `/var/spool/cron/crontabs/postgres`
@@ -115,14 +120,15 @@ MAILTO=""
 00 01 * * * /pg/bin/pg-backup
 ```
 
-If you're not familiar with crontab syntax, refer to [Crontab Guru](https://crontab.guru/) for explanations.
+For explanations of crontab syntax, see [Crontab Guru](https://crontab.guru/).
 
 
 ----------------
 
 ## pg-backup
 
-`pg-backup` is Pigsty's physical backup script based on [**pgBackRest**](https://pgbackrest.org/), supporting full, differential, and incremental backup modes.
+`pg-backup` is the Pigsty physical backup script.
+It uses [**pgBackRest**](https://pgbackrest.org/) and supports full, differential, and incremental backups.
 
 **Basic Usage**
 
@@ -174,7 +180,8 @@ For more backup and recovery operations, see the [**Backup Management**](/docs/p
 
 ## pg-vacuum
 
-`pg-vacuum` is Pigsty's transaction freeze script for executing `VACUUM FREEZE` operations to prevent database shutdown from transaction ID (XID) wraparound.
+`pg-vacuum` is the Pigsty transaction freeze script.
+It runs `VACUUM FREEZE` to prevent database shutdown caused by transaction ID (XID) wraparound.
 
 **Basic Usage**
 
@@ -210,10 +217,10 @@ VACUUM FREEZE schema.table_name;
 
 **Logic**
 
-1. Check database `datfrozenxid` age, skip database if below threshold
-2. Calculate aging page ratio (percentage of table pages exceeding age threshold of total pages)
-3. If aging ratio > 40%, execute full database `VACUUM FREEZE ANALYZE`
-4. Otherwise, only execute `VACUUM FREEZE ANALYZE` on tables exceeding age threshold
+1. Check the database `datfrozenxid` age. Skip the database if its age is below the threshold.
+2. Calculate the aging page ratio: table pages above the age threshold as a percentage of all pages.
+3. If the aging ratio exceeds 40%, run `VACUUM FREEZE ANALYZE` on the full database.
+4. Otherwise, run `VACUUM FREEZE ANALYZE` only on tables above the age threshold.
 
 Script sets `vacuum_cost_limit = 10000` and `vacuum_cost_delay = 1ms` to control I/O impact.
 
@@ -235,7 +242,8 @@ pg_crontab:
 
 ## pg-repack
 
-`pg-repack` is Pigsty's bloat maintenance script based on the [**pg_repack**](https://reorg.github.io/pg_repack/) extension for online reorganization of bloated tables and indexes.
+`pg-repack` is the Pigsty bloat maintenance script.
+It uses the [**pg_repack**](https://reorg.github.io/pg_repack/) extension to reorganize bloated tables and indexes online.
 
 **Basic Usage**
 
@@ -296,7 +304,8 @@ Script auto-selects objects to reorganize based on table/index size and bloat ra
 | 8GB - 64GB  |      > 20%      |     1     |
 {.full-width}
 
-Tables/indexes over 64GB are skipped with a warning and require manual handling.
+The script skips tables and indexes larger than 64GB and shows a warning.
+Handle these objects manually.
 
 **Execution Requirements**
 
@@ -307,7 +316,9 @@ Tables/indexes over 64GB are skipped with a warning and require manual handling.
 - Auto-skips `template0`, `template1`, `postgres` system databases
 
 > [!NOTE] Lock Waiting
-> Normal reads/writes are not affected during reorganization, but the **final switch moment** requires acquiring AccessExclusive lock on the table, blocking all access. For high-throughput workloads, recommend running during off-peak hours or maintenance windows.
+> Normal reads and writes continue during reorganization.
+> However, the **final switch** requires an AccessExclusive lock on the table, which blocks all access.
+> For high-throughput workloads, run the script during off-peak hours or maintenance windows.
 
 **Common Cron Configuration**
 
@@ -316,7 +327,8 @@ pg_crontab:
   - '00 04 * * 1 /pg/bin/pg-repack'     # Weekly Monday at 4:00 AM
 ```
 
-You can confirm database bloat through Pigsty's [**PGCAT Database - Table Bloat**](https://demo.pigsty.io/ui/d/pgcat-database) panel and select high-bloat tables and indexes for reorganization.
+Use the [**PGCAT Database - Table Bloat**](https://demo.pigsty.io/ui/d/pgcat-database) panel to check database bloat.
+Then select tables and indexes with high bloat for reorganization.
 
 For more details see: [**Managing Relation Bloat**](https://vonng.com/pg/bloat/)
 
@@ -325,7 +337,7 @@ For more details see: [**Managing Relation Bloat**](https://vonng.com/pg/bloat/)
 
 ## Remove Cron Jobs
 
-When using the [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) playbook to remove a PostgreSQL cluster, it automatically deletes the postgres user's crontab file.
+When [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) removes a PostgreSQL cluster, it automatically deletes the postgres user crontab file.
 
 ```bash
 ./pgsql-rm.yml -l <cls> -t pg_crontab    # Remove cron jobs only

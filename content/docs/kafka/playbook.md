@@ -9,11 +9,11 @@ aliases: [/docs/pilot/kafka/playbook]
 ---
 
 
-The KAFKA module ships two playbooks: [`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) deploys an Apache Kafka 4.1+ dynamic KRaft cluster and converges its security,
-resource, and monitoring state; [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) tears down a cluster or removes a member.
+[`kafka.yml`](https://github.com/pgsty/pigsty/blob/main/kafka.yml) deploys Apache Kafka 4.1+ dynamic KRaft and applies security, resources, and monitoring. [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) removes members or tears down clusters.
 
 > [!WARNING] Cluster Completeness Constraint
-> Every selected `kafka_cluster` must include all of its members: a partial selection fails before anything is written, while one cluster, several complete clusters, or a bare run over the whole inventory are all allowed. Run `--check` first against the exact same target; before the real run, still verify the backup/rebuild intent, capacity, business window, rollback plan, and change approval by hand.
+> Each selected `kafka_cluster` must include every member. Partial selection fails before writes. One cluster, several complete clusters, and a bare whole-inventory run are permitted.
+> First run `--check` against the identical target. Before execution, manually verify backup or rebuild intent, capacity, business window, rollback, and change approval.
 
 
 --------
@@ -26,16 +26,16 @@ resource, and monitoring state; [`kafka-rm.yml`](https://github.com/pgsty/pigsty
 ./kafka.yml                      # bare run: create / converge ALL kafka clusters
 ```
 
-The limit rule is: **every selected cluster must be complete**. You may select one cluster, several clusters, or run bare against the whole inventory (strictly serial within a cluster, concurrent across clusters); a partial selection of a cluster's members is refused outright.
+**Every selected cluster must be complete.** Select one cluster, several clusters, or the whole inventory without a limit. Execution is serial within each cluster and concurrent across clusters. Partial cluster selection is rejected.
 
-Check mode validates the public API, the full cluster, roles, racks, ports, the manifest, and any inspectable file changes, but it skips formatting, service startup, and live health acceptance. A successful `--check` is therefore not a guarantee of a successful runtime.
+Check mode validates the API, cluster completeness, roles, racks, ports, manifest, and inspectable file changes. It skips formatting, startup, and live acceptance checks. Passing `--check` does not guarantee runtime success.
 
 
 --------
 
 ## Execution Stages
 
-`kafka.yml` is itself a thin wrapper: a single play runs the `node_id` and `kafka` roles in sequence, mirroring the structure of `pgsql.yml`. Inside the role, the lifecycle is split into six task stages; all cross-node ordering (parallel bootstrap, one-controller-at-a-time join, one-broker-at-a-time admission, strict node-by-node rolling) is handled centrally by the launch stage:
+A single `kafka.yml` play runs `node_id`, then `kafka`, like `pgsql.yml`. The role has six stages. Launch controls cross-node ordering: parallel bootstrap, serial controller join, serial broker admission, and strict rolling restarts.
 
 | Stage    | Tag               | Purpose                                                                                       |
 |:---------|:------------------|:----------------------------------------------------------------------------------------------|
@@ -47,49 +47,49 @@ Check mode validates the public API, the full cluster, roles, racks, ports, the 
 | Monitor  | `kafka_monitor`   | Configure the protocol exporter and register VictoriaMetrics targets                          |
 {.full-width}
 
-The play uses `any_errors_fatal: true`. When a stage fails, dangerous forward progress stops; once you fix the cause, you can re-run against the full cluster, and the role recovers from live state and the persistent fingerprint instead of blindly reformatting.
+`any_errors_fatal: true` stops further dangerous work after a stage failure. Fix the cause, then rerun on the full cluster. The role uses live state and persistent fingerprints to resume without blindly reformatting.
 
 
 --------
 
 ## Lifecycle Paths
 
-The config stage uses the role's own admin channel to judge cluster health and select exactly one downstream path:
+Configuration uses the role's administration channel to assess health and select one execution path:
 
 ### Cold Start, First Deployment, or Repair
 
-When the cluster is stopped or the health predicate does not hold, it enters converge:
+Stopped or unhealthy clusters enter convergence:
 
-1. Start all controller-capable nodes;
-2. Wait for the controller listener and a dynamic quorum leader;
-3. On the first bootstrap, verify that the initial controller directory IDs have entered the live quorum;
-4. Start the pure brokers;
-5. Wait for the broker listener and require the full cluster to be healthy;
-6. Persist the static fingerprint only after the config has been proven to run successfully.
+1. Start controller-capable nodes.
+2. Wait for the controller listener and a quorum leader.
+3. At first bootstrap, verify that initial controller Directory IDs entered live quorum.
+4. Start pure brokers.
+5. Wait for broker listeners and full cluster health.
+6. Save the static fingerprint only after proving that the configuration runs successfully.
 
-JMX plays no part in the lifecycle gates: the decisions for startup, admission, and rolling are made entirely on the role's own Kafka CLI/metadata admin channel.
+Startup, admission, and rolling decisions use only the role's Kafka CLI/metadata administration channel. JMX does not participate.
 
 
 ### Adding Brokers or Controllers to a Healthy Cluster
 
-Newly formatted `kafka_role: broker` nodes are admitted one at a time (`admit`): after starting, each must be registered and not fenced before the next one proceeds.
+Newly formatted `kafka_role: broker` nodes enter through `admit`, one at a time. Each must start, register, and become unfenced before the next proceeds.
 
-New combined/controller nodes join the dynamic quorum one at a time instead (`join`): on a commissioned cluster the node is formatted fresh with `--no-initial-controllers`, starts as an observer and catches up on metadata, then the role promotes it with `add-controller` and verifies through the health post-check that it entered the voter set with the cluster fully healthy. The join flow is re-entrant: an interrupted run continues from live state on the next rerun, and if the node's `node.id` still has a stale voter entry from a dead predecessor, the config phase fails fast with the exact `kafka-rm.yml` retirement command.
+New combined/controller nodes use serial `join`. A commissioned cluster formats each with `--no-initial-controllers`, starts it as an observer, and waits for metadata catch-up. The role then promotes it with `add-controller` and verifies voter membership and full health. Interrupted runs resume from live state. If `node.id` retains a dead predecessor's voter entry, configuration fails with the exact `kafka-rm.yml` retirement command.
 
-Admission/join only proves membership; existing partitions are not migrated onto the new broker automatically, so you must run an explicit reassignment separately.
+Admission and join prove membership only. They do not move existing partitions to new brokers. Run explicit reassignment separately.
 
 
 ### Static Changes on a Healthy Cluster
 
 When the rendered static fingerprint changes, the strict rolling restart handles one node at a time:
 
-- Before restarting, it checks the controller majority, that all voters have zero lag and recently completed catch-up, offline partitions, under-replicated, under-min-ISR, and the effective ISR of each partition once the target is excluded;
-- After restarting, it requires the target controller to be back as a voter and re-caught-up, the target broker to be registered and not fenced, and its replicas to re-enter the ISR;
-- Any failed gate immediately stops the remaining nodes.
+- Before restart, check controller majority, zero voter lag, recent catch-up, offline partitions, under-replication, and under-min-ISR. Also check effective partition ISR with the target excluded.
+- After restart, require controller voter membership and catch-up, broker registration and unfenced state, and replica reentry into ISR.
+- Any failed check immediately stops work on remaining nodes.
 
-If a fault to repair and a static change coexist, converge only starts the stopped members and does not restart the still-online members in parallel; once the quorum recovers and catches up, the static changes that have not yet been loaded proceed into the strict rolling restart.
+When repairs and static changes coincide, convergence starts only stopped members. It does not restart online members in parallel. After quorum recovery and catch-up, strict rolling restarts apply remaining static changes.
 
-If the static fingerprint is unchanged, Kafka is not restarted. Dynamic resource changes still take effect online during the resource-convergence stage.
+An unchanged static fingerprint causes no restart. Dynamic resources still update online during resource convergence.
 
 
 --------
@@ -109,23 +109,23 @@ If the static fingerprint is unchanged, Kafka is not restarted. Dynamic resource
 | `kafka_register` / `register` / `add_metrics` | Refresh only the VictoriaMetrics file-discovery targets               |
 {.full-width}
 
-An ordinary configuration change should run the full `kafka.yml` and let the role choose its own lifecycle path. Stage tags are meant primarily for development, diagnostics, and controlled repair; you cannot bypass the full state machine with `-t kafka_config` or by limiting to a single node.
+Run full `kafka.yml` for ordinary configuration changes. Let the role select the lifecycle path. Tags mainly support development, diagnostics, and controlled repair. Do not bypass the state machine with `-t kafka_config` or single-node limits.
 
 
 --------
 
 ## Identity, Formatting, and Manifest
 
-Before writing any config, the role validates that:
+Before writing configuration, the role verifies:
 
-- Every selected cluster contains all of its members;
-- `kafka_seq` is unique, and the roles are either all omitted or all explicit;
-- There is at least one controller and one broker;
-- Racks are either all present or all absent across the broker-capable nodes;
-- Ports are valid and non-conflicting, and the role-owned keys are not overridden by `kafka_parameters`;
-- The manifest, security profile, `meta.properties`, and the live cluster identity are consistent.
+- Every selected cluster includes all members.
+- `kafka_seq` is unique; roles are all omitted or all explicit.
+- At least one controller and one broker exist.
+- All broker-capable nodes have racks, or none do.
+- Ports are valid and distinct; `kafka_parameters` does not override role-managed keys.
+- The manifest, security profile, `meta.properties`, and live identity agree.
 
-A new cluster randomly generates the cluster ID and the initial controller directory IDs and formats each node in explicit dynamic-quorum mode. When `${kafka_data}/metadata/meta.properties` already exists, it validates the cluster ID and node ID locally; initial controller directory IDs are compared against the live quorum only on the first bootstrap — after commissioning, membership is authoritative in the live Raft state. The role never reformats existing storage automatically.
+New clusters generate random Cluster and initial controller Directory IDs, then format nodes explicitly for dynamic quorum. Existing `${kafka_data}/metadata/meta.properties` triggers local Cluster/Node ID validation. Only first bootstrap compares initial controller Directory IDs with live quorum. After commissioning, live Raft state controls membership. The role never reformats existing storage automatically.
 
 The authoritative bootstrap manifest lives on every cluster member:
 
@@ -133,12 +133,12 @@ The authoritative bootstrap manifest lives on every cluster member:
 /etc/kafka/manifest.yml
 ```
 
-Each member of a `scram` cluster additionally has `/etc/kafka/secrets.yml`; the admin node keeps no kafka state and resolves both from any member copy on every run. The live cluster is the authoritative runtime fact, but an ordinary playbook will not silently rewrite either side on conflict:
+`scram` members also store `/etc/kafka/secrets.yml`. The administration node keeps no Kafka state and retrieves both files from member copies each run. Live state controls runtime facts. On conflict, ordinary playbooks do not silently overwrite either side:
 
-- When no member has a manifest copy but the storage is already formatted, it fails closed and asks you to restore the file on any member first;
-- When a manifest exists but all data disks are empty, it fails closed;
-- When the cluster ID, security profile, or controller identity conflicts, it fails closed;
-- A new node whose `node.id` still has a stale predecessor voter entry in the quorum fails fast and asks you to retire it with `kafka-rm.yml` first.
+- Formatted storage without a member manifest copy blocks execution. Restore the file on any member first.
+- A manifest with all data disks empty blocks execution.
+- Conflicting Cluster ID, security profile, or controller identity blocks execution.
+- A new node with a stale predecessor voter entry for its `node.id` must first be retired with `kafka-rm.yml`.
 
 Do not delete `meta.properties`, the manifest, or the secrets to bypass these protections.
 
@@ -147,41 +147,41 @@ Do not delete `meta.properties`, the manifest, or the secrets to bypass these pr
 
 ## Static Fingerprint and Recoverable Re-runs
 
-The role computes an expected fingerprint over the static files that affect the Kafka process, and writes `/etc/kafka/.pigsty-applied-static.sha256` only after one of the following holds:
+The role fingerprints static files that affect Kafka. It writes `/etc/kafka/.pigsty-applied-static.sha256` only after one of these conditions:
 
-- Converge has successfully started and passed the global health check;
-- The strict rolling restart has restarted this node, let it catch up, and passed the post-restart gates.
+- Convergence starts the cluster successfully and passes global health checks.
+- Strict rolling restarts the node, completes catch-up, and passes post-restart checks.
 
-If the run is interrupted, changes that have not been proven to take effect are not recorded as "applied." The next full re-run can still recognize the pending static restart.
+Interrupted runs do not mark unverified changes as applied. The next full run still detects the pending static restart.
 
 
 --------
 
 ## Resource Convergence and Monitoring Registration
 
-Once the cluster is fully healthy, the resource-convergence and monitoring stages run in order:
+After full cluster health, resource and monitoring stages run in order:
 
-1. Converge the role-owned dynamic cluster min-ISR;
-2. Idempotently process the credentials, ACLs, and declared quotas of `kafka_users`;
-3. Idempotently process the creation, partition growth, and explicit config of `kafka_topics`;
-4. Check internal-topic RF drift, but do not reassign automatically;
-5. Configure and start the protocol exporter on the first two broker-capable nodes, ordered by `kafka_seq`;
-6. Refresh the file-discovery targets on all infra nodes.
+1. Apply role-managed dynamic cluster min-ISR.
+2. Idempotently apply `kafka_users` credentials, ACLs, and declared quotas.
+3. Idempotently create `kafka_topics`, increase partitions, and apply declared settings.
+4. Check internal-topic RF drift without automatic reassignment.
+5. Start protocol exporters on the first two broker-capable nodes by `kafka_seq`.
+6. Refresh discovery targets on all INFRA nodes.
 
-Each instance maps to one target file, and both the JMX target and the (selected nodes') protocol-exporter target live under the same `kafka` scrape job:
+Each instance has one target file. It contains JMX and any selected protocol target under the `kafka` scrape job:
 
 ```text
 /infra/targets/kafka/<kafka_instance>.yml
 ```
 
-The target files are refreshed on every full run to match the current exporter placement; target deletion is handled by the deregistration step of `kafka-rm.yml`.
+Full runs refresh targets for current exporter placement. `kafka-rm.yml` deregistration deletes targets.
 
 
 --------
 
 ## Protected Rotation
 
-The rotation variables are one-shot extra-vars and should not be written into `pigsty.yml`. The two actions are mutually exclusive and only one may run at a time; the prerequisites are that all members are formatted, the cluster is healthy, the security profile is `scram`, the role-owned secret material exists, and `kafka_rotate_confirm` matches the cluster name exactly.
+Rotation variables are one-time extra-vars; do not put them in `pigsty.yml`. Run only one of the mutually exclusive actions. Every member must be formatted. The cluster must be healthy, use `scram`, and retain role-managed secrets. `kafka_rotate_confirm` must exactly match the cluster name.
 
 ### Internal Credential Rotation
 
@@ -195,7 +195,7 @@ The rotation variables are one-shot extra-vars and should not be written into `p
   -e kafka_rotate_confirm=kf-main
 ```
 
-The role uses active/standby internal identities: it first updates the inactive credential through the live admin channel, then atomically switches the local protected record, and enters the normal strict rolling restart. The old active identity is kept as the next round's standby, so a re-run after an interruption is recoverable.
+The role maintains active and standby internal identities. It updates the inactive credential through the live administration channel, then atomically switches the protected local record. A strict rolling restart follows. The old active identity becomes standby for the next rotation. Reruns can therefore recover after interruption.
 
 
 ### Certificate Rotation
@@ -210,18 +210,23 @@ The role uses active/standby internal identities: it first updates the inactive 
   -e kafka_rotate_confirm=kf-main
 ```
 
-The role discards the node certificates already issued in the shared PKI tree, re-issues a private key and certificate for each node from the same Pigsty CA, updates the PEM certificate bundle on the nodes, and enters the strict rolling restart. Because the old and new certificates are issued by the same CA and trust each other, no staged trust swap is needed; if the health precheck fails, the rotation does not begin and the existing certificates on the nodes are left unchanged.
+The role removes issued node certificates from shared PKI. The same Pigsty CA issues new node keys and certificates. It updates node PEM bundles, then performs strict rolling restarts. Old and new certificates share trust, so staged CA changes are unnecessary. If the health precheck fails, rotation never starts and deployed certificates stay unchanged.
 
 
 --------
 
 ## `kafka-rm.yml`
 
-Removal is not in `kafka.yml`; it uses the separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml) playbook. It **requires a non-empty `-l/--limit`** and fails before entering any role when run without one. Selecting **all members** of a cluster with `-l` is a teardown, selecting a **strict subset** is member retirement; both share the same execution order:
+Removal uses separate [`kafka-rm.yml`](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml), never `kafka.yml`. It **requires non-empty `-l/--limit`** and fails before roles if omitted. Selecting **all members** with `-l` tears down a cluster. A **strict subset** retires members. Both follow this order:
 
-Deregister the VictoriaMetrics targets (`kafka_deregister`) → stop and disable the `kafka`/`kafka_exporter` services (`kafka`) → remove the KRaft voter entry and broker registration through a surviving member (`kafka_retire`, which only has a surviving member to work through when a strict subset is selected) → delete exporter config, Systemd environment/units, and helper scripts (`kafka_config`) → delete the data directories and node-local `/etc/kafka` recovery state (`kafka_data`, controlled by `kafka_rm_data`) → optionally uninstall the packages (`kafka_pkg`, controlled by `kafka_rm_pkg`).
+1. Deregister VictoriaMetrics targets (`kafka_deregister`).
+2. Stop and disable `kafka` and `kafka_exporter` (`kafka`).
+3. Remove voter entries and broker registrations through survivors (`kafka_retire`). Survivors exist only for strict-subset selection.
+4. Delete exporter configuration, Systemd environments/units, and helpers (`kafka_config`).
+5. Delete data and node-local `/etc/kafka` recovery state (`kafka_data`), controlled by `kafka_rm_data`.
+6. Optionally uninstall packages (`kafka_pkg`), controlled by `kafka_rm_pkg`.
 
-Before deregistration or service stop, the role also checks that `kafka_data` is a dedicated safe absolute path: it must contain no `.`/`..` path segment and cannot be `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, or `/pg`. The safeguard switch is `kafka_safeguard`: when set to `true` (on the command line or in the inventory), the playbook aborts immediately and deletes nothing. An identity conflict, an exporter anomaly, or an ordinary startup failure is not a reason to delete data — converge with [`kafka.yml`](#kafkayml) first and read the failure reason.
+Before deregistration or shutdown, the role validates a dedicated absolute `kafka_data` path. It must contain no `.`/`..` segments. Forbidden roots are `/`, `/data`, `/var`, `/etc`, `/opt`, `/usr`, `/home`, `/root`, and `/pg`. `kafka_safeguard` set to `true` in inventory or the command line immediately stops removal without deletion. Identity conflicts, exporter errors, and ordinary startup failures do not justify data deletion. First run [`kafka.yml`](#kafkayml) and read the failure reason.
 
 
 ### Cluster Teardown
@@ -233,7 +238,8 @@ Before deregistration or service stop, the role also checks that `kafka_data` is
 ```
 
 > [!CAUTION] Permanent Deletion
-> `kafka_rm_data` defaults to `true`: a single default-parameter run of `kafka-rm.yml` deletes the selected nodes' data/KRaft metadata and `/etc/kafka` recovery state. The playbook has no extra gate such as a confirmation string, so before running it you must verify the `-l` target, the backup or an explicit rebuild intent, and the impact on producers/consumers by hand.
+> `kafka_rm_data` defaults to `true`. One default `kafka-rm.yml` run deletes selected nodes' data, KRaft metadata, and `/etc/kafka` recovery state.
+> There is no additional confirmation string. Before execution, manually verify the `-l` target, backups or explicit rebuild intent, and producer/consumer impact.
 
 
 ### Member Retirement
@@ -242,13 +248,15 @@ Before deregistration or service stop, the role also checks that `kafka_data` is
 ./kafka-rm.yml -l 10.10.10.13                      # Retire one member: drop its voter entry and broker registration, then clean the node
 ```
 
-Partial retirement requires at least one broker-capable (`combined`/`broker`) survivor and one controller-capable (`combined`/`controller`) survivor outside `-l`; one combined node can satisfy both roles. If either anchor is missing, the playbook fails before deregistration or service stop. It then uses those survivors to remove each target's KRaft voter entry (`remove-controller`, strictly serialized for several members) and broker registration (`unregister`) before local cleanup. Metadata actions are delegated to survivors, so this also works for nodes that are already dead and unreachable—step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node). Broker unregistration is deliberately re-entrant and tolerates failure; after a real run, inspect the live quorum, broker registrations, and replica health instead of treating the playbook status alone as proof of retirement.
+Partial retirement needs a broker-capable (`combined`/`broker`) survivor and a controller-capable (`combined`/`controller`) survivor outside `-l`. One combined node can satisfy both. Missing either stops execution before deregistration or shutdown. Survivors run `remove-controller`, strictly serializing multiple targets, then broker `unregister`, before local cleanup. Delegation also handles dead, unreachable targets: step one of [Replace Failed Node](/docs/kafka/admin#replace-failed-node).
 
-Automated retirement does not remove the need for planning: after the shrink, the remaining controllers should stay odd-numbered and keep a live majority, and the remaining broker count must not fall below the highest topic RF; when the retiring broker still hosts partition replicas, the playbook prints a warning — a planned shrink should drain with a reassignment first.
+Broker unregistration tolerates failure for repeatable execution. After a real run, verify live quorum, broker registrations, and replica health. Playbook success alone does not prove retirement.
+
+Plan retirement even with automation. Remaining controllers should have an odd count and live majority. Remaining brokers must support the highest topic RF. The playbook warns if departing brokers still hold replicas. For planned shrink, drain them through reassignment first.
 
 
 --------
 
 ## Playbook Boundaries
 
-Neither playbook performs partition reassignment and data balancing, topic/user deletion, online `plaintext` → `scram` migration, version upgrades and feature-level finalization, or data backup and disaster recovery, and neither deploys ecosystem components such as Connect, Schema Registry, MirrorMaker, or Cruise Control. For the full list see [Module Boundaries](/docs/kafka#current-boundaries); for day-to-day read-only checks and resource management, see [Administration](/docs/kafka/admin).
+Neither playbook reassigns partitions, balances data, deletes topics/users, or migrates online from `plaintext` to `scram`. They do not upgrade versions, finalize features, back up data, or perform disaster recovery. They do not deploy Connect, Schema Registry, MirrorMaker, or Cruise Control. See [Module Boundaries](/docs/kafka#current-boundaries) and [Administration](/docs/kafka/admin).

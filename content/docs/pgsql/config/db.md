@@ -10,20 +10,24 @@ categories: [Reference]
 
 > In this document, "database" refers to a logical object within a database cluster created with `CREATE DATABASE`.
 
-A PostgreSQL cluster can serve multiple **databases** simultaneously. In Pigsty, you can [**define**](#define-database) required databases in cluster configuration.
+A PostgreSQL cluster can serve multiple **databases** at the same time.
+[**Define**](#define-database) the required databases in the Pigsty cluster configuration.
 
-Pigsty customizes the `template1` template database - creating default schemas, installing default extensions, configuring default privileges. Newly created databases inherit these settings from `template1`.
-You can also specify other template databases via [**`template`**](#template) for instant [**database cloning**](/docs/pgsql/admin/db#clone-database).
+Pigsty customizes the `template1` database with default schemas, extensions, and privileges.
+New databases inherit these settings from `template1`.
+Use [**`template`**](#template) to select another template for instant [**database cloning**](/docs/pgsql/admin/db#clone-database).
 
-By default, all business databases are 1:1 added to [**Pgbouncer**](/docs/concept/arch/pgsql#pgbouncer) [**connection pool**](#connection-pool); [**`pg_exporter`**](/docs/concept/arch/pgsql#pg_exporter) auto-discovers all business databases for in-database object monitoring.
-All databases are also registered as PostgreSQL datasources in [**Grafana**](/docs/concept/arch/infra#grafana) on all [**INFRA nodes**](/docs/concept/arch/node#infra-node) for PGCAT dashboards.
+By default, Pigsty adds each application database to the [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) [**connection pool**](#connection-pool) with a 1:1 mapping.
+[**`pg_exporter`**](/docs/concept/arch/pgsql#pg_exporter) discovers application databases automatically to monitor their objects.
+Pigsty also registers all databases as PostgreSQL data sources in [**Grafana**](/docs/concept/arch/infra#grafana) on every [**INFRA node**](/docs/concept/arch/node#infra-node) for PGCAT dashboards.
 
 ----------------
 
 ## Define Database
 
-Business databases are defined in cluster param [**`pg_databases`**](/docs/pgsql/param#pg_databases), an array of database definition objects.
-During cluster initialization, databases are created **in definition order**, so later databases can use earlier ones as **templates**.
+Define application databases in [**`pg_databases`**](/docs/pgsql/param#pg_databases), an array of database definition objects.
+During cluster initialization, Pigsty creates databases **in definition order**.
+A later database can therefore use an earlier database as a **template**.
 
 Example from Pigsty demo `pg-meta` cluster:
 
@@ -42,7 +46,8 @@ pg-meta:
       - { name: noco     ,owner: dbuser_noco     ,revokeconn: true ,comment: nocodb database }
 ```
 
-Each database definition is a complex object with fields below. Only `name` is required:
+Each database definition has the fields below.
+Only `name` is required:
 
 ```yaml
 - name: meta                      # REQUIRED, `name` is the only mandatory field
@@ -82,7 +87,8 @@ Each database definition is a complex object with fields below. Only `name` is r
   pool_connlimit: 100             # Optional, database-level max database connections
 ```
 
-> Since Pigsty `v4.1.0`, database pool fields are unified as `pool_reserve` and `pool_connlimit`; legacy aliases `pool_size_reserve` / `pool_max_db_conn` are converged.
+> From Pigsty `v4.1.0`, use `pool_reserve` and `pool_connlimit` for database pools.
+> These unify the legacy aliases `pool_size_reserve` / `pool_max_db_conn`.
 
 
 
@@ -91,8 +97,11 @@ Each database definition is a complex object with fields below. Only `name` is r
 
 ## Parameter Overview
 
-The only **required** field is `name` - a valid, unique database name within the cluster. All other params have sensible defaults.
-Parameters marked "**Immutable**" only take effect at creation; changing them requires database recreation.
+Only `name` is **required**.
+It must be a valid database name that is unique within the cluster.
+All other parameters have defaults.
+**Immutable** parameters take effect only at creation.
+To change them, recreate the database.
 
 | Field                                               | Category | Type                 | Attr      | Description                                          |
 |-----------------------------------------------------|----------|----------------------|-----------|------------------------------------------------------|
@@ -138,7 +147,10 @@ Parameters marked "**Immutable**" only take effect at creation; changing them re
 
 String, required. Database name - must be unique within the cluster.
 
-The current role does not enforce this regular expression, and SQL identifiers are double-quoted. However, the name is also used in temporary file paths and shell/SQL command assembly. For safe operation across the entire automation chain, keep it within 63 bytes, follow **`^[A-Za-z_][A-Za-z0-9_$]{0,62}$`**, and avoid spaces, quotes, slashes, or other special characters.
+The current role does not enforce this regular expression.
+It double-quotes SQL identifiers, but also uses the name in temporary paths and shell/SQL commands.
+For safe operation throughout the automation, keep the name within 63 bytes and follow **`^[A-Za-z_][A-Za-z0-9_$]{0,62}$`**.
+Avoid spaces, quotes, slashes, and other special characters.
 
 ```yaml
 - name: myapp              # Simple naming
@@ -169,9 +181,12 @@ Enum for database operation: `create`, `absent`, or `recreate`. Default `create`
 
 String. Database owner, defaults to [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) (`postgres`) if not specified.
 
-Target user must exist. Changing owner executes (old owner retains existing privileges):
+The target user must exist.
+To change the owner, Pigsty runs the following commands.
+The old owner retains existing privileges.
 
-Database owner has full control including creating schemas, tables, extensions - useful for multi-tenant scenarios.
+The database owner has full control, including schema, table, and extension creation.
+This is useful for multi-tenant deployments.
 
 ```sql
 ALTER DATABASE "myapp" OWNER TO "new_owner";
@@ -182,7 +197,10 @@ GRANT ALL PRIVILEGES ON DATABASE "myapp" TO "new_owner";
 
 String. Database comment, defaults to `business database {name}`.
 
-Set via `COMMENT ON DATABASE`, supports Chinese and special characters (Pigsty auto-escapes quotes). Stored in the shared-object comment catalog `pg_shdescription`, viewable via `\l+`.
+Pigsty uses `COMMENT ON DATABASE` to set the comment.
+Comments support Chinese and special characters; Pigsty escapes quotes automatically.
+PostgreSQL stores them in `pg_shdescription`, the shared-object comment catalog.
+Use `\l+` to show them.
 
 ```sql
 COMMENT ON DATABASE "myapp" IS 'my main application database';
@@ -197,7 +215,9 @@ COMMENT ON DATABASE "myapp" IS 'my main application database';
 
 String, **immutable**. Template database for creation, default `template1`.
 
-PostgreSQL's `CREATE DATABASE` clones the template - new database inherits all objects, extensions, schemas, permissions. Pigsty customizes `template1` during cluster init, so new databases inherit these settings.
+`CREATE DATABASE` clones the template, including objects, extensions, schemas, and permissions.
+Pigsty customizes `template1` during cluster initialization.
+New databases inherit these settings.
 
 | Template        | Description                                                      |
 |-----------------|------------------------------------------------------------------|
@@ -206,7 +226,8 @@ PostgreSQL's `CREATE DATABASE` clones the template - new database inherits all o
 | Custom database | Use existing database as template for cloning                    |
 {.full-width}
 
-When using `icu` or `builtin` locale provider, must specify `template: template0` since `template1` locale settings can't be overridden.
+For the `icu` or `builtin` locale provider, specify `template: template0`.
+You cannot override the locale settings inherited from `template1`.
 
 ```yaml
 - name: myapp_icu
@@ -215,7 +236,8 @@ When using `icu` or `builtin` locale provider, must specify `template: template0
   icu_locale: zh-Hans
 ```
 
-Using `template0` skips monitoring extensions/schemas and default privileges - allowing fully custom database.
+`template0` omits the monitoring extensions, schemas, and default privileges.
+Use it for a fully custom database.
 
 
 ### `strategy`
@@ -228,7 +250,8 @@ Enum, immutable. Clone strategy: `FILE_COPY` or `WAL_LOG`. Available PG15+.
 | `WAL_LOG`   | Block-by-block copy written to WAL; PG15+ default | Small templates, non-blocking |
 {.full-width}
 
-`WAL_LOG` doesn't block template connections during clone but less efficient for large templates. Ignored on PG14 and earlier.
+`WAL_LOG` permits template connections during cloning but is less efficient for large templates.
+PG14 and earlier ignore this setting.
 
 ```yaml
 - name: cloned_db
@@ -240,7 +263,8 @@ Enum, immutable. Clone strategy: `FILE_COPY` or `WAL_LOG`. Available PG15+.
 
 String, immutable. Character encoding, inherits from template if unspecified (usually `UTF8`).
 
-Strongly recommend `UTF8` unless special requirements. Cannot be changed after creation.
+We strongly recommend `UTF8` unless you have special requirements.
+You cannot change the encoding after creation.
 
 ```yaml
 - name: legacy_db
@@ -252,7 +276,9 @@ Strongly recommend `UTF8` unless special requirements. Cannot be changed after c
 
 String, immutable. Locale setting - sets both `lc_collate` and `lc_ctype`. Inherits from template (usually `C`).
 
-Determines string sort order and character classification. Use `C` or `POSIX` for best performance and cross-platform consistency; use language-specific locales (e.g., `zh_CN.UTF-8`) for proper language sorting.
+This setting controls string sort order and character classification.
+Use `C` or `POSIX` for the best performance and cross-platform consistency.
+For language-specific sorting, use a locale such as `zh_CN.UTF-8`.
 
 ```yaml
 - name: chinese_db
@@ -265,7 +291,9 @@ Determines string sort order and character classification. Use `C` or `POSIX` fo
 
 String, immutable. String collation rule. Inherits from template (usually `C`).
 
-Determines `ORDER BY` and comparison results. Common values: `C` (byte order, fastest), `C.UTF-8`, `en_US.UTF-8`, `zh_CN.UTF-8`. Cannot be changed after creation.
+This setting controls `ORDER BY` and comparison results.
+Common values are `C` (byte order, fastest), `C.UTF-8`, `en_US.UTF-8`, and `zh_CN.UTF-8`.
+You cannot change it after creation.
 
 ```yaml
 - name: myapp
@@ -278,7 +306,8 @@ Determines `ORDER BY` and comparison results. Common values: `C` (byte order, fa
 
 String, immutable. Character classification rule for upper/lower case, digits, letters. Inherits from template (usually `C`).
 
-Affects `upper()`, `lower()`, regex `\w`, etc. Cannot be changed after creation.
+This setting affects `upper()`, `lower()`, regex `\w`, and similar operations.
+You cannot change it after creation.
 
 ### `locale_provider`
 
@@ -291,7 +320,8 @@ Enum, immutable. Locale implementation provider: `libc`, `icu`, or `builtin`. Av
 | `builtin` | PG17+   | PostgreSQL builtin, most efficient, C/C.UTF-8 only   |
 {.full-width}
 
-Using `icu` or `builtin` requires `template: template0` with corresponding `icu_locale` or `builtin_locale`.
+For `icu` or `builtin`, use `template: template0`.
+Also set the corresponding `icu_locale` or `builtin_locale`.
 
 ```yaml
 - name: fast_db
@@ -328,7 +358,7 @@ ICU identifiers follow BCP 47. Common values:
 
 String, immutable. Custom ICU collation rules. Available PG16+.
 
-Allows fine-tuning default sort behavior using [**ICU Collation Customization**](https://unicode-org.github.io/icu/userguide/collation/customization/).
+Use [**ICU Collation Customization**](https://unicode-org.github.io/icu/userguide/collation/customization/) to adjust the default sort behavior.
 
 ```yaml
 - name: custom_sort_db
@@ -342,7 +372,9 @@ Allows fine-tuning default sort behavior using [**ICU Collation Customization**]
 
 String, immutable. Builtin locale provider rules. Available PG17+ when `locale_provider: builtin`. Values: `C` or `C.UTF-8`.
 
-`builtin` provider is PG17's new builtin implementation - faster than `libc` with consistent cross-platform behavior. Suitable for C/C.UTF-8 collation only.
+PG17 introduced the `builtin` provider.
+It is faster than `libc` and provides consistent behavior across platforms.
+It supports only C/C.UTF-8 collation.
 
 ```yaml
 - name: fast_db
@@ -356,7 +388,9 @@ String, immutable. Builtin locale provider rules. Available PG17+ when `locale_p
 
 String, mutable. Default tablespace, default `pg_default`.
 
-Changing tablespace triggers physical data migration - PostgreSQL moves all objects to new tablespace. Can take long time for large databases, use cautiously.
+Changing the tablespace moves all database objects to the new tablespace.
+For large databases, this physical migration can take a long time.
+Use it carefully.
 
 ```yaml
 - name: archive_db
@@ -371,7 +405,8 @@ ALTER DATABASE "archive_db" SET TABLESPACE "slow_hdd";
 
 Boolean, mutable. Mark database as template, default `false`.
 
-When `true`, any user with `CREATEDB` privilege can use this database as template for cloning. Template databases typically pre-install standard schemas, extensions, and data.
+If `true`, any user with `CREATEDB` can clone this database as a template.
+Template databases usually contain predefined schemas, extensions, and data.
 
 ```yaml
 - name: app_template
@@ -380,13 +415,14 @@ When `true`, any user with `CREATEDB` privilege can use this database as templat
   extensions: [postgis, pg_trgm]
 ```
 
-Deleting `is_template: true` databases: Pigsty first executes `ALTER DATABASE ... IS_TEMPLATE false` then drops.
+Before it deletes an `is_template: true` database, Pigsty runs `ALTER DATABASE ... IS_TEMPLATE false`.
 
 ### `allowconn`
 
 Boolean, mutable. Allow connections, default `true`.
 
-Setting `false` completely disables connections at database level - no user (including superuser) can connect. Used for maintenance or archival purposes.
+If `false`, the database rejects all connections, including superuser connections.
+Use this setting for maintenance or archival.
 
 ```yaml
 - name: archive_db
@@ -419,7 +455,8 @@ Setting `false` restores PUBLIC CONNECT privilege.
 
 Integer, mutable. Max concurrent connections, default `-1` (unlimited).
 
-Positive integer limits max simultaneous sessions. Doesn't affect superusers.
+A positive integer limits simultaneous sessions.
+The limit does not apply to superusers.
 
 ```yaml
 - name: limited_db
@@ -434,9 +471,12 @@ ALTER DATABASE "limited_db" CONNECTION LIMIT 50;
 
 String. SQL baseline file path executed while provisioning the database.
 
-Baseline files typically contain schema definitions, initial data, stored procedures. Path is relative to Ansible search path, usually in `files/`.
+Baseline files usually contain schema definitions, initial data, and stored procedures.
+The path is relative to the Ansible search path, usually `files/`.
 
-Whenever `baseline` is defined, the current role runs the file on every provisioning pass for that database, even if the database already exists. It also runs after `state: recreate`. Make the baseline SQL idempotent, or avoid rerunning it against an existing database.
+If `baseline` is defined, the role runs that file on every provisioning pass for the database.
+It runs even if the database already exists, and after `state: recreate`.
+Make the SQL idempotent, or do not rerun it against an existing database.
 
 ```yaml
 - name: myapp
@@ -466,7 +506,8 @@ schemas:
     state: absent            # Drop schema (CASCADE)
 ```
 
-Create uses `IF NOT EXISTS`; drop uses `CASCADE` (deletes all objects in schema).
+Creation uses `IF NOT EXISTS`.
+Deletion uses `CASCADE`, which deletes all objects in the schema.
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS "app" AUTHORIZATION "dbuser_app";
@@ -497,7 +538,10 @@ extensions:
     state: absent            # Uninstall extension (CASCADE)
 ```
 
-Installation uses `IF NOT EXISTS ... CASCADE`; PostgreSQL emits a NOTICE and skips an extension that already exists, while automatically installing dependencies when possible. Uninstallation uses `CASCADE` and deletes dependent objects.
+Installation uses `IF NOT EXISTS ... CASCADE`.
+If an extension exists, PostgreSQL reports a NOTICE and skips it.
+When possible, PostgreSQL installs dependencies automatically.
+Uninstallation uses `CASCADE` and deletes dependent objects.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS "vector" WITH SCHEMA "public" VERSION '0.5.1' CASCADE;
@@ -534,7 +578,8 @@ ALTER DATABASE "myapp" SET "statement_timeout" = '30s';
 
 Boolean, mutable. Add database to Pgbouncer pool list, default `true`.
 
-Setting `false` excludes database from Pgbouncer - clients can't access via connection pool. For internal management databases or direct-connect scenarios.
+If `false`, PgBouncer excludes the database and clients cannot access it through the connection pool.
+Use this for internal management databases or direct connections.
 
 ```yaml
 - name: internal_db
@@ -561,7 +606,9 @@ Enum, mutable. Pgbouncer pool mode: `transaction`, `session`, or `statement`. De
 
 Integer, mutable. Pgbouncer default pool size, default `50`.
 
-Pool size is the regular backend-connection limit for this database's pool; `pool_size_min` controls prewarmed connections. Adjust it for the workload.
+The pool size limits regular backend connections for this database pool.
+`pool_size_min` controls prewarmed connections.
+Adjust these values for the workload.
 
 ```yaml
 - name: high_load_db
@@ -572,7 +619,8 @@ Pool size is the regular backend-connection limit for this database's pool; `poo
 
 Integer, mutable. Pgbouncer minimum pool size, default `0`.
 
-Values > 0 pre-create specified backend connections for connection warming, reducing first-request latency.
+A value > 0 creates that number of backend connections in advance.
+This reduces latency for the first request.
 
 ```yaml
 - name: latency_sensitive
@@ -583,7 +631,7 @@ Values > 0 pre-create specified backend connections for connection warming, redu
 
 Integer, mutable. Pgbouncer reserve pool size, default `30`.
 
-When default pool exhausted, Pgbouncer can allocate up to `pool_reserve` additional connections for burst traffic.
+If the default pool is full, PgBouncer can add up to `pool_reserve` connections for increased traffic.
 
 ```yaml
 - name: bursty_db
@@ -595,7 +643,7 @@ When default pool exhausted, Pgbouncer can allocate up to `pool_reserve` additio
 
 Integer, mutable. Max connections via Pgbouncer pool, default `100`.
 
-This is Pgbouncer-level limit, independent of database's `connlimit` param.
+This PgBouncer limit is independent of the database `connlimit` parameter.
 
 ```yaml
 - name: limited_pool_db
@@ -606,7 +654,8 @@ This is Pgbouncer-level limit, independent of database's `connlimit` param.
 
 String, mutable. User for Pgbouncer auth query.
 
-Requires [**`pgbouncer_auth_query`**](/docs/pgsql/param#pgbouncer_auth_query) enabled. When set, all Pgbouncer connections to this database use specified user for auth query password verification.
+Enable [**`pgbouncer_auth_query`**](/docs/pgsql/param#pgbouncer_auth_query) to use this field.
+If set, all PgBouncer connections to this database use the specified user for auth-query password verification.
 
 ```yaml
 - name: myapp
@@ -617,7 +666,8 @@ Requires [**`pgbouncer_auth_query`**](/docs/pgsql/param#pgbouncer_auth_query) en
 
 Boolean, mutable. Register database to Grafana as PostgreSQL datasource, default `true`.
 
-Set `false` to skip Grafana registration. For temp databases, test databases, or internal databases not needed in monitoring.
+Set `false` to skip Grafana registration.
+Use this for temporary, test, or internal databases that do not need monitoring.
 
 ```yaml
 - name: temp_db
@@ -629,7 +679,9 @@ Set `false` to skip Grafana registration. For temp databases, test databases, or
 
 ## Template Inheritance
 
-Many parameters inherit from template database if not explicitly specified. Default template is `template1`, whose encoding settings are determined by cluster init params:
+If you do not set them explicitly, many parameters inherit from the template database.
+The default template is `template1`.
+Cluster initialization parameters determine its encoding settings:
 
 | Cluster Param                                            | Default               | Description         |
 |----------------------------------------------------------|-----------------------|---------------------|
@@ -639,13 +691,14 @@ Many parameters inherit from template database if not explicitly specified. Defa
 | [**`pg_lc_ctype`**](/docs/pgsql/param#pg_lc_ctype)       | `C` / `C-UTF-8` (if supported) | Cluster ctype |
 {.full-width}
 
-New databases fork from `template1`, which is customized during [**`PG_PROVISION`**](/docs/pgsql/param#pg_provision) with extensions, schemas, and default privileges. Unless you explicitly use another template.
+Unless you select another template, new databases clone `template1`.
+[**`PG_PROVISION`**](/docs/pgsql/param#pg_provision) customizes it with extensions, schemas, and default privileges.
 
 --------
 
 ## Deep Customization
 
-Pigsty provides rich customization params. To customize template database, refer to:
+Use these parameters to customize the template database:
 
 - [**`pg_default_roles`**](/docs/pgsql/param#pg_default_roles): Default predefined roles and system users
 - [**`pg_default_privileges`**](/docs/pgsql/param#pg_default_privileges): Default privileges for objects created by admin user
@@ -654,7 +707,7 @@ Pigsty provides rich customization params. To customize template database, refer
 - [**`pg_default_hba_rules`**](/docs/pgsql/param#pg_default_hba_rules): Default PostgreSQL HBA rules
 - [**`pgb_default_hba_rules`**](/docs/pgsql/param#pgb_default_hba_rules): Default Pgbouncer HBA rules
 
-If above configurations don't meet your needs, use [**`pg_init`**](/docs/pgsql/param#pg_init) to specify custom cluster init scripts:
+If these parameters are insufficient, use [**`pg_init`**](/docs/pgsql/param#pg_init) to specify custom cluster initialization scripts:
 
 - [**`pg-init`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init): Cluster init script
 - [**`pg-init-template.sql`**](https://github.com/pgsty/pigsty/blob/main/roles/pgsql/templates/pg-init-template.sql): Template customization SQL
@@ -666,10 +719,12 @@ If above configurations don't meet your needs, use [**`pg_init`**](/docs/pgsql/p
 
 ## Locale Providers
 
-PostgreSQL 15+ introduced **`locale_provider`** for different locale implementations. These are immutable after creation.
+PostgreSQL 15+ introduced **`locale_provider`** to select the locale implementation.
+You cannot change it after database creation.
 
-Pigsty's [**`configure`**](/docs/concept/iac/configure) wizard selects builtin C.UTF-8/C locale provider based on PG and OS versions.
-Databases inherit cluster locale by default. To specify different locale provider, you must use `template0`.
+The Pigsty [**`configure`**](/docs/concept/iac/configure) wizard selects the builtin C.UTF-8/C locale provider from the PostgreSQL and OS versions.
+Databases inherit the cluster locale by default.
+To select a different provider, use `template0`.
 
 **Using ICU provider (PG15+)**:
 
@@ -700,9 +755,12 @@ Databases inherit cluster locale by default. To specify different locale provide
 
 ## Connection Pool
 
-[**Pgbouncer**](/docs/concept/arch/pgsql#pgbouncer) connection pool optimizes short-connection performance, reduces contention, prevents excessive connections from overwhelming database, and provides flexibility during migrations.
+[**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) improves short-connection performance and reduces contention.
+It prevents excessive connections from overwhelming the database and provides flexibility during migrations.
 
-Pigsty configures 1:1 connection pool for each PostgreSQL instance, running as same [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu) (default `postgres` OS user). Pool communicates with database via `/var/run/postgresql` Unix socket.
+Pigsty configures one connection pool for each PostgreSQL instance.
+It runs as [**`pg_dbsu`**](/docs/pgsql/param#pg_dbsu), which defaults to the `postgres` OS user.
+The pool connects to PostgreSQL through the `/var/run/postgresql` Unix socket.
 
 Pigsty adds all databases in [**`pg_databases`**](/docs/pgsql/param#pg_databases) to pgbouncer by default.
 Set [**`pgbouncer: false`**](#pgbouncer) to exclude specific databases.
@@ -719,4 +777,5 @@ noco                        = host=/var/run/postgresql
 mongo                       = host=/var/run/postgresql
 ```
 
-When [**creating databases**](/docs/pgsql/admin/db#create-database), Pgbouncer database list is refreshed via online reload - doesn't affect existing connections.
+When you [**create databases**](/docs/pgsql/admin/db#create-database), Pigsty reloads the PgBouncer database list online.
+Existing connections remain active.

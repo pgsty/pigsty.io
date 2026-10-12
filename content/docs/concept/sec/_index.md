@@ -8,24 +8,20 @@ module: [PIGSTY, PGSQL]
 categories: [Concept]
 ---
 
-The database is usually the most sensitive component in an information system: it stores the most valuable data, so attacks and failures can have the most serious consequences.
-Database security is not a feature that can be enabled with one switch. It is the combined answer to a series of questions: Who can connect? What can they do after connecting? Can traffic be intercepted? Are operations recorded? Can damaged, lost, or deleted data be recovered?
+Databases usually store the most valuable and sensitive data in an information system. Attacks and failures can therefore have severe consequences. Security requires multiple controls: who can connect, what they can do, and whether traffic is protected. It must also record operations and support recovery of damaged, lost, or deleted data.
 
-Pigsty turns these answers into an **out-of-the-box security baseline** and manages it through [**declarative configuration**](/docs/concept/iac/):
-[**HBA rules**](/docs/concept/sec/auth), [**roles and privileges**](/docs/concept/sec/ac), certificates, encryption, backups, and audit policies are declared as [**parameters**](/docs/concept/iac/parameter) in the [**inventory**](/docs/concept/iac/inventory), then rendered and applied by idempotent playbooks.
+Pigsty provides a **default security baseline** through [**declarative configuration**](/docs/concept/iac/). Declare [**HBA rules**](/docs/concept/sec/auth), [**roles and privileges**](/docs/concept/sec/ac), certificates, encryption, backups, and audit policies as [**parameters**](/docs/concept/iac/parameter) in the [**inventory**](/docs/concept/iac/inventory). Idempotent playbooks render and apply these settings.
 
-This **Security as Code** approach is itself an important security practice. Policies can be versioned, reviewed, and traced, while one inventory provides a consistent baseline across many instances.
-When an auditor asks who can access a database, you can start from a readable YAML declaration, then verify the generated HBA rules and database grants against the running system.
+**Security as Code** supports policy versioning, review, and traceability. One inventory provides a consistent baseline across instances. To audit database access, start with the YAML declaration. Then verify generated HBA rules and database grants against the running system.
 
 
 ----------------
 
 ## Security as Code
 
-In traditional operations, security settings are often scattered across the environment: `pg_hba.conf` on one server, a `GRANT` statement executed manually by a DBA, or a firewall rule opened temporarily during an incident.
-Over time, documentation and actual state can drift, making it difficult to determine which rule set each instance is using.
+Manual operations can scatter security settings across `pg_hba.conf`, DBA-issued `GRANT` statements, and temporary incident firewall rules. Documentation can then diverge from the running configuration. This makes each instance's effective rules difficult to determine.
 
-Pigsty takes a different approach: security policy is part of the cluster definition and lives alongside other cluster properties.
+Pigsty stores security policy in the cluster definition alongside other properties.
 
 ```yaml
 pg-meta:
@@ -40,15 +36,14 @@ pg-meta:
       - { user: dbuser_app ,db: app ,addr: 10.1.0.0/16 ,auth: ssl ,order: 50 ,title: 'app access via ssl' }
 ```
 
-Users, privileges, and HBA rules are described declaratively, and playbooks apply them idempotently to every cluster instance.
-New instances inherit the same policy, and Git history records security configuration changes. Manual `GRANT` statements, runtime parameter changes, and edits to node files can still cause drift, so production environments should compare declared and actual state regularly.
+Declare users, privileges, and HBA rules. Playbooks apply them idempotently to each instance, including new instances. Git history records configuration changes. Manual `GRANT` statements, runtime parameter changes, and node file edits can still cause drift. In production, regularly compare declared and actual state.
 
 
 ----------------
 
 ## Default Security Baseline
 
-Reasonable defaults reduce omissions. The following capabilities are enabled in the default Pigsty configuration:
+The default configuration enables these controls to reduce omissions:
 
 | Capability | Default Behavior | Related Parameter |
 |:---|:---|:---|
@@ -71,17 +66,15 @@ Reasonable defaults reduce omissions. The following capabilities are enabled in 
 
 ## Hardening with Trade-offs
 
-The default configuration targets deployments on a trusted intranet. Some controls require explicit enablement because they impose performance or compatibility costs, or require decisions from the operator:
+Defaults target a trusted intranet. Some controls need explicit enablement because of performance costs, compatibility limits, or required operator decisions:
 
-- Default configurations and examples contain **publicly documented default passwords** for quick starts and local testing. Before production deployment, use `./configure -g` to randomize the credentials it recognizes, then check the pgBackRest encryption passphrase, Silo users in `ha/safe`, and all custom values.
-- TLS is disabled by default for the [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) and [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) ([`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled), [`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode)); enable it explicitly with the certificates already issued.
-- **Password strength checks** ([**`passwordcheck`**](/ext/e/passwordcheck/)) and the **audit extension** ([**`pgaudit`**](/ext/e/pgaudit/)) are disabled by default. Confirm package availability, then configure preloading and policy before use.
-- **SELinux** defaults to `permissive`. Demo configurations also expose port `5432` through the firewall; remove that exception in production.
-- The local backup repository is **not encrypted** by default. The remote `minio` repository preset uses AES-256 encryption by default, but its default encryption passphrase must be changed.
+- Examples contain **public default passwords** for quick starts and local tests. Before production, run `./configure -g` to randomize recognized credentials. Then check the pgBackRest passphrase, Silo users in `ha/safe`, and all custom values.
+- The [**Patroni REST API**](/docs/concept/arch/pgsql#patroni) and [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) disable TLS by default. Explicitly enable [`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled) and [`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode) with the issued certificates.
+- **Password checks** ([**`passwordcheck`**](/ext/e/passwordcheck/)) and **auditing** ([**`pgaudit`**](/ext/e/pgaudit/)) are disabled by default. Confirm package availability, then configure preloading and policy.
+- **SELinux** defaults to `permissive`. Remove the demo firewall exception for port `5432` in production.
+- Local backups have **no encryption** by default. The remote `minio` preset enables AES-256 encryption. Change its default encryption passphrase.
 
-The [**`ha/safe` hardening template**](/docs/conf/safe) combines TLS, certificate authentication, password checks, and backup encryption.
-Together with the consistency-first [**CRIT parameter template**](/docs/pgsql/template/crit), it provides a practical starting point. Public credentials, audit extensions, and the failure model still require explicit review.
-See the [**Security Model**](/docs/concept/sec/level#hardening-levels) for the complete upgrade path.
+The [**`ha/safe` template**](/docs/conf/safe) combines TLS, certificate authentication, password checks, and backup encryption. Use it with the consistency-first [**CRIT parameter template**](/docs/pgsql/template/crit) as a starting point. Review public credentials, audit extensions, and the failure model explicitly. See [**Security Model**](/docs/concept/sec/level#hardening-levels) for the full hardening path.
 
 
 ----------------
@@ -103,7 +96,7 @@ See the [**Security Model**](/docs/concept/sec/level#hardening-levels) for the c
 
 ## Related Topics
 
-Beyond the conceptual model, these pages provide operational security guidance:
+These pages provide operational security guidance:
 
 - 🔰 [**Security Recommendations**](/docs/setup/security): minimum hardening for a quick single-node deployment
 - 🛡️ [**Security Considerations**](/docs/deploy/security): production hardening checklist

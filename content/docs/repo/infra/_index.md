@@ -5,13 +5,11 @@ description: Packages that are generic to any PostgreSQL version and Linux major
 weight: 5440
 ---
 
-The [`pigsty-infra`](https://github.com/pgsty/infra-pkg) repo contains packages that are generic to any PostgreSQL version and Linux major version,
-including Prometheus & Grafana stack, admin tools for Postgres, and many utilities written in Go.
+The [`pigsty-infra`](https://github.com/pgsty/infra-pkg) repository contains packages that are independent of the PostgreSQL version and Linux major version. They include the Prometheus and Grafana stack, PostgreSQL administration tools, and many utilities written in Go.
 
-This repo is maintained by [Ruohang Feng](https://vonng.com/en/) ([Vonng](https://github.com/Vonng)) @ [Pigsty](https://pigsty.io),
-you can find all the build specs on [https://github.com/pgsty/infra-pkg](https://github.com/pgsty/infra-pkg).
-Prebuilt RPM / DEB packages for RHEL / Debian / Ubuntu distros available for `x86_64` and `aarch64` arch.
-Hosted on Cloudflare CDN for free global access.
+[Ruohang Feng](https://vonng.com/en/) ([Vonng](https://github.com/Vonng)) at [Pigsty](https://pigsty.io) maintains this repository. All build specifications are available on [GitHub](https://github.com/pgsty/infra-pkg).
+
+Prebuilt RPM / DEB packages support RHEL / Debian / Ubuntu on `x86_64` and `aarch64`. Cloudflare CDN provides free global access.
 
 | Linux  | Package | x86_64 | aarch64 |
 |:------:|:-------:|:------:|:-------:|
@@ -25,7 +23,7 @@ You can check the [**Release - Infra Changelog**](/docs/repo/infra/log/) for the
 
 ## Quick Start
 
-You can add the `pigsty-infra` repo with the [`pig`](/docs/pig/) CLI tool, it will automatically choose from `apt/yum/dnf`.
+Add the `pigsty-infra` repository with the [`pig`](/docs/pig/) CLI tool. It automatically selects from `apt/yum/dnf`.
 
 ```bash {tab="Default" group="default-mirror-hint" value="default"}
 curl https://repo.pigsty.io/pig | bash  # download and install the pig CLI tool
@@ -56,7 +54,7 @@ pig repo set all            # remove existing repo, add above repos and update c
 
 ## Manual Setup
 
-You can also use this repo directly without the `pig` CLI tool, by adding them to your Linux OS repo list manually:
+You can also add this repository to your Linux repository list manually. This method does not require the `pig` CLI tool.
 
 
 ### APT Repo
@@ -184,8 +182,8 @@ For the changelog and release history, see the [Release Log](/docs/repo/infra/lo
 
 ## Source
 
-Building specs of this repo is open-sourced on GitHub:
+The build specifications for this repository are open source on GitHub:
 
 - https://github.com/pgsty/infra-pkg
 
-If the platform is not supported, you can also build the packages from source code by yourself.
+If your platform is unsupported, you can build the packages from source.

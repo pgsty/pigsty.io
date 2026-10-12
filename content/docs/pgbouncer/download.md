@@ -266,9 +266,9 @@ categories: [Reference]
 
 ## Binary Packages
 
-Various OS distributions have their native package/port of PgBouncer. So it might be good to first check if it is already available on your OS.
+Many operating system distributions provide PgBouncer packages or ports. First check whether your operating system already provides one.
 
-Dedicated builds, might have newer versions than available at distributor repos:
+These dedicated builds may have newer versions than distribution repositories:
 
 - RPM: [yum.postgresql.org](https://yum.postgresql.org/)
 - Deb: [apt.postgresql.org](https://apt.postgresql.org/)

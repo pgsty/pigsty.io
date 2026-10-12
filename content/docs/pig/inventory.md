@@ -7,14 +7,12 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig inventory` command group (alias `pig inv`), introduced in v1.6.0, provides
-**lossless** inspection, editing, validation, and readiness checks for the Pigsty inventory
-(`pigsty.yml`), plus an experimental `cmdb` subtree that exchanges the inventory with the
-PostgreSQL CMDB.
+The `pig inventory` command group was added in v1.6.0. Its alias is `pig inv`.
+Use it to inspect, edit, validate, and check readiness of the Pigsty inventory (`pigsty.yml`) **without loss** of source formatting.
+The experimental `cmdb` subcommands exchange inventory data with the PostgreSQL CMDB.
 
-The lossless engine preserves YAML comments, formatting, key order, anchors, and line
-endings byte-for-byte; `edit` re-parses the whole document before writing and writes
-atomically — **invalid YAML can never reach disk**.
+The engine preserves YAML comments, formatting, key order, anchors, and line endings byte-for-byte.
+Before writing, `edit` parses the entire document again. It writes atomically, so **invalid YAML cannot reach disk**.
 
 ```bash
 Inspect, edit, validate, check, and exchange Pigsty Inventory
@@ -48,8 +46,8 @@ Available Commands:
 | `inv cmdb`     |       | Exchange with the PostgreSQL CMDB (**experimental**)    |
 {.full-width}
 
-The inventory path comes from pig's config resolution (the global `-i/--inventory` flag or
-the Pigsty home directory), and every command supports `-o json|yaml` structured output.
+Pig resolves the inventory path from the global `-i/--inventory` flag or the Pigsty home directory.
+All commands support structured output with `-o json|yaml`.
 
 
 ## Quick Start
@@ -79,10 +77,10 @@ pig inv e 'pg-meta.hosts["10.10.10.10"]' # dotted keys (e.g. IPs) via quoted bra
 
 ## inv edit
 
-Opens the selected fragment in `$EDITOR`. After you save and exit, pig re-applies
-indentation and newline style → **re-parses the whole document** (aborting and keeping the
-temp file on failure) → checks that the on-disk file was not concurrently modified → writes
-atomically.
+Open the selected fragment in `$EDITOR`.
+After you save and exit, pig restores the indentation and newline style.
+It then **parses the entire document again**. If parsing fails, it stops and keeps the temporary file.
+Before writing atomically, it checks that another process has not changed the file on disk.
 
 ```bash
 pig inventory edit                       # edit the whole inventory
@@ -95,17 +93,18 @@ pig inv e vars --from vars.yml           # replace the fragment from a file (or 
 | `--from` | Replace the selected fragment from a regular file or stdin (`-`), skipping the editor |
 {.full-width}
 
-> **Note**: after a successful edit, pig tightens the inventory file mode to `0600` (the
-> file may contain database passwords and other secrets); the result reports this via the
-> `mode_tightened` field. If other users or tools read the file directly, adjust permissions
-> or ownership accordingly.
+> **Note**: after a successful edit, pig sets the inventory file mode to `0600` if needed.
+> The file can contain database passwords and other secrets.
+> The result reports this change in `mode_tightened`.
+> If other users or tools read the file directly, adjust its permissions or ownership.
 
 
 ## inv validate
 
-Validates one complete static Pigsty inventory: YAML structure, Ansible conventions, and
-Pigsty semantics (such as `admin_ip`, the `infra` group, and IPv4 host keys) are checked
-layer by layer; diagnostics never echo sensitive values.
+Validate one complete static Pigsty inventory.
+The command checks YAML structure, Ansible conventions, and Pigsty rules in sequence.
+Pigsty checks include `admin_ip`, the `infra` group, and IPv4 host keys.
+Diagnostics do not show sensitive values.
 
 ```bash
 pig inventory validate                   # validate the active inventory
@@ -122,16 +121,17 @@ pig inv v --strict -o json               # structured output (CI-friendly)
 | `--timeout` | Timeout for `--ansible` compatibility validation (default 10s) |
 {.full-width}
 
-> `validate` is a **Pigsty-semantics validator**, not a generic Ansible linter; its rules
-> stay aligned with Pigsty's own `bin/validate` (intentionally stricter in a few places).
-> Also note that parsing outright rejects **duplicate keys** and **multi-document YAML** —
-> such files cannot even be used with `show` / `edit`.
+> `validate` checks **Pigsty semantics**, rather than general Ansible lint rules.
+> Its rules follow Pigsty's `bin/validate`, with stricter checks in a few places.
+> Parsing rejects **duplicate keys** and **multi-document YAML**.
+> You cannot use those files with `show` / `edit` either.
 
 
 ## inv check
 
-Readiness checks on top of static validation: by default only the inventory and local
-controller conditions are checked; add probes with `--profile`.
+Run readiness checks in addition to static validation.
+By default, the command checks only the inventory and local controller.
+Use `--profile` to add probes.
 
 ```bash
 pig inventory check                      # inventory + controller basics
@@ -154,10 +154,10 @@ pig inv ck -p ssh --sudo                 # SSH probes plus sudo -n validation
 
 > **Experimental**: interfaces and behavior may change.
 
-`pig inventory cmdb` exchanges the inventory with Pigsty's existing CMDB schema
-(`files/cmdb.sql`, the `pigsty` / `pglog` schemas) over a native PostgreSQL driver.
-Connection resolution: `-d/--database` (database name, URI, or libpq conninfo) →
-`METADB_URL` environment variable → `service=meta`.
+`pig inventory cmdb` exchanges the inventory with Pigsty's existing CMDB through a native PostgreSQL driver.
+The CMDB uses `files/cmdb.sql` and the `pigsty` / `pglog` schemas.
+Connection selection uses `-d/--database` first, then `METADB_URL`, then `service=meta`.
+The flag accepts a database name, URI, or libpq conninfo.
 
 | Subcommand | Description                                                            |
 |:-----------|:-----------------------------------------------------------------------|
@@ -178,7 +178,7 @@ pig inventory cmdb enable                # switch the ansible inventory source t
 pig inventory cmdb disable               # switch back to the static pigsty.yml
 ```
 
-> **Note**: `init` applies the `cmdb.sql` baseline directly and does **not** take a backup
-> of an existing CMDB — back it up yourself before running against real data; `load`
-> replaces all declaration rows. Destructive operations are gated by a target-fingerprint
-> confirmation, and structured output mode requires an explicit `--yes`.
+> **Note**: `init` applies `cmdb.sql` directly. It does **not** back up an existing CMDB.
+> Back up real data before you run it. The `load` command replaces all declaration rows.
+> Destructive operations require confirmation of the target fingerprint.
+> Structured output mode requires an explicit `--yes`.

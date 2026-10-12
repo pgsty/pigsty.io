@@ -31,7 +31,7 @@ theme light
 
 ## RTO Timeline
 
-The following analysis focuses on **Failover** (manual failover) since it involves actual service interruption time.
+This analysis covers manual **Failover** and its service interruption time.
 
 <script>
 window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
@@ -76,7 +76,7 @@ series:
 | **Manual** (Failover) |       **Skip**       |     **Skip**      |            Health check             | **1s ~ 11s** |
 {.full-width}
 
-Manual switchover skips the most time-consuming **lease expiry** and **replica detection** phases, significantly reducing RTO.
+Manual switchover skips **lease expiration** and **replica detection**, the longest phases. This substantially reduces RTO.
 
 
 --------
@@ -85,7 +85,7 @@ Manual switchover skips the most time-consuming **lease expiry** and **replica d
 
 ### Phase 1: Command Execution
 
-Administrator executes the Failover command, Patroni receives and processes the REST API request.
+An administrator issues Failover. Patroni receives and processes the REST API request.
 
 ```bash
 # Pigsty wrapped failover command
@@ -115,7 +115,7 @@ T_{command} = \begin{cases}
 
 ### Phase 2: Replica Promotion
 
-Patroni acquires Leader Key and executes `pg_ctl promote` to promote the target replica to new primary.
+Patroni acquires the Leader Key and runs `pg_ctl promote` on the selected replica.
 
 ```text
 Promotion flow:
@@ -137,7 +137,7 @@ T_{promote} = \begin{cases}
 
 ### Phase 3: Health Check
 
-HAProxy detects new primary coming online, requires `rise` consecutive successful health checks.
+HAProxy requires `rise` consecutive successful checks before it marks the new primary healthy.
 
 ```text
 Detection timeline:
@@ -163,7 +163,7 @@ T_{haproxy} = \begin{cases}
 
 ## RTO Formula
 
-Sum all phase times to get total RTO:
+Add the phase durations to calculate total RTO:
 
 **Best Case**
 
@@ -194,7 +194,7 @@ $$RTO_{max} = 3 + (rise-1) \times fastinter + inter$$
 
 ## Model Calculation
 
-Substituting the four RTO model parameters into the formulas:
+Apply the four RTO presets to these formulas:
 
 ```yaml
 pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]
@@ -219,7 +219,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 
 ## Switchover Notes
 
-**Switchover** (planned switchover) is used for planned maintenance scenarios. The main difference from Failover is the **WAL catch-up phase**.
+Use **Switchover** for planned maintenance. Unlike Failover, it includes a **WAL catch-up phase**.
 
 ```bash
 # Pigsty wrapped switchover command
@@ -249,7 +249,7 @@ theme light
   palette antv
 ```
 
-**WAL catch-up time not counted in RTO**: During catch-up, primary can still handle read-only requests, service not completely interrupted.
+**WAL catch-up is excluded from RTO** here. The primary still serves read-only requests during catch-up, so service is not completely unavailable.
 
 |    Type    |                  Scenario                  |   Primary State   | WAL Catch-up |    Data Loss    |      RTO       |
 |:----------:|:------------------------------------------:|:-----------------:|:------------:|:---------------:|:--------------:|
@@ -257,17 +257,16 @@ theme light
 |  Failover  |      Primary failure, emergency switch      | Failed or unreachable |    Skip    | Possible minor  |    1s ~ 11s    |
 {.full-width}
 
-**WAL catch-up time** depends on replica replication lag. In normal operation scenarios, replicas usually stay synchronized or near-sync, catch-up completes in milliseconds to seconds.
-With synchronous replication, WAL catch-up time is 0, making Switchover and Failover RTO nearly identical.
+**WAL catch-up time** depends on replication lag. Healthy replicas normally remain synchronized or nearly synchronized, so catch-up takes milliseconds to seconds. With synchronous replication, catch-up takes 0, making Switchover and Failover RTO nearly equal.
 
 
 --------
 
 ## Key Insights
 
-1. **Manual switchover RTO is extremely short**: 1~11 seconds, far below automatic switchover's 16~150 seconds
-2. **Health check is the main delay source**: 60%~75% of total RTO
-3. **Best choice in emergencies**: If admin can respond quickly, manual Failover is the fastest way to restore service
+1. **Manual recovery**: RTO is 1–11 seconds, compared with 16–150 seconds for automatic recovery.
+2. **Health checks**: They account for 60%–75% of total RTO.
+3. **Emergency response**: With a prompt administrator response, manual Failover restores service fastest.
 
 |   Mode   | Manual Failover | Auto (Expire) | Auto (Crash) |   Speedup   |
 |:--------:|:---------------:|:-------------:|:------------:|:----------:|

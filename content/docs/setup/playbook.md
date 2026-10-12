@@ -2,27 +2,29 @@
 title: Run Playbooks with Ansible
 linkTitle: Playbook
 weight: 275
-description: Use Ansible playbooks to deploy and manage Pigsty clusters
+description: Use Ansible playbooks to deploy and manage Pigsty clusters.
 icon: fa-solid fa-scroll
 module: [PIGSTY]
 categories: [Tutorial]
 aliases: [/docs/infra/admin/ansible/]
 ---
 
+Pigsty uses [Ansible](https://docs.ansible.com/) to deploy and manage clusters.
+Ansible applies declarative configuration through [playbooks](/docs/ref/playbook/).
+Pigsty module playbooks use idempotent tasks to reach the specified configuration.
 
-Pigsty uses [**Ansible**](https://docs.ansible.com/) to manage clusters, a very popular large-scale/batch/automation ops tool in the SRE community.
-
-Ansible can use **declarative** approach for server configuration management. All module deployments are implemented through a series of idempotent [**Ansible playbooks**](/docs/ref/playbook).
-
-For example, in single-node deployment, you'll use the [**`deploy.yml`**](#deploy-playbook) playbook. Pigsty has more [**built-in playbooks**](/docs/ref/playbook), you can choose to use as needed.
-
-Understanding Ansible basics helps with better use of Pigsty, but this is **not required**, especially for single-node deployment.
-
--------
+For a single-node installation, use [`deploy.yml`](#deploy-playbook).
+Other [built-in playbooks](/docs/ref/playbook/) perform specific module operations.
+Ansible knowledge helps you manage Pigsty, but the single-node procedure does not require it.
 
 ## Deploy Playbook
 
-Pigsty provides a "one-stop" deploy playbook **`deploy.yml`** for the core path: CA/software repository, NODE, INFRA, ETCD, PGSQL, and MINIO when enabled in the inventory. Optional modules such as Redis, Kafka, and native MySQL require their own module playbooks even when defined in the inventory.
+The `deploy.yml` playbook applies the core deployment configuration.
+It includes the CA, software repository, NODE, INFRA, ETCD, PGSQL, and MINIO when the inventory enables them.
+Optional modules such as Redis, Kafka, and native MySQL require their own playbooks.
+Defining these optional modules in the inventory does not add them to `deploy.yml`.
+
+The table shows the module deployment targets:
 
 | Playbook    | Command       | Group      | `infra` | `[nodes]` | `etcd` | `minio` | `[pgsql]` |
 |-------------|---------------|------------|:-------:|:---------:|:------:|:-------:|:---------:|
@@ -33,15 +35,16 @@ Pigsty provides a "one-stop" deploy playbook **`deploy.yml`** for the core path:
 | `pgsql.yml` | `./pgsql.yml` |            |         |           |        |         |     ✓     |
 {.full-width}
 
-This is the simplest deployment method. You can also follow instructions in [**Customization Guide**](/docs/setup/config/) to incrementally complete deployment of all modules and nodes step by step.
-
-------
+You can apply the core configuration in one run with `deploy.yml`.
+For deployment in stages, follow the [Customization Guide](/docs/setup/config/).
 
 ## Install Ansible
 
-When using the [**Pigsty installation script**](/docs/setup/install#install) or the [**`bootstrap`**](/docs/setup/offline#bootstrap) phase of offline installation, Pigsty will automatically install `ansible` and its dependencies for you.
+The [Pigsty installation script](/docs/setup/install#install) installs Ansible and its dependencies.
+The offline [bootstrap procedure](/docs/setup/offline#bootstrap) can also install them.
 
-If you want to manually install Ansible, refer to the following instructions. The minimum supported Ansible version is 2.9.
+To install Ansible manually, use the command for your operating system.
+The minimum supported Ansible version is `2.9`.
 
 ```bash {tab="Debian / Ubuntu"}
 sudo apt install -y ansible python3-jmespath
@@ -58,23 +61,22 @@ brew install ansible
 pip3 install jmespath
 ```
 
+> [!NOTE] Ansible packages on EL 10
+> The EL 10 EPEL repository does not yet supply all required Ansible packages.
+> The [Pigsty PGSQL repository](/docs/repo/pgsql/) supplies the additional packages.
 
-> [!WARNING] Change default passwords!
-> Please note that EL10 EPEL repo doesn't yet provide a complete Ansible package. [**Pigsty PGSQL**](/docs/repo/pgsql) EL10 repo supplements this.
-
-
-Ansible is also available on macOS. You can use [**Homebrew**](https://brew.sh/) to install Ansible on Mac,
-and use it as an admin node to manage remote cloud servers. This is convenient for single-node Pigsty deployment on cloud VPS, but not recommended in prod envs.
-
---------
+On macOS, install Ansible with [Homebrew](https://brew.sh/).
+You can use the Mac as an administration node for remote cloud servers.
+This method is suitable for personal single-node deployments.
+For production, use a Linux administration node.
 
 ## Execute Playbook
 
-Ansible playbooks are executable YAML files containing a series of task definitions to execute.
-Running playbooks requires the `ansible-playbook` executable in your environment variable `PATH`.
-Running `./node.yml` playbook is essentially executing the `ansible-playbook node.yml` command.
+Ansible playbooks are executable YAML files with task definitions.
+Make sure that `ansible-playbook` is available through your `PATH` environment variable.
+The command `./node.yml` runs `ansible-playbook node.yml`.
 
-You can use some parameters to fine-tune playbook execution. The following **4 parameters** are essential for effective Ansible use:
+Use these four arguments to control execution:
 
 |       Purpose       | Parameter                        | Description                     |
 |:----------------:|:-------------------------------|:-------------------------------|
@@ -92,14 +94,10 @@ You can use some parameters to fine-tune playbook execution. The following **4 p
 ./infra.yml -i conf/mynginx.yml    # Use another location's config file
 ```
 
-
-----------------
-
 ## Limit Hosts
 
-Playbook **execution targets** can be limited with `-l|--limit <selector>`.
-This is convenient when running playbooks on specific hosts/nodes or groups/clusters.
-Here are some host limit examples:
+Use `-l|--limit <selector>` to select the target hosts or groups.
+The selector can contain an IP address, group name, or pattern.
 
 ```bash
 ./pgsql.yml                              # Run on all hosts (dangerous!)
@@ -110,19 +108,16 @@ Here are some host limit examples:
 ./pgsql-rm.yml -l 'pg-test,!10.10.10.11' --check # Preflight removal; verify target and backups before execution
 ```
 
-See all details in Ansible documentation: [Patterns: targeting hosts and groups](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html)
+See the [Ansible host and group patterns](https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html) for the selection rules.
 
-> [!WARNING] Use caution when running playbooks without host limits!
-> Missing this value can be dangerous—most playbooks execute on `all` hosts. **Use with caution**.
-
-
-
-----------------
+> [!WARNING] Select the target hosts
+> Most playbooks target all applicable inventory hosts if you omit `--limit`.
+> Specify the target before you run a playbook that changes an existing deployment.
 
 ## Limit Tasks
 
-**Execution tasks** can be controlled with `-t|--tags <tags>`.
-If specified, only tasks with the given tags will execute instead of the entire playbook.
+Use `-t|--tags <tags>` to select tasks by tag.
+This limits execution to the selected tasks instead of the complete playbook:
 
 ```bash
 ./infra.yml -t repo          # Create repo
@@ -132,22 +127,18 @@ If specified, only tasks with the given tags will execute instead of the entire 
 ./minio.yml -t minio_alias   # Write the mcli client alias
 ```
 
-To run multiple tasks, specify multiple tags separated by commas `-t tag1,tag2`:
+To select multiple tags, separate them with commas:
 
 ```bash
 ./node.yml  -t node_repo,node_pkg   # Add repos, then install packages
 ./pgsql.yml -t pg_hba,pg_reload     # Configure, then reload pg hba rules
 ```
 
-
-
-----------------
-
 ## Extra Vars
 
-You can override config parameters at runtime using CLI arguments, which have [**highest priority**](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#understanding-variable-precedence).
-
-Extra command-line parameters are passed via `-e|--extra-vars KEY=VALUE`, usable multiple times:
+Use `-e|--extra-vars KEY=VALUE` to override configuration parameters for one run.
+These variables have the [highest variable precedence](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#understanding-variable-precedence).
+You can supply `-e` more than once:
 
 ```bash
 # Create admin using another admin user
@@ -160,22 +151,17 @@ Extra command-line parameters are passed via `-e|--extra-vars KEY=VALUE`, usable
 ./pgsql-rm.yml -l pg-test -e pg_rm_pkg=false -e pg_rm_data=false --check
 ```
 
-For complex parameters, use JSON strings to pass multiple complex parameters at once:
+For lists, objects, or multiple variables, supply a JSON string:
 
 ```bash
 # Add repo and install packages
 ./node.yml -t node_install -e '{"node_repo_modules":"infra","node_packages":["duckdb"]}'
 ```
 
-
-
-----------------
-
 ## Specify Inventory
 
-The default config file is `pigsty.yml` in the Pigsty home directory.
-
-You can use `-i <path>` to specify a different [**inventory**](/docs/concept/iac/inventory) file path.
+The default inventory is `pigsty.yml` in the Pigsty source directory.
+Use `-i <path>` to select a different [inventory file](/docs/concept/iac/inventory/):
 
 ```bash
 ./pgsql.yml -i conf/rich.yml            # Initialize single node with all extensions per rich config
@@ -183,16 +169,13 @@ You can use `-i <path>` to specify a different [**inventory**](/docs/concept/iac
 ./pgsql.yml -i conf/app/supa.yml        # Initialize 1-node Supabase deployment per supa.yml
 ```
 
-> [!NOTE] Changing the default inventory file
-> To permanently change the **default** config file, modify the `inventory` parameter in [`ansible.cfg`](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6).
-
-
-
-----------------
+> [!NOTE] Change the default inventory
+> To change the default permanently, edit `inventory` in [`ansible.cfg`](https://github.com/pgsty/pigsty/blob/main/ansible.cfg#L6).
 
 ## Convenience Scripts
 
-Pigsty provides a series of convenience scripts to simplify common operations. These scripts are in the `bin/` directory:
+The `bin/` directory contains scripts for common operations.
+Each script calls an Ansible playbook with the necessary arguments:
 
 ```bash
 bin/node-add   <cls>            # Add nodes to Pigsty management: ./node.yml -l <cls>
@@ -205,15 +188,12 @@ bin/redis-add  <cls>            # Initialize Redis cluster: ./redis.yml -l <cls>
 bin/redis-rm   <cls>            # Remove Redis cluster: ./redis-rm.yml -l <cls>
 ```
 
-These scripts are simple wrappers around Ansible playbooks, making common operations more convenient.
-
-
-
-----------------
+Use these scripts when their operation matches your task.
 
 ## Playbook List
 
-Below are the [**built-in playbooks**](/docs/ref/playbook) in Pigsty. You can also easily add your own playbooks, or customize and modify playbook implementation logic as needed.
+The table lists the [built-in playbooks](/docs/ref/playbook/).
+You can add your own playbooks or change their tasks for your deployment requirements.
 
 |                  Module                  | Playbook                                                                                   | Function                            |
 |:------------------------------------:|--------------------------------------------------------------------------------------------|:-----------------------------------|

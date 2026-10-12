@@ -7,7 +7,8 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[Cloudberry](https://cloudberry.apache.org/) is an open-source MPP data warehouse kernel derived from the Greenplum ecosystem, suitable for large-scale parallel analytics workloads.
+[Cloudberry](https://cloudberry.apache.org/) is an open-source MPP data warehouse kernel derived from the Greenplum ecosystem.
+It supports large-scale parallel analytics workloads.
 
 
 --------
@@ -23,8 +24,8 @@ In Pigsty, Cloudberry uses `gpsql` mode and shares the same identity model, moni
 - Current main package version: DEB `2.1.0-2PIGSTY`, RPM `2.1.0-3PIGSTY`
 - Default binary directory: `/usr/cloudberry`
 
-The important boundary is this: Pigsty currently focuses on package delivery, node management, monitoring onboarding, access control, and configuration orchestration for Cloudberry.
-For MPP cluster initialization, scale-out, rebalance, and other upstream-specific operational actions, you should still use the official Cloudberry toolchain.
+Pigsty currently provides package delivery, node management, monitoring integration, access control, and configuration management for Cloudberry.
+For MPP cluster initialization, scale-out, rebalance, and other upstream operations, you should use the official Cloudberry tools.
 
 > The current Pigsty repository provides `cloudberry`, `cloudberry-backup`, and `cloudberry-pxf` packages for both DEB and RPM platforms.
 
@@ -33,7 +34,8 @@ For MPP cluster initialization, scale-out, rebalance, and other upstream-specifi
 
 ## Installation
 
-There is no standalone `cloudberry` one-click template yet. The more common workflow is:
+There is no standalone `cloudberry` deployment template yet.
+The usual procedure is:
 
 1. Enroll the target nodes into Pigsty.
 2. Install the `cloudberry` kernel package.
@@ -47,16 +49,20 @@ If you only need to install the kernel package on a node:
 ./node.yml -t node_install -e '{"node_packages":["cloudberry"]}'
 ```
 
-If you are onboarding an existing Cloudberry cluster, it is usually better to keep the original initialization workflow and add Pigsty inventory plus monitoring configuration incrementally.
+For an existing Cloudberry cluster, usually keep the original initialization procedure.
+Add the Pigsty inventory and monitoring configuration incrementally.
 
 
 --------
 
 ## Configuration
 
-Cloudberry uses `gpsql` mode rather than a dedicated `cloudberry` mode. Compared with vanilla PostgreSQL, you at least need to care about the extra identity parameters `pg_shard` and `gp_role`; if you want to label shard groups explicitly, you can also add `pg_group`.
+Cloudberry uses `gpsql` mode.
+There is no dedicated `cloudberry` mode.
+In addition to standard PostgreSQL identity parameters, you need `pg_shard` and `gp_role`.
+To label shard groups explicitly, you can also add `pg_group`.
 
-Here is a minimal readable topology example:
+This example shows a minimal topology:
 
 ```yaml
 all:
@@ -92,9 +98,9 @@ all:
         pg_exporter_params: 'options=-c%20gp_role%3Dutility&sslmode=disable'
 ```
 
-Two details are easy to miss:
+Apply these role settings:
 
-- `gp_role: master` is for the coordinator / master node, and business access usually lands there.
+- Use `gp_role: master` for the coordinator / master node. Applications usually connect to this node.
 - `gp_role: segment` nodes usually need `pg_exporter` to connect in `utility` mode for monitoring.
 
 
@@ -102,9 +108,10 @@ Two details are easy to miss:
 
 ## Client Access
 
-For application and BI access, Cloudberry still exposes the PostgreSQL wire protocol, so most PostgreSQL-compatible clients, drivers, and BI tools can connect without special handling.
+Cloudberry uses the PostgreSQL wire protocol for application and BI access.
+Most PostgreSQL-compatible clients, drivers, and BI tools can connect without special configuration.
 
-But keep the following in mind:
+Use these access guidelines:
 
 - Applications and analytics queries should connect to the master / coordinator, not directly to segment nodes.
 - Segment nodes are better treated as data/compute shards and monitoring targets.
@@ -115,22 +122,23 @@ But keep the following in mind:
 
 ## Extensions and Ecosystem
 
-Cloudberry comes from the PostgreSQL ecosystem, but it is not simply "vanilla PostgreSQL plus a few extensions".
-For the extension packages already available in Pigsty, it is better to think in two categories:
+Cloudberry differs from native PostgreSQL with added extensions.
+For extension packages in Pigsty, consider these two categories:
 
 - Pure SQL objects or components with weak ABI coupling are usually easier to adapt.
-- Extensions that depend on PGXS or the kernel C ABI often need separate validation or even recompilation against the Cloudberry version and toolchain.
+- Extensions that depend on PGXS or the kernel C ABI often need separate validation. They may also need recompilation with the Cloudberry version and toolchain.
 
-If your workload depends on `postgis`, vector extensions, FDWs, auditing, or custom C extensions, validate them on the target Cloudberry version first rather than copying a vanilla PostgreSQL extension list unchanged.
+If your workload requires `postgis`, vector extensions, FDWs, auditing, or custom C extensions, first validate them on the target Cloudberry version.
+Do not copy a native PostgreSQL extension list without this check.
 
 
 --------
 
 ## Notes
 
-- Cloudberry currently has no dedicated Pigsty template, so you should model it manually with `gpsql` mode.
-- The current delivery focus is packages, configuration, and monitoring; it does not replace the official Cloudberry MPP initialization and scale-out toolchain.
-- Because this is an MPP distributed kernel, vanilla PostgreSQL operational assumptions do not automatically transfer to every Patroni / PgBouncer / PgBackRest node role.
+- Cloudberry currently has no dedicated Pigsty template. You should define its configuration manually with `gpsql` mode.
+- Pigsty currently provides packages, configuration, and monitoring. Use the official Cloudberry tools for MPP initialization and scale-out.
+- Cloudberry is an MPP distributed kernel. Native PostgreSQL operating assumptions may not apply to every Patroni / PgBouncer / PgBackRest node role.
 - If you need horizontal PostgreSQL scaling rather than a full MPP warehouse, [Citus](/docs/pgsql/kernel/citus/) is usually the better first choice.
 
 

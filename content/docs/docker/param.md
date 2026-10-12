@@ -11,7 +11,7 @@ The DOCKER module provides 8 configuration parameters.
 
 ## Parameter Overview
 
-The [`DOCKER`](#docker) parameter group is used for Docker container engine deployment and configuration, including enable switch, data directory, storage driver, registry mirrors, and monitoring.
+Use the [`DOCKER`](#docker) parameter group to deploy and configure the Docker container engine. It controls the enable switch, data directory, storage driver, registry mirrors, and monitoring.
 
 | Parameter                                           |    Type    |  Level  | Description                                              |
 |:----------------------------------------------------|:----------:|:-------:|:---------------------------------------------------------|
@@ -47,7 +47,7 @@ docker_image_cache: /tmp/docker/*.tgz # Docker image cache tarball glob pattern
 
 Parameter: `docker_enabled`, Type: `bool`, Level: `G/C/I`
 
-Enable Docker on current node? Default: `false`, meaning Docker is not enabled.
+Specifies whether to enable Docker on the current node. The default is `false`, which disables Docker.
 
 
 
@@ -58,7 +58,7 @@ Parameter: `docker_data`, Type: `path`, Level: `G/C/I`
 
 Docker data directory, default is `/data/docker`.
 
-This directory stores Docker images, containers, volumes, and other data. If you have a dedicated data disk, it's recommended to point this directory to that disk's mount point.
+This directory stores Docker images, containers, volumes, and other data. If you have a dedicated data disk, we recommend its mount point for this directory.
 
 
 
@@ -86,7 +86,7 @@ Available storage drivers include:
 
 Parameter: `docker_cgroups_driver`, Type: `enum`, Level: `G/C/I`
 
-Docker cgroup filesystem driver, can be `cgroupfs` or `systemd`, default: `systemd`
+Docker cgroup filesystem driver. Set it to `cgroupfs` or `systemd`. The default is `systemd`.
 
 
 
@@ -132,7 +132,7 @@ Parameter: `docker_image`, Type: `string[]`, Level: `G/C/I`
 
 List of Docker images to pull, default is empty list `[]`.
 
-Docker image names specified here will be automatically pulled during the installation phase.
+During installation, Docker automatically pulls the images specified here.
 
 
 
@@ -144,9 +144,9 @@ Parameter: `docker_image_cache`, Type: `path`, Level: `G/C/I`
 
 Local Docker image cache tarball glob pattern, default is `/tmp/docker/*.tgz`.
 
-You can use `docker save | gzip` to package images and automatically import them during Docker installation via this parameter.
+Use `docker save | gzip` to package images. Set this parameter to import those images automatically during Docker installation.
 
-`.tgz` tarball files matching this pattern will be imported into Docker one by one using:
+Docker imports each `.tgz` tarball that matches this pattern with the following command:
 
 ```bash
 cat *.tgz | gzip -d -c - | docker load

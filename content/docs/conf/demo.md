@@ -6,9 +6,10 @@ icon: fa-solid fa-globe
 categories: [Reference]
 ---
 
-The `demo/demo` configuration template is used by Pigsty's public demo site, demonstrating how to expose services publicly, configure SSL certificates, and install all available extensions.
+Pigsty's public demonstration site uses the `demo/demo` template.
+It shows public service access, SSL certificate configuration, and installation of all available extensions.
 
-If you want to set up your own public service on a cloud server, you can use this template as a reference.
+Use this template as a reference for a public service on a cloud server.
 
 
 --------
@@ -57,7 +58,8 @@ Source: [`pigsty/conf/demo/demo.yml`](https://github.com/pgsty/pigsty/blob/main/
 
 ## Explanation
 
-The `demo/demo` template is Pigsty's **public demo configuration**, showcasing a complete production-grade deployment example.
+The `demo/demo` template is Pigsty's **public demonstration configuration**.
+It shows how to configure the components of a complete deployment.
 
 **Key Features**:
 - HTTPS certificate and custom domain configuration
@@ -71,6 +73,6 @@ The `demo/demo` template is Pigsty's **public demo configuration**, showcasing a
 - Learning Pigsty advanced configuration
 
 **Notes**:
-- SSL certificate files must be prepared
-- DNS resolution must be configured
+- Prepare the SSL certificate files.
+- Configure DNS resolution.
 - Some extensions are not available on ARM64 architecture

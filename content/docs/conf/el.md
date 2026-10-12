@@ -6,7 +6,8 @@ icon: fa-brands fa-redhat
 categories: [Reference]
 ---
 
-The `demo/el` configuration template is optimized for Enterprise Linux family distributions (RHEL, Rocky Linux, Alma Linux, Oracle Linux).
+The `demo/el` template supplies configuration for Enterprise Linux distributions.
+These include RHEL, Rocky Linux, Alma Linux, and Oracle Linux.
 
 
 --------
@@ -40,7 +41,7 @@ Source: [`pigsty/conf/demo/el.yml`](https://github.com/pgsty/pigsty/blob/main/co
 
 ## Explanation
 
-The `demo/el` template is optimized for Enterprise Linux family distributions.
+Use `demo/el` for the following Enterprise Linux distributions.
 
 **Supported Distributions**:
 - RHEL 8/9/10
@@ -50,7 +51,7 @@ The `demo/el` template is optimized for Enterprise Linux family distributions.
 
 **Key Features**:
 - Uses EPEL and PGDG repositories
-- Optimized for YUM/DNF package manager
+- Uses settings for the YUM/DNF package manager
 - Supports EL-specific package names
 
 **Use Cases**:

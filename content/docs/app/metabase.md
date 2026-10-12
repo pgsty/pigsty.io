@@ -6,9 +6,9 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**Metabase**](https://metabase.com/) is a fast, easy-to-use open-source business intelligence tool that lets your team explore and visualize data without SQL knowledge.
+[**Metabase**](https://metabase.com/) is an open-source business intelligence tool. Teams can quickly explore and visualize data through its interface without SQL knowledge.
 
-Metabase provides a friendly user interface with rich chart types and supports connecting to various databases, making it an ideal choice for enterprise data analysis.
+Metabase provides many chart types and connects to different databases. These features support enterprise data analysis.
 
 The template defaults to `metabase/metabase:v0.64.1.x`. Use the single `METABASE_IMAGE` setting to override the full image reference. On 2026-10-08, the tag resolved to `0.64.1.1`; validation on PostgreSQL 18.6 covered upgrading a restored metadata database, login, and querying an existing saved question.
 
@@ -44,7 +44,7 @@ Access Metabase:
 
 ## Management Commands
 
-Pigsty provides convenient Makefile commands to manage Metabase:
+Use these Makefile commands to manage Metabase:
 
 ```bash
 make up      # Start Metabase service
@@ -77,14 +77,14 @@ Username: dbuser_meta
 Password: DBUser.Meta
 ```
 
-After successful connection, Metabase will automatically scan the database schema, and you can start creating questions and dashboards.
+After connecting, Metabase scans the database schema automatically. You can then create questions and dashboards.
 
 
 ## Features
 
 - **No SQL Required**: Build queries through visual interface
 - **Rich Chart Types**: Line, bar, pie, map charts, and more
-- **Interactive Dashboards**: Create beautiful data dashboards
+- **Interactive Dashboards**: Create interactive data dashboards
 - **Auto Refresh**: Schedule data and dashboard updates
 - **Permission Management**: Fine-grained user and data access control
 - **SQL Mode**: Advanced users can write SQL directly

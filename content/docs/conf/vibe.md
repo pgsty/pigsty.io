@@ -6,7 +6,7 @@ icon: fa-solid fa-laptop-code
 categories: [Reference]
 ---
 
-The `vibe` config template provides a ready-to-use **AI coding sandbox**, integrating Code-Server (Web VS Code), JupyterLab, Claude Code observability, Codex CLI, JuiceFS distributed filesystem, and a feature-rich PostgreSQL database.
+The `vibe` configuration template provides a ready-to-use **AI coding sandbox**. It includes Code-Server (Web VS Code), JupyterLab, Claude Code observability, and Codex CLI. It also includes the JuiceFS distributed filesystem and a PostgreSQL database with many features.
 
 
 --------
@@ -40,7 +40,7 @@ Source: [`pigsty/conf/vibe.yml`](https://github.com/pgsty/pigsty/blob/main/conf/
 
 ## Explanation
 
-The `vibe` template is an **AI-era Web coding sandbox**, enabling development, data analysis, AI app building all in browser.
+The `vibe` template provides an **AI coding sandbox for the web**. Use your browser for development, data analysis, and AI application development.
 
 **Core Components**:
 
@@ -69,14 +69,14 @@ pg18-feat, pg18-lang, pg18-type, pg18-util, pg18-func, pg18-admin,
 pg18-stat, pg18-sec, pg18-fdw, pg18-sim, pg18-etl
 ```
 
-By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`; other extensions can be enabled as needed.
+By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`. Enable other extensions as needed.
 
 
 --------
 
 ## VIBE Module Components
 
-The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly enables Code-Server and Jupyter and installs Claude Code and Codex CLI by default.
+The VIBE module provides an AI coding sandbox. The `vibe.yml` template explicitly enables Code-Server and Jupyter. It installs Claude Code and Codex CLI by default.
 
 **Code-Server**: VS Code in browser
 
@@ -103,14 +103,14 @@ The VIBE module provides AI coding sandbox capability; `vibe.yml` explicitly ena
 **Codex CLI**: AI coding assistant
 
 - Controlled by `codex_enabled`, which defaults to `true`
-- VIBE installs `@openai/codex` only; it does not write Codex configuration or connect Codex to the Claude Code dashboard
+- VIBE installs only `@openai/codex`. It does not write the Codex configuration or connect Codex to the Claude Code dashboard.
 
 
 --------
 
 ## JuiceFS Filesystem
 
-This template uses **JuiceFS** for distributed filesystem capability, with a special feature: **both metadata and data stored in PostgreSQL**.
+This template uses **JuiceFS** as a distributed filesystem. It stores **both metadata and data in PostgreSQL**.
 
 **Architecture Features**:
 
@@ -205,8 +205,8 @@ psql 'host=<ip> port=5432 dbname=meta user=dbuser_meta sslmode=require'
 ## Notes
 
 - **Must change passwords**: `code_password` and `jupyter_password` defaults are for testing only
-- **Jupyter boundary**: The template listens on `0.0.0.0:8888`, allows any Origin, disables XSRF checks, and relies on the token by default; restrict the port and portal sources and never expose it directly to the Internet
-- **Network security**: This template exposes `5432` (`node_firewall_public_port`) and includes `addr: world` HBA by default; remove those public paths for production and add portal Basic Auth when appropriate
+- **Jupyter boundary**: The template listens on `0.0.0.0:8888`, allows any Origin, and disables XSRF checks. It relies on the token by default. Restrict the port and portal sources. Never expose Jupyter directly to the Internet.
+- **Network security**: By default, this template exposes `5432` (`node_firewall_public_port`) and includes `addr: world` HBA. Remove these public paths for production. Add portal Basic Auth when appropriate.
 - **Resource requirements**: Recommend at least 2 cores 4GB memory, SSD disk
-- **Simplified architecture**: This template disables Patroni, PgBouncer etc HA components, suitable for single-node dev env
+- **Simplified architecture**: This template disables HA components, including Patroni and PgBouncer. It is suitable for a single-node development environment.
 - **Claude API**: Using Claude Code requires configuring API key in `claude_env`

@@ -8,9 +8,9 @@ toc_hide: true
 sidebar_divider: true
 ---
 
-The `cloudberry` config template is not available yet in this version.
+This version does not include the `cloudberry` configuration template.
 
-If you need Cloudberry support, please see:
+For Cloudberry support, see these pages:
 
 - [Kernel: Cloudberry](/docs/pgsql/kernel/cloudberry/)
 - [Config Templates](/docs/conf/)

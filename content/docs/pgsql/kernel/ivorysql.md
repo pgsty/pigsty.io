@@ -8,22 +8,27 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-[IvorySQL](https://www.ivorysql.org/) is an open-source PostgreSQL kernel fork that aims to provide "Oracle compatibility" based on PG.
+[IvorySQL](https://www.ivorysql.org/) is an open-source PostgreSQL kernel fork that aims to provide Oracle compatibility.
 
 
 --------
 
 ## Overview
 
-The Pigsty PGSQL repository directly provides IvorySQL 5.4 packages compatible with PostgreSQL 18.4 across the currently supported EL, Debian, Ubuntu, and dual-architecture platforms.
-Online installation uses Pigsty's `pgsql` repository; the Professional Edition also provides offline delivery for the corresponding platforms.
+The Pigsty PGSQL repository provides IvorySQL 5.4 packages compatible with PostgreSQL 18.4.
+Packages cover the currently supported EL, Debian, and Ubuntu platforms on both architectures.
+Online installation uses Pigsty's `pgsql` repository.
+The Professional Edition also provides offline delivery for these platforms.
 
 
 ![IvorySQL](/img/pigsty/ivory.jpg)
 
-Pigsty's `ivorysql` package alias points to IvorySQL 5, compatible with PostgreSQL 18. Real package names are mapped by platform variables under `roles/node_id/vars/`; for example, EL uses `ivorysql5`, while Debian/Ubuntu uses `ivorysql-5`.
+Pigsty's `ivorysql` package alias points to IvorySQL 5, which is compatible with PostgreSQL 18.
+Platform variables under `roles/node_id/vars/` map the alias to package names.
+For example, EL uses `ivorysql5`, and Debian/Ubuntu uses `ivorysql-5`.
 
-> The last IvorySQL version supporting EL7 was 3.3, corresponding to PostgreSQL 16.3; the last version based on PostgreSQL 17 is IvorySQL 4.4
+> IvorySQL 3.3 was the last version to support EL7. It corresponds to PostgreSQL 16.3.
+> IvorySQL 4.4 is the last version based on PostgreSQL 17.
 
 
 
@@ -43,7 +48,7 @@ Install with Pigsty's built-in `ivory` configuration template:
 
 ## Configuration
 
-The following parameters need to be configured for IvorySQL database clusters:
+Set these parameters for an IvorySQL database cluster:
 
 ```yaml
 #----------------------------------#
@@ -56,24 +61,26 @@ pg_libs: 'liboracle_parser, pg_stat_statements, auto_explain'
 pg_extensions: [ ]                # do not install any vanilla postgresql extensions
 ```
 
-> When using Oracle compatibility mode, you need to dynamically load the `liboracle_parser` extension plugin.
+> For Oracle compatibility mode, dynamically load the `liboracle_parser` extension plugin.
 
 
 --------
 
 ## Client Access
 
-IvorySQL 5 is equivalent to PostgreSQL 18, and any client tool compatible with the PostgreSQL wire protocol can access IvorySQL clusters.
+IvorySQL 5 is equivalent to PostgreSQL 18.
+Any client tool that supports the PostgreSQL wire protocol can connect to IvorySQL clusters.
 
 --------
 
 ## Available Extensions
 
-The IvorySQL kernel has **95** available extensions. After removing bundled PG Contrib extensions, the following extra extensions remain:
+The IvorySQL kernel has **95** available extensions.
+The following table lists the extra extensions, excluding bundled PG Contrib extensions:
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|
-| [address_standardizer](/ext/e/address_standardizer) | `3.5.4` | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| [address_standardizer](/ext/e/address_standardizer) | `3.5.4` | Parses an address into its elements. Usually supports address normalization for geocoding. |
 | [address_standardizer_data_us](/ext/e/address_standardizer_data_us) | `3.5.4` | Address Standardizer US dataset example |
 | [age](/ext/e/age) | `1.7.0` | AGE database extension |
 | [ddlx](/ext/e/ddlx) | `0.31` | DDL eXtractor functions |
@@ -90,7 +97,7 @@ The IvorySQL kernel has **95** available extensions. After removing bundled PG C
 | pg_jieba | `1.1.1` | a parser for full-text search of Chinese |
 | [pg_partman](/ext/e/pg_partman) | `5.3.1` | Extension to manage partitioned tables by time or ID |
 | [pg_show_plans](/ext/e/pg_show_plans) | `2.1` | show query plans of all currently running SQL statements |
-| [pg_stat_monitor](/ext/e/pg_stat_monitor) | `2.3` | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg_stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information. |
+| [pg_stat_monitor](/ext/e/pg_stat_monitor) | `2.3` | Monitors PostgreSQL query performance. Based on the PostgreSQL contrib module pg_stat_statements. Provides aggregated statistics, client information, execution plans and plan details, and histogram information. |
 | [pg_textsearch](/ext/e/pg_textsearch) | `0.1.0` | Full-text search with BM25 ranking |
 | [pgagent](/ext/e/pgagent) | `4.2` | A PostgreSQL job scheduler |
 | [pgaudit](/ext/e/pgaudit) | `18.0` | provides auditing functionality |
@@ -110,4 +117,5 @@ The IvorySQL kernel has **95** available extensions. After removing bundled PG C
 | [zhparser](/ext/e/zhparser) | `2.3` | a parser for full-text search of Chinese |
 {.full-width}
 
-Please note that Pigsty does not assume any warranty responsibility for using the IvorySQL kernel. Any issues or requirements encountered when using this kernel should be addressed with the original vendor.
+Pigsty does not assume any warranty responsibility for use of the IvorySQL kernel.
+Contact the original vendor about issues or requirements for this kernel.

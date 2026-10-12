@@ -7,28 +7,29 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Extensions are the soul of PostgreSQL. Pigsty includes {{< param pgext_count >}} pre-compiled, out-of-the-box extension plugins, fully unleashing PostgreSQL's potential.
+Pigsty includes {{< param pgext_count >}} precompiled PostgreSQL extensions that are ready to use.
 
 
 --------
 
 ## What are Extensions
 
-PostgreSQL extensions are a modular mechanism that allows enhancing database functionality without modifying the core code.
+PostgreSQL extensions add database functionality without changes to the core code.
 An extension typically consists of three parts:
 
 - **Control file** (`.control`): Required, contains extension metadata
 - **SQL scripts** (`.sql`): Optional, defines functions, types, operators, and other database objects
 - **Dynamic library** (`.so`): Optional, provides high-performance functionality implemented in C
 
-Extensions can add to PostgreSQL: new data types, index methods, functions and operators, foreign data access, procedural languages, performance monitoring, security auditing, and more.
+Extensions can add data types, index methods, functions, and operators to PostgreSQL.
+They can also add foreign data access, procedural languages, performance monitoring, security auditing, and other features.
 
 
 --------
 
 ## Core Extensions
 
-Among the extensions included in Pigsty, the following are most representative:
+The following table shows representative extensions that Pigsty includes:
 
 | Extension                                                                | Description                                                                         |
 |:-------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
@@ -41,7 +42,8 @@ Among the extensions included in Pigsty, the following are most representative:
 | [**Apache AGE**](https://age.apache.org/)                                | Graph database supporting OpenCypher query language                                 |
 | [**pg_graphql**](https://github.com/supabase/pg_graphql)                 | Native GraphQL query support                                                        |
 
-Most extensions can coexist and even be combined, creating synergistic effects far greater than the sum of their parts.
+Most extensions can coexist.
+You can combine their features to perform tasks that one extension cannot perform alone.
 
 
 --------
@@ -69,14 +71,15 @@ Pigsty organizes extensions into 16 categories:
 | Compatibility | `sim`   | Database compatibility      | orafce, babelfish                              |
 |      ETL      | `etl`   | Data synchronization        | pglogical, wal2json, decoderbufs               |
 
-You can batch install an entire category of extensions using category aliases, for example: `pg_extensions: [ pgsql-gis, pgsql-rag ]`.
+Use category aliases to install all extensions in a category together.
+For example: `pg_extensions: [ pgsql-gis, pgsql-rag ]`.
 
 
 --------
 
 ## Predefined Extension Stacks
 
-Pigsty provides several predefined extension stacks for convenient scenario-based selection:
+Pigsty provides predefined extension stacks for different uses:
 
 | Stack        | Included Extensions                                            |
 |:-------------|:---------------------------------------------------------------|
@@ -88,7 +91,7 @@ Pigsty provides several predefined extension stacks for convenient scenario-base
 | `stat-stack` | pg_show_plans, pg_stat_kcache, pg_qualstats, pg_wait_sampling  |
 | `supa-stack` | pg_graphql, pg_jsonschema, wrappers, pgvector, pgsodium, vault |
 
-Simply use these names in `pg_extensions` to install the entire stack.
+To install an entire stack, add its name to `pg_extensions`.
 
 
 --------

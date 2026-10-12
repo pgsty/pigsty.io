@@ -1,7 +1,7 @@
 ---
 title: Extensions
 weight: 2100
-description: Harness the synergistic power of PostgreSQL extensions
+description: Use PostgreSQL extensions with Pigsty
 aliases:
   - /ext/
 icon: fas fa-puzzle-piece
@@ -9,9 +9,10 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty provides [**{{< param pgext_count >}} packaged extensions**](/ext/list), covering 16 major categories including time-series, geospatial, vector, full-text search, analytics, and feature enhancements, ready to use out-of-the-box.
+Pigsty provides [**{{< param pgext_count >}} packaged extensions**](/ext/list) that are ready to use.
+The extensions cover 16 major categories, including time-series, geospatial, vector, full-text search, analytics, and feature enhancements.
 
-Using extensions in Pigsty involves four core steps: [**Download**](/docs/pgsql/ext/download), [**Install**](/docs/pgsql/ext/install), [**Config/Load**](/docs/pgsql/ext/config), and [**Create**](/docs/pgsql/ext/create).
+To use extensions in Pigsty, complete four steps: [**Download**](/docs/pgsql/ext/download), [**Install**](/docs/pgsql/ext/install), [**Config/Load**](/docs/pgsql/ext/config), and [**Create**](/docs/pgsql/ext/create).
 
 ```yaml
 pg-meta:

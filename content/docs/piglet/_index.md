@@ -9,9 +9,9 @@ module: [PIGLET]
 
 — **Pigsty Lightweight Runtime, AI Coding Sandbox**
 
-PIGLET is a lightweight runtime environment based on Pigsty, designed for **AI Web Coding** cloud sandbox.
-It integrates PostgreSQL database, JuiceFS distributed storage, Code Server, JupyterLab, Claude Code, Codex CLI and more into one,
-enabling zero-friction workflow from **"prompting code"** to **"production deployment"**.
+PIGLET is a lightweight runtime environment based on Pigsty. It provides a cloud sandbox for **AI Web Coding**.
+
+PIGLET combines PostgreSQL, JuiceFS distributed storage, Code Server, JupyterLab, Claude Code, Codex CLI, and other tools. These tools support a continuous workflow from **code prompts** to **production deployment**.
 
 --------
 
@@ -33,8 +33,7 @@ enabling zero-friction workflow from **"prompting code"** to **"production deplo
 
 ## Quick Start
 
-[**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**SSH access**](/docs/deploy/admin#ssh),
-running a [**compatible Linux distro**](/docs/ref/linux/), execute with an [**admin user**](/docs/deploy/admin) having passwordless [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo):
+[**Prepare**](/docs/deploy/prepare) a [**node**](/docs/deploy/prepare#node) with [**SSH access**](/docs/deploy/admin#ssh) and a [**compatible Linux distribution**](/docs/ref/linux/). Run these commands as an [**admin user**](/docs/deploy/admin) with passwordless [**`ssh`**](/docs/deploy/admin#ssh) and [**`sudo`**](/docs/deploy/admin#sudo):
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -55,7 +54,7 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | Claude Monitor    | [`http://10.10.10.10/ui/d/claude-code`](http://10.10.10.10/ui/d/claude-code) |
 {.full-width}
 
-> When deploying on a public cloud server, start with [**Security Recommendations**](/docs/setup/security): run `configure -g`, review the credentials it does not cover, and [**enable the firewall**](/docs/node/param#node_firewall_mode).
+> For public cloud deployment, first read [**Security Recommendations**](/docs/setup/security). Run `configure -g` and review credentials that it does not cover. [**Enable the firewall**](/docs/node/param#node_firewall_mode).
 
 --------
 
@@ -73,22 +72,22 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | Extra npm   | `npm_packages: []`      | Installs additional global npm packages only; Claude and Codex are installed by their own tasks                                            | `./vibe.yml -t nodejs_pkg` |
 {.full-width}
 
-If you do not need a component, set the matching `*_enabled: false` in `pigsty.yml`, or temporarily pass switches such as `./vibe.yml -e codex_enabled=false`.
+If you do not need a component, set its `*_enabled: false` in `pigsty.yml`. For one run, pass a switch such as `./vibe.yml -e codex_enabled=false`.
 
 --------
 
 ## Start AI Coding
 
-By default `/fs` is the shared directory stored in PostgreSQL, also the default home for VS Code and Jupyter.
-`vibe` renders the `AGENTS.md` environment guide there and creates a `CLAUDE.md -> AGENTS.md` symlink. This directory is the recommended place for Vibe Coding.
+By default, `/fs` is a shared directory stored in PostgreSQL. It is also the default home for VS Code and Jupyter. The `vibe` role renders the `AGENTS.md` environment guide there and creates a `CLAUDE.md -> AGENTS.md` symlink. We recommend this directory for Vibe Coding.
 
-You can ssh to the server then `cd /fs`, and normally start the corresponding CLI with `claude` or `codex`. The preconfigured `x` alias starts Codex YOLO mode, while `xx` starts Claude YOLO mode; use them carefully around real data.
+Connect to the server with SSH and run `cd /fs`. Start the corresponding CLI with `claude` or `codex`. The preconfigured `x` alias starts Codex YOLO mode. The `xx` alias starts Claude YOLO mode. Use these modes carefully with real data.
 You can also start Claude Code from the Code Server or Jupyter terminal, or through VS Code / Jupyter Claude plugins.
 
 ![AI coding environment in VS Code](/img/pigsty/vscode.webp)
 
-Claude here has logs and monitoring metrics integrated with Grafana dashboards, so you can monitor Claude's running status through Grafana.
-Codex CLI is package-only in VIBE: the CLI package is installed by default, while login, provider setup, and config files are still managed by Codex itself.
+Claude logs and monitoring metrics integrate with Grafana dashboards. Use Grafana to monitor Claude runtime status.
+
+VIBE installs the Codex CLI package by default. Codex itself manages login, provider setup, and configuration files.
 
 ![Claude Code monitoring dashboard](/img/pigsty/claude-monitor-1.webp)
 
@@ -96,8 +95,7 @@ Codex CLI is package-only in VIBE: the CLI package is installed by default, whil
 
 ## Using Other Models
 
-To make Claude Code use other models, such as GLM-5.2 that does not require overseas network access in China, modify `pigsty.yml` during installation.
-Find the `claude_env` section at the bottom and add Anthropic-compatible endpoint variables as needed:
+To use other models with Claude Code, edit `pigsty.yml` during installation. For example, GLM-5.2 does not require overseas network access in China. Find the `claude_env` section at the bottom. Add the Anthropic-compatible endpoint variables that you need:
 
 ```yaml
 claude_env:
@@ -110,14 +108,14 @@ claude_env:
   CLAUDE_CODE_AUTO_COMPACT_WINDOW: "1000000"
 ```
 
-Then re-run `./vibe.yml -t claude`. This only affects Claude Code; Codex CLI account and provider config are not managed by VIBE.
+Run `./vibe.yml -t claude` again. This affects only Claude Code. VIBE does not manage Codex CLI account and provider configuration.
 
 ![Claude Code observability data](/img/pigsty/claude-monitor-2.webp)
 
 
 ## Claude Code Observability
 
-To integrate Claude Code metrics and logs from other environments into the PIGLET monitoring system, configure environment variables to send OTEL events to the VictoriaMetrics / VictoriaLogs OTEL endpoints.
+To monitor Claude Code in other environments, send its OTEL events to the PIGLET VictoriaMetrics / VictoriaLogs OTEL endpoints. Set these environment variables:
 
 ```bash
 # Claude Code OTEL Configuration

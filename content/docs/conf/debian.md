@@ -6,7 +6,7 @@ icon: fa-brands fa-debian
 categories: [Reference]
 ---
 
-The `demo/debian` configuration template is optimized for Debian and Ubuntu distributions.
+The `demo/debian` template supplies configuration for Debian and Ubuntu.
 
 
 --------
@@ -40,7 +40,7 @@ Source: [`pigsty/conf/demo/debian.yml`](https://github.com/pgsty/pigsty/blob/mai
 
 ## Explanation
 
-The `demo/debian` template is optimized for Debian and Ubuntu distributions.
+Use `demo/debian` for the following Debian and Ubuntu versions.
 
 **Supported Distributions**:
 - Debian 12 (Bookworm)
@@ -51,7 +51,7 @@ The `demo/debian` template is optimized for Debian and Ubuntu distributions.
 
 **Key Features**:
 - Uses PGDG APT repositories
-- Optimized for APT package manager
+- Uses settings for the APT package manager
 - Supports Debian/Ubuntu-specific package names
 
 **Use Cases**:

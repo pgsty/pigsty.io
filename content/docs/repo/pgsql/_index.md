@@ -5,8 +5,7 @@ description: The repo for PostgreSQL Extensions & Kernel Forks
 weight: 5460
 ---
 
-The `pigsty-pgsql` repo contains packages that are ad hoc to specific PostgreSQL Major Versions
-(often ad hoc to a specific Linux distro major version, too). Including extensions and some kernel forks.
+The `pigsty-pgsql` repository contains packages for specific PostgreSQL major versions. These packages often also depend on the Linux distribution major version. They include extensions and some kernel forks.
 
 You can check the [**Release - RPM Changelog**](/docs/repo/pgsql/rpm/) / [**Release - DEB Changelog**](/docs/repo/pgsql/deb/) for the latest updates.
 
@@ -32,7 +31,7 @@ You can check the [**Release - RPM Changelog**](/docs/repo/pgsql/rpm/) / [**Rele
 
 ### PIG
 
-You can install [pig](/docs/pig/) - the CLI tool, and add pgdg / pigsty repo with it (recommended):
+We recommend that you install the [pig](/docs/pig/) CLI tool. Use it to add the PGDG / Pigsty repositories:
 
 ```bash
 pig repo add pigsty                         # add pigsty-pgsql repo
@@ -43,7 +42,7 @@ pig repo add pgsql -u                       # pgsql = pgdg + pigsty-pgsql (add p
 pig repo add -u                             # all = node + pgsql (pgdg + pigsty) + infra
 ```
 
-> **Hint**: If you are in mainland China, consider using the China CDN mirror (replace pigsty.io with pigsty.cc)
+> **Hint**: In mainland China, consider the China CDN mirror. Replace pigsty.io with pigsty.cc.
 
 
 ### APT
@@ -132,11 +131,11 @@ sudo dnf makecache;
 
 ## Source
 
-Building specs of this repo is open-sourced on GitHub:
+The build specifications for this repository are open source on GitHub:
 
 - https://github.com/pgsty/rpm
 - https://github.com/pgsty/deb
 
-If the platform is not supported, you can also build the packages from source code by yourself.
+If your platform is unsupported, you can build the packages from source.
 
-The [`pig build`](/docs/pig/build) provides an easy way to build extension RPM/DEB on your own systems.
+Use [`pig build`](/docs/pig/build) to build extension RPM/DEB packages on your own systems.

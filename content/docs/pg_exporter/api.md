@@ -7,7 +7,8 @@ category: [Reference]
 ---
 
 
-`pg_exporter` exposes four kinds of HTTP endpoints on its listen port (default `:9630`): metrics, health checks, traffic routing, and operational management. The full endpoint list:
+`pg_exporter` provides four types of HTTP endpoints: metrics, health checks, traffic routing, and operational management.
+The default listen port is `:9630`. The following table lists all endpoints:
 
 | Endpoint                       | Method   | Description                 |
 |--------------------------------|----------|-----------------------------|
@@ -22,7 +23,8 @@ category: [Reference]
 | `/`                            | GET      | Landing page linking to the metrics endpoint |
 {.full-width}
 
-Health and routing endpoints answer from a cached background-probe role state (`primary` / `replica` / `down` / `starting` / `unknown`) — they never query the database synchronously per HTTP request, so probe storms cannot reach the database.
+Health and routing endpoints return the cached state from background probes: `primary`, `replica`, `down`, `starting`, or `unknown`.
+They do not query the database for each HTTP request. Thus, frequent probes cannot overload the database.
 
 
 --------
@@ -31,7 +33,7 @@ Health and routing endpoints answer from a cached background-probe role state (`
 
 ### GET /metrics
 
-The primary endpoint that exposes all collected metrics in Prometheus format.
+This endpoint returns all collected metrics in Prometheus format.
 
 #### Request
 
@@ -73,7 +75,9 @@ Metrics follow the Prometheus exposition format:
 
 #### Self-Monitoring Metrics
 
-Besides business metrics defined by YAML collectors, `/metrics` also exposes the exporter's own runtime metrics (disable the `pg_exporter_*` part with `--disable-intro`; the prefix follows `--namespace` and becomes `pgbouncer_` in pgBouncer mode):
+In addition to metrics from YAML collectors, `/metrics` returns the exporter's runtime metrics.
+Use `--disable-intro` to disable the `pg_exporter_*` metrics.
+The prefix follows `--namespace`. In pgBouncer mode, the prefix is `pgbouncer_`.
 
 | Metric | Labels | Description |
 |--------|--------|-------------|
@@ -94,7 +98,8 @@ Besides business metrics defined by YAML collectors, `/metrics` also exposes the
 | `pg_exporter_query_cache_ttl` | datname, query | Result cache TTL per collector |
 {.full-width}
 
-`pg_exporter_query_scrape_duration` and `_error_count` pinpoint slow and failing collectors directly — the machine-readable equivalent of `/stat`.
+Use `pg_exporter_query_scrape_duration` and `_error_count` to identify slow or failed collectors.
+These metrics provide a machine-readable equivalent of `/stat`.
 
 
 --------
@@ -105,7 +110,8 @@ Health endpoints provide multiple ways to monitor PG Exporter and the target dat
 
 ### GET /up
 
-Simple aliveness check based on cached background probe state. It does not actively probe the database on every HTTP request.
+This endpoint checks availability from the cached background probe state.
+It does not probe the database for each HTTP request.
 
 #### Response Codes
 
@@ -135,7 +141,7 @@ curl http://localhost:9630/health
 
 ### GET /liveness and GET /readiness
 
-Path aliases provided for Kubernetes probe conventions, with behavior identical to `/up` (same handler):
+These aliases use the same handler and behavior as `/up`. Use them for Kubernetes probes:
 
 ```yaml
 livenessProbe:
@@ -148,14 +154,15 @@ readinessProbe:
   periodSeconds: 5
 ```
 
-Note that both share the same semantics: they return 503 when the target database is unreachable. If you don't want "database down" to restart the exporter Pod, use a TCP probe on the listen port for liveness instead.
+Both endpoints return 503 when the target database is unreachable.
+To prevent a database failure from restarting the exporter Pod, use a TCP liveness probe on the listen port.
 
 
 --------
 
 ## Traffic Routing
 
-These endpoints are designed for load balancers and proxies to route traffic based on server role.
+Load balancers and proxies use these endpoints to route traffic by server role.
 
 ### GET /primary
 
@@ -292,10 +299,13 @@ server reloaded
 - Add or remove collectors
 
 > [!NOTE] Note
-> Reload refreshes collector configuration and query plans. Process-level settings such as listen addresses and CLI arguments still require a restart.
+> Reload updates collector configuration and query plans.
+> To change process settings, such as listen addresses or CLI arguments, restart the exporter.
 
 > [!WARNING] Security Advice
-> `/reload`, `/explain`, and `/stat` are management endpoints. If the exporter is reachable beyond localhost or a trusted private network, protect them with `--web.config.file` or restrict access at the reverse proxy or firewall layer.
+> `/reload`, `/explain`, and `/stat` are management endpoints.
+> If the exporter is reachable outside localhost or a trusted private network, protect these endpoints.
+> Use `--web.config.file`, or restrict access through a reverse proxy or firewall.
 
 ### GET /explain
 
@@ -349,7 +359,7 @@ pg_activity              12         0          1          0          8          
 ...
 ```
 
-This endpoint is useful when identifying slow or problematic collectors.
+Use this endpoint to identify slow or failed collectors.
 
 
 --------
@@ -389,4 +399,7 @@ backend pg_read
 
 ### A Note on Nginx
 
-Open-source Nginx does not support active out-of-band HTTP health checks (the `health_check` directive is an NGINX Plus feature), and PostgreSQL traffic requires the `stream` module rather than `http` proxying. For role-based PostgreSQL traffic routing, prefer HAProxy as shown above, or solutions like Patroni + vip-manager.
+Open-source Nginx does not support active HTTP health checks outside the traffic connection.
+The `health_check` directive requires NGINX Plus.
+PostgreSQL traffic also requires the `stream` module instead of `http` proxying.
+To route PostgreSQL traffic by role, use HAProxy as shown above, or a solution such as Patroni + vip-manager.

@@ -5,15 +5,14 @@ description: Import the GPG key for Pigsty repository
 weight: 5420
 ---
 
-You can verify the integrity of the packages you download from Pigsty repository by checking the GPG signature.
-This document describes how to import the GPG key used to sign the packages.
+Check the GPG signature to verify the integrity of packages downloaded from the Pigsty repository. This document explains how to import the package signing key.
 
 
 ---------
 
 ## Summary
 
-All the RPM / DEB packages are signed with GPG key fingerprint (`B9BD8B20`) in Pigsty repository.
+Pigsty signs all RPM / DEB packages in its repository with the GPG key identified by `B9BD8B20`.
 
 Full: `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` Ruohang Feng (Pigsty) [rh@vonng.com](mailto:rh@vonng.com)
 
@@ -118,7 +117,7 @@ UWEnnC1xBSasNebw4fSE8AJg9JMCRw+3GAetlotOeW9q7PN6yrXD9rGuV/QquQNd
 
 ## Usage
 
-If you wish to distribute your own Repo with your own GPG key, here's a tutorial:
+To distribute your own repository with your own GPG key, follow this tutorial.
 
 
 ### Install GPG
@@ -138,7 +137,7 @@ sudo dnf install gnupg2 pinentry-curses
 
 ### Generate GPG Key
 
-You can generate a GPG key with the following command:
+To generate a GPG key, run:
 
 ```bash
 gpg --full-generate-key
@@ -147,7 +146,7 @@ gpg --full-generate-key
 
 ### Import GPG Key
 
-If you have a GPG Private key, you can just import it with:
+If you have a GPG private key, import it with:
 
 ```bash
 gpg --import mykey.sec.as
@@ -156,7 +155,7 @@ gpg --import mykey.sec.as
 
 ### List GPG Key
 
-You can list GPG public keys and secret keys with the following commands:
+To list GPG public and secret keys, run:
 
 ```bash
 $ gpg --list-key
@@ -179,7 +178,7 @@ ssb   rsa4096 2024-07-16 [E]
 
 ### Sign RPM Packages
 
-If you wish to sign your RPM packages with a specific GPG key, you can specify the key in the `~/.rpmmacros` file:
+To sign RPM packages with a specific GPG key, specify the key in `~/.rpmmacros`:
 
 ```bash
 %_signature   gpg

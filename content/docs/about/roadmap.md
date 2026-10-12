@@ -14,10 +14,9 @@ categories: [Reference]
 
 Pigsty uses semantic versioning: `<major>.<minor>.<patch>`. Alpha/Beta/RC versions will have suffixes like `-a1`, `-b1`, `-c1` appended to the version number.
 
-Major version updates signify incompatible foundational changes and major new features; minor version updates typically indicate regular feature updates and small API changes; patch version updates mean bug fixes and package version updates.
+Major versions introduce incompatible foundational changes and major features. Minor versions usually add features and small API changes. Patch versions provide bug fixes and package updates.
 
-Pigsty plans to release one major version update per year. Minor version updates usually follow PostgreSQL's minor version update rhythm, catching up within a month at the latest after a new PostgreSQL version is released.
-Pigsty typically plans 4-6 minor versions per year. For complete release history, please refer to [**Release Notes**](/docs/about/release).
+Pigsty plans one major release per year and usually 4-6 minor releases. Minor releases generally follow PostgreSQL minor releases within one month. See [**Release Notes**](/docs/about/release) for the full history.
 
 > [!IMPORTANT] Deploy with Specific Version Numbers
 > Pigsty develops using the **main** trunk branch. Please always use [**Releases**](https://github.com/pgsty/pigsty/releases) with version numbers.
@@ -43,7 +42,7 @@ Here are our [**Active Issues**](https://github.com/pgsty/pigsty/issues) and [**
 
 ## Extensions and Packages
 
-For the extension support roadmap, you can find it here: /ext/e/roadmap
+The extension roadmap is at /ext/e/roadmap.
 
 
 ### Under Consideration

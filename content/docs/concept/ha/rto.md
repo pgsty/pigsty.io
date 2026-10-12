@@ -10,23 +10,19 @@ categories: [Concept]
 
 **RTO** (Recovery Time Objective) defines the **maximum time required for the system to restore write capability** when the primary fails.
 
-For critical transaction systems where availability is paramount, the shortest possible RTO is typically required, such as under one minute.
+Critical transaction systems typically need the shortest practical RTO, often below one minute.
 
-However, shorter RTO comes at a cost: increased false failover risk. Network jitter may be misinterpreted as a failure, leading to unnecessary failovers.
-For cross-datacenter/cross-region deployments, RTO requirements are typically relaxed (e.g., 1-2 minutes) to reduce false failover risk.
+Shorter RTO increases false failover risk. Network jitter can appear to be a failure. Cross-datacenter or cross-region deployments often allow 1–2 minutes to reduce this risk.
 
 --------
 
 ## Trade-offs
 
-The upper limit of unavailability during failover is controlled by the [**`pg_rto`**](/docs/pgsql/param#pg_rto) parameter. Pigsty provides four preset RTO modes:
-`fast`, `norm`, `safe`, `wide`, each optimized for different network conditions and deployment scenarios. The default is `norm` mode (~45 seconds).
+[**`pg_rto`**](/docs/pgsql/param#pg_rto) controls the failover unavailability limit. Presets `fast`, `norm`, `safe`, and `wide` support different network and deployment conditions. The default is `norm`, approximately 45 seconds.
 
-When the primary fails, the entire recovery process involves multiple phases: Patroni detects the failure, DCS lock expires, new primary election, promote execution, HAProxy detects the new primary.
-Reducing RTO means shortening the timeout for each phase, which makes the cluster more sensitive to network jitter, thereby increasing false failover risk.
+Recovery includes detection, DCS lock expiration, election, promotion, and HAProxy detection of the new primary. Shorter phase timeouts reduce RTO. They also increase sensitivity to network jitter and false failover risk.
 
-You need to choose the appropriate mode based on actual network conditions, balancing **recovery speed** and **false failover risk**.
-The worse the network quality, the more conservative mode you should choose; the better the network quality, the more aggressive mode you can choose.
+Choose a preset that balances **recovery speed** and **false failover risk** for your network. Poor networks need longer timeouts. Stable networks can use shorter timeouts.
 
 ```mermaid
 flowchart LR
@@ -54,7 +50,7 @@ flowchart LR
 
 ## Four Modes
 
-Pigsty provides four RTO modes to help users make trade-offs under different network conditions.
+Select one of four RTO presets for the network conditions.
 
 | **Name**                |                    **fast**                    |                   **norm**                   |                  **safe**                   |                    **wide**                    |
 |:------------------------|:----------------------------------------------:|:--------------------------------------------:|:-------------------------------------------:|:----------------------------------------------:|
@@ -67,30 +63,30 @@ Pigsty provides four RTO modes to help users make trade-offs under different net
 
 
 > [!IMPORTANT] fast: Same Rack/Switch
-> - Suitable for scenarios with extremely low network latency (< 1ms) and very stable networks, such as same-rack or same-switch deployments
-> - Average RTO: **14s**, worst case: **29s**, TTL only 20s, check interval 5s
-> - Highest network quality requirements, any jitter may trigger failover, **higher false failover risk**
+> - Use for stable networks below 1ms latency, such as one rack or switch.
+> - Average RTO: **14s**; worst case: **29s**. TTL is 20s; check interval is 5s.
+> - This needs the best network quality. Jitter can trigger failover, so **false failover risk is higher**.
 
 > [!TIP] norm: Same Datacenter (Default)
-> - **Default mode**, suitable for same-datacenter deployment, network latency 1-5ms, normal quality, reasonable packet loss rate
-> - Average RTO: **21s**, worst case: **43s**, TTL is 30s, provides reasonable tolerance window
-> - Balances recovery speed and stability, suitable for most production environments
+> - **Default mode** for normal same-datacenter networks, 1–5ms latency, and reasonable packet loss.
+> - Average RTO: **21s**; worst case: **43s**. TTL is 30s, allowing some network variation.
+> - This balances recovery speed and stability for most production environments.
 
 > [!NOTE] safe: Same Region, Cross-Datacenter
-> - Suitable for same-region/same-area cross-datacenter deployment, network latency 10-50ms, occasional jitter possible
-> - Average RTO: **43s**, worst case: **91s**, TTL is 60s, longer tolerance window
-> - Primary restart wait time is longer (60s), gives more local recovery opportunities, **lower false failover risk**
+> - Use for same-region or same-area datacenters with 10–50ms latency and occasional jitter.
+> - Average RTO: **43s**; worst case: **91s**. TTL is 60s.
+> - The 60s primary restart wait allows more local recovery time and **reduces false failover risk**.
 
 > [!CAUTION] wide: Cross-Region/Continent
-> - Suitable for cross-region or even cross-continent deployment, network latency 100-200ms, possible public-network-level packet loss
-> - Average RTO: **92s**, worst case: **207s**, TTL is 120s, very wide tolerance window
-> - Sacrifices recovery speed for extremely low false failover rate, suitable for geo-disaster recovery scenarios
+> - Use across regions or continents with 100–200ms latency and possible public-network packet loss.
+> - Average RTO: **92s**; worst case: **207s**. TTL is 120s.
+> - Slower recovery provides a very low false failover rate for geographic disaster recovery.
 
 --------
 
 ## RTO Timeline
 
-Patroni / PG HA has two key failure paths: **active failure detection** (Patroni detects a PG crash and attempts restart) and **passive lease expiration** (node down waits for TTL expiration to trigger election).
+Patroni HA has two main paths. **Active detection** finds a PostgreSQL crash and attempts a restart. **Passive lease expiration** waits for the TTL after node failure, then starts an election.
 
 <script>
 window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
@@ -123,7 +119,7 @@ series:
 
 ## Implementation
 
-The four RTO modes differ in how the following 10 **Patroni** and **HAProxy** HA-related parameters are configured.
+Each preset selects values for these 10 **Patroni** and **HAProxy** parameters:
 
 |   Component   |          Parameter          | **fast** | **norm** | **safe** | **wide** | Description                           |
 |:-------------:|:---------------------------:|:--------:|:--------:|:--------:|:--------:|:--------------------------------------|
@@ -142,23 +138,23 @@ The four RTO modes differ in how the following 10 **Patroni** and **HAProxy** HA
 
 ### Patroni Parameters
 
-- **`ttl`**: Leader lock TTL. Primary must renew within this time, otherwise lock expires and triggers election. Directly determines passive failure detection delay.
-- **`loop_wait`**: Patroni main loop interval. Each loop performs one health check and state sync, affects failure discovery timeliness.
-- **`retry_timeout`**: DCS operation retry timeout. During network partition, Patroni retries continuously within this period; after timeout, primary actively demotes to prevent split-brain.
-- **`primary_start_timeout`**: Wait time for Patroni to attempt local restart after PG crash. After timeout, releases Leader lock and triggers failover.
-- **`safety_margin`**: Watchdog safety margin. Ensures sufficient time to trigger system restart during failures, avoiding split-brain.
+- **`ttl`**: Leader lease lifetime. Failure to renew triggers expiration and election. It sets passive detection delay.
+- **`loop_wait`**: Main loop interval. Each cycle checks health and synchronizes state.
+- **`retry_timeout`**: DCS retry period. After partition-related retries fail, the primary demotes to prevent split brain.
+- **`primary_start_timeout`**: Time allowed for local restart after a PostgreSQL crash. On expiration, release the Leader lock and fail over.
+- **`safety_margin`**: Watchdog time allowance for restarting the system before split brain can occur.
 
 ### HAProxy Parameters
 
-- **`inter`**: Health check interval in normal state, used when service status is stable.
-- **`fastinter`**: Check interval during state transition, uses shorter interval to accelerate confirmation when state change detected.
-- **`downinter`**: Check interval in DOWN state, uses this interval to probe recovery after service marked DOWN.
-- **`rise`**: Consecutive successes required to mark UP. After new primary comes online, must pass `rise` consecutive checks before receiving traffic.
-- **`fall`**: Consecutive failures required to mark DOWN. Service must fail `fall` consecutive times before being marked DOWN.
+- **`inter`**: Check interval while service state is stable.
+- **`fastinter`**: Shorter check interval during state changes.
+- **`downinter`**: Check interval for recovery after a service is marked DOWN.
+- **`rise`**: Consecutive successes required for UP. A new primary must pass this many checks before receiving traffic.
+- **`fall`**: Consecutive failures required for DOWN.
 
 ### Key Constraint
 
-**Patroni core constraint**: Ensures primary can complete demotion before TTL expires, preventing split-brain.
+**Patroni constraint**: The primary must complete demotion before TTL expiration to prevent split brain.
 
 ```math
 loop\_wait + 2 \times retry\_timeout \leq ttl
@@ -172,17 +168,13 @@ loop\_wait + 2 \times retry\_timeout \leq ttl
 
 ## Recommendations
 
-**fast mode** is suitable for scenarios with extremely high RTO requirements, but requires sufficiently good network quality (latency < 1ms, very low packet loss).
-Recommended only for same-rack or same-switch deployments, and should be thoroughly tested in production before enabling.
+**fast** requires latency below 1ms and very low packet loss. Use it only within one rack or switch for strict RTO targets. Test it thoroughly in production before enabling it.
 
-**norm mode** (**default**) is Pigsty's default configuration, sufficient for the vast majority of same-datacenter deployments.
-In the model used by this page, the passive and active paths average about 34 and 35 seconds, while still providing a reasonable tolerance window against false failovers caused by network jitter.
+**norm** is the default for most same-datacenter deployments. This page's model gives passive and active averages of about 34 and 35 seconds. Its timeout allowance reduces false failovers from jitter.
 
-**safe mode** is suitable for same-city cross-datacenter deployments with higher network latency or occasional jitter.
-The longer tolerance window effectively prevents false failovers from network jitter, making it the recommended configuration for cross-datacenter disaster recovery.
+**safe** suits same-city datacenters with higher latency or occasional jitter. Longer timeouts reduce false failovers. It is recommended for cross-datacenter recovery.
 
-**wide mode** is suitable for cross-region or even cross-continent deployments with high network latency and possible public-network-level packet loss.
-In such scenarios, stability is more important than recovery speed, so an extremely wide tolerance window ensures very low false failover rate.
+**wide** suits high-latency, cross-region or cross-continent networks, including public-network packet loss. It favors stability over speed. Its long timeouts keep false failover rates very low.
 
 |  Mode     | Target RTO |       Passive RTO        |      Active RTO       | Scenario           |
 |:---------:|:-----:|:---------------------:|:-------------------:|:-------------|
@@ -194,10 +186,9 @@ In such scenarios, stability is more important than recovery speed, so an extrem
 {.full-width}
 
 
-Typically you only need to set [**`pg_rto`**](/docs/pgsql/param#pg_rto) to the mode name, and Pigsty will automatically configure Patroni and HAProxy parameters.
-The current template looks up `pg_rto` with `pg_rto in pg_rto_plan`; a numeric or unknown key falls back directly to `norm`. Do not treat that fallback as a supported “RTO in seconds” configuration.
+Set [**`pg_rto`**](/docs/pgsql/param#pg_rto) to a preset name to configure Patroni and HAProxy automatically. The template checks `pg_rto in pg_rto_plan`. A numeric or unknown key falls back to `norm`. This fallback does not support an RTO expressed as seconds.
 
-The mode configuration actually loads the corresponding parameter set from [**`pg_rto_plan`**](/docs/pgsql/param#pg_rto_plan). You can modify or override this configuration to implement custom RTO strategies.
+Presets come from [**`pg_rto_plan`**](/docs/pgsql/param#pg_rto_plan). Override this mapping for a custom RTO strategy.
 
 ```yaml
 pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]

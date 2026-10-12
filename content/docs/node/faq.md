@@ -12,13 +12,13 @@ categories: [Reference]
 
 ## How to configure NTP service?
 
-> NTP is critical for various production services. If NTP is not configured, you can use public NTP services or the Chronyd on the admin node as the time standard.
+> NTP is critical for production services. If it is not configured, use public NTP services or Chronyd on the admin node as the time source.
 
-If your nodes already have NTP configured, you can preserve the existing configuration without making any changes by setting `node_ntp_enabled` to `false`.
+If the nodes already have NTP configured, set `node_ntp_enabled` to `false` to preserve that configuration.
 
 Otherwise, if you have Internet access, you can use public NTP services such as `pool.ntp.org`.
 
-If you don't have Internet access, you can use the following approach to ensure all nodes in the environment are synchronized with the admin node, or use another internal NTP time service.
+Without Internet access, use the configuration below to synchronize all nodes with the admin node. You can also use another internal NTP service.
 
 ```bash
 node_ntp_servers:                 # NTP servers in /etc/chrony.conf
@@ -44,7 +44,7 @@ You can replace `all` with any group or host IP address to limit the execution s
 
 ## Remote nodes are not accessible via SSH?
 
-If the target machine is hidden behind an SSH jump host, or some customizations prevent direct access using `ssh ip`, you can use [Ansible connection parameters](https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html) to specify various SSH connection options, such as:
+A target can require an SSH jump host or other settings that prevent direct `ssh ip` access. Use [Ansible connection parameters](https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html) to specify the required SSH options. For example:
 
 ```bash
 pg-test:
@@ -63,7 +63,7 @@ pg-test:
 
 **When performing deployments and changes**, the admin user used **must** have `ssh` and `sudo` privileges for all nodes. Passwordless login is not required.
 
-You can pass ssh and sudo passwords via the `-k|-K` parameters when executing playbooks, or even use another user to run playbooks via `-e`[`ansible_host`](/docs/node/param#connect)`=<another_user>`.
+Pass SSH and sudo passwords with the `-k|-K` parameters when you run playbooks. To run a playbook as another user, use `-e`[`ansible_host`](/docs/node/param#connect)`=<another_user>`.
 
 However, Pigsty strongly recommends configuring SSH **passwordless login** with passwordless `sudo` for the admin user.
 
@@ -73,7 +73,7 @@ However, Pigsty strongly recommends configuring SSH **passwordless login** with 
 
 ## How to create a dedicated admin user with an existing admin user?
 
-Use the following command to create a new standard admin user defined by [`node_admin_username`](/docs/node/param#node_admin_username) using an existing admin user on that node.
+Use an existing admin user on the node to run this command. It creates the standard admin user specified by [`node_admin_username`](/docs/node/param#node_admin_username).
 
 ```bash
 ./node.yml -k -K -e ansible_user=<another_admin> -t node_admin
@@ -83,7 +83,7 @@ Use the following command to create a new standard admin user defined by [`node_
 
 ## How to expose services using HAProxy on nodes?
 
-You can use [`haproxy_services`](/docs/node/param#haproxy_services) in the configuration to expose services, and use `node.yml -t haproxy_config,haproxy_reload` to update the configuration.
+Use [`haproxy_services`](/docs/node/param#haproxy_services) to define exposed services. Run `node.yml -t haproxy_config,haproxy_reload` to update the configuration.
 
 Here's an example of exposing Silo: [Silo Service Access](/docs/minio/config#expose-service)
 
@@ -93,9 +93,9 @@ Here's an example of exposing Silo: [Silo Service Access](/docs/minio/config#exp
 
 ## Why are all my /etc/yum.repos.d/* files gone?
 
-Pigsty builds a local software repository on infra nodes that includes all dependencies. All regular nodes will reference and use the local software repository on Infra nodes according to the default configuration of [`node_repo_modules`](/docs/node/param#node_repo_modules) as `local`.
+Pigsty builds a local software repository on infra nodes that includes all dependencies. By default, [`node_repo_modules`](/docs/node/param#node_repo_modules) is `local`. Regular nodes use the local software repository on Infra nodes.
 
-This design avoids Internet access and enhances installation stability and reliability. All original repo definition files are moved to the `/etc/yum.repos.d/backup` directory; you can copy them back as needed.
+This design avoids Internet access and enhances installation stability and reliability. Pigsty moves all original repository definition files to `/etc/yum.repos.d/backup`. Copy them back as needed.
 
 If you want to preserve the original repo definition files during regular node installation, set [`node_repo_remove`](/docs/node/param#node_repo_remove) to `false`.
 
@@ -107,7 +107,7 @@ If you want to preserve the original repo definition files during Infra node loc
 
 ## Why did my command line prompt change? How to restore it?
 
-The shell command line prompt used by Pigsty is specified by the environment variable `PS1`, defined in the `/etc/profile.d/node.sh` file.
+The `PS1` environment variable defines the Pigsty shell prompt. Pigsty sets it in `/etc/profile.d/node.sh`.
 
 If you don't like it and want to modify or restore it, you can remove this file and log in again.
 
@@ -134,7 +134,7 @@ For details, see the [**`NODE_ID`**](/docs/node/param#node_id) section.
 
 ## What compatibility issues exist with Tencent OpenCloudOS?
 
-The `softdog` kernel module is not available on OpenCloudOS and needs to be removed from `node_kernel_modules`. Add the following configuration item to the global variables in the config file to override:
+OpenCloudOS does not provide the `softdog` kernel module. Remove it from `node_kernel_modules`. Add this override to the global configuration variables:
 
 ```yaml
 node_kernel_modules: [ ip_vs, ip_vs_rr, ip_vs_wrr, ip_vs_sh ]

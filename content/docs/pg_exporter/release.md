@@ -51,53 +51,54 @@ The latest stable version of `pg_exporter` is [v1.4.1](https://github.com/pgsty/
 
 **Highlights:**
 
-- Fix `pg_subrel_count` overcounting when parallel logical replication apply workers are active: deduplicate `pg_stat_subscription` by subscription ID and name before aggregating subscription relation states
-- If a query result omits a configured `LABEL` column, that collector's scrape now fails atomically instead of emitting an empty label or retaining stale results; other non-fatal collectors continue normally
-- Rename the official RPM package and artifact prefix from `pg_exporter` to `pg-exporter`; the new package provides and obsoletes the legacy name, allowing direct upgrades
-- Refresh version and standalone package metadata, add missing-label regression coverage, and validate RPM configuration, artifact names, and compatibility metadata in CI
+- Fix `pg_subrel_count` overcounting with parallel logical replication apply workers. Deduplicate `pg_stat_subscription` by subscription ID and name before aggregating subscription relation states.
+- If a query result omits a configured `LABEL` column, fail the entire collector scrape. Do not emit an empty label or keep stale results. Other non-fatal collectors continue normally.
+- Rename the official RPM package and artifact prefix from `pg_exporter` to `pg-exporter`. The new package provides and obsoletes the legacy name to support direct upgrades.
+- Update version and standalone package metadata. Add regression tests for missing labels. Validate RPM configuration, artifact names, and compatibility metadata in CI.
 
 **Upgrade Notes:**
 
-- Custom collector SQL must return every `LABEL` column; the result schema must remain complete even when the query returns zero rows
-- If automation matches GitHub RPM file names directly, update `pg_exporter-*.rpm` to `pg-exporter-*.rpm`
+- Custom collector SQL must return every `LABEL` column. The result schema must be complete even if the query returns zero rows.
+- If automation matches GitHub RPM file names directly, change `pg_exporter-*.rpm` to `pg-exporter-*.rpm`.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1
 
 
 ## v1.4.0
 
-`v1.4.0` introduces the Snapshot Histogram metric type and the new `pg_xact_age` transaction age collector, along with a round of systematic hardening across HTTP routing, packaging, and the build toolchain.
+`v1.4.0` adds Snapshot Histogram metrics and the `pg_xact_age` transaction age collector.
+It also improves HTTP routing, packaging, and the build toolchain.
 
 **New Features:**
 
-- New `HISTOGRAM` column type: SQL query snapshots can be aggregated per label group into classic Prometheus histograms, deriving `_bucket` / `_count` / `_sum` series families; bucket bounds are strictly validated at config load time (finite, strictly increasing, `+Inf` appended automatically), `le` becomes a reserved label, and hot reload is fully supported
-- New `pg_xact_age` collector: exposes the distribution of open transaction age (`pg_xact_age_seconds`) and idle-in-transaction age (`pg_xact_age_idle_seconds`) as histograms; cluster-level collection, client backends only, 10s TTL
-- Default config bundle grows from **57** to **58** definition files; `pg_xact_age` takes slot `0450`, with `pg_lock` / `pg_lock_stat` / `pg_query` renumbered to `0460` / `0470` / `0480` (contents unchanged)
+- Add the `HISTOGRAM` column type. It aggregates SQL snapshots by label group into classic Prometheus histograms with `_bucket` / `_count` / `_sum` series. Configuration loading validates finite bucket bounds in strictly increasing order and appends `+Inf` automatically. The `le` label is reserved. Hot reload is supported.
+- Add the `pg_xact_age` collector. It returns open transaction age (`pg_xact_age_seconds`) and idle-in-transaction age (`pg_xact_age_idle_seconds`) as histograms. It collects cluster-level data from client backends only, with a 10s TTL.
+- Increase the default bundle from **57** to **58** definition files. Assign `pg_xact_age` to slot `0450`. Renumber `pg_lock` / `pg_lock_stat` / `pg_query` to `0460` / `0470` / `0480` without content changes.
 
 **Fixes & Improvements:**
 
-- HTTP route registration is isolated to a private ServeMux instead of the global `DefaultServeMux`, so endpoints registered by third-party libraries can no longer be exposed accidentally
-- `--web.telemetry-path` is strictly validated at startup: empty paths, paths not starting with `/`, paths containing `?` `#` `{` `}`, conflicts with built-in endpoints, and non-canonical paths like `//metrics` that could never be matched all fail fast with a clear error
-- The landing page HTML-escapes the telemetry path
-- The primary connection pool is properly closed when `--fail-fast` pre-check fails
-- RPM / DEB packaging fixes ([#105](https://github.com/pgsty/pg_exporter/issues/105)): the `prometheus` system user's HOME now points to `/var/lib/prometheus` (where libpq looks for `~/.pgpass`), and the packaged default URL gains the `/postgres` database name so libpq no longer falls back to a database named after the OS user
-- Version string unified with the `v` prefix: `--version` output, the `/version` endpoint, and the `pg_exporter_build_info{version=...}` label of official release binaries now report `v1.4.0` (GoReleaser artifacts previously reported unprefixed `1.3.0`); artifact file names, package versions, and Docker image tag conventions are unchanged
-- Histogram value casting aligned with the scalar path: timestamp and boolean columns are exempt from `scale`
-- GoReleaser embedded package metadata corrected: supported range updated to PostgreSQL `9.x - 19+` and pgBouncer `1.8 - 1.25+`
-- `make docker` restores `GOPROXY` / `GOSUMDB` build-arg passthrough
+- Register HTTP routes in a private ServeMux instead of the global `DefaultServeMux`. This prevents accidental exposure of endpoints from third-party libraries.
+- Validate `--web.telemetry-path` at startup. Reject empty paths, paths without a leading `/`, paths with `?` `#` `{` `}`, and conflicts with built-in endpoints. Also reject non-canonical paths such as `//metrics`, which cannot match requests. Each failure returns a clear error immediately.
+- Escape the telemetry path in the landing page HTML.
+- Close the primary connection pool if the `--fail-fast` pre-check fails.
+- Fix RPM / DEB packaging ([#105](https://github.com/pgsty/pg_exporter/issues/105)). Set the `prometheus` user's HOME to `/var/lib/prometheus`, where libpq looks for `~/.pgpass`. Add `/postgres` to the packaged default URL. This prevents libpq from using a database named after the OS user.
+- Use the `v` version prefix consistently. Official release binaries report `v1.4.0` in `--version`, `/version`, and `pg_exporter_build_info{version=...}`. GoReleaser artifacts previously reported `1.3.0` without the prefix. Artifact file names, package versions, and Docker image tag conventions do not change.
+- Apply the same value conversion rules to histograms and scalar columns. Exclude timestamps and booleans from `scale`.
+- Correct GoReleaser package metadata to show support for PostgreSQL `9.x - 19+` and pgBouncer `1.8 - 1.25+`.
+- Restore `GOPROXY` / `GOSUMDB` build-argument passthrough in `make docker`.
 
 **Engineering & Build:**
 
-- Build toolchain updated to Go `1.26.5`, exporter-toolkit `v0.17.1`, and prometheus/common `v0.70.0`
-- New regular CI verification workflow: module tidy check, generated-config drift check (`make conf` output must stay in sync with `config/*.yml`), race tests, and six-platform cross-builds
-- Docker build tooling consolidated: the `docker/` scripts and `make docker-release` are removed; multi-arch release images are built by GoReleaser
-- Config coverage tests generalized: tests no longer assume specific collectors exist in the config directory, making trimmed custom bundles easier to maintain
+- Update the build toolchain to Go `1.26.5`, exporter-toolkit `v0.17.1`, and prometheus/common `v0.70.0`.
+- Add regular CI checks for module tidy, generated configuration, race tests, and six-platform cross-builds. The `make conf` output must match `config/*.yml`.
+- Remove the `docker/` scripts and `make docker-release`. Use GoReleaser to build multi-architecture release images.
+- Remove assumptions about specific collectors from configuration coverage tests. This makes smaller custom bundles easier to maintain.
 
 **Upgrade Notes:**
 
-- If you were running with a non-canonical telemetry path (e.g. `//metrics`), the process will now refuse to start — previously it started but the metrics endpoint was silently unreachable
-- Automation that parses the `version` label of `pg_exporter_build_info` or the `--version` output needs to accommodate the `v` prefix
-- When any `HISTOGRAM` collector is configured, `le` can no longer be used as a constant label
+- A non-canonical telemetry path, such as `//metrics`, now prevents startup. Previously, the process started but the metrics endpoint was unreachable.
+- Update automation that parses the `version` label of `pg_exporter_build_info` or the `--version` output to accept the `v` prefix.
+- If any collector uses `HISTOGRAM`, do not use `le` as a constant label.
 
 **Checksums**
 
@@ -126,7 +127,8 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0
 
 ## v1.3.0
 
-`v1.3.0` adds PostgreSQL 19 support, and refreshes the default collector bundle, build toolchain, and config coverage tests.
+`v1.3.0` adds PostgreSQL 19 support.
+It also updates the default collectors, build toolchain, and configuration coverage tests.
 
 **Highlights:**
 
@@ -168,7 +170,8 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0
 
 ## v1.2.2
 
-`v1.2.2` is a routine maintenance release that only refreshes the release toolchain to Go `1.26.2`. It does not introduce new collectors, config semantics, or runtime behavior changes.
+`v1.2.2` updates the release toolchain to Go `1.26.2`.
+This maintenance release has no changes to collectors, configuration behavior, or runtime behavior.
 
 **Highlights**
 
@@ -199,7 +202,8 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.2.2
 
 ## v1.2.1
 
-`v1.2.1` is a lightweight maintenance release focused on release engineering, config package consistency, and documentation/metadata refresh. It does not introduce new collector semantics or runtime behavior changes.
+`v1.2.1` is a maintenance release for release engineering, configuration package consistency, documentation, and metadata.
+It has no changes to collector or runtime behavior.
 
 **Highlights**
 
@@ -230,24 +234,24 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.2.1
 
 ## v1.2.0
 
-`v1.2.0` is a stability-and-compatibility focused minor release across startup flow, hot reload, health probing, config validation, and legacy support.
+`v1.2.0` improves stability and compatibility for startup, hot reload, health probes, configuration validation, and legacy support.
 
 **New Features:**
 
-- Add robust hot reload workflow: support platform-specific reload signals (`SIGHUP` / `SIGUSR1`) and strengthen `POST /reload` to refresh configs and query plans without process restart
-- Switch startup to non-blocking mode: HTTP endpoints come up first even when target precheck fails, making recovery and monitoring integration smoother
-- Add PostgreSQL 9.1-9.6 legacy config bundle: provide `legacy/` configs and a `make conf9` target for easier onboarding of EOL PostgreSQL versions
-- Rework health probing architecture: use cached health snapshots with periodic probes for more consistent role-based health endpoints and smoother reload behavior
-- Improve release engineering baseline: run `go test` and `go vet` in release workflows and bump build toolchain to Go 1.26.0
+- Improve hot reload. Support platform-specific signals (`SIGHUP` / `SIGUSR1`) and improve `POST /reload` to update configuration and query plans without a restart.
+- Use non-blocking startup. HTTP endpoints start even if the target precheck fails. This improves recovery and monitoring integration.
+- Add a legacy configuration bundle for PostgreSQL 9.1-9.6. Use `legacy/` and the `make conf9` target to configure monitoring for EOL versions.
+- Use cached health snapshots with periodic probes. This improves consistency for role-based health endpoints and reloads.
+- Add `go test` and `go vet` to release workflows. Update the build toolchain to Go 1.26.0.
 
 **Bug Fixes:**
 
-- Fix multiple config parsing edge cases: reject malformed metrics entries, return explicit errors when config dirs fail to load valid YAML, and harden runtime fallbacks
-- Fix CLI bool flag parsing to correctly handle `--flag=false` style arguments
-- Fix `/explain` output/rendering behavior by adjusting content type handling and using safer template rendering
-- Fix predicate query and PG URL handling details: better BOOL/BOOLEAN predicate support, safer row lifecycle handling, and improved `dbname` query-parameter parsing/redaction
-- Fix resource cleanup when auto-discovered targets are removed by closing dropped server connections asynchronously
-- Fix metric/label validation details including const-label conflict checks, scaled default-value handling, and Prometheus naming/rule checks
+- Fix configuration parsing cases. Reject malformed metric entries, return explicit errors if a configuration directory has no valid YAML, and improve runtime fallbacks.
+- Fix CLI boolean parsing for arguments such as `--flag=false`.
+- Fix `/explain` output with corrected content types and safer template rendering.
+- Improve predicate queries and PG URL handling. Improve BOOL/BOOLEAN support, row resource handling, and `dbname` query-parameter parsing and redaction.
+- Close connections asynchronously when auto-discovery removes a target.
+- Fix metric and label validation. Check constant-label conflicts, scaled default values, and Prometheus naming rules.
 
 **Checksums**
 
@@ -271,7 +275,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.2.0
 
 ## v1.1.2
 
-Minor release fixing pg_timeline configuration issue and building with latest go deps
+This minor release fixes the pg_timeline configuration and builds with the latest Go dependencies.
 
 **Checksums**
 
@@ -339,18 +343,18 @@ Build with Go 1.25.5 and latest dependencies, collector updates:
 
 **Collector Changes:**
 
-- `pg_setting`: Major refactor for PG10-18 compatibility with `missing_ok` support
-  - Add 13 new metrics: `max_parallel_workers`, `max_parallel_workers_per_gather`, `max_parallel_maintenance_workers`, `shared_buffers`, `maintenance_work_mem`, `effective_cache_size`, `fsync`, `full_page_writes`, `autovacuum`, `autovacuum_max_workers`, `checkpoint_timeout`, `checkpoint_completion_target`, `hot_standby`, `synchronous_commit`, `io_method`
-  - Rename `work_memory_size` to `work_mem`
-  - Change min_version from 9.6 to 10, explicit `::int` type casting
-- `pg_size`: Fix log directory size detection, use `logging_collector` check instead of path pattern matching
-- `pg_table`: Performance optimization, replace LATERAL subqueries with JOIN for better query performance; fix `tuples` and `frozenxid` metric type from COUNTER to GAUGE; increase timeout from 1s to 2s
-- `pg_vacuuming`: Add PG17 collector branch with new metrics `indexes_total`, `indexes_processed`, `dead_tuple_bytes` for index vacuum progress tracking
-- `pg_query`: Increase timeout from 1s to 2s for high-load scenarios
-- `pg_io`: Fix typo in `reuses` description ("in reused" -> "is reused")
-- `pg_checkpointer`: Fix description for pg_checkpointer_10 ("9.4+" -> "9.4-17")
-- `pg_db_confl`: Fix description for pg_db_confl_15 ("9.1 - 16" -> "9.1 - 15")
-- Format alignment fixes for `pg_db`, `pg_indexing`, `pg_clustering`, `pg_backup`
+- `pg_setting`: update PG10-18 compatibility and add `missing_ok` support.
+  - Add 13 new metrics: `max_parallel_workers`, `max_parallel_workers_per_gather`, `max_parallel_maintenance_workers`, `shared_buffers`, `maintenance_work_mem`, `effective_cache_size`, `fsync`, `full_page_writes`, `autovacuum`, `autovacuum_max_workers`, `checkpoint_timeout`, `checkpoint_completion_target`, `hot_standby`, `synchronous_commit`, `io_method`.
+  - Rename `work_memory_size` to `work_mem`.
+  - Change min_version from 9.6 to 10. Use explicit `::int` type conversion.
+- `pg_size`: fix log directory size detection. Check `logging_collector` instead of matching path patterns.
+- `pg_table`: replace LATERAL subqueries with JOIN to improve performance. Change `tuples` and `frozenxid` from COUNTER to GAUGE. Increase the timeout from 1s to 2s.
+- `pg_vacuuming`: add a PG17 branch with `indexes_total`, `indexes_processed`, and `dead_tuple_bytes` to track index vacuum progress.
+- `pg_query`: increase the timeout from 1s to 2s for high-load conditions.
+- `pg_io`: correct the `reuses` description from "in reused" to "is reused".
+- `pg_checkpointer`: correct the pg_checkpointer_10 description from "9.4+" to "9.4-17".
+- `pg_db_confl`: correct the pg_db_confl_15 description from "9.1 - 16" to "9.1 - 15".
+- Correct format alignment for `pg_db`, `pg_indexing`, `pg_clustering`, and `pg_backup`.
 
 **Other Changes:**
 
@@ -410,11 +414,11 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.0.3
 
 ## v1.0.2
 
-- Build with Go 1.25.0 and latest dependencies
-- Dedicate website and homepage: https://exp.pgsty.com
-- Release with goreleaser for more os/arch with CI/CD pipeline:
-  - add windows amd64 support
-  - add linux ppc64le support
+- Build with Go 1.25.0 and the latest dependencies.
+- Add a dedicated website and homepage: https://exp.pgsty.com
+- Use GoReleaser and CI/CD to release for more operating systems and architectures:
+  - Add Windows amd64 support.
+  - Add Linux ppc64le support.
 
 **Checksums**
 
@@ -442,8 +446,8 @@ https://github.com/pgsty/pg_exporter/releases/tag/v1.0.2
 ## v1.0.1
 
 - Add dockerhub images: [pgsty/pg_exporter](https://hub.docker.com/r/pgsty/pg_exporter)
-- Bump go dependencies to the latest version, build with go 1.24.5
-- Disable `pg_tsdb_hypertable` collector by default, since `timescaledb` catalog is changed.
+- Update Go dependencies to the latest version. Build with Go 1.24.5
+- Disable `pg_tsdb_hypertable` by default because the `timescaledb` catalog has changed.
 
 **Checksums**
 
@@ -594,7 +598,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.7.1
 
 ## v0.7.0
 
-Refactor codebase for the latest go version.
+Refactor the codebase for the latest Go version.
 
 - [PostgreSQL 17 Metrics Support](https://github.com/pgsty/pg_exporter/issues/53) by @Vonng
 - [pg_exporter: predicate queries feature](https://github.com/pgsty/pg_exporter/pull/47) by [@ringerc](https://github.com/ringerc)
@@ -613,14 +617,12 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.7.0
 
 ## v0.6.0
 
-- Security Enhancement: Fix [security](https://github.com/pgsty/pg_exporter/security/dependabot?q=is%3Aclosed)
-  dependent-bot issue
-- Add pg16 collectors
-- Add `arm64` & `aarch64` packages
-- Remove the `monitor` schema requirement for `pg_query` collectors (you have to ensure it with search_path or just
-  install `pg_stat_statements` in the default `public` schema)
-- Fix pgbouncer version parsing message level from info to debug
-- Fix `pg_table_10_12` collector missing `relid` issue.
+- Fix Dependabot [security](https://github.com/pgsty/pg_exporter/security/dependabot?q=is%3Aclosed) issues.
+- Add pg16 collectors.
+- Add `arm64` & `aarch64` packages.
+- Remove the `monitor` schema requirement for `pg_query` collectors. Set search_path to find `pg_stat_statements`, or install it in the default `public` schema.
+- Change the pgBouncer version parsing message level from info to debug.
+- Fix the missing `relid` in the `pg_table_10_12` collector.
 
 - [Recognize the files with yml suffix in config directory](https://github.com/pgsty/pg_exporter/pull/34) by [@Japin Li](https://github.com/japinli)
 - [Support PostgreSQL 15 and higher](https://github.com/pgsty/pg_exporter/pull/35) by [@Japin Li](https://github.com/japinli)
@@ -638,7 +640,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.6.0
 
 - Build rpm & deb with `nfpm`
 - Add `column.default`, replace when metric value is NULL
-- Add `column.scale`, multiply scale factor when metric value is float/int (e.g µs to second)
+- Add `column.scale` to multiply float/int values by a scale factor, such as conversion from µs to seconds
 - Fix `/stat` endpoint output
 - Add docker container [`pgsty/pg_exporter`](https://hub.docker.com/r/pgsty/pg_exporter)
 
@@ -662,14 +664,13 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.5.0
 
 ## v0.4.1
 
-- update default collectors
-    - omit citus & timescaledb schemas on object monitoring
-    - avoid duplicate pg_statio tuples
-    - support pgbouncer v1.16
-    - bug fix: `pg_repl` collector overlap on pg 12
-- new parameter: `-T` `connect-timeout` `PG_EXPORTER_CONNECT_TIMEOUT`
-  this can be useful when monitoring remote Postgres instances.
-- now `pg_exporter.yaml` are renamed as `pg_exporter.yml` in rpm package.
+- Update default collectors:
+    - Exclude citus & timescaledb schemas from object monitoring.
+    - Prevent duplicate pg_statio tuples.
+    - Support pgBouncer v1.16.
+    - Fix overlapping `pg_repl` collectors on pg 12.
+- Add the `-T` `connect-timeout` `PG_EXPORTER_CONNECT_TIMEOUT` parameter for remote PostgreSQL monitoring.
+- Rename `pg_exporter.yaml` to `pg_exporter.yml` in the RPM package.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.4.1
 
@@ -683,7 +684,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.4.1
 ## v0.4.0
 
 - Add PG 14 support
-- Default metrics configuration overhaul. (BUT you can still use the old configuration)
+- Update the default metrics configuration. The old configuration remains supported
 - add `auto-discovery` , `include-database` and `exclude-database` option
 - Add multiple database monitoring implementations (with `auto-discovery = on`)
 
@@ -710,11 +711,11 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.3.2
 
 ## v0.3.1
 
-fix default configuration problems (especially for versions lower than 13)
+Fix default configuration errors, particularly for versions before 13.
 
-- setting `primary_conninfo` not exists until PG13
-- add `funcid` label to `pg_func` collector to avoid func name duplicate label
-- fix version string to `pg_exporter`
+- Account for the `primary_conninfo` setting being available only from PG13.
+- Add the `funcid` label to `pg_func` to prevent duplicate labels from function names.
+- Fix the version string to `pg_exporter`.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.3.1
 
@@ -729,12 +730,11 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.3.1
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.3.0
 
-- Change default configuration, Support PostgreSQL 13 new metrics (`pg_slru`, `pg_shmem`, `pg_query13`,`pg_backup`,
-  etc...)
-- Add a series of new REST APIs for health / recovery status check
-- Add a dummy server with fake `pg_up 0` metric, which serves before PgExporter is initialized.
-- Add `sslmode=disable` to URL if `sslmode` is not given
-- fix typos and bugs
+- Update the default configuration to support PostgreSQL 13 metrics, including `pg_slru`, `pg_shmem`, `pg_query13`, and `pg_backup`.
+- Add REST APIs for health and recovery status checks.
+- Add a dummy server that returns `pg_up 0` before PgExporter initialization.
+- Add `sslmode=disable` to the URL if `sslmode` is absent.
+- Fix typos and bugs.
 
 
 
@@ -770,7 +770,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.1.2
 
 ## v0.1.1
 
-Fix the bug that pg_exporter will hang during start-up if any query is failed.
+Fix a startup hang that occurs if any query fails.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.1.1
 
@@ -780,7 +780,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.1.1
 
 ## v0.1.0
 
-It works, looks good to me.
+This is the first stable release.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.1.0
 
@@ -789,7 +789,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.1.0
 
 ## v0.0.4
 
-Tested in real world production environment with 200+ nodes for about 2 weeks. Looks good !
+This release passed production tests on 200+ nodes for about 2 weeks.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.0.4
 
@@ -799,11 +799,11 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.0.4
 
 ## v0.0.3
 
-v0.0.3 Release, Tested in Production Environment
+v0.0.3 passed production tests.
 
 This version is already tested in a production environment.
 
-This project is still under rapid evolution, I would say if you want use it in production , try with caution.
+The project changes rapidly. Use this version with caution in production.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3
 
@@ -813,7 +813,7 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3
 
 ## v0.0.2
 
-It's ok to try now
+This version is ready for testing.
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2
 
@@ -823,6 +823,6 @@ https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2
 
 ## v0.0.1
 
-Add pgbouncer mode
+Add pgBouncer mode
 
 https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1

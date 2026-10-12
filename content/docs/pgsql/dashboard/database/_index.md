@@ -4,7 +4,7 @@ weight: 40
 description: PostgreSQL database-level monitoring dashboards
 ---
 
-PostgreSQL database-level monitoring dashboards, including:
+Use these dashboards to monitor PostgreSQL databases:
 
 - [PGSQL Database](/docs/pgsql/dashboard/database/pgsql-database): Main dashboard for a single PGSQL database
 - [PGCAT Database](/docs/pgsql/dashboard/database/pgcat-database): Database info retrieved directly from database catalog

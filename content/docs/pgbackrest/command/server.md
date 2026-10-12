@@ -18,7 +18,7 @@ The pgBackRest server allows access to remote hosts without using the SSH protoc
 
 TLS server address.
 
-IP address the server will listen on for client requests.
+Set the IP address on which the server accepts client requests.
 
 ```yaml
 default: localhost
@@ -29,9 +29,9 @@ example: --tls-server-address=*
 
 TLS server authorized clients.
 
-Clients are authorized on the server by verifying their certificate and checking their certificate CN (Common Name) against a list on the server configured with the `tls-server-auth` option.
+The server verifies each client certificate. It also checks the certificate CN (Common Name) against the list configured with `tls-server-auth`.
 
-A client CN can be authorized for as many stanzas as needed by providing a comma-separated list to the `tls-server-auth` option or for all stanzas by specifying `tls-server-auth=client-cn=*`. Wildcards may not be specified for the client CN.
+To authorize a client CN for multiple stanzas, provide a comma-separated list to `tls-server-auth`. To authorize all stanzas, use `tls-server-auth=client-cn=*`. The client CN cannot contain wildcards.
 
 ```yaml
 example: --tls-server-auth=client-cn=stanza1,stanza2
@@ -51,7 +51,7 @@ example: --tls-server-ca-file=/path/to/server.ca
 
 TLS server certificate file.
 
-Sent to the client to show the server identity.
+The server sends this certificate to identify itself to the client.
 
 ```yaml
 example: --tls-server-cert-file=/path/to/server.crt
@@ -61,7 +61,7 @@ example: --tls-server-cert-file=/path/to/server.crt
 
 TLS server key file.
 
-Proves server certificate was sent by the owner.
+This key proves that the certificate owner sent the server certificate.
 
 ```yaml
 example: --tls-server-key-file=/path/to/server.key
@@ -71,7 +71,7 @@ example: --tls-server-key-file=/path/to/server.key
 
 TLS server port.
 
-Port the server will listen on for client requests.
+Set the port on which the server accepts client requests.
 
 ```yaml
 default: 8432
@@ -85,9 +85,9 @@ example: --tls-server-port=8000
 
 Allow the command to run as the root user.
 
-By default only the `restore` command may be run as the root user since it is designed to carefully manage file ownership. Running other commands as root risks creating files (e.g. in the repository) that are owned by root and therefore inaccessible to the PostgreSQL user, causing later commands to fail.
+By default, only `restore` can run as root because it manages file ownership. Other commands can create root-owned files, for example in the repository. The PostgreSQL user cannot access these files, which causes later commands to fail.
 
-Enable this option to run a command as root anyway. However, it is far better to run pgBackRest as the user that owns the repository and PostgreSQL cluster.
+Enable this option to run another command as root. Preferably, run pgBackRest as the user that owns the repository and PostgreSQL cluster.
 
 ```yaml
 default: n
@@ -98,7 +98,7 @@ example: --allow-root
 
 Buffer size for I/O operations.
 
-Buffer size used for copy, compress, encrypt, and other operations. The number of buffers used depends on options and each operation may use additional memory, e.g. `gz` compression may use an additional 256KiB of memory.
+Set the buffer size for copy, compression, encryption, and other operations. Options determine the number of buffers. Each operation can also use more memory. For example, `gz` compression can use an additional 256KiB.
 
 Allowed values are `16KiB`, `32KiB`, `64KiB`, `128KiB`, `256KiB`, `512KiB`, `1MiB`, `2MiB`, `4MiB`, `8MiB`, and `16MiB`.
 
@@ -111,7 +111,7 @@ example: --buffer-size=2MiB
 
 pgBackRest configuration file.
 
-Use this option to specify a different configuration file than the default.
+Use this option to select a configuration file other than the default.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_FILE
@@ -122,7 +122,7 @@ example: --config=/conf/pgbackrest/pgbackrest.conf
 
 Path to additional pgBackRest configuration files.
 
-Configuration files existing in the specified location with extension `.conf` will be concatenated with the pgBackRest configuration file, resulting in one configuration file.
+pgBackRest combines files with the `.conf` extension in this location with its configuration file. The result is one configuration file.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH "/" PROJECT_CONFIG_INCLUDE_PATH
@@ -133,9 +133,9 @@ example: --config-include-path=/conf/pgbackrest/conf.d
 
 Base path of pgBackRest configuration files.
 
-This setting is used to override the default base path setting for the `--config` and `--config-include-path` options unless they are explicitly set on the command-line.
+Set the default base path for `--config` and `--config-include-path`. Explicit command-line values for these options override this setting.
 
-For example, passing only `--config-path=/conf/pgbackrest` results in the `--config` default being set to `/conf/pgbackrest/pgbackrest.conf` and the `--config-include-path` default being set to `/conf/pgbackrest/conf.d`.
+For example, specify only `--config-path=/conf/pgbackrest` to set the `--config` default to `/conf/pgbackrest/pgbackrest.conf`. This also sets the `--config-include-path` default to `/conf/pgbackrest/conf.d`.
 
 ```yaml
 default: CFGOPTDEF_CONFIG_PATH
@@ -146,9 +146,9 @@ example: --config-path=/conf/pgbackrest
 
 I/O timeout.
 
-Timeout, in seconds, used for connections and read/write operations.
+Set the connection and read/write timeout in seconds.
 
-Note that the entire read/write operation does not need to complete within this timeout but *some* progress must be made, even if it is only a single byte.
+The complete read/write operation can take longer than this timeout. However, it must make some progress before the timeout, even if only one byte.
 
 ```yaml
 default: 1m
@@ -160,7 +160,7 @@ example: --io-timeout=120
 
 Set process priority.
 
-Defines how much priority (i.e. niceness) will be given to the process by the kernel scheduler. Positive values decrease priority and negative values increase priority. In most case processes do not have permission to increase their priority.
+Set the process priority, or niceness, used by the kernel scheduler. Positive values decrease priority. Negative values increase priority. Processes usually lack permission to increase their priority.
 
 ```yaml
 allowed: [-20, 19]
@@ -171,7 +171,7 @@ example: --priority=19
 
 Protocol timeout.
 
-Sets the timeout, in seconds, that the local or remote process will wait for a new message to be received on the protocol layer. This prevents processes from waiting indefinitely for a message.
+Set how many seconds a local or remote process waits for a new protocol message. This prevents an indefinite wait.
 
 > **NOTE:** The `protocol-timeout` option must be greater than the `db-timeout` option.
 
@@ -196,7 +196,7 @@ example: --no-sck-keep-alive
 
 Keep-alive count.
 
-Specifies the number of TCP keep-alive messages that can be lost before the connection is considered dead.
+Set how many TCP keep-alive messages can be lost before the connection is considered dead.
 
 This option is available on systems that support the `TCP_KEEPCNT` socket option.
 
@@ -209,7 +209,7 @@ example: --tcp-keep-alive-count=3
 
 Keep-alive idle time.
 
-Specifies the amount of time (in seconds) with no network activity after which the operating system should send a TCP keep-alive message.
+Set how many seconds of network inactivity must pass before the operating system sends a TCP keep-alive message.
 
 This option is available on systems that support the `TCP_KEEPIDLE` socket option.
 
@@ -222,7 +222,7 @@ example: --tcp-keep-alive-idle=60
 
 Keep-alive interval time.
 
-Specifies the amount of time (in seconds) after which a TCP keep-alive message that has not been acknowledged should be retransmitted.
+Set how many seconds to wait before retransmitting a TCP keep-alive message that has no acknowledgement.
 
 This option is available on systems that support the `TCP_KEEPINTVL` socket option.
 
@@ -235,11 +235,11 @@ example: --tcp-keep-alive-interval=30
 
 Allowed TLSv1.2 cipher suites.
 
-All TLS connections between the pgBackRest client and server are encrypted. By default, connections to objects stores (e.g. S3) are also encrypted.
+All TLS connections between the pgBackRest client and server use encryption. Connections to object stores, such as S3, also use encryption by default.
 
 > **NOTE:** The absolute minimum security level for any transport connection is TLSv1.2.
 
-The accepted cipher suites can be adjusted if need arises. The example is reasonable choice unless you have specific security requirements. If unset (the default), the default of the underlying OpenSSL library applies.
+Change the accepted cipher suites if necessary. The example is suitable unless you have specific security requirements. By default, this option is unset and the underlying OpenSSL library default applies.
 
 ```yaml
 example: --tls-cipher-12=HIGH:MEDIUM:+3DES:!aNULL
@@ -249,11 +249,11 @@ example: --tls-cipher-12=HIGH:MEDIUM:+3DES:!aNULL
 
 Allowed TLSv1.3 cipher suites.
 
-All TLS connections between the pgBackRest client and server are encrypted. By default, connections to objects stores (e.g. S3) are also encrypted.
+All TLS connections between the pgBackRest client and server use encryption. Connections to object stores, such as S3, also use encryption by default.
 
 > **NOTE:** The absolute minimum security level for any transport connection is TLSv1.2.
 
-The accepted cipher suites can be adjusted if need arises. If unset (the default), the default of the underlying OpenSSL library applies.
+Change the accepted cipher suites if necessary. By default, this option is unset and the underlying OpenSSL library default applies.
 
 ```yaml
 example: --tls-cipher-13=TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
@@ -303,7 +303,7 @@ example: --log-level-file=debug
 
 Level for stderr logging.
 
-Specifies which log levels will output to `stderr` rather than `stdout` (specified by `log-level-console`). The timestamp and process will not be output to `stderr`.
+Select the log levels that write to `stderr` instead of `stdout`, which `log-level-console` controls. Output to `stderr` excludes the timestamp and process.
 
 The following log levels are supported:
 
@@ -324,7 +324,7 @@ example: --log-level-stderr=error
 
 Path where log files are stored.
 
-The log path provides a location for pgBackRest to store log files. Note that if `log-level-file=off` then no log path is required.
+pgBackRest stores log files in this path. If `log-level-file=off`, no log path is necessary.
 
 ```yaml
 default: /var/log/pgbackrest
@@ -335,7 +335,7 @@ example: --log-path=/backup/db/log
 
 Enable timestamp in logging.
 
-Enables the timestamp in console and file logging. This option is disabled in special situations such as generating documentation.
+Include timestamps in console and file logs. Disable this option for special uses, such as documentation generation.
 
 ```yaml
 default: y

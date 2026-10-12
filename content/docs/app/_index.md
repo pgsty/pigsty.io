@@ -8,7 +8,7 @@ module: [APP]
 categories: [Reference]
 ---
 
-Pigsty "applications" fall into two categories:
+Pigsty applications have two categories:
 
 - **Software Templates**: Docker Compose templates under `~/pigsty/app/<name>` for stateless business components.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
@@ -28,7 +28,7 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 ./app.yml                     # launch applications
 ```
 
-`app.yml` copies `app/<name>` templates to `/opt/<name>`, overwrites `.env` with `apps.<name>.conf`, then runs `docker compose up -d`.
+`app.yml` copies `app/<name>` templates to `/opt/<name>`. It replaces `.env` with `apps.<name>.conf`, then runs `docker compose up -d`.
 
 ## Maintained Config Templates
 
@@ -47,7 +47,7 @@ The following app config templates are actively maintained (`conf/app/*.yml`, `c
 - `app/hindsight`
 - `supabase`
 
-These templates work out of the box and align with the `./configure -c ...` + `./app.yml` workflow.
+These templates are ready to use with the `./configure -c ...` and `./app.yml` workflow.
 
 ## Lightweight Compose Apps
 
@@ -60,7 +60,7 @@ cd ~/pigsty/app/<name>
 make up
 ```
 
-If you want to manage them uniformly via Pigsty IaC:
+To manage these apps with Pigsty IaC, run:
 
 ```bash
 ./app.yml -e app=<name>

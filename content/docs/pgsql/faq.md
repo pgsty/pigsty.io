@@ -12,9 +12,10 @@ categories: [Reference]
 
 ## Why can't my current user use the `pg` admin alias?
 
-Starting from Pigsty v4.0, permissions to manage global Patroni / PostgreSQL clusters using the `pg` admin alias have been tightened to the admin group (`admin`) on admin nodes.
+Since Pigsty v4.0, only members of `admin` on administration nodes can manage global Patroni and PostgreSQL clusters with `pg`.
 
-The admin user (`dba`) created by the [**`node.yml`**](/docs/node/playbook#nodeyml) playbook has this permission by default. If your current user wants this permission, you need to explicitly add them to the `admin` group:
+The [**`node.yml`**](/docs/node/playbook#nodeyml) playbook creates the administration user `dba` with this permission.
+To grant the permission to your current user, explicitly add that user to the `admin` group:
 
 ```bash
 sudo usermod -aG admin <username>
@@ -25,7 +26,8 @@ sudo usermod -aG admin <username>
 
 ## PGSQL Init Fails: Fail to wait for postgres/patroni primary
 
-There are multiple possible causes for this error. You need to [check](https://github.com/pgsty/pigsty/discussions/338) Ansible, Systemd / Patroni / PostgreSQL logs to find the real cause.
+Several conditions can cause this error.
+[Check](https://github.com/pgsty/pigsty/discussions/338) the Ansible, systemd, Patroni, and PostgreSQL logs to find the cause.
 
 - Possibility 1: Cluster config error - find and fix the incorrect config items.
 - Possibility 2: A cluster with the same name exists, or the previous same-named cluster primary was improperly removed.
@@ -46,13 +48,20 @@ There are multiple possible causes for this error. You need to [check](https://g
 
 There are several possible causes:
 
-**Immediate failure**: Usually due to config errors, network issues, corrupted DCS metadata, etc. You must check `/pg/log` to find the actual cause.
+**Immediate failure**: Possible causes include configuration errors, network problems, and corrupted DCS metadata.
+Check `/pg/log` to find the actual cause.
 
-**Failure after a while**: This might be due to source instance data corruption. See PGSQL FAQ: How to create a replica when data is corrupted?
+**Failure after some time**: The source instance may have corrupted data.
+See the FAQ about replica creation when data is corrupted.
 
-**Timeout after a long time**: If the `wait for postgres replica` task takes 30 minutes or longer and fails due to timeout, this is common for large clusters (e.g., 1TB+, may take hours to create a replica).
+**Timeout after a long time**: The `wait for postgres replica` task can time out after 30 minutes or more.
+This is common for large clusters.
+For example, replica creation for a cluster larger than 1TB may take hours.
 
-In this case, the underlying replica creation process is still ongoing. You can use `pg list <cls>` to check cluster status and wait for the replica to catch up with the primary. Then use the following command to continue with remaining tasks and complete the full replica init:
+In this case, replica creation continues in the background.
+Use `pg list <cls>` to check cluster status.
+Wait until the replica catches up with the primary.
+Then run the remaining tasks to complete replica initialization:
 
 ```bash
 ./pgsql.yml -t pg_hba,pg_reload,pg_backup,pgbouncer,pg_vip,pg_dns,pg_service,pg_exporter,pg_register -l <problematic_replica>
@@ -63,11 +72,13 @@ In this case, the underlying replica creation process is still ongoing. You can 
 
 ## PGSQL Init Fails: ABORT due to pg_safeguard enabled
 
-This means the PostgreSQL instance being cleaned has the deletion safeguard enabled. Disable `pg_safeguard` to remove the Postgres instance.
+The target PostgreSQL instance has deletion protection enabled.
+Disable `pg_safeguard` to remove it.
 
 If the deletion safeguard [`pg_safeguard`](/docs/pgsql/param#pg_safeguard) is enabled, you cannot remove running PGSQL instances using `bin/pgsql-rm` or the `pgsql-rm.yml` playbook.
 
-To disable `pg_safeguard`, you can set `pg_safeguard` to `false` in the config inventory, or use the command param `-e pg_safeguard=false` when executing the playbook.
+To disable `pg_safeguard`, set it to `false` in the inventory.
+Alternatively, pass `-e pg_safeguard=false` when you run the playbook.
 
 ```bash
 ./pgsql-rm.yml -e pg_safeguard=false -l <cls_to_remove>
@@ -98,13 +109,16 @@ For more details, see the intro in [Security Considerations - Availability](/doc
 
 ## How to Rescue When Disk is Full?
 
-If the disk is full and even Shell commands cannot execute, `rm -rf /pg/dummy` can release some emergency space.
+If the disk is full and shell commands cannot run, use `rm -rf /pg/dummy` to release emergency space.
 
-By default, [`pg_dummy_filesize`](/docs/pgsql/param#pg_dummy_filesize) is set to `64MB`. In prod envs, it's recommended to increase it to `8GB` or larger.
+The default [`pg_dummy_filesize`](/docs/pgsql/param#pg_dummy_filesize) is `64MB`.
+For production, increase it to `8GB` or more.
 
-It will be placed at `/pg/dummy` path on the PGSQL main data disk. You can delete this file to free up some emergency space:
+Pigsty creates `/pg/dummy` on the main PGSQL data disk.
+Delete this file to release emergency space.
 
-At least it will allow you to run some shell scripts on that node to further reclaim other space (e.g., logs/WAL, stale data, WAL archives and backups).
+This space lets you run shell scripts to reclaim more space.
+For example, you can remove unnecessary logs, WAL, old data, WAL archives, or backups.
 
 
 
@@ -115,9 +129,11 @@ At least it will allow you to run some shell scripts on that node to further rec
 
 ## How to Create a Replica When Cluster Data is Corrupted?
 
-Pigsty sets the `clonefrom: true` tag in the patroni config of all instances, marking the instance as available for creating replicas.
+Pigsty sets `clonefrom: true` in each instance's Patroni configuration.
+This marks the instance as a source for replica creation.
 
-If an instance has corrupted data files causing errors when creating new replicas, you can set `clonefrom: false` to avoid pulling data from the corrupted instance. Here's how:
+Corrupted data files on a source instance can cause replica creation to fail.
+Set `clonefrom: false` on that instance to prevent use of its data:
 
 ```bash
 $ vi /etc/patroni/patroni.yml
@@ -140,11 +156,15 @@ $ systemctl reload patroni    # Reload Patroni config
 
 ## What is the Perf Overhead of PostgreSQL Monitoring?
 
-A regular PostgreSQL instance scrape takes about 200ms. The scrape interval defaults to 10 seconds, which is almost negligible for a prod multi-core database instance.
+A normal PostgreSQL instance scrape takes about 200ms.
+The default scrape interval is 10 seconds.
+The overhead is usually negligible for a production database instance with multiple CPU cores.
 
-Note that Pigsty enables in-database object monitoring by default, so if your database has hundreds of thousands of table/index objects, scraping may increase to several seconds.
+Pigsty monitors in-database objects by default.
+For a database with hundreds of thousands of tables or indexes, a scrape may take several seconds.
 
-You can modify Prometheus's scrape frequency. Please ensure: the scrape cycle should be significantly longer than the duration of a single scrape.
+You can change the Prometheus scrape frequency.
+Keep the scrape interval significantly longer than the time required for one scrape.
 
 
 

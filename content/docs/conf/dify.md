@@ -6,7 +6,8 @@ icon: fa-solid fa-brain
 categories: [Reference]
 ---
 
-The `app/dify` configuration template provides a reference configuration for self-hosting Dify AI application development platform, using Pigsty-managed PostgreSQL and pgvector as vector storage.
+The `app/dify` template deploys the Dify AI application development platform.
+It uses Pigsty-managed PostgreSQL and pgvector for vector storage.
 
 For more details, see **[Dify Deployment Tutorial](/docs/app/dify)**
 
@@ -42,7 +43,8 @@ Source: [`pigsty/conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 ## Explanation
 
-The `app/dify` template provides a one-click deployment solution for Dify; basic functionality was validated with Dify v1.17.1 on Linux amd64 with PostgreSQL 18.6 (2026-10-08).
+The `app/dify` template supplies the Dify deployment configuration.
+The current image is Dify v1.17.1; basic functionality was validated on Linux amd64 with PostgreSQL 18.6 on 2026-10-08.
 
 **What is Dify**:
 - Open-source LLM application development platform
@@ -74,8 +76,8 @@ https://dify.pigsty
 - AI Agent development and deployment
 
 **Notes**:
-- Must change `SECRET_KEY` and the three `DIFY_AGENT_*` development secrets; see the [deployment checklist](/docs/app/dify/#checklist).
+- Replace `SECRET_KEY` and the three `DIFY_AGENT_*` development secrets; see the [deployment checklist](/docs/app/dify/#checklist).
 - Dify v1.16 and later support PostgreSQL 18's `uuidv7()` without a local migration patch.
 - Configure LLM API keys (e.g., OpenAI API Key)
-- Docker networks need access to PostgreSQL (the template configures a `172.16.0.0/12` HBA rule)
-- Recommend configuring proxy to accelerate Python package downloads
+- Permit PostgreSQL access from the Docker networks. The template supplies an HBA rule for `172.16.0.0/12`.
+- Configure a proxy if necessary to speed up Python package downloads.

@@ -13,17 +13,25 @@ Pigsty v4.5.0 provides two local shell utilities:
 - [`pg-fork`](#pg-fork) copies a PostgreSQL data directory and gives the copy a separate port.
 - [`pg-pitr`](#pg-pitr) invokes pgBackRest to restore a **stopped** data directory to a selected target.
 
-They are useful for sandbox drills, side-channel investigation, and temporary testing. They are not complete Patroni-cluster recovery orchestrators. Prefer [`pig pitr`](/docs/pig/pitr/) for a managed instance and staged [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) for a multi-node cluster.
+Use these utilities for sandbox drills, side-channel investigation, and temporary testing.
+They do not orchestrate complete Patroni-cluster recovery.
+Prefer [`pig pitr`](/docs/pig/pitr/) for a managed instance and staged [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) for a multi-node cluster.
 
 > [!CAUTION] Verify paths, backups, and stopped state first
-> `pg-fork` recursively removes an existing destination directory; `pg-pitr` overwrites the destination with backup data. Both can execute without a prompt in a non-interactive environment. Before a real run, verify source and destination absolute paths, ports, tablespaces, exact cluster/instance identity, and an independent recent backup that has been tested. A newly created CoW clone is not an independent backup.
+> `pg-fork` recursively removes an existing destination directory.
+> `pg-pitr` overwrites the destination with backup data.
+> Both can run without a prompt in a non-interactive environment.
+> Before a real run, verify absolute source and destination paths, ports, tablespaces, and exact cluster/instance identity.
+> Also verify an independent recent backup that has been tested.
+> A new CoW clone is not an independent backup.
 
 
 --------
 
 ## pg-fork
 
-[`pg-fork`](https://github.com/pgsty/pigsty/blob/main/files/postgres/pg-fork) copies a PostgreSQL data directory on the current node. Run it as the database OS user—normally `postgres`, or at least a member of the `postgres` group:
+[`pg-fork`](https://github.com/pgsty/pigsty/blob/main/files/postgres/pg-fork) copies a PostgreSQL data directory on the current node.
+Run it as the database OS user, normally `postgres`, or at least as a member of the `postgres` group:
 
 ```bash
 pg-fork 1                         # /pg/data -> /pg/data1, destination port 15432
@@ -48,7 +56,9 @@ pg-fork <FORK_ID> [options]
 | `-y, --yes` | Skip interactive confirmation | No |
 {.full-width}
 
-The script rejects equal normalized source and destination paths, but it cannot know whether a custom destination contains other important data. If the destination directory exists, it is recursively removed before copying.
+The script rejects identical normalized source and destination paths.
+It cannot determine whether a custom destination contains other important data.
+If the destination directory exists, the script removes it recursively before the copy.
 
 ### Hot Backup and Cold Copy
 
@@ -59,9 +69,16 @@ By default, the script connects to the source port and uses one `psql` session t
 3. `rm -rf <destination>` followed by `cp -a --reflink=auto`;
 4. `pg_backup_stop(wait_for_archive => false)`.
 
-If the source cannot be reached on the selected port, the script **automatically falls back to a cold copy** instead of aborting. `-s` also forces a cold copy. A cold copy is safe only after you independently confirm that the source instance is fully stopped; a `postmaster.pid` warning is only a clue, not proof of process state.
+If the source is unreachable on the selected port, the script **automatically falls back to a cold copy**.
+It does not abort.
+`-s` also forces a cold copy.
+A cold copy is safe only after you independently confirm that the source instance has fully stopped.
+A `postmaster.pid` warning alone does not prove the process state.
 
-On the same filesystem, the implementation recognizes these as fast CoW modes: XFS with reflink enabled, Btrfs, Bcachefs, and OCFS2. Other filesystems or cross-filesystem destinations still use `cp --reflink=auto` but may fall back to a full copy. The script's help text mentions ZFS more broadly than its detector; the v4.5.0 implementation does not classify ZFS as a confirmed fast-CoW mode.
+On the same filesystem, the script recognizes XFS with reflink enabled, Btrfs, Bcachefs, and OCFS2 as fast CoW modes.
+Other filesystems or cross-filesystem destinations still use `cp --reflink=auto`, but may require a full copy.
+The help text describes ZFS support more broadly than the detector.
+The v4.5.0 implementation does not classify ZFS as a confirmed fast-CoW mode.
 
 ### Clone Configuration
 
@@ -72,7 +89,8 @@ After a successful copy, `pg-fork`:
 - writes a separate `port`, `archive_mode=off`, and a local `log_directory` to the destination's `postgresql.auto.conf`;
 - removes `primary_conninfo`, `primary_slot_name`, and old `recovery_target*` overrides.
 
-It does not check whether the destination port is free or resize memory settings. Before starting the copy, inspect at least:
+The script does not check destination port availability or adjust memory settings.
+Before you start the copy, inspect at least these settings:
 
 ```bash
 postgres -D /pg/data1 -C port
@@ -82,22 +100,31 @@ pg_ctl -D /pg/data1 status
 ```
 
 > [!WARNING] External tablespaces are not isolated
-> `cp -a` preserves symlinks under `pg_tblspc`; `pg-fork` does not copy or remap tablespaces outside PGDATA. Starting such a clone can access or modify the source instance's tablespaces. If external tablespaces exist, independently copy and remap every one of them, or do not use this script to create a writable clone.
+> `cp -a` preserves symlinks under `pg_tblspc`.
+> `pg-fork` does not copy or remap tablespaces outside PGDATA.
+> Starting such a clone can access or modify the source tablespaces.
+> If external tablespaces exist, copy and remap each one independently.
+> Otherwise, do not use this script to create a writable clone.
 
 ### Interaction Boundary
 
-The script asks `Proceed with fork? [y/N]` only when standard input is a terminal and `-y` was not used. Pipes, CI, cron, and other non-interactive invocations do not receive that prompt. Automation must therefore enforce a strict absolute-path allowlist and destination-existence check before invoking the script; do not add `-y` by default merely for convenience.
+The script asks `Proceed with fork? [y/N]` only if standard input is a terminal and you did not use `-y`.
+Pipes, CI, cron, and other non-interactive calls do not get this prompt.
+Automation must enforce a strict absolute-path allowlist and check whether the destination exists before it calls the script.
+Do not add `-y` by default only for convenience.
 
 
 --------
 
 ## pg-pitr
 
-[`pg-pitr`](https://github.com/pgsty/pigsty/blob/main/files/postgres/pg-pitr) is a low-level pgBackRest restore wrapper. It does not pause or start Patroni, stop or start PostgreSQL, clear DCS state, or rebuild replicas.
+[`pg-pitr`](https://github.com/pgsty/pigsty/blob/main/files/postgres/pg-pitr) is a low-level pgBackRest restore wrapper.
+It does not pause or start Patroni, stop or start PostgreSQL, clear DCS state, or rebuild replicas.
 
 ### Recovery Targets
 
-Understand and select a recovery target before execution. Invoking the command without arguments only shows help:
+Understand and select a recovery target before execution.
+Without arguments, the command only shows help:
 
 | Parameter | pgBackRest semantics |
 |:----------|:---------------------|
@@ -109,9 +136,14 @@ Understand and select a recovery target before execution. Invoking the command w
 | `-x, --xid <xid>` | Recover to a transaction ID |
 {.full-width}
 
-`-S/--set` (with compatibility alias `-b/--backup`) only selects **which backup set recovery starts from**; it is not a stop target. For example, `-S 20251225-120000F -d` still replays to the end of WAL. Combine `-S ... -i` to stop as soon as that backup becomes consistent.
+`-S/--set`, with compatibility alias `-b/--backup`, selects **which backup set recovery starts from**.
+It does not select a stop target.
+For example, `-S 20251225-120000F -d` still replays to the end of WAL.
+Use `-S ... -i` to stop when that backup first becomes consistent.
 
-For `time`, `name`, `lsn`, `xid`, and `immediate`, pgBackRest's effective default action is to pause at the target; `-P/--promote` changes it to automatic promotion. Use `-X/--exclusive` only with a precise boundary such as `time`, `lsn`, or `xid`.
+For `time`, `name`, `lsn`, `xid`, and `immediate`, pgBackRest pauses at the target by default.
+`-P/--promote` changes this action to automatic promotion.
+Use `-X/--exclusive` only with a precise target such as `time`, `lsn`, or `xid`.
 
 ### Other Options
 
@@ -127,11 +159,15 @@ For `time`, `name`, `lsn`, `xid`, and `immediate`, pgBackRest's effective defaul
 | `-- <args>` | Pass additional arguments directly to pgBackRest |
 {.full-width}
 
-`-c` is a command-rendering check. It does not prove that the backup/WAL is usable or that PostgreSQL and Patroni are stopped. The wrapper also does not filter conflicting native arguments; review the final command carefully when passing repository, tablespace, or link-mapping options.
+`-c` checks the generated command.
+It does not prove that the backup/WAL is usable or that PostgreSQL and Patroni have stopped.
+The wrapper does not filter conflicting native arguments.
+If you pass repository, tablespace, or link-mapping options, carefully review the final command.
 
 ### Safe Execution Sequence
 
-This example shows only the low-level flow for one isolated destination. Use the complete runbook for production cluster recovery:
+This example shows the low-level procedure for one isolated destination.
+For production cluster recovery, use the complete runbook:
 
 ```bash
 # 1. Read-only verification of backup sets and the recovery window
@@ -147,7 +183,11 @@ pg-pitr -D /pg/data1 -t "2026-08-13 10:00:00+08" -c
 pg-pitr -D /pg/data1 -t "2026-08-13 10:00:00+08"
 ```
 
-Real execution refuses root and aborts whenever `postmaster.pid` exists in the destination. Even a stale PID file requires the operator to confirm that PostgreSQL is stopped before removing it. There is no `y/N` question: an interactive terminal gets only an interruptible five-second countdown; a non-interactive invocation skips the countdown and enters restore immediately.
+Real execution rejects root and aborts if `postmaster.pid` exists in the destination.
+Before removing even a stale PID file, the operator must confirm that PostgreSQL has stopped.
+There is no `y/N` question.
+An interactive terminal gets only an interruptible five-second countdown.
+A non-interactive call skips the countdown and starts the restore immediately.
 
 After restore, the operator starts and validates the instance:
 
@@ -157,13 +197,21 @@ psql -p 15432 -Atqc \
   'SELECT pg_is_in_recovery(), pg_is_wal_replay_paused(), pg_last_xact_replay_timestamp()'
 ```
 
-Promote only after the recovery target, authorized application data, timeline, and archive settings are all verified. Promotion creates a new timeline; it is not a reversible “inspect” operation. `pg-pitr` does not itself disable archiving. Do not mechanically follow its generic final “enable archive_mode” hint—inspect the effective value first and correct only an override introduced by this recovery.
+Promote only after you verify the recovery target, authorized application data, timeline, and archive settings.
+Promotion creates a new timeline and is not a reversible inspection operation.
+`pg-pitr` does not disable archiving itself.
+Before you follow its generic final "enable archive_mode" hint, inspect the effective setting.
+Correct only an override introduced by this recovery.
 
 ### Additional Side-Restore Risks
 
-When restoring into a custom directory such as `/pg/data1`, pgBackRest can restore `postgresql.auto.conf` from the backup and overwrite the separate port written by `pg-fork`. Recheck `port`, `archive_mode`, sockets, logging, and memory settings before startup.
+For a custom destination such as `/pg/data1`, pgBackRest can restore `postgresql.auto.conf` and overwrite the separate port set by `pg-fork`.
+Before startup, recheck `port`, `archive_mode`, sockets, logging, and memory settings.
 
-If the backup contains external tablespaces or links, a side restore can also use the original paths. For isolation, pass reviewed pgBackRest `--tablespace-map`, `--link-map`, or related arguments after `--` and inspect the rendered command. Otherwise, do not start the restored copy on the same host as production.
+If the backup contains external tablespaces or links, a side restore can use the original paths.
+For isolation, pass reviewed pgBackRest `--tablespace-map`, `--link-map`, or related arguments after `--`.
+Inspect the generated command.
+Otherwise, do not start the restored copy on the production host.
 
 
 --------
@@ -177,7 +225,9 @@ If the backup contains external tablespaces or links, a side restore can also us
 5. Start the clone on the isolated port and verify recovery state and only the application data you are authorized to inspect.
 6. Promote only if the clone is intentionally becoming a new primary; otherwise stop it and clean up only the exact, verified path.
 
-Side validation reduces direct writes to the current PGDATA, but still uses the same backup repository, consumes host resources, and may touch external tablespaces. It is not a risk-free sandbox.
+Side validation reduces direct writes to the current PGDATA.
+It still uses the same backup repository, consumes host resources, and may access external tablespaces.
+The sandbox therefore still has risks.
 
 
 --------

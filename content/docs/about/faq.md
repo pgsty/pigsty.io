@@ -12,100 +12,92 @@ categories: [Reference]
 
 ## What is Pigsty, and what is it not?
 
-Pigsty is a PostgreSQL database distribution, a local-first open-source RDS cloud database solution.
-Pigsty is not a Database Management System (DBMS), but rather a tool, distribution, solution, and best practice for managing DBMS.
+Pigsty is a PostgreSQL distribution and a local-first, open-source RDS solution. It provides tools and operational practices for managing a DBMS. It is not itself a Database Management System (DBMS).
 
-Analogy: The database is the car, then the DBA is the driver, RDS is the taxi service, and Pigsty is the autonomous driving software.
+For comparison, a database is a car, a DBA is its driver, and RDS is a taxi service. Pigsty provides software to automate driving.
 
 ----------------
 
 ## What problem does Pigsty solve?
 
-**The ability to use databases well** is extremely scarce: either hire database experts at high cost to self-build (hire drivers), or rent RDS from cloud vendors at sky-high prices (hail a taxi), but now you have a new option: Pigsty (autonomous driving).
-Pigsty helps users use databases well: allowing users to self-build higher-quality and more efficient local cloud database services at less than 1/10 the cost of RDS, without a DBA!
+**Database operational expertise** is scarce. Users can hire experts, rent managed RDS, or use Pigsty to automate database management. Pigsty helps users build efficient, high-quality local database services without a DBA, at less than 1/10 the cost of RDS.
 
 
 ----------------
 
 ## Who are Pigsty's target users?
 
-Pigsty has two typical target user groups. The foundation is **medium to large companies** building ultra-large-scale enterprise/production-grade PostgreSQL RDS / DBaaS services.
-Through extreme customizability, Pigsty can meet the most demanding database management needs and provide enterprise-level support and service guarantees.
+Pigsty serves two main groups. Medium and large companies use it to build large production PostgreSQL RDS / DBaaS services. Extensive customization supports demanding management requirements, with enterprise support and service guarantees.
 
-At the same time, Pigsty also provides "out-of-the-box" PG RDS self-building solutions for individual developers, small and medium enterprises lacking DBA capabilities, and the open-source community.
+Individual developers, smaller companies without DBAs, and open-source communities can use its ready-to-use PostgreSQL RDS solution.
 
 
 ----------------
 
 ## Why can Pigsty help you use databases well?
 
-Pigsty embodies the experience and best practices of top experts refined in the most complex and largest-scale client PostgreSQL scenarios, productized into replicable software:
-Solving extension installation, high availability, connection pooling, monitoring, backup and recovery, parameter optimization, IaC batch management, one-click installation, automated operations, and many other issues at once. Avoiding many pitfalls in advance and preventing repeated mistakes.
+Pigsty packages expert experience from large, complex PostgreSQL deployments into repeatable software. It handles extension installation, high availability, connection pooling, monitoring, backups, recovery, parameter tuning, IaC management, and automated installation and operations. These established methods help prevent common mistakes.
 
 
 ----------------
 
 ## Why is Pigsty better than RDS?
 
-Pigsty provides a feature set and infrastructure support far beyond RDS, including {{< param pgext_count >}} extension plugins and 12+ kernel support.
-Pigsty provides a unique professional-grade monitoring system in the PG ecosystem, along with architectural best practices battle-tested in complex scenarios, simple and easy to use.
+Pigsty provides features and infrastructure beyond RDS, including {{< param pgext_count >}} extensions and 12+ kernels. It includes a professional monitoring system and architecture developed in complex production environments.
 
-Moreover, forged in top-tier client scenarios like Tantan, Apple, and Alibaba, continuously nurtured with passion and love, its depth and maturity are incomparable to RDS's one-size-fits-all approach.
+Its design incorporates experience from Tantan, Apple, and Alibaba. This supports deeper customization than a uniform RDS offering.
 
 ----------------
 
 ## Why is Pigsty cheaper than RDS?
 
-Pigsty allows you to use 10 ¥/core·month pure hardware resources to run 400¥-1400¥/core·month RDS cloud databases, and save the DBA's salary. Typically, the total cost of ownership (TCO) of a large-scale Pigsty deployment can be over 90% lower than RDS.
+Pigsty can run services equivalent to 400¥-1400¥/core·month RDS on hardware costing 10 ¥/core·month, while avoiding a dedicated DBA salary. Large deployments can typically reduce total cost of ownership (TCO) by more than 90% compared with RDS.
 
-Pigsty can simultaneously reduce software licensing/services/labor costs. Self-building requires no additional staff, allowing you to spend costs where it matters most.
+Pigsty reduces software licensing, service, and labor costs. Self-hosting does not require additional staff.
 
 ----------------
 
 ## How does Pigsty help developers?
 
-Pigsty integrates the most comprehensive extensions in the PG ecosystem ({{< param pgext_count >}}), providing an All-in-PG solution: a single component replacing specialized components like Redis, Kafka, MySQL, ES, vector databases, OLAP / big data analytics.
+Pigsty integrates {{< param pgext_count >}} PostgreSQL extensions for an All-in-PG architecture. PostgreSQL can replace separate Redis, Kafka, MySQL, ES, vector database, OLAP, and big data analysis components.
 
-Greatly improving R&D efficiency and agility while reducing complexity costs, and developers can achieve self-service management and autonomous DevOps with Pigsty's support, without needing a DBA.
+This reduces system complexity and improves development efficiency. Developers can manage databases and perform DevOps tasks themselves without a DBA.
 
 ----------------
 
 ## How does Pigsty help operations?
 
-Pigsty's self-healing high-availability architecture ensures hardware failures don't need immediate handling, letting ops and DBAs sleep well; monitoring aids problem analysis and performance optimization; IaC enables automated management of ultra-large-scale clusters.
+Self-healing high availability reduces the need for immediate hardware repair. Monitoring supports diagnosis and performance tuning. IaC automates management of large clusters.
 
-Operations can moonlight as DBAs with Pigsty's support, while DBAs can skip the system building phase, saving significant work hours and focusing on high-value work, or relaxing, learning PG.
+Operations engineers can perform DBA tasks with Pigsty. DBAs can skip infrastructure construction and use that time for higher-value work, learning PostgreSQL, or rest.
 
 
 ----------------
 
 ## Who is the author of Pigsty?
 
-Pigsty is primarily developed by Feng Ruohang alone, an open-source contributor, database expert, and evangelist who has focused on PostgreSQL for 10 years,
-formerly at Alibaba, Tantan, and Apple, a full-stack expert. Now the founder of a one-person company, providing professional consulting services.
+Feng Ruohang is Pigsty's primary developer. He is an open-source contributor and database expert with 10 years of PostgreSQL experience, formerly at Alibaba, Tantan, and Apple. He now operates a one-person consulting company.
 
-He is also a tech KOL, the founder of the top WeChat database personal account "非法加冯" (Illegally Add Feng), with 60,000+ followers across all platforms.
+He writes the WeChat database account "非法加冯" (Illegally Add Feng) and has 60,000+ followers across platforms.
 
 ----------------
 
 ## What is Pigsty's ecosystem position and influence?
 
-Pigsty is the most influential Chinese open-source project in the global PostgreSQL ecosystem, with about 100,000 users, half from overseas.
-Pigsty is also one of the most active open-source projects in the PostgreSQL ecosystem, currently dominating in extension distribution and monitoring systems.
+Pigsty is an influential Chinese project in the global PostgreSQL ecosystem, with about 100,000 users, half outside China. It is active in extension distribution and monitoring.
 
-[**PGEXT.Cloud**](/ext/) is a PostgreSQL extension repository maintained by Pigsty, with the world's largest PostgreSQL extension distribution volume.
-It has become an upstream software supply chain for multiple international PostgreSQL vendors.
+[**PGEXT.Cloud**](/ext/) is Pigsty's PostgreSQL extension repository. It distributes the largest collection of PostgreSQL extensions and supplies packages to several international PostgreSQL vendors.
 
-Pigsty is currently one of the major distributions in the PostgreSQL ecosystem and a challenger to cloud vendor RDS, now widely used in defense, government, healthcare, internet, finance, manufacturing, and other industries.
+Pigsty is a major PostgreSQL distribution and competes with cloud vendor RDS. It is widely used in defense, government, healthcare, internet, finance, manufacturing, and other industries.
 
 
 ----------------
 
 ## What scale of customers is Pigsty suitable for?
 
-Pigsty originated from the need for ultra-large-scale PostgreSQL automated management but has been deeply optimized for ease of use. Individual developers and small-medium enterprises lacking professional DBA capabilities can also easily get started.
+Pigsty began with automated management of large PostgreSQL deployments. It also provides a simplified workflow for individual developers and smaller companies without professional DBAs.
 
-The largest deployment is 25K vCPU, 4.5 million QPS, 6+ years; the smallest deployment can run completely on a 1c1g VM for Demo / Devbox use.
+The largest deployment has 25K vCPU and 4.5 million QPS, with 6+ years of operation. Demo or Devbox deployments can run on a 1c1g VM.
 
 ----------------
 
@@ -132,7 +124,7 @@ Pigsty focuses on integrating the PostgreSQL ecosystem and providing PostgreSQL 
 
 ## Is Pigsty open source and free?
 
-Pigsty is 100% open-source software + free software. Under the premise of complying with the open-source license, you can use it freely and for various commercial purposes.
+Pigsty is 100% open-source and free software. You can use it, including for commercial purposes, under its license terms.
 
 We value software freedom. Pigsty uses the Apache-2.0 license. Please see the [license](/docs/about/license) for details.
 
@@ -140,17 +132,13 @@ We value software freedom. Pigsty uses the Apache-2.0 license. Please see the [l
 
 ## Does Pigsty provide commercial support?
 
-Pigsty software itself is open-source and free, and provides commercial subscriptions for all budgets, providing quality assurance for Pigsty & PostgreSQL.
-Subscriptions provide broader OS/PG/chip architecture support ranges, as well as expert consulting and support.
-Pigsty commercial subscriptions deliver industry-leading management/technical experience/solutions,
-helping you save valuable time, shouldering risks for you, and providing a safety net for difficult problems.
+Pigsty is free and open-source. Commercial subscriptions provide quality assurance for Pigsty and PostgreSQL at different budgets. They extend OS, PostgreSQL, and chip architecture support and provide expert consulting. This support transfers management experience, saves time, and helps manage difficult incidents and risks.
 
 ----------------
 
 ## Does Pigsty support domestic innovation (信创)?
 
-Pigsty software itself is not a database and is not subject to domestic innovation catalog restrictions, and already has multiple military use cases. However, the Pigsty open-source edition does not provide any form of domestic innovation support.
-Commercial subscription provides domestic innovation solutions in cooperation with Alibaba Cloud, supporting the use of PolarDB-O with domestic innovation qualifications (requires separate purchase) as the RDS kernel, capable of running on domestic innovation OS/chip environments.
+Pigsty is not itself a database and is not subject to domestic innovation catalog restrictions. It has several military use cases. The open-source edition provides no domestic innovation support. Commercial subscriptions provide solutions with Alibaba Cloud, using qualified PolarDB-O as the RDS kernel. PolarDB-O requires a separate purchase and can run on domestic innovation operating systems and chips.
 
 ----------------
 
@@ -165,10 +153,7 @@ For explicit commercial authorization, consider the Pigsty Enterprise subscripti
 
 ## Can Pigsty's Logo be rebranded as your own product?
 
-When redistributing Pigsty, you must retain copyright notices, patent notices, trademark notices, and attribution notices from the original work,
-and attach prominent change descriptions in modified files while preserving the content of the LICENSE file.
-Under these premises, you can replace PIGSTY's Logo and trademark, but you must not promote it as "your own original work."
-We provide commercial licensing support for OEM and rebranding in the enterprise edition.
+When redistributing Pigsty, retain the original copyright, patent, trademark, and attribution notices. Preserve LICENSE content and add prominent change notices to modified files. Under these conditions, you can replace the PIGSTY logo and trademark, but cannot claim the original work as your own. The enterprise edition provides commercial licensing support for OEM and rebranding.
 
 
 ----------------

@@ -7,7 +7,8 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig` CLI provides a comprehensive toolkit for managing PostgreSQL installations, extensions, repositories, and extension builds from source. Use `pig help <command>` to view command documentation.
+Use the `pig` CLI to manage PostgreSQL installations, extensions, repositories, and extension builds from source.
+Run `pig help <command>` to read command documentation.
 
 - [**pig repo**](/docs/pig/repo/): manage software repositories
 - [**pig ext**](/docs/pig/ext/): manage PostgreSQL extensions
@@ -143,7 +144,9 @@ pig build ext citus              # build package
 
 ## pig install
 
-Install packages through the system's native package manager and translate PostgreSQL kernel, extension, and common aliases into package names. Use `-n/--no-translation` when you need to pass raw system package names directly.
+Install packages with the system package manager.
+The command translates PostgreSQL kernel names, extension names, and common aliases to package names.
+To pass system package names without translation, use `-n/--no-translation`.
 
 ```bash
 pig install pg_duckdb            # install extension and translate package name
@@ -172,9 +175,9 @@ pig sty grafana list             # manage Grafana dashboards (info/list/boot/loa
 
 ## pig inventory
 
-Inspect, edit, validate, check, and exchange the Pigsty inventory (`pigsty.yml`) with the
-CMDB. Root-level command group with alias `inv`; see [`pig inventory`](/docs/pig/inventory/)
-for details. (New in v1.6.0)
+Use this root-level command group to inspect, edit, validate, check, and exchange the Pigsty inventory (`pigsty.yml`) with the CMDB.
+Its alias is `inv`. It was added in v1.6.0.
+See [`pig inventory`](/docs/pig/inventory/) for details.
 
 ```bash
 pig inventory status             # inspect the active inventory source
@@ -217,7 +220,8 @@ pig pe --host 127.0.0.1 -p 9630 get
 
 ## pig context
 
-Output an environment context snapshot covering host, PostgreSQL, Patroni, pgBackRest, and installed extensions. This command is useful for troubleshooting and for automation scripts that need a quick view of the current node.
+Output a snapshot of the host, PostgreSQL, Patroni, pgBackRest, and installed extensions.
+Use the snapshot for troubleshooting or automation that needs the current node state.
 
 ```bash
 pig context                      # text output

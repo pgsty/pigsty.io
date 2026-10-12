@@ -8,7 +8,7 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/param]
 ---
 
-The MYSQL deployment role deliberately exposes only 11 parameters; the removal role adds 2 protected operations parameters. Software versions, ports, directories, charset, TLS paths, and timer schedules are fixed by the role; memory sizing is derived from node specs. To adjust server behavior, use [`mysql_parameters`](#mysql_parameters).
+Deployment exposes 11 parameters; removal adds two protected-operation parameters. Versions, ports, directories, charset, TLS paths, and schedules are fixed. Memory sizing follows node specifications. Use [`mysql_parameters`](#mysql_parameters) to change server behavior.
 
 
 --------
@@ -38,7 +38,7 @@ The removal parameters are used by `mysql-rm.yml`:
 | [`mysql_rm_confirm`](#mysql_rm_confirm) | CLI | `''` | Must exactly match the instance or cluster name |
 {.full-width}
 
-Variables that appeared on earlier versions of this page — `mysql_role`, `mysql_services`, `mysql_packages`, `mysql_data`, `mysql_port`, `mysql_replication_*`, `mysql_*_username` — are no longer part of the interface. Do not use them.
+Earlier parameters are no longer supported: `mysql_role`, `mysql_services`, `mysql_packages`, `mysql_data`, `mysql_port`, `mysql_replication_*`, and `mysql_*_username`. Do not use them.
 
 
 --------
@@ -47,23 +47,23 @@ Variables that appeared on earlier versions of this page — `mysql_role`, `mysq
 
 ### `mysql_cluster`
 
-Required cluster identity; must match an inventory group containing the member hosts (enforced at preflight). Starts with a letter, digit, or underscore; `._-` allowed; up to 63 characters:
+Required cluster identity, matching the member inventory group. Preflight enforces this. Start with a letter, digit, or underscore. `._-` is permitted; maximum length is 63:
 
 ```yaml
 mysql_cluster: my-test
 ```
 
-Used to derive instance names (`my-test-1`), the deterministic MGR group UUID, the backup directory (`<repo>/my-test/`), and the `cls` monitoring label.
+This determines instance names (`my-test-1`), MGR group UUID, backup directory (`<repo>/my-test/`), and monitoring `cls`.
 
 ### `mysql_seq`
 
-Required instance sequence. `1` for standalone; a consecutive `1, 2, 3` for HA. Doubles as `server_id`:
+Required sequence: `1` for standalone, consecutive `1, 2, 3` for HA. It also sets `server_id`:
 
 ```yaml
 10.10.10.11: { mysql_seq: 1 }
 ```
 
-`mysql_seq=1` only marks the bootstrap coordinator. The runtime primary is elected, and reruns never move it back.
+`mysql_seq=1` marks the bootstrap coordinator only. Runtime PRIMARY is elected; reruns preserve its placement.
 
 
 --------
@@ -72,7 +72,7 @@ Required instance sequence. `1` for standalone; a consecutive `1, 2, 3` for HA. 
 
 ### `mysql_root_password`
 
-Password for `root@'localhost'`, usable only locally (socket or loopback). Single-line, and must not keep the `CHANGE_ME` prefix:
+Local `root@'localhost'` password for socket or loopback access. Use one line without a `CHANGE_ME` prefix:
 
 The default is `DBUser.Root`:
 
@@ -80,11 +80,11 @@ The default is `DBUser.Root`:
 mysql_root_password: DBUser.Root
 ```
 
-Set at first launch. Afterwards, if the live password differs from the declaration, the run fails explicitly rather than resetting it — rotate manually with `ALTER USER`, then update the inventory.
+Set it at initial launch. Later mismatches between live and declared values fail explicitly. Rotate manually with `ALTER USER`, then update inventory.
 
 ### `mysql_monitor_password`
 
-Password for `dbuser_monitor@'127.0.0.1'`, used by mysqld_exporter: loopback-only, capped at 3 connections, read-only privileges:
+Exporter password for `dbuser_monitor@'127.0.0.1'`. This read-only, loopback account has a three-connection limit:
 
 The default is `DBUser.Monitor`:
 
@@ -94,7 +94,7 @@ mysql_monitor_password: DBUser.Monitor
 
 ### `mysql_cluster_password`
 
-Shared password for `dbuser_cluster@'%'` (TLS-required) and `dbuser_backup@'localhost'`, covering AdminAPI cluster management, Router bootstrap, and XtraBackup:
+Shared password for TLS-only `dbuser_cluster@'%'` and local `dbuser_backup@'localhost'`. It supports AdminAPI, Router bootstrap, and XtraBackup:
 
 The default is `DBUser.Cluster`:
 
@@ -102,7 +102,7 @@ The default is `DBUser.Cluster`:
 mysql_cluster_password: DBUser.Cluster
 ```
 
-On HA clusters this password is embedded in cluster metadata and Router keyrings, so **it cannot be rotated by an ordinary rerun**: a mismatch between the live value and the declaration is rejected at preflight. Standalone instances have no such binding — update the inventory and rerun.
+HA metadata and Router keyrings bind this password. **Ordinary reruns cannot rotate it**; preflight rejects mismatches. Standalone has no such binding. Update inventory and rerun there.
 
 
 --------
@@ -119,7 +119,7 @@ mysql_databases:
   - { name: app2, encoding: utf8mb4, collate: utf8mb4_general_ci }
 ```
 
-Creates and updates only; removing an entry never drops a database. Syntax and validation rules: [Configuration](/docs/mysql/config#databases).
+Create and update only. Removing an entry never drops a database. See [Configuration](/docs/mysql/config#databases) for syntax and validation.
 
 ### `mysql_users`
 
@@ -134,14 +134,14 @@ mysql_users:
     priv: { 'app.*': 'ALL PRIVILEGES' }
 ```
 
-Grants are applied but never revoked implicitly; platform identities cannot be declared. Syntax and validation rules: [Configuration](/docs/mysql/config#users).
+Grants apply without implicit revocation. Platform identities are forbidden. See [Configuration](/docs/mysql/config#users) for syntax and validation.
 
 
 --------
 
 ## `mysql_parameters`
 
-A dictionary of `[mysqld]` overrides, rendered at the end of the managed config (last value wins):
+Dictionary of `[mysqld]` overrides appended to managed configuration. The last value takes precedence:
 
 ```yaml
 mysql_parameters:
@@ -153,12 +153,12 @@ mysql_parameters:
 
 Constraints and behavior:
 
-- Keys match `[A-Za-z][A-Za-z0-9_.-]{0,63}`; values are single-line scalars. The rendered config still passes `mysqld --validate-config`, so typos fail at deploy time without touching the running instance;
-- **Reserved options are rejected** (`-` and `_` spellings are treated alike): `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `require_secure_transport`, `ssl_ca`, `ssl_cert`, `ssl_key`, `plugin_load`, `plugin_load_add`, `clone`, `plugin_clone`, `mysqlx`, and `plugin_mysqlx`, plus all `group_replication_*`, `plugin_group_replication*`, `plugin_mysqlx_bind_address`, and `ssl_*` options;
-- Applying a change reruns `mysql.yml`, which orchestrates a rolling restart (secondaries first, primary last) — expect one brief write interruption when the primary restarts;
-- Commonly overridden defaults: `sql_require_primary_key` (default `ON`), `long_query_time` (default `1`), `binlog_expire_logs_seconds` (default 7 days), and the memory settings.
+- Keys must match `[A-Za-z][A-Za-z0-9_.-]{0,63}`; values must be single-line scalars. `mysqld --validate-config` rejects errors before changing the instance.
+- **Reserved settings are rejected**, treating `-` and `_` alike: `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `require_secure_transport`, `ssl_ca`, `ssl_cert`, `ssl_key`, `plugin_load`, `plugin_load_add`, `clone`, `plugin_clone`, `mysqlx`, `plugin_mysqlx`. This also includes `group_replication_*`, `plugin_group_replication*`, `plugin_mysqlx_bind_address`, and `ssl_*`.
+- Rerun `mysql.yml` to apply changes. It rolls secondaries first, then the primary, with one brief write interruption.
+- Common overrides include `sql_require_primary_key` (default `ON`), `long_query_time` (default `1`), `binlog_expire_logs_seconds` (default seven days), and memory settings.
 
-A note on dynamic variables: the few replication settings AdminAPI manages via `SET PERSIST` are authoritative at runtime; on every converge the role pins `group_replication_group_seeds` back to the declared member list to prevent persisted drift.
+AdminAPI replication settings written through `SET PERSIST` control runtime behavior. Each run restores `group_replication_group_seeds` to declared membership to prevent persisted drift.
 
 
 --------
@@ -167,13 +167,13 @@ A note on dynamic variables: the few replication settings AdminAPI manages via `
 
 ### `mysql_backup_enabled`
 
-Whether the daily backup timer runs (`mysql-backup.timer`, daily with up to 30 minutes of randomized delay):
+Control the daily `mysql-backup.timer`, which adds up to 30 minutes of random delay:
 
 ```yaml
 mysql_backup_enabled: true
 ```
 
-Setting `false` stops the timer but keeps the backup script and config. Note that if backups were never enabled, the repository directory does not exist and a manual trigger exits immediately.
+`false` stops the timer but retains script and configuration. If backup was never enabled, the repository directory is absent and manual execution exits immediately.
 
 ### `mysql_backup_repo`
 
@@ -201,7 +201,7 @@ Whether mysqld_exporter runs and the VictoriaMetrics target is registered:
 mysql_exporter_enabled: true
 ```
 
-Setting `false` stops the exporter and converges `/infra/targets/mysql/<instance>.yml` to an empty list (the file itself is only removed by `mysql-rm.yml`).
+`false` stops the exporter and empties `/infra/targets/mysql/<instance>.yml`. Only `mysql-rm.yml` removes the file.
 
 
 --------
@@ -210,7 +210,7 @@ Setting `false` stops the exporter and converges `/infra/targets/mysql/<instance
 
 ### `mysql_safeguard`
 
-Protected-removal safety switch, defaulting to `true`. You must explicitly set it to `false` when running `mysql-rm.yml`, or the role refuses to continue:
+Removal safety switch, default `true`. Explicitly set `false` for `mysql-rm.yml`; otherwise, removal stops:
 
 ```bash
 ./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
@@ -218,14 +218,14 @@ Protected-removal safety switch, defaulting to `true`. You must explicitly set i
 
 ### `mysql_rm_confirm`
 
-Target-name confirmation string, empty by default. When removing a single member, it must exactly equal the instance name, such as `my-test-3`; when removing a complete cluster or standalone instance, it must exactly equal `mysql_cluster`. Both this value and `mysql_safeguard=false` are required.
+Confirmation string, empty by default. For one member, exactly match its instance name, such as `my-test-3`. For full-cluster or standalone removal, exactly match `mysql_cluster`. Both confirmation and `mysql_safeguard=false` are required.
 
 
 --------
 
 ## Fixed Platform Conventions
 
-The following are fixed or derived by the role — **not** inventory parameters — listed here for operators' reference:
+These settings are fixed or derived. They are **not inventory parameters**:
 
 | Item | Value |
 |:---|:---|

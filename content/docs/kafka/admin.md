@@ -9,12 +9,15 @@ aliases: [/docs/pilot/kafka/admin]
 ---
 
 
-The KAFKA module installs Kafka under `/opt/kafka`, manages the service with Systemd, and keeps its persistent intent in `pigsty.yml`. The files generated on the nodes are not meant to be edited by hand.
+KAFKA installs Kafka in `/opt/kafka` and manages it with Systemd. Declare persistent settings in `pigsty.yml`. Do not edit generated node files manually.
 
-All of the Kafka CLI examples below use the role-generated `/etc/kafka/admin.properties`. Even when the current profile is `plaintext`, keep `--command-config` on every command: that way the command structure stays the same when you switch the admin channel to `scram`. Replace `<broker>:9092` with a reachable `inventory_hostname` and port.
+These CLI examples use the generated `/etc/kafka/admin.properties`. Keep `--command-config` even with `plaintext`. Commands then retain the same structure if the administration channel changes to `scram`. Replace `<broker>:9092` with a reachable `inventory_hostname` and port.
 
 > [!NOTE] --command-config on the console tools requires a Kafka 4.2+ CLI
-> [KIP-1147](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1147:+Improve+consistency+of+command-line+arguments) standardized the config-file argument as `--command-config` and the key-value argument as `--command-property` across every CLI, starting with Kafka 4.2. The CLI under `/opt/kafka/bin` comes from the Pigsty repository (currently a 4.3.x payload) and works as shown; if you run these from an external 4.1 or older CLI, the console producer/consumer still need the old names `--producer.config` / `--consumer.config`. The admin tools (`kafka-topics.sh`, `kafka-configs.sh`, `kafka-acls.sh`, `kafka-consumer-groups.sh`, `kafka-metadata-quorum.sh`, and friends) have always used `--command-config` and are unaffected.
+> Starting with Kafka 4.2, [KIP-1147](https://cwiki.apache.org/confluence/display/KAFKA/KIP-1147:+Improve+consistency+of+command-line+arguments) standardized `--command-config` for files and `--command-property` for key-value arguments across all CLIs.
+> `/opt/kafka/bin` comes from the Pigsty repository, currently with a 4.3.x payload. It supports these examples.
+> External 4.1 or older console tools require `--producer.config` and `--consumer.config`.
+> Administration tools such as `kafka-topics.sh`, `kafka-configs.sh`, `kafka-acls.sh`, `kafka-consumer-groups.sh`, and `kafka-metadata-quorum.sh` already used `--command-config`. They are unaffected.
 
 
 --------
@@ -34,7 +37,7 @@ All of the Kafka CLI examples below use the role-generated `/etc/kafka/admin.pro
 | [**Rotate Credentials**](#rotate-credentials-and-certificates) | `./kafka.yml -e kafka_rotate_...` | Protected internal credential / certificate rotation |
 {.full-width}
 
-Cluster definition and parameters are covered in [**Configuration**](/docs/kafka/config), playbook semantics in [**Playbooks**](/docs/kafka/playbook), and monitoring in [**Monitoring**](/docs/kafka/monitor).
+See [**Configuration**](/docs/kafka/config) for cluster definitions and parameters, [**Playbooks**](/docs/kafka/playbook) for execution behavior, and [**Monitoring**](/docs/kafka/monitor) for observability.
 
 
 --------
@@ -49,7 +52,7 @@ systemctl is-enabled kafka
 journalctl -u kafka --since '-30 min' --no-pager
 ```
 
-The protocol exporter runs only on at most two broker-capable nodes with the lowest `kafka_seq`. On the selected nodes, also check:
+The protocol exporter runs on at most two broker-capable nodes with the lowest `kafka_seq`. On those nodes, also check:
 
 ```bash
 systemctl status kafka_exporter
@@ -64,14 +67,14 @@ curl -fsS http://<kafka-ip>:9404/metrics | grep -E '^(jmx_scrape_error|kafka_ser
 curl -fsS http://<exporter-ip>:9308/metrics | grep -E '^(kafka_brokers|kafka_topic_partitions)'
 ```
 
-`kafka_up` and `kafka_exporter_up` are recording metrics on the VictoriaMetrics side and do not necessarily appear on the raw endpoints. The JMX endpoint should contain `jmx_scrape_error 0.0`, JVM metrics, and `kafka_` metrics matching the node's role.
+`kafka_up` and `kafka_exporter_up` are VictoriaMetrics recording metrics. They may not appear at raw endpoints. JMX should expose `jmx_scrape_error 0.0`, JVM metrics, and role-appropriate `kafka_` metrics.
 
 
 --------
 
 ## Health Check
 
-The role's lifecycle gates do not rely on JMX. They check the dynamic quorum, unavailable partitions, under-replication, and under-min-ISR through the same admin channel:
+Lifecycle checks use the administration channel, not JMX. They check dynamic quorum, unavailable partitions, under-replication, and under-min-ISR:
 
 ```bash
 sudo -u kafka /usr/local/bin/pigsty-kafka-health cluster \
@@ -79,9 +82,9 @@ sudo -u kafka /usr/local/bin/pigsty-kafka-health cluster \
   --command-config /etc/kafka/admin.properties
 ```
 
-Only `healthy: true` in the returned JSON means the gate passes. It is suitable for read-only diagnostics but is no substitute for end-to-end business validation.
+The check passes only if JSON returns `healthy: true`. Use it for read-only diagnostics. It does not replace end-to-end business validation.
 
-The script also ships a built-in parser regression suite (`pigsty-kafka-health selftest`) that every playbook run executes right after installation; if the selftest fails, the health predicate itself cannot be trusted — stop making changes and investigate.
+Every playbook run executes the parser regression suite, `pigsty-kafka-health selftest`, immediately after installation. If it fails, stop changes and investigate. The health result is then untrustworthy.
 
 
 --------
@@ -97,12 +100,12 @@ Query the dynamic quorum from any available broker:
   describe --status
 ```
 
-Key things to verify:
+Verify these conditions:
 
-- `LeaderId` exists and matches an expected controller;
-- `CurrentVoters` matches the expected membership (a joining node appears under `CurrentObservers` first);
-- `MaxFollowerLag` and `MaxFollowerLagTimeMs` are not growing continuously;
-- Exactly one active controller shows on the dashboards.
+- `LeaderId` exists and identifies an expected controller.
+- `CurrentVoters` contains the expected members. A joining node first appears in `CurrentObservers`.
+- `MaxFollowerLag` and `MaxFollowerLagTimeMs` do not grow continuously.
+- Dashboards show exactly one active controller.
 
 To confirm the dynamic quorum (KIP-853) feature level, inspect `kraft.version` with `/opt/kafka/bin/kafka-features.sh ... describe`.
 
@@ -115,7 +118,7 @@ Inspect controller replication state:
   describe --replication
 ```
 
-If there is no leader, a member lags persistently, or the voter set differs from expectation, stop other changes first and preserve the logs, the manifest, and `meta.properties` as evidence before analyzing. Remove a dead voter through the [shrink](#shrink-cluster) or [replace](#replace-failed-node) flows; never rewrite quorum state by hand.
+Stop other changes if no leader exists, a member persistently lags, or voters differ from expectations. Preserve logs, the manifest, and `meta.properties` before analysis. Remove dead voters through [shrink](#shrink-cluster) or [replacement](#replace-failed-node). Never rewrite quorum state manually.
 
 
 --------
@@ -141,7 +144,7 @@ Converge after editing the declaration:
 ./kafka.yml -l kf-main
 ```
 
-The role creates topics idempotently, only grows partitions, and only modifies the declared config keys. An RF change fails and demands an explicit partition reassignment; removing an entry from the inventory does not delete the topic.
+The role creates topics idempotently, increases partitions only, and changes only declared configuration keys. RF changes fail and require explicit partition reassignment. Removing an inventory entry does not delete the topic.
 
 Read-only topic inspection:
 
@@ -157,7 +160,7 @@ Read-only topic inspection:
   --describe --topic orders
 ```
 
-Ad-hoc or externally managed topics can be created with the Kafka CLI, but they are not written back into `pigsty.yml`. Never let declarative and manual management own the same topic. Topic deletion is a business-data deletion: it requires separate approval, exact-name confirmation, and a recovery plan, so no generic delete command is given here.
+You can create ad hoc or externally managed topics with the CLI. These are not written back to `pigsty.yml`. Never manage the same topic both manually and declaratively. Topic deletion deletes business data. It requires separate approval, exact-name confirmation, and a recovery plan. This page therefore gives no generic deletion command.
 
 
 --------
@@ -182,14 +185,14 @@ kafka_users:
       consumer_byte_rate: 20971520
 ```
 
-A full playbook run idempotently converges the password, the user's ACL set, and the explicitly given quota fields. Never commit passwords in plaintext or print them into logs. Removing a user entry does not delete the principal/credentials automatically; deletion or full revocation needs a separately reviewed procedure.
+A full run idempotently applies the password, user ACL set, and explicitly declared quota fields. Never commit plaintext passwords or print them in logs. Removing an entry does not delete the principal or credentials. Deletion and full revocation need a separately reviewed procedure.
 
 
 --------
 
 ## Verify Read/Write
 
-Use a test topic for end-to-end validation. The console producer/consumer share the same client config file:
+Validate end-to-end operation with a test topic. The console producer and consumer use the same client configuration:
 
 ```bash
 /opt/kafka/bin/kafka-console-producer.sh \
@@ -209,7 +212,7 @@ Consume in another terminal:
   --group ops-smoke-check
 ```
 
-Production acceptance should run from the real client network, covering DNS/`advertised.listeners`, certificate validation, ACLs, producer ACKs, consumer commits, and end-to-end latency — not just the broker-local path.
+Run production acceptance from the actual client network. Check DNS, `advertised.listeners`, certificates, ACLs, producer ACKs, consumer commits, and end-to-end latency. Broker-local tests alone are insufficient.
 
 
 --------
@@ -230,7 +233,7 @@ List and inspect consumer groups:
   --describe --group order-worker
 ```
 
-Judge lag against the consumption rate and business SLO: a short backlog can be batch-processing behavior, while sustained growth with consumption slower than production means the group cannot catch up. Resetting offsets may duplicate or skip messages, so it requires separate approval, exact group/topic confirmation, and a replay plan.
+Assess lag against consumption rate and business SLOs. A short backlog can be normal batch processing. Sustained growth with consumption below production means the group cannot catch up. Offset resets can duplicate or skip messages. They require separate approval, exact group/topic confirmation, and a replay plan.
 
 
 --------
@@ -244,22 +247,22 @@ After editing `pigsty.yml`, run against complete clusters:
 ./kafka.yml -l kf-main
 ```
 
-The role picks the path from live health and the static fingerprint:
+Live health and the static fingerprint determine the execution path:
 
-- Cluster unhealthy or stopped: start only the stopped controllers, restore and catch up the quorum, then start the brokers; if static changes coexist, the still-online members proceed into the strict rolling afterwards;
-- Controller-capable nodes awaiting quorum join: each catches up as an observer and is promoted with `add-controller`, one at a time;
-- Healthy cluster with new pure brokers: format, start, and confirm registration one at a time;
-- Healthy cluster with static changes: strict node-by-node rolling, with pre/post gates on controller majority and voter catch-up, offline partitions, under-min-ISR, and ISR catch-up around every restart;
-- No static change: Kafka is not restarted.
+- **Unhealthy or stopped:** Start only stopped controllers. Restore quorum and wait for catch-up, then start brokers. If static settings also changed, roll still-online members afterward.
+- **Controller join pending:** Join each node as an observer, wait for catch-up, then promote with `add-controller`. Process one node at a time.
+- **Healthy with new pure brokers:** Format, start, and verify registration one node at a time.
+- **Healthy with static changes:** Restart one node at a time. Before and after each restart, check controller majority, voter catch-up, offline partitions, under-min-ISR, and ISR catch-up.
+- **No static changes:** Do not restart Kafka.
 
-Do not bypass the full state machine with `-t kafka_config`. Dynamic topic/user/ACL/quota convergence lives in the `kafka_provision` resource stage; whether a static change restarts anything is decided by the role.
+Do not bypass the full state machine with `-t kafka_config`. `kafka_provision` applies topics, users, ACLs, and quotas. The role determines whether static changes require restarts.
 
 
 --------
 
 ## Expand Cluster
 
-A healthy cluster takes new members declared directly in the inventory: `kafka_role: broker`, `combined`, or `controller` all work. Give each new node a never-used `kafka_seq` (a host can belong to only one Kafka cluster at a time), make sure the node is [**managed by Pigsty**](/docs/node/admin#add-node), then still target complete clusters:
+Add new `kafka_role: broker`, `combined`, or `controller` members to a healthy cluster through the inventory. Assign each a never-used `kafka_seq`. A host can belong to only one Kafka cluster. Ensure that [**Pigsty manages the node**](/docs/node/admin#add-node). Run against complete clusters:
 
 ```bash
 ./node.yml  --check -l 10.10.10.14    # manage the new node
@@ -267,41 +270,43 @@ A healthy cluster takes new members declared directly in the inventory: `kafka_r
 ./kafka.yml -l kf-main                # admit / join new members one at a time
 ```
 
-The role picks the path per member type and handles one new node at a time:
+The role processes one new node at a time according to its type:
 
-- **Pure broker**: format, start, and verify the broker is registered and not fenced (`admit`);
-- **Combined / controller**: format fresh with `--no-initial-controllers`, start as an observer and catch up on metadata, promote with `add-controller`, then verify it entered the voter set with the cluster fully healthy (`join`).
+- **Pure broker:** Format, start, and verify registration and an unfenced state (`admit`).
+- **Combined/controller:** Format with `--no-initial-controllers`. Start as an observer, catch up on metadata, and promote with `add-controller`. Verify voter membership and full cluster health (`join`).
 
-The `quorum-join-hosts` / `broker-admission-hosts` summary at the end of the run lists the nodes actually processed. Two reminders:
+`quorum-join-hosts` and `broker-admission-hosts` list processed nodes at completion. Note these behaviors:
 
-- Adding a controller-capable node changes `controller.quorum.bootstrap.servers` on every member, so the existing nodes go through one gated strict rolling round afterwards — this is expected;
-- Scaling out to an even controller count prints a warning: an even quorum adds no fault tolerance, keep the count odd.
+- A new controller-capable node changes `controller.quorum.bootstrap.servers` on all members. Existing nodes then undergo one strict rolling restart with health checks.
+- An even controller count triggers a warning. It adds no fault tolerance; keep the count odd.
 
-Joining does not migrate existing partitions onto the new broker. Generate, review, and monitor a `kafka-reassign-partitions.sh` plan separately, control the disk/network load, and prepare a rollback. "The service is registered" is not "the expansion is complete."
+Joining does not move existing partitions to the new broker. Separately generate, review, and monitor a `kafka-reassign-partitions.sh` plan. Limit disk and network load, and prepare rollback. Registration alone does not complete expansion.
 
-The replication policy does not scale up with the broker count either. In particular, Kafka 4.3's `default.replication.factor` cannot be changed dynamically: after scaling from 1 broker to 3, it remains the RF=1 set at initial build, and any future topic without an explicit RF is still created with RF=1. First complete the reassignment of existing partitions, then plan for controller high availability or a maintenance window, and finally let the new static default take effect through a safe full-cluster rolling restart. Do not bypass the downtime gates just to change a default.
+More brokers do not automatically increase the replication policy. Kafka 4.3 cannot change `default.replication.factor` dynamically. After expansion from one broker to three, the initial RF=1 remains. New topics without explicit RF still use RF=1. First reassign existing partitions. Then plan controller HA or a maintenance window.
+
+Apply the new static default with a safe full-cluster rolling restart. Do not bypass downtime checks to change this default.
 
 
 --------
 
 ## Shrink Cluster
 
-Selecting a **strict subset** of a cluster with `kafka-rm.yml` retires members (selecting the whole cluster is a [**teardown**](/docs/kafka/playbook#cluster-teardown)). Retirement removes the leaving node from live metadata through a surviving member:
+`kafka-rm.yml` retires a **strict subset** of cluster members. Selecting all members performs [**teardown**](/docs/kafka/playbook#cluster-teardown). Retirement uses a surviving member to remove the target from live metadata:
 
 ```bash
 ./kafka-rm.yml -l 10.10.10.13     # retire one member: remove voter entry, unregister broker, clean the host
 ```
 
-The execution order is: deregister monitoring targets → stop services → `remove-controller` to remove the KRaft voter entry (if the member is a voter; strictly serialized when retiring several members) → `kafka-cluster.sh unregister` to drop the broker registration → clean local config and data (controlled by `kafka_rm_data`). Broker unregistration tolerates failure so the workflow is re-entrant and can handle an unreachable member. Delete the member from `pigsty.yml` only after checking the live quorum, broker registrations, replica health, and the target's local state.
+Retirement first deregisters monitoring targets and stops services. For voters, it runs `remove-controller`, strictly serializing multiple removals. Next, `kafka-cluster.sh unregister` removes broker registration. Finally, it cleans local configuration and data according to `kafka_rm_data`. Broker unregistration tolerates failure so the procedure can resume or handle unreachable nodes. Remove the inventory entry from `pigsty.yml` only after checking live quorum, broker registrations, replica health, and target local state.
 
-Before retiring, confirm yourself that: the remaining controllers still form a majority, the controller count stays odd, and the remaining broker count is not below the highest topic RF. If the retiring broker still hosts partition replicas, the role prints a warning: those partitions stay under-replicated until a replacement with the same `kafka_seq` rejoins (it re-inherits the assignment and resyncs automatically), or until you reassign them explicitly. **A planned shrink should drain with a reassignment first, then retire.**
+Before retirement, confirm that remaining controllers form a majority and have an odd count. Remaining brokers must support the highest topic RF. If the target still holds replicas, the role warns. Those partitions remain under-replicated until explicit reassignment or replacement with the same `kafka_seq`. Such a replacement inherits assignments and resynchronizes automatically. **For planned shrink, drain replicas through reassignment before retirement.**
 
 
 --------
 
 ## Replace Failed Node
 
-When a node is permanently lost (disk gone, machine scrapped), keep its IP and `kafka_seq` and replace it in three steps:
+For permanent node loss, such as destroyed disks or retired hardware, retain the IP and `kafka_seq`. Replace it in three steps:
 
 ```bash
 ./kafka-rm.yml -l 10.10.10.13     # 1. retire the dead member: remove voter entry & broker registration (works while unreachable)
@@ -309,40 +314,40 @@ When a node is permanently lost (disk gone, machine scrapped), keep its IP and `
 ./kafka.yml    -l kf-main         # 3. rejoin: format, catch up, admit/promote; replica assignment is re-inherited and resynced
 ```
 
-All metadata operations in step 1 are delegated to a surviving member, so it works even when the node itself is unreachable; it also cleans up the monitoring target, so the dead node stops firing `KafkaDown`. In step 3, a broker with the same `kafka_seq` automatically re-inherits its former partition assignment and resynchronizes from the surviving replicas — no manual reassignment needed.
+Step 1 delegates metadata operations to a surviving member, so it works for unreachable nodes. It also removes monitoring targets to stop `KafkaDown` alerts. In step 3, the same `kafka_seq` makes the broker inherit its previous partition assignment. It resynchronizes from surviving replicas without manual reassignment.
 
-If you skip step 1 and rerun `kafka.yml` against a re-imaged node directly, the role fails fast in the config phase, reporting the stale voter entry's directory ID together with the exact `kafka-rm.yml` command — run it and retry. The join flow is safely re-entrant: if any step is interrupted, rerunning `kafka.yml` continues from live state.
+If you skip step 1, `kafka.yml` stops during configuration on the re-imaged node. It reports the stale voter directory ID and exact `kafka-rm.yml` command. Run that command, then retry. The join procedure can resume safely: another `kafka.yml` run continues from live state.
 
 
 --------
 
 ## Change Address or Port
 
-The role always uses `inventory_hostname` as the broker's advertised address and the controller's bootstrap address. Changing an inventory address, `kafka_port`, or `kafka_controller_port` affects client metadata, broker communication, or the quorum, and counts as a high-risk static change: check DNS, certificate SANs, routing, firewalls, bootstrap addresses, monitoring targets, and all cluster members in lockstep.
+`inventory_hostname` supplies broker advertised addresses and controller bootstrap addresses. Changing it, `kafka_port`, or `kafka_controller_port` is a high-risk static change. These changes affect client metadata, broker communication, or quorum. Coordinate DNS, certificate SANs, routing, firewalls, bootstrap addresses, monitoring targets, and every cluster member.
 
 
 --------
 
 ## Rotate Credentials and Certificates
 
-A formatted, healthy `scram` cluster supports two mutually exclusive protected actions: internal credential rotation and certificate rotation. Both require exact complete clusters and a matching `kafka_rotate_confirm` confirmation string, and running `--check` first is recommended. Certificates are re-issued by the same Pigsty CA, old and new certificates trust each other, and the rotation takes effect node by node through the strict rolling restart.
+Healthy, formatted `scram` clusters support two mutually exclusive protected actions: internal credential rotation and certificate rotation. Both require exact complete clusters and matching `kafka_rotate_confirm`. Run `--check` first where possible. The same Pigsty CA reissues certificates, so old and new certificates trust each other. Strict rolling restarts apply rotation one node at a time.
 
-For the exact commands and failure semantics, see [**Playbook: Protected Rotation**](/docs/kafka/playbook#protected-rotation). The security profile itself is a bootstrap-only property; these actions do not imply support for online migration from `plaintext` to `scram`.
+See [**Protected Rotation**](/docs/kafka/playbook#protected-rotation) for commands and failure behavior. The security profile remains a bootstrap-only setting. Rotation does not support online migration from `plaintext` to `scram`.
 
 
 --------
 
 ## Data Protection and Recovery
 
-Kafka's data protection relies on replicas across failure domains, correct min-ISR, producer ACKs, and a rehearsed recovery procedure. The current role does not provide Kafka data backup, automatic broker drain (a planned shrink needs a manual reassignment first), or cross-region disaster recovery.
+Kafka protects data through replicas in separate failure domains, correct min-ISR, producer ACKs, and tested recovery procedures. The role provides no data backup, automatic broker drain, or cross-region disaster recovery. Planned shrink requires manual reassignment first.
 
 When a disk or node fails:
 
-1. First look at the Kafka Overview/Node dashboards, the quorum, ISR, offline partitions, and under-min-ISR partitions;
-2. Preserve the evidence: `journalctl -u kafka`, node metrics, the manifest, `server.properties`, and `meta.properties`;
-3. Confirm the node's role, `node.id`, cluster ID, directory ID, and the availability of the remaining replicas;
-4. Once the node is confirmed unrecoverable, follow [**Replace Failed Node**](#replace-failed-node): retire with `kafka-rm.yml` → provision with `node.yml` → rejoin with `kafka.yml`; if the disk survives and only the service misbehaves, do **not** rush to retire or delete `meta.properties` — try an ordinary converge first;
-5. Data-movement operations such as reassignment or RF changes still deserve a separately reviewed runbook.
+1. Inspect Kafka Overview/Node dashboards, quorum, ISR, offline partitions, and under-min-ISR partitions.
+2. Preserve `journalctl -u kafka`, node metrics, the manifest, `server.properties`, and `meta.properties`.
+3. Confirm the node role, `node.id`, cluster ID, directory ID, and remaining replica availability.
+4. If the node is unrecoverable, follow [**Replace Failed Node**](#replace-failed-node): `kafka-rm.yml` retirement, `node.yml` provisioning, then `kafka.yml` join. If its disk survives and only the service fails, first try ordinary convergence. Do **not** immediately retire it or delete `meta.properties`.
+5. Use a separately reviewed procedure for data movement, including reassignment and RF changes.
 
 
 --------
@@ -364,4 +369,4 @@ job:syslog app:kafka
 job:syslog unit:kafka_exporter
 ```
 
-The usual diagnostic order is: service logs → listening ports → admin-channel health → dynamic quorum → broker/partition/ISR → client addresses and certificates/ACLs → consumer lag. For dashboards and alert mappings, see [**Monitoring**](/docs/kafka/monitor).
+Check service logs, listener ports, administration-channel health, quorum, broker/partition/ISR state, client addresses and certificates/ACLs, then consumer lag. See [**Monitoring**](/docs/kafka/monitor) for dashboards and alerts.

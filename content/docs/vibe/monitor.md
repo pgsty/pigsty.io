@@ -7,8 +7,7 @@ module: [VIBE]
 categories: [Reference]
 ---
 
-VIBE monitoring mainly focuses on Claude Code OpenTelemetry data.
-Code-Server and JupyterLab do not expose Prometheus metrics; use systemd and logs for health checks.
+VIBE monitoring mainly uses Claude Code OpenTelemetry data. Code-Server and JupyterLab do not expose Prometheus metrics. Use systemd and logs to check their health.
 
 --------
 
@@ -31,7 +30,7 @@ VIBE writes default OpenTelemetry env vars into `~/.claude/settings.json`:
 }
 ```
 
-`claude_env` is merged with the defaults, and can be used for API keys or custom endpoints.
+VIBE merges `claude_env` with the default settings. Use it to specify API keys or custom endpoints.
 
 --------
 

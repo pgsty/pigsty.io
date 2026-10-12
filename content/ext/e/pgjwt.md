@@ -2,7 +2,7 @@
 title: "pgjwt"
 linkTitle: "pgjwt"
 description: "JSON Web Token API for Postgresql"
-weight: 4160
+weight: 4170
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 4160
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 4160  | [**`pgjwt`**](/ext/e/pgjwt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 4170  | [**`pgjwt`**](/ext/e/pgjwt) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`pgcrypto`](/ext/e/pgcrypto) [`pg_oidc_validator`](/ext/e/pg_oidc_validator) [`pg_session_jwt`](/ext/e/pg_session_jwt) [`pgsodium`](/ext/e/pgsodium) [`oidc_validator`](/ext/e/oidc_validator) [`login_hook`](/ext/e/login_hook) [`sslinfo`](/ext/e/sslinfo) [`sslutils`](/ext/e/sslutils) [`pgcrypto`](/ext/e/pgcrypto) [`pguecc`](/ext/e/pguecc) [`pgcryptokey`](/ext/e/pgcryptokey) |

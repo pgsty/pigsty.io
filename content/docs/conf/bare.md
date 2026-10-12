@@ -6,7 +6,8 @@ icon: fa-solid fa-seedling
 categories: [Reference]
 ---
 
-`demo/bare` is Pigsty's smallest configuration example. It keeps only three core groups and three global parameters to show a working inventory skeleton.
+`demo/bare` is the smallest Pigsty configuration example.
+It defines three core groups and three global parameters to show the basic inventory structure.
 
 
 --------
@@ -36,4 +37,7 @@ Source: [`pigsty/conf/demo/bare.yml`](https://github.com/pgsty/pigsty/blob/main/
 
 ## Explanation
 
-This template relies on Pigsty defaults and defines no business users, databases, extensions, backup policy, or security hardening. Use it to learn configuration hierarchy or as a minimal customization base; explicitly add passwords, HBA rules, backup, and safeguards for a real environment.
+This template uses Pigsty defaults.
+It defines no business users, databases, extensions, backup policy, or security hardening.
+Use it to learn the configuration hierarchy or as a starting point for your own configuration.
+Before use in a real environment, add passwords, HBA rules, backups, and the required safeguards.

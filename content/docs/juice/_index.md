@@ -7,10 +7,11 @@ module: [JUICE]
 categories: [Reference]
 ---
 
-[JuiceFS](https://juicefs.com/) is a high-performance POSIX-compatible distributed filesystem that can mount object storage or databases as a local filesystem.
+[JuiceFS](https://juicefs.com/) is a high-performance, POSIX-compatible distributed filesystem. It can mount object storage or databases as a local filesystem.
 
-The `JUICE` module depends on [`NODE`](/docs/node) for infrastructure and package repo, and typically uses [`PGSQL`](/docs/pgsql) as the metadata engine.
-Data storage can be PostgreSQL (in a `jfs_blob` table) or Silo / S3-compatible object storage provided by the [`MINIO`](/docs/minio) module. Monitoring relies on [`INFRA`](/docs/infra) VictoriaMetrics.
+The `JUICE` module depends on [`NODE`](/docs/node) for infrastructure and the package repository. It typically uses [`PGSQL`](/docs/pgsql) as the metadata engine.
+
+File data can reside in a PostgreSQL `jfs_blob` table. It can also reside in Silo or S3-compatible object storage from the [`MINIO`](/docs/minio) module. Monitoring uses VictoriaMetrics from [`INFRA`](/docs/infra).
 
 ```mermaid
 flowchart LR
@@ -53,7 +54,7 @@ flowchart LR
 
 - **PostgreSQL metadata**: Metadata stored in PostgreSQL for easy management and backup
 - **Multi-instance**: One node can mount multiple independent filesystem instances
-- **Multiple data backends**: PostgreSQL, Silo/MinIO, S3, and more; metadata and file data remain separate roles
+- **Multiple data backends**: PostgreSQL, Silo/MinIO, S3, and more. Metadata and file data remain separate roles.
 - **Monitoring integration**: Each instance exposes Prometheus / Victoria-format metrics port
 - **Simple config**: Describe instances with the [**`juice_instances`**](/docs/juice/param#juice_instances) dict
 

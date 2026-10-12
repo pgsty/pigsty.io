@@ -13,11 +13,11 @@ categories: [Reference]
 
 ## Pigsty Software
 
-When you install Pigsty software, if you use offline package installation in a network-isolated environment, **we will not receive any data about you**.
+For offline installation in a network-isolated environment, **we receive no data about you**.
 
-If you choose online installation, when downloading related packages, our servers or cloud provider servers will automatically log the visiting machine's IP address and/or hostname in the logs, along with the package names you downloaded.
+During online installation, our servers or cloud provider servers log the requesting machine's IP address and/or hostname and downloaded package names.
 
-We will not share this information with other organizations unless required by law. (Honestly, we'd have to be really bored to look at this stuff.)
+We will not share this information with other organizations unless required by law.
 
 Pigsty's primary domain is: [pigsty.io](https://pigsty.io). For mainland China, please use the registered mirror site [pigsty.cc](https://pigsty.cc).
 
@@ -28,7 +28,7 @@ Pigsty's primary domain is: [pigsty.io](https://pigsty.io). For mainland China, 
 
 When you visit our website, our servers will automatically log your IP address and/or hostname in Nginx logs.
 
-We will only store information such as your email address, name, and location when you decide to send us such information by completing a survey or registering as a user on one of our websites.
+We store your email address, name, location, and similar information only when you submit it through a survey or website registration.
 
 We collect this information to help us improve website content, customize web page layouts, and contact people for technical and support purposes. We will not share your email address with other organizations unless required by law.
 
@@ -38,7 +38,7 @@ This website uses Google Analytics, a web analytics service provided by Google, 
 > Google may also transfer this information to third parties if required by law or where such third parties process the information on Google's behalf. Google will not associate your IP address with any other data held by Google.
 > You may refuse the use of cookies by selecting the appropriate settings on your browser, however, please note that if you do this, you may not be able to use the full functionality of this website. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above.
 
-If you have any questions or comments about this policy, or request deletion of personal data, you can contact us by sending an email to rh@vonng.com
+For questions, comments, or requests to delete personal data, email rh@vonng.com.
 
 
 <br>

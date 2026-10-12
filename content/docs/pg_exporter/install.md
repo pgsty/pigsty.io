@@ -7,16 +7,16 @@ module: [PG_EXPORTER]
 category: [Tutorial]
 ---
 
-`pg_exporter` can be installed via Pigsty, YUM/APT repositories, GitHub release packages (RPM/DEB/Tarball), Docker images, or built from source — pick whichever fits your infrastructure.
+Install `pg_exporter` with Pigsty, YUM/APT repositories, GitHub release packages (RPM/DEB/Tarball), or Docker images. You can also build it from source.
 
 
 
 
 ## Pigsty
 
-The easiest way to get started with `pg_exporter` is to use [Pigsty](https://pigsty.io),
-which is a complete PostgreSQL distribution with built-in Observability best practices based on `pg_exporter`, Prometheus, and Grafana.
-You don't even need to know any details about `pg_exporter`; it just gives you all the metrics and dashboard panels.
+Use [Pigsty](https://pigsty.io) for the simplest installation.
+Pigsty is a complete PostgreSQL distribution with monitoring based on `pg_exporter`, Prometheus, and Grafana.
+It configures the metrics and dashboard panels for you. You do not need to configure `pg_exporter` separately.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
@@ -25,7 +25,7 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 
 ## Release
 
-You can also download `pg_exporter` package (`RPM`/`DEB`/ Tarball) directly from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
+Download a `pg_exporter` package (`RPM`/`DEB`/Tarball) from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
 
 **v1.4.1 Release Files:**
 
@@ -44,18 +44,22 @@ You can also download `pg_exporter` package (`RPM`/`DEB`/ Tarball) directly from
 | Tarball (macOS arm64)   | [pg_exporter-1.4.1.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.1/pg_exporter-1.4.1.darwin-arm64.tar.gz)   |
 | Tarball (Windows amd64) | [pg_exporter-1.4.1.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.4.1/pg_exporter-1.4.1.windows-amd64.tar.gz) |
 
-You can install it directly with your OS package manager (`rpm`/`dpkg`), or just place the binary in your `$PATH`. Current tarballs also include `pg_exporter.yml`, `package/pg_exporter.default`, `package/pg_exporter.service`, and `LICENSE` for manual deployments.
+Install the package with your OS package manager (`rpm`/`dpkg`), or put the binary in your `$PATH`.
+Current tarballs also include `pg_exporter.yml`, `package/pg_exporter.default`, `package/pg_exporter.service`, and `LICENSE` for manual deployments.
 
 > [!NOTE] RPM package rename
-> Starting with `v1.4.1`, the official RPM package name and artifact prefix change from `pg_exporter` to `pg-exporter`, matching the DEB package and repository install commands. The new RPM also provides and obsoletes the legacy `pg_exporter` package name, allowing direct upgrades from earlier releases.
+> From `v1.4.1`, the official RPM package name and artifact prefix are `pg-exporter`, instead of `pg_exporter`.
+> This name matches the DEB package and repository installation commands.
+> The new RPM provides and obsoletes the legacy `pg_exporter` package name. You can upgrade directly from earlier releases.
 
-Full SHA256 checksums are available in `checksums.txt` on the release page; version-specific checksums are also archived in the [release notes](/docs/pg_exporter/release/).
+The release page contains full SHA256 checksums in `checksums.txt`.
+The [release notes](/docs/pg_exporter/release/) also contain checksums for each version.
 
 
 ## Repository
 
-The `pg_exporter` package is also available in the [`pigsty-infra`](https://ext.pgsty.com/repo/infra) repo.
-You can add the repo to your system and install it with your OS package manager:
+The [`pigsty-infra`](https://ext.pgsty.com/repo/infra) repository also contains the `pg_exporter` package.
+Add the repository to your system. Then install the package with your OS package manager:
 
 ### YUM
 
@@ -91,7 +95,7 @@ sudo apt install -y pg-exporter
 
 ## Docker
 
-We have prebuilt docker images for `amd64` and `arm64` architectures on docker hub: [pgsty/pg_exporter](https://hub.docker.com/r/pgsty/pg_exporter).
+Docker Hub provides prebuilt images for the `amd64` and `arm64` architectures: [pgsty/pg_exporter](https://hub.docker.com/r/pgsty/pg_exporter).
 
 ```bash
 # Basic usage
@@ -121,12 +125,15 @@ docker run -d \
 ```
 
 > [!WARNING] Warning
-> The current Docker image is built from `scratch`. If you connect to remote PostgreSQL with `sslmode=verify-ca` or `verify-full`, mount an explicit CA certificate (`sslrootcert` or a system CA bundle), otherwise TLS verification may fail.
+> The current Docker image is built from `scratch`.
+> To connect to remote PostgreSQL with `sslmode=verify-ca` or `verify-full`, mount a CA certificate explicitly.
+> Use `sslrootcert` or a system CA bundle. Without this certificate, TLS verification can fail.
 
 
 ## Compatibility
 
-The default configuration supports PostgreSQL 10-19+. For EOL PostgreSQL versions, use the bundled `legacy/` config package for compatible monitoring.
+The default configuration supports PostgreSQL 10-19+.
+For PostgreSQL versions that have reached EOL, use the bundled `legacy/` configuration package.
 
 | PostgreSQL Version | Support Status                  |
 |--------------------|---------------------------------|
@@ -141,7 +148,8 @@ make conf9
 PG_EXPORTER_CONFIG=legacy/pg_exporter.yml pg_exporter
 ```
 
-pg_exporter works with pgBouncer 1.8+, since `v1.8` is the first version with `SHOW` command support.
+pg_exporter supports pgBouncer 1.8+.
+Version `v1.8` is the first pgBouncer version with `SHOW` command support.
 
 | pgBouncer Version | Support Status |
 |-------------------|----------------|

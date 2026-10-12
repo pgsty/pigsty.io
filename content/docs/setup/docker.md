@@ -2,29 +2,27 @@
 title: Docker Deployment
 linkTitle: Docker
 weight: 258
-description: Spin up Pigsty in Docker containers for quick testing on macOS/Windows
+description: Run Pigsty in a Docker container for local development and testing.
 icon: fa-brands fa-docker
 module: [PIGSTY]
 categories: [Tutorial]
 ---
 
-
-Pigsty is designed for native Linux, but can also run in Linux containers with systemd.
-If you don't have native Linux (e.g., **macOS** or **Windows**), use Docker to spin up a local single-node Pigsty for testing.
-
-
-----------------
+Pigsty runs on native Linux.
+It can also run in Linux containers with systemd.
+If you use macOS or Windows, use Docker to try a local single-node installation.
 
 ## Quick Start
 
-Enter the [**`docker/`**](https://github.com/pgsty/pigsty/tree/main/docker) dir in Pigsty source and launch with one command:
+Enter the [`docker/` source directory](https://github.com/pgsty/pigsty/tree/main/docker).
+Run the launch command:
 
 ```bash
 cd ~/pigsty/docker
 make launch          # Start container + generate config + deploy
 ```
 
-After deployment, access services:
+After deployment, use these addresses and commands to connect:
 
 | Service    | URL / Command                                                    | Credentials        |
 |:-----------|:-----------------------------------------------------------------|:-------------------|
@@ -33,72 +31,68 @@ After deployment, access services:
 | Grafana    | http://localhost:8080/ui                                         | `admin` / `grafana_admin_password` |
 | PostgreSQL | `psql 'postgres://dbuser_dba:<pg_admin_password>@localhost:5432/postgres'` | `pg_admin_password` |
 
-`make launch` runs `./configure -g` internally to generate random passwords. You can check them with:
+The `make launch` command runs `./configure -g` to generate random passwords.
+Use this command to find the generated passwords:
 
 ```bash
 cd ~/pigsty/docker
 make pass | grep -E 'grafana_admin_password|pg_admin_password'
 ```
 
-> [!NOTE] Web Portal & PostgreSQL
-> Web Portal and PostgreSQL are only available after **Deployment** (`./deploy.yml`) completes.
-
-
-----------------
+> [!NOTE] Complete deployment before connection
+> The Web Portal and PostgreSQL become available after `./deploy.yml` completes successfully.
 
 ## Prepare
 
-Docker deployment requires:
+Make sure that the host meets these requirements:
 
 |    Item    | Requirement                   |   Item   | Requirement        |
 |:----------:|:------------------------------|:--------:|:-------------------|
 | **Docker** | Docker 20.10+ (Desktop or CE) | **CPU**  | At least 1 core    |
 | **RAM**    | At least 2GB                  | **Disk** | At least 20GB free |
 
-Ensure default host ports (2222/8080/8443/5432) are available, or edit [**`.env`**](#config) first.
+Make sure that host ports `2222`, `8080`, `8443`, and `5432` are available.
+If a port is in use, change its mapping in [`.env`](#config) before launch.
 
-> [!TIP] Good Use Cases
-> - Quick Pigsty experience on macOS/Windows without native Linux
-> - Learning and testing Pigsty features, dev and debug
-> - Quick local PostgreSQL dev environment
+> [!TIP] Suitable uses
+> - Try Pigsty on macOS or Windows.
+> - Learn, test, develop, or debug Pigsty features.
+> - Run a local PostgreSQL development environment.
 
-> [!WARNING] Not Recommended For
-> - **Production**: Container perf and stability inferior to native Linux
-> - **HA Clusters**: Docker single-node mode can't achieve multi-node HA
-> - **Large Scale**: Use native Linux VMs or physical machines
-
-
-----------------
+> [!WARNING] Deployment limits
+> This single-node container does not provide high availability across multiple nodes.
+> For production or large deployments, use native Linux virtual machines or physical servers.
+> Native Linux avoids the container and virtualization overhead of this testing environment.
 
 ## Image
 
-Pigsty provides an out-of-the-box Docker image on [**Docker Hub**](https://hub.docker.com/r/pgsty/pigsty).
+Pigsty supplies the `pgsty/pigsty` image on [Docker Hub](https://hub.docker.com/r/pgsty/pigsty).
 
 | Image          | Pull   | Size  | Contents                            |
 |:---------------|:-------|:------|:------------------------------------|
 | `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
 
-- Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
-- Image tags follow Pigsty versions. `latest` and `{{< param stable_version >}}` both point at the current release; pin the version tag for reproducible builds.
-- Pre-configured with docker template, ready to run `./deploy.yml`
+The image supports `amd64` (`x86_64`) and `arm64`.
+The ARM architecture includes Apple Silicon and AWS Graviton.
+Image tags follow Pigsty versions.
+The `latest` and `{{< param stable_version >}}` tags point to the current release.
+Select a version tag for repeatable deployment.
 
-Built on **Debian 13 (Trixie)**, pre-installed with [**`pig`**](/docs/pig/) CLI and Ansible, Pigsty source already initialized.
-
-
-----------------
+The image uses Debian 13 (Trixie).
+It includes systemd, SSH, the [pig command-line tool](/docs/pig/), Ansible, and initialized Pigsty source.
+The Docker configuration template prepares it for `./deploy.yml`.
 
 ## Launch
 
-Pigsty provides out-of-the-box Docker support in the [**`docker/`**](https://github.com/pgsty/pigsty/tree/main/docker) source directory.
-
-Simplest way is `make launch`, which auto-completes: start container, generate config, and deploy:
+Use the commands in the [`docker/` directory](https://github.com/pgsty/pigsty/tree/main/docker).
+The `make launch` command starts the container, generates its configuration, and runs deployment:
 
 ```bash
 cd ~/pigsty/docker
 make launch          # One-liner: up + config + deploy
 ```
 
-Or step by step for inspection at each stage:
+To examine each stage separately, run the commands in this order:
 
 ```bash
 cd ~/pigsty/docker
@@ -108,7 +102,7 @@ make exec            # Enter container
 ./deploy.yml         # Execute deployment
 ```
 
-To build locally instead of pulling from Docker Hub:
+To build the image locally, use these commands:
 
 ```bash
 cd ~/pigsty/docker
@@ -116,12 +110,9 @@ make build           # Build image locally
 make launch          # Start container + generate config + deploy
 ```
 
-
-----------------
-
 ## Config
 
-Customize image version and port mappings via [**`.env`**](https://github.com/pgsty/pigsty/blob/main/docker/.env):
+Set the image version and port mappings in [`.env`](https://github.com/pgsty/pigsty/blob/main/docker/.env):
 
 ```bash
 PIGSTY_VERSION=v4.5.0         # Current main source default; verify the remote tag before pulling
@@ -131,7 +122,7 @@ PIGSTY_HTTPS_PORT=8443        # Nginx HTTPS port
 PIGSTY_PG_PORT=5432           # PostgreSQL port
 ```
 
-**Port Mapping:**
+The port variables map host ports to container ports:
 
 | Env Var             | Default  | Container | Description       |
 |:--------------------|:---------|:----------|:------------------|
@@ -141,22 +132,20 @@ PIGSTY_PG_PORT=5432           # PostgreSQL port
 | `PIGSTY_HTTPS_PORT` | `8443`   | 443       | Nginx HTTPS port  |
 | `PIGSTY_PG_PORT`    | `5432`   | 5432      | PostgreSQL port   |
 
-Override via env vars if defaults are occupied:
+If a default host port is in use, supply a different value through an environment variable:
 
 ```bash
 PIGSTY_HTTP_PORT=8888 docker compose up -d
 ```
 
-
-----------------
-
 ## Commands
 
-Pigsty Docker provides Makefile commands for container and image management.
+The Docker Makefile supplies commands to manage containers and images.
+Run these commands from the Docker source directory.
 
 ### Docker Compose
 
-Recommended way to run:
+Use Docker Compose for the standard deployment procedure:
 
 ```bash
 make up           # Start container
@@ -172,6 +161,8 @@ make launch       # One-liner: up + config + deploy
 
 ### Container Access
 
+Use these commands to enter the container or open a service client:
+
 ```bash
 make exec         # Enter container bash
 make ssh          # SSH into container
@@ -184,6 +175,8 @@ make pass         # View passwords in config
 
 ### Image Build
 
+Use these commands to build images:
+
 ```bash
 make build        # Build image locally
 make buildnc      # Build without cache
@@ -191,6 +184,8 @@ make push         # Build and push multi-arch image
 ```
 
 ### Image Management
+
+Use these commands to manage images:
 
 ```bash
 make save         # Export image to pigsty-<version>-<arch>.tgz
@@ -200,20 +195,22 @@ make rmi          # Remove current version's pigsty image
 
 ### Cleanup
 
+Use these commands to remove the selected resources:
+
 ```bash
 make clean        # Stop and remove container
 make purge        # Stop and remove the container, then directly delete ./data in the current directory
 ```
 
-> [!WARNING] Use make purge with care
-> The current Makefile no longer provides a countdown prompt. After removing the container, `make purge` runs `rm -rf -- ./data` directly. Verify the current directory and target data first, and back it up when necessary.
-
-
-----------------
+> [!WARNING] Purge deletes local data
+> The `make purge` command removes the container and runs `rm -rf -- ./data`.
+> It has no countdown prompt.
+> Before you run it, confirm the current directory and the target data.
+> Back up any data that you need to keep.
 
 ## Manual Run
 
-If you prefer `docker run` over Docker Compose:
+To start the container with `docker run`, use this command:
 
 ```bash
 mkdir -p ./data
@@ -226,7 +223,7 @@ docker exec -it pigsty ./configure -c docker -g --ip 127.0.0.1
 docker exec -it pigsty ./deploy.yml
 ```
 
-Or use Makefile's `make run`:
+You can also use the Makefile command:
 
 ```bash
 make run          # Start with docker run
@@ -235,23 +232,20 @@ make clean        # Stop and remove container
 make purge        # Remove container and directly delete ./data in the current directory
 ```
 
-
-----------------
-
 ## How It Works
 
-Pigsty Docker image is based on **Debian 13 (Trixie)** with **systemd** as init.
-Service management inside container stays consistent with native Linux via `systemctl`.
+The image uses Debian 13 (Trixie) with systemd as the initialization system.
+Manage services inside the container with `systemctl`, as on native Linux.
 
-Key features:
+The container has these properties:
 
-- **systemd support**: Full systemd for proper service management
-- **SSH access**: Pre-configured SSH, root password is `pigsty`
-- **Privileged mode**: Requires `--privileged` for systemd
-- **Data persistence**: Via `/data` volume mount
-- **Pre-installed**: pig CLI + Ansible, Pigsty source initialized
+- Systemd manages the services.
+- SSH permits root access with the password `pigsty`.
+- The `--privileged` option supplies the access required by systemd.
+- The `/data` volume keeps data outside the container.
+- The image includes pig, Ansible, and initialized Pigsty source.
 
-Image build executes these init steps:
+The image build runs these initialization steps:
 
 ```dockerfile
 # Install pig CLI
@@ -265,29 +259,26 @@ RUN pig sty init -v ${PIGSTY_VERSION} \
     && pig sty conf -c docker --ip 127.0.0.1
 ```
 
-Running `./configure` with `-c docker` applies the Docker-optimized [**config template**](/docs/concept/iac/template/):
-
-- Uses `127.0.0.1` as default IP
-- Tuned for container environment
-
-
-----------------
+The `./configure -c docker` command selects the [Docker configuration template](/docs/concept/iac/template/).
+This template uses `127.0.0.1` as the default IP address and applies settings for the container environment.
 
 ## FAQ
 
 ### Container won't start
 
-Ensure Docker is properly installed with sufficient resources. On Docker Desktop, allocate at least 2GB RAM.
-Check for port conflicts on 2222, 8080, 8443, 5432.
+Make sure that Docker is installed and the host meets the resource requirements.
+On Docker Desktop, allocate at least `2 GB` of memory.
+Examine ports `2222`, `8080`, `8443`, and `5432` for conflicts.
 
 ### Can't access services
 
-Web Portal and PostgreSQL only available after deployment. Ensure `./deploy.yml` finished successfully.
-Use `make status` to check service status.
+Make sure that `./deploy.yml` completed successfully.
+The Web Portal and PostgreSQL require this deployment stage.
+Run `make status` to see the service status.
 
 ### Port conflicts
 
-Override via `.env` or env vars:
+Change the port in `.env` or supply an environment variable:
 
 ```bash
 PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
@@ -295,24 +286,27 @@ PIGSTY_HTTP_PORT=8888 PIGSTY_PG_PORT=5433 docker compose up -d
 
 ### Data persistence
 
-Container data mounted to `./data`. To wipe and start fresh:
+The host directory `./data` stores persistent container data.
+To remove this data and start again, use these commands:
 
 ```bash
 make purge        # Remove container and directly delete ./data in the current directory (no countdown)
 ```
 
+The purge step deletes the existing data.
+Back up any required data first.
+
 ### macOS performance
 
-On macOS with Docker Desktop, performance is worse than native Linux due to virtualization overhead.
-Expected—Docker deployment is for dev/testing. For production, use [**native Linux installation**](/docs/setup/install/).
-
-
-----------------
+Docker Desktop on macOS uses a virtual machine.
+This adds overhead compared with native Linux.
+Use Docker for development and testing.
+For production, use [native Linux installation](/docs/setup/install/).
 
 ## More
 
-- **Docker Hub**: https://hub.docker.com/r/pgsty/pigsty
-- **Source Directory**: https://github.com/pgsty/pigsty/tree/main/docker
-- **Quick Start**: [**Native Linux Installation**](/docs/setup/install/)
-- **Offline Installation**: [**Offline**](/docs/setup/offline/)
-- **Production Deployment**: [**Deployment Guide**](/docs/deploy/)
+- [Docker Hub](https://hub.docker.com/r/pgsty/pigsty) supplies the image.
+- [Source Directory](https://github.com/pgsty/pigsty/tree/main/docker) contains the Docker configuration and Makefile.
+- [Native Linux Installation](/docs/setup/install/) describes single-node deployment.
+- [Offline Installation](/docs/setup/offline/) describes installation without Internet access.
+- [Deployment Guide](/docs/deploy/) describes production deployment.

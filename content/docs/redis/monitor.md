@@ -67,7 +67,13 @@ Pigsty provides the following six predefined alert rules for Redis, defined in [
 - `RedisMemHigh`: Redis instance memory usage is too high
 - `RedisQPSHigh`: Redis instance QPS is too high
 
-The rule `expr` is authoritative: response time `>160µs` for 1 minute, CPU and memory usage `>70%` for 1 minute, and QPS `>32000` for 5 minutes. The source excerpt below reflects the current rule file verbatim. Its CPU, memory, and QPS descriptions still contain the old `60%`, `80%`, and `16000` thresholds, and the `RedisRTHigh` comment incorrectly names `pg:ins:query_rt`; these comments do not change the actual expressions.
+The rule `expr` defines the actual alert thresholds:
+
+- Response time: `>160µs` for 1 minute.
+- CPU and memory usage: `>70%` for 1 minute.
+- QPS: `>32000` for 5 minutes.
+
+The excerpt below copies the current rule file exactly. Its CPU, memory, and QPS descriptions still show the old `60%`, `80%`, and `16000` thresholds. The `RedisRTHigh` comment incorrectly names `pg:ins:query_rt`. These comments do not change the actual expressions.
 
 
 ```yaml

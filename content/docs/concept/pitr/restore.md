@@ -8,24 +8,22 @@ module: [PGSQL]
 categories: [Concept]
 ---
 
-The value of a backup system is realized at restore time, often during an incident when every minute matters.
-A traditional PITR procedure requires a long sequence of coupled manual steps: pause HA, stop PostgreSQL, prepare recovery settings, restore the backup, replay WAL, validate the target, rebuild metadata, and start the cluster again.
+A backup must support recovery when an incident occurs. Traditional PITR requires connected manual steps: pause HA, stop PostgreSQL, prepare recovery settings, restore the backup, and replay WAL. Then validate the target, rebuild metadata, and start the cluster again.
 
-Pigsty applies the same approach used by [**declarative configuration**](/docs/concept/iac/) to recovery: **declare the recovery target**, then let the orchestration tools stop the cluster, restore the data, replay WAL, and return control to the operator.
+Pigsty uses [**declarative configuration**](/docs/concept/iac/) for recovery. **Declare the recovery target**. The tools stop the cluster, restore data, replay WAL, and return control to the operator.
 
 
 ----------------
 
 ## Declare a Recovery Target
 
-Describe the target with the [**`pg_pitr`**](/docs/pgsql/backup/restore/) parameter and execute it with `pgsql-pitr.yml`.
-The most common form restores a cluster to a specific time:
+Set [**`pg_pitr`**](/docs/pgsql/backup/restore/) to describe the target. Run `pgsql-pitr.yml` to restore it. The most common form selects a specific time:
 
 ```bash
 ./pgsql-pitr.yml -l pg-meta -e '{"pg_pitr": { "time": "2026-07-11 10:00:00+08", "action": "promote" }}'
 ```
 
-The [**six recovery target types**](/docs/concept/pitr/mechanism/#targets-where-replay-stops) and the rest of the recovery behavior are expressed through fields in this parameter:
+Fields in this parameter define the [**six recovery target types**](/docs/concept/pitr/mechanism/#targets-where-replay-stops) and other recovery behavior:
 
 ```yaml
 pg_pitr:                           # Recovery declaration; every field is optional
@@ -50,7 +48,7 @@ See [**Restore Operations**](/docs/pgsql/backup/restore/) for the complete field
 
 ## What the Playbook Does
 
-`pgsql-pitr.yml` turns the manual recovery workflow into six stages and supports Ansible tags for staged execution:
+`pgsql-pitr.yml` divides recovery into six stages. Ansible tags let you run these stages separately:
 
 | Stage | Action |
 |:------|:-------|
@@ -62,23 +60,21 @@ See [**Restore Operations**](/docs/pgsql/backup/restore/) for the complete field
 | **start** | Start Patroni again, resume HA management, and rebuild replicas |
 {.full-width}
 
-Several details are important:
+Keep these details in mind:
 
-* **Incremental restore:** pgBackRest uses `delta`, so it rewrites only files that differ from the backup. For large databases, this can reduce RTO substantially.
-* **Verification, not assumption:** the playbook prints checkpoint LSN, timeline, and NextXID data from `pg_controldata`; an operator must still verify that the recovered business state is correct.
-* **Rollback copy:** with `backup: true`, the original data directory is moved to `/pg/data-backup` before recovery. A later run with `backup: true` removes an existing `/pg/data-backup`, so this is not a versioned snapshot store.
-* **Staged execution:** run `-t down`, `-t pitr`, and `-t up` separately when you want an operator checkpoint between phases. Completion of the `pitr` phase means PostgreSQL reached a consistent recovery state; for a time, XID, LSN, or named target, also confirm WAL replay reached that target.
+* **Incremental restore:** pgBackRest uses `delta` to rewrite only files that differ from the backup. This can substantially reduce RTO for large databases.
+* **Verification:** The playbook prints checkpoint LSN, timeline, and NextXID from `pg_controldata`. An operator must still verify the recovered business state.
+* **Rollback copy:** `backup: true` moves the original data directory to `/pg/data-backup` before recovery. A later run with this option removes any existing `/pg/data-backup`. It does not retain multiple snapshot versions.
+* **Staged execution:** Run `-t down`, `-t pitr`, and `-t up` separately for an operator checkpoint between phases. The `pitr` phase completes when PostgreSQL reaches a consistent recovery state. For time, XID, LSN, or named targets, also confirm that WAL replay reached the target.
 
-The `action` field controls what happens at the target: `promote` opens a new timeline, `pause` waits at the target for inspection, and `shutdown` stops PostgreSQL there.
-A targeted recovery defaults to `pause` when `action` is omitted. To preserve a manual gate for `pause` or `shutdown`, run the stages separately; a one-shot recovery should choose `promote` explicitly.
-The playbook performs the mechanical workflow, but it cannot decide whether the recovered data is correct.
+`action` controls behavior at the target. `promote` opens a new timeline, `pause` waits for inspection, and `shutdown` stops PostgreSQL. Targeted recovery defaults to `pause` if you omit `action`. Run stages separately to retain a manual checkpoint for `pause` or `shutdown`. For a single-run recovery, explicitly select `promote`. The playbook performs recovery steps but cannot determine whether the business data is correct.
 
 
 ----------------
 
 ## Command-Line Recovery with `pig`
 
-The [**`pig`**](/docs/pig/) CLI provides single-instance PITR orchestration directly on a database node, without requiring the management node or an Ansible environment:
+The [**`pig`**](/docs/pig/) CLI can perform single-instance PITR directly on a database node. It needs neither an administration node nor Ansible:
 
 ```bash
 pig pitr -t "2026-07-11 10:00:00+08"    # Recover to a point in time
@@ -87,13 +83,9 @@ pig pitr -d                             # Replay through the WAL archive
 pig pitr -I --no-restart                # Prepare immediate recovery and leave PostgreSQL stopped
 ```
 
-[**`pig pitr`**](/docs/pig/pitr) validates the target, stanza, and available backups; stops Patroni and PostgreSQL; performs the restore; optionally starts PostgreSQL; and prints post-recovery instructions.
-For a Patroni-managed data directory, Patroni remains stopped afterward. Validate the data, then use `pig pt start` to return the instance to HA management.
-This single-node workflow does not clear etcd, rebuild replicas, or automatically rejoin the cluster, and it refuses destructive forced shutdown unless `--force-stop` is supplied explicitly.
+[**`pig pitr`**](/docs/pig/pitr) validates the target, stanza, and available backups. It stops Patroni and PostgreSQL, restores data, optionally starts PostgreSQL, and prints further instructions. For a Patroni-managed directory, Patroni stays stopped afterward. Validate the data, then run `pig pt start` to resume HA management. This workflow does not clear etcd, rebuild replicas, or automatically rejoin the cluster. Destructive forced shutdown requires explicit `--force-stop`.
 
-The lower-level [**`pig pb`**](/docs/pig/pb) commands wrap pgBackRest: `pb info` lists backups, `pb backup` creates a backup, and `pb restore` performs a raw restore.
-There is a deliberate safety boundary: **`pig pb restore` refuses to run while Patroni still manages the instance**, because Patroni could restart PostgreSQL during the restore.
-Use `pig pitr` or `pgsql-pitr.yml` for Patroni-managed instances.
+[**`pig pb`**](/docs/pig/pb) wraps lower-level pgBackRest commands. `pb info` lists backups, `pb backup` creates them, and `pb restore` runs a raw restore. **`pig pb restore` refuses to run while Patroni manages the instance**. Patroni could otherwise restart PostgreSQL during restoration. For Patroni-managed instances, use `pig pitr` or `pgsql-pitr.yml`.
 
 
 ----------------
@@ -110,26 +102,23 @@ The same mechanism supports two different workflows:
 | Best for | Whole-cluster corruption or disaster recovery | Recovering deleted objects, audit work, and recovery drills |
 {.full-width}
 
-For a clone recovery, the `cluster` field names the **source backup stanza**.
-This example restores the historical state of `pg-meta` into `pg-test` without stopping the source cluster:
+For clone recovery, `cluster` names the **source backup stanza**. This example restores historical `pg-meta` data into `pg-test` while the source remains online:
 
 ```bash
 ./pgsql-pitr.yml -l pg-test -e '{"pg_pitr": { "cluster": "pg-meta", "time": "2026-07-11 10:00:00+08", "archive": false, "action": "promote" }}'
 ```
 
-Exporting an accidentally deleted table from the clone and importing it into production is generally safer than rolling the entire production cluster back.
-See [**Clone a Database Cluster**](/docs/pgsql/backup/cluster/) for the complete workflow and cleanup steps.
+To recover a deleted table, exporting it from a clone and importing it into production is generally safer than restoring the whole cluster. See [**Clone a Database Cluster**](/docs/pgsql/backup/cluster/) for the complete workflow and cleanup.
 
 
 ----------------
 
 ## After Recovery
 
-Recovery completion is not the end of the incident. Include these steps in the closeout checklist:
+After recovery, complete these incident closeout steps:
 
-1. **New timeline, new backup:** after promotion, create a full backup with `pg-backup full` so a recoverable window exists on the new timeline.
-2. **Archiving state:** if an exploratory restore used `archive: false`, restore normal archiving as described in [**Post-Recovery**](/docs/pgsql/backup/restore/#post-recovery).
-3. **Clone cleanup:** a clone's cluster identity and source backup stanza do not match. Recreate the destination stanza before enabling its own backups; see [**Clone a Database Cluster**](/docs/pgsql/backup/cluster/).
+1. **New timeline, new backup:** After promotion, run `pg-backup full` to create a recovery window on the new timeline.
+2. **Archiving state:** If you used `archive: false` for investigation, restore normal archiving. See [**Post-Recovery**](/docs/pgsql/backup/restore/#post-recovery).
+3. **Clone cleanup:** A clone's cluster identity differs from its source stanza. Recreate the destination stanza before enabling its backups. See [**Clone a Database Cluster**](/docs/pgsql/backup/cluster/).
 
-The tools execute the procedure; operators still decide the target, whether to restore in place or into a clone, and whether the recovered data is correct.
-Continue with [**PITR Scenarios**](/docs/concept/pitr/scenarios/) for that decision framework.
+Operators must select the target and choose in-place or clone recovery. They must also verify that the recovered data is correct. The tools execute the selected procedure. See [**PITR Scenarios**](/docs/concept/pitr/scenarios/) for guidance on these decisions.

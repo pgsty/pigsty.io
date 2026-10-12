@@ -8,8 +8,8 @@ categories: [Reference]
 ---
 
 
-PostgreSQL parameters can be configured at multiple levels with different scopes and precedence.
-Pigsty supports four configuration levels, from global to local:
+You can set PostgreSQL parameters at several levels with different scopes and priorities.
+Pigsty supports four levels, from global to local:
 
 | Level                         | Scope                    | Configuration Method               | Storage Location           |
 |-------------------------------|--------------------------|------------------------------------|-----------------------------|
@@ -29,10 +29,11 @@ Higher priority settings override lower ones.
 
 ## Cluster Level
 
-Cluster-level parameters are shared across all instances (primary and replicas) in a PostgreSQL cluster.
-In Pigsty, cluster parameters are managed via [**Patroni**](/docs/pgsql/admin/patroni) and stored in DCS (etcd by default).
+Cluster-level parameters apply to every primary and replica in a PostgreSQL cluster.
+Pigsty manages them through [**Patroni**](/docs/pgsql/admin/patroni) and stores them in DCS, which is etcd by default.
 
-Pigsty provides four pre-configured [**Patroni tuning templates**](/docs/pgsql/template) optimized for different workloads, specified via [**`pg_conf`**](/docs/pgsql/param#pg_conf):
+Pigsty provides four [**Patroni tuning templates**](/docs/pgsql/template) for different workloads.
+Select one with [**`pg_conf`**](/docs/pgsql/param#pg_conf):
 
 | Template                                    | Use Case           | Characteristics                    |
 |---------------------------------------------|--------------------|------------------------------------|
@@ -42,16 +43,19 @@ Pigsty provides four pre-configured [**Patroni tuning templates**](/docs/pgsql/t
 | [**`tiny.yml`**](/docs/pgsql/template/tiny) | Tiny instances     | Resource-constrained, dev/test     |
 {.full-width}
 
-Template files are located in `roles/pgsql/templates/` and contain auto-calculated values based on hardware specs.
-Templates are rendered to `/etc/patroni/patroni.yml` during cluster initialization. See [**Tuning Templates**](/docs/pgsql/template) for details.
+Template files are in `roles/pgsql/templates/`.
+They calculate parameter values from the hardware specifications.
+During cluster initialization, Pigsty generates `/etc/patroni/patroni.yml` from the template.
+See [**Tuning Templates**](/docs/pgsql/template).
 
-Before cluster creation, you can adjust these templates to modify **initial parameters**.
-Once initialized, parameter changes should be made via Patroni's [**configuration management**](/docs/pgsql/admin/patroni).
+Before cluster creation, adjust the templates to change **initial parameters**.
+After initialization, change parameters through Patroni [**configuration management**](/docs/pgsql/admin/patroni).
 
 
 ### Patroni DCS Config
 
-Patroni stores cluster config in DCS (etcd by default), ensuring consistent configuration across all members.
+Patroni stores cluster configuration in DCS, which is etcd by default.
+This keeps all members configured consistently.
 
 **Storage Structure**:
 
@@ -107,10 +111,11 @@ Since `postgresql.auto.conf` loads **last**, its parameters override earlier fil
 
 ## Instance Level
 
-Instance-level parameters apply only to a single PostgreSQL instance, overriding cluster-level config.
-These are written to `postgresql.auto.conf`, which loads last and can override any cluster parameter.
+Instance-level parameters apply to one PostgreSQL instance and override cluster-level configuration.
+Pigsty writes them to `postgresql.auto.conf`.
+This file loads last and can override any cluster parameter.
 
-This is a powerful technique for setting instance-specific values:
+Use instance parameters for settings such as:
 
 - Set `hot_standby_feedback = on` on replicas
 - Adjust `work_mem` or `maintenance_work_mem` for specific instances
@@ -136,7 +141,7 @@ pg-meta:
       log_min_duration_statement: 1000
 ```
 
-Use `./pgsql.yml -l <cls> -t pg_param` to apply parameters, which renders to `postgresql.auto.conf`.
+Run `./pgsql.yml -l <cls> -t pg_param` to write these parameters to `postgresql.auto.conf`.
 
 
 ### Override Hierarchy
@@ -187,8 +192,9 @@ SELECT pg_reload_conf();
 
 ### List-Type Parameters
 
-PostgreSQL has special parameters accepting comma-separated lists. In YAML config,
-**the entire value must be quoted**, otherwise YAML parses it as an array:
+Some PostgreSQL parameters accept comma-separated lists.
+In YAML, **quote the entire value**.
+Otherwise, YAML parses it as an array:
 
 ```yaml
 # Correct: quote the entire value
@@ -238,7 +244,7 @@ work_mem = '64MB'
 ## Database Level
 
 Database-level parameters apply to all sessions connected to a specific database.
-Implemented via [**`ALTER DATABASE ... SET`**](https://www.postgresql.org/docs/current/sql-alterdatabase.html), stored in `pg_db_role_setting`.
+[**`ALTER DATABASE ... SET`**](https://www.postgresql.org/docs/current/sql-alterdatabase.html) sets them in `pg_db_role_setting`.
 
 
 ### Configuration
@@ -261,7 +267,8 @@ pg_databases:
 
 ### Rendering Rules
 
-Database params are set via `ALTER DATABASE ... SET`. Pigsty auto-selects correct syntax:
+Pigsty sets database parameters with `ALTER DATABASE ... SET`.
+It selects the required syntax automatically:
 
 **List-type params** (`search_path`, `temp_tablespaces`, `local_preload_libraries`, `session_preload_libraries`, `log_destination`) without outer quotes:
 
@@ -276,8 +283,9 @@ ALTER DATABASE "analytics" SET "work_mem" = '256MB';
 ALTER DATABASE "analytics" SET "statement_timeout" = '10min';
 ```
 
-> **Note**: While `log_destination` is in the database whitelist, its `context` is `sighup`,
-> so it cannot take effect at database level. Configure it at instance level (`pg_parameters`).
+> **Note**: `log_destination` is in the database whitelist, but its `context` is `sighup`.
+> It cannot take effect at database level.
+> Set it at instance level with `pg_parameters`.
 
 
 ### View Database Params
@@ -308,8 +316,8 @@ ALTER DATABASE analytics RESET ALL;
 
 ## User Level
 
-User-level parameters apply to all sessions of a specific database user.
-Implemented via [**`ALTER USER ... SET`**](https://www.postgresql.org/docs/current/sql-alterrole.html), also stored in `pg_db_role_setting`.
+User-level parameters apply to all sessions for a specific database user.
+[**`ALTER USER ... SET`**](https://www.postgresql.org/docs/current/sql-alterrole.html) sets them in `pg_db_role_setting`.
 
 
 ### Configuration
@@ -406,8 +414,8 @@ Session level             ← SET command
 
 **Database vs User Priority**:
 
-When a user connects to a specific database and the same parameter is set at both levels,
-PostgreSQL uses the **user-level parameter** since it has higher priority.
+If the same parameter is set for both the database and the connecting user, PostgreSQL uses the **user-level parameter**.
+The user setting has higher priority.
 
 **Example**:
 

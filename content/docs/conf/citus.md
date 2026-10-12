@@ -6,7 +6,10 @@ icon: fa-solid fa-cubes
 categories: [Reference]
 ---
 
-The `ha/citus` template deploys a complete **Citus distributed PostgreSQL cluster** with 1 infra node, 1 coordinator group, and 5 worker groups (12 Citus nodes total), providing transparent horizontal scaling and data sharding.
+The `ha/citus` template deploys a **Citus distributed PostgreSQL cluster**.
+It has 1 infrastructure node, 1 coordinator group, and 5 worker groups.
+The coordinator and worker groups contain 12 Citus nodes in total.
+The cluster distributes data into shards and supports horizontal scaling.
 
 
 --------
@@ -55,8 +58,8 @@ Source: [`pigsty/conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/c
 **Architecture**:
 
 - **pg-meta**: Infra node running Grafana, VictoriaMetrics, etcd, plus a standalone CMDB
-- **pg-citus1**: Coordinator (group 0), receives queries and routes to workers, 1 primary + 1 replica
-- **pg-citus2~6**: Workers (group 1~5), store sharded data, each with 1 primary + 1 replica via Patroni
+- **pg-citus1**: Coordinator group 0 with 1 primary and 1 replica. It receives queries and routes them to workers.
+- **pg-citus2~6**: Worker groups 1~5 store sharded data. Patroni manages 1 primary and 1 replica in each group.
 - **VIP**: Each group has L2 VIP managed by `vip-manager` for transparent failover
 
 
@@ -64,7 +67,7 @@ Source: [`pigsty/conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/c
 
 ## Explanation
 
-The `ha/citus` template deploys production-grade Citus cluster for large-scale horizontal scaling scenarios.
+Use `ha/citus` to deploy a production Citus cluster that can scale across multiple worker groups.
 
 **Key Features**:
 
@@ -176,7 +179,7 @@ SELECT create_reference_table('tenants');
 ## Notes
 
 - **PostgreSQL Version**: Citus supports PG 14~18, this template defaults to PG18
-- **Distribution Column**: Choose wisely (typically tenant_id or timestamp), critical for performance
-- **Cross-shard Limits**: Foreign keys must include distribution column, some DDL restrictions
-- **Network**: `pg_vip_interface` defaults to `auto`; specify an interface explicitly for unusual network environments
+- **Distribution Column**: Select this column for the workload, typically tenant_id or timestamp. This choice is critical for performance.
+- **Cross-shard Limits**: Foreign keys must include the distribution column. Some DDL operations also have restrictions.
+- **Network**: `pg_vip_interface` defaults to `auto`. For unusual network environments, explicitly select an interface.
 - **Architecture**: Citus extension does not support ARM64

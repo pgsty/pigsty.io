@@ -13,11 +13,11 @@ categories: [Reference]
 
 ## Comparison with RDS
 
-[Pigsty](https://pigsty.io) is a local-first RDS alternative released under Apache-2.0, deployable on your own physical/virtual machines or cloud servers.
+[Pigsty](https://pigsty.io) is a local-first RDS alternative under Apache-2.0. You can deploy it on your physical machines, virtual machines, or cloud servers.
 
-We've chosen Amazon [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) (the global market leader) and Alibaba Cloud [RDS for PostgreSQL](https://www.alibabacloud.com/product/apsaradb-for-rds-postgresql) (China's market leader) as benchmarks for comparison.
+This comparison uses two benchmarks: Amazon [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) and Alibaba Cloud [RDS for PostgreSQL](https://www.alibabacloud.com/product/apsaradb-for-rds-postgresql). AWS is the global market leader. Alibaba Cloud is the market leader in China.
 
-Both Aliyun RDS and AWS RDS are closed-source cloud database services, available only through rental models on public clouds. The following cloud-vendor information is a February 2024 archive based on PostgreSQL 16 at that time. The Pigsty column in the **Feature Comparison** table is maintained against the current release, while the later **Key Extensions** version table remains a period snapshot.
+Aliyun RDS and AWS RDS are closed-source cloud database services. You can only rent them on public clouds. The cloud-vendor information below is a February 2024 archive based on PostgreSQL 16. The Pigsty column in **Feature Comparison** follows the current release. The **Key Extensions** version table remains a historical snapshot.
 
 
 -----------
@@ -46,7 +46,7 @@ Both Aliyun RDS and AWS RDS are closed-source cloud database services, available
 
 ### Key Extensions
 
-This is a historical PostgreSQL 16 extension-support snapshot based on information visible on 2024-02-28. Its versions and projects—including `pg_analytics`, which was later archived and removed from the catalog—are not the current Pigsty v4.5.0 or cloud-provider support matrix. Use the [**extension catalog**](/ext/list/) for current Pigsty coverage and recheck each provider's documentation for its current service capabilities.
+This PostgreSQL 16 extension-support snapshot uses information available on 2024-02-28. It includes `pg_analytics`, which was later archived and removed from the catalog. These versions and projects do not describe current Pigsty v4.5.0 or cloud-provider support. For current Pigsty support, use the [**extension catalog**](/ext/list/). Check each provider's documentation for its current service capabilities.
 
 - [**Pigsty Extension List**](/ext/list/)
 - [**AWS RDS Extension List**](https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-extensions.html):
@@ -187,15 +187,15 @@ This is a historical PostgreSQL 16 extension-support snapshot based on informati
 
 ### Observability
 
-Pigsty provides nearly 3000 monitoring metrics and 50+ monitoring dashboards, covering database monitoring, host monitoring, connection pool monitoring, load balancer monitoring, and more, providing users with an unparalleled observability experience.
+Pigsty provides nearly 3000 monitoring metrics and 50+ dashboards. These cover databases, hosts, connection pools, load balancers, and other components.
 
 ![Pigsty monitoring dashboard](/img/pigsty/dashboard.jpg)
 
-Pigsty provides 638 PostgreSQL-related monitoring metrics, while AWS RDS only has 99, and Aliyun RDS has only single-digit metrics:
+Pigsty provides 638 PostgreSQL monitoring metrics. AWS RDS has 99. Aliyun RDS has a single-digit number of metrics:
 
 ![Alibaba Cloud RDS for PostgreSQL metrics](/img/docs/compare/aliyun.png)
 
-Additionally, some projects provide PostgreSQL monitoring capabilities, but are relatively simple:
+The following projects provide more basic PostgreSQL monitoring capabilities:
 
 - [pgwatch](https://pgwatch.com/): 123 metric types
 - [pgmonitor](https://github.com/CrunchyData/pgmonitor): 156 metric types
@@ -228,7 +228,7 @@ Additionally, some projects provide PostgreSQL monitoring capabilities, but are 
 
 ### Cost
 
-Based on experience, RDS unit cost is 5-15 times that of self-hosted for software and hardware resources, with a rent-to-own ratio typically around one month. For details, see [Cost Analysis](/docs/about/compare/cost/).
+Based on experience, RDS software and hardware resources cost 5-15 times as much per unit as self-hosted resources. The rent-to-own ratio is typically around one month. For details, see [Cost Analysis](/docs/about/compare/cost/).
 
 | Factor | **Metric**    | **Pigsty**           | **Aliyun RDS**  | **AWS RDS**      |
 |----|-----------|----------------------|-----------------|------------------|
@@ -239,7 +239,7 @@ Based on experience, RDS unit cost is 5-15 times that of self-hosted for softwar
 
 ## Other On-Premises Database Management Software
 
-Some software and vendors providing PostgreSQL management capabilities:
+The following software and vendors provide PostgreSQL management capabilities:
 
 - [Aiven](https://aiven.io/): Closed-source commercial cloud-hosted solution
 - [Percona](https://www.percona.com/software/postgresql-distribution): Commercial consulting, simple PG distribution
@@ -249,7 +249,7 @@ Some software and vendors providing PostgreSQL management capabilities:
 
 ## Other Kubernetes Operators
 
-Pigsty refuses to use Kubernetes for managing databases in production, so there are ecological differences with these solutions.
+Pigsty does not use Kubernetes to manage production databases. Its architecture differs from these Kubernetes operators:
 
 - PGO
 - StackGres

@@ -10,7 +10,7 @@ categories: [Reference]
 
 > Source: [pgBackRest Command Docs: help](https://pgbackrest.org/command.html#command-help)
 
-Three levels of help are provided. If no command is specified then general help will be displayed. If a command is specified (e.g. `pgbackrest help backup`) then a full description of the command will be displayed along with a list of valid options. If an option is specified in addition to a command (e.g. `pgbackrest help backup type`) then a full description of the option as it applies to the command will be displayed.
+Help has three levels. With no command, pgBackRest shows general help. With a command, such as `pgbackrest help backup`, it shows the command description and valid options. Add an option, such as `pgbackrest help backup type`, to show its full description for that command.
 
 ## Command Options
 
@@ -18,7 +18,7 @@ Three levels of help are provided. If no command is specified then general help 
 
 Display help.
 
-Displays help even if the `help` command is not specified and overrides the `--version` option.
+Show help even without the `help` command. This overrides `--version`.
 
 ```yaml
 default: n
@@ -29,7 +29,7 @@ example: --help
 
 Display version.
 
-Displays version even if the `version` or `help` command is not specified.
+Show the version even without the `version` or `help` command.
 
 ```yaml
 default: n

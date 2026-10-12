@@ -7,9 +7,9 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig pgbackrest` command (alias `pig pb`) manages pgBackRest backups and provides low-level restore primitives.
-It wraps common `pgbackrest` operations for a simplified backup management experience. All commands run as the database superuser (default `postgres`).
-For orchestrated point-in-time recovery on managed clusters, prefer [`pig pitr`](/docs/pig/pitr/).
+Use `pig pgbackrest`, or its alias `pig pb`, to manage pgBackRest backups and run low-level restores.
+It simplifies common `pgbackrest` operations. All commands run as the database superuser, which defaults to `postgres`.
+For managed-cluster point-in-time recovery with lifecycle control, use [`pig pitr`](/docs/pig/pitr/).
 
 ```bash
 pig pb - Manage pgBackRest backup and point-in-time recovery.
@@ -141,7 +141,8 @@ If `-s` is not specified, pig auto-detects the stanza name from the config file:
 2. Find sections that do not start with `[global*]`
 3. Use the first stanza found
 
-If the config file contains multiple stanzas, pig emits a warning and uses the first one. In that case, specify `--stanza` explicitly.
+If the configuration has multiple stanzas, pig warns and selects the first.
+In this case, specify `--stanza` explicitly.
 
 **Multi-Repo Support:**
 
@@ -230,7 +231,9 @@ pig pb backup --force                # Skip primary role check
 
 **Primary Check:**
 
-Before running a backup, the command automatically checks whether the current instance is primary. If it is a replica, the command exits with an error. Use `--force` to skip this check.
+Before a backup, the command checks whether the instance is primary.
+If it is a replica, the command returns an error.
+Use `--force` to skip this check.
 
 
 ### pb expire
@@ -269,8 +272,9 @@ repo1-retention-archive=2            # WAL archive retention policy
 
 ### pb restore
 
-Restore from backup with recovery target support.
-At least one recovery target (`-d/-I/-t/--name/--lsn/--xid`) must be specified explicitly. Without parameters, help is shown.
+Restore a backup to a recovery target.
+Specify at least one target explicitly: `-d/-I/-t/--name/--lsn/--xid`.
+Without parameters, the command shows help.
 
 ```bash
 # Recovery target (mutually exclusive options)
@@ -321,13 +325,18 @@ pig pb restore -d -- --delta         # Pass native pgBackRest restore args after
 | Native args after `--` | | Pass through pgBackRest restore args, for example `-- --delta` |
 {.full-width}
 
-**Combination Rules:** `--target-action` cannot be used with `--default`, because `--default` already means recovery to the end of the WAL stream. `--exclusive/-X` must be used with an explicit stop target: `--time`, `--lsn`, or `--xid`.
+**Combination Rules:** do not combine `--target-action` with `--default`, which recovers to the end of the WAL stream.
+Use `--exclusive/-X` only with an explicit stop target: `--time`, `--lsn`, or `--xid`.
 
-Native pgBackRest restore args after `--` cannot override recovery targets, lifecycle, data directory, repository, config, or selection semantics already managed by Pig. Use Pig's first-class options for those semantics. Tablespace/link migration options such as `--tablespace-map`, `--link-map`, and `--link-all` can still be passed through.
+Native pgBackRest arguments after `--` cannot override parameters that Pig manages.
+These include recovery targets, lifecycle, data directory, repository, configuration, and selection parameters.
+Use Pig's own options for those settings.
+You can pass tablespace and link migration options, such as `--tablespace-map`, `--link-map`, and `--link-all`.
 
 **Time Formats:**
 
-Supports multiple time formats and auto-completes timezones (including non-integer-hour zones such as +05:30):
+The command accepts multiple time formats and completes missing timezones.
+It also supports non-integer-hour zones, such as +05:30:
 
 | Format | Example | Description |
 |:---|:---|:---|
@@ -344,7 +353,8 @@ Supports multiple time formats and auto-completes timezones (including non-integ
 4. Execute pgbackrest restore
 5. Provide post-restore guidance
 
-**Important:** Stop PostgreSQL before restore. If the PGDATA is managed by Patroni, use [`pig pitr`](/docs/pig/pitr/) to orchestrate Patroni, PostgreSQL, and pgBackRest:
+**Important:** stop PostgreSQL before restoration.
+If Patroni manages PGDATA, use [`pig pitr`](/docs/pig/pitr/) to control Patroni, PostgreSQL, and pgBackRest:
 
 ```bash
 pig pg stop                          # Stop PostgreSQL
@@ -413,13 +423,13 @@ pig pb delete --plan                 # Preview delete plan
 | `--yes` | `-y` | Skip interactive y/yes confirmation |
 {.full-width}
 
-**Warning:** This is a **destructive and irreversible** operation. All backups will be permanently deleted.
+**Warning:** this operation **permanently deletes all backups**. You cannot reverse it.
 
 The command includes multiple safety mechanisms:
 
-1. In text mode, it requires interactive `y`/`yes` confirmation unless `--yes` is specified
-2. Structured output mode requires explicit `--yes`
-3. If the config file contains multiple stanzas and `--stanza` is not specified, pig refuses to auto-select a deletion target
+1. In text mode, confirm with interactive `y`/`yes`, or specify `--yes`.
+2. In structured output mode, specify `--yes` explicitly.
+3. If the configuration has multiple stanzas, specify `--stanza`. Pig refuses to select the deletion target automatically.
 
 
 ## Control Commands
@@ -475,7 +485,11 @@ Use this command during system maintenance to prevent new backup operations from
 
 ### pb log
 
-View pgBackRest log files. The log directory is read from pgBackRest config `log-path` first, and falls back to `/pg/log/pgbackrest/` when not configured. The parent command shows the latest log snapshot by default; use `tail` or `-f` for live follow. Only `pb log` and `pb log show` support `-o json` JSONL output; log snapshots do not support `yaml` or `json-pretty`, and follow/tail does not support structured output.
+View pgBackRest log files.
+The command reads `log-path` from pgBackRest configuration, or uses `/pg/log/pgbackrest/` as a fallback.
+By default, the parent command shows the latest log snapshot. Use `tail` or `-f` to follow new entries.
+Only `pb log` and `pb log show` support JSONL output with `-o json`.
+Snapshots do not support `yaml` or `json-pretty`. Follow and tail do not support structured output.
 
 ```bash
 pig pb log                           # Show latest log lines
@@ -513,7 +527,8 @@ If the current user does not have permission to read the log directory, the comm
 
 **Command Execution:**
 
-All `pig pb` commands run as the database superuser (DBSU), because pgBackRest needs access to PostgreSQL data files and WAL archives.
+All `pig pb` commands run as the database superuser (DBSU).
+PgBackRest requires access to PostgreSQL data files and WAL archives.
 
 Execution logic:
 
@@ -523,7 +538,7 @@ Execution logic:
 
 **Relationship with pgbackrest:**
 
-`pig pb` is not a complete wrapper for `pgbackrest`; it is a higher-level abstraction for common operations:
+`pig pb` simplifies common `pgbackrest` operations through these features:
 
 - Auto-detect stanza name without specifying it every time
 - Auto-check primary role before backup
@@ -544,10 +559,10 @@ For full `pgbackrest` functionality, use the `pgbackrest` command directly.
 
 **Security Considerations:**
 
-- `pb delete` requires interactive `y`/`yes` confirmation when `--yes` is not specified, and `--stanza` must be explicit under multi-stanza configs
-- `pb restore` requires an explicit recovery target, validates `--time`, and requires interactive `y`/`yes` confirmation when `--yes` is not specified
-- `pb backup` checks primary role by default to prevent running on a replica
-- `pb log tail` does not support structured output; use `pb log show -n N -o json` when a JSONL snapshot is required
+- `pb delete` requires interactive `y`/`yes` confirmation unless you specify `--yes`. With multiple stanzas, specify `--stanza` explicitly.
+- `pb restore` requires an explicit recovery target and validates `--time`. It requires interactive `y`/`yes` confirmation unless you specify `--yes`.
+- `pb backup` checks the primary role by default to prevent backups on a replica.
+- `pb log tail` does not support structured output. Use `pb log show -n N -o json` for a JSONL snapshot.
 
 **Platform Support:**
 

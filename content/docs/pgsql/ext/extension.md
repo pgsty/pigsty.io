@@ -7,14 +7,14 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty installs and enables some core extensions by default when initializing PostgreSQL clusters.
+During PostgreSQL cluster initialization, Pigsty installs and enables some core extensions by default.
 
 
 --------
 
 ## Default Installed Extensions
 
-Extensions installed by default via [`pg_packages`](/docs/pgsql/param#pg_packages):
+Pigsty installs these extensions by default through [`pg_packages`](/docs/pgsql/param#pg_packages):
 
 | Extension   | Description                                                                  |
 |:------------|:-----------------------------------------------------------------------------|
@@ -22,7 +22,9 @@ Extensions installed by default via [`pg_packages`](/docs/pgsql/param#pg_package
 | `wal2json`  | Logical decoding outputs JSON format changes, commonly used in CDC scenarios |
 | `pgvector`  | Vector data type and indexes, installed with `pgsql-main` by default         |
 
-The default value of [`pg_extensions`](/docs/pgsql/param#pg_extensions) is an empty array `[]`. Declare additional extensions as needed, for example:
+The default value of [`pg_extensions`](/docs/pgsql/param#pg_extensions) is an empty array `[]`.
+Declare additional extensions as required.
+For example:
 
 | Extension     | Description                    |
 |:--------------|:-------------------------------|
@@ -35,7 +37,7 @@ The default value of [`pg_extensions`](/docs/pgsql/param#pg_extensions) is an em
 
 ## Default Enabled Extensions
 
-Extensions enabled by default in all databases via [`pg_default_extensions`](/docs/pgsql/param#pg_default_extensions):
+Pigsty enables these extensions in all databases by default through [`pg_default_extensions`](/docs/pgsql/param#pg_default_extensions):
 
 | Extension            | Schema  | Description                        |
 |:---------------------|:--------|:-----------------------------------|
@@ -55,28 +57,30 @@ Extensions enabled by default in all databases via [`pg_default_extensions`](/do
 | `intarray`           | public  | Integer array functions            |
 | `pg_repack`          | repack  | Online table reorganization        |
 
-These extensions provide basic monitoring, operations, and feature enhancement capabilities.
+These extensions provide basic monitoring and operations tools.
+They also add database features.
 
 
 --------
 
 ## Default Preloaded Extensions
 
-Extensions preloaded by default into `shared_preload_libraries` via [`pg_libs`](/docs/pgsql/param#pg_libs):
+By default, [`pg_libs`](/docs/pgsql/param#pg_libs) adds these extensions to `shared_preload_libraries`:
 
 | Extension            | Description                                        |
 |:---------------------|:---------------------------------------------------|
 | `pg_stat_statements` | Track execution statistics of all SQL statements   |
 | `auto_explain`       | Automatically log execution plans for slow queries |
 
-These two extensions provide basic observability and are strongly recommended to keep.
+These two extensions provide basic observability.
+We strongly recommend that you keep them.
 
 
 --------
 
 ## Customize Default Extensions
 
-You can customize default installed and enabled extensions by modifying configuration parameters:
+To change which extensions Pigsty installs and enables by default, edit these configuration parameters:
 
 ```yaml
 all:
@@ -99,7 +103,7 @@ all:
       # ... add more
 ```
 
-For detailed extension usage, please refer to:
+For extension procedures and concepts, see:
 
 - [Quick Start](/docs/pgsql/ext/start/): Overview of the extension usage process
 - [Extension Introduction](/docs/pgsql/ext/intro/): Core concepts of extensions

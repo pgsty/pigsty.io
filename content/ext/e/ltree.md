@@ -30,7 +30,7 @@ weight: 3960
 
 | **Related** | [`age`](/ext/e/age) [`pg_liquid`](/ext/e/pg_liquid) [`onesparse`](/ext/e/onesparse) [`graph`](/ext/e/graph) [`pgrdf`](/ext/e/pgrdf) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`prefix`](/ext/e/prefix) [`ip4r`](/ext/e/ip4r) [`seg`](/ext/e/seg) [`cube`](/ext/e/cube) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | [`fsm_core`](/ext/e/fsm_core) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) |
+| **Depended By** | [`fsm_core`](/ext/e/fsm_core) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`ltree_plruby`](/ext/e/ltree_plruby) |
 {.ext-table .ext-table--rel}
 
 

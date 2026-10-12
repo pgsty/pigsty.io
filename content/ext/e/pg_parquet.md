@@ -50,12 +50,12 @@ weight: 2480
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
-| el8.aarch64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
-| el9.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
-| el9.aarch64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
-| el10.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
-| el10.aarch64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
+| el8.x86_64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
+| el8.aarch64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
+| el9.x86_64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
+| el9.aarch64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
+| el10.x86_64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
+| el10.aarch64 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 | AVAIL PIGSTY 0.5.1 2 |
 | d12.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
 | d12.aarch64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
 | d13.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
@@ -67,11 +67,17 @@ weight: 2480
 | u26.x86_64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
 | u26.aarch64 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 | AVAIL PIGSTY 0.5.1 1 |
 @ el8.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el8.x86_64.rpm pigsty 0.5.1 10.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_parquet_18-0.5.1-3PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 0.5.1 7.1MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_parquet_18-0.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el8.aarch64.rpm pigsty 0.5.1 9.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_parquet_18-0.5.1-3PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 0.5.1 6.2MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_parquet_18-0.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el9.x86_64.rpm pigsty 0.5.1 10.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_parquet_18-0.5.1-3PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 0.5.1 7.0MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_parquet_18-0.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el9.aarch64.rpm pigsty 0.5.1 9.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_parquet_18-0.5.1-3PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 0.5.1 6.5MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_parquet_18-0.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el10.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el10.x86_64.rpm pigsty 0.5.1 9.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_parquet_18-0.5.1-3PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 0.5.1 6.9MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_parquet_18-0.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-3PIGSTY.el10.aarch64.rpm pigsty 0.5.1 9.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_parquet_18-0.5.1-3PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 pg_parquet_18 pg_parquet_18-0.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 0.5.1 6.4MiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_parquet_18-0.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-pg-parquet postgresql-18-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-18-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 18 postgresql-18-pg-parquet postgresql-18-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb pigsty 0.5.1 7.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-18-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 18 postgresql-18-pg-parquet postgresql-18-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb pigsty 0.5.1 8.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-parquet/postgresql-18-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb
@@ -83,11 +89,17 @@ weight: 2480
 @ u26.x86_64 18 postgresql-18-pg-parquet postgresql-18-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb pigsty 0.5.1 9.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-18-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-pg-parquet postgresql-18-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb pigsty 0.5.1 8.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-18-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb
 @ el8.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el8.x86_64.rpm pigsty 0.5.1 10.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_parquet_17-0.5.1-3PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 0.5.1 7.1MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_parquet_17-0.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el8.aarch64.rpm pigsty 0.5.1 9.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_parquet_17-0.5.1-3PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 0.5.1 6.2MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_parquet_17-0.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el9.x86_64.rpm pigsty 0.5.1 10.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_parquet_17-0.5.1-3PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 0.5.1 7.0MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_parquet_17-0.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el9.aarch64.rpm pigsty 0.5.1 9.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_parquet_17-0.5.1-3PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 0.5.1 6.5MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_parquet_17-0.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el10.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el10.x86_64.rpm pigsty 0.5.1 9.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_parquet_17-0.5.1-3PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 0.5.1 6.9MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_parquet_17-0.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-3PIGSTY.el10.aarch64.rpm pigsty 0.5.1 9.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_parquet_17-0.5.1-3PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 pg_parquet_17 pg_parquet_17-0.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 0.5.1 6.4MiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_parquet_17-0.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-pg-parquet postgresql-17-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-17-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-pg-parquet postgresql-17-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb pigsty 0.5.1 7.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-17-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-pg-parquet postgresql-17-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-parquet/postgresql-17-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb
@@ -99,11 +111,17 @@ weight: 2480
 @ u26.x86_64 17 postgresql-17-pg-parquet postgresql-17-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb pigsty 0.5.1 9.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-17-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-pg-parquet postgresql-17-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb pigsty 0.5.1 8.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-17-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb
 @ el8.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el8.x86_64.rpm pigsty 0.5.1 10.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_parquet_16-0.5.1-3PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 0.5.1 7.1MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_parquet_16-0.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el8.aarch64.rpm pigsty 0.5.1 9.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_parquet_16-0.5.1-3PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 0.5.1 6.2MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_parquet_16-0.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el9.x86_64.rpm pigsty 0.5.1 10.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_parquet_16-0.5.1-3PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 0.5.1 7.0MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_parquet_16-0.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el9.aarch64.rpm pigsty 0.5.1 9.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_parquet_16-0.5.1-3PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 0.5.1 6.5MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_parquet_16-0.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el10.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el10.x86_64.rpm pigsty 0.5.1 9.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_parquet_16-0.5.1-3PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 0.5.1 6.9MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_parquet_16-0.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-3PIGSTY.el10.aarch64.rpm pigsty 0.5.1 9.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_parquet_16-0.5.1-3PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 pg_parquet_16 pg_parquet_16-0.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 0.5.1 6.4MiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_parquet_16-0.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-pg-parquet postgresql-16-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-16-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 16 postgresql-16-pg-parquet postgresql-16-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb pigsty 0.5.1 7.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-16-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 16 postgresql-16-pg-parquet postgresql-16-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-parquet/postgresql-16-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb
@@ -115,11 +133,17 @@ weight: 2480
 @ u26.x86_64 16 postgresql-16-pg-parquet postgresql-16-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb pigsty 0.5.1 9.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-16-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb
 @ u26.aarch64 16 postgresql-16-pg-parquet postgresql-16-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb pigsty 0.5.1 8.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-16-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb
 @ el8.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el8.x86_64.rpm pigsty 0.5.1 10.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_parquet_15-0.5.1-3PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 0.5.1 7.1MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_parquet_15-0.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el8.aarch64.rpm pigsty 0.5.1 9.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_parquet_15-0.5.1-3PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 0.5.1 6.2MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_parquet_15-0.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el9.x86_64.rpm pigsty 0.5.1 10.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_parquet_15-0.5.1-3PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 0.5.1 7.0MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_parquet_15-0.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el9.aarch64.rpm pigsty 0.5.1 9.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_parquet_15-0.5.1-3PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 0.5.1 6.5MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_parquet_15-0.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el10.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el10.x86_64.rpm pigsty 0.5.1 9.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_parquet_15-0.5.1-3PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 0.5.1 6.9MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_parquet_15-0.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-3PIGSTY.el10.aarch64.rpm pigsty 0.5.1 9.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_parquet_15-0.5.1-3PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 15 pg_parquet_15 pg_parquet_15-0.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 0.5.1 6.4MiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_parquet_15-0.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-pg-parquet postgresql-15-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-15-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-pg-parquet postgresql-15-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb pigsty 0.5.1 7.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-15-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 15 postgresql-15-pg-parquet postgresql-15-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-parquet/postgresql-15-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb
@@ -131,11 +155,17 @@ weight: 2480
 @ u26.x86_64 15 postgresql-15-pg-parquet postgresql-15-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb pigsty 0.5.1 9.1MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-15-pg-parquet_0.5.1-3PIGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-pg-parquet postgresql-15-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb pigsty 0.5.1 8.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-parquet/postgresql-15-pg-parquet_0.5.1-3PIGSTY~resolute_arm64.deb
 @ el8.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el8.x86_64.rpm pigsty 0.5.1 10.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_parquet_14-0.5.1-3PIGSTY.el8.x86_64.rpm
+@ el8.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 0.5.1 7.1MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_parquet_14-0.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el8.aarch64.rpm pigsty 0.5.1 9.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_parquet_14-0.5.1-3PIGSTY.el8.aarch64.rpm
+@ el8.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 0.5.1 6.2MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_parquet_14-0.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el9.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el9.x86_64.rpm pigsty 0.5.1 10.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_parquet_14-0.5.1-3PIGSTY.el9.x86_64.rpm
+@ el9.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 0.5.1 7.0MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_parquet_14-0.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el9.aarch64.rpm pigsty 0.5.1 9.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_parquet_14-0.5.1-3PIGSTY.el9.aarch64.rpm
+@ el9.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 0.5.1 6.5MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_parquet_14-0.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el10.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el10.x86_64.rpm pigsty 0.5.1 9.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_parquet_14-0.5.1-3PIGSTY.el10.x86_64.rpm
+@ el10.x86_64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 0.5.1 6.9MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_parquet_14-0.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-3PIGSTY.el10.aarch64.rpm pigsty 0.5.1 9.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_parquet_14-0.5.1-3PIGSTY.el10.aarch64.rpm
+@ el10.aarch64 14 pg_parquet_14 pg_parquet_14-0.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 0.5.1 6.4MiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_parquet_14-0.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-pg-parquet postgresql-14-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-14-pg-parquet_0.5.1-3PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-pg-parquet postgresql-14-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb pigsty 0.5.1 7.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-parquet/postgresql-14-pg-parquet_0.5.1-3PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-pg-parquet postgresql-14-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb pigsty 0.5.1 8.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-parquet/postgresql-14-pg-parquet_0.5.1-3PIGSTY~trixie_amd64.deb

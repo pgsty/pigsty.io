@@ -14,11 +14,10 @@ categories: [Reference]
 
 ## Sponsor Us
 
-Pigsty is a free and open-source software, passionately developed by PostgreSQL community members, aiming to integrate the power of the PostgreSQL ecosystem and promote the widespread adoption of PostgreSQL.
-If our work has helped you, please consider sponsoring or supporting our project:
+PostgreSQL community members develop Pigsty as free and open-source software. It integrates the PostgreSQL ecosystem and promotes PostgreSQL adoption. If it helps you, consider these ways to support the project:
 
-- Sponsor us directly with financial support - express your sincere support in the most direct and powerful way!
-- Consider purchasing our [**Technical Support Services**](/docs/about/service/). We can provide professional PostgreSQL high-availability cluster deployment and maintenance services, making your budget worthwhile!
+- Sponsor the project financially.
+- Purchase [**Technical Support Services**](/docs/about/service/) for PostgreSQL high-availability deployment and maintenance.
 - Share your Pigsty use cases and experiences through articles, talks, and videos.
 - Allow us to mention your organization in "Users of Pigsty."
 - Recommend/refer our project and services to friends, colleagues, and clients in need.
@@ -29,7 +28,7 @@ If our work has helped you, please consider sponsoring or supporting our project
 
 ## Angel Investors
 
-Pigsty is a project invested by [**Miracle Plus**](https://www.miracleplus.com/en/) (formerly YC China) S22. We thank Miracle Plus and Dr. Qi Lu for their support of this project!
+Pigsty received investment through [**Miracle Plus**](https://www.miracleplus.com/en/) S22, formerly YC China. We thank Miracle Plus and Dr. Qi Lu for their support.
 
 
 

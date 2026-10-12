@@ -6,11 +6,11 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**InsForge**](https://github.com/InsForge/InsForge) is an open-source Backend-as-a-Service platform for AI coding agents. Built around PostgreSQL, it provides authentication, database APIs, file storage, a model gateway, edge functions, site deployment, payment integrations, and more, allowing applications to skip most backend boilerplate.
+[**InsForge**](https://github.com/InsForge/InsForge) is an open-source Backend-as-a-Service platform for AI coding agents, built around PostgreSQL. It provides authentication, database APIs, file storage, a model gateway, edge functions, site deployment, and payment integrations. These features reduce common backend implementation work.
 
-Pigsty provides the `app/insforge` configuration template, which runs InsForge OSS stateless services in Docker Compose while placing the most critical state in PostgreSQL managed by Pigsty. This lets you continue using Pigsty's high availability, backup and recovery, monitoring, ingress domains, and infrastructure capabilities instead of hiding the database in an ephemeral container volume.
+Pigsty provides the `app/insforge` template. It runs stateless InsForge OSS services in Docker Compose and stores critical state in Pigsty-managed PostgreSQL. This provides high availability, backup and recovery, monitoring, ingress domains, and infrastructure services. The database does not depend on an ephemeral container volume.
 
-The current template targets InsForge OSS `v2.3.3`, uses external PostgreSQL, and exposes three services by default: the InsForge Dashboard/API, PostgREST, and Deno Runtime. The latter two bind only to host loopback.
+The template targets InsForge OSS `v2.3.3` and uses external PostgreSQL. It runs three services by default: InsForge Dashboard/API, PostgREST, and Deno Runtime. The latter two bind only to host loopback.
 
 ------
 
@@ -283,7 +283,7 @@ Then apply the Nginx ingress configuration:
 ./infra.yml -t nginx
 ```
 
-To request an HTTPS certificate, first ensure that the domain resolves to the current node, then add or modify `certbot` under `infra_portal.insforge`:
+Before requesting an HTTPS certificate, verify that the domain resolves to the current node. Then add or update `certbot` under `infra_portal.insforge`:
 
 ```yaml
 insforge:
@@ -423,9 +423,9 @@ ss -tlnp | grep -E '7130|7133|5430'
 
 Common issues:
 
-- Cannot log in: Confirm that `ROOT_ADMIN_USERNAME` / `ROOT_ADMIN_PASSWORD` were written to `/opt/insforge/.env` by the template, and check the `insforge` container logs.
-- PostgREST fails to start: Confirm that the `anon`, `authenticated`, and `project_admin` roles exist, and that `JWT_SECRET` matches the InsForge App setting.
-- Database connection fails: Confirm that `POSTGRES_HOST`, `POSTGRES_PORT`, and `POSTGRES_PASSWORD` match the `pg_users` configuration, and check that HBA permits the Docker network.
+- Cannot log in: Verify `ROOT_ADMIN_USERNAME` / `ROOT_ADMIN_PASSWORD` in `/opt/insforge/.env`. Check the `insforge` container logs.
+- PostgREST fails to start: Verify that `anon`, `authenticated`, and `project_admin` exist. Verify that `JWT_SECRET` matches the InsForge App setting.
+- Database connection fails: Verify `POSTGRES_HOST`, `POSTGRES_PORT`, and `POSTGRES_PASSWORD` against `pg_users`. Verify that HBA permits the Docker network.
 - File upload or download errors: When using S3 / MinIO, check `AWS_S3_BUCKET`, `S3_ENDPOINT_URL`, `S3_FORCE_PATH_STYLE`, and the access-key configuration.
 
 ------

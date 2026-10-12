@@ -15,13 +15,13 @@ Package [`postgis`](/ext/e/postgis) contains **7** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1500 | [**`postgis`**](/ext/e/postgis) | `3.6.4` | `--s-d--` | - | PostGIS geometry and geography spatial types and functions |
+| 1500 | [**`postgis`**](/ext/e/postgis) | `3.6.4` | `-bs-d--` | - | PostGIS geometry and geography spatial types and functions |
 | 1501 | [`postgis_topology`](/ext/e/postgis_topology) | `3.6.4` | `--s-d--` | `topology` | PostGIS topology spatial types and functions |
 | 1502 | [`postgis_raster`](/ext/e/postgis_raster) | `3.6.4` | `--s-d--` | - | PostGIS raster types and functions |
 | 1503 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | `3.6.4` | `--s-d-r` | - | PostGIS SFCGAL functions |
-| 1504 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | `3.6.4` | `--s-dt-` | `tiger` | PostGIS tiger geocoder and reverse geocoder |
+| 1504 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | `3.6.4` | `----dt-` | `tiger` | PostGIS tiger geocoder and reverse geocoder |
 | 1505 | [`address_standardizer`](/ext/e/address_standardizer) | `3.6.4` | `--s-d-r` | - | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
-| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.4` | `--s-d-r` | - | Address Standardizer US dataset example |
+| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.4` | `----d-r` | - | Address Standardizer US dataset example |
 {.ext-table}
 
 ## pointcloud
@@ -95,8 +95,8 @@ Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.0.9` | `-bs-d--` | - | Use Groonga as index, fast full text search platform for all languages! |
-| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.0.9` | `--s-d--` | - | PGroonga database management module |
+| 2110 | [**`pgroonga`**](/ext/e/pgroonga) | `4.1.0` | `-bs-d--` | - | Use Groonga as index, fast full text search platform for all languages! |
+| 2111 | [`pgroonga_database`](/ext/e/pgroonga_database) | `4.1.0` | `--s-d--` | - | Recovery helper for removing a damaged PGroonga internal database |
 {.ext-table}
 
 ## hunspell
@@ -105,16 +105,16 @@ Package [`hunspell`](/ext/e/hunspell_cs_cz) contains **10** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2270 | [**`hunspell_cs_cz`**](/ext/e/hunspell_cs_cz) | `1.0` | `----d-r` | - | Czech Hunspell Dictionary |
-| 2271 | [`hunspell_de_de`](/ext/e/hunspell_de_de) | `1.0` | `----d-r` | - | German Hunspell Dictionary |
-| 2272 | [`hunspell_en_us`](/ext/e/hunspell_en_us) | `1.0` | `----d-r` | - | en_US Hunspell Dictionary |
-| 2273 | [`hunspell_fr`](/ext/e/hunspell_fr) | `1.0` | `----d-r` | - | French Hunspell Dictionary |
-| 2274 | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | `1.0` | `----d-r` | - | Nepali Hunspell Dictionary |
-| 2275 | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | `1.0` | `----d-r` | - | Dutch Hunspell Dictionary |
-| 2276 | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | `1.0` | `----d-r` | - | Norwegian (norsk) Hunspell Dictionary |
-| 2277 | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | `1.0` | `----d-r` | - | Portuguese Hunspell Dictionary |
-| 2278 | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary |
-| 2279 | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
+| 2280 | [**`hunspell_cs_cz`**](/ext/e/hunspell_cs_cz) | `1.0` | `----d-r` | - | Czech Hunspell Dictionary |
+| 2281 | [`hunspell_de_de`](/ext/e/hunspell_de_de) | `1.0` | `----d-r` | - | German Hunspell Dictionary |
+| 2282 | [`hunspell_en_us`](/ext/e/hunspell_en_us) | `1.0` | `----d-r` | - | en_US Hunspell Dictionary |
+| 2283 | [`hunspell_fr`](/ext/e/hunspell_fr) | `1.0` | `----d-r` | - | French Hunspell Dictionary |
+| 2284 | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | `1.0` | `----d-r` | - | Nepali Hunspell Dictionary |
+| 2285 | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | `1.0` | `----d-r` | - | Dutch Hunspell Dictionary |
+| 2286 | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | `1.0` | `----d-r` | - | Norwegian (norsk) Hunspell Dictionary |
+| 2287 | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | `1.0` | `----d-r` | - | Portuguese Hunspell Dictionary |
+| 2288 | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary |
+| 2289 | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | `1.0` | `----d-r` | - | Russian Hunspell Dictionary (from AOT.ru group) |
 {.ext-table}
 
 ## citus
@@ -284,9 +284,9 @@ Package [`pgpool`](/ext/e/pgpool_adm) contains **3** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.3` | `----d-r` | - | Administrative functions for pgPool |
-| 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.2` | `----d--` | - | recovery functions for pgpool-II for V4.3 |
-| 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.2` | `----d--` | - | replacement for regclass |
+| 5900 | [**`pgpool_adm`**](/ext/e/pgpool_adm) | `4.7.3` | `--s-d-r` | - | Administrative functions for pgPool |
+| 5910 | [`pgpool_recovery`](/ext/e/pgpool_recovery) | `4.7.3` | `--s-d-r` | - | recovery functions for pgpool-II for V4.3 |
+| 5920 | [`pgpool_regclass`](/ext/e/pgpool_regclass) | `4.7.3` | `--s-d-r` | - | replacement for regclass |
 {.ext-table}
 
 ## pg_flight_recorder
@@ -305,8 +305,8 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 6440 | [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
-| 6450 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
+| 6450 | [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
+| 6460 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
 {.ext-table}
 
 ## documentdb

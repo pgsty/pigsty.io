@@ -6,7 +6,7 @@ icon: fa-brands fa-docker
 categories: [Reference]
 ---
 
-The `app/registry` configuration template provides a reference configuration for deploying Docker Registry as an image proxy. It acts as a Docker Hub pull-through cache by default.
+The `app/registry` template provides a reference configuration for Docker Registry as an image proxy. It acts as a Docker Hub pull-through cache by default.
 
 
 --------
@@ -40,7 +40,7 @@ Source: [`pigsty/conf/app/registry.yml`](https://github.com/pgsty/pigsty/blob/ma
 
 ## Explanation
 
-The `app/registry` template provides a one-click deployment solution for Docker Registry image proxy.
+The `app/registry` template provides one-click deployment of a Docker Registry image proxy.
 
 **What is Registry**:
 - Docker's official image registry implementation

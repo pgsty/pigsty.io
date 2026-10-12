@@ -8,10 +8,10 @@ categories: [Task]
 ---
 
 
-The ETCD module provides two core playbooks: [`etcd.yml`](#etcdyml) for installing and configuring etcd clusters, and [`etcd-rm.yml`](#etcd-rmyml) for removing etcd clusters or members.
+The ETCD module provides two core playbooks. Use [`etcd.yml`](#etcdyml) to install and configure etcd clusters. Use [`etcd-rm.yml`](#etcd-rmyml) to remove clusters or members.
 
 > [!NOTE] Architecture Change: Pigsty v3.6+
-> Since Pigsty v3.6, the `etcd.yml` playbook focuses on cluster installation and member addition. All removal operations have been moved to the dedicated `etcd-rm.yml` playbook using the `etcd_remove` role.
+> Since Pigsty v3.6, the `etcd.yml` playbook focuses on cluster installation and member addition. The dedicated `etcd-rm.yml` playbook handles all removals through the `etcd_remove` role.
 
 
 --------
@@ -20,7 +20,7 @@ The ETCD module provides two core playbooks: [`etcd.yml`](#etcdyml) for installi
 
 Playbook source: [`etcd.yml`](https://github.com/pgsty/pigsty/blob/main/etcd.yml)
 
-This playbook installs and configures an etcd cluster on the hardcoded `etcd` group, then launches the etcd service.
+This playbook installs and configures an etcd cluster on the hardcoded `etcd` group. Then it starts the etcd service.
 
 The following subtasks are available in [`etcd.yml`](https://github.com/pgsty/pigsty/blob/main/etcd.yml):
 
@@ -60,8 +60,8 @@ The removal playbook uses the [`etcd_remove`](https://github.com/pgsty/pigsty/bl
 - [`etcd_rm_pkg`](/docs/etcd/param#etcd_rm_pkg): Controls whether ETCD packages are uninstalled (default: `false`)
 
 > [!CAUTION] Dangerous Operation
-> `etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run therefore attempts to remove the target from the cluster, deregister and stop it, then delete local Etcd data, configuration, unit files, and the client environment file.
-> The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l`, and verify a recent backup, the member list, and remaining quorum.
+> `etcd_safeguard` defaults to `false`, while `etcd_rm_data` defaults to `true`. A full `etcd-rm.yml` run first attempts to remove the target from the cluster. It deregisters the target and stops its service. It then deletes local etcd data, configuration, unit files, and the client environment file.
+> The playbook ignores some leave and cleanup errors and does not prove that the remaining members retain quorum. Always use an exact `-l` target. Verify a recent backup, the member list, and remaining quorum.
 
 
 
@@ -110,9 +110,9 @@ bin/etcd-rm                                     # Remove entire etcd cluster
 
 ## Safeguard
 
-To prevent accidental deletion, Pigsty's ETCD module provides a safeguard mechanism controlled by the [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard) parameter, which defaults to `false` (safeguard disabled).
+The ETCD module provides a safeguard against accidental deletion. Control it with [`etcd_safeguard`](/docs/etcd/param#etcd_safeguard). The default is `false`, which disables the safeguard.
 
-For production etcd clusters that have been initialized, it's recommended to enable the safeguard to prevent accidental deletion of existing etcd instances:
+After you initialize a production etcd cluster, we recommend that you enable the safeguard. This helps prevent accidental deletion of existing instances:
 
 ```yaml
 etcd:
@@ -125,10 +125,10 @@ etcd:
     etcd_safeguard: true  # Enable safeguard protection
 ```
 
-When `etcd_safeguard` is set to `true`, `etcd-rm.yml` aborts before any deregistration, cluster-leave, service-stop, or deletion action. It is a boolean guard and does not probe whether the instance is alive. Override it with a command-line parameter:
+If `etcd_safeguard` is `true`, `etcd-rm.yml` aborts before any deregistration, cluster-leave, service-stop, or deletion action. This boolean guard does not check whether the instance is running. Override it with a command-line parameter:
 
 ```bash
 ./etcd-rm.yml -l <exact-target> -e etcd_safeguard=false  # Override only after verifying target and backups
 ```
 
-Regardless of the safeguard value, inspect `etcdctl member list`, endpoint health, and remaining quorum after a real run; a successful task status is not runtime acceptance.
+After a real run, inspect `etcdctl member list`, endpoint health, and remaining quorum, regardless of the safeguard value. A successful task status does not verify the runtime state.

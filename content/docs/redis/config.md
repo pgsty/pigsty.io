@@ -13,13 +13,15 @@ categories: [Reference]
 
 ## Concept
 
-The entity model of Redis is almost the same as that of [PostgreSQL](/docs/concept/model/pgsql#examples), which also includes the concepts of **Cluster** and **Instance**. Note that the Cluster here does not refer to the native Redis Cluster mode.
+The Redis entity model is similar to the [PostgreSQL model](/docs/concept/model/pgsql#examples). It includes **Cluster** and **Instance** entities. Here, Cluster does not mean native Redis Cluster mode.
 
-The core difference between the REDIS module and the PGSQL module is that Redis uses a **single-node multi-instance** deployment rather than the 1:1 deployment: multiple Redis instances are typically deployed on a physical/virtual machine node to utilize multi-core CPUs fully. Therefore, the ways to [configure](/docs/redis/config/) and [administer](/docs/redis/admin/) Redis instances are slightly different from PGSQL.
+REDIS uses a **single-node multi-instance** deployment. PGSQL uses a 1:1 deployment. Multiple Redis instances typically share one physical or virtual node to use multiple CPU cores. Thus, the procedures to [configure](/docs/redis/config/) and [administer](/docs/redis/admin/) Redis instances differ slightly from PGSQL.
 
-In Redis managed by Pigsty, nodes are entirely subordinate to the cluster, which means that currently, it is not allowed to deploy Redis instances of two different clusters on one node. However, this does not affect deploying multiple independent Redis primary-replica instances on one node. Of course, there are some limitations; for example, in this case, you cannot specify different passwords for different instances on the same node.
+In Pigsty, each Redis node belongs to one cluster. You cannot deploy instances from two different Redis clusters on the same node.
 
-Choose the server implementation with [`redis_type`](/docs/redis/param#redis_type): `redis` by default, or `valkey`. Set it consistently at cluster level. The role switches packages and the `*-server` / `*-cli` binaries while retaining `/etc/redis`, `/data/redis`, instance systemd unit names, and the `redis` monitoring namespace. Validate data compatibility and rollback independently before changing an existing cluster's engine.
+You can still deploy multiple independent Redis primary-replica instances on one node. Some restrictions apply. For example, instances on the same node cannot use different passwords.
+
+Choose the server implementation with [`redis_type`](/docs/redis/param#redis_type): `redis` by default, or `valkey`. Set it consistently at cluster level. The role changes packages and the `*-server` / `*-cli` binaries. It retains `/etc/redis`, `/data/redis`, instance systemd unit names, and the `redis` monitoring namespace. Validate data compatibility and rollback independently before changing an existing cluster's engine.
 
 
 -------
@@ -77,18 +79,18 @@ redis-test: # redis native cluster: 3m x 3s
   vars: { redis_cluster: redis-test ,redis_password: 'redis.test' ,redis_mode: cluster, redis_max_memory: 32MB }
 ```
 
-These examples omit `redis_type` and therefore use the default Redis engine. To deploy Valkey, add `redis_type: valkey` to the corresponding cluster's `vars`; do not mix engines within one logical cluster.
+These examples omit `redis_type` and therefore use the default Redis engine. To deploy Valkey, add `redis_type: valkey` to the cluster's `vars`. Do not mix engines within one logical cluster.
 
 
 --------
 
 ## Limitations
 
-* A Redis node can only belong to one Redis cluster, which means you cannot assign a node to two different Redis clusters simultaneously.
+* A Redis node can belong to only one Redis cluster. You cannot assign it to two clusters at the same time.
 * On each Redis node, you need to assign a unique port number to each Redis instance to avoid port conflicts.
-* Typically, the same Redis cluster will use the same password, but multiple Redis instances on a Redis node cannot have different passwords (because redis_exporter only allows one password).
-* Redis Cluster has built-in HA, while standalone master-slave HA requires additional manual configuration in Sentinel since we don't know if you have deployed Sentinel.
-* Fortunately, configuring HA for standalone Redis is straightforward through Sentinel. For details, see [Administration - Configure HA with Sentinel](/docs/redis/admin#configure-ha-with-sentinel).
+* A Redis cluster typically uses the same password for all instances. All instances on one node must share a password because redis_exporter supports only one.
+* Redis Cluster includes HA. For standalone master-slave HA, configure Sentinel manually. Pigsty does not know whether you have deployed Sentinel.
+* Use Sentinel to configure HA for standalone Redis. For details, see [Administration - Configure HA with Sentinel](/docs/redis/admin#configure-ha-with-sentinel).
 
 
 --------

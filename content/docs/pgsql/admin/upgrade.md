@@ -10,7 +10,8 @@ categories: [Task]
 
 ## Quick Start
 
-PostgreSQL version upgrades fall into two types: **minor version upgrade** and **major version upgrade**, with very different risk and complexity.
+PostgreSQL has two types of version upgrade: **minor** and **major**.
+Their risk and complexity differ substantially.
 
 | Type           | Example       | Downtime           | Data Compatibility | Risk  |
 |:---------------|:--------------|:-------------------|:-------------------|:------|
@@ -54,9 +55,14 @@ For detailed online migration process, see [**Online Migration**](/docs/pgsql/mi
 
 ## Minor Version Upgrade
 
-Minor version upgrades (e.g., 17.2 → 17.3) are the most common upgrade scenario, typically for security patches and bug fixes. Data directory is fully compatible, completed via rolling restart.
+Minor version upgrades, such as 17.2 → 17.3, are the most common upgrade type.
+They usually contain security patches and bug fixes.
+The data directory remains fully compatible.
+Apply the upgrade with a rolling restart.
 
-**Strategy**: Recommended **rolling upgrade**: upgrade replicas first, then switchover to upgrade original primary - minimizes service interruption.
+**Strategy**: Use a **rolling upgrade** to minimize service interruption.
+Upgrade replicas first.
+Then switch the primary role and upgrade the original primary.
 
 ```text
 1. Update repo → 2. Upgrade replica packages → 3. Restart replicas
@@ -65,7 +71,8 @@ Minor version upgrades (e.g., 17.2 → 17.3) are the most common upgrade scenari
 
 **Step 1: Prepare packages**
 
-Ensure local repo has latest PostgreSQL packages and refresh node cache:
+Verify that the local software repository has the latest PostgreSQL packages.
+Then refresh the node package cache:
 
 ```bash {tab="Repo" group="repo-el-debian" value="repo"}
 cd ~/pigsty
@@ -115,7 +122,8 @@ pg switchover --leader <old-primary> --candidate <new-primary> --scheduled=now -
 
 **Step 4: Upgrade original primary**
 
-Original primary is now replica - upgrade packages and restart:
+The original primary is now a replica.
+Upgrade its packages and restart it:
 
 ```bash {tab="EL" group="el-debian" value="el"}
 ansible <old-primary-ip> -b -a 'yum upgrade -y postgresql17*'
@@ -143,7 +151,8 @@ pg query <cls> -c "SELECT version()"
 
 ## Minor Version Downgrade
 
-In rare cases (e.g., new version introduces bugs), may need to downgrade PostgreSQL to previous version.
+In rare cases, you may need to return to the previous PostgreSQL version.
+For example, the new version may introduce bugs.
 
 **Step 1: Get old version packages**
 
@@ -179,7 +188,8 @@ pg restart --force <cls>
 
 ## Major Version Upgrade
 
-Major version upgrades (e.g., 17 → 18) involve data format changes, requiring specialized tools for data migration.
+Major version upgrades, such as 17 → 18, change the data format.
+They require specialized data migration tools.
 
 | Method                                         | Downtime      | Complexity | Use Case                      |
 |:-----------------------------------------------|:--------------|:-----------|:------------------------------|
@@ -188,7 +198,11 @@ Major version upgrades (e.g., 17 → 18) involve data format changes, requiring 
 {.full-width}
 
 > [!TIP] Recommended Approach
-> For production, we recommend **logical replication migration**: create new version cluster, sync data via logical replication, then blue-green switch. Shortest downtime and rollback-ready. See [**Online Migration**](/docs/pgsql/migration).
+> For production, use **logical replication migration**.
+> Create a cluster with the new version and synchronize data through logical replication.
+> Then switch traffic from the old cluster to the new cluster.
+> This gives the shortest downtime and supports rollback.
+> See [**Online Migration**](/docs/pgsql/migration).
 
 
 ### Logical Replication Migration
@@ -239,7 +253,9 @@ SELECT slot_name, confirmed_flush_lsn FROM pg_replication_slots;
 
 **Step 4: Switch traffic**
 
-After confirming data sync complete: stop app writes to source → wait for final sync → switch app connections to new cluster → drop subscription, decommission source.
+After you verify that data synchronization is complete, stop application writes to the source.
+Wait for final synchronization, then move application connections to the new cluster.
+Drop the subscription and decommission the source:
 
 ```sql
 -- Target cluster: drop subscription
@@ -251,10 +267,12 @@ For detailed migration process, see [**Online Migration**](/docs/pgsql/migration
 
 ### pg_upgrade In-Place Upgrade
 
-`pg_upgrade` is PostgreSQL's official major version upgrade tool, suitable for test environments or scenarios accepting longer downtime.
+`pg_upgrade` is the official PostgreSQL tool for major version upgrades.
+Use it for test environments or when longer downtime is acceptable.
 
 > [!WARNING] Important Warning
-> In-place upgrade causes longer downtime and is difficult to rollback. For production, prefer logical replication migration.
+> An in-place upgrade causes longer downtime and is difficult to roll back.
+> For production, prefer logical replication migration.
 
 **Step 1: Install new version packages**
 
@@ -312,7 +330,7 @@ pg resume <cls>
 
 ## Extension Upgrade
 
-When upgrading PostgreSQL version, typically also need to upgrade related extensions.
+When you upgrade PostgreSQL, you usually also need to upgrade its extensions.
 
 **Upgrade extension packages**
 
@@ -343,19 +361,21 @@ SELECT extname, extversion FROM pg_extension;
 ```
 
 > [!WARNING] Extension Compatibility
-> Before major version upgrade, confirm all extensions support target PostgreSQL version. Some extensions may require uninstall/reinstall - check extension documentation.
+> Before a major version upgrade, verify that all extensions support the target PostgreSQL version.
+> Some extensions may require removal and reinstallation.
+> Check the extension documentation.
 
 
 ----------------
 
 ## Important Notes
 
-1. **Backup first**: Always perform complete backup before any upgrade
-2. **Test verify**: Verify upgrade process in test environment first
-3. **Extension compatibility**: Confirm all extensions support target version
-4. **Rollback plan**: Prepare rollback plan, especially for major upgrades
-5. **Monitor closely**: Monitor database performance and error logs after upgrade
-6. **Document**: Record all operations and issues during upgrade
+1. **Back up first**: Make a complete backup before every upgrade.
+2. **Test first**: Verify the upgrade procedure in a test environment.
+3. **Check extensions**: Verify that all extensions support the target version.
+4. **Plan rollback**: Prepare a rollback plan, especially for major upgrades.
+5. **Monitor closely**: Monitor database performance and error logs after the upgrade.
+6. **Keep records**: Record all operations and problems during the upgrade.
 
 
 ----------------

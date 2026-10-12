@@ -9,15 +9,15 @@ categories: [Concept]
 ---
 
 
-MINIO is Pigsty's compatibility module name for object storage. The current v4.5.0 source deploys Silo through [`minio_type: silo`](/docs/minio/param#minio_type) and organizes a group of object-storage **instances** into a **cluster**.
+MINIO is the compatibility module name for object storage. Pigsty v4.5.0 deploys Silo with [`minio_type: silo`](/docs/minio/param#minio_type). It groups object storage **instances** into a **cluster**.
 
-Each cluster is an **autonomous** S3-compatible object-storage unit consisting of at least one instance and exposing service through the S3 API port.
+Each cluster is an **autonomous** S3-compatible object store with at least one instance. It exposes services through the S3 API port.
 
 There are three core entities in Pigsty's MINIO module:
 
-- **Cluster**: An autonomous object-storage service unit serving as the top-level namespace for other entities.
-- **Instance**: A single Silo server process running on a node and managing local disks.
-- **Node**: A hardware resource abstraction running Linux + Systemd environment, implicitly declared.
+- **Cluster**: An autonomous object storage service unit and the top-level namespace for other entities.
+- **Instance**: One Silo server process on a node, managing local disks.
+- **Node**: An implicitly declared hardware resource that runs Linux and Systemd.
 
 Silo also retains the [**Storage Pool**](/docs/minio/config#multi-pool) concept for expansion.
 
@@ -35,14 +35,14 @@ Silo supports Pigsty's three inventory deployment modes:
 | [**Multi-Node Multi-Drive**](/docs/minio/config#multi-node-multi-disk)   | **MNMD** | Multiple nodes, multiple disks per node   | **Production recommended** |
 {.full-width}
 
-SNSD mode can use a regular directory for quick experimentation. Multi-drive Silo deployments should use real disk mount points or the service will refuse to start.
+For a quick SNSD experiment, you can use a regular directory. For multiple drives, use real disk mount points. Otherwise, Silo refuses to start.
 
 
 ----------------
 
 ## Examples
 
-The following example explicitly selects the current default Silo backend and defines a four-node multi-drive cluster:
+This example explicitly selects Silo, the current default backend, and defines a four-node cluster with multiple drives:
 
 ```yaml
 minio:
@@ -58,7 +58,7 @@ minio:
     minio_node: '${minio_cluster}-${minio_seq}.pigsty'
 ```
 
-This config fragment defines a four-node Silo cluster with four disks per node. Instance identifiers retain the MINIO module's compatibility naming:
+The configuration defines four Silo nodes with four disks each. Instance identifiers retain MINIO compatibility names:
 
 | <span class="text-secondary">**Cluster**</span> | <span class="text-secondary">**Description**</span> |
 |:-----------------------------------------------:|-----------------------------------------------------|
@@ -80,7 +80,7 @@ This config fragment defines a four-node Silo cluster with four disks per node. 
 
 ## Identity Parameters
 
-Pigsty uses the [**`MINIO`**](/docs/minio/param#minio) parameter group to assign deterministic identities to each MinIO module entity. Two parameters are required:
+The [**`MINIO`**](/docs/minio/param#minio) parameter group assigns deterministic identities to MINIO entities. Two parameters are required:
 
 | Parameter                                                  |   Type   | Level | Description                     | Format                                           |
 |:-----------------------------------------------------------|:--------:|:-----:|:--------------------------------|:-------------------------------------------------|
@@ -88,24 +88,23 @@ Pigsty uses the [**`MINIO`**](/docs/minio/param#minio) parameter group to assign
 | [**`minio_seq`**](/docs/minio/param#minio_seq)             |  `int`   | Instance | Object-storage instance number, required | Natural number, starting from 1, unique within cluster |
 {.full-width}
 
-With cluster name defined at cluster level and instance number assigned at instance level, Pigsty automatically generates unique identifiers for each entity based on rules:
+Set the cluster name at cluster level and the instance number at instance level. Pigsty generates unique identifiers with these rules:
 
 | Entity       | Generation Rule                       | Example                                 |
 |--------------|:--------------------------------------|:----------------------------------------|
 | **Instance** | `{{ minio_cluster }}-{{ minio_seq }}` | `minio-1`, `minio-2`, `minio-3`, `minio-4` |
 {.full-width}
 
-The MINIO module does not assign additional identity to host nodes; nodes are identified by their existing hostname or IP address.
-The [**`minio_node`**](/docs/minio/param#minio_node) parameter generates node names for internal Silo cluster use (written to `/etc/hosts` for cluster discovery), not host-node identity.
+MINIO uses the existing hostname or IP address as the host node identity. It does not assign another identity. [**`minio_node`**](/docs/minio/param#minio_node) generates internal Silo node names for cluster discovery in `/etc/hosts`. These names do not identify the host node.
 
-Roles locate actual members across the entire inventory by `minio_cluster`; the Ansible group name does not need to match the cluster name. `minio_type` is a retained backend selector and currently must be `silo`.
+Roles find members throughout the inventory by `minio_cluster`. The Ansible group name can differ from the cluster name. The retained backend selector `minio_type` currently must be `silo`.
 
 
 ----------------
 
 ## Core Configuration Parameters
 
-Beyond identity parameters, the following parameters are critical for Silo cluster configuration:
+These parameters are also critical for Silo cluster configuration:
 
 | Parameter                                                |   Type   | Description                           |
 |:---------------------------------------------------------|:--------:|:--------------------------------------|
@@ -134,7 +133,7 @@ Each object-storage instance listens on the following ports:
 | 9001  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)     | Web admin console port |
 {.full-width}
 
-The MINIO module enables HTTPS by default, controlled by [**`minio_https`**](/docs/minio/param#minio_https). Keep HTTPS enabled with the default pgBackRest S3 repository configuration and install the Pigsty CA correctly.
+MINIO enables HTTPS by default through [**`minio_https`**](/docs/minio/param#minio_https). For the default pgBackRest S3 repository configuration, keep HTTPS enabled and install the Pigsty CA correctly.
 
 Clients can reach a multi-node Silo cluster through **any member**. For a stable entry point, use a load balancer such as HAProxy with a VIP.
 
@@ -143,7 +142,7 @@ Clients can reach a multi-node Silo cluster through **any member**. For a stable
 
 ## Resource Provisioning
 
-After Silo cluster deployment, Pigsty automatically creates the following resources (controlled by [**`minio_provision`**](/docs/minio/param#minio_provision)):
+After deployment, Pigsty creates these Silo resources. [**`minio_provision`**](/docs/minio/param#minio_provision) controls this step:
 
 **Default Buckets** (defined by [**`minio_buckets`**](/docs/minio/param#minio_buckets)):
 
@@ -163,16 +162,16 @@ After Silo cluster deployment, Pigsty automatically creates the following resour
 | `s3user_data` | `S3User.Data`      | `data`  | Access `data` bucket       |
 {.full-width}
 
-These passwords are publicly documented [**default credentials**](/docs/concept/sec/compliance#default-credentials-checklist), intended only for demonstrations and local development. Replace them before production deployment.
+These public [**default credentials**](/docs/concept/sec/compliance#default-credentials-checklist) are only for demonstrations and local development. Replace them before production deployment.
 
-`pgbackrest` is used for PostgreSQL cluster backups; `s3user_meta` and `s3user_data` are reserved users not actively used.
+`pgbackrest` serves PostgreSQL cluster backups. The reserved users `s3user_meta` and `s3user_data` are not actively used.
 
 
 ----------------
 
 ## Monitoring Label System
 
-Pigsty uses the [**identity parameters**](#identity-parameters) above to identify object-storage entities. A Silo availability series looks like this:
+Pigsty uses these [**identity parameters**](#identity-parameters) to identify object storage entities. This example shows a Silo availability series:
 
 ```text
 minio_up{cls="minio", ins="minio-1", ip="10.10.10.10", job="minio"}
@@ -181,4 +180,4 @@ minio_up{cls="minio", ins="minio-3", ip="10.10.10.12", job="minio"}
 minio_up{cls="minio", ins="minio-4", ip="10.10.10.13", job="minio"}
 ```
 
-Here `cls`, `ins`, and `ip` identify the cluster name, instance name, and node IP. Compatible monitoring naming keeps `job="minio"`, while the current backend label is `flavor=silo`. See the [**metric list**](/docs/minio/metric) for details.
+`cls`, `ins`, and `ip` identify the cluster name, instance name, and node IP. For monitoring compatibility, `job="minio"` remains unchanged. The current backend label is `flavor=silo`. See the [**metric list**](/docs/minio/metric) for details.

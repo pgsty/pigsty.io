@@ -9,28 +9,32 @@ categories: [Task, Reference]
 ---
 
 
-Pigsty includes a built-in playbook [`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml) that implements online database migration based on logical replication.
+Pigsty includes the [`pgsql-migration.yml`](https://github.com/pgsty/pigsty/blob/main/pgsql-migration.yml) playbook for online database migration with logical replication.
 
-With pre-generated automation scripts, application downtime can be reduced to just a few seconds. However, note that logical replication requires PostgreSQL 10 or later to work.
+The generated automation scripts can reduce application downtime to a few seconds.
+Logical replication requires PostgreSQL 10 or later.
 
-Of course, if you have sufficient downtime budget, you can always use the `pg_dump | psql` approach for offline migration.
+If the permitted downtime is sufficient, you can use `pg_dump | psql` for offline migration.
 
 
 ----------------
 
 ## Defining Migration Tasks
 
-To use Pigsty's online migration playbook, you need to create a definition file that describes the migration task details.
+To use the online migration playbook, create a definition file that describes the migration task.
 
 Refer to the task definition file example: [`files/migration/pg-meta.yml`](https://github.com/pgsty/pigsty/blob/main/files/migration/pg-meta.yml).
 
-This migration task will online migrate `pg-meta.meta` to `pg-test.test`, where the former is called the **Source Cluster (SRC)** and the latter is called the **Destination Cluster (DST)**.
+This task migrates `pg-meta.meta` to `pg-test.test` online.
+The former is the **Source Cluster (SRC)**.
+The latter is the **Destination Cluster (DST)**.
 
 ```text
 pg-meta-1	10.10.10.10  --> pg-test-1	10.10.10.11 (10.10.10.12,10.10.10.13)
 ```
 
-Logical replication-based migration works on a per-database basis. You need to specify the database name to migrate, as well as the IP addresses of the source and destination cluster primary nodes and superuser connection information.
+Logical replication migrates one database at a time.
+Specify the database name, the source and destination primary IP addresses, and the superuser connection information.
 
 ```yaml
 ---
@@ -73,8 +77,9 @@ pg_monitor_password: DBUser.Monitor
 ...
 ```
 
-By default, the superuser connection strings on both source and destination sides are constructed using the global admin user and the respective primary IP addresses, but you can always override these defaults through the `src_pg` and `dst_pg` parameters.
-Similarly, you can override the subscription connection string default through the `sub_conn` parameter.
+By default, Pigsty builds the source and destination superuser connection strings from the global administration user and each primary IP address.
+Use `src_pg` and `dst_pg` to override these defaults.
+Use `sub_conn` to override the subscription connection string.
 
 
 
@@ -82,10 +87,11 @@ Similarly, you can override the subscription connection string default through t
 
 ## Generating Migration Plan
 
-This playbook does not actively perform cluster migration, but it generates the operation manual and automation scripts needed for migration.
+The playbook generates the operating manual and automation scripts for migration.
+It does not perform the migration itself.
 
-By default, you will find the migration context directory at `~/migration/pg-meta.meta`.
-Follow the instructions in `README.md` and execute these scripts in sequence to complete the database migration!
+By default, the migration context directory is `~/migration/pg-meta.meta`.
+Follow `README.md` and run the scripts in sequence to complete the migration.
 
 
 ```bash
@@ -121,10 +127,16 @@ Follow the instructions in `README.md` and execute these scripts in sequence to 
 
 **Notes**
 
-If you're worried about primary key conflicts when copying sequence numbers, you can advance all sequences forward by some distance when copying, for example +1000. You can use `./copy-seq` with a parameter `1000` to achieve this.
+To avoid primary key conflicts when you copy sequence values, you can advance all sequences by an offset, such as +1000.
+For this example, run `./copy-seq` with the argument `1000`.
 
-You must implement your own `./re-routing` script to route your application traffic from src to dst. Because we don't know how your traffic is routed (e.g., dns, VIP, haproxy, or pgbouncer). Of course, you can also do this manually...
+Implement `./re-routing` to route application traffic from src to dst.
+The implementation depends on your access method, such as DNS, VIP, HAProxy, or PgBouncer.
+You can also change the routing manually.
 
-You can implement a `./disable-src` script to restrict application access to the src cluster—this is optional: if you can ensure all application traffic is cleanly switched in `./re-routing`, you don't really need this step.
+You can optionally implement `./disable-src` to restrict application access to the src cluster.
+If `./re-routing` switches all application traffic completely, you do not need this step.
 
-But if you have various access from unknown sources that can't be cleanly sorted out, it's better to use more thorough methods: change HBA rules and reload to implement (recommended), or simply stop the postgres, pgbouncer, or haproxy processes on the source primary.
+If traffic from unknown sources prevents a complete switch, use a more complete access restriction.
+We recommend that you change and reload the HBA rules.
+You can also stop the postgres, pgbouncer, or haproxy processes on the source primary.

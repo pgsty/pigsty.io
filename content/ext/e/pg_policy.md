@@ -2,7 +2,7 @@
 title: "pg_policy"
 linkTitle: "pg_policy"
 description: "Agentic policy language for PostgreSQL with guardrails, guidance, and session-aware controls"
-weight: 7440
+weight: 7450
 ---
 
 <div class="ext-cards">
@@ -30,7 +30,7 @@ weight: 7440
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7440  | [**`pg_policy`**](/ext/e/pg_policy) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `policy` |
+| 7450  | [**`pg_policy`**](/ext/e/pg_policy) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `policy` |
 {.ext-table}
 
 | **Related** | [`pg_command_fw`](/ext/e/pg_command_fw) [`pgextwlist`](/ext/e/pgextwlist) [`set_user`](/ext/e/set_user) [`noset`](/ext/e/noset) [`block_copy_command`](/ext/e/block_copy_command) [`supautils`](/ext/e/supautils) [`anon`](/ext/e/anon) [`pgaudit`](/ext/e/pgaudit) |

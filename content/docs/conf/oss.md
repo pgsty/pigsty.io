@@ -6,7 +6,7 @@ icon: fa-solid fa-hammer
 categories: [Reference]
 ---
 
-The `build/oss` configuration template is the build environment configuration for Pigsty open-source edition offline packages, used to batch-build offline installation packages across multiple operating systems.
+The `build/oss` template configures a build environment for offline packages of the Pigsty open-source edition. Use it to build offline installation packages for multiple operating systems in batches.
 
 This configuration is intended for developers and contributors only.
 
@@ -27,7 +27,7 @@ Usage:
 cp conf/build/oss.yml pigsty.yml
 ```
 
-> Note: This is a build template with fixed IP addresses, intended for internal use only.
+> Note: This build template uses fixed IP addresses. It is for internal use only.
 
 
 --------

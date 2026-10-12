@@ -6,9 +6,11 @@ icon: fa-brands fa-windows
 categories: [Reference]
 ---
 
-The `mssql` configuration template uses a **PostgreSQL 17-compatible Babelfish** kernel instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility. The current template is pinned to `pg_version: 17`; `configure` does not apply `-v` overrides to this fixed-kernel template.
+The `mssql` configuration template uses a **PostgreSQL 17-compatible Babelfish** kernel instead of native PostgreSQL. It provides Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility.
 
-Since Pigsty v4.2, Babelfish is built directly by Pigsty, no longer using the WiltonDB repository, and is available on all [supported Linux platforms](/docs/ref/linux).
+The current template fixes the version at `pg_version: 17`. The `configure` command does not apply `-v` overrides to this fixed-kernel template.
+
+Since v4.2, Pigsty builds Babelfish directly and does not use the WiltonDB repository. Babelfish is available on all [supported Linux platforms](/docs/ref/linux).
 
 For the complete tutorial, see: **[Babelfish (MSSQL) Kernel Guide](/docs/pgsql/kernel/babelfish/)**
 
@@ -44,7 +46,7 @@ Source: [`pigsty/conf/mssql.yml`](https://github.com/pgsty/pigsty/blob/main/conf
 
 ## Explanation
 
-The `mssql` template allows you to use SQL Server Management Studio (SSMS) or other SQL Server client tools to connect to PostgreSQL (through Babelfish protocol compatibility).
+With the `mssql` template, SQL Server Management Studio (SSMS) and other SQL Server clients can connect to PostgreSQL. Babelfish provides the protocol compatibility.
 
 **Key Features**:
 - Uses TDS protocol (port 1433), compatible with SQL Server clients
@@ -74,7 +76,7 @@ sqlcmd -S 10.10.10.10,1433 -U dbuser_mssql -P DBUser.MSSQL -d mssql
 - Leveraging PostgreSQL ecosystem while maintaining T-SQL compatibility
 
 **Notes**:
-- The current `mssql` template is pinned to a PostgreSQL 17-compatible kernel; do not rely on `-v` to switch its major version
+- The current `mssql` template fixes the kernel at a PostgreSQL 17-compatible version. Do not use `-v` to change its major version.
 - Default migration mode is `multi-db` (`babelfishpg_tsql.migration_mode`), configurable to `single-db` when needed
-- Some T-SQL syntax may have compatibility differences, refer to Babelfish compatibility documentation
+- Some T-SQL syntax can have compatibility differences. See the Babelfish compatibility documentation.
 - Must use `md5` authentication method (not `scram-sha-256`)

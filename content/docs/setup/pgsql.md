@@ -2,29 +2,30 @@
 title: "Getting Started with PostgreSQL"
 linkTitle: Use PG
 weight: 265
-description: Get started with PostgreSQL—connect using CLI and graphical clients
+description: Connect to PostgreSQL with command-line tools and graphical clients.
 icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Tutorial]
 ---
 
+[PostgreSQL](https://www.postgresql.org/) is an open-source relational database.
+It can store and retrieve different types of data.
+This guide uses PG as an abbreviation for PostgreSQL.
 
-[**PostgreSQL**](https://www.postgresql.org/) (abbreviated as PG) is the world's most advanced and popular open-source relational database. Use it to store and retrieve multi-modal data.
-
-This guide is for developers with basic Linux CLI experience but not very familiar with PostgreSQL, helping you quickly get started with PG in Pigsty.
-
-We assume you're a personal user deploying in the default single-node mode. For prod multi-node HA cluster access, refer to [**Prod Service Access**](/docs/pgsql/service/).
-
---------
+Use this guide if you know basic Linux commands and want to start with PostgreSQL in Pigsty.
+The examples use the default single-node installation.
+For production clusters with multiple nodes, see [Service Access](/docs/pgsql/service/).
 
 ## Basics
 
-In the default [**single-node installation**](/docs/setup/install) template, you'll create a PostgreSQL database cluster named `pg-meta` on the current node, with only one primary instance.
+The default [single-node template](/docs/setup/install/) creates the `pg-meta` cluster on the current node.
+This cluster has one primary instance.
+PostgreSQL listens on port `5432`.
+The template also creates the `meta` database.
 
-PostgreSQL listens on port `5432`, and the cluster has a preset database `meta` available for use.
-
-After installation, exit the current admin user ssh session and re-login to refresh environment variables.
-Then simply type `pp` and press Enter to access the database cluster via the `psql` CLI tool (`p` is the shortcut for the `pig` CLI):
+After installation, close your administration account SSH session.
+Log in again to load the new environment variables.
+Enter `pp` to open `psql`:
 
 ```bash
 vagrant@pg-meta-1:~$ pp
@@ -34,21 +35,20 @@ Type "help" for help.
 postgres=#
 ```
 
-You can also switch to the `postgres` OS user and execute `psql` directly to connect to the default `postgres` admin database.
-
-
-
---------
+The command uses `p` as a shortcut for the `pig` command-line tool.
+You can also use the `postgres` operating system account to run `psql`.
+This connects to the default `postgres` administration database.
 
 ## Connecting to Database
 
-To access a PostgreSQL database, use a CLI tool or graphical client and fill in the PostgreSQL **connection string**:
+Use a command-line tool or a graphical client to connect.
+Supply a PostgreSQL connection string in this format:
 
 ```bash
 postgres://username:password@host:port/dbname
 ```
 
-Some drivers and tools may require you to fill in these parameters separately. The following five are typically required:
+Some drivers and clients require separate connection parameters:
 
 | Parameter  | Description             | Example Value | Notes                                                       |
 |------------|-------------------------|---------------|-------------------------------------------------------------|
@@ -59,18 +59,19 @@ Some drivers and tools may require you to fill in these parameters separately. T
 | `dbname`   | Database name           | `meta`        | Default template database name                              |
 {.full-width}
 
-For personal use, you can directly use the Pigsty default database superuser `dbuser_dba` for connection and management. The `dbuser_dba` has full database privileges.
-By default, if you specified the `configure -g` parameter when configuring Pigsty, the password will be randomly generated and saved in `~/pigsty/pigsty.yml`:
+For personal administration, you can use `dbuser_dba`.
+This account is a database superuser with full privileges.
+
+If you ran `configure -g`, the script generated a random administration password.
+Find the password in `~/pigsty/pigsty.yml`:
 
 ```bash
 cat ~/pigsty/pigsty.yml | grep pg_admin_password
 ```
 
---------
-
 ## Default Accounts
 
-Pigsty's default [**single-node template**](/docs/conf/meta) presets the following database users, ready to use out of the box:
+The default [single-node template](/docs/conf/meta/) defines these database accounts:
 
 | Username      | Password        | Role           | Purpose                            |
 |---------------|-----------------|----------------|------------------------------------|
@@ -79,7 +80,7 @@ Pigsty's default [**single-node template**](/docs/conf/meta) presets the followi
 | `dbuser_view` | `DBUser.Viewer` | Read-only user | Data viewing (**change this!**)    |
 {.full-width}
 
-For example, you can connect to the `meta` database in the `pg-meta` cluster using three different connection strings with three different users:
+These examples connect to the same `meta` database with different accounts:
 
 ```bash
 postgres://dbuser_dba:DBUser.DBA@10.10.10.10:5432/meta
@@ -87,16 +88,14 @@ postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
 postgres://dbuser_view:DBUser.Viewer@10.10.10.10:5432/meta
 ```
 
-Note: These default passwords are automatically replaced with random strong passwords when using `configure -g`. Remember to replace the IP address and password with actual values.
-
-
---------
+Replace the example IP address and password with your actual values.
+The `configure -g` command replaces the three example passwords with random passwords.
+See [Security Recommendations](/docs/setup/security/) for its complete scope and limitations.
 
 ## Using CLI Tools
 
-`psql` is the official PostgreSQL CLI client tool, powerful and the first choice for DBAs and developers.
-
-On a server with Pigsty deployed, you can directly use `psql` to connect to the local database:
+`psql` is the PostgreSQL command-line client.
+On a Pigsty node, use one of these methods to connect to the local database:
 
 ```bash
 # Simplest way: use postgres system user for local connection (no password needed)
@@ -113,7 +112,8 @@ export PGPASSWORD='DBUser.DBA'
 psql -h 10.10.10.10 -p 5432 -U dbuser_dba -d meta
 ```
 
-After successful connection, you'll see a prompt like this:
+Replace the example IP address and password before you run the connection commands.
+After a successful connection, `psql` shows a prompt:
 
 ```bash
 psql ({{< param pg_version >}})
@@ -122,9 +122,10 @@ Type "help" for help.
 meta=#
 ```
 
-**Common psql Commands**
+**Common psql commands**
 
-After entering psql, you can execute SQL statements or use meta-commands starting with `\`:
+Enter SQL statements at the prompt.
+To run a psql meta-command, start the command with `\`.
 
 | Command    | Description            | Command     | Description               |
 |------------|------------------------|-------------|---------------------------|
@@ -135,9 +136,10 @@ After entering psql, you can execute SQL statements or use meta-commands startin
 | `\du`      | List all users/roles   | `\dx`       | List installed extensions |
 | `\dn`      | List all schemas       | `\dt`       | List all tables           |
 
-**Executing SQL**
+**SQL example**
 
-In `psql`, directly enter SQL statements ending with semicolon `;`:
+End each SQL statement with a semicolon (`;`).
+This example creates a test table, adds two rows, queries the rows, and removes the table:
 
 ```sql
 -- Check PostgreSQL version
@@ -159,61 +161,59 @@ SELECT * FROM test;
 DROP TABLE test;
 ```
 
-
-
---------
-
 ## Using Graphical Clients
 
-If you prefer graphical interfaces, here are some popular PostgreSQL clients:
+You can also connect with a graphical client.
 
-**Grafana**
+### Grafana
 
-Pigsty's [**`INFRA`**](/docs/infra) module includes [**Grafana**](/docs/infra) with a pre-configured PostgreSQL data source (Meta).
-You can directly query the database using SQL from the Grafana Explore panel through the [**browser graphical interface**](/docs/setup/webui), no additional client tools needed.
+The [INFRA module](/docs/infra/) includes Grafana and a PostgreSQL data source named **Meta**.
+Open the [Web UI](/docs/setup/webui/).
+Use the Grafana **Explore** panel to query PostgreSQL with SQL.
+This method requires no additional client software.
 
-Grafana's default username is **`admin`**, and the password can be found in the [**`grafana_admin_password`**](/docs/infra/param#grafana_admin_password) field in the [**inventory**](/docs/concept/iac/inventory) (default `pigsty`).
+The default Grafana username is `admin`.
+Find its password in [`grafana_admin_password`](/docs/infra/param#grafana_admin_password) in the [inventory](/docs/concept/iac/inventory/).
+The default password is `pigsty`.
 
-**DataGrip**
+### DataGrip
 
-[**DataGrip**](https://www.jetbrains.com/datagrip/) is a professional database IDE from JetBrains, with powerful features.
-IntelliJ IDEA's built-in Database Console can also connect to PostgreSQL in a similar way.
+[DataGrip](https://www.jetbrains.com/datagrip/) is a database development tool from JetBrains.
+IntelliJ IDEA also has a Database Console that can connect to PostgreSQL.
 
-**DBeaver**
+### DBeaver
 
-[**DBeaver**](https://dbeaver.io/) is a free open-source universal database tool supporting almost all major databases. It's a cross-platform desktop client.
+[DBeaver](https://dbeaver.io/) is a free, open-source database client.
+It runs on multiple desktop operating systems and supports PostgreSQL and other databases.
 
-**pgAdmin**
+### pgAdmin
 
-[**pgAdmin**](https://www.pgadmin.org/) is the official PostgreSQL-specific GUI tool from PGDG, available through browser or as a desktop client.
-
-Pigsty provides a configuration template for one-click pgAdmin service deployment using Docker in [**Software Template: pgAdmin**](/docs/app/pgadmin).
-
-
-
---------
+[pgAdmin](https://www.pgadmin.org/) is a PostgreSQL administration client from PGDG.
+You can use its browser interface or desktop application.
+Pigsty supplies a [pgAdmin template](/docs/app/pgadmin/) for deployment with Docker.
 
 ## Viewing Monitoring Dashboards
 
-Pigsty provides many PostgreSQL [**monitoring dashboards**](/docs/pgsql/monitor/), covering everything from cluster overview to single-table analysis.
+Pigsty supplies [PostgreSQL monitoring dashboards](/docs/pgsql/monitor/).
+They show information from cluster summaries to individual tables.
 
-We recommend starting with **PGSQL Overview**. Many elements in the dashboards are clickable, allowing you to drill down layer by layer to view details of each cluster, instance, database, and even internal database objects like tables, indexes, and functions.
-
-
-
-
---------
+Open **PGSQL Overview** first.
+Select a cluster to see its instances and databases.
+Use the dashboard links to examine tables, indexes, and functions.
 
 ## Trying Extensions
 
-One of PostgreSQL's most powerful features is its [**extension ecosystem**](/docs/pgsql/ext). Extensions can add new data types, functions, index methods, and more to the database.
+[PostgreSQL extensions](/docs/pgsql/ext/) add data types, functions, index methods, and other database features.
+Pigsty packages [{{< param pgext_count >}} extensions](/ext/list) in 16 categories.
+These categories include time-series data, geographic data, vectors, and full-text search.
 
-Pigsty provides [**{{< param pgext_count >}} extensions**](/ext/list) covering 16 major categories including time-series, geographic, vector, and full-text search, installable with one click.
-Start with three commonly used extensions, then [**install**](/docs/pgsql/ext/install) more extensions such as `timescaledb` as needed.
+Start with these extensions:
 
-- [**`postgis`**](/ext/e/postgis): Geographic information system for processing maps and location data (installed by default)
-- [**`pgvector`**](/ext/e/vector): Vector database supporting AI embedding vector similarity search (installed by default)
-- [**`timescaledb`**](/ext/e/timescaledb): Time-series database for efficient storage and querying of time-series data (optional install)
+- [`postgis`](/ext/e/postgis) processes geographic and location data. The default template installs it.
+- [`pgvector`](/ext/e/vector) supplies vector similarity search for AI embeddings. The default template installs it.
+- [`timescaledb`](/ext/e/timescaledb) stores and queries time-series data. [Install it](/docs/pgsql/ext/install/) when required.
+
+Use these commands to list and enable extensions:
 
 ```sql
 \dx                            -- psql meta command, list installed extensions
@@ -221,10 +221,6 @@ TABLE pg_available_extensions; -- Query installed, available extensions
 CREATE EXTENSION postgis;      -- Enable postgis extension
 ```
 
-
-
---------
-
 ## Next Steps
 
-Congratulations on completing the PostgreSQL basics! Next, you can start [**configuring and customizing**](/docs/setup/config) your database.
+[Change the configuration](/docs/setup/config/) to define your databases, users, and extensions.

@@ -7,7 +7,9 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig pg` command (alias `pig postgres`) manages local PostgreSQL servers and databases. It wraps local primitives such as `pg_ctl`, `psql`, and `vacuumdb`; use `pig pt` for Patroni cluster operations and `pig pitr` for orchestrated PITR.
+Use `pig pg`, or its alias `pig postgres`, to manage local PostgreSQL servers and databases.
+It calls local tools such as `pg_ctl`, `psql`, and `vacuumdb`.
+Use `pig pt` for Patroni cluster operations. Use `pig pitr` for PITR with lifecycle control.
 
 ```bash
 pig pg - Local PostgreSQL primitives (pg_ctl / psql / local files).
@@ -184,7 +186,8 @@ These options apply to all `pig pg` subcommands:
 | `--dbsu` | `-U` | `postgres` | Database superuser (or `$PIG_DBSU` env) |
 {.full-width}
 
-Systemd service operations use the dedicated `pig pg svc ...` commands; the local `pg_ctl` primitives do not have a global `--systemd` / `-S` switch.
+Use `pig pg svc ...` for systemd service operations.
+The local `pg_ctl` commands do not have a global `--systemd` / `-S` option.
 
 **Version Detection Logic:**
 
@@ -199,10 +202,10 @@ Systemd service operations use the dedicated `pig pg svc ...` commands; the loca
 
 Initialize PostgreSQL data directory. Wraps `initdb`.
 
-- Data checksums are enabled by default unless explicitly disabled with `-K|--no-data-checksums`.
-- Prefer the platform-independent built-in `C.UTF-8` locale on PG 17+, fall back to system `C.UTF-8` / `C`, then system default locale.
-- If the data directory already exists, the command refuses to run unless `-f|--force` is used. If PostgreSQL is running on that data directory, it refuses even with `--force` to prevent data loss.
-- Extra arguments after `--` are passed to `initdb`, for example `--waldir=/wal`. Use `initdb` directly if you need to override locale or encoding options.
+- Data checksums are enabled by default. Use `-K|--no-data-checksums` to disable them.
+- On PG 17+, the command prefers the platform-independent built-in `C.UTF-8` locale. Fallbacks are system `C.UTF-8`, system `C`, then the system default locale.
+- If the data directory exists, the command requires `-f|--force`. If PostgreSQL runs on that directory, the command refuses even with `--force` to prevent data loss.
+- Arguments after `--` pass to `initdb`, such as `--waldir=/wal`. To override locale or encoding options, use `initdb` directly.
 
 ```bash
 pig pg init                       # Initialize with defaults
@@ -227,7 +230,9 @@ pig pg init -- --waldir=/wal      # Pass extra args to initdb
 
 ### pg start
 
-Start PostgreSQL with `pg_ctl start`. For a Patroni-managed instance, prefer `pig pt start` so PostgreSQL starts under Patroni. For a systemd-managed PostgreSQL service, use `pig pg svc start`.
+Start PostgreSQL with `pg_ctl start`.
+For a Patroni-managed instance, use `pig pt start` to start PostgreSQL under Patroni.
+For a systemd-managed PostgreSQL service, use `pig pg svc start`.
 
 ```bash
 pig pg start                      # Start with defaults
@@ -254,7 +259,8 @@ If PostgreSQL is already running, the command prints the existing postmaster PID
 
 Stop PostgreSQL with `pg_ctl stop`.
 
-On a Patroni-managed instance, stopping PostgreSQL directly can make Patroni restart it or initiate failover. Use `pig pt stop` or `pig pt svc stop` to stop Patroni and PostgreSQL together.
+If you stop PostgreSQL directly on a Patroni-managed instance, Patroni can restart it or start a failover.
+Use `pig pt stop` or `pig pt svc stop` to stop Patroni and PostgreSQL together.
 
 ```bash
 pig pg stop                       # Fast shutdown (default)
@@ -309,7 +315,7 @@ pig pg reload -D /data/pg18       # Specify data directory
 
 ### pg status
 
-Show PostgreSQL server status. Displays not only `pg_ctl status` output, but also postgres processes and Pigsty-related service status.
+Show PostgreSQL server status, including `pg_ctl status` output, PostgreSQL processes, and Pigsty-related service states.
 
 ```bash
 pig pg status                     # Check service status
@@ -402,7 +408,9 @@ pig pg psql -f script.sql         # Execute SQL script file
 | `--file` | `-f` | Execute SQL script file |
 {.full-width}
 
-When the global `-D/--data` option is specified, `pg psql` reads `postmaster.pid` from that directory as the database superuser and connects with the recorded port and Unix socket directory. If the postmaster information cannot be read or parsed, the command fails instead of silently connecting to the default instance.
+With global `-D/--data`, `pg psql` reads the directory's `postmaster.pid` as the database superuser.
+It connects with the recorded port and Unix socket directory.
+If it cannot read or parse that information, the command fails. It does not connect to the default instance instead.
 
 
 ### pg ps
@@ -428,7 +436,8 @@ pig pg ps -d mydb                 # Filter by database
 
 ### pg kill
 
-Terminate PostgreSQL connections. **Default is dry-run mode**, requires `-x` to execute.
+Terminate PostgreSQL connections.
+The default is **dry-run mode**. Add `-x` to execute.
 
 ```bash
 pig pg kill                       # Show connections to be terminated (dry-run)
@@ -458,12 +467,15 @@ pig pg kill --plan                # Preview connection termination plan
 | `--plan` | | Preview execution plan without terminating connections |
 {.full-width}
 
-**Security:** `--state` and `--query` parameters are validated to accept only simple alphanumeric patterns, preventing SQL injection.
+**Security:** `--state` and `--query` accept only validated simple alphanumeric patterns to prevent SQL injection.
 
 
 ### pg clone
 
-Clone a database inside the current PostgreSQL instance. This command wraps `CREATE DATABASE ... TEMPLATE ... STRATEGY FILE_COPY`, terminates existing sessions on the source database before cloning, and follows the same semantics as Pigsty's `pgsql-db clone` workflow.
+Clone a database inside the current PostgreSQL instance.
+The command uses `CREATE DATABASE ... TEMPLATE ... STRATEGY FILE_COPY`.
+Before cloning, it terminates existing sessions on the source database.
+It follows Pigsty's `pgsql-db clone` behavior.
 
 ```bash
 pig pg clone meta                       # Clone meta as meta_1/meta_2/...
@@ -485,7 +497,9 @@ pig pg clone meta meta_fork --plan      # Preview clone plan
 | `--yes` | `-y` | Skip confirmation prompt |
 {.full-width}
 
-**Notes:** On PostgreSQL 18+ with `file_copy_method=clone`, database cloning can use CoW semantics; otherwise it falls back to ordinary file copy. This command clones a single database and does not create a new PostgreSQL instance.
+**Notes:** on PostgreSQL 18+ with `file_copy_method=clone`, cloning can use CoW.
+Otherwise, it uses ordinary file copy.
+This command copies one database. It does not create a PostgreSQL instance.
 
 
 ## Database Maintenance Commands
@@ -533,7 +547,7 @@ pig pg analyze mydb -t mytable    # Analyze specific table
 
 ### pg freeze
 
-Freeze vacuum database to prevent transaction ID wraparound.
+Run a freeze vacuum to prevent transaction ID wraparound.
 
 ```bash
 pig pg freeze                     # Freeze current database
@@ -546,7 +560,7 @@ pig pg freeze -a                  # Freeze all databases
 
 ### pg repack
 
-Online table repacking. Requires `pg_repack` extension.
+Repack tables online. This requires the `pg_repack` extension.
 
 ```bash
 pig pg repack mydb                # Repack all tables in database
@@ -574,7 +588,8 @@ pig pg repack mydb --plan         # Show tables to be repacked
 
 ### pg tune
 
-Generate a recommended set of PostgreSQL parameters based on the current PostgreSQL major version, host hardware, and workload profile. By default, it auto-detects CPU, memory, and data disk size, then prints the result as text output.
+Generate PostgreSQL parameter recommendations from the major version, host hardware, and workload profile.
+By default, the command detects CPU, memory, and data disk size, then prints text output.
 
 ```bash
 pig pg tune                       # auto-detect hardware, use oltp profile
@@ -612,16 +627,18 @@ pig pg tune -o yaml               # structured YAML output
 
 **Notes:**
 
-- Generated parameters are automatically gated by PostgreSQL major version. For example, `io_workers` is only emitted for PG 18+.
-- Text output can be redirected into a config snippet, while structured output is better suited for automation.
-- The command currently generates recommendations only; it does not modify PostgreSQL configuration files directly.
+- The command selects parameters for the PostgreSQL major version. For example, it emits `io_workers` only for PG 18+.
+- Redirect text output to a configuration snippet, or use structured output for automation.
+- The command only generates recommendations. It does not change PostgreSQL configuration files.
 
 
 ## Instance Fork
 
 ### pg fork
 
-Create a local one-off PostgreSQL physical copy for temporary analysis, troubleshooting, recovery validation, and development testing. Managed forks are written to `/pg/data-<name>` by default and are not registered with Pigsty, systemd, or Patroni. When `--dst-data` is specified explicitly, the command creates an unmanaged fork that is not enumerated by `fork list`.
+Create a temporary local physical copy of PostgreSQL for analysis, troubleshooting, recovery validation, or development tests.
+By default, managed forks use `/pg/data-<name>`. They are not registered with Pigsty, systemd, or Patroni.
+An explicit `--dst-data` creates an unmanaged fork, which `fork list` does not list.
 
 ```bash
 pig pg fork dev                       # Create /pg/data-dev, do not start
@@ -663,17 +680,20 @@ pig pg fork init dev --plan           # Show execution plan only
 
 **Behavior Notes:**
 
-- When the source instance is running, the command uses PostgreSQL low-level backup APIs to create a consistent physical copy; when the source is stopped, it can perform a cold copy.
-- The command prefers CoW/reflink. If only ordinary copy is available, interactive mode warns about disk-space risk and waits for confirmation.
-- To avoid deleting source data by mistake, the target directory cannot be `/`, `/pg`, source PGDATA, or a parent/child of source PGDATA. Symlinks are resolved before checks.
-- After copy, runtime and replication state is cleaned from the fork and `fork.json` is written. The new instance starts only when `-s|--start` is specified.
-- Managed forks must be managed by name. Unmanaged forks require `--dst-data` when starting, stopping, or removing.
+- If the source runs, the command uses PostgreSQL low-level backup APIs to make a consistent physical copy. If the source is stopped, it can make a cold copy.
+- The command prefers CoW/reflink. If only ordinary copy is available, interactive mode warns about disk-space requirements and waits for confirmation.
+- To prevent source-data deletion, the target cannot be `/`, `/pg`, source PGDATA, or a parent/child of source PGDATA. The command resolves symlinks before these checks.
+- After copying, the command removes runtime and replication state from the fork and writes `fork.json`. It starts the new instance only with `-s|--start`.
+- Manage a managed fork by name. For unmanaged forks, use `--dst-data` to start, stop, or remove them.
 
 **List Forks:**
 
-`pig pg fork list` scans `/pg/data-*`, reads `fork.json`, and refreshes each managed fork's runtime state. Text output shows `NAME`, `PORT`, `STATE`, `PID`, `AGE`, `SOURCE`, `COPY`, and `DATA`; state is reported as `running`, `stopped`, or `orphan`.
+`pig pg fork list` scans `/pg/data-*` and reads `fork.json` to refresh each managed fork's runtime state.
+Text output shows `NAME`, `PORT`, `STATE`, `PID`, `AGE`, `SOURCE`, `COPY`, and `DATA`.
+The state is `running`, `stopped`, or `orphan`.
 
-JSON and YAML output return the full machine-readable fork objects, including source and target endpoints, copy and backup metadata, management commands, and Pig build metadata.
+JSON and YAML output contain the complete fork objects.
+These include source and target endpoints, copy and backup metadata, management commands, and Pig build metadata.
 
 **Structured Output:**
 
@@ -685,7 +705,8 @@ pig pg fork list -o json
 
 ## Log Commands
 
-Log commands view PostgreSQL log files. Default log directory is `/pg/log/postgres`, can be changed via `--log-dir`.
+Use log commands to read PostgreSQL logs.
+The default directory is `/pg/log/postgres`. Use `--log-dir` to select another directory.
 
 **Log Command Global Options:**
 
@@ -696,7 +717,8 @@ Log commands view PostgreSQL log files. Default log directory is `/pg/log/postgr
 | `--follow` / `-f` | Follow latest log, only on parent `pg log` |
 {.full-width}
 
-**Permission Handling:** If current user lacks permission to read log directory, command automatically retries with `sudo`. `-o json` emits JSONL log records; log snapshots do not support `yaml` or `json-pretty`.
+**Permission Handling:** if the current user cannot read the log directory, the command retries with `sudo`.
+Use `-o json` for JSONL records. Log snapshots do not support `yaml` or `json-pretty`.
 
 
 ### pg log
@@ -722,7 +744,8 @@ pig pg log list --log-dir /var/log/postgres  # List logs in specified directory
 
 ### pg log tail
 
-Real-time log viewing (like `tail -f`). Default views latest CSV log file.
+Follow new log entries, as with `tail -f`.
+By default, the command reads the latest CSV log file.
 
 ```bash
 pig pg log tail                   # View latest log
@@ -819,7 +842,7 @@ pig pg svc status                # Show service status
 
 **Relationship with Native Tools:**
 
-`pig pg` is not a simple wrapper of PostgreSQL native tools, but a higher-level abstraction for common operations:
+`pig pg` simplifies common operations with native PostgreSQL and system tools:
 
 - Service control commands (init/start/stop/restart/reload/promote) call `pg_ctl`
 - `status` command shows process and related service status beyond `pg_ctl status`
@@ -842,4 +865,6 @@ For full native tool functionality, call the respective commands directly.
 
 **Platform Support:**
 
-This command is designed for Linux systems. Some features depend on `systemctl`, and log commands depend on readable PostgreSQL log files plus common tools such as `tail`, `less`, and `grep`.
+This command is designed for Linux.
+Some features require `systemctl`.
+Log commands require readable PostgreSQL logs and tools such as `tail`, `less`, and `grep`.

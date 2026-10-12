@@ -10,33 +10,32 @@ categories: [Reference]
 ---
 
 
-Pigsty aims to unite the power of the PostgreSQL ecosystem and help users make the most of the world's [**most popular**](/blog/pg/pg-is-no1-again/) database, PostgreSQL, with self-driving database management software.
+Pigsty combines tools from the PostgreSQL ecosystem with automated database management. It helps users use PostgreSQL, the world's [**most popular**](/blog/pg/pg-is-no1-again/) database.
 
-While Pigsty itself has already resolved many issues in PostgreSQL usage, achieving truly enterprise-grade service quality requires expert support and comprehensive coverage from the original provider.
-We deeply understand the importance of professional commercial support for enterprise customers. Therefore, Pigsty Enterprise Edition provides a series of value-added services on top of the open-source version, helping users better utilize PostgreSQL and Pigsty for customers to choose according to their needs.
+Pigsty resolves many PostgreSQL operational issues. Enterprise service quality also requires expert support and full coverage from the original provider. Pigsty Enterprise Edition adds these commercial services to the open-source edition. Choose services that meet your needs.
 
-**If you have any of the following needs, please consider Pigsty subscription service:**
+**Consider a Pigsty subscription if you have any of these needs:**
 
-- Running databases in critical scenarios requiring strict SLA guarantees and comprehensive coverage.
-- Need comprehensive support for complex issues related to Pigsty and PostgreSQL.
-- Seeking guidance on PostgreSQL/Pigsty production environment best practices.
-- Want experts to help interpret monitoring dashboards, analyze and identify performance bottlenecks and fault root causes, and provide recommendations.
-- Need to plan database architectures that meet security/disaster recovery/compliance requirements based on existing resources and business needs.
-- Need to migrate from other databases to PostgreSQL, or migrate and transform legacy instances.
-- Building an observability system, data dashboards, and visualization applications based on the Victoria/Grafana technology stack.
-- Migrating off cloud and seeking open-source alternatives to RDS for PostgreSQL - cloud-neutral, vendor lock-in-free solutions.
-- Want professional support for Redis/ETCD/Silo, as well as extensions like TimescaleDB/Citus.
-- Want to perform secondary development and OEM branding with explicit commercial authorization.
-- Want to sell Pigsty as SaaS/PaaS/DBaaS, or provide technical services/consulting/cloud services based on this distribution.
+- Run critical databases with strict SLA guarantees and full support coverage.
+- Get support for complex Pigsty and PostgreSQL issues.
+- Get guidance on PostgreSQL/Pigsty production practices.
+- Get expert help to interpret monitoring dashboards, identify performance bottlenecks and fault causes, and recommend actions.
+- Plan database architectures for security, disaster recovery, and compliance. Use your existing resources and business requirements.
+- Migrate other databases to PostgreSQL, or migrate and transform legacy instances.
+- Build observability systems, data dashboards, and visualization applications with Victoria/Grafana.
+- Move off the cloud to open-source RDS for PostgreSQL alternatives. Use solutions that are cloud-neutral and avoid vendor lock-in.
+- Get professional support for Redis/ETCD/Silo and extensions such as TimescaleDB/Citus.
+- Develop customized products and OEM branding with explicit commercial authorization.
+- Sell Pigsty as SaaS/PaaS/DBaaS, or provide technical services, consulting, and cloud services based on this distribution.
 
 
 --------
 
 ## Subscription Plans
 
-In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), Pigsty offers two different subscription service tiers: [**Professional Edition**](#pigsty-professional-edition-pro) and [**Enterprise Edition**](#pigsty-enterprise-edition), which you can choose based on your actual situation and needs.
+Pigsty offers the [**Open Source Edition**](#pigsty-open-source-edition-oss) and two subscription tiers. Choose [**Professional Edition**](#pigsty-professional-edition-pro) or [**Enterprise Edition**](#pigsty-enterprise-edition) to meet your needs.
 
-> **Note on `/price`:** The [**`/price`**](/price/) page is a simplified global pricing landing page (USD pricing, includes the `Standard` tier and node-cap presets). This page is the detailed subscription reference (CNY pricing, delivery scope, and OS/PG compatibility matrix). For technical compatibility boundaries, this page and [**Supported Linux**](/docs/ref/linux/) prevail.
+> **Note on `/price`:** The [**`/price`**](/price/) page gives simplified global pricing in USD. It includes the `Standard` tier and preset node limits. This page gives detailed CNY pricing, delivery scope, and the OS/PG compatibility matrix. For technical compatibility, use this page and [**Supported Linux**](/docs/ref/linux/).
 
 {{< cards >}}
 
@@ -65,7 +64,7 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 <p><b>Support: No person-day support option</b></p>
 <p><b>Repository: Global Cloudflare hosted repository</b></p>
 
-*Self-sufficient open source veterans*
+*For experienced users who manage their own systems*
 {{< /card >}}
 
 
@@ -149,12 +148,12 @@ In addition to the [**Open Source Edition**](#pigsty-open-source-edition-oss), P
 
 ## Pigsty Open Source Edition (OSS)
 
-Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license, provides complete core functionality, requires no fees, but does not guarantee any warranty service. If you find defects in Pigsty, we welcome you to submit an [Issue](https://github.com/pgsty/pigsty/issues/) on Github.
+Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license. It includes all core features at no cost and provides no warranty. To report a defect, submit an [Issue](https://github.com/pgsty/pigsty/issues/) on GitHub.
 
-Pigsty Open Source supports seven currently validated baselines: EL 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0, across both `x86_64` and `aarch64`.
-`v4.5.0` publishes a dual-architecture offline bundle for each of those seven baselines, fourteen artifacts in total, all freely downloadable; see the [offline installation guide](/docs/setup/offline/).
+Pigsty Open Source supports seven validated OS baselines on both `x86_64` and `aarch64`. These are EL 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+`v4.5.0` provides offline bundles for both architectures on each baseline. All fourteen artifacts are free to download. See the [offline installation guide](/docs/setup/offline/).
 
-Using the Pigsty open source version allows junior development/operations engineers to have **70%+** of the capabilities of professional DBAs. Even without database experts, they can easily set up a highly available, high-performance, easy-to-maintain, secure and reliable PostgreSQL database cluster.
+The open-source edition gives junior development and operations engineers **70%+** of professional DBA capabilities. They can build highly available, high-performance PostgreSQL clusters without database experts. These clusters are secure, reliable, and easy to maintain.
 
 |   Code   | OS Distribution Version    |   `x86_64`    |   `aarch64`    |                       PG18                       |                   PG17                    |                   PG16                    |                   PG15                    |                   PG14                    |
 |:--------:|----------------------------|:-------------:|:--------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
@@ -176,19 +175,19 @@ Using the Pigsty open source version allows junior development/operations engine
 
 > [!NOTE] Professional Edition Subscription: Starting Price ¥150,000 / year
 
-Pigsty Professional Edition subscription provides complete functional modules and warranty for Pigsty itself. For defects in PostgreSQL itself and extension plugins, we will make our best efforts to provide feedback and fixes through the PostgreSQL global developer community.
+Pigsty Professional Edition includes all functional modules and a warranty for Pigsty. For PostgreSQL and extension defects, we make our best efforts to report issues and provide fixes through the global PostgreSQL developer community.
 
-Pigsty Professional Edition is built on the open source version, fully compatible with all open source features, and provides additional modules plus broader database/OS compatibility options: we provide build options for **all minor versions** of eight mainstream Linux releases (EL8/9/10, Debian 12/13, Ubuntu 22/24/26).
+Professional Edition builds on the open-source edition and supports all its features. It adds modules and more database and OS options. We provide builds for **all minor versions** of eight Linux releases: EL8/9/10, Debian 12/13, and Ubuntu 22/24/26.
 
-Pigsty Professional Edition includes support for PostgreSQL **14 - 18**, and tracks upstream PostgreSQL minor updates continuously (for active majors, typically day-zero or near-day availability), ensuring smooth rolling upgrades to newer majors and minors.
+Professional Edition supports PostgreSQL **14 - 18** and continuously follows upstream minor updates. Active major versions typically receive updates on the release day or shortly after. This supports smooth rolling upgrades to newer major and minor versions.
 
-Pigsty Professional Edition subscription allows you to use China mainland mirror site software repositories, accessible without VPN/proxy; we will also customize offline software installation packages for your exact operating system major/minor version, ensuring normal installation and delivery in air-gapped environments, achieving autonomous and controllable deployment.
+Professional Edition includes China mainland software repository mirrors that work without a VPN or proxy. We also customize offline installation packages for your exact OS major and minor version. These packages support installation and delivery in air-gapped environments under your control.
 
-Pigsty Professional Edition subscription provides standard expert consulting services, including complex issue analysis, DBA Q&A support, backup compliance advice, etc. We commit to responding to your issues within business hours (5x8), and provide **1** person-day support per year, with optional person-day add-on options.
+Professional Edition includes standard expert consulting, such as complex issue analysis, DBA Q&A, and backup compliance advice. We respond during business hours (5x8). The subscription includes **1** person-day of support per year. You can buy additional person-days.
 
-Pigsty Professional Edition uses a commercial license, providing additional modules, technical support, and warranty services.
+Professional Edition uses a commercial license. It includes additional modules, technical support, and warranty services.
 
-Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent to the annual fee for **9** vCPU AWS high-availability RDS PostgreSQL, or a junior operations engineer with a monthly salary of **10,000 yuan**.
+Professional Edition starts at **¥150,000 / year**. This is equivalent to the annual fee for **9** vCPU AWS high-availability RDS PostgreSQL. It is also comparable to a junior operations engineer with a monthly salary of **10,000 yuan**.
 
 |   Code   | OS Distribution Version           |   `x86_64`    |   `aarch64`    |                       PG18                       |                       PG17                       |                   PG16                    |                   PG15                    |                   PG14                    |
 |:--------:|-----------------------------------|:-------------:|:--------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
@@ -208,19 +207,19 @@ Pigsty Professional Edition starting price is **¥150,000 / year**, equivalent t
 
 > [!IMPORTANT] Enterprise Edition Subscription: Starting Price ¥400,000 / year
 
-Pigsty Enterprise Edition subscription includes all service content provided by the Pigsty Professional Edition subscription, plus the following value-added service items:
+Enterprise Edition includes all Professional Edition services and the following additional services:
 
-Pigsty Enterprise Edition subscription provides the broadest range of database/operating system version support, including extended support for EOL operating systems (EL7, D11), domestic operating systems, cloud vendor operating systems, and legacy PostgreSQL major versions (PG12+ on request), as well as full support for Arm64 architecture chips.
+Enterprise Edition provides the widest range of database and OS version support. It extends support to EOL systems (EL7, D11), domestic operating systems, and cloud vendor operating systems. It also supports legacy PostgreSQL major versions (PG12+ on request) and fully supports Arm64 chips.
 
-Pigsty Enterprise Edition subscription provides domestic innovation and localization solutions, allowing you to use [PolarDB v2.0](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html) (this kernel license needs to be purchased separately) kernel to replace the native PostgreSQL kernel and meet local compliance requirements.
+Enterprise Edition provides domestic innovation and localization solutions. You can replace native PostgreSQL with the [PolarDB v2.0](http://www.itsec.gov.cn/aqkkcp/cpgg/202312/t20231226_162074.html) kernel to meet local compliance requirements. You must purchase this kernel license separately.
 
-Pigsty Enterprise Edition subscription provides higher-standard enterprise-level consulting services, committing to 7x24 with (< 1h) response time SLA, and can provide more types of consulting support: version upgrades, performance bottleneck identification, annual architecture review, extension plugin integration, etc.
+Enterprise Edition provides consulting with a 7x24, (< 1h) response SLA. It also supports version upgrades, performance bottleneck analysis, annual architecture reviews, extension integration, and other tasks.
 
-Pigsty Enterprise Edition subscription includes **2** person-days of support per year, with optional person-day add-on options, for resolving more complex and time-consuming issues.
+Enterprise Edition includes **2** person-days of support per year for complex tasks that need more time. You can buy additional person-days.
 
-Pigsty Enterprise Edition allows you to use Pigsty for DBaaS purposes, building cloud database services for external sales.
+Enterprise Edition permits DBaaS use. You can build cloud database services for external sales.
 
-Pigsty Enterprise Edition starting price is **¥400,000 / year**, equivalent to the annual fee for **24** vCPU AWS high-availability RDS, or an operations expert with a monthly salary of **30,000 yuan**.
+Enterprise Edition starts at **¥400,000 / year**. This is equivalent to the annual fee for **24** vCPU AWS high-availability RDS. It is also comparable to an operations expert with a monthly salary of **30,000 yuan**.
 
 |   Code   | OS Distribution Version           |   `x86_64`    |   `aarch64`    |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |                       PG13                       |                   PG12                    |
 |:--------:|-----------------------------------|:-------------:|:--------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------:|
@@ -244,18 +243,18 @@ Pigsty Enterprise Edition starting price is **¥400,000 / year**, equivalent to 
 
 **Feature Differences**
 
-Pigsty Professional/Enterprise Edition includes the following additional features compared to the open source version:
+Professional and Enterprise Editions add the following features to the open-source edition:
 
 - **Command Line Management Tool**: Unlock the full functionality of the Pigsty command line tool (`pig`)
-- **System Customization Capability**: Provide pre-built offline installation packages for exact mainstream Linux operating system distribution major/minor versions
+- **System Customization Capability**: Use offline installation packages built for exact major and minor versions of mainstream Linux distributions.
 - **Offline Installation Capability**: Complete Pigsty installation in environments without Internet access (air-gapped environments)
-- **Multi-version PG Kernel**: Allow users to freely specify and install PostgreSQL major versions within the lifecycle (14 - 18)
-- **Kernel Replacement Capability**: Allow users to use other PostgreSQL-compatible kernels to replace the native PG kernel, and the ability to install these kernels offline
+- **Multi-version PG Kernel**: Choose and install a supported PostgreSQL major version (14 - 18).
+- **Kernel Replacement Capability**: Replace native PostgreSQL with a compatible kernel. You can also install these kernels offline.
     - [**Babelfish**](/docs/pgsql/kernel/babelfish): Provides Microsoft SQL Server wire protocol-level compatibility
     - [**IvorySQL**](/docs/pgsql/kernel/ivorysql): Based on PG, provides Oracle syntax/type/stored procedure compatibility
     - [**PolarDB PG**](/docs/pgsql/kernel/polardb): Provides support for open-source PolarDB for PostgreSQL kernel
     - [**PolarDB O**](/docs/pgsql/kernel/polardb-o): Domestic innovation database with Oracle-compatible kernel for local compliance requirements (**Enterprise Edition subscription only**)
-- **Extension Support Capability**: Provides out-of-the-box installation for {{< param pgext_count >}} available PG extensions for PG 14-18 on mainstream operating systems.
+- **Extension Support Capability**: Install {{< param pgext_count >}} available PG extensions for PG 14-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
     - [**Silo**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
@@ -264,20 +263,20 @@ Pigsty Professional/Enterprise Edition includes the following additional feature
     - Kubernetes, VictoriaMetrics & VictoriaLogs
 - **Domestic Operating System Support**: Provides domestic innovation OS support options (**Enterprise Edition subscription only**)
 - **Domestic ARM Architecture Support**: Provides domestic ARM64 architecture support options (**Enterprise Edition subscription only**)
-- **China Mainland Mirror Repository**: Smooth installation without VPN, providing domestic YUM/APT repository mirrors and DockerHub access proxy.
+- **China Mainland Mirror Repository**: Install without a VPN. Use domestic YUM/APT mirrors and a DockerHub access proxy.
 - **Chinese Interface Support**: Monitoring system Chinese interface support (Beta)
 
 
 **Payment Model**
 
-Pigsty subscription uses an annual payment model. After signing the contract, the one-year validity period is calculated from the contract date. If payment is made before the subscription contract expires, it is considered automatic renewal.
-Consecutive subscriptions have discounts. The first renewal (second year) enjoys a 95% discount, the second and subsequent renewals enjoy a 90% discount on subscription fees, and one-time subscriptions for three years or more enjoy an overall 85% discount.
+Pigsty subscriptions use annual payments. The one-year term starts on the contract date. Payment before the contract expires counts as automatic renewal.
 
-After the annual subscription contract terminates, you can choose not to renew the subscription service. Pigsty will no longer provide software updates, technical support, and consulting services, but you can continue to use the already installed version of Pigsty Professional Edition software.
-If you subscribed to Pigsty professional services and choose not to renew, when re-subscribing **you do not need to** make up for the subscription fees during the interruption period, but all discounts and benefits will be reset.
+Consecutive subscriptions receive discounts. The first renewal (second year) receives a 95% discount. The second and subsequent renewals receive a 90% discount on subscription fees. A single subscription for three years or more receives an overall 85% discount.
 
-Pigsty's pricing strategy ensures value for money - you can immediately get top DBA's database architecture construction solutions and management best practices, with their consulting support and comprehensive coverage;
-while the cost is highly competitive compared to hiring database experts full-time or using cloud databases. Here are market references for [enterprise-level database professional service pricing](https://mp.weixin.qq.com/s/E0MtNxPVMQ4PAkIFmispTw):
+You can choose not to renew when the annual contract ends. Software updates, technical support, and consulting services then stop. You can continue to use the installed Professional Edition software.
+If you later subscribe again, **you do not need to** pay subscription fees for the interruption period. All discounts and benefits reset.
+
+Pigsty subscriptions include expert database architecture plans, management practices, consulting, and support coverage. The price is competitive with full-time database experts and cloud databases. The following references show [enterprise database professional service pricing](https://mp.weixin.qq.com/s/E0MtNxPVMQ4PAkIFmispTw):
 
 - [AWS RDS for PostgreSQL High Availability Edition](https://instances.vantage.sh/rds/): ¥1,160 ~ ¥1,582 / (vCPU·month), equivalent to **14K ~ 19K/year** (**per vCPU**)
 - [Alibaba Cloud RDS for PostgreSQL High Availability Edition](/blog/cloud/rds): ¥270 ~ ¥432 / (vCPU·month), equivalent to **3K ~ 5K/year** (**per vCPU**)
@@ -285,8 +284,8 @@ while the cost is highly competitive compared to hiring database experts full-ti
 - [Fujitsu Enterprise PostgreSQL Kubernetes](https://www.enterprisedb.com/products/plans-comparison#edbbiganimalcommunity360plan): $3200 / (Core·year), equivalent to **12K/year** (**per vCPU**)
 - [Oracle Annual Service Fee](https://www.oracle.com/a/ocom/docs/corporate/pricing/technology-price-list-070617.pdf): (Enterprise \$47,500 + Rac \$23,000) * 22% per year, equivalent to **28K/year** (**per vCPU**)
 
-The fair price for decent database professional services is **10,000 ~ 20,000 yuan / year**, with the billing unit being **vCPU**, i.e., one CPU thread (1 Intel core = 2 vCPU threads).
-Pigsty provides top-tier PostgreSQL expert services in China and adopts a **per-node billing** model. On commonly seen high-core-count server nodes, it brings users an unparalleled **cost reduction and efficiency improvement** experience.
+The reference price for professional database services is **10,000 ~ 20,000 yuan / year** per **vCPU**. A vCPU is one CPU thread (1 Intel core = 2 vCPU threads).
+Pigsty provides PostgreSQL expert services in China with **per-node billing**. This model reduces costs and improves efficiency on servers with many cores.
 
 
 
@@ -295,26 +294,25 @@ Pigsty provides top-tier PostgreSQL expert services in China and adopts a **per-
 
 ## Pigsty Expert Services
 
-In addition to Pigsty subscription, Pigsty also provides on-demand Pigsty x PostgreSQL expert services - industry-leading database experts available for consultation.
+Pigsty also provides on-demand PostgreSQL and Pigsty expert services:
 
 
 > [!IMPORTANT] Expert Advisor: ¥300,000 / three years
 > <br>
-> Within three years, provides 10 complex case handling sessions related to PostgreSQL and Pigsty, and unlimited Q&A.
+> Includes 10 complex PostgreSQL and Pigsty case sessions over three years, plus unlimited Q&A.
 
 
 > [!NOTE] Expert Support: ¥30,000 / person·day
 > <br>
-> Industry-leading expert on-site support, available for architecture consultation, fault analysis, problem troubleshooting, database health checks, monitoring interpretation, migration assessment, teaching and training, cloud migration/de-cloud consultation, and other continuous time-consuming scenarios.
+> Get on-site expert support for architecture, fault analysis, troubleshooting, database health checks, and monitoring interpretation. Support also covers migration assessment, training, cloud migration, cloud exit, and other tasks that need continuous expert time.
 
 > [!TIP] Expert Consultation: ¥3,000 / case
 > <br>
-> Consult on any questions you want to know about Pigsty, PostgreSQL, databases, cloud computing, AI...
-> Database veterans, cloud computing maverick sharing industry-leading insights, cognition, and judgment.
+> Ask experts about Pigsty, PostgreSQL, databases, cloud computing, AI, and related topics. Get their analysis and advice.
 
 > [!CAUTION] Quick Consultation: ¥300 / question
 > <br>
-> Get a quick diagnostic opinion and response to questions related to PostgreSQL / Pigsty / databases, not exceeding 5 minutes.
+> Get a diagnostic opinion or response about PostgreSQL, Pigsty, or databases. Each consultation lasts no more than 5 minutes.
 
 
 
@@ -324,4 +322,4 @@ In addition to Pigsty subscription, Pigsty also provides on-demand Pigsty x Post
 
 ## Contact Information
 
-Please send an email to [**rh@vonng.com**](mailto:rh@vonng.com). Users in mainland China are welcome to add WeChat ID `RuohangFeng`.
+Send an email to [**rh@vonng.com**](mailto:rh@vonng.com). Users in mainland China can add WeChat ID `RuohangFeng`.
