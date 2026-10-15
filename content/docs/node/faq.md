@@ -63,7 +63,7 @@ pg-test:
 
 **When performing deployments and changes**, the admin user used **must** have `ssh` and `sudo` privileges for all nodes. Passwordless login is not required.
 
-Pass SSH and sudo passwords with the `-k|-K` parameters when you run playbooks. To run a playbook as another user, use `-e`[`ansible_host`](/docs/node/param#connect)`=<another_user>`.
+Pass SSH and sudo passwords with the `-k|-K` parameters when you run playbooks. To run a playbook as another user, use `-e`[`ansible_user`](/docs/deploy/admin/#user)`=<another_user>`.
 
 However, Pigsty strongly recommends configuring SSH **passwordless login** with passwordless `sudo` for the admin user.
 

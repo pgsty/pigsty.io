@@ -67,7 +67,7 @@ Pigsty supports PostgreSQL 14 ~ 18 and compatible forks on EL, Debian, Ubuntu, a
 
 Pigsty can initialize an environment from bare metal with one command. Developers and operations engineers can use it to manage production databases without dedicated database experts.
 
-[![pigsty-arch.jpg](/img/pigsty/arch.png)](/docs/concept/arch#singleton-installation)
+[![pigsty-arch.jpg](/img/pigsty/arch.png)](/docs/concept/arch/#standalone-installation)
 
 
 
@@ -80,7 +80,7 @@ Pigsty can initialize an environment from bare metal with one command. Developer
 
 Pigsty integrates [**{{< param pgext_count >}} extensions**](/ext/list) from the PostgreSQL [**extension ecosystem**](/blog/pg/pg-eat-db-world). These provide ready-to-use support for multiple data models.
 
-Extensions can [**work together**](https://pigsty.io/blog/pg/pg-eat-db-world#the-magic-of-ultimate-extensibility) to provide combined capabilities. Use [**PostGIS**](https://postgis.net/) for geospatial data and [**TimescaleDB**](https://www.timescale.com/) for time-series and event analysis. Add [**Citus**](https://www.citusdata.com/) for a distributed geospatial and temporal database. Use [**PGVector**](https://github.com/pgvector/pgvector) for embeddings and [**ParadeDB**](https://www.paradedb.com/) for ElasticSearch-level full-text search. Combine SQL, full-text, and approximate vector search for hybrid queries. [**pg_duckdb**](https://github.com/duckdb/pg_duckdb), [**pg_mooncake**](https://github.com/duckdb/pg_mooncake), and other extensions provide dedicated OLAP and data lakehouse analytical performance.
+Extensions can [**work together**](https://pigsty.io/blog/pg/pg-eat-db-world/#the-magic-of-extreme-extensibility) to provide combined capabilities. Use [**PostGIS**](https://postgis.net/) for geospatial data and [**TimescaleDB**](https://www.timescale.com/) for time-series and event analysis. Add [**Citus**](https://www.citusdata.com/) for a distributed geospatial and temporal database. Use [**PGVector**](https://github.com/pgvector/pgvector) for embeddings and [**ParadeDB**](https://www.paradedb.com/) for ElasticSearch-level full-text search. Combine SQL, full-text, and approximate vector search for hybrid queries. [**pg_duckdb**](https://github.com/duckdb/pg_duckdb), [**pg_mooncake**](https://github.com/duckdb/pg_mooncake), and other extensions provide dedicated OLAP and data lakehouse analytical performance.
 
 Using PostgreSQL in place of separate MySQL, Kafka, ElasticSearch, MongoDB, and big data analysis systems can simplify architecture. This approach improves development efficiency and agility. It can reduce software, hardware, development, and operations costs.
 

@@ -13,7 +13,7 @@ The REDIS module has **22** parameters: 19 for Redis/Valkey deployment and confi
 
 ## Parameter Overview
 
-Use the [`REDIS`](#redis) parameter group to deploy and configure Redis clusters. It controls identity, instance definitions, operating mode, memory, persistence, and monitoring.
+Use the [`REDIS`](/docs/redis/param/#parameter-overview) parameter group to deploy and configure Redis clusters. It controls identity, instance definitions, operating mode, memory, persistence, and monitoring.
 
 | Parameter                                           |    Type    |  Level  | Description                                             |
 |:----------------------------------------------------|:----------:|:-------:|:--------------------------------------------------------|

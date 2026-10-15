@@ -173,7 +173,7 @@ sudo python3 -m pip install xgboost lightgbm scikit-learn
 Install the `pgml` extension and Python dependencies on all cluster nodes first.
 Then enable `pgml` on the PostgreSQL cluster.
 
-Use `patronictl` to [configure the cluster](https://pigsty.io/docs/pgsql/admin/#config-cluster).
+Use `patronictl` to [configure the cluster](https://pigsty.io/docs/pgsql/admin/cluster/#config-cluster).
 Add `pgml` to `shared_preload_libraries`.
 Set `pgml.venv` to your virtual environment directory:
 

@@ -183,15 +183,15 @@ This playbook contains the following subtasks:
 
 **Related Administration Tasks**
 
-- [Create Cluster](/docs/pgsql/admin#create-cluster)
-- [Add Instance](/docs/pgsql/admin#add-instance)
-- [Reload Service](/docs/pgsql/admin#reload-service)
-- [Reload HBA](/docs/pgsql/admin#reload-hba)
+- [Create Cluster](/docs/pgsql/admin/cluster/#create-cluster)
+- [Add Instance](/docs/pgsql/admin/cluster/#expand-cluster)
+- [Reload Service](/docs/pgsql/admin/cluster/#reload-service)
+- [Reload HBA](/docs/pgsql/admin/cluster/#reload-hba)
 
 **Notes**
 
 * Before you run this playbook on one replica, verify that the **cluster primary is initialized**.
-* After you scale out, [reload services](/docs/pgsql/admin#reload-service) and [reload HBA](/docs/pgsql/admin#reload-hba). The `bin/pgsql-add` wrapper does this automatically.
+* After you scale out, [reload services](/docs/pgsql/admin/cluster/#reload-service) and [reload HBA](/docs/pgsql/admin/cluster/#reload-hba). The `bin/pgsql-add` wrapper does this automatically.
 
 During cluster expansion, the Ansible playbook may time out while Patroni creates a replica.
 * The `wait for postgres/patroni replica` task typically runs for a long time before it stops.
@@ -271,13 +271,13 @@ This playbook contains the following subtasks:
 
 **Related Administration Tasks**
 
-- [Remove Instance](/docs/pgsql/admin#remove-instance)
-- [Remove Cluster](/docs/pgsql/admin#remove-cluster)
+- [Remove Instance](/docs/pgsql/admin/cluster/#shrink-cluster)
+- [Remove Cluster](/docs/pgsql/admin/cluster/#remove-cluster)
 
 **Notes**
 
 * **Do not remove a primary while replicas remain.** The remaining replicas will trigger automatic failover. Remove all replicas before the primary. Whole-cluster removal already handles this order.
-* **Refresh services after instance removal.** A removed replica remains in the load balancer configuration, but failed health checks prevent it from affecting services. [Reload services](/docs/pgsql/admin#reload-service) at an appropriate time to keep the production environment consistent with the inventory.
+* **Refresh services after instance removal.** A removed replica remains in the load balancer configuration, but failed health checks prevent it from affecting services. [Reload services](/docs/pgsql/admin/cluster/#reload-service) at an appropriate time to keep the production environment consistent with the inventory.
 
 
 
@@ -334,7 +334,7 @@ pg_users:
     pool_connlimit: 100             # Optional, user-level max connections; omitted values inherit global default 100
 ```
 
-For details, see: [Admin SOP: Create User](/docs/pgsql/admin#create-user)
+For details, see: [Admin SOP: Create User](/docs/pgsql/admin/user/#create-user)
 
 
 ----------------
@@ -395,7 +395,7 @@ pg_databases:
     pool_connlimit: 100             # Optional, pgbouncer max database connections
 ```
 
-For details, see: [Admin SOP: Create Database](/docs/pgsql/admin#create-database)
+For details, see: [Admin SOP: Create Database](/docs/pgsql/admin/db/#create-database)
 
 
 ----------------

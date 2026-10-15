@@ -120,7 +120,7 @@ Supported categories are `time`, `gis`, `rag`, `fts`, `olap`, `feat`, `lang`, `t
 The default extension catalog is defined in [**`cli/ext/assets/extension.csv`**](https://github.com/pgsty/pig/blob/main/cli/ext/assets/extension.csv).
 
 Run `pig ext reload` to download the latest catalog to `~/.pig/extension.csv`.
-The online catalog is also available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
+The online catalog is also available at [**repo.pigsty.io/ext/data/extension.csv**](https://repo.pigsty.io/ext/data/extension.csv).
 
 
 ## ext info
@@ -179,7 +179,7 @@ This command scans the PostgreSQL extension directory and finds extensions that 
 
 Install one or more PostgreSQL extensions with `pig ext add`.
 The commands `pig ext install`, `pig ext ins`, and `pig ext a` are aliases at the same level.
-The top-level [`pig install`](/docs/pig/cmd/#install) command is a separate wrapper for the native package manager.
+The top-level [`pig install`](/docs/pig/cmd/#pig-install) command is a separate wrapper for the native package manager.
 It also translates PostgreSQL and extension aliases.
 
 ```bash

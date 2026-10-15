@@ -150,7 +150,7 @@ The [`extension.csv`](https://github.com/pgsty/pig/blob/main/cli/ext/assets/exte
 Each pig release updates this file.
 To update it separately, run [`pig ext reload`](/docs/pig/ext/#ext-reload).
 By default, the command writes `~/.pig/extension.csv`. You can read and change this file.
-The online catalog is available at [**pigsty.io/ext/data/extension.csv**](https://pigsty.io/ext/data/extension.csv).
+The online catalog is available at [**repo.pigsty.io/ext/data/extension.csv**](https://repo.pigsty.io/ext/data/extension.csv).
 
 
 

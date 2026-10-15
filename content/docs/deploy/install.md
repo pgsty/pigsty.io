@@ -203,7 +203,7 @@ The [`deploy.yml`](/docs/setup/playbook/) [playbook](/docs/setup/playbook/) appl
 > [!WARNING] Upstream changes can stop installation
 > Incorrect updates to Linux or PGDG repositories can break dependencies and cause deployment failures.
 > These failures are common.
-> For production, we strongly recommend verified [offline packages](/docs/setup/offline#offline-package) for [offline installation](/docs/setup/offline).
+> For production, we strongly recommend verified [offline packages](/docs/setup/offline/#offline-packages) for [offline installation](/docs/setup/offline).
 
 > [!WARNING] Repeated deployment can change services
 > Another run of [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) on an existing deployment can restart services and overwrite configuration files.

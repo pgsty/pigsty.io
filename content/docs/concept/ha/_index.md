@@ -77,4 +77,4 @@ After a replica fails, read-only traffic moves to other replicas. If all replica
 
 Patroni and Etcd detect failures together. The leader holds a lease and must renew it before its TTL expires. Default `norm` mode uses 30 seconds. Expiration triggers **Failover** and a new election.
 
-Use [**Switchover**](/docs/pgsql/admin#switchover) to change primary without a failure. Writes experience a brief interruption before routing to the new primary. Use this for sequential server maintenance or upgrades.
+Use [**Switchover**](/docs/pgsql/admin/patroni/#switchover) to change primary without a failure. Writes experience a brief interruption before routing to the new primary. Use this for sequential server maintenance or upgrades.

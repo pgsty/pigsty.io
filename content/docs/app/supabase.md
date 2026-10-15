@@ -140,7 +140,7 @@ Default username and password are `supabase` and `pigsty`.
 **Notes:**
 
 - In mainland China, Pigsty uses 1Panel and 1ms DockerHub mirrors by default, which may be slow.
-- You can configure your own [proxy](/docs/docker/usage#proxy) and [registry mirror](/docs/docker/usage#registry-mirror), then manually pull images with `cd /opt/supabase; make pull`. Before exporting offline images, run `make pull` and then `make save`. The complete bundle includes both the default Envoy and optional Kong gateways. We also offer expert consulting services including complete offline installation packages.
+- You can configure your own [proxy](/docs/docker/usage#proxy) and [registry mirror](/docs/docker/usage/#registry-mirrors), then manually pull images with `cd /opt/supabase; make pull`. Before exporting offline images, run `make pull` and then `make save`. The complete bundle includes both the default Envoy and optional Kong gateways. We also offer expert consulting services including complete offline installation packages.
 - If you need object storage functionality, you must access Supabase via domain and HTTPS, otherwise errors will occur.
 - For serious production deployments, **always** change all default passwords!
 

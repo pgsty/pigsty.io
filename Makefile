@@ -2,7 +2,7 @@ default: dev
 
 d:dev
 dev:
-	HUGO_MODULE_REPLACEMENTS='github.com/pgsty/oink -> $(abspath ../oink)' hugo serve --renderToMemory
+	GOWORK=off HUGO_MODULE_WORKSPACE=off HUGO_MODULE_REPLACEMENTS='github.com/pgsty/oink -> $(abspath ../oink)' hugo serve --renderToMemory
 
 serve:
 	hugo serve --environment production --minify --disableFastRender --disableLiveReload
@@ -19,6 +19,7 @@ check:
 	GOWORK=off hugo build --cleanDestinationDir \
 		--printPathWarnings --printI18nWarnings --panicOnWarning
 	python3 bin/check-markdown.py --rendered public
+	python3 -m unittest discover -s bin -p 'test_internal_links.py'
 	python3 bin/check_internal_links.py public
 
 s: sync

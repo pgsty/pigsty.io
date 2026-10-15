@@ -19,7 +19,7 @@ It can be a physical machine, virtual machine, or container with systemd support
 The node must have `systemd`, `sudo`, and `sshd`.
 
 A deployment requires at least **1** node.
-You can deploy to multiple nodes in one [playbook run](/docs/setup/playbook#playbooks), or add nodes later.
+You can deploy to multiple nodes in one [playbook run](/docs/setup/playbook/#playbook-list), or add nodes later.
 The minimum resources are `1C1G`; we recommend at least `1C2G`.
 There is no upper resource limit.
 Pigsty automatically tunes parameters for the available resources.
@@ -160,7 +160,7 @@ localectl set-locale LANG=en_US.UTF-8
 ```
 
 For PostgreSQL 17 and later, we strongly recommend the built-in `C.UTF-8` collation as the default.
-The [configuration wizard](/docs/setup/playbook#configure) selects `C.UTF-8` when the PostgreSQL version and operating system support it.
+The [configuration wizard](/docs/setup/config/) selects `C.UTF-8` when the PostgreSQL version and operating system support it.
 
 ## Ansible
 

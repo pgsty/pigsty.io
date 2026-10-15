@@ -7,7 +7,7 @@ module: [PIGSTY]
 categories: [Concept]
 ---
 
-Pigsty uses a **modular architecture** and **declarative interface**. [**Combine modules**](/docs/deploy/planning#common-solutions) to meet your requirements.
+Pigsty uses a **modular architecture** and **declarative interface**. [**Combine modules**](/docs/deploy/planning/#common-patterns) to meet your requirements.
 
 * Use one or more modules from the [**modular design**](/docs/deploy/planning).
 * Describe the environment with a [**configuration inventory**](/docs/concept/iac/inventory) and [**parameters**](/docs/concept/iac/parameter). Apply it with [**Ansible playbooks**](/docs/setup/playbook).

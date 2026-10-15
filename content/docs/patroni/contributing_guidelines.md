@@ -11,7 +11,6 @@ categories: [Task]
 > Source: https://patroni.readthedocs.io/en/latest/contributing_guidelines.html
 
 <a id="contributing_guidelines"></a>
-<a id="chatting"></a>
 
 --------
 

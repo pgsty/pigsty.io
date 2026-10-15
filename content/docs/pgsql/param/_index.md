@@ -10,14 +10,14 @@ categories: [Reference]
 Install [`PGSQL`](/docs/pgsql) only on nodes that Pigsty manages through the [`NODE`](/docs/node) module.
 The deployment also needs an available [`ETCD`](/docs/etcd) cluster to store cluster metadata.
 
-Install `PGSQL` on one node to create a standalone server, which is a [primary](/docs/pgsql/config#primary) instance.
-Install it on additional nodes to create [read replicas](/docs/pgsql/config#replica) that provide standby capacity and read-only access.
+Install `PGSQL` on one node to create a standalone server, which is a [primary](/docs/pgsql/config/cluster/#primary) instance.
+Install it on additional nodes to create [read replicas](/docs/pgsql/config/cluster/#replica) that provide standby capacity and read-only access.
 You can create [offline](/docs/pgsql/config/cluster#offline) instances for ETL, OLAP, and interactive queries.
 Use [synchronous standby](/docs/pgsql/config/cluster#sync-standby) and [quorum commit](/docs/pgsql/config/cluster#quorum-commit) for stronger data consistency.
-Use [standby clusters](/docs/pgsql/config#standby-cluster) and [delayed clusters](/docs/pgsql/config#delayed-cluster) to respond quickly to data loss from human error or software defects.
+Use [standby clusters](/docs/pgsql/config/cluster/#standby-cluster) and [delayed clusters](/docs/pgsql/config/cluster/#delayed-cluster) to respond quickly to data loss from human error or software defects.
 
 You can organize multiple PGSQL clusters into a horizontally sharded cluster.
-Pigsty supports [Citus cluster groups](/docs/pgsql/config#citus-cluster) natively.
+Pigsty supports [Citus cluster groups](/docs/pgsql/config/cluster/#citus-cluster) natively.
 You can upgrade a standard PGSQL cluster to a distributed database cluster in place.
 
 ------------------------------
@@ -233,7 +233,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 
 ## `PG_ID`
 
-Use these parameters to identify PGSQL [entities](/docs/pgsql/config#er-diagram), such as clusters, instances, and services:
+Use these parameters to identify PGSQL [entities](/docs/concept/model/pgsql/), such as clusters, instances, and services:
 
 
 ```yaml
@@ -379,9 +379,9 @@ A dedicated node per instance is strongly recommended.
 
 Parameter Name: `pg_upstream`, Type: `ip`, Level: `I`
 
-Upstream instance IP address for [standby cluster](/docs/pgsql/config#standby-cluster) or cascade replica.
+Upstream instance IP address for [standby cluster](/docs/pgsql/config/cluster/#standby-cluster) or cascade replica.
 
-Set `pg_upstream` on the cluster `primary` to create a [standby cluster](/docs/pgsql/config#standby-cluster).
+Set `pg_upstream` on the cluster `primary` to create a [standby cluster](/docs/pgsql/config/cluster/#standby-cluster).
 This instance becomes the `standby leader` and receives and applies changes from the upstream cluster.
 
 On a non-`primary` instance, `pg_upstream` selects the upstream for physical replication.
@@ -963,7 +963,7 @@ It points to the directory for the installed PostgreSQL version.
 
 For example `/usr/pgsql -> /usr/pgsql-15`. On Ubuntu/Debian it points to `/usr/lib/postgresql/15/bin`.
 
-For more details, see [PGSQL File Structure](/docs/ref/fhs#postgres-fhs).
+For more details, see [PGSQL File Structure](/docs/ref/fhs/#postgresql-fhs).
 
 
 
@@ -1220,7 +1220,7 @@ Parameter Name: `pg_localhost`, Type: `path`, Level: `C`
 Unix socket directory for localhost PostgreSQL connection, default is `/var/run/postgresql`.
 
 This directory holds Unix sockets for local PostgreSQL and Pgbouncer connections.
-[`pg_exporter`](#pg_exporter) and Patroni prefer Unix sockets for PostgreSQL access.
+[`pg_exporter`](/docs/pgsql/param/#pg_monitor) and Patroni prefer Unix sockets for PostgreSQL access.
 
 
 
@@ -1229,7 +1229,7 @@ This directory holds Unix sockets for local PostgreSQL and Pgbouncer connections
 
 Parameter Name: `pg_namespace`, Type: `path`, Level: `C`
 
-Top-level namespace used in [etcd](#etcd), used by patroni and vip-manager, default is: `/pg`, not recommended to change.
+Top-level namespace used in [etcd](/docs/etcd/param/#etcd), used by patroni and vip-manager, default is: `/pg`, not recommended to change.
 
 
 
@@ -1327,7 +1327,7 @@ Parameter Name: `patroni_username`, Type: `username`, Level: `C`
 Patroni REST API username, default is `postgres`, used with [`patroni_password`](#patroni_password).
 
 Patroni protects dangerous REST API operations, such as cluster restart, with an additional username and password.
-See [Configure Cluster](/docs/pgsql/admin#configure-cluster) and [Patroni REST API](https://patroni.readthedocs.io/en/latest/rest_api.html).
+See [Configure Cluster](/docs/pgsql/admin/cluster/#config-cluster) and [Patroni REST API](https://patroni.readthedocs.io/en/latest/rest_api.html).
 
 
 
@@ -1500,7 +1500,7 @@ Parameter Name: `pg_shared_buffer_ratio`, Type: `float`, Level: `C`
 Postgres shared buffer memory ratio, default is `0.25`, normal range is `0.1`~`0.4`.
 
 The default, `0.25`, assigns 25% of node memory to PostgreSQL shared buffers.
-For huge pages, keep this value sufficiently below [`node_hugepage_ratio`](#node_hugepage_ratio).
+For huge pages, keep this value sufficiently below [`node_hugepage_ratio`](/docs/node/param/#node_hugepage_ratio).
 
 Values above 0.4 (40%) are usually not recommended, but may help in extreme cases.
 
@@ -1613,7 +1613,7 @@ This parameter lists preloaded dynamic shared libraries.
 The default is `pg_stat_statements,auto_explain`.
 Enabling these two built-in PostgreSQL extensions is strongly recommended.
 
-For existing clusters, you can directly [configure cluster](/docs/pgsql/admin#configure-cluster) `shared_preload_libraries` parameter and apply.
+For existing clusters, you can directly [configure cluster](/docs/pgsql/admin/cluster/#config-cluster) `shared_preload_libraries` parameter and apply.
 
 For TimescaleDB or Citus, add `timescaledb` or `citus` at the start of this list.
 For example:
@@ -1639,7 +1639,7 @@ Delayed standby replication delay, default: `0`.
 With a positive value, the standby cluster leader waits that interval before applying WAL changes.
 For example, `1h` keeps cluster data one hour behind the original cluster.
 
-See [Delayed Standby Cluster](/docs/pgsql/config#delayed-cluster) for details.
+See [Delayed Standby Cluster](/docs/pgsql/config/cluster/#delayed-cluster) for details.
 
 
 
@@ -2400,7 +2400,7 @@ Parameter Name: `pg_weight`, Type: `int`, Level: `I`
 Relative load balancing weight in service, default is 100, range 0-255.
 
 The default is `100`.
-Set it in instance variables, then [reload services](/docs/pgsql/admin#reload-service) to apply the value.
+Set it in instance variables, then [reload services](/docs/pgsql/admin/cluster/#reload-service) to apply the value.
 
 
 
@@ -2643,7 +2643,7 @@ ttl_slowest: "{{ pg_exporter_cache_ttls.split(',')[3]|int }}"      # ver slow qu
 ```
 
 With the default configuration, liveness metrics remain cached for at most `1s`.
-Most common metrics have a `10s` TTL, which should match [`victoria_scrape_interval`](/docs/infra/param#victoria_scrape_interval).
+Most common metrics have a `10s` TTL, which should match [`victoria_scrape_interval`](/docs/infra/param/#vmetrics_scrape_interval).
 A few queries with slowly changing results have a `60s` TTL.
 A small number of expensive monitoring queries have a `300s` TTL.
 

@@ -894,7 +894,7 @@ name: `nginx_port`, type: `port`, level: `G`
 
 Nginx HTTP listen port. The default is `80`. We recommend that you keep the default.
 
-If port 80 is occupied, you can use another port. Also update [`repo_endpoint`](#repo_endpoint) and [`node_repo_local_urls`](/docs/node/param#node_repo_local_urls) to match the new port.
+If port 80 is occupied, you can use another port. Also update [`repo_endpoint`](#repo_endpoint) to match the new port.
 
 
 

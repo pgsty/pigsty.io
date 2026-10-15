@@ -377,7 +377,7 @@ After accidental row or table deletion, adjust this delay to advance the delayed
 Read the data from that cluster to repair the original cluster.
 
 Delayed clusters need additional resources.
-They recover data much faster than [PITR](/docs/concept/pitr#recovery) and have less effect on the system.
+They recover data much faster than [PITR](/docs/concept/pitr/restore/) and have less effect on the system.
 Consider them for critical clusters.
 
 

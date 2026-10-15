@@ -152,7 +152,7 @@ After permanent failure, first recover `~/pigsty` on the administration node.
 The essential files are `pigsty.yml` and `files/pki/ca/ca.key`.
 
 > If you cannot retrieve these two files or their backups, deploy a new Pigsty installation.
-> Migrate the existing cluster through [Backup Cluster](/docs/pgsql/config/#backup-cluster).
+> Migrate the existing cluster through [Backup Cluster](/docs/pgsql/config/cluster/#standby-cluster).
 >
 > Back up the `pigsty` directory regularly, for example with Git version control.
 

@@ -20,12 +20,12 @@ Each Pigsty deployment includes infrastructure components that serve managed nod
 |:-----------------------------:|:--------:|------------------------------------------------------------------------|
 |        [Nginx](#nginx)        | `80/443` | Web service portal, local repo, and unified entry point                |
 |      [Grafana](#grafana)      |  `3000`  | Visualization platform for monitoring dashboards and data apps         |
-| [VictoriaMetrics](#victoria)  |  `8428`  | Time-series database with VMUI, compatible with Prometheus API         |
-|   [VictoriaLogs](#victoria)   |  `9428`  | Centralized log database, receives structured logs from Vector         |
-|  [VictoriaTraces](#victoria)  | `10428`  | Tracing and event storage for slow SQL / request tracing               |
-|     [VMAlert](#victoria)      |  `8880`  | Alert rule evaluator, triggers alerts based on VictoriaMetrics metrics |
-|   [AlertManager](#victoria)   |  `9059`  | Alert aggregation and dispatch, receives notifications from VMAlert    |
-| [BlackboxExporter](#victoria) |  `9115`  | ICMP/TCP/HTTP blackbox probing                                         |
+| [VictoriaMetrics](/docs/infra/#victoria-observability-suite)  |  `8428`  | Time-series database with VMUI, compatible with Prometheus API         |
+|   [VictoriaLogs](/docs/infra/#victoria-observability-suite)   |  `9428`  | Centralized log database, receives structured logs from Vector         |
+|  [VictoriaTraces](/docs/infra/#victoria-observability-suite)  | `10428`  | Tracing and event storage for slow SQL / request tracing               |
+|     [VMAlert](/docs/infra/#victoria-observability-suite)      |  `8880`  | Alert rule evaluator, triggers alerts based on VictoriaMetrics metrics |
+|   [AlertManager](/docs/infra/#victoria-observability-suite)   |  `9059`  | Alert aggregation and dispatch, receives notifications from VMAlert    |
+| [BlackboxExporter](/docs/infra/#victoria-observability-suite) |  `9115`  | ICMP/TCP/HTTP blackbox probing                                         |
 |      [DNSMASQ](#dnsmasq)      |   `53`   | DNS server for internal domain resolution                              |
 |      [Chronyd](#chronyd)      |  `123`   | NTP time server                                                        |
 |   [PostgreSQL](#postgresql)   |  `5432`  | CMDB and default database                                              |
@@ -354,7 +354,7 @@ Full execution has no deletion safeguard and removes `infra_data`, `nginx_data`,
 
 The [`deploy.yml`](https://github.com/pgsty/pigsty/blob/main/deploy.yml) playbook deploys the NODE, INFRA, ETCD, MINIO, and PGSQL core chain on **all nodes** in one pass. Optional modules such as Docker, Redis, Kafka, native MySQL, JUICE, and VIBE require their own playbooks.
 
-This playbook is described in more detail in [Playbook: One-Time Installation](/docs/setup/playbook#deployment-playbook).
+This playbook is described in more detail in [Playbook: One-Time Installation](/docs/setup/playbook/#deploy-playbook).
 
 
 
@@ -423,7 +423,7 @@ This playbook is described in more detail in [Playbook: One-Time Installation](/
 
 ## Parameters
 
-The [`INFRA`](/docs/infra/param#infra) module has the following 10 parameter groups.
+The [`INFRA`](/docs/infra/param/#parameter-overview) module has the following 10 parameter groups.
 
 - [`META`](/docs/infra/param#meta): Pigsty metadata
 - [`CA`](/docs/infra/param#ca): Self-signed PKI/CA infrastructure

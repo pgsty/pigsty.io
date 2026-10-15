@@ -99,7 +99,7 @@ When you run `./configure -c app/dify`, Pigsty generates a configuration file fr
 Check these configuration items:
 
 - Hardware/Software: [Prepare required machine resources](/docs/deploy/prepare): Linux `x86_64/arm64` server, fresh installation of a [mainstream Linux OS](/docs/deploy/prepare)
-- Network/Permissions: [SSH](/docs/deploy/prepare#ssh) passwordless login access, user with [sudo privileges without password](/docs/deploy/prepare#user)
+- Network/Permissions: [SSH](/docs/deploy/admin/#ssh) passwordless login access, user with [sudo privileges without password](/docs/deploy/admin/#user)
 - Ensure the machine has a static IPv4 network address on the internal network and can access the internet
 - If accessing via public network, ensure you have a domain pointing to the node's **public IP address**
 - Ensure you use the `app/dify` configuration template and modify parameters as needed

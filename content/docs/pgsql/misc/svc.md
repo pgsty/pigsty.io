@@ -38,8 +38,8 @@ psql postgres://dbuser_view:DBUser.Viewer@pg-meta/meta     # Connect with defaul
 ## Service Overview
 
 Production environments use primary-replica clusters with replication.
-Exactly one instance, the [primary](/docs/pgsql/config#primary), leads the cluster and accepts writes.
-[Replicas](/docs/pgsql/config#replica) continuously fetch change logs from the primary to keep their data consistent.
+Exactly one instance, the [primary](/docs/pgsql/config/cluster/#primary), leads the cluster and accepts writes.
+[Replicas](/docs/pgsql/config/cluster/#replica) continuously fetch change logs from the primary to keep their data consistent.
 Replicas also handle read-only requests, which substantially reduces primary load in workloads with many reads.
 Thus, separating write requests from read-only requests is common.
 
@@ -63,7 +63,7 @@ In addition, depending on specific business scenarios, there may be other servic
 - **Default Direct Service (default)**: Allows (admin) users to access the database directly, bypassing the connection pool
 - **Offline Replica Service (offline)**: Dedicated replicas that do not handle online read-only traffic, used for ETL and analytical queries
 - **Standby Replica Service (standby)**: Read-only service without replication lag, handled by [sync standby](/docs/pgsql/config/cluster#sync-standby)/primary for read-only queries
-- **Delayed Replica Service (delayed)**: Access old data from the same cluster at a previous point in time, handled by [delayed replica](/docs/pgsql/config#delayed-cluster)
+- **Delayed Replica Service (delayed)**: Access old data from the same cluster at a previous point in time, handled by [delayed replica](/docs/pgsql/config/cluster/#delayed-cluster)
 
 
 
@@ -263,8 +263,8 @@ Its definition is:
 
 - `selector: "[]"` includes all cluster members in the Replica service.
 - All instances can pass `check: /read-only` and receive traffic.
-- The backup selector `[? pg_role == 'primary' || pg_role == 'offline' ]` marks the primary and [offline replicas](/docs/pgsql/config#offline-replica) as backups.
-- The primary or offline replicas receive traffic only when all [normal replicas](/docs/pgsql/config#replica) are down.
+- The backup selector `[? pg_role == 'primary' || pg_role == 'offline' ]` marks the primary and [offline replicas](/docs/pgsql/config/cluster/#offline) as backups.
+- The primary or offline replicas receive traffic only when all [normal replicas](/docs/pgsql/config/cluster/#replica) are down.
 - `dest: default` makes [`pg_default_service_dest`](/docs/pgsql/param#pg_default_service_dest) control the destination.
 - Pigsty replaces the `dest` value `default` with `pg_default_service_dest`, whose default is `pgbouncer`, as for the [Primary service](#primary-service).
 - Thus, the default destination is the replica connection pool on [`pgbouncer_port`](/docs/pgsql/param#pgbouncer_port), normally 6432.
@@ -345,10 +345,10 @@ Use it for slow queries, analytical queries, ETL reads, and personal interactive
 - { name: offline ,port: 5438 ,dest: postgres ,check: /replica   ,selector: "[? pg_role == `offline` || pg_offline_query ]" , backup: "[? pg_role == `replica` && !pg_offline_query]"}
 ```
 
-Offline routes traffic directly to dedicated [offline replicas](/docs/pgsql/config#offline-replica).
-It can also use normal [read-only instances](/docs/pgsql/config#replica) with the [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) flag.
+Offline routes traffic directly to dedicated [offline replicas](/docs/pgsql/config/cluster/#offline).
+It can also use normal [read-only instances](/docs/pgsql/config/cluster/#replica) with the [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) flag.
 
-- The selector includes replicas with [`pg_role`](/docs/pgsql/param#pg_role) = `offline` and normal [read-only instances](/docs/pgsql/config#replica) with [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) = `true`.
+- The selector includes replicas with [`pg_role`](/docs/pgsql/param#pg_role) = `offline` and normal [read-only instances](/docs/pgsql/config/cluster/#replica) with [`pg_offline_query`](/docs/pgsql/param#pg_offline_query) = `true`.
 - Dedicated offline replicas do not handle [Replica service](#replica-service) requests by default. This separates fast and slow requests. Flagged normal replicas do handle those requests.
 - The backup selector includes normal replicas without the offline flag. They handle Offline traffic when dedicated or flagged offline instances fail.
 - `/replica` returns HTTP 200 only for replicas. It rejects the primary, even when the primary is the only remaining cluster instance.

@@ -94,11 +94,11 @@ Alternatively, pass `-e pg_safeguard=false` when you run the playbook.
 
 ## How to Ensure No Data Loss During Failover?
 
-> Use the `crit.yml` param template, set `pg_rpo` to `0`, or [config the cluster](/docs/pgsql/admin#config-cluster) for sync commit mode.
+> Use the `crit.yml` param template, set `pg_rpo` to `0`, or [config the cluster](/docs/pgsql/admin/cluster/#config-cluster) for sync commit mode.
 
-Consider using [**Sync Standby**](/docs/pgsql/config#sync-standby) and [**Quorum Commit**](/docs/pgsql/config#quorum-commit) to ensure zero data loss during failover.
+Consider using [**Sync Standby**](/docs/pgsql/config/cluster/#sync-standby) and [**Quorum Commit**](/docs/pgsql/config/cluster/#quorum-commit) to ensure zero data loss during failover.
 
-For more details, see the intro in [Security Considerations - Availability](/docs/setup/security#availability).
+For more details, see the intro in [Security Considerations - Availability](/docs/deploy/security/#availability).
 
 
 

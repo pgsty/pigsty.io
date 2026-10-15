@@ -118,7 +118,7 @@ For database access privileges, see [**Access Control: Database Isolation**](/do
 ## Create Database
 
 Pigsty creates databases [defined](#define-database) in [`pg_databases`](/docs/pgsql/param#pg_databases) during cluster initialization.
-To [create a database](/docs/pgsql/admin#create-database) on an existing cluster, use `bin/pgsql-db`.
+To [create a database](/docs/pgsql/admin/db/#create-database) on an existing cluster, use `bin/pgsql-db`.
 Add the definition to `all.children.<cls>.pg_databases`, then run:
 
 ```bash
@@ -136,7 +136,7 @@ If you create databases manually, you must maintain the Pgbouncer database list 
 The `pgsql-db` tool and `pgsql-db.yml` playbook also add new databases to the [Pgbouncer database list](#pgbouncer-database).
 
 If the database `owner` differs from the default dbsu, `postgres`, verify that the owner user exists first.
-Always [create](/docs/pgsql/admin#create-user) [users](/docs/pgsql/config/user) before you create databases.
+Always [create](/docs/pgsql/admin/user/#create-user) [users](/docs/pgsql/config/user) before you create databases.
 
 
 

@@ -133,7 +133,7 @@ This creates a **3 primary 3 replica** native Redis cluster.
 
 ## Identity Parameters
 
-The [**`REDIS`**](/docs/redis/param#redis) parameter group assigns deterministic identities to Redis entities. Three parameters are required:
+The [**`REDIS`**](/docs/redis/param/#parameter-overview) parameter group assigns deterministic identities to Redis entities. Three parameters are required:
 
 | Parameter                                                      |   Type   |  Level   | Description                    | Format                                       |
 |:---------------------------------------------------------------|:--------:|:--------:|:-------------------------------|:---------------------------------------------|

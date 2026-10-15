@@ -9,7 +9,7 @@ categories: [Concept]
 ---
 
 
-Pigsty uses IaC and GitOps. Describe the environment in a declarative [**inventory**](/docs/setup/config#inventory). Apply it with [**idempotent playbooks**](/docs/setup/playbook).
+Pigsty uses IaC and GitOps. Describe the environment in a declarative [**inventory**](/docs/setup/config/#minimal-configuration). Apply it with [**idempotent playbooks**](/docs/setup/playbook).
 
 Declare the target state with [**parameters**](/docs/ref/param). Playbooks can repeatedly adjust nodes to that state. This resembles Kubernetes CRDs and Operators, implemented through Ansible on physical servers and VMs.
 

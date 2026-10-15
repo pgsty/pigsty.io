@@ -55,7 +55,7 @@ The latest stable version is [v1.9.0](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.4](#v014) | 2025-02-12 | routine bugfix                                                     | [v0.1.4](https://github.com/pgsty/pig/releases/tag/v0.1.4) |
 | [v0.1.3](#v013) | 2025-01-23 | 390 extensions                                                     | [v0.1.3](https://github.com/pgsty/pig/releases/tag/v0.1.3) |
 | [v0.1.2](#v012) | 2025-01-12 | the anon extension and 350 other ext                               | [v0.1.2](https://github.com/pgsty/pig/releases/tag/v0.1.2) |
-| [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
+| [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
 
@@ -1176,7 +1176,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
 - Adds the environment variable `PIG_NO_SUDO` to prevent sudo use.
 - [RPM Changelog](/docs/repo/pgsql/rpm#2025-11-10): Add PG 18 support to almost all extensions
 - [DEB Changelog](/docs/repo/pgsql/deb#2025-11-10): Add PG 18 support to almost all extensions
-- [Infra Changelog](/docs/repo/infra/#2025-11-08): Routine update to the latest version
+- [Infra Changelog](/docs/repo/infra/log/): Routine update to the latest version
 
 **Checksums**
 

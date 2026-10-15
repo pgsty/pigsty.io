@@ -37,7 +37,7 @@ psql postgres://dbuser_view:DBUser.Viewer@pg-meta/meta     # Connect with defaul
 
 ## Service Overview
 
-Production clusters commonly use primary-replica replication. Exactly one [primary](/docs/pgsql/config#primary) accepts writes. [Replicas](/docs/pgsql/config#replica) continuously receive its change logs and can serve read-only requests. This reduces primary load for read-heavy workloads. Separate write requests from read-only requests to use this capacity.
+Production clusters commonly use primary-replica replication. Exactly one [primary](/docs/pgsql/config/cluster/#primary) accepts writes. [Replicas](/docs/pgsql/config/cluster/#replica) continuously receive its change logs and can serve read-only requests. This reduces primary load for read-heavy workloads. Separate write requests from read-only requests to use this capacity.
 
 Pgbouncer reduces connection and backend-process overhead for frequent short connections. ETL and change operations can bypass the pool for direct access. Failover changes the primary, so write traffic must follow the new leader automatically. The **Service** abstraction combines read/write separation, pooled or direct access, and automatic failover routing.
 
@@ -55,7 +55,7 @@ Depending on the workload, add services such as:
 - **Default direct service (default)**: Let administrators bypass the connection pool.
 - **Offline replica service (offline)**: Use a dedicated replica for ETL and analytics, separate from online reads.
 - **Sync replica service (standby)**: Serve reads without replication delay from a [synchronous standby](/docs/pgsql/config/cluster#sync-standby) or primary.
-- **Delayed replica service (delayed)**: Read earlier cluster data from [delayed replicas](/docs/pgsql/config#delayed-cluster).
+- **Delayed replica service (delayed)**: Read earlier cluster data from [delayed replicas](/docs/pgsql/config/cluster/#delayed-cluster).
 
 
 

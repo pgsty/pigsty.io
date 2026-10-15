@@ -1,6 +1,7 @@
 {{- /* Keep the OINK page chrome on the same navigation surface as the custom
       homepage. The desktop markup below intentionally mirrors home.html;
       shell-only data attributes preserve search, theme, and drawer behavior. */ -}}
+{{- $localSearch := partial "shell/search-enabled.html" . -}}
 {{- $drawerMode := and (partial "shell/chrome-enabled.html" .) (partial "shell/sidebar-enabled.html" .) -}}
 {{- $mysqlDocsURL := "/docs/pilot/mysql/" -}}
 {{- with .Site.GetPage "/docs/mysql" }}{{ $mysqlDocsURL = .RelPermalink }}{{ end -}}
@@ -129,10 +130,10 @@
 
         <a href="/price/" class="nav-link">Service</a>
         <div class="nav-utils">
-          <button type="button" class="nav-util" data-td-shell-search-open title="Search (⌘K)" aria-label="Search"
+          {{ if $localSearch }}<button type="button" class="nav-util" data-td-shell-search-open title="Search (⌘K)" aria-label="Search"
                   aria-controls="td-shell-search" aria-expanded="false">
             {{- partialCached "shell/icon.html" "search" "pigsty-navbar-search" -}}
-          </button>
+          </button>{{ end }}
           <button type="button" class="nav-util" data-td-theme-toggle title="Switch light / dark mode" aria-label="Switch light / dark mode">
             {{- partialCached "shell/icon.html" "moon" "pigsty-navbar-moon" -}}
             {{- partialCached "shell/icon.html" "sun" "pigsty-navbar-sun" -}}
@@ -162,9 +163,9 @@
   <a href="/ext/" class="mobile-menu-link">Extensions</a>
   <a href="/blog/" class="mobile-menu-link">Blog</a>
   <a href="/price/" class="mobile-menu-link">Pricing</a>
-  <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-td-shell-search-open>
+  {{ if $localSearch }}<button type="button" class="mobile-menu-link mobile-menu-link--btn" data-td-shell-search-open>
     <i class="fas fa-search"></i> Search
-  </button>
+  </button>{{ end }}
   <a href="https://pigsty.cc" class="mobile-menu-link"><i class="fas fa-language"></i> 中文</a>
   <button type="button" class="mobile-menu-link mobile-menu-link--btn" data-td-theme-toggle>
     <i class="fas fa-moon"></i> Light / Dark

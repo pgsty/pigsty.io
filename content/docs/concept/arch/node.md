@@ -147,7 +147,7 @@ PGSQL nodes run these additional components beyond [**regular node**](#regular-n
 | **`{{ pg_cluster }}-<service>`**   | `543x` | HAProxy service: custom PostgreSQL services    | Custom      |
 {.full-width}
 
-`vip-manager` runs only when a **PG VIP** is configured. Define [**custom services**](/docs/pgsql/service#defining-services) through [**`pg_services`**](/docs/pgsql/service). `haproxy` exposes them on additional ports.
+`vip-manager` runs only when a **PG VIP** is configured. Define [**custom services**](/docs/pgsql/service/#define-service) through [**`pg_services`**](/docs/pgsql/service). `haproxy` exposes them on additional ports.
 
 
 

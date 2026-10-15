@@ -151,7 +151,6 @@ pg_users:
 
 ---------------------
 
-<span id="certificate-authentication"></span>
 
 ## Certificate Authentication
 

@@ -41,7 +41,7 @@ Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) curre
 |   [**`NODE`**](/docs/node/param)    | [`NODE_ID`](/docs/node/param/#node_id), [`NODE_DNS`](/docs/node/param/#node_dns), [`NODE_PACKAGE`](/docs/node/param/#node_package), [`NODE_TUNE`](/docs/node/param/#node_tune), [`NODE_SEC`](/docs/node/param/#node_sec), [`NODE_ADMIN`](/docs/node/param/#node_admin), [`NODE_TIME`](/docs/node/param/#node_time), [`NODE_VIP`](/docs/node/param/#node_vip)<br>[`HAPROXY`](/docs/node/param/#haproxy), [`NODE_EXPORTER`](/docs/node/param/#node_exporter), [`VECTOR`](/docs/node/param/#vector) |
 |   [**`ETCD`**](/docs/etcd/param)    | [`ETCD`](/docs/etcd/param/#etcd), [`ETCD_REMOVE`](/docs/etcd/param/#etcd_remove) |
 |  [**`MINIO`**](/docs/minio/param)   | [`MINIO`](/docs/minio/param/#minio), [`MINIO_REMOVE`](/docs/minio/param/#minio_remove) |
-|  [**`REDIS`**](/docs/redis/param)   | [`REDIS`](/docs/redis/param/#redis), [`REDIS_REMOVE`](/docs/redis/param/#redis_remove) |
+|  [**`REDIS`**](/docs/redis/param)   | [`REDIS`](/docs/redis/param/#parameter-overview), [`REDIS_REMOVE`](/docs/redis/param/#redis_remove) |
 | [**`DOCKER`**](/docs/docker/param)  | [`DOCKER`](/docs/docker/param) |
 |  [**`JUICE`**](/docs/juice/param)   | [`JUICE`](/docs/juice/param) |
 |   [**`VIBE`**](/docs/vibe/param)    | [`VIBE`](/docs/vibe/param) |

@@ -85,7 +85,7 @@ Set the cluster name at cluster level. Set each instance number and role at inst
 | **Node**     | Explicitly specified or borrowed from PG | `pg-test-1`, `pg-test-2`, `pg-test-3`                   |
 {.full-width}
 
-Pigsty uses an exclusive 1:1 mapping between nodes and PostgreSQL instances. By default, the node inherits its PostgreSQL instance identifier through [**`node_id_from_pg`**](/docs/node/param#node_id_from_pg). Set [**`nodename`**](/docs/node/param#nodename) to override this name. Alternatively, disable [**`nodename_overwrite`**](/docs/node/param#nodename_overview) to retain the current default.
+Pigsty uses an exclusive 1:1 mapping between nodes and PostgreSQL instances. By default, the node inherits its PostgreSQL instance identifier through [**`node_id_from_pg`**](/docs/node/param#node_id_from_pg). Set [**`nodename`**](/docs/node/param#nodename) to override this name. Alternatively, disable [**`nodename_overwrite`**](/docs/node/param/#nodename_overwrite) to retain the current default.
 
 
 --------
@@ -94,7 +94,7 @@ Pigsty uses an exclusive 1:1 mapping between nodes and PostgreSQL instances. By 
 
 To serve one business with multiple PostgreSQL clusters (**sharding**), use two additional identity parameters: [**`pg_shard`**](/docs/pgsql/param#pg_shard) and [**`pg_group`**](/docs/pgsql/param#pg_group).
 
-These clusters share one `pg_shard` name. Each has its own `pg_group` number, as in this [**Citus cluster**](/docs/pgsql/config/#citus-cluster):
+These clusters share one `pg_shard` name. Each has its own `pg_group` number, as in this [**Citus cluster**](/docs/pgsql/config/cluster/#citus-cluster):
 
 A `pg_cluster` name usually combines `{{ pg_shard }}{{ pg_group }}`, for example `pg-citus0` or `pg-citus1`.
 

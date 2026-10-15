@@ -238,7 +238,7 @@ Probe methods include ICMP Ping, TCP ports, and HTTP/HTTPS endpoints. Check VIP 
 
 [![blackbox](/img/pigsty/blackbox.webp)](https://demo.pigsty.io/blackbox/)
 
-For more information, see: [**Config: INFRA - BLACKBOX**](/docs/infra/param/#blackbox_exporter)
+For more information, see: [**Config: INFRA - BLACKBOX**](/docs/infra/param/#blackbox_enabled)
 
 
 --------
@@ -300,11 +300,11 @@ In Pigsty, the relationship between nodes and infrastructure is a **weak circula
 - Initialize [**INFRA**](/docs/infra) on the [**INFRA node**](/docs/concept/arch/node#infra-node) to provide monitoring.
 - Configure monitoring on [**regular nodes**](/docs/concept/arch/node#regular-node) to connect to that platform.
 
-Alternatively, use [**phased deployment**](/docs/setup/config#adding-infrastructure): initialize infrastructure nodes before regular nodes.
+Alternatively, use [**phased deployment**](/docs/setup/config/#add-infrastructure): initialize infrastructure nodes before regular nodes.
 
 ### How Are Nodes Coupled to Infrastructure?
 
-Regular nodes use [**`admin_ip`**](/docs/infra/param/#admin_ip) to select an [**INFRA node**](#infra-node) for infrastructure services.
+Regular nodes use [**`admin_ip`**](/docs/infra/param/#admin_ip) to select an [**INFRA node**](/docs/concept/arch/infra/#infra-node-vs-regular-node) for infrastructure services.
 
 For example, global `admin_ip = 10.10.10.10` normally directs all nodes to infrastructure at that address.
 

@@ -83,7 +83,7 @@ You can select other [**database kernels**](/docs/pgsql/kernel) and [**extension
 - [**pg_exporter**](#pg_exporter) exposes [postgres](#postgresql) monitoring metrics on port 9630
 - [**pgbouncer_exporter**](#pgbouncer_exporter) exposes [pgbouncer](#pgbouncer) metrics on port 9631
 - [**pgBackRest**](#pgbackrest) uses local backup repository by default (`pgbackrest_method` = `local`)
-    - If using `local` (default), [pgBackRest](#pgbackrest) creates local repository under [`pg_fs_bkup`](/docs/pgsql/param#pg_fs_bkup) on primary node
+    - If using `local` (default), [pgBackRest](#pgbackrest) creates local repository under [`pg_fs_bkup`](/docs/pgsql/param/#pg_fs_backup) on primary node
     - If using `minio`, [pgBackRest](#pgbackrest) creates the backup repository on dedicated Silo or an external S3 service
 - [**Vector**](#vector) collects Postgres-related logs (postgres, pgbouncer, patroni, pgbackrest)
     - [vector](#vector) listens on port 9598, also exposes its own metrics to VictoriaMetrics on infra nodes
@@ -148,7 +148,7 @@ For more information, see: [**Service Access**](/docs/pgsql/service/) and [**Con
 - **WAL archiving**: Continuous transaction log archiving, enables any point-in-time recovery
 
 **Storage Backends**:
-- `local` (default): Local disk, backups stored at [`pg_fs_bkup`](/docs/pgsql/param#pg_fs_bkup) mount point
+- `local` (default): Local disk, backups stored at [`pg_fs_bkup`](/docs/pgsql/param/#pg_fs_backup) mount point
 - `minio`: S3-compatible object storage, supports centralized backup management and off-site DR
 
 **Key Interactions**:

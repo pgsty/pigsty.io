@@ -104,7 +104,7 @@ To define your own ACL system, consider these parameters and templates:
 
 During the cluster initialization PROVISION phase, Pigsty creates users and roles one at a time.
 It uses the [definitions](#defining-users) in [`pg_default_roles`](/docs/pgsql/param#pg_default_roles) and [`pg_users`](/docs/pgsql/param#pg_users).
-To [create users](/docs/pgsql/admin#create-user) on an existing cluster, use `bin/pgsql-user`.
+To [create users](/docs/pgsql/admin/user/#create-user) on an existing cluster, use `bin/pgsql-user`.
 Add the definition to `all.children.<cls>.pg_users`, then run:
 
 ```bash
@@ -172,7 +172,7 @@ dbuser_dba                  = pool_mode=session max_user_connections=16
 dbuser_monitor              = pool_mode=session max_user_connections=8
 ```
 
-When you [create a database](#creating-databases), Pigsty refreshes the Pgbouncer database list.
+When you [create a database](/docs/pgsql/admin/db/#create-database), Pigsty refreshes the Pgbouncer database list.
 An online reload applies the changes without affecting existing connections.
 
 Pgbouncer runs as the same `dbsu` as PostgreSQL.

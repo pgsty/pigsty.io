@@ -28,7 +28,7 @@ Pigsty automatically manages Pgbouncer users and databases.
 When you [**create databases**](/docs/pgsql/admin/db) or [**users**](/docs/pgsql/admin/user), it applies the [**database configuration**](/docs/pgsql/config/db) and [**user configuration**](/docs/pgsql/config/user).
 
 **Database Management**: By default, Pigsty adds databases from [**`pg_databases`**](/docs/pgsql/param#pg_databases) to Pgbouncer.
-To exclude a database, set [**`pgbouncer: false`**](/docs/pgsql/admin/db#pgbouncer).
+To exclude a database, set [**`pgbouncer: false`**](/docs/pgsql/admin/db/#connection-pool-management).
 
 ```yaml
 pg_databases:
@@ -43,7 +43,7 @@ pg_databases:
     pgbouncer: false          # Excluded from connection pool
 ```
 
-**User Management**: To add a user from [**`pg_users`**](/docs/pgsql/param#pg_users) to the pool user list, explicitly set [**`pgbouncer: true`**](/docs/pgsql/admin/user#pgbouncer).
+**User Management**: To add a user from [**`pg_users`**](/docs/pgsql/param#pg_users) to the pool user list, explicitly set [**`pgbouncer: true`**](/docs/pgsql/admin/user/#connection-pool-management).
 
 ```yaml
 pg_users:
@@ -62,7 +62,7 @@ pg_users:
 
 ## Service Management
 
-By default, the PostgreSQL [**Primary Service**](/docs/concept/ha/svc#primary-service) and Replica Service connect to Pgbouncer on port 6432.
+By default, the PostgreSQL [**Primary Service**](/docs/pgsql/service/#primary-service) and Replica Service connect to Pgbouncer on port 6432.
 To connect directly to PostgreSQL, customize [**`pg_services`**](/docs/pgsql/param#pg_services).
 Alternatively, set [**`pg_default_service_dest`**](/docs/pgsql/param#pg_default_service_dest) to `postgres`.
 

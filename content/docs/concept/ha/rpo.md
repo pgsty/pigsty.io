@@ -107,10 +107,10 @@ These modes use two **Patroni** parameters: [**`synchronous_mode`**](https://pat
 
 Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to `0` to enable `synchronous_mode` and **Maximum Availability**. Select [**`pg_conf`**](/docs/pgsql/param#pg_conf) = [**`crit.yml`**](/docs/pgsql/template/crit) to enable `synchronous_mode_strict` and **Maximum Protection**. You can also enable [**watchdog**](/docs/pgsql/param#patroni_watchdog_mode) to fence a frozen primary node or Patroni process instead of degrading. This provides behavior equivalent to Oracle Maximum Protection.
 
-You can [**configure Patroni directly**](/docs/pgsql/admin/patroni#modify-config). Consult Patroni and PostgreSQL documentation for stronger protection options:
+You can [**configure Patroni directly**](/docs/pgsql/admin/patroni/#edit-config). Consult Patroni and PostgreSQL documentation for stronger protection options:
 
 - Configure the [**synchronous replica list**](/docs/pgsql/config/cluster#quorum-commit). Add synchronous replicas for greater disaster tolerance, use quorum commit, or require acknowledgements from all replicas.
-- [**Set**](/docs/pgsql/admin/patroni#modify-config) [**`synchronous_commit`**](https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT) to `'remote_apply'` for consistent primary/replica reads and writes. Oracle Maximum Protection corresponds to `remote_write`.
+- [**Set**](/docs/pgsql/admin/patroni/#edit-config) [**`synchronous_commit`**](https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT) to `'remote_apply'` for consistent primary/replica reads and writes. Oracle Maximum Protection corresponds to `remote_write`.
 
 ------
 

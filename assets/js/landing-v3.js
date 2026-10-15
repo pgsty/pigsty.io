@@ -291,6 +291,12 @@
     container.innerHTML = '';
     container.dataset.playerTheme = playerTheme;
 
+    // The embedded player exposes a readonly textbox without a name.
+    var timerObserver = new MutationObserver(function () {
+      var timer = container.querySelector('.ap-timer');
+      if (timer) { timerObserver.disconnect(); timer.setAttribute('aria-label', 'Playback time'); }
+    });
+    timerObserver.observe(container, {childList: true, subtree: true});
     AsciinemaPlayer.create('/demo/install-hero.cast', container, {
       cols: 120,
       rows: 36,

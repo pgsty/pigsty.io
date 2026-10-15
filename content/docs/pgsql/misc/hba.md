@@ -183,7 +183,7 @@ The default rules usually need no reload for role or membership changes because 
 
 Some HBA rules restrict access by instance role or cluster membership.
 Adding or removing instances, or failover, can change where these rules apply.
-In these cases, [reload HBA](/docs/pgsql/admin#reload-hba) to apply the latest changes.
+In these cases, [reload HBA](/docs/pgsql/admin/cluster/#reload-hba) to apply the latest changes.
 
 To reload postgres/pgbouncer hba rules:
 
