@@ -1,71 +1,83 @@
 ---
 title: "Introduction"
 linkTitle: "Introduction"
-description: "Why do we need yet another package manager? Especially for Postgres extensions?"
+description: "What PIG does, how package installation works, and which platforms it supports"
 weight: 20
 icon: fas fa-lightbulb
 module: [PIG]
 categories: [Concept]
 ---
 
-PostgreSQL extensions can be difficult to install and upgrade.
-Documentation can be outdated, configuration scripts can be unclear, and forks or patches can be difficult to find.
-Deployment is more complex across multiple Linux distributions and architectures. PIG helps with these tasks.
+PIG is a command-line tool for installing and managing PostgreSQL and its extensions. It maps extension names to RPM or DEB packages and uses `apt`, `dnf`, or `yum` to install them.
 
-**Pig** is a Go tool that manages PostgreSQL and its [{{< param pgext_count >}} packaged extensions](/ext/list) through one CLI.
-It supports TimescaleDB, Citus, PGVector, 30+ Rust extensions, and the components needed to host Supabase yourself.
-Pig supplies RPM/DEB packages for each PostgreSQL version. You do not need to compile these packages from source or manage separate repositories.
-The packages support Debian, Ubuntu, RedHat, and other mainstream distributions on x86 and Arm.
+The catalog contains [{{< param pig_catalog_count >}} extension entries](https://pigsty.io/ext/list/). PIG selects package names for your PostgreSQL major version, operating system, and CPU architecture. It also provides commands for source builds, local PostgreSQL operations, backups, and Pigsty administration.
 
-Pig uses native package managers (APT, YUM, DNF) and follows [PGDG official](/docs/repo/pgdg/) packaging standards.
-It follows OS practices and works with existing repositories and packages.
-If your Linux system and PostgreSQL major version are absent from the [supported list](#linux-compatibility), use [`pig build`](/docs/pig/build/) to compile extensions for that combination.
+## What you can do
 
-Use the [PIG official documentation](https://pigsty.io/docs/pig/) for instructions and the [extension list](/ext/list) to find available extensions.
-These extensions let your local PostgreSQL database handle multiple data models.
-The article [Postgres's future is unmatched extensibility](https://medium.com/@fengruohang/postgres-is-eating-the-database-world-157c204dcfc4) describes this direction. Pig makes these extension capabilities easier to use.
+| Task | Command | Reference |
+|:---|:---|:---|
+| Find an extension and check package availability | `pig ext list`, `pig ext avail` | [Extensions](/docs/pig/ext/) |
+| Add PGDG and Pigsty repositories | `pig repo add pgsql -u` | [Repositories](/docs/pig/repo/) |
+| Install PostgreSQL 18 and pgvector | `pig install -v 18 pg18 vector` | [Getting started](/docs/pig/start/) |
+| Build an extension package from source | `pig build pkg NAME` | [Build](/docs/pig/build/) |
+| Start, inspect, or stop a local PostgreSQL instance | `pig pg` | [PostgreSQL](/docs/pig/pg/) |
+| Manage a Patroni cluster | `pig pt` | [Patroni](/docs/pig/pt/) |
+| Back up or restore an instance | `pig pb`, `pig pitr` | [pgBackRest](/docs/pig/pb/), [PITR](/docs/pig/pitr/) |
+| Configure Pigsty and run its playbooks | `pig sty`, `pig inventory`, `pig do` | [Pigsty](/docs/pig/sty/) |
 
-## Automation-Friendly
+Start with the [tutorial](/docs/pig/start/) to install PostgreSQL and enable your first extension.
 
-PIG supports automation through consistent arguments, stable output, and `--plan` previews.
-High-risk operations use confirmation steps to reduce mistakes.
+## How package installation works
 
+For example, this command installs pgvector for PostgreSQL 18:
 
-> [ANNOUNCE pig: The Postgres Extension Wizard](https://www.postgresql.org/about/news/announce-pig-the-postgres-extension-wizard-2988/)
+```bash
+sudo pig install vector -v 18
+```
 
+PIG resolves `vector` to `pgvector_18` on EL or `postgresql-18-pgvector` on Debian and Ubuntu. The system package manager resolves dependencies and installs the files.
 
---------
+To enable the extension, connect to the intended database and run:
 
-## Linux Compatibility
+```sql
+CREATE EXTENSION vector;
+```
 
-PIG and the Pigsty extension repository support the following Linux distribution and PostgreSQL version combinations:
+Some extensions also need a setting in `shared_preload_libraries` and a PostgreSQL restart. Use `pig ext info NAME` to check these requirements. See [package and database operations](/docs/pig/ext/#package-layer-vs-database-layer) for updates and removal.
 
-| OS Code | Vendor | Major | Minor | Full Name | PG Versions | Notes |
-|:---|:---|:---:|:---:|:---|:---|:---:|
-| `el7.x86_64` | EL | 7 | 7.9 | CentOS 7 x86 | 13-15 | EOL |
-| `el8.x86_64` | EL | 8 | 8.10 | RockyLinux 8 x86 | 14-18 | Near EOL |
-| `el8.aarch64` | EL | 8 | 8.10 | RockyLinux 8 ARM | 14-18 | Near EOL |
-| `el9.x86_64` | EL | 9 | 9.7 | RockyLinux 9 x86 | 14-18 | ✅ |
-| `el9.aarch64` | EL | 9 | 9.7 | RockyLinux 9 ARM | 14-18 | ✅ |
-| `el10.x86_64` | EL | 10 | 10.1 | RockyLinux 10 x86 | 14-18 | ✅ |
-| `el10.aarch64` | EL | 10 | 10.1 | RockyLinux 10 ARM | 14-18 | ✅ |
-| `d11.x86_64` | Debian | 11 | 11.11 | Debian 11 x86 | 14-18 | EOL |
-| `d11.aarch64` | Debian | 11 | 11.11 | Debian 11 ARM | 14-18 | EOL |
-| `d12.x86_64` | Debian | 12 | 12.14 | Debian 12 x86 | 14-18 | ✅ |
-| `d12.aarch64` | Debian | 12 | 12.14 | Debian 12 ARM | 14-18 | ✅ |
-| `d13.x86_64` | Debian | 13 | 13.6 | Debian 13 x86 | 14-18 | ✅ |
-| `d13.aarch64` | Debian | 13 | 13.6 | Debian 13 ARM | 14-18 | ✅ |
-| `u22.x86_64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 x86 | 14-18 | ✅ |
-| `u22.aarch64` | Ubuntu | 22 | 22.04.5 | Ubuntu 22.04 ARM | 14-18 | ✅ |
-| `u24.x86_64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 x86 | 14-18 | ✅ |
-| `u24.aarch64` | Ubuntu | 24 | 24.04.4 | Ubuntu 24.04 ARM | 14-18 | ✅ |
-| `u26.x86_64` | Ubuntu | 26 | 26.04.0 | Ubuntu 26.04 x86 | 14-18 | ✅ |
-| `u26.aarch64` | Ubuntu | 26 | 26.04.0 | Ubuntu 26.04 ARM | 14-18 | ✅ |
-{.full-width}
+PIG is needed only when you run its commands. PostgreSQL and installed extensions continue to work without it. You can also use the [Pigsty repositories](https://pigsty.io/docs/repo/pgsql/) directly with `apt` or `dnf`.
 
-**Notes:**
+## Linux compatibility
 
-- **EL** means RHEL-compatible distributions, including RHEL, CentOS, RockyLinux, AlmaLinux, and OracleLinux.
-- **EOL** means the OS has reached, or will soon reach, the end of support. Upgrade to a newer version.
-- **✅** means full support. These versions are recommended.
-- PG versions 14-18 means PostgreSQL major versions 14, 15, 16, 17, and 18.
+The package repositories cover PostgreSQL **14–18** on these Linux releases. Each release has packages for **x86_64** and **aarch64**.
+
+| OS code | Distribution | Release |
+|:---|:---|:---|
+| `el8` | RHEL, Rocky Linux, AlmaLinux | 8 |
+| `el9` | RHEL, Rocky Linux, AlmaLinux | 9 |
+| `el10` | RHEL, Rocky Linux, AlmaLinux | 10 |
+| `d12` | Debian | 12 |
+| `d13` | Debian | 13 |
+| `u22` | Ubuntu | 22.04 LTS |
+| `u24` | Ubuntu | 24.04 LTS |
+| `u26` | Ubuntu | 26.04 LTS |
+
+Package availability varies by extension and target. On the target host, run:
+
+```bash
+pig ext avail vector
+```
+
+The {{< param pig_catalog_count >}} catalog entries include packaged SQL utilities and retained records for removed extensions. The website and CLI use this same [catalog-entry count](/docs/pig/ext/#catalog-count). Check the entry's status and availability before selecting a package. EL 7 and Debian 11 are outside the current package matrix.
+
+The macOS binary supports catalog queries and commands such as inventory editing. PostgreSQL package installation uses Linux package managers. See [Installation](/docs/pig/install/) for the binary downloads.
+
+## Choose a workflow
+
+- **Use an existing host:** add repositories with `pig repo add pgsql -u`, then install the required packages.
+- **Configure all repositories on a new host:** use `pig repo set`. It backs up and replaces the existing repository definitions.
+- **Build a package:** prepare a build host and use the maintained specifications with [`pig build`](/docs/pig/build/).
+- **Prepare an offline installation:** collect packages with `pig ext import`, index them with `pig repo create`, and archive them with `pig repo cache`. See [offline repositories](/docs/pig/repo/).
+- **Write a script or agent workflow:** inspect `pig -o json --help` and use the supported output and plan options in the [command reference](/docs/pig/cmd/).
+
+The [Design Records](https://pig.pgsty.com/design/) explain the main implementation decisions. The [release notes](/docs/pig/release/) describe changes in each published version.

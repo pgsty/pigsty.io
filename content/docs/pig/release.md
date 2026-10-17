@@ -7,10 +7,11 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The latest stable version is [v1.9.0](https://github.com/pgsty/pig/releases/tag/v1.9.0).
+The latest stable version is [v1.10.0](https://github.com/pgsty/pig/releases/tag/v1.10.0).
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.10.0](#v1100) | 2026-10-17 | 603 catalog entries, PostgreSQL target and recovery safety, faithful Inventory, automation fixes | [v1.10.0](https://github.com/pgsty/pig/releases/tag/v1.10.0) |
 | [v1.9.0](#v190) | 2026-10-06 | 600 catalog entries, Xray roles, repository keys, pgrx 0.19.3 | [v1.9.0](https://github.com/pgsty/pig/releases/tag/v1.9.0) |
 | [v1.8.1](#v181) | 2026-09-03 | CLI/repository safety, debug packages by default, pgrx 0.19.2 | [v1.8.1](https://github.com/pgsty/pig/releases/tag/v1.8.1) |
 | [v1.8.0](#v180) | 2026-08-14 | Native `sty boot` and `sty conf`, 575 packaged extensions          | [v1.8.0](https://github.com/pgsty/pig/releases/tag/v1.8.0) |
@@ -29,8 +30,11 @@ The latest stable version is [v1.9.0](https://github.com/pgsty/pig/releases/tag/
 | [v1.3.1](#v131) | 2026-03-05 | Retire PG13 defaults, unify PG14-18 support window, 464 extensions | [v1.3.1](https://github.com/pgsty/pig/releases/tag/v1.3.1) |
 | [v1.3.0](#v130) | 2026-02-27 | Build pipeline hardening, 461 extensions, new pgedge/ivory support | [v1.3.0](https://github.com/pgsty/pig/releases/tag/v1.3.0) |
 | [v1.2.0](#v120) | 2026-02-23 | Unified aliases, routine updates, plan mode, repo fixes            | [v1.2.0](https://github.com/pgsty/pig/releases/tag/v1.2.0) |
+| [v1.1.1](#v111) | 2026-02-14 | Path, symlink, and build migration fixes | [v1.1.1](https://github.com/pgsty/pig/releases/tag/v1.1.1) |
 | [v1.1.0](#v110) | 2026-02-12 | 451 extensions, Agent-Native CLI framework                         | [v1.1.0](https://github.com/pgsty/pig/releases/tag/v1.1.0) |
 | [v1.0.0](#v100) | 2026-01-26 | New pg/pt/pb/pitr commands, availability matrix                    | [v1.0.0](https://github.com/pgsty/pig/releases/tag/v1.0.0) |
+| [v0.9.0](#v090) | 2025-12-28 | Rename sty deploy and expand sty conf options | [v0.9.0](https://github.com/pgsty/pig/releases/tag/v0.9.0) |
+| [v0.8.1](#v081) | 2025-12-27 | Restore llvmjit to the pgsql-full alias | [v0.8.1](https://github.com/pgsty/pig/releases/tag/v0.8.1) |
 | [v0.8.0](#v080) | 2025-12-26 | 440 extensions, remove sysupdate repo                              | [v0.8.0](https://github.com/pgsty/pig/releases/tag/v0.8.0) |
 | [v0.7.5](#v075) | 2025-12-12 | Routine extension update, fixed aliyun mirror                      | [v0.7.5](https://github.com/pgsty/pig/releases/tag/v0.7.5) |
 | [v0.7.4](#v074) | 2025-12-01 | Update ivory/pgtde kernel and pgdg extras                          | [v0.7.4](https://github.com/pgsty/pig/releases/tag/v0.7.4) |
@@ -55,10 +59,139 @@ The latest stable version is [v1.9.0](https://github.com/pgsty/pig/releases/tag/
 | [v0.1.4](#v014) | 2025-02-12 | routine bugfix                                                     | [v0.1.4](https://github.com/pgsty/pig/releases/tag/v0.1.4) |
 | [v0.1.3](#v013) | 2025-01-23 | 390 extensions                                                     | [v0.1.3](https://github.com/pgsty/pig/releases/tag/v0.1.3) |
 | [v0.1.2](#v012) | 2025-01-12 | the anon extension and 350 other ext                               | [v0.1.2](https://github.com/pgsty/pig/releases/tag/v0.1.2) |
-| [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
+| [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
 
+
+--------
+
+## v1.10.0
+
+Pig `v1.10.0` strengthens the correctness and safety of existing commands. It verifies PostgreSQL
+targets before operations, preserves Inventory sources and YAML types, and makes repository,
+extension, and automation results match the work actually performed. The bundled catalog grows
+from **600 to 603 records**. Embedded Pigsty remains `4.5.0`; the default `cargo-pgrx` remains `0.19.3`.
+
+### PostgreSQL targets and maintenance
+
+- An explicit `-D` binds `psql`, `ps`, `kill`, `vacuum`, `analyze`, `freeze`, and `repack` to the
+  selected instance, including `--all` database enumeration. PIG validates the PID, data directory,
+  port, socket, and process identity before starting the SQL client. Invalid, stale, copied, or
+  uncertain runtime metadata causes failure instead of a fallback to another instance.
+- Without `-D`, those SQL commands retain native client connection defaults. `pg clone` and
+  `pg fork` retain their own port options. Promotion timeline checks use the selected instance
+  or its control data; an unresolved timeline is left unknown.
+- Plans and confirmation retry commands preserve the selected data directory, PostgreSQL version,
+  operating-system user, and maintenance options. `VACUUM FULL` plans correctly require confirmation.
+- Maintenance operands are literal database names. Values containing `=` or beginning with
+  `postgres://` or `postgresql://` are rejected before planning or execution, without echoing
+  the value. Spaces and non-ASCII names remain supported. Generated commands put names after
+  `--`, so a database named `--all` cannot become a command option.
+- `vacuum`, `analyze`, and `freeze --all` validate the complete database list before maintenance
+  begins. Use native clients when a connection string or a database name rejected by this boundary is required.
+
+See [`pig pg`](/docs/pig/pg/#global-options) for target selection and
+[maintenance commands](/docs/pig/pg/#database-maintenance-commands) for database-name rules.
+
+### Runtime state, recovery, and fork safety
+
+- Permission failures, malformed PID metadata, and unavailable process identity are reported as
+  errors or unknown state. They cannot authorize forced initialization, restore, or fork replacement.
+  `pg status` returns `130201` (exit `3`) for permission failures and `130808` (exit `1`) for
+  other runtime-probe failures. Plans report an unresolved precondition as `unknown`.
+- Declining PITR confirmation or reaching EOF returns `161001` (exit `7`) before any service stop,
+  restore, or startup. An unknown state cannot supply a PID for forced termination or count as
+  successful startup. Post-restore SQL checks require a verified target.
+- Replacing a nonempty unmanaged fork requires valid ownership metadata with a matching explicit
+  target path. Missing, damaged, or mismatched metadata cannot authorize deletion. Existing
+  protections for running targets and source/destination relationships remain in force.
+- Clone and fork path checks run as the selected database operating-system user when needed,
+  supporting private `0700` data directories. An inaccessible or unresolved path cannot bypass
+  validation. Managed orphan cleanup remains available through the managed fork name.
+- Files written as the database user use private sibling staging and exact-target replacement.
+  The new file has `0600` permissions; directory or symlink targets are refused, and replacement
+  does not overwrite the contents of another hard link to the old file.
+
+The [PITR reference](/docs/pig/pitr/) explains the managed recovery workflow;
+[`pig pb restore`](/docs/pig/pb/#pb-restore) remains a separate restore primitive.
+
+### Inventory and Pigsty
+
+- `sty deploy` and `do` pass the resolved Inventory path explicitly to Ansible. Flag and environment
+  paths resolve from the caller's working directory; quoted `~/` paths expand before resolution.
+  A selected missing or invalid source does not silently fall back to another inventory.
+- `pg_users[].roles` preserves both role-name strings and structured grants, including grant state
+  and optional `admin`, `set`, and `inherit` attributes.
+- Editing, serialization, and CMDB export retain strings that YAML consumers might otherwise
+  interpret as numbers, dates, or timestamps. Existing timestamp scalars retain their original
+  source representation. Independent PyYAML checks verify the emitted string types.
+- `sty conf --proxy` accepts uppercase and lowercase HTTP, HTTPS, ALL, and NO proxy variables.
+  Missing HTTP and HTTPS values both fall back to ALL_PROXY. Version completion observes dotted
+  version boundaries, so a request for `1.1` cannot select `1.10`.
+
+See [Inventory source selection](/docs/pig/inventory/#source-selection) and [`pig sty`](/docs/pig/sty/).
+
+### Repositories and extensions
+
+- Repository commands validate the complete operand list before changing files. Empty values,
+  empty comma-separated elements, and unsafe repository names fail before mutation.
+  Only truly argument-free `repo rm` backs up all repository files; `repo rm all` expands the
+  `node`, `pgsql`, and `infra` modules. Removal results preserve the original request and distinguish
+  missing targets from removed files. `--update` also refreshes the cache after a full backup.
+- Repository creation retains documentation RPMs. Debug package suppression continues to use
+  `--nodbg`; a `-docs` or `-doc` name alone does not make a package a debug package.
+- Default extension lists, availability summaries, and refresh results count all catalog records,
+  including SQL utilities and retained lifecycle entries. The total describes catalog coverage,
+  not how many extensions can be installed on one host or enabled with `CREATE EXTENSION`.
+- Text, JSON, and YAML share availability rules. On covered Linux platforms, package matrices take
+  precedence and a missing matrix cell means unavailable. Architecture aliases are normalized.
+  On macOS, the status describes declared PostgreSQL support without promising an RPM/DEB package.
+  `ext list -v` selects the version used to evaluate status; unavailable records remain listed.
+- `ext import` reports failure if any requested package cannot be resolved or downloaded, while
+  retaining successful downloads and reporting the completed and failed portions. APT virtual
+  dependency markers are excluded from package download requests. Installed-library scanning also
+  recognizes catalog entries without a control file.
+- The three new catalog records are `pg_icu_parser`, `pg_vectorsearch`, and `textsearch_intl`.
+  Existing versions and platform metadata are refreshed as well. Use `pig ext avail NAME` to inspect
+  a target before installing.
+
+Details: [`pig repo`](/docs/pig/repo/), [`pig ext`](/docs/pig/ext/).
+
+### Builds and automation
+
+- Multi-version build dependency installation expands package names for every selected PostgreSQL
+  major version and removes duplicates. Default build targets retain their metadata and local
+  installation rules independently of package-matrix gaps.
+- Debian/Ubuntu builds preserve the inherited `PATH` order and append the current user's
+  `~/.cargo/bin` when present, preserving an explicitly selected toolchain.
+- Xray setup recognizes complete legacy service definitions, including marker-free macOS plists
+  generated by the previous renderer. A comment alone cannot prove ownership; changed or foreign
+  definitions still require explicit replacement. Matching reruns preserve a running service.
+- JSON/YAML output and `PIG_NON_INTERACTIVE=1` consistently disable prompt input and use
+  non-interactive sudo in PIG-owned adapters. Explicit data-input channels remain available;
+  native Patronictl forwarding retains its interaction and exit contract.
+- CMDB connection strings, legacy VMess credentials, and license keys are excluded from routine
+  parameters and failure details. Explicit credential export and raw Inventory display retain
+  their documented sensitive-output behavior.
+- Exporter HTTP 4xx/5xx responses now fail with the numeric status and standard description,
+  without including response bodies or custom status text. Unsupported `pig update` platforms
+  fail explicitly. Command help and bilingual references are aligned with these behaviors.
+- Go dependencies and validation tools are refreshed. CI includes Linux permission and instance
+  boundary acceptance plus independent YAML consumer checks.
+
+See [`pig build`](/docs/pig/build/), [`pig pe`](/docs/pig/pe/), and [global command behavior](/docs/pig/cmd/).
+
+### Upgrade notes
+
+Existing command names and flags remain available. Automation should handle the corrected failure
+statuses for partial imports, HTTP errors, cancelled recovery, and indeterminate PostgreSQL state.
+Scripts must supply valid repository operands, explicit confirmation where required, and literal
+maintenance database names. When a name begins with `-`, place all options before `--` and the name.
+
+Upgrade with the [installation instructions](/docs/pig/install/).
+
+Release artifacts: [v1.10.0](https://github.com/pgsty/pig/releases/tag/v1.10.0)
 
 --------
 
@@ -79,7 +212,7 @@ version is now `0.19.3`; the embedded Pigsty version remains `4.5.0`.
 - Matching configuration, ownership, permissions, and service state avoid rewrites and
   restarts. Failed client connectivity checks restore prior managed files and service state.
   Replacing a different client requires `--replace --yes`; `--plan` previews either role.
-- `server --export-only --export -` exports an existing connection without changing the
+- `server --export-only --host HOST --export -` exports an existing connection without changing the
   deployment. File exports use mode `0600`; explicit stdout export requires text output.
   Ordinary results and plans omit credentials. The historical VMess positional form remains
   available through V2Ray.
@@ -89,8 +222,8 @@ sudo pig build proxy server --host proxy.example.com --target www.sraoss.co.jp:4
 sudo pig build proxy client --from ./client.uri
 ```
 
-See [`pig build`](https://pig.pgsty.com/build/#build-proxy) for prerequisites, macOS setup,
-credential handling, and the separate public-ingress boundary.
+Run the server command on the server, then transfer `client.uri` securely to the client and run
+the client command there. See [`pig build`](/docs/pig/build/#build-proxy) for prerequisites and macOS setup.
 
 ### Repository keys
 
@@ -103,7 +236,7 @@ credential handling, and the separate public-ingress boundary.
   repository replacement or cache refresh. EL imports explicit references with `rpm --import`.
   Selecting unrelated repositories does not prepare the Pigsty key.
 
-See [`pig repo`](https://pig.pgsty.com/repo/#repository-definitions) for signature-enforcement
+See [`pig repo`](/docs/pig/repo/#repository-definitions) for signature-enforcement
 defaults and the distinction between key preparation and metadata refresh.
 
 ### Catalog and build defaults
@@ -113,7 +246,7 @@ defaults and the distinction between key preparation and metadata refresh.
   `pg_statkit`, `pgtelemetry`, `pg_rusage`, `pgexporter_ext`, `pg_statvfs`, and `libx509pq`.
   Package versions and platform-availability metadata are refreshed as well.
 - The catalog total includes retained lifecycle records. Installability depends on each
-  extension's state and OS/architecture/PostgreSQL matrix; 600 is not a per-platform count.
+  extension's state and OS/architecture/PostgreSQL matrix. Use `pig ext avail NAME` to check a target.
 - `pig build pgrx` defaults to `cargo-pgrx 0.19.3`. An explicit `-v` and extension-specific
   catalog metadata continue to select another required version.
 - Platform debug packages remain enabled by default, as in v1.8.1. Use `--nodbg` for RPM
@@ -122,9 +255,9 @@ defaults and the distinction between key preparation and metadata refresh.
 ### Compatibility
 
 No existing command or flag is removed. New Xray role commands use VLESS/REALITY/Vision;
-existing positional VMess commands retain their V2Ray behavior. A server setup result verifies
-the local listener and service; firewall, Nginx, cloud security groups, and public reachability
-remain separate operator responsibilities.
+existing positional VMess commands retain their V2Ray behavior. Server setup checks the local listener and service.
+Configure the firewall, cloud security group, and any Nginx frontend for the chosen public port,
+then verify the connection from the client.
 
 Release artifacts: [v1.9.0](https://github.com/pgsty/pig/releases/tag/v1.9.0)
 
@@ -153,7 +286,7 @@ c175b37552147e64590309801800826a0075ae8285ed78178c2adcaec3741471  pig_1.9.0-1_ar
 ## v1.8.1
 
 Pig `v1.8.1` is a safety, correctness, and maintenance release on top of
-[v1.8.0](https://pig.pgsty.com/release/pig-1.8.0/). It hardens command initialization, privileged log access,
+[v1.8.0](#v180). It hardens command initialization, privileged log access,
 repository and build workflows, release integrity, and structured-output redaction. It also
 refreshes the embedded extension catalog and moves the build toolchain to Go `1.27.1` and
 `cargo-pgrx 0.19.2`. The embedded Pigsty version remains `4.5.0`.
@@ -789,14 +922,14 @@ It improves the reliability of the `pig build` pipeline and extends catalog and 
 **Checksums**
 
 ```bash
-e8409cc8165139028323094bebede495d4b0d0a52616d1aecd8c7ecd3fb7471d  pig-1.3.0-1.aarch64.rpm
-73645ea4b9ce27b44b2c7f4587e6218cdbbba045f32dd45c942e03cf9020c61e  pig-1.3.0-1.x86_64.rpm
-a2d8a14b11606f4a23ca7b929686ff020fc8ce29e7cec21074f710f981aee6d4  pig-v1.3.0.darwin-amd64.tar.gz
-fffb94bfc1808b45d8bef3fb63783c1a8e78057e0315ab5b8752088e2c9a555f  pig-v1.3.0.darwin-arm64.tar.gz
-27220509c22d26eb8821ac189b1de9c4745adc0a0d91719df7d0b1fc1176b765  pig-v1.3.0.linux-amd64.tar.gz
-d124450333e61a5c7d0ed387b13b4087cfd2a81a3fde018232e6bf9b4db6ba0e  pig-v1.3.0.linux-arm64.tar.gz
-54f3e0561286b3c0af122137fd475213eff54bc82c69b8b46d1148112ab45b80  pig_1.3.0-1_amd64.deb
-beb8ff31d1e64dbfcf6896115e6d200d835fc28bbac5a5b92d75096ef1e68c80  pig_1.3.0-1_arm64.deb
+196f32419886da095f303b1bcad2729b674abc03d412199e88a39390b2616534  pig-1.3.0-1.aarch64.rpm
+a2dcc930dd47a08e85285c1fb7925e1355a1e67d458a265a7ef6d9666bc8e7ec  pig-1.3.0-1.x86_64.rpm
+c7ebda6b9839408b12ffe1c8ea561f03e1793aae0732f9bbe2320a0d45160714  pig-v1.3.0.darwin-amd64.tar.gz
+b717b485ed0a4a8c11dd8bf918400595b21df5ef43818836ec332f8518674c1a  pig-v1.3.0.darwin-arm64.tar.gz
+40e6570c6ba0fe36c97950ff8de585eecb6bc1f862509a04f410a5f08ee90148  pig-v1.3.0.linux-amd64.tar.gz
+d61430eeafc8005a22918a9aa60dea5c987916f9834331b5484f761b8235644f  pig-v1.3.0.linux-arm64.tar.gz
+62c9a4fadc7dda393d6f28ab83b5f3d741e7d7f7de7abe40a5b89c393288519c  pig_1.3.0-1_amd64.deb
+19261ae50e873a05a10a6ad500ab1b429b22e2612325c09f9cd5443dcd34308b  pig_1.3.0-1_arm64.deb
 ```
 
 Release: https://github.com/pgsty/pig/releases/tag/v1.3.0
@@ -863,9 +996,37 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.2.0
 
 --------
 
+## v1.1.1
+
+**Fixes**
+
+- Preserve symlink semantics during build-tree migration and support cross-device moves.
+- Handle a PostgreSQL log directory configured as the filesystem root without resolving files outside the intended directory.
+- Allow `pig repo rm` to remove repository modules whose names contain dots while retaining safe-path validation.
+- Accept safe relative symlinks when `pig sty init` extracts a Pigsty release archive.
+
+**Checksums**
+
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.1.1"}
+22fe5e951f09e7cfa46ab22781199b3209792992940eb5615ace4928e41a7429  pig-1.1.1-1.aarch64.rpm
+7f5a10bbefdc39e5d66a7e688fa78c5ba566c8140458b9f4b1536ff0d7ed457a  pig-1.1.1-1.x86_64.rpm
+b90aec9dc559df81c46d32575a8d231fa6d7eeb8b25f4d2e0b6076cc0a9c0e59  pig-v1.1.1.darwin-amd64.tar.gz
+3063e3a72e68371a082b4e629d12aafda46d96eddc22976beb2049881854f4ea  pig-v1.1.1.darwin-arm64.tar.gz
+081ff8c81bf61108a35ca4cdc51007d4ddf1de8a041d8be087e58e7068e7e177  pig-v1.1.1.linux-amd64.tar.gz
+9a81e868699f92d73f8aeb7752206b6eaac8d42d1688089a1f543b12ee0d272d  pig-v1.1.1.linux-arm64.tar.gz
+85ce861cfbff846be2ba912ba8dfc766121dad14a59937387d9c5e26b0b6f541  pig_1.1.1-1_amd64.deb
+3a108f0544af4d1f98acee55c06c5b5af3b856e3be2b18767e6db0b8a1cc664f  pig_1.1.1-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v1.1.1
+
+
+--------
+
+
 ## v1.1.0
 
-This planned architecture update moves from `v1.0.0` to `v1.1.0`, with 79 commits across 193 changed files. It extends pig from an interactive CLI to a CLI that agents can orchestrate.
+This release upgrades the CLI architecture from `v1.0.0` to `v1.1.0`, with 79 commits across 193 changed files. It extends pig from an interactive CLI to a CLI that agents can orchestrate.
 
 Seven new extensions are added, bringing the total available extensions to 451.
 
@@ -1010,6 +1171,58 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.0.0
 
 --------
 
+## v0.9.0
+
+**Changes**
+
+- Rename `pig sty install` to `pig sty deploy` so the command name reflects that it runs the Pigsty deployment playbook.
+- Add the `-g`, `-p`, and `-o` options to `pig sty conf`, aligning it with the configure script available in this release.
+- Keep `llvmjit` in the `pgsql-full` package alias.
+
+**Checksums**
+
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.9.0"}
+ea0c098d0829720b6e364d2f2a91328876962c7f0ae94eee7bdcde0bd43313fa  pig-0.9.0-1.aarch64.rpm
+707f4e1fde76d3faa05165ac11e97969c22a8740c97ef84da52727d0328990cc  pig-0.9.0-1.x86_64.rpm
+56aeb61674ddfb64368e6f5535e06a38b76f62e3d6c9536a63be7df6babed93e  pig-v0.9.0.darwin-amd64.tar.gz
+a213d16817d6124ffa83d93ad880a040598b6ed3fe23a74d43420c095ed43de4  pig-v0.9.0.darwin-arm64.tar.gz
+6a1a1836217fa723ca42bc2276ecf1453cd2ee0acacddfc313164701b24a452f  pig-v0.9.0.linux-amd64.tar.gz
+5e5728aa5922138c61c900a731f97cdc1b9653c14d7fe804b6753fb6f222b8b0  pig-v0.9.0.linux-arm64.tar.gz
+e80d2cb3ceb5fd58fc0262ab4b39b44e8dcccb7712151c73a41ba50cb510353b  pig_0.9.0-1_amd64.deb
+ecb504efffde8d696b765579332fc0b3304751fa8077c4c0394e7f3c44aa0fe2  pig_0.9.0-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v0.9.0
+
+
+--------
+
+
+## v0.8.1
+
+**Fix**
+
+- Restore `llvmjit` to the `pgsql-full` package alias after it was removed in v0.8.0.
+
+**Checksums**
+
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.8.1"}
+fd9291b15953e8e5f579de7e0256b88ca742e11fc0ed578bf181d2ce4cf5258c  pig-0.8.1-1.aarch64.rpm
+c2ec07d18eeae6ad831950da44d6bb797fad3ca4d0b1f7b0e82d715a22baedec  pig-0.8.1-1.x86_64.rpm
+b07017d257089166377fb4deffe167c952ae1dcacb6203de26a11a89097dfc34  pig-v0.8.1.darwin-amd64.tar.gz
+090889ba1447693e3ace0b18222f6852448738fc4baa4964a27acc87ce560501  pig-v0.8.1.darwin-arm64.tar.gz
+64cfd28d98c41776c83949b2ffb3b789c66835ccb522a346ea1b53966e9f9544  pig-v0.8.1.linux-amd64.tar.gz
+6216612ab63c2c9006466834222bdbdcd9e7e8e112c52a6f17e26d0ebb24fbe4  pig-v0.8.1.linux-arm64.tar.gz
+29a2109af6141fa990144f0ebcf3bbbe13030c75af6fb3c6bf89eb8da956d387  pig_0.8.1-1_amd64.deb
+7d8728658c942e57df259acd1da0d2655d9132ab7bffcc109527ed184784f882  pig_0.8.1-1_arm64.deb
+```
+
+Release: https://github.com/pgsty/pig/releases/tag/v0.8.1
+
+
+--------
+
+
 ## v0.8.0
 
 **Extension Updates**
@@ -1126,14 +1339,14 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.4
 **Checksums**
 
 ```bash
-786d72f6b685d6d6abf5f255f0a7de9204988a05630a26a53bfc7631823c0c6f  pig-0.7.3-1.aarch64.rpm
-da59e24ef79d1164e348bacc43e3222e8e2778ec0e103e7ffc0c6df064758e8f  pig-0.7.3-1.x86_64.rpm
-73062a979749095e89abc07dd583d34d4f57908bb4ee935cf7640f129ca6a2cb  pig-v0.7.3.darwin-amd64.tar.gz
-ca5f5576f6d0d9be1d10cad769821be9daa62220b2fb56b94d6e4c0cede6da61  pig-v0.7.3.darwin-arm64.tar.gz
-d193b4b87cf9a6e4775b1b07709802d30f0233ccb1b728843a09decb545168d3  pig-v0.7.3.linux-amd64.tar.gz
-e7f612df0e8e4d9fac6df3765862b9e491bb50aad651856abf7a6935986e6f99  pig-v0.7.3.linux-arm64.tar.gz
-3d5306ce95dcf704dd498b05325d942637564b13115f1e5a5bb9ef6781df1ba6  pig_0.7.3-1_amd64.deb
-32e695ba2d49a741d8cd92008f8f2dec29f10754d35b732035f48517b382c30d  pig_0.7.3-1_arm64.deb
+83e1b491b58793859caaccb0600a8ad7f7c0ea71dfcbc1dc348bf4666f7dc742  pig-0.7.3-1.aarch64.rpm
+00671775c22918b6e92c8f39972fa2e6e78536ba0ca1e23f9bb9752a2910a974  pig-0.7.3-1.x86_64.rpm
+d6ac6164a09a7b2aac210b898c8729df6cbcef6462207a896caf08b1511c9cdb  pig-v0.7.3.darwin-amd64.tar.gz
+c595df851cc76b93fe2692e880909aed316db00cfdcd75c0c5667141915e49b7  pig-v0.7.3.darwin-arm64.tar.gz
+baa875895623f073204d0ff8fbcb76bd37da6e5806e70aae43aaa2cb14355186  pig-v0.7.3.linux-amd64.tar.gz
+b6d75f7e0474341990e2cf64b5006fb7b145839f8b54c12f70657c166bfeeb14  pig-v0.7.3.linux-arm64.tar.gz
+5ddfd410c6d6c2546804bf948aab3b7978fa719d92c1477d7a33889e7b1006dd  pig_0.7.3-1_amd64.deb
+2996c06fda272e01fea72bb8eec51dca8f4b9e8526d9833dcda1cf7549d1e01a  pig_0.7.3-1_arm64.deb
 ```
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.7.3
@@ -1153,14 +1366,14 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.3
 **Checksums**
 
 ```bash
-f303c391fc28bc74832712e0aa58319abe0ebcae4f6c07fdf9a9e542b735d2ec  pig-0.7.2-1.aarch64.rpm
-c096a61a4e3a49b1238659664bbe2cd7f29954c43fb6bb8e8e9fb271f95a612e  pig-0.7.2-1.x86_64.rpm
-5e037c891dff23b46856485108d6f64bede5216dfbd4f38a481f0d0672ee910b  pig-v0.7.2.darwin-amd64.tar.gz
-736b4b47999c543c3c886781f4d8dddbf4276f363c35c7bf50094b6f18d14600  pig-v0.7.2.darwin-arm64.tar.gz
-20b13f059efed29dd76f6927b3e8d7b597c0c8d734f9e22ba3d0a2af6dbcd3bf  pig-v0.7.2.linux-amd64.tar.gz
-9548b530c05f2ffdc8d73b8f890718d47b74a51eb62852a99c08b1b52e47f014  pig-v0.7.2.linux-arm64.tar.gz
-b6faad9f92b926546a10f590274f2cb2afff21b9cea878094cfc5caf09e67d2c  pig_0.7.2-1_amd64.deb
-452f73f1fa035e5417ab49fc51d797925550179ffcc023e8f03d80144309212a  pig_0.7.2-1_arm64.deb
+080dd93c33faf81e8f9d3b9d543b9949604b834ccd55331cce697df79049a9af  pig-0.7.2-1.aarch64.rpm
+b91056230d3a790ab0190b3680fc5dbc3eb1306b7a1c2416fb6ef421bf48dcf7  pig-0.7.2-1.x86_64.rpm
+9b294e58b8c3629066b905e25dda4f51eacc1eb4b6d5d87fab32d17fb13a9cb7  pig-v0.7.2.darwin-amd64.tar.gz
+74f3276752d826c8130ca22a791da48548608378a453908e7cdd095c0564a1eb  pig-v0.7.2.darwin-arm64.tar.gz
+0c9f6e6bf930e70206df2c6d58d1296f1a7a77ca7d89d27d47112bc44544cda4  pig-v0.7.2.linux-amd64.tar.gz
+f62842217be958569ca09051e8cad0d674ee9446245e45655b91f9918927b340  pig-v0.7.2.linux-arm64.tar.gz
+091d12d5d5c3c8e52b8b60ab180b88b7aeaff512aa344af0e039c7d4b73c75a0  pig_0.7.2-1_amd64.deb
+53346bd96538a20b0bb3bb4161ba117bca7b5cf6633f5d3c357fe9e560b06ff5  pig_0.7.2-1_arm64.deb
 ```
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
@@ -1170,7 +1383,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
 
 ## v0.7.1
 
-- New website: /ext/
+- New [PGEXT.CLOUD extension catalog](https://pgext.cloud/).
 - Removes unnecessary sudo calls. Pig can now run inside Docker.
 - Allow using `pg18`, `pg17` arg format in pig ext link command
 - Adds the environment variable `PIG_NO_SUDO` to prevent sudo use.
@@ -1256,7 +1469,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.2
 ## v0.6.1
 
 - Add el10 and debian 13 trixie support stub
-- Dedicated website: /docs/pig/
+- Dedicated [PIG documentation website](https://pig.pgsty.com/).
 - Rebuild with go 1.25 and CI/CD pipeline
 - Use PIGSTY PGDG mirror in mainland China
 - Remove unused `pgdg-el10fix` repo
@@ -1437,7 +1650,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.3.1
 
 ## v0.3.0
 
-The [`pig`](/docs/pig/) project has a new [homepage](/docs/pig/) and PostgreSQL Extension [Catalog](/ext/list).
+This release introduced a [PIG homepage](/docs/pig/) alongside the PostgreSQL extension [catalog](/ext/list/).
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.3.0
 
@@ -1453,11 +1666,67 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.2.2
 
 ## v0.2.0
 
+**New extensions**
+
+- [pg_documentdb_core](https://github.com/microsoft/documentdb/tree/main/pg_documentdb_core) and FerretDB
+- [VectorChord-bm25](https://github.com/tensorchord/VectorChord-bm25) (vchord_bm25) 0.1.0
+- [pg_tracing](https://github.com/DataDog/pg_tracing) 0.1.2
+- [pg_curl](https://github.com/RekGRpth/pg_curl) 2.4
+- [pgxicor](https://github.com/Florents-Tselai/pgxicor) 0.1.0
+- [pgsparql](https://github.com/lacanoid/pgsparql) 1.0
+- [pgjq](https://github.com/Florents-Tselai/pgJQ) 0.1.0
+- [hashtypes](https://github.com/adjust/hashtypes/) 0.1.5
+- [db_migrator](https://github.com/cybertec-postgresql/db_migrator) 1.0.0
+- [pg_cooldown](https://github.com/rbergm/pg_cooldown) 0.1
+
+**Extension updates**
+
+- citus 13.0.0 -> 13.0.1
+- pg_mooncake 0.1.0 -> 0.1.1
+- timescaledb 2.17.2 -> 2.18.1
+- supautils 2.5.0 -> 2.6.0
+- VectorChord 0.1.0 -> 0.2.0
+- pg_bulkload 3.1.22 (+pg17)
+- pg_store_plan 1.8 (+pg17)
+- pg_search 0.14 -> 0.15.1
+- pg_analytics 0.3.0 -> 0.3.2
+- pgroonga 3.2.5 -> 4.0.0
+- zhparser 2.2 -> 2.3
+- pg_vectorize 0.20.0 -> 0.21.1
+
 Release: https://github.com/pgsty/pig/releases/tag/v0.2.0
 
 ------
 
 ## v0.1.4
+
+**New extensions**
+
+- [pg_documentdb_core](https://github.com/microsoft/documentdb/tree/main/pg_documentdb_core) and FerretDB
+- [VectorChord-bm25](https://github.com/tensorchord/VectorChord-bm25) (vchord_bm25) 0.1.0
+- [pg_tracing](https://github.com/DataDog/pg_tracing) 0.1.2
+- [pg_curl](https://github.com/RekGRpth/pg_curl) 2.4
+- [pgxicor](https://github.com/Florents-Tselai/pgxicor) 0.1.0
+- [pgsparql](https://github.com/lacanoid/pgsparql) 1.0
+- [pgjq](https://github.com/Florents-Tselai/pgJQ) 0.1.0
+- [hashtypes](https://github.com/adjust/hashtypes/) 0.1.5
+- [db_migrator](https://github.com/cybertec-postgresql/db_migrator) 1.0.0
+- [pg_cooldown](https://github.com/rbergm/pg_cooldown) 0.1
+
+**Extension updates**
+
+- citus 13.0.0 -> 13.0.1
+- pg_mooncake 0.1.0 -> 0.1.1
+- timescaledb 2.17.2 -> 2.18.1
+- supautils 2.5.0 -> 2.6.0
+- VectorChord 0.1.0 -> 0.2.0
+- pg_bulkload 3.1.22 (+pg17)
+- pg_store_plan 1.8 (+pg17)
+- pg_search 0.14 -> 0.15.1
+- pg_analytics 0.3.0 -> 0.3.2
+- pgroonga 3.2.5 -> 4.0.0
+- zhparser 2.2 -> 2.3
+- pg_vectorize 0.20.0 -> 0.21.1
 
 Release: https://github.com/pgsty/pig/releases/tag/v0.1.4
 
@@ -1478,6 +1747,15 @@ Includes [**351**](/ext/list) PostgreSQL extensions, including [postgresql-anony
 Release: https://github.com/pgsty/pig/releases/tag/v0.1.2
 
 ------
+
+## v0.1.1
+
+Update Extension List
+
+Release: https://github.com/pgsty/pig/releases/tag/v0.1.1
+
+------
+
 
 ## v0.1.0
 

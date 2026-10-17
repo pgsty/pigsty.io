@@ -7,32 +7,9 @@ module: [PIG]
 categories: [Reference]
 ---
 
-The `pig inventory` command group was added in v1.6.0. Its alias is `pig inv`.
-Use it to inspect, edit, validate, and check readiness of the Pigsty inventory (`pigsty.yml`) **without loss** of source formatting.
-The experimental `cmdb` subcommands exchange inventory data with the PostgreSQL CMDB.
+`pig inventory` (alias `pig inv`) inspects, edits, and validates the Pigsty inventory, `pigsty.yml`. It also checks deployment prerequisites and exchanges configuration with PostgreSQL through the experimental `cmdb` commands.
 
-The engine preserves YAML comments, formatting, key order, anchors, and line endings byte-for-byte.
-Before writing, `edit` parses the entire document again. It writes atomically, so **invalid YAML cannot reach disk**.
-
-```bash
-Inspect, edit, validate, check, and exchange Pigsty Inventory
-
-Usage:
-  pig inventory [command]
-
-Aliases:
-  inventory, inv
-
-Available Commands:
-  check       Check Inventory, controller, and opt-in target readiness
-  cmdb        Exchange Inventory with Pigsty's existing PostgreSQL CMDB (experimental)
-  diff        Compare declarations without emitting Inventory values
-  edit        Edit Inventory or one selected YAML fragment
-  list        List ordered Inventory topology and value kinds
-  show        Show verbatim Inventory YAML (may contain secrets)
-  status      Inspect the active Inventory source without executing it
-  validate    Validate one complete static Pigsty Inventory
-```
+When you edit a fragment, PIG preserves the YAML content and formatting outside that fragment. Before saving, it parses the complete file again. If parsing fails or another process has changed the original file, PIG keeps the original and reports an error.
 
 | Command        | Alias | Description                                             |
 |:---------------|:------|:--------------------------------------------------------|
@@ -46,9 +23,26 @@ Available Commands:
 | `inv cmdb`     |       | Exchange with the PostgreSQL CMDB (**experimental**)    |
 {.full-width}
 
-Pig resolves the inventory path from the global `-i/--inventory` flag or the Pigsty home directory.
-All commands support structured output with `-o json|yaml`.
+Use global `-i, --inventory` to select the inventory or `-H, --home` to select the Pigsty directory. Without these options, PIG resolves the source from its configuration and the Pigsty directory. Commands support structured results with `-o json` or `-o yaml`, except `show`, which always prints the selected YAML verbatim.
 
+## Source selection {#source-selection}
+
+PIG selects the first configured source in this order. If a selected source is missing or invalid,
+PIG reports that problem instead of falling through to another inventory.
+
+| Priority | Source | Base for a relative path |
+|:---|:---|:---|
+| 1 | `-i, --inventory PATH` | Current working directory |
+| 2 | `PIGSTY_INVENTORY` | Current working directory |
+| 3 | `inventory` in `~/.pig/config.yml` | Resolved Pigsty home |
+| 4 | `[defaults] inventory` in the Pigsty home's `ansible.cfg` | Directory containing `ansible.cfg` |
+| 5 | `pigsty.yml` | Resolved Pigsty home |
+
+PIG expands `~/` before resolving the path, including a quoted path in `ansible.cfg`.
+`pig inv status` reports the selected source without executing it. Static Inventory operations
+require a supported YAML source. [`pig do`](/docs/pig/do/) can forward a directory or executable inventory
+to Ansible; [`pig sty deploy`](/docs/pig/sty/#sty-deploy) requires a regular file. Both pass the resolved
+path explicitly to Ansible, so it cannot silently select a different default.
 
 ## Quick Start
 
@@ -61,6 +55,16 @@ pig inventory check -p ssh --sudo        # add SSH/sudo readiness probes
 pig inventory diff /path/other.yml       # compare declarations with another file
 ```
 
+## inv status / list / show
+
+```bash
+pig inv status                          # show the active path and source type
+pig inv list --depth 2                  # limit topology depth
+pig inv list pg-meta                    # inspect one cluster's structure
+pig inv show pg-meta                    # print the cluster YAML verbatim
+```
+
+`status` inspects the source without executing a dynamic inventory. `list` shows groups, hosts, keys, and value types. `show` prints actual values, including any passwords in the selected configuration. Adding `-o json` does not change its YAML output.
 
 ## Selectors
 
@@ -74,13 +78,9 @@ pig inv e pg-meta.vars.pg_databases      # a nested key path
 pig inv e 'pg-meta.hosts["10.10.10.10"]' # dotted keys (e.g. IPs) via quoted brackets
 ```
 
-
 ## inv edit
 
-Open the selected fragment in `$EDITOR`.
-After you save and exit, pig restores the indentation and newline style.
-It then **parses the entire document again**. If parsing fails, it stops and keeps the temporary file.
-Before writing atomically, it checks that another process has not changed the file on disk.
+Open the selected fragment in `$EDITOR`. After you save and exit, PIG restores the indentation and newline style, parses the complete document, checks for concurrent changes, and replaces the original file atomically. If parsing fails, PIG keeps the temporary file so you can correct it.
 
 ```bash
 pig inventory edit                       # edit the whole inventory
@@ -93,18 +93,13 @@ pig inv e vars --from vars.yml           # replace the fragment from a file (or 
 | `--from` | Replace the selected fragment from a regular file or stdin (`-`), skipping the editor |
 {.full-width}
 
-> **Note**: after a successful edit, pig sets the inventory file mode to `0600` if needed.
-> The file can contain database passwords and other secrets.
-> The result reports this change in `mode_tightened`.
-> If other users or tools read the file directly, adjust its permissions or ownership.
-
+The saved file belongs to the current user. PIG removes group and other permissions, usually producing mode `0600`, and preserves stricter owner-only permissions. The structured result's `mode_tightened` field reports this change.
 
 ## inv validate
 
-Validate one complete static Pigsty inventory.
-The command checks YAML structure, Ansible conventions, and Pigsty rules in sequence.
-Pigsty checks include `admin_ip`, the `infra` group, and IPv4 host keys.
-Diagnostics do not show sensitive values.
+Validates one complete static Pigsty inventory: YAML structure, Ansible conventions, and
+Pigsty semantics (such as `admin_ip`, the `infra` group, and IPv4 host keys) are checked
+layer by layer; diagnostics never echo sensitive values.
 
 ```bash
 pig inventory validate                   # validate the active inventory
@@ -117,21 +112,24 @@ pig inv v --strict -o json               # structured output (CI-friendly)
 | Option      | Description                                                |
 |:------------|:-----------------------------------------------------------|
 | `--strict`  | Treat validation warnings as failures                      |
-| `--ansible` | Also parse with a bounded `ansible-inventory` adapter      |
+| `--ansible` | Also parse with `ansible-inventory` |
 | `--timeout` | Timeout for `--ansible` compatibility validation (default 10s) |
 {.full-width}
 
-> `validate` checks **Pigsty semantics**, rather than general Ansible lint rules.
-> Its rules follow Pigsty's `bin/validate`, with stricter checks in a few places.
-> Parsing rejects **duplicate keys** and **multi-document YAML**.
-> You cannot use those files with `show` / `edit` either.
+Validation follows Pigsty's configuration rules, including requirements for `admin_ip`, the `infra` group, and host addresses. The file must contain one YAML document with no duplicate keys. These parsing rules also apply to `show` and `edit`.
 
+`pg_users[].roles` accepts role names and objects containing `name`, optional
+`state` (`grant`, `revoke`, `absent`), and nullable boolean `admin`, `set`, and `inherit`.
+Editing, serialization, and CMDB YAML export preserve strings that look like YAML 1.1 scalars,
+including `"1:30"`, `"010"`, dates, and timestamps supplied as strings. Necessary quotes prevent
+downstream YAML consumers from changing their types. Existing unquoted or explicitly tagged timestamps
+retain their source bytes and use the opaque `unknown` scalar kind; quote them when a string is intended.
+`show` and explicit CMDB exports retain their raw-data contract.
 
 ## inv check
 
-Run readiness checks in addition to static validation.
-By default, the command checks only the inventory and local controller.
-Use `--profile` to add probes.
+Readiness checks on top of static validation: by default only the inventory and local
+controller conditions are checked; add probes with `--profile`.
 
 ```bash
 pig inventory check                      # inventory + controller basics
@@ -149,24 +147,32 @@ pig inv ck -p ssh --sudo                 # SSH probes plus sudo -n validation
 | `--sudo`    |       | With the ssh profile, also observe `sudo -n true` |
 {.full-width}
 
+`--user` and `--port` use explicit arguments or the defaults above. They do not infer effective SSH variables from the inventory. Combine profiles with commas, for example `--profile ansible,ssh`.
+
+## inv diff
+
+Compare the active inventory with another file. The result lists added, removed, and changed declarations by path and value type, without configuration values:
+
+```bash
+pig inv diff other.yml
+pig inv diff other.yml -o json
+```
 
 ## inv cmdb (experimental)
 
-> **Experimental**: interfaces and behavior may change.
-
-`pig inventory cmdb` exchanges the inventory with Pigsty's existing CMDB through a native PostgreSQL driver.
-The CMDB uses `files/cmdb.sql` and the `pigsty` / `pglog` schemas.
-Connection selection uses `-d/--database` first, then `METADB_URL`, then `service=meta`.
-The flag accepts a database name, URI, or libpq conninfo.
+`pig inventory cmdb` exchanges the inventory with Pigsty's existing CMDB schema
+(`files/cmdb.sql`, the `pigsty` / `pglog` schemas) over a native PostgreSQL driver.
+Connection resolution: `-d/--database` (database name, URI, or libpq conninfo) →
+`METADB_URL` environment variable → `service=meta`.
 
 | Subcommand | Description                                                            |
 |:-----------|:-----------------------------------------------------------------------|
 | `check`    | Read-only: verify CMDB projections, optionally against the static inventory |
-| `init`     | Apply the `cmdb.sql` baseline (`--yes` required over existing schemas; `--plan` preview) |
-| `load`     | **Replace all** CMDB declaration rows from the static inventory (single transaction; `--yes`; `--plan`/`--strict`) |
+| `init`     | Apply the `cmdb.sql` baseline (confirmation required over existing schemas; `--plan` previews) |
+| `load`     | **Replace all** CMDB declaration rows from the static inventory (one transaction; confirmation required; `--plan`/`--strict`) |
 | `dump`     | Export the CMDB as a static inventory file (`--force` to overwrite a differing target) |
-| `enable`   | Guarded switch of the `ansible.cfg` inventory to the CMDB (`inventory.sh`) |
-| `disable`  | Switch back to the static `pigsty.yml` (both support `--plan`; atomic, rollback-safe writes) |
+| `enable`   | Switch the `ansible.cfg` inventory to the CMDB (`inventory.sh`) |
+| `disable`  | Switch back to the static `pigsty.yml` (both support `--plan`) |
 {.full-width}
 
 ```bash
@@ -178,7 +184,9 @@ pig inventory cmdb enable                # switch the ansible inventory source t
 pig inventory cmdb disable               # switch back to the static pigsty.yml
 ```
 
-> **Note**: `init` applies `cmdb.sql` directly. It does **not** back up an existing CMDB.
-> Back up real data before you run it. The `load` command replaces all declaration rows.
-> Destructive operations require confirmation of the target fingerprint.
-> Structured output mode requires an explicit `--yes`.
+`init` runs `cmdb.sql` and replaces existing `pigsty` / `pglog` schemas. Back up data you need to retain before running it. `load` replaces all declaration rows in one transaction. Interactive mode asks you to confirm the target; use `--yes` for automation and structured output. Use `--plan` to inspect the operation first.
+
+## Design records
+
+- [Lossless Pigsty Inventory](https://pig.pgsty.com/design/lossless-inventory/)
+- [Use the CMDB Pigsty Already Has](https://pig.pgsty.com/design/existing-cmdb-boundary/)
