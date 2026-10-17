@@ -1,0 +1,409 @@
+# Parameters
+
+> The REDIS module provides 19 deployment and 3 removal parameters, with Redis or Valkey as the engine.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+The REDIS module has **22** parameters: 19 for Redis/Valkey deployment and configuration, and 3 for removal.
+
+
+----------------
+
+## Parameter Overview
+
+Use the [`REDIS`](/docs/redis/param/#parameter-overview) parameter group to deploy and configure Redis clusters. It controls identity, instance definitions, operating mode, memory, persistence, and monitoring.
+
+| Parameter                                           |    Type    |  Level  | Description                                             |
+|:----------------------------------------------------|:----------:|:-------:|:--------------------------------------------------------|
+| [`redis_cluster`](#redis_cluster)                   |  `string`  |   `C`   | Redis cluster name, required identity parameter         |
+| [`redis_instances`](#redis_instances)               |   `dict`   |   `I`   | Redis instance definitions on this node                 |
+| [`redis_node`](#redis_node)                         |   `int`    |   `I`   | Redis node number, unique positive integer in cluster   |
+| [`redis_fs_main`](#redis_fs_main)                   |   `path`   |   `C`   | Redis main data directory, `/data/redis` by default     |
+| [`redis_exporter_enabled`](#redis_exporter_enabled) |   `bool`   |   `C`   | Enable Redis Exporter?                                  |
+| [`redis_exporter_port`](#redis_exporter_port)       |   `port`   |   `C`   | Redis Exporter listen port                              |
+| [`redis_exporter_options`](#redis_exporter_options) |  `string`  |  `C/I`  | Redis Exporter CLI arguments                            |
+| [`redis_type`](#redis_type)                         |   `enum`   |  `G/C`  | Server engine: `redis` (default) or `valkey`            |
+| [`redis_mode`](#redis_mode)                         |   `enum`   |   `C`   | Redis mode: standalone, cluster, sentinel               |
+| [`redis_conf`](#redis_conf)                         |  `string`  |   `C`   | Redis config template, except sentinel                  |
+| [`redis_bind_address`](#redis_bind_address)         |    `ip`    |   `C`   | Redis bind address, defaults to `0.0.0.0`; empty uses host IP |
+| [`redis_max_memory`](#redis_max_memory)             |   `size`   |  `C/I`  | Max memory for each Redis instance                      |
+| [`redis_mem_policy`](#redis_mem_policy)             |   `enum`   |   `C`   | Redis memory eviction policy                            |
+| [`redis_password`](#redis_password)                 | `password` |   `C`   | Redis password, empty disables password                 |
+| [`redis_rdb_save`](#redis_rdb_save)                 | `string[]` |   `C`   | Redis RDB save directives, empty list disables RDB      |
+| [`redis_aof_enabled`](#redis_aof_enabled)           |   `bool`   |   `C`   | Enable Redis AOF?                                       |
+| [`redis_rename_commands`](#redis_rename_commands)   |   `dict`   |   `C`   | Rename dangerous Redis commands                         |
+| [`redis_cluster_replicas`](#redis_cluster_replicas) |   `int`    |   `C`   | Replicas per master in Redis native cluster             |
+| [`redis_sentinel_monitor`](#redis_sentinel_monitor) | `master[]` |   `C`   | Master list for Redis Sentinel to monitor               |
+
+The [`REDIS_REMOVE`](#redis_remove) parameter group controls Redis instance removal behavior.
+
+| Parameter                                 |  Type  |  Level  | Description                                    |
+|:------------------------------------------|:------:|:-------:|:-----------------------------------------------|
+| [`redis_safeguard`](#redis_safeguard)     | `bool` | `G/C/A` | Refuse removal unconditionally when `true`     |
+| [`redis_rm_data`](#redis_rm_data)         | `bool` | `G/C/A` | Remove Redis data directory when removing?     |
+| [`redis_rm_pkg`](#redis_rm_pkg)           | `bool` | `G/C/A` | Uninstall the selected engine and redis-exporter? |
+
+
+The [REDIS](/docs/redis) module contains 19 deployment parameters and 3 removal parameters.
+
+```yaml
+#redis_cluster:             <CLUSTER> # Redis cluster name, required identity parameter
+#redis_node: 1              <NODE>    # Redis node number, unique in cluster
+#redis_instances: {}        <NODE>    # Redis instance definitions on this node
+redis_fs_main: /data/redis            # Redis main data directory, `/data/redis` by default
+redis_exporter_enabled: true          # Enable Redis Exporter?
+redis_exporter_port: 9121             # Redis Exporter listen port
+redis_exporter_options: ''            # Redis Exporter CLI arguments
+redis_type: redis                     # Server engine: redis or valkey
+redis_mode: standalone                # Redis mode: standalone, cluster, sentinel
+redis_conf: redis.conf                # Redis config template, except sentinel
+redis_bind_address: '0.0.0.0'         # Redis bind address, defaults to `0.0.0.0`; empty uses host IP
+redis_max_memory: 1GB                 # Max memory for each Redis instance
+redis_mem_policy: allkeys-lru         # Redis memory eviction policy
+redis_password: ''                    # Redis password, empty disables password
+redis_rdb_save: ['1200 1']            # Redis RDB save directives, empty disables RDB
+redis_aof_enabled: false              # Enable Redis AOF?
+redis_rename_commands: {}             # Rename dangerous Redis commands
+redis_cluster_replicas: 1             # Replicas per master in Redis native cluster
+redis_sentinel_monitor: []            # Master list for Sentinel, sentinel mode only
+
+# REDIS_REMOVE
+redis_safeguard: false                # Refuse removal unconditionally when true
+redis_rm_data: true                   # Remove Redis data directory when removing?
+redis_rm_pkg: false                   # Uninstall the selected engine and redis-exporter?
+```
+
+
+
+### `redis_cluster`
+
+Parameter: `redis_cluster`, Type: `string`, Level: `C`
+
+Redis cluster name. This identity parameter is required. Set it explicitly at the cluster level. It defines the namespace for cluster resources.
+
+Use the naming pattern `[a-z][a-z0-9-]*` to meet identity constraints. We recommend the `redis-` prefix.
+
+
+
+
+
+### `redis_node`
+
+Parameter: `redis_node`, Type: `int`, Level: `I`
+
+Redis node sequence number. This identity parameter is required. Set it explicitly at the node (Host) level.
+
+Use a positive integer that is unique in the cluster to identify the node. Assign sequence numbers starting at 0 or 1.
+
+
+
+
+
+### `redis_instances`
+
+Parameter: `redis_instances`, Type: `dict`, Level: `I`
+
+Redis instance definitions for the current node. This parameter is required. Set it explicitly at the node (Host) level.
+
+Format is a JSON key-value object where keys are numeric port numbers and values are instance-specific JSON configuration items.
+
+```yaml
+redis-test: # redis native cluster: 3m x 3s
+  hosts:
+    10.10.10.12: { redis_node: 1 ,redis_instances: { 6379: { } ,6380: { } ,6381: { } } }
+    10.10.10.13: { redis_node: 2 ,redis_instances: { 6379: { } ,6380: { } ,6381: { } } }
+  vars: { redis_cluster: redis-test ,redis_password: 'redis.test' ,redis_mode: cluster, redis_max_memory: 32MB }
+```
+
+Each Redis instance listens on a unique port on its node. The `replica_of` field in instance configuration sets the upstream master address to establish replication:
+
+```yaml
+redis_instances:
+    6379: {}
+    6380: { replica_of: '10.10.10.13 6379' }
+    6381: { replica_of: '10.10.10.13 6379' }
+```
+
+
+
+
+
+
+### `redis_fs_main`
+
+Parameter: `redis_fs_main`, Type: `path`, Level: `C`
+
+Main data directory for Redis, default is `/data/redis`.
+
+Deployment does not allow the legacy value `/data` (`redis` role identity `assert` fails fast). For backward compatibility during removal, `redis-rm.yml` treats `redis_fs_main=/data` as `/data/redis`.
+
+The data directory is owned by the `redis` OS user. See [FHS: Redis](/docs/ref/fhs#redis-fhs) for internal structure details.
+
+
+
+
+
+### `redis_exporter_enabled`
+
+Parameter: `redis_exporter_enabled`, Type: `bool`, Level: `C`
+
+Specifies whether to enable Redis Exporter. It is enabled by default.
+
+Pigsty deploys one exporter per Redis node. It listens on [`redis_exporter_port`](#redis_exporter_port), which defaults to `9121`. It scrapes metrics from all Redis instances on the node.
+
+If set to `false`, `roles/redis/tasks/exporter.yml` still renders configuration files. It skips startup of the `redis_exporter` systemd service. The `redis_exporter_launch` task uses `when: redis_exporter_enabled|bool`. This permits manually configured exporters to remain.
+
+The `redis_register` task still writes the node's VictoriaMetrics file-discovery target. If you do not provide an exporter on the same port, adjust this target to prevent continuous scrape failures.
+
+
+
+
+
+### `redis_exporter_port`
+
+Parameter: `redis_exporter_port`, Type: `port`, Level: `C`
+
+Redis Exporter listen port, default value: `9121`
+
+
+
+
+
+### `redis_exporter_options`
+
+Parameter: `redis_exporter_options`, Type: `string`, Level: `C/I`
+
+Extra Redis Exporter CLI arguments. The default is an empty string. The role writes them to `/etc/default/redis_exporter`; see `roles/redis/tasks/exporter.yml`.
+
+The systemd service uses `ExecStart=/bin/redis_exporter $REDIS_EXPORTER_OPTS` to append `REDIS_EXPORTER_OPTS`. Use these arguments for extra scrape targets or filtering behavior.
+
+
+
+
+
+
+### `redis_type`
+
+Parameter: `redis_type`, Type: `enum`, Level: `G/C`
+
+Select the server implementation used by the REDIS module. Allowed values are `redis` and `valkey`. The default is `redis`.
+
+The role installs the package with the selected name. Instance systemd units call `/bin/redis-server` / `/bin/redis-cli` or `/bin/valkey-server` / `/bin/valkey-cli`.
+
+Configuration paths, data directories, instance service names, exporter behavior, and monitoring labels retain the `redis` namespace. This preserves compatibility with existing inventories and operational entry points.
+
+Set the same value for every member at cluster level. A change to `redis_type` changes only the selected package and binaries. It does not validate cross-version RDB/AOF, replication, Sentinel, or Cluster compatibility. Rehearse the change and prepare a rollback before switching an existing cluster.
+
+
+
+
+
+### `redis_mode`
+
+Parameter: `redis_mode`, Type: `enum`, Level: `C`
+
+Redis cluster operating mode, three options: `standalone`, `cluster`, `sentinel`. Default: `standalone`
+
+* `standalone`: Default, independent Redis master-slave mode
+* `cluster`: Redis native cluster mode
+* `sentinel`: Redis high availability component: Sentinel
+
+When using `standalone` mode, Pigsty sets up Redis replication based on the `replica_of` parameter.
+
+When using `cluster` mode, Pigsty creates a native Redis cluster using all defined instances based on the [`redis_cluster_replicas`](#redis_cluster_replicas) parameter.
+
+When `redis_mode=sentinel`, `redis.yml` runs the `redis-ha` phase to distribute targets from [`redis_sentinel_monitor`](#redis_sentinel_monitor) to all sentinels. If `redis_mode=cluster`, it also runs `redis-join`. This uses the engine's `redis-cli` or `valkey-cli` to run `--cluster create`.
+
+Both phases run automatically during a normal `./redis.yml -l <cluster>`. You can also select them with `-t redis-ha` or `-t redis-join`.
+
+
+
+
+
+### `redis_conf`
+
+Parameter: `redis_conf`, Type: `string`, Level: `C`
+
+Redis config template path, except for Sentinel.
+
+Default: `redis.conf`, a template file at [`roles/redis/templates/redis.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis.conf).
+
+To use your own Redis configuration template, put it in `templates/`. Set this parameter to the template filename.
+
+Note: Redis Sentinel uses a different template file: [`roles/redis/templates/redis-sentinel.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis-sentinel.conf).
+
+
+
+
+
+### `redis_bind_address`
+
+Parameter: `redis_bind_address`, Type: `ip`, Level: `C`
+
+IP address Redis server binds to. Empty string uses the hostname defined in the inventory.
+
+Default: `0.0.0.0`, binding to all available IPv4 addresses on the host.
+
+For security in production environments, bind only to internal IPs by setting this to empty string `''`.
+
+If empty, [`roles/redis/templates/redis.conf`](https://github.com/pgsty/pigsty/blob/main/roles/redis/templates/redis.conf) uses `inventory_hostname` to render `bind <ip>`. This binds Redis to the management address in the inventory.
+
+
+
+
+
+
+### `redis_max_memory`
+
+Parameter: `redis_max_memory`, Type: `size`, Level: `C/I`
+
+Maximum memory for each Redis instance, default: `1GB`.
+
+
+
+
+
+### `redis_mem_policy`
+
+Parameter: `redis_mem_policy`, Type: `enum`, Level: `C`
+
+Redis memory eviction policy, default: `allkeys-lru`
+
+- `noeviction`: Don't save new values when memory limit is reached; only applies to primary when using replication
+- `allkeys-lru`: Keep most recently used keys; remove least recently used (LRU) keys
+- `allkeys-lfu`: Keep frequently used keys; remove least frequently used (LFU) keys
+- `volatile-lru`: Remove least recently used keys with expire field set
+- `volatile-lfu`: Remove least frequently used keys with expire field set
+- `allkeys-random`: Randomly remove keys to make space for new data
+- `volatile-random`: Randomly remove keys with expire field set
+- `volatile-ttl`: Remove keys with expire field set and shortest remaining TTL
+
+See [Redis Eviction Policy](https://redis.io/docs/reference/eviction/) for details.
+
+
+
+
+
+### `redis_password`
+
+Parameter: `redis_password`, Type: `password`, Level: `C/N`
+
+Redis password. Empty string disables password, which is the default behavior.
+
+redis_exporter supports only one `redis_password` per node. This is usually sufficient because Pigsty does not permit two different Redis clusters on one node.
+
+Pigsty automatically writes this password to `/etc/default/redis_exporter` as `REDIS_PASSWORD=...`. The `redis-ha` and `redis-join` tasks select `redis-cli` / `valkey-cli` and pass the password through `REDISCLI_AUTH`. This keeps the password out of command-line arguments.
+
+> Use a strong password in production environments
+
+
+
+
+### `redis_rdb_save`
+
+Parameter: `redis_rdb_save`, Type: `string[]`, Level: `C`
+
+Redis RDB save directives. Use empty list to disable RDB.
+
+Default is `["1200 1"]`: dump dataset to disk every 20 minutes if at least 1 key changed.
+
+See [Redis Persistence](https://redis.io/docs/management/persistence/) for details.
+
+
+
+
+### `redis_aof_enabled`
+
+Parameter: `redis_aof_enabled`, Type: `bool`, Level: `C`
+
+Specifies whether to enable Redis AOF. The default is `false`, which disables AOF.
+
+
+
+
+
+### `redis_rename_commands`
+
+Parameter: `redis_rename_commands`, Type: `dict`, Level: `C`
+
+Rename dangerous Redis commands. A k:v dictionary where `old` is the command to rename and `new` is the new name.
+
+Default: `{}`. You can hide dangerous commands like `FLUSHDB` and `FLUSHALL`. Example:
+
+```yaml
+{
+  "keys": "op_keys",
+  "flushdb": "op_flushdb",
+  "flushall": "op_flushall",
+  "config": "op_config"
+}
+```
+
+
+
+
+### `redis_cluster_replicas`
+
+Parameter: `redis_cluster_replicas`, Type: `int`, Level: `C`
+
+Number of replicas per master/primary in Redis native cluster. Default: `1`, meaning one replica per master.
+
+
+
+### `redis_sentinel_monitor`
+
+Parameter: `redis_sentinel_monitor`, Type: `master[]`, Level: `C`
+
+List of masters for Redis Sentinel to monitor, used only on sentinel clusters. Each managed master is defined as:
+
+```yaml
+redis_sentinel_monitor:  # primary list for redis sentinel, use cls as name, primary ip:port
+  - { name: redis-src, host: 10.10.10.45, port: 6379 ,password: redis.src, quorum: 1 }
+  - { name: redis-dst, host: 10.10.10.48, port: 6379 ,password: redis.dst, quorum: 1 }
+```
+
+`name` and `host` are required. The `port`, `password`, and `quorum` fields are optional.
+
+`quorum` sets the number of Sentinels that must agree on master failure. This is typically more than half of the Sentinel instances. The default is 1.
+
+Since Pigsty 4.0, you can add `remove: true` to an entry. The `redis-ha` phase then runs only `SENTINEL REMOVE <name>`. Use this to remove unneeded targets.
+
+
+----------------
+
+## REDIS_REMOVE
+
+The [`redis-rm.yml`](/docs/redis/playbook#redis-rmyml) playbook calls the [`redis_remove`](https://github.com/pgsty/pigsty/tree/main/roles/redis_remove) role. These parameters control how that role removes Redis instances.
+
+
+### `redis_safeguard`
+
+Parameter: `redis_safeguard`, Type: `bool`, Level: `G/C/A`
+
+Redis deletion safeguard, default `false`. When set to `true`, `redis-rm.yml` aborts before deregistration, service shutdown, or deletion. This is a static Boolean switch and does not probe whether a Redis instance is running.
+
+Override with CLI argument `-e redis_safeguard=false` to force removal.
+
+
+### `redis_rm_data`
+
+Parameter: `redis_rm_data`, Type: `bool`, Level: `G/C/A`
+
+Specifies whether to delete the data directory when removing Redis instances. The default is `true`.
+
+The data directory (default `/data/redis/`, i.e. `redis_fs_main`) contains Redis RDB and AOF files. If not removed, newly deployed Redis instances will load data from these backup files.
+
+Set to `false` to preserve data directories for later recovery.
+
+
+### `redis_rm_pkg`
+
+Parameter: `redis_rm_pkg`, Type: `bool`, Level: `G/C/A`
+
+Specifies whether node removal also uninstalls the engine selected by `redis_type` and the `redis-exporter` package. The default is `false`. Single-instance removal with `redis_port` never uninstalls shared packages.
+
+Usually, package removal is unnecessary. Enable this option only for complete node cleanup.
