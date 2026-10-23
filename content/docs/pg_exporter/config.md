@@ -12,7 +12,7 @@ A collector contains one SQL query and its execution conditions: version, role, 
 It also controls caching and timeout. This page describes all collector settings.
 
 Use one YAML file, such as the default `pg_exporter.yml`, or a directory of YAML files.
-The official default bundle combines 58 definition files from [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config).
+The official default bundle combines 58 YAML files from [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config) in lexicographic order: 57 collector files and one configuration reference. It defines 96 branches, 59 namespaces, and 460 distinct metric names, including disabled collectors and two unexpanded histogram definitions.
 
 ## Configuration Loading
 
@@ -29,6 +29,8 @@ Directory mode details:
 - The exporter loads only `.yml` / `.yaml` files in the specified directory. It does not read subdirectories.
 - It merges files in lexicographic order. A later file overrides an earlier collector definition with the same top-level name.
 - If the directory contains YAML files but none can be parsed, the exporter returns an error.
+- If only some files fail, the exporter logs their errors and loads the valid files. Directory loading is not all-or-nothing.
+- An empty individual YAML file is a valid empty configuration; reloading it clears the collectors. A reload that fails parsing preserves the previous plan and caches.
 
 ## Collector Structure
 
@@ -175,6 +177,7 @@ Best practices:
 - Set TTL less than your scrape interval
 - Use longer TTL for expensive queries
 - TTL of 0 disables caching
+- Collector and predicate TTLs must be finite, nonnegative, and fit in Go `time.Duration`. v1.5.0 rejects NaN, infinities, and excessively large values.
 
 ### Timeout Control
 
@@ -185,6 +188,8 @@ timeout: 0.1   # 100ms default
 timeout: 1.0   # 1 second for complex queries
 timeout: -1    # Disable timeout (not recommended)
 ```
+
+Omitting `timeout` or setting it to `0` selects the 100ms default; a finite negative value disables the query deadline. v1.5.0 rejects NaN, infinities, and positive timeouts that would overflow. The timeout covers the predicates and main query together.
 
 ### Version Compatibility
 
@@ -198,8 +203,8 @@ max_version: 140000  # Below PostgreSQL 14.0
 Version numbers follow PostgreSQL `server_version_num` rules:
 
 - `100000` = 10.0
-- `130200` = 13.2
-- `160100` = 16.1
+- `130002` = 13.2
+- `160001` = 16.1
 - `190000` = 19.0
 - `90600` = 9.6, relevant when using the legacy config bundle
 
@@ -207,9 +212,11 @@ Version numbers follow PostgreSQL `server_version_num` rules:
 
 Use the execution model to find why a metric is missing:
 
-1. **Planning** runs when the connection starts or configuration reloads. It checks each branch's target type (PostgreSQL / pgBouncer), `min_version` / `max_version`, `tags`, and `skip` setting. Tags must match the server role and exporter tags. A branch that fails any check is not installed on the target. Use `curl localhost:9630/explain` to see each decision.
+1. **Planning** runs on the first scrape, configuration reload, or metadata change. It checks each branch's target type (PostgreSQL / pgBouncer), `min_version` / `max_version`, `tags`, and `skip` setting. Tags must match the server role and exporter tags. A branch that fails any check is not installed on the target. Use `curl localhost:9630/explain` to see each decision.
 2. **Scraping** runs on each `/metrics` request. An installed collector returns cached results while they are within `ttl`. Otherwise, it first runs `predicate_queries`. A false result skips the collector for this round and increments `pg_exporter_query_scrape_predicate_skip_count`. If all predicates pass, the main query runs with `timeout`. The exporter converts the results to metrics and caches them.
 3. **Failure semantics**: a normal collector failure affects only that collector. It increments `pg_exporter_query_scrape_error_count` and omits its metric group for this round. A failed collector with `fatal: true` fails the entire server scrape.
+
+In v1.5.0, a successful precheck compares the username, schemas, and extensions. A change triggers replanning; adding or removing a schema or extension does not require a manual reload. Unchanged sets preserve plans and caches; replanning resets query caches and statistics.
 
 ## Tag System
 
@@ -338,7 +345,7 @@ pg_table_stats:
   query: |
     SELECT 
       schemaname,
-      tablename,
+      relname AS tablename,
       n_tup_ins,
       n_tup_upd,
       n_tup_del,
@@ -360,8 +367,9 @@ pg_table_stats:
 
 ```yaml
 pg_wal_stats:
-  desc: "WAL statistics (PG 14+)"
+  desc: "WAL statistics (PG 14–17)"
   min_version: 140000
+  max_version: 180000
   query: |
     SELECT 
       wal_records,

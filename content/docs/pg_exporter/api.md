@@ -24,7 +24,7 @@ The default listen port is `:9630`. The following table lists all endpoints:
 {.full-width}
 
 Health and routing endpoints return the cached state from background probes: `primary`, `replica`, `down`, `starting`, or `unknown`.
-They do not query the database for each HTTP request. Thus, frequent probes cannot overload the database.
+They do not query the database for each HTTP request. In v1.5.0, each response reads one atomic state snapshot, so its HTTP status and body always describe the same state. The cached state can still lag behind the database. A successful PgBouncer probe maps to `primary`; it does not describe the role of its PostgreSQL backend.
 
 
 --------
@@ -58,7 +58,7 @@ pg_in_recovery 0
 
 # HELP pg_exporter_build_info A metric with a constant '1' value labeled with version, revision, branch, goversion, builddate, goos, and goarch from which pg_exporter was built.
 # TYPE pg_exporter_build_info gauge
-pg_exporter_build_info{version="v1.4.1",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.26.5",goos="linux",goarch="amd64"} 1
+pg_exporter_build_info{version="v1.5.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.3",goos="linux",goarch="amd64"} 1
 
 # ... additional metrics
 ```
@@ -299,7 +299,7 @@ server reloaded
 - Add or remove collectors
 
 > [!NOTE] Note
-> Reload updates collector configuration and query plans.
+> Reload updates collector configuration, query plans, caches, and query statistics. A parsing failure preserves the previous plan and caches. Empty YAML is a valid empty configuration; a successful reload clears the collectors. Directory mode permits partial file loading; see [Configuration Loading](/docs/pg_exporter/config/#configuration-loading).
 > To change process settings, such as listen addresses or CLI arguments, restart the exporter.
 
 > [!WARNING] Security Advice

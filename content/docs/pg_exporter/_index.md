@@ -1,5 +1,5 @@
 ---
-title: "PG Exporter 1.4 Documentation"
+title: "PG Exporter 1.5.0 Documentation"
 linkTitle: pg_exporter 
 weight: 8400
 icon: fas fa-magnifying-glass
@@ -8,7 +8,7 @@ module: [PG_EXPORTER]
 category: [Concept]
 ---
 
-Monitor PostgreSQL with **600+ metrics**, **declarative configuration**, and **dynamic planning**.
+Monitor PostgreSQL with **460 metric definitions**, **declarative configuration**, and **dynamic planning**.
 
 [**Get Started**](/docs/pg_exporter/start) | [**GitHub**](https://github.com/pgsty/pg_exporter) | [**Live Demo**](https://g.pgsty.com)
 
@@ -19,7 +19,7 @@ Monitor PostgreSQL with **600+ metrics**, **declarative configuration**, and **d
 
 | Feature                    | Description                                                                                                                                       |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Comprehensive Metrics**  | 600+ metrics cover nearly every statistics view in PostgreSQL (10-19+) and pgBouncer (1.8-1.25+)                                               |
+| **Comprehensive Metrics**  | 460 metric definitions cover nearly every statistics view in PostgreSQL (10-19+) and pgBouncer (1.8-1.26+)                                               |
 | **Declarative Collectors** | Define each metric in a YAML collector with a SQL query and execution conditions. Add, change, or remove metrics without code changes |
 | **Dynamic Planning**       | Select each collector branch for a target by version, primary/replica role, installed extensions, and tags                               |
 | **Auto-Discovery**         | Discover and scrape each database in an instance. The `datname` label identifies the database                                           |
@@ -34,10 +34,12 @@ Monitor PostgreSQL with **600+ metrics**, **declarative configuration**, and **d
 
 ## Version Info
 
-- Current stable release: [`v1.4.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1)
+- Current stable release: [`v1.5.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0)
 - Default config support: PostgreSQL **10-19+**
 - Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
-- pgBouncer support: **1.8-1.25+**
+- pgBouncer support: **1.8-1.26+**
+
+The v1.5.0 default bundle contains **58 YAML files** (57 collector files and one configuration reference), **96 version/role branches**, and **59 metric namespaces**. The 460 metric names are deduplicated across branches, including disabled collectors and two unexpanded `HISTOGRAM` definitions. Actual time-series counts depend on versions, objects, labels, and histogram buckets.
 
 See [Release Notes](/docs/pg_exporter/release) for the full history.
 
@@ -64,7 +66,7 @@ See [Release Notes](/docs/pg_exporter/release) for the full history.
 Select an [installation](/docs/pg_exporter/install/) method for your infrastructure:
 
 ```bash {tab="Docker"}
-docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:latest
+docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:1.5.0
 ```
 
 ```bash {tab="YUM"}
@@ -79,7 +81,7 @@ module_hotfixes=1
 EOF
 
 sudo yum makecache;
-sudo yum install -y pg_exporter
+sudo yum install -y pg-exporter
 ```
 
 ```bash {tab="APT"}

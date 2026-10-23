@@ -6,10 +6,11 @@ module: [PG_EXPORTER]
 category: [Reference]
 ---
 
-The latest stable version of `pg_exporter` is [v1.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1)
+The latest stable version of `pg_exporter` is [v1.5.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0)
 
 |     Version     |    Date    | Summary                                                    |                               GitHub                               |
 |:---------------:|:----------:|------------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.5.0](#v150) | 2026-10-23 | Connection safety, discovery, health and replication fixes; Go 1.27.3 | [v1.5.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0) |
 | [v1.4.1](#v141) | 2026-07-29 | Subscription count and label validation fixes; RPM rename  | [v1.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1) |
 | [v1.4.0](#v140) | 2026-07-18 | Snapshot histograms, pg_xact_age collector, HTTP hardening | [v1.4.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.0) |
 | [v1.3.0](#v130) | 2026-06-24 | PostgreSQL 19 support, new PG19 collectors and branches    | [v1.3.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.3.0) |
@@ -44,6 +45,68 @@ The latest stable version of `pg_exporter` is [v1.4.1](https://github.com/pgsty/
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                      | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                        | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
 
+
+## v1.5.0
+
+Release date: 2026-10-23. This release improves connection security, collection accuracy, and runtime state consistency, and upgrades the build toolchain to **Go 1.27.3**.
+
+### Fixes and Improvements
+
+- Validate PostgreSQL URLs and query parameters strictly. Reject malformed escapes and parameter names containing whitespace or `=`. Safe diagnostics prevent malformed connection strings from leaking passwords into logs or silently discarding explicit TLS settings. An empty or whitespace-only file selected through `PG_EXPORTER_URL_FILE` now prevents startup.
+- Resolve database identities with `lib/pq`. Auto-discovery removes conflicting `dbname` / `database` query parameters when replacing a database name and preserves special characters, fixing duplicate collection and HTTP 500 responses caused by duplicate metrics.
+- Generate each health response's HTTP status and body from one atomic state snapshot, fixing contradictory responses during concurrent state transitions. Health checks still use background cached state.
+- Replan after a successful precheck detects changes to the username, schemas, or extensions. Unchanged metadata preserves plans and caches. Adding or removing a schema or extension no longer requires manual reload.
+- Reject NaN, infinities, and overflowing TTLs or positive timeouts during configuration loading. Preserve the existing meanings of zero TTL (disable caching), zero timeout (use the default), and finite negative timeout (disable the deadline).
+- Verify at startup that the active HTTP mux routes the metrics path to the metrics handler. Reject escaped paths that would return the landing page or a redirect under the legacy mux.
+- Add the owning database's `datname` label to `pg_sub_*`, preventing collisions between identically named subscriptions in different databases. Correct `pg_recv_state` codes in the current and legacy bundles, and fix receiver address extraction on PostgreSQL 9.6.
+- Clarify `pg_origin` permissions, the table scope of `pg_pubrel_count`, synchronization states and PostgreSQL 19 sequence semantics in `pg_subrel_count`, and the `pg_backend` description.
+
+### Upgrade Notes
+
+- On PostgreSQL 10–13, an administrator must run `GRANT SELECT (oid) ON pg_catalog.pg_subscription TO monitor;` in the exporter's **main connection database**, substituting the actual monitoring role. This does not expose `subconninfo`. PostgreSQL 14+ needs no extra grant under standard catalog ACLs.
+- The new `datname` label on `pg_sub_*` creates new time series. Review PromQL joins, aggregations, and alerts that match these labels. The `pg_sub_id` gauge is retained.
+- `pg_recv_state` uses the following codes; 1–3 remain reserved. No receiver row means no sample. PostgreSQL 9.6 still hides receiver details from ordinary monitoring roles, resulting in an unknown state; the exporter does not expand database privileges.
+
+| State | Code | State | Code |
+|:---|---:|:---|---:|
+| streaming | 0 | starting | 6 |
+| stopping | 4 | waiting | 7 |
+| connecting (PG19+) | 5 | restarting | 8 |
+| unknown / NULL | -1 | stopped | 9 |
+{.full-width}
+
+- Upgrade both the binary and collector configuration. Packages preserve local configuration changes: merge the new `pg_exporter.yml`, then check query error counters in `/metrics`. HTTP 200 alone does not establish a successful scrape.
+- Reloading empty YAML still clears collectors, and directory loading still permits valid files to load when others fail. SIGTERM retains immediate process termination; it does not wait for active scrapes to complete.
+
+### Toolchain and Validation
+
+Retain `lib/pq` 1.12.3 and upgrade Prometheus client_golang to 1.25.0, common to 0.72.1, and exporter-toolkit to 0.20.0. YAML uses `go.yaml.in/yaml/v3` 3.0.5. The PostgreSQL driver remains `lib/pq`.
+
+The default bundle still contains 58 YAML files, 96 branches, 59 namespaces, and 460 distinct metric definitions, including two unexpanded histograms. Validation covered non-superuser collection on PostgreSQL 9.1–9.6, 10–18, 19 RC1, and PgBouncer 1.26.1; physical standby promotion, reloads, disconnect recovery, races, both HTTP mux modes, six-platform builds, ARM64 RPM/DEB installation, and Docker images. PostgreSQL 19 testing used RC1; this does not cover every extension or production workload.
+
+### Go and Dependency Security Updates
+
+**Go 1.27.3** adds a blocklist for untrusted intermediate certificates in `crypto/x509`, addressing [CVE-2026-111943](https://pkg.go.dev/vuln/GO-2026-6809). It also includes security fixes accumulated since the previous Go 1.26.5 build, including TLS issues [CVE-2026-56862](https://pkg.go.dev/vuln/GO-2026-6090) and [CVE-2026-97031](https://pkg.go.dev/vuln/GO-2026-6607), HTTP issues [CVE-2026-56853](https://pkg.go.dev/vuln/GO-2026-6089) and [CVE-2026-94439](https://pkg.go.dev/vuln/GO-2026-6613), and template, ASN.1, and multipart fixes. See the complete upstream scope in the [Go 1.26.6](https://groups.google.com/g/golang-announce/c/94pEornpRlI), [Go 1.27.2](https://groups.google.com/g/golang-announce/c/U2fTuyDJznI), and [Go 1.27.3](https://groups.google.com/g/golang-announce/c/66pojueaQek) announcements.
+
+`golang.org/x/net` moves from 0.57.0 to **0.61.0**, including five HTTP/2 fixes introduced in 0.60.0:
+
+| CVE | Fix |
+|:---|:---|
+| [CVE-2026-78659](https://pkg.go.dev/vuln/GO-2026-6603) | Memory amplification through Trailer headers |
+| [CVE-2026-78669](https://pkg.go.dev/vuln/GO-2026-6611) | CPU consumption through window updates |
+| [CVE-2026-78663](https://pkg.go.dev/vuln/GO-2026-6612) | Duplicate flow-control credit refunds |
+| [CVE-2026-97032](https://pkg.go.dev/vuln/GO-2026-6617) | HPACK encoder race and crash |
+| [CVE-2026-78660](https://pkg.go.dev/vuln/GO-2026-6610) | Malformed framing response headers |
+{.full-width}
+
+`x/crypto` 0.58.0 also crosses the fixes for SSH issues [CVE-2026-56854](https://pkg.go.dev/vuln/GO-2026-6303), [CVE-2026-56855](https://pkg.go.dev/vuln/GO-2026-6355), and [CVE-2026-78662](https://pkg.go.dev/vuln/GO-2026-6354). `x/text` 0.43.0 includes the precis fix [CVE-2026-56851](https://pkg.go.dev/vuln/GO-2026-6629). The exporter does not import these SSH/precis packages; these are dependency-version updates, not confirmed exporter runtime vulnerabilities.
+
+Comparative `govulncheck` runs on 2026-10-23 found no known symbol-level or imported-package-level vulnerabilities in the new candidate for Darwin, Linux, or Windows. The unimported OpenPGP package retains a module-level advisory, [GO-2026-5932](https://pkg.go.dev/vuln/GO-2026-5932). Static symbol matches are not exploit reproductions, and including upstream fixes does not establish that every issue was exploitable in the exporter. Other dependency upgrades are maintenance updates. Install the rebuilt release binary; upgrading Go on the host does not change an existing binary.
+
+
+For the full CVE table, first fixed versions, and scan levels, see the [security update verification](https://exp.pgsty.com/release/v1.5.0/#security-updates).
+
+[GitHub release](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0) · [SHA256 checksums](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/checksums.txt) · [Full changelog](https://github.com/pgsty/pg_exporter/compare/v1.4.1...v1.5.0) · [Complete collector reference](https://exp.pgsty.com/collectors/)
 
 ## v1.4.1
 

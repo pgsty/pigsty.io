@@ -67,17 +67,21 @@ Flags:
 These behaviors affect deployment:
 
 - **Startup policy**: startup is non-blocking by default. If the database is unreachable, HTTP endpoints still start. A background probe retries until recovery. To fail when the database is unreachable, set `--fail-fast`. For example, use this option when systemd or an orchestrator controls restarts.
-- **Telemetry path validation**: from v1.4.0, startup validates `--web.telemetry-path`. Empty paths, conflicts with built-in endpoints, and non-canonical paths such as `//metrics` fail immediately with an error. Non-canonical paths cannot match requests.
+- **Telemetry path validation**: `--web.telemetry-path` rejects empty paths, conflicts with built-in endpoints, and non-canonical paths such as `//metrics`. v1.5.0 also verifies that the active HTTP mux selects the metrics handler, preventing escaped paths from returning the landing page or a redirect. Prefer an unescaped path such as `/metrics`.
 
 ### Connection URL Sources
 
-The exporter uses the first non-empty connection string from this list:
+The exporter checks these sources in order, skipping empty command-line and environment values:
 
 1. `--url` / `-u` command-line argument
 2. `PG_EXPORTER_URL` environment variable
 3. `PGURL` environment variable
 4. Content of the file pointed to by `PG_EXPORTER_URL_FILE` (fits container Secret mounts)
 5. Default `postgresql:///?sslmode=disable` (local-first, fits same-host deployment)
+
+Once `PG_EXPORTER_URL_FILE` is selected, an unreadable, empty, or whitespace-only file prevents startup; it does not fall back to the local default.
+
+v1.5.0 validates URL syntax, percent escapes, and query parameter names. Names cannot be empty or contain whitespace or `=`, and URLs cannot contain an unescaped `#`. Invalid input stops startup with a fixed diagnostic that omits the raw connection string, preventing password disclosure or silently discarded TLS settings. Valid URL passwords in user information and `password=` parameters are redacted in logs.
 
 If the URL omits `sslmode`, the exporter appends `sslmode=disable`.
 At startup, it also clears libpq service-file environment variables, such as `PGSERVICE` / `PGSERVICEFILE`, and logs this action.
@@ -93,10 +97,16 @@ Clearing these variables ensures that the exporter connects to the URL shown in 
 
 ```sql
 CREATE ROLE monitor WITH LOGIN PASSWORD 'S3cret' CONNECTION LIMIT 5;
-GRANT pg_monitor TO monitor;   -- built-in monitoring role (PostgreSQL 10+), covers all default collectors
+GRANT pg_monitor TO monitor;   -- built-in monitoring role (PostgreSQL 10+)
 ```
 
-Keep `CONNECTION LIMIT` to prevent connection exhaustion if the configuration is incorrect.
+On PostgreSQL 10–13, an administrator must also run the following grant in the exporter's **main connection database** to read subscription OIDs. Granting it only in the database owning the subscription is insufficient. This does not expose the password-bearing `subconninfo` column. PostgreSQL 14+ needs no extra grant under standard catalog ACLs.
+
+```sql
+GRANT SELECT (oid) ON pg_catalog.pg_subscription TO monitor;
+```
+
+Size `CONNECTION LIMIT` for the number of discovered databases. A limit that is too low can prevent connections to additional databases. Keep a connection limit to prevent connection exhaustion if the configuration is incorrect.
 The exporter normally uses one to a few connections. With auto-discovery, it uses one connection per database.
 
 ### Manage Passwords with .pgpass
@@ -197,7 +207,7 @@ docker run -d \
   --restart unless-stopped \
   -p 9630:9630 \
   -e PG_EXPORTER_URL="postgres://monitor:S3cret@host:5432/postgres" \
-  pgsty/pg_exporter:latest
+  pgsty/pg_exporter:1.5.0
 ```
 
 Docker Compose:
@@ -205,7 +215,7 @@ Docker Compose:
 ```yaml
 services:
   pg_exporter:
-    image: pgsty/pg_exporter:latest
+    image: pgsty/pg_exporter:1.5.0
     container_name: pg_exporter
     restart: unless-stopped
     ports:
@@ -244,7 +254,7 @@ spec:
     spec:
       containers:
       - name: pg-exporter
-        image: pgsty/pg_exporter:latest
+        image: pgsty/pg_exporter:1.5.0
         ports:
         - containerPort: 9630
         env:
@@ -288,15 +298,18 @@ It lets one exporter instance monitor every database in the target PostgreSQL in
 
 ```bash
 pg_exporter --auto-discovery \
-  --exclude-database="template0,template1,postgres" \  # default exclusion list
-  --include-database=""                                # set to switch to allowlist mode
+  --exclude-database="template0,template1,postgres" \
+  --include-database=""
+# The exclusion list above is the default; set --include-database for allowlist mode.
 ```
 
 Behavior:
 
 - Cluster-level collectors (`tags: [cluster]`) run once on the primary connection
 - Database-level collectors run on every discovered database, with metrics distinguished by the `datname` label
-- Newly created / dropped databases are picked up / removed in subsequent planning cycles
+- Newly created or dropped databases are added or removed during subsequent prechecks
+- v1.5.0 uses `lib/pq` to resolve the actual database identity. Replacing the database name removes conflicting `dbname` / `database` query parameters and preserves special characters, preventing discovered connections from scraping the same database
+- Database scrapes remain sequential. Allow enough scrape timeout for prechecks and queries across all databases
 
 
 --------

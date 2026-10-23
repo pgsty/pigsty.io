@@ -33,7 +33,7 @@ Confirm the installation:
 
 ```bash
 pg_exporter --version
-# pg_exporter v1.4.1 (built with go1.26.5 on linux/amd64)
+# pg_exporter v1.5.0 (built with go1.27.3 on linux/amd64)
 ```
 
 
@@ -42,11 +42,17 @@ pg_exporter --version
 ## Step 2: Create a Monitoring User
 
 Create a dedicated monitoring user on the target PostgreSQL instance.
-The built-in `pg_monitor` role in PostgreSQL 10+ gives the user all read permissions that the default collectors need:
+Start with the built-in `pg_monitor` role in PostgreSQL 10+:
 
 ```sql
 CREATE USER monitor WITH PASSWORD 'S3cret';
 GRANT pg_monitor TO monitor;
+```
+
+On PostgreSQL 10–13, an administrator must also run the following grant in the exporter's **main connection database** to read subscription OIDs. Granting it only in the database owning the subscription is insufficient. This does not expose the password-bearing `subconninfo` column. PostgreSQL 14+ needs no extra grant under standard catalog ACLs.
+
+```sql
+GRANT SELECT (oid) ON pg_catalog.pg_subscription TO monitor;
 ```
 
 For a local test with a superuser such as `postgres`, you can skip this step.
@@ -84,7 +90,7 @@ pg_in_recovery 0     # 1 on replicas, 0 on primaries
 ```
 
 `pg_up 1` shows that the connection and metric collection work.
-The remaining 600+ metrics (`pg_db_*`, `pg_table_*`, `pg_wal_*`, ...) come from collector definitions in `pg_exporter.yml`.
+The `pg_exporter.yml` bundle defines 460 distinct metric names (`pg_db_*`, `pg_table_*`, `pg_wal_*`, and others), with applicable metrics selected by version, role, and database objects.
 If `pg_up` is `0`, restart with `pg_exporter --log.level=debug` and examine the connection error.
 
 
