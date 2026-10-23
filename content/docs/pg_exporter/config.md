@@ -503,6 +503,28 @@ curl http://localhost:9630/stat
 curl -s http://localhost:9630/metrics | grep -E 'pg_exporter_query_scrape_(duration|error_count)'
 ```
 
+## Metric and Alert Upgrade Checks {#metric-compatibility}
+
+When upgrading the exporter, merge and deploy the matching collector YAML. Replacing only the binary does not apply SQL, label, or state-code corrections. For instances managed by Pigsty, also verify that the deployed configuration contains these definitions. After a PostgreSQL major-version upgrade, check the newly selected collector branches.
+
+- **Exporter v1.4.1 → v1.5.0:** bundled SQL metric names, types, and units stay unchanged, but `pg_sub_*` adds `datname` and `pg_recv_state` corrects its state codes. Review joins/aggregations for subscriptions with the same name in different databases, and Grafana value mappings.
+- **PG18 → PG19:** existing metrics are not removed or renamed, but `pg_sub_sync_error_count` broadens to table plus sequence synchronization errors, and `pg_subrel_count` includes sequences. `pg_sub_has_worker` distinguishes a subscription row from a running apply worker; the presence of `pg_sub_id` alone is insufficient.
+- **Crossing PG17 / PG18:** some `pg_bgwriter_*` metrics need to move to `pg_checkpointer_*` or backend-filtered I/O metrics. From PG18 onward, `pg_wal_write`, `pg_wal_sync`, `pg_wal_write_time`, and `pg_wal_sync_time` need to move to `pg_io_*{object="wal"}`, with corresponding label aggregation changes. See the [metric-by-metric migration table](https://exp.pgsty.com/compatibility/#older-postgresql-metrics).
+
+See the [v1.5.0 release notes](/docs/pg_exporter/release/#v150-metric-compatibility) and [PG19 metric table](https://exp.pgsty.com/compatibility/#postgresql-19-metrics) for the full changes. PG19 support first shipped in v1.3.0, and acceptance evidence refers to 19 RC1; these notes do not establish runtime validation of every dashboard.
+
+Before and after deployment, inspect `/metrics`, `/explain`, `/stat`, `pg_exporter_query_scrape_error_count`, and the logs. Evaluate the actual dashboard, recording-rule, and alert expressions, checking returned series, labels, units, and state mappings. Use `promtool check rules` for syntax and `promtool test rules` for both normal and missing-series input. HTTP 200, `up == 1`, or `pg_up == 1` does not prove that every expected metric exists; an empty vector is not a healthy zero.
+
+For PG19 targets expected to expose the bundled WAL collector, use this per-target missing-metric check with `for: 5m` in the alert rule:
+
+```promql
+(pg_up{job="pg19"} == 1)
+unless on (job, instance)
+pg_wal_bytes{job="pg19"}
+```
+
+`job="pg19"` is an example: replace it with the actual target selector and include any additional identity labels in matching. Monitor `up` and `pg_up` failures separately. Scope absence checks by version, primary/replica role, and expected objects; for example, a primary should not require `pg_recovery_state_*`. Do not mask missing input with an unconditional `or vector(0)`. Fleet-wide `absent(metric)` also misses one target's disappearance while other targets still emit data. See the [complete missing-metric rule](https://exp.pgsty.com/compatibility/#missing-metric-alerts).
+
 ## Troubleshooting Configuration
 
 ### Validate Configuration

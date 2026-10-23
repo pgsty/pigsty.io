@@ -43,6 +43,8 @@ The v1.5.0 default bundle contains **58 YAML files** (57 collector files and one
 
 See [Release Notes](/docs/pg_exporter/release) for the full history.
 
+Before upgrading, review the [v1.5.0 metric changes](/docs/pg_exporter/release/#v150-metric-compatibility) and [dashboard / alert migration checks](/docs/pg_exporter/config/#metric-compatibility). Retaining a metric name does not guarantee unchanged labels, state codes, or semantics; a PostgreSQL major-version upgrade also changes collector branch selection.
+
 
 --------
 

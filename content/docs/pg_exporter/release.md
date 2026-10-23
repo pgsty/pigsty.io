@@ -61,6 +61,26 @@ Release date: 2026-10-23. This release improves connection security, collection 
 - Add the owning database's `datname` label to `pg_sub_*`, preventing collisions between identically named subscriptions in different databases. Correct `pg_recv_state` codes in the current and legacy bundles, and fix receiver address extraction on PostgreSQL 9.6.
 - Clarify `pg_origin` permissions, the table scope of `pg_pubrel_count`, synchronization states and PostgreSQL 19 sequence semantics in `pg_subrel_count`, and the `pg_backend` description.
 
+### Metric and dashboard compatibility {#v150-metric-compatibility}
+
+Compared with v1.4.1 on the same PostgreSQL version, **v1.5.0 does not add, remove, or rename bundled SQL metric names**. Types and units remain unchanged, but labels and state mappings do change. PostgreSQL 19 support first shipped in [v1.3.0](https://exp.pgsty.com/release/v1.3.0/); upgrading the database can also change the selected SQL branch and a metric's meaning.
+
+| Scope | Metrics | Compatibility action |
+|:---|:---|:---|
+| v1.5.0 configuration | `pg_sub_*` | Adds `datname` to every sample. Keep database and subscription identity in joins and aggregations; new label sets create new time series. |
+| v1.5.0 configuration | `pg_recv_state` | Real receiver states `starting`, `waiting`, `restarting`, and `stopped` now map to 6–9 instead of `-1`. Update value mappings and state alerts; codes 1–3 are reserved. |
+| PG18 → PG19 | Existing PG18 metric names | None are removed or renamed by the PG19 branches in this bundle. This does not guarantee unchanged semantics or labels from PostgreSQL itself. |
+| PG19 | `pg_sub_sync_error_count` | Keeps the name but becomes the sum of table and sequence synchronization errors. For table-only alerts, use `pg_sub_sync_table_error_count`; `pg_sub_sync_seq_error_count` reports the sequence component. Do not double-count the components and their sum. |
+| PG19 | `pg_sub_has_worker`, `pg_sub_reset_time`, `pg_sub_confl_*` | Adds worker presence, reset time, and eight conflict counters. The subscription row can remain without an apply worker; metric presence alone is not a worker-health check. |
+| PG19 | `pg_subrel_count` | Includes sequences as well as tables; `pg_pubrel_count` still counts tables only. Review panel labels and count comparisons. |
+| PG19 | `pg_wal_fpi_bytes`, `pg_lock_stat_*`, `pg_recovery_state_*`, `pg_vacuum_score_*` | Additive metrics. Recovery state is replica-only; autovacuum scores are primary-only. Existing WAL, lock-distribution, and recovery families remain. |
+{.full-width}
+
+Users upgrading from PG17 or earlier must also migrate older names: checkpoint metrics left `pg_bgwriter_*` in PG17, and `pg_wal_write`, `pg_wal_sync`, `pg_wal_write_time`, and `pg_wal_sync_time` are absent from PG18 onward. The [full compatibility guide](https://exp.pgsty.com/compatibility/#older-postgresql-metrics) lists each replacement, label/aggregation differences, and mixed-version PromQL.
+
+Before rollout, evaluate the actual dashboard and alert expressions and test missing-series input. A successful scrape does not ensure every expected metric exists; an empty alert expression can silently stop firing. The [missing-metric checks](https://exp.pgsty.com/compatibility/#missing-metric-alerts) include a per-target rule and explain when absence is expected. The full [PG19 metric table](https://exp.pgsty.com/compatibility/#postgresql-19-metrics) links to the tagged collector definitions; PostgreSQL validation remains scoped to 19 RC1.
+
+
 ### Upgrade Notes
 
 - On PostgreSQL 10–13, an administrator must run `GRANT SELECT (oid) ON pg_catalog.pg_subscription TO monitor;` in the exporter's **main connection database**, substituting the actual monitoring role. This does not expose `subconninfo`. PostgreSQL 14+ needs no extra grant under standard catalog ACLs.
