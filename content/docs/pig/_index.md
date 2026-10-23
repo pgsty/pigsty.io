@@ -1,5 +1,5 @@
 ---
-title: "PIG 1.10.0 Documentation"
+title: "PIG 1.10.1 Documentation"
 linkTitle: "pig"
 weight: 5200
 description: "Install, manage, and build PostgreSQL and its extensions with the pig CLI."
@@ -8,7 +8,9 @@ module: [PIG]
 sidebar_root_for: self
 ---
 
-Current stable version: **v{{< param pig_version >}}**. Read the [release notes](/docs/pig/release/#v1100).
+Documentation version: **v{{< param pig_version >}}**. Read the [release notes](/docs/pig/release/#v1101).
+
+This maintenance release updates Go to `1.27.3` and refreshes the embedded extension catalog to **{{< param pig_catalog_count >}} entries**.
 
 PIG provides commands to find, install, and build PostgreSQL extension packages. It also manages PostgreSQL, Patroni, pgBackRest, and Pigsty workflows. Package installation uses the system's `apt`, `dnf`, or `yum`.
 

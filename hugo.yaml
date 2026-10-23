@@ -220,9 +220,9 @@ params:
   stable_version: v4.5.0    # Current public stable release; use for install and Git tag examples
   stable_version_short: v4.5
   pg_version: '18.6'        # Latest PostgreSQL minor release, {{< param pg_version >}} in content
-  pig_version: 1.10.0        # Latest PIG release, {{< param pig_version >}} in PIG docs
+  pig_version: 1.10.1        # Latest PIG release, {{< param pig_version >}} in PIG docs
   pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
-  pig_catalog_count: 603    # Records in the PIG bundled catalog
+  pig_catalog_count: 615    # Records in the PIG bundled catalog
   pgext_count: 600          # Number of packaged PG extensions, {{< param pgext_count >}} in content
   pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
   github_stars: '5.66 K'     # Approximate GitHub star count shown in the custom navbar
