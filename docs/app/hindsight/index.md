@@ -1,0 +1,62 @@
+# Hindsight: AI Long-Term Memory
+
+> Self-host Hindsight with Pigsty and store long-term memory in external PostgreSQL.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+[**Hindsight**](https://github.com/vectorize-io/hindsight) is a PostgreSQL-native long-term memory service for AI agents.
+
+Pigsty provides the `app/hindsight` configuration template (`conf/app/hindsight.yml`). By default, it uses Pigsty-managed PostgreSQL instead of Hindsight's built-in development database.
+
+## Quick Start
+
+```bash
+curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
+./bootstrap
+./configure -c app/hindsight
+vi pigsty.yml                 # edit domain, database password, and LLM settings
+./deploy.yml
+./docker.yml
+./app.yml
+```
+
+Default access URLs:
+
+- UI: `http://hs.pigsty` or `http://<IP>:9999`
+- API: `http://hs-api.pigsty` or `http://<IP>:8888`
+
+## Key Settings
+
+`conf/app/hindsight.yml` overrides `/opt/hindsight/.env` through `apps.hindsight.conf`. Key parameters:
+
+- `HINDSIGHT_API_PUBLISH_PORT`: public API port, default `8888`
+- `HINDSIGHT_UI_PUBLISH_PORT`: public UI port, default `9999`
+- `HINDSIGHT_DB_HOST` / `HINDSIGHT_DB_PORT` / `HINDSIGHT_DB_NAME` / `HINDSIGHT_DB_USER` / `HINDSIGHT_DB_PASSWORD`
+- `HINDSIGHT_API_VECTOR_EXTENSION`: default `pgvector`
+- `HINDSIGHT_API_TEXT_SEARCH_EXTENSION`: default `native`
+- `HINDSIGHT_API_LLM_PROVIDER`: default `none`
+- `HF_HUB_OFFLINE`: defaults to `1` to use bundled models; set it to `0` and provide outbound network access to download uncached models
+
+With the default LLM provider, `none`, Hindsight can retain text and recall it using local embedding/reranker models. Fact extraction, reflection, and consolidation require Ollama or an OpenAI-compatible API.
+
+The template preserves bundled and downloaded models in the `hindsight-cache` named volume. The database needs `vector`, plus `pg_trgm` installed in `public`. Check the `pg_trgm` location when reusing a database from another template; `CREATE EXTENSION IF NOT EXISTS` does not move an existing extension.
+
+## Operations
+
+```bash
+cd /opt/hindsight
+make up
+make log
+make info
+make down
+make pull
+```
+
+## References
+
+- Hindsight project: https://github.com/vectorize-io/hindsight
+- Pigsty template: https://github.com/pgsty/pigsty/blob/main/conf/app/hindsight.yml

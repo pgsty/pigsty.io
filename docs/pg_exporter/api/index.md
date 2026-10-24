@@ -1,0 +1,402 @@
+# API Reference
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+`pg_exporter` provides four types of HTTP endpoints: metrics, health checks, traffic routing, and operational management.
+The default listen port is `:9630`. The following table lists all endpoints:
+
+| Endpoint                       | Method   | Description                 |
+|--------------------------------|----------|-----------------------------|
+| [`/metrics`](#get-metrics)     | GET      | Prometheus metrics endpoint (path configurable via `--web.telemetry-path`) |
+| [`/up`](#health-checks)        | GET      | Aliveness check; aliases `/health`, `/liveness`, `/readiness`, `/read` |
+| [`/primary`](#traffic-routing) | GET      | Primary check; aliases `/leader`, `/master`, `/read-write`, `/rw` |
+| [`/replica`](#traffic-routing) | GET      | Replica check; aliases `/standby`, `/slave`, `/read-only`, `/ro` |
+| [`/reload`](#operational-endpoints) | GET/POST | Hot-reload collector configuration |
+| [`/explain`](#operational-endpoints) | GET      | Show per-collector planning decisions |
+| [`/stat`](#operational-endpoints)    | GET      | Per-collector runtime statistics (hits / errors / duration) |
+| `/version`                     | GET      | Version and build information (plain text) |
+| `/`                            | GET      | Landing page linking to the metrics endpoint |
+{.full-width}
+
+Health and routing endpoints return the cached state from background probes: `primary`, `replica`, `down`, `starting`, or `unknown`.
+They do not query the database for each HTTP request. In v1.5.0, each response reads one atomic state snapshot, so its HTTP status and body always describe the same state. The cached state can still lag behind the database. A successful PgBouncer probe maps to `primary`; it does not describe the role of its PostgreSQL backend.
+
+
+--------
+
+## Metrics Endpoint
+
+### GET /metrics
+
+This endpoint returns all collected metrics in Prometheus format.
+
+#### Request
+
+```bash
+curl http://localhost:9630/metrics
+```
+
+#### Response
+
+```prometheus
+# HELP pg_up last scrape was able to connect to the server: 1 for yes, 0 for no
+# TYPE pg_up gauge
+pg_up 1
+
+# HELP pg_version server version number
+# TYPE pg_version gauge
+pg_version 140000
+
+# HELP pg_in_recovery server is in recovery mode? 1 for yes 0 for no
+# TYPE pg_in_recovery gauge
+pg_in_recovery 0
+
+# HELP pg_exporter_build_info A metric with a constant '1' value labeled with version, revision, branch, goversion, builddate, goos, and goarch from which pg_exporter was built.
+# TYPE pg_exporter_build_info gauge
+pg_exporter_build_info{version="v1.5.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.3",goos="linux",goarch="amd64"} 1
+
+# ... additional metrics
+```
+
+#### Response Format
+
+Metrics follow the Prometheus exposition format:
+
+```text
+# HELP <metric_name> <description>
+# TYPE <metric_name> <type>
+<metric_name>{<label_name>="<label_value>",...} <value> <timestamp>
+```
+
+#### Self-Monitoring Metrics
+
+In addition to metrics from YAML collectors, `/metrics` returns the exporter's runtime metrics.
+Use `--disable-intro` to disable the `pg_exporter_*` metrics.
+The prefix follows `--namespace`. In pgBouncer mode, the prefix is `pgbouncer_`.
+
+| Metric | Labels | Description |
+|--------|--------|-------------|
+| `pg_up` | — | 1 when the target database is reachable, 0 otherwise |
+| `pg_version` | — | Server version in `server_version_num` format |
+| `pg_in_recovery` | — | 1 when in recovery mode (replica) |
+| `pg_exporter_build_info` | version, revision, ... | Constant 1 with build info in labels |
+| `pg_exporter_up` | — | Constant 1 while the exporter is alive |
+| `pg_exporter_uptime` | — | Seconds since the exporter started |
+| `pg_exporter_scrape_total_count` / `_error_count` | — | Cumulative scrape / failure counts |
+| `pg_exporter_scrape_duration` | — | Duration of the last scrape in seconds |
+| `pg_exporter_last_scrape_time` | — | Timestamp of the last scrape |
+| `pg_exporter_server_scrape_*` | datname | Per-database scrape duration and success/failure counters |
+| `pg_exporter_query_scrape_duration` | datname, query | Last execution duration per collector |
+| `pg_exporter_query_scrape_total_count` / `_error_count` | datname, query | Execution / failure counts per collector |
+| `pg_exporter_query_scrape_hit_count` / `_metric_count` | datname, query | Rows returned / metrics emitted per collector |
+| `pg_exporter_query_scrape_predicate_skip_count` | datname, query | Times skipped because a predicate returned false |
+| `pg_exporter_query_cache_ttl` | datname, query | Result cache TTL per collector |
+{.full-width}
+
+Use `pg_exporter_query_scrape_duration` and `_error_count` to identify slow or failed collectors.
+These metrics provide a machine-readable equivalent of `/stat`.
+
+
+--------
+
+## Health Checks
+
+Health endpoints provide multiple ways to monitor PG Exporter and the target database state.
+
+### GET /up
+
+This endpoint checks availability from the cached background probe state.
+It does not probe the database for each HTTP request.
+
+#### Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200  | OK     | Target is available (`primary` / `replica`) |
+| 503  | Service Unavailable | Target is unavailable (`down` / `starting` / `unknown`) |
+{.full-width}
+
+#### Example
+
+```bash
+# Check whether the service is healthy
+curl -I http://localhost:9630/up
+
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+```
+
+### GET /health
+
+Alias of `/up` with identical behavior.
+
+```bash
+curl http://localhost:9630/health
+```
+
+### GET /liveness and GET /readiness
+
+These aliases use the same handler and behavior as `/up`. Use them for Kubernetes probes:
+
+```yaml
+livenessProbe:
+  httpGet: { path: /liveness, port: 9630 }
+  initialDelaySeconds: 30
+  periodSeconds: 10
+readinessProbe:
+  httpGet: { path: /readiness, port: 9630 }
+  initialDelaySeconds: 5
+  periodSeconds: 5
+```
+
+Both endpoints return 503 when the target database is unreachable.
+To prevent a database failure from restarting the exporter Pod, use a TCP liveness probe on the listen port.
+
+
+--------
+
+## Traffic Routing
+
+Load balancers and proxies use these endpoints to route traffic by server role.
+
+### GET /primary
+
+Check whether the server is a primary instance.
+
+#### Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200  | OK     | Server is primary and accepting writes |
+| 404  | Not Found | Server is not primary and is acting as a replica |
+| 503  | Service Unavailable | Server is unavailable (`down` / `starting` / `unknown`) |
+{.full-width}
+
+#### Aliases
+
+- `/leader`
+- `/master`
+- `/read-write`
+- `/rw`
+
+#### Example
+
+```bash
+# Check whether the server is primary
+curl -I http://localhost:9630/primary
+
+# Use in HAProxy
+backend pg_primary
+  option httpchk GET /primary
+  server pg1 10.0.0.1:5432 check port 9630
+  server pg2 10.0.0.2:5432 check port 9630
+```
+
+### GET /replica
+
+Check whether the server is a replica instance.
+
+#### Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200  | OK     | Server is a replica and in recovery |
+| 404  | Not Found | Server is not a replica and is acting as primary |
+| 503  | Service Unavailable | Server is unavailable (`down` / `starting` / `unknown`) |
+{.full-width}
+
+#### Aliases
+
+- `/standby`
+- `/read-only`
+- `/ro`
+
+`/slave` remains compatible, but `/replica` is the preferred name.
+
+#### Example
+
+```bash
+# Check whether the server is a replica
+curl -I http://localhost:9630/replica
+
+# Use in a load balancer
+backend pg_replicas
+  option httpchk GET /replica
+  server pg2 10.0.0.2:5432 check port 9630
+  server pg3 10.0.0.3:5432 check port 9630
+```
+
+### GET /read
+
+Check whether the server can handle read traffic. Both primaries and replicas may return success.
+
+#### Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200  | OK     | Server is healthy and can handle reads |
+| 503  | Service Unavailable | Server is unavailable (`down` / `starting` / `unknown`) |
+{.full-width}
+
+#### Example
+
+```bash
+# Check whether the server can serve reads
+curl -I http://localhost:9630/read
+
+# Route reads to any healthy server
+backend pg_read
+  option httpchk GET /read
+  server pg1 10.0.0.1:5432 check port 9630
+  server pg2 10.0.0.2:5432 check port 9630
+  server pg3 10.0.0.3:5432 check port 9630
+```
+
+
+--------
+
+## Operational Endpoints
+
+### GET /reload / POST /reload
+
+Reload configuration without restarting the exporter.
+
+#### Request
+
+```bash
+# POST is recommended
+curl -X POST http://localhost:9630/reload
+
+# GET remains supported for compatibility
+curl http://localhost:9630/reload
+```
+
+#### Response
+
+```text
+server reloaded
+```
+
+#### Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200  | OK     | Reload completed successfully |
+| 500  | Internal Server Error | Reload failed and returns `fail to reload: ...` |
+| 405  | Method Not Allowed | Non-GET/POST request, with `Allow: GET, POST` |
+{.full-width}
+
+#### Use Cases
+
+- Update collector definitions
+- Change query parameters
+- Modify cache TTL values
+- Add or remove collectors
+
+> [!NOTE] Note
+> Reload updates collector configuration, query plans, caches, and query statistics. A parsing failure preserves the previous plan and caches. Empty YAML is a valid empty configuration; a successful reload clears the collectors. Directory mode permits partial file loading; see [Configuration Loading](/docs/pg_exporter/config/#configuration-loading).
+> To change process settings, such as listen addresses or CLI arguments, restart the exporter.
+
+> [!WARNING] Security Advice
+> `/reload`, `/explain`, and `/stat` are management endpoints.
+> If the exporter is reachable outside localhost or a trusted private network, protect these endpoints.
+> Use `--web.config.file`, or restrict access through a reverse proxy or firewall.
+
+### GET /explain
+
+Display planned collector execution details for all configured collectors.
+
+#### Request
+
+```bash
+curl http://localhost:9630/explain
+```
+
+#### Response
+
+```text
+##
+# SYNOPSIS
+#       pg.pg_primary_only_*
+#
+# DESCRIPTION
+#       PostgreSQL basic information (on primary)
+#
+# OPTIONS
+#       Tags       [cluster, primary]
+#       TTL        1
+#       Priority   110
+#       Timeout    100ms
+#       Fatal      true
+#       Version    100000 ~ higher
+#       Source     pg_exporter.yml
+
+...
+```
+
+### GET /stat
+
+Show runtime statistics, including collector execution times and success/error counters.
+
+#### Request
+
+```bash
+curl http://localhost:9630/stat
+```
+
+#### Response
+
+```text
+name                     total      hit        error      skip       metric     ttl/s  duration/ms
+pg                       12         0          0          0          15         1      4.231000
+pg_db                    12         11         0          0          28         10     0.153000
+pg_activity              12         0          1          0          8          0      7.842000
+...
+```
+
+Use this endpoint to identify slow or failed collectors.
+
+
+--------
+
+## Using with Load Balancers
+
+### HAProxy Example
+
+```haproxy
+# Primary backend for write traffic
+backend pg_primary
+  mode tcp
+  option httpchk GET /primary
+  http-check expect status 200
+  server pg1 10.0.0.1:5432 check port 9630 inter 3000 fall 2 rise 2
+  server pg2 10.0.0.2:5432 check port 9630 inter 3000 fall 2 rise 2 backup
+
+# Replica backend for read traffic
+backend pg_replicas
+  mode tcp
+  balance roundrobin
+  option httpchk GET /replica
+  http-check expect status 200
+  server pg2 10.0.0.2:5432 check port 9630 inter 3000 fall 2 rise 2
+  server pg3 10.0.0.3:5432 check port 9630 inter 3000 fall 2 rise 2
+
+# Read backend for any server that can handle reads
+backend pg_read
+  mode tcp
+  balance leastconn
+  option httpchk GET /read
+  http-check expect status 200
+  server pg1 10.0.0.1:5432 check port 9630 inter 3000 fall 2 rise 2
+  server pg2 10.0.0.2:5432 check port 9630 inter 3000 fall 2 rise 2
+  server pg3 10.0.0.3:5432 check port 9630 inter 3000 fall 2 rise 2
+```
+
+### A Note on Nginx
+
+Open-source Nginx does not support active HTTP health checks outside the traffic connection.
+The `health_check` directive requires NGINX Plus.
+PostgreSQL traffic also requires the `stream` module instead of `http` proxying.
+To route PostgreSQL traffic by role, use HAProxy as shown above, or a solution such as Patroni + vip-manager.
