@@ -6,6 +6,80 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-10-24
+
+On 2026-10-24, 178 artifacts for 45 packages were imported into the local APT/YUM INFRA repositories, including MCP Toolbox 1.15.0 and four new PGRun tools. Repository signatures, indexes and APT/DNF version resolution passed for both architectures; online publication is pending.
+
+The table contains 48 entries: 45 were imported, while Silo, mcli, and KES use `20261024000000.0.0` as placeholders for pending artifacts and are excluded from this batch count. Their package list entries retain `20261018000000.0.0`; a placeholder does not mean the new version has been built, imported, or published.
+
+| Name                     | Old            | New            | Comment                                                                    |
+|:-------------------------|:---------------|:---------------|:---------------------------------------------------------------------------|
+| agentsview               | 0.45.0         | 0.46.1         | RPM/DEB for both architectures                                             |
+| barn                     | 0.9.0          | 0.9.1          | Native upstream packages; retains the 0.x prerelease label                 |
+| blackbox-exporter        | 0.29.0         | 0.29.1         | RPM/DEB for both architectures                                             |
+| claude                   | 2.1.303        | 2.1.310        | Latest channel; official checksums and both binary versions verified       |
+| cloudflared              | 2026.10.1      | 2026.10.3      | RPM/DEB for both architectures                                             |
+| code                     | 1.142.0        | 1.143.1        | Native upstream DEB/RPM; original bytes and checksums verified             |
+| code-server              | 4.141.0        | 4.143.1        | Native upstream DEB/RPM for both architectures                             |
+| codex                    | 0.163.0        | 0.164.0        | RPM/DEB for both architectures                                             |
+| crush                    | 0.98.1         | 0.98.2         | RPM/DEB for both architectures                                             |
+| duckdb                   | 1.5.6          | 2.0.0          | 2.0 stable release; uses the new upstream tar.gz artifacts                 |
+| etcd                     | 3.7.2          | 3.7.3          | RPM/DEB for both architectures                                             |
+| golang                   | 1.27.2         | 1.27.3         | RPM/DEB for both architectures                                             |
+| grafana-infinity-ds      | 4.1.1          | 4.1.3          | RPM/DEB for both architectures                                             |
+| juicefs                  | 1.4.1          | 1.4.2          | RPM/DEB for both architectures                                             |
+| kafka-exporter           | 1.10.0         | 1.11.0         | RPM/DEB for both architectures                                             |
+| kes | 20261018000000.0.0 | 20261024000000.0.0 | Placeholder; artifacts pending; excluded from this import batch |
+| logcli                   | 3.7.8          | 3.7.9          | RPM/DEB for both architectures                                             |
+| loki                     | 3.7.8          | 3.7.9          | RPM/DEB for both architectures                                             |
+| loki-canary              | 3.7.8          | 3.7.9          | RPM/DEB for both architectures                                             |
+| mcli | 20261018000000.0.0 | 20261024000000.0.0 | Placeholder; artifacts pending; excluded from this import batch |
+| mcp-toolbox              | 1.14.0         | 1.15.0         | CGO source build; glibc 2.28; installation and upgrade checks passed       |
+| mongodb-exporter         | 0.53.0         | 0.54.0         | RPM/DEB for both architectures                                             |
+| mysqld-exporter          | 0.20.0         | 0.21.0         | Some Untyped metrics become Counter/Gauge; review metric type changes      |
+| nodejs                   | 24.22.0        | 24.22.1        | 24.x LTS security update                                                   |
+| opencode                 | 1.19.3         | 1.19.4         | Includes Bun security fixes; amd64 uses the baseline artifact              |
+| opentofu                 | 1.13.1         | 1.13.2         | Native upstream DEB/RPM; package name is tofu                              |
+| pev2                     | 1.24.0         | 1.25.0         | Architecture independent: noarch RPM / all DEB                             |
+| pg-exporter              | 1.4.1          | 1.5.0          | RPM/DEB for both architectures                                             |
+| pgbot                    | —              | 0.9.0          | New; PostgreSQL diagnostics and JSON/MCP; optional AI; beta                |
+| pggo                     | —              | 0.1.1          | New; JSON SQL CLI for scripts and agents                                   |
+| pgsync                   | —              | 0.1.1          | New; PostgreSQL snapshot and CDC; controlled beta; bootstrap needs pg_dump |
+| pgterm                   | —              | 0.4.0          | New; database TUI, SQL and diagnostics; pairs with pgbot; beta             |
+| pig                      | 1.10.0         | 1.10.1         | Maintenance update; Go 1.27.3; RPM/DEB for both architectures              |
+| postgrest                | 16.4           | 16.5           | RPM/DEB for both architectures                                             |
+| prometheus               | 3.15.0         | 3.15.1         | Includes matching console templates and libraries                          |
+| promtail                 | 3.6.7          | 3.6.11         | Backfills the 3.6.11 artifacts; remains EOL                                |
+| redis-exporter           | 1.94.0         | 1.95.0         | RPM/DEB for both architectures                                             |
+| sabiql                   | 3.0.1          | 3.0.2          | RPM/DEB for both architectures                                             |
+| seaweedfs                | 4.48           | 4.49           | RPM/DEB for both architectures; upstream Linux assets now available        |
+| silo | 20261018000000.0.0 | 20261024000000.0.0 | Placeholder; artifacts pending; excluded from this import batch |
+| sow                      | 0.6.0          | 0.6.1          | RPM/DEB for both architectures                                             |
+| uv                       | 0.13.1         | 0.13.5         | RPM/DEB for both architectures                                             |
+| vector                   | 0.59.0         | 0.60.0         | Native upstream DEB/RPM for both architectures                             |
+| victoria-metrics         | 1.154.0        | 1.154.1        | VictoriaMetrics single-node server                                         |
+| victoria-metrics-cluster | 1.154.0        | 1.154.1        | VictoriaMetrics cluster components; upgraded with the single-node server   |
+| victoria-traces          | 0.12.0         | 0.12.1         | RPM/DEB for both architectures                                             |
+| vmutils                  | 1.154.0        | 1.154.1        | VictoriaMetrics utilities; upgraded with the main package                  |
+| xray                     | 26.3.27        | 26.10.21       | Upstream Latest emergency security update; versioned cache filenames       |
+
+## 2026-10-19
+
+| Name | Old | New | Comment |
+|:---|:---|:---|:---|
+| barn | — | 0.9.0 | New; upstream prerelease; native DEB/RPM for both architectures; imported locally; repository RPM copies signed |
+| claude | 2.1.301 | 2.1.303 | Official checksums and actual Linux binary versions verified for both architectures; imported locally |
+| grafana-victorialogs-ds | 0.33.0 | 0.33.1 | Both architectures; imported locally |
+| kes | — | 20261018000000.0.0 | New PGSTY KES package; native DEB/RPM for both architectures; original bytes and upstream RPM signatures preserved; imported locally |
+| mcli | 20260916000000.0.0 | 20261018000000.0.0 | Both architectures; imported locally |
+| mtail | 3.4.16 | 3.4.17 | Both architectures; imported locally |
+| opencode | 1.19.2 | 1.19.3 | Both architectures; imported locally |
+| pig | 1.9.0 | 1.10.0 | Both architectures; imported locally |
+| rustfs | 1.0.1 | 1.0.3 | Both architectures; imported locally |
+| silo | 20260916000000.0.0 | 20261018000000.0.0 | Formal release; native DEB/RPM for both architectures; original bytes and upstream RPM signatures preserved; imported locally |
+| sow | 0.5.0 | 0.6.0 | Both architectures; imported locally |
+| stalwart | 0.16.26 | 0.16.27 | Both architectures; imported locally |
+
 ## 2026-10-16
 
 | Name | Old | New | Comment |

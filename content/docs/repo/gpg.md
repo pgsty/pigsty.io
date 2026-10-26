@@ -12,7 +12,7 @@ Check the GPG signature to verify the integrity of packages downloaded from the 
 
 ## Summary
 
-Pigsty signs all RPM / DEB packages in its repository with the GPG key identified by `B9BD8B20`.
+Pigsty uses the following GPG key to verify repository provenance. RPM verifies package signatures; APT verifies Release / InRelease signatures and the package checksum chain. This does not mean every DEB file has an individual GPG signature. The short key ID is `B9BD8B20`; use the full fingerprint to verify its identity.
 
 Full: `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` Ruohang Feng (Pigsty) [rh@vonng.com](mailto:rh@vonng.com)
 
@@ -43,13 +43,30 @@ curl -fsSL https://repo.pigsty.cc/key | sudo tee /etc/pki/rpm-gpg/RPM-GPG-KEY-pi
 On Debian / Ubuntu compatible Linux distributions, you can import this key with the following command:
 
 ```bash {tab="Default" group="default-mirror" value="default"}
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 ```
 
 ```bash {tab="Mirror" value="mirror"}
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 ```
 
+
+---------
+
+## GitHub Release Asset Verification
+
+The source archive, offline bundles, and `checksums` on the [`v4.5.0` GitHub release page](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) each have a matching `.asc` signature. Download the target file, its `.asc` file, and `KEYS` from the same tag, then verify:
+
+```bash
+curl -fsSLO https://raw.githubusercontent.com/pgsty/pigsty/v4.5.0/KEYS
+gpg --import KEYS
+gpg --fingerprint B9BD8B20
+gpg --verify pigsty-v4.5.0.tgz.asc pigsty-v4.5.0.tgz
+```
+
+The full fingerprint must match `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` above. Verify offline bundles with `gpg --verify <package>.asc <package>` in the same way. See [offline packages](/docs/setup/offline/#offline-packages) for the SHA-256 list.
 
 ---------
 

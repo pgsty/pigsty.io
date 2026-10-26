@@ -9,151 +9,223 @@ categories: [Reference]
 
 ------
 
+## 2026-10-24
+
+| Name                    | Old              | New              | Comment                                                       |
+|:------------------------|:-----------------|:-----------------|:--------------------------------------------------------------|
+| citus                   | 14.2.0           | 14.3.0           | PG16-18; includes citus_columnar                             |
+| codesystem              | -                | 0.2.1            | PG14-18; SQL version 0.2.0                                    |
+| documentdb              | 0.117            | 1.0              | PG16-18; drops PG15; includes core/extended_rum               |
+| duckdb_fdw              | 1.4.3            | 2.0.2            | PG15-18; DuckDB 2.0.0; conflicts with pg_duckdb              |
+| encsearch               | -                | 0.1.1            | PG17; encrypted search                                        |
+| groonga                 | 16.1.3           | 16.1.4           | EL9, both architectures; includes libs/devel                  |
+| groonga-tokenizer-mecab | 16.1.3           | 16.1.4           | EL9, both architectures; MeCab tokenizer                      |
+| haproxy                 | 3.4.4            | 3.4.7            | Includes documentation packages                               |
+| hdr_histogram           | -                | 1.0.0            | PG14-18; SQL version 1.0                                      |
+| ivorysql-contrib        | 5.4              | 5.6              | PG18 (IvorySQL); includes 38 extensions                       |
+| jsonschema              | 0.1.10           | 0.1.11           | PG14-18; pgrx 0.19.3                                          |
+| lead                    | -                | 1.0.6            | PG17-18; extension tin; development snapshot                  |
+| pg_adhoc                | 17.4             | 19.0             | Includes pg_filedump                                          |
+| pg_fts                  | 1.13.0           | 1.14.1           | PG17-18                                                       |
+| pg_improv               | -                | 0.10.0           | PG15-18; incremental formula evaluation                       |
+| pg_ivm                  | 1.16             | 1.17             | PG14-18                                                       |
+| pg_kv                   | -                | 0.1.0            | PG15-18; non-persistent shared-memory KV                      |
+| pg_lease                | -                | 0.1.0            | PG14-18; SQL-only                                             |
+| pg_mentat               | 1.14.0           | 1.18.0           | PG14-18; fixes trusted-install search path                    |
+| pg_nanotime             | -                | 0.2.0            | PG17-18; nanosecond timestamps; preview                      |
+| pg_regresql             | 2.0.0            | 2.1.0            | PG14-18; SQL version 2.0                                      |
+| pg_relusage             | 1.0.1            | 1.0.2            | PG14-18; loading required                                     |
+| pg_search               | 0.26.1           | 0.26.3           | PG15-18; pgrx 0.19.3; preload required                        |
+| pg_synonym              | -                | 1.0.0            | PG15-18; SQL version 1.0                                      |
+| pg_table_range          | -                | 0.1.2            | PG16-18; range pruning                                        |
+| pg_tre                  | -                | 4.5.2            | PG17-18; approximate regular expressions                      |
+| pg_try_cast             | -                | 1.0.0            | PG16-18; SQL version 1.0                                      |
+| pg_turbovec             | 2.12.1           | 2.14.1           | PG14-18; concurrency/VACUUM fixes                             |
+| pgbson                  | 2.1.0            | 2.2.0            | PG14-18; RPM package postgresbson                             |
+| pgdog                   | 0.1.57           | 0.1.62           | PostgreSQL connection pooler                                  |
+| pgmq                    | 1.13.0           | 1.13.1           | PG14-18; SQL-only                                             |
+| pgroonga                | 4.1.0-2PGSTY.el9 | 4.1.0-3PGSTY.el9 | PG14-18; EL9, both architectures; rebuilt with Groonga 16.1.4 |
+| pgsql_tweaks            | 1.0.5            | 1.1.0            | PG14-18; SQL-only                                             |
+| provsql                 | 1.12.0           | 1.13.0           | PG14-18; fixes EL8 floating-point formatting                  |
+| stannum                 | -                | 0.1.0            | PG17-18; development snapshot                                 |
+| textsearch_intl         | 1.0.0            | 1.0.1            | PG14-18; SQL version 1.0; DEB remains 1.0.0                   |
+| timescaledb             | 2.30.2           | 2.31.0           | PG16-18; TSL                                                  |
+| valkey                  | 9.1.1            | 9.1.2            | Includes development package                                  |
+{.stretch-last}
+
+------
+
+## 2026-10-15
+
+| Name                    | Old              | New                  | Comment                                                                            |
+|:------------------------|:-----------------|:---------------------|:-----------------------------------------------------------------------------------|
+| groonga                 | 16.1.3-1.el9     | 16.1.3-1.el9.PGSTY.1 | EL9, both architectures; includes libs/devel; fixes simdjson ABI; imported locally |
+| groonga-tokenizer-mecab | 16.1.3-1.el9     | 16.1.3-1.el9.PGSTY.1 | EL9, both architectures; matches Groonga rebuild; imported locally                 |
+| lolor                   | 1.2.2            | 1.2.3                | Updated with pgEdge 15-18                                                          |
+| pg_durable              | 0.2.8            | 0.2.9                | PG14-18; preload required; imported locally                                        |
+| pg_fts                  | 1.9.0            | 1.13.0               | PG17-18; imported locally                                                          |
+| pg_icu_parser           | -                | 1.0.0                | PG14-18; EL8/9/10 x86_64/aarch64; PG18 compatibility fix; imported locally         |
+| pg_mentat               | 1.10.3           | 1.14.0               | PG14-18; pgrx 0.19.3; imported locally                                             |
+| pg_relusage             | 0.0.1            | 1.0.1                | PG14-18; loading required; imported locally                                        |
+| pg_turbovec             | 2.10.3           | 2.12.1               | PG14-18; pgrx 0.19.3; imported locally                                             |
+| pg_vectorsearch         | -                | 0.1.0                | PG18; alpha; imported locally                                                      |
+| pgedge-15               | 15.19-2PGSTY     | 15.19-3PGSTY         | Includes Spock 5.0.13 and LOLOR 1.2.3; imported locally                            |
+| pgedge-16               | 16.15-2PGSTY     | 16.15-3PGSTY         | Includes Spock 5.0.13 and LOLOR 1.2.3; imported locally                            |
+| pgedge-17               | 17.11-2PGSTY     | 17.11-3PGSTY         | Includes Spock 5.0.13 and LOLOR 1.2.3; imported locally                            |
+| pgedge-18               | 18.6-2PGSTY      | 18.6-3PGSTY          | Includes Spock 5.0.13 and LOLOR 1.2.3; imported locally                            |
+| pgroonga                | 4.1.0-1PGSTY.el9 | 4.1.0-2PGSTY.el9     | EL9, both architectures; PG14-18; requires rebuilt Groonga; imported locally       |
+| plpgsql_check           | 2.10.14          | 2.10.15              | PG14-18; SQL version 2.10; imported locally                                        |
+| spock                   | 5.0.12           | 5.0.13               | Updated with pgEdge 15-18; preload required                                        |
+| textsearch_intl         | -                | 1.0.0                | PG14-18; EL8/9/10 x86_64/aarch64; unreleased snapshot; imported locally            |
+{.stretch-last}
+
+------
+
 ## 2026-10-11
 
-| Name | Old | New | Comment |
-|:---|:---|:---|:---|
-| arrow | 22.0.0 | 25.0.1 | Includes compute/devel; ABI 2500; imported locally |
-| groonga | 15.1.8 | 16.1.3 | Includes libs/devel; upstream packages; imported locally |
-| groonga-tokenizer-mecab | 15.1.8 | 16.1.3 | MeCab tokenizer; imported locally |
-| pg_background | 2.0.4-1PGSTY | 2.0.4-2PGSTY | PG14-18; remove downstream upgrade patch; built, import pending |
-| pg_fts | 1.9.0 | 1.12.0 | PG17-18; built, import pending |
-| pg_grammar_guard | 0.4.1 | 0.4.9 | PG14-18; Apache-2.0; built, import pending |
-| pg_living_assertions | 0.5.1 | 0.5.10 | PG14-18; SQL-only; Apache-2.0; built, import pending |
-| pg_local_cache | 2.0.4 | 3.1.0 | PG14-18; OpenSSL dependency; built, import pending |
-| pg_mentat | 1.10.3 | 1.11.1 | PG14-18; pgrx 0.19.3; built, import pending |
-| pg_search | 0.26.0 | 0.26.1 | PG15-18; pgrx 0.19.3; built, import pending |
-| pg_semver | 0.41.0 | 0.42.0 | PG14-18; imported locally |
-| pg_tle | 1.5.2 | 1.5.3 | PG14-18; built, import pending |
-| pg_trickle | 0.108.1 | 0.108.3 | PG18; pgrx 0.19.3; built, import pending |
-| pg_turbovec | 2.10.3 | 2.12.0 | PG14-18; pgrx 0.19.3; built, import pending |
-| pgrdf | 0.6.39 | 0.6.40 | PG14-18; pgrx 0.19.3; built, import pending |
-| pgroonga | 4.0.9 | 4.1.0 | PG14-18; includes pgroonga_database; imported locally |
-| plpgsql_check | 2.10.11 | 2.10.14 | PG14-18; SQL version 2.10; imported locally |
-| rdkit | 202609.1-1PGSTY | 202609.1-2PGSTY | PG14-18; EL9/10; remove downstream upgrade patch; built, import pending |
-| timescaledb | 2.30.2 | 2.30.2 | PG16-18; TSL; same-version rebuild; import pending |
+| Name                    | Old             | New             | Comment                                                                 |
+|:------------------------|:----------------|:----------------|:------------------------------------------------------------------------|
+| arrow                   | 22.0.0          | 25.0.1          | Includes compute/devel; ABI 2500; imported locally                      |
+| groonga                 | 15.1.8          | 16.1.3          | Includes libs/devel; upstream packages; imported locally                |
+| groonga-tokenizer-mecab | 15.1.8          | 16.1.3          | MeCab tokenizer; imported locally                                       |
+| pg_background           | 2.0.4-1PGSTY    | 2.0.4-2PGSTY    | PG14-18; remove downstream upgrade patch; built, import pending         |
+| pg_fts                  | 1.9.0           | 1.12.0          | PG17-18; built, import pending                                          |
+| pg_grammar_guard        | 0.4.1           | 0.4.9           | PG14-18; Apache-2.0; built, import pending                              |
+| pg_living_assertions    | 0.5.1           | 0.5.10          | PG14-18; SQL-only; Apache-2.0; built, import pending                    |
+| pg_local_cache          | 2.0.4           | 3.1.0           | PG14-18; OpenSSL dependency; built, import pending                      |
+| pg_mentat               | 1.10.3          | 1.11.1          | PG14-18; pgrx 0.19.3; built, import pending                             |
+| pg_search               | 0.26.0          | 0.26.1          | PG15-18; pgrx 0.19.3; built, import pending                             |
+| pg_semver               | 0.41.0          | 0.42.0          | PG14-18; imported locally                                               |
+| pg_tle                  | 1.5.2           | 1.5.3           | PG14-18; built, import pending                                          |
+| pg_trickle              | 0.108.1         | 0.108.3         | PG18; pgrx 0.19.3; built, import pending                                |
+| pg_turbovec             | 2.10.3          | 2.12.0          | PG14-18; pgrx 0.19.3; built, import pending                             |
+| pgrdf                   | 0.6.39          | 0.6.40          | PG14-18; pgrx 0.19.3; built, import pending                             |
+| pgroonga                | 4.0.9           | 4.1.0           | PG14-18; includes pgroonga_database; imported locally                   |
+| plpgsql_check           | 2.10.11         | 2.10.14         | PG14-18; SQL version 2.10; imported locally                             |
+| rdkit                   | 202609.1-1PGSTY | 202609.1-2PGSTY | PG14-18; EL9/10; remove downstream upgrade patch; built, import pending |
+| timescaledb             | 2.30.2          | 2.30.2          | PG16-18; TSL; same-version rebuild; import pending                      |
 {.stretch-last}
 
 ------
 
 ## 2026-10-06
 
-| Name | Old | New | Comment |
-|:---|:---|:---|:---|
-| acdat | 0.1.1 | 0.1.1 | PG14-18; First full production packaging of an existing extension; 80 main packages |
-| addressing_dictionary | - | 1.1 | PG14-18; SQL-only |
-| agensgraph-18 | - | 2.18.4.0 | PG18.4; retains AgensGraph 17 |
-| babelfish-17 | 5.4.0 | 5.7.0 | PG17.11; includes all four companion extensions |
-| babelfish-18 | 6.0.0 | 6.2.0 | PG18.6; includes all four companion extensions |
-| colnames | - | 1.7.1 | PG14-18; SQL 1.7.0 |
-| edtf_postgres | - | 1.2.3 | PG14-18 |
-| is_jsonb_valid | - | 0.1.4 | PG14-18 |
-| istore | - | 0.1.12 | PG14-18 |
-| jev | 0.2.0 | 0.2.1 | PG14-17 |
-| jsonschema | 0.1.9 | 0.1.10 | PG14-18 |
-| kafgres | 0.1.0 | 0.3.0 | PG16 |
-| libx509pq | - | 1.3 | PG14-18 |
-| lolor | 1.2.2 | 1.2.2 | PG15-18; Rebuilt with pgEdge; SQL version unchanged |
-| macavity | 0.1.0 | 0.2.0 | PG16-18; Fault injection; testing only |
-| mobilitydb | 1.3.0 | 1.3.1 | PG14-18; Includes mobilitydb_datagen; fills 32 DEB coordinates |
-| nominatim_fdw | 2.2.0 | 2.3 | PG14-18; PGDG is the principal RPM provider; same-version Pigsty supplements remain |
-| orioledb-16 | 1.8-beta16 | 1.10~beta19 | PG16.15; includes the OrioleDB extension |
-| orioledb-17 | 1.8-beta16 | 1.10~beta19 | PG17.11; includes the OrioleDB extension |
-| orioledb-18 | 1.8-beta16 | 1.10~beta19 | PG18.6; includes the OrioleDB extension |
-| passwordcheck_cracklib | 3.2.0 | 3.2.1 | PG14-18 |
-| pg_anon | 3.2.2 | 3.2.3 | PG14-18; Extension anon; follow upstream drop/recreate upgrade procedure |
-| pg_background | 2.0.3 | 2.0.4 | PG14-18; Restore latest main packages for full coverage |
-| pg_clickhouse | 0.10.0 | 0.11.0 | PG14-18; SQL version 0.11 |
-| pg_eviltransform | 0.0.5 | 0.0.7 | PG14-18 |
-| pg_fts | 1.8.3 | 1.9.0 | PG17-18 |
-| pg_h3 | 4.2.3 | 4.5.0 | PG14-18; Includes h3_postgis; adds 50 DEBs; follow upstream migration guidance |
-| pg_ivm | 1.15 | 1.16 | PG14-18; Restore latest main packages for full coverage |
-| pg_json_diff | - | 1.0 | PG14-18 |
-| pg_lake | 3.5.1 | 3.5.3 | PG16-18; Includes eight SQL extensions; SQL version remains 3.5; EL9/10 only |
-| pg_lexo | - | 0.6.1 | PG16-18; SQL 0.6.0; fix rank generation and ordering |
-| pg_living_assertions | 0.4.2 | 0.5.1 | PG14-18 |
-| pg_mentat | 1.6.0 | 1.10.3 | PG14-18 |
-| pg_money | - | 0.3.0 | PG14-18 |
-| pg_pinyin | 0.0.6 | 0.0.8 | PG14-18 |
-| pg_profile | 4.16 | 4.16 | PG14-18; Restore 30 RPMs; SQL-only; version unchanged |
-| pg_rusage | - | 1.0 | PG14-18 |
-| pg_search | 0.25.9 | 0.26.0 | PG15-18; preload |
-| pg_stat_ch | 0.3.6 | 0.4.0 | PG16-18; adds EL8 coverage; DEB stays on 0.3.6 |
-| pg_statkit | - | 1.1.0 | PG14-17 |
-| pg_statvfs | - | 1.0 | PG14-18 |
-| pg_statviz | 0.9 / 1.2 | 1.2.1 | PG14-18; Production RPMs switch from older PGDG builds to Pigsty 1.2.1; SQL version 1.2; fills 30 RPM coordinates |
-| pg_textsearch | 1.4.0 | 1.5.1 | PG17-18; RPMs from PGDG; DEBs from Pigsty |
-| pg_trickle | 0.107.0 | 0.108.1 | PG18 |
-| pg_turbovec | 2.2.2 | 2.10.3 | PG14-18; 2.x keeps wire v8; upgrades from 1.x require REINDEX |
-| pg_vault_tde | 1.7.1 | 1.7.2 | PG17-18; EL9/10 |
-| pgedge-15 | 15.19-1PGSTY | 15.19-2PGSTY | PG15; Kernel version unchanged; update bundled Spock |
-| pgedge-16 | 16.15-1PGSTY | 16.15-2PGSTY | PG16; Kernel version unchanged; update bundled Spock |
-| pgedge-17 | 17.11-1PGSTY | 17.11-2PGSTY | PG17; Kernel version unchanged; update bundled Spock |
-| pgedge-18 | 18.6-1PGSTY | 18.6-2PGSTY | PG18; Kernel version unchanged; update bundled Spock |
-| pgextwlist | 1.19 | 1.20 | PG14-18; RPM recipe updated; production packages from PGDG |
-| pggraph | 1.2.0 | 1.2.1 | PG14-18; Extension graph; fix DEB SQL payload checks |
-| pgmqtt | 0.5.0 | 0.5.1 | PG14-18; Preload required; CDC requires logical WAL |
-| pgrdf | 0.6.36 | 0.6.39 | PG14-18 |
-| pgroonga | 4.0.8 | 4.0.9 | PG14-18; Same-backend coexistence with PostGIS Raster remains restricted on EL8/9 |
-| pgs3 | 0.1.1 | 0.1.1 | PG17-18; First full production packaging of an existing extension; 32 main packages; alpha |
-| pgsentinel | 1.5.0 | 1.5.1 | PG14-18; Recipe updated; production packages from PGDG; duplicate Pigsty packages removed |
-| pgtde-18 | 18.4 | 18.6 | Percona 18.6.1; pg_tde 2.2.2 |
-| pgtde-18-contrib | 18.4 | 18.6 | pg_stat_monitor 2.4.0; vector 0.8.6 |
-| pgtelemetry | - | 1.7 | PG14-18; SQL-only; requires pg_stat_statements |
-| pgvector | 0.8.6 | 0.8.7 | PG14-18; RPM 0.8.7 from PGDG; Pigsty packages removed as agreed |
-| pgvectorscale | 0.9.1 | 0.9.1 | PG14-18; Extension vectorscale; same-version rebuild and correction of stale catalog label |
-| plpgsql_check | 2.10.10 | 2.10.11 | PG14-18; Recipe updated; production packages from PGDG |
-| plphp | - | 2.6 | PG14-18; fix embedded runtime dependencies |
-| plv8 | 3.2.4 | 3.2.5 | PG14-18; Fix EL10 LTO builds |
-| polardb-17 | 17.10.1.0 | 17.11.1.0 | PG17.11; includes companion extensions |
-| rdf_fdw | 2.7.0 | 3.0.0 | PG14-18; SQL version 3.0 |
-| rdkit | 202303.3 / 202503.6 | 202609.1 | PG14-18; EL9/10; EL8 stays on 202303.3 |
-| session_variable | 3.5 | 3.6 | PG14-18 |
-| snowflake | 2.6.0 | 2.6.0 | PG15-18; Rebuilt with pgEdge; correct stale 2.5.0 catalog label |
-| spock | 5.0.11 | 5.0.12 | PG15-18; Bundled with the pgEdge kernel; fix DEB file ownership conflicts |
-| supautils | 3.4.3 | 3.4.4 | PG14-18 |
-| timescaledb | 2.30.1 | 2.30.2 | PG16-18; TSL; PG14 stays on 2.19.3 and PG15 on 2.28.3 |
-| vgram | - | 1.0 | PG14-18 |
+| Name                   | Old                 | New          | Comment                                                                                                           |
+|:-----------------------|:--------------------|:-------------|:------------------------------------------------------------------------------------------------------------------|
+| acdat                  | 0.1.1               | 0.1.1        | PG14-18; First full production packaging of an existing extension; 80 main packages                               |
+| addressing_dictionary  | -                   | 1.1          | PG14-18; SQL-only                                                                                                 |
+| agensgraph-18          | -                   | 2.18.4.0     | PG18.4; retains AgensGraph 17                                                                                     |
+| babelfish-17           | 5.4.0               | 5.7.0        | PG17.11; includes all four companion extensions                                                                   |
+| babelfish-18           | 6.0.0               | 6.2.0        | PG18.6; includes all four companion extensions                                                                    |
+| colnames               | -                   | 1.7.1        | PG14-18; SQL 1.7.0                                                                                                |
+| edtf_postgres          | -                   | 1.2.3        | PG14-18                                                                                                           |
+| is_jsonb_valid         | -                   | 0.1.4        | PG14-18                                                                                                           |
+| istore                 | -                   | 0.1.12       | PG14-18                                                                                                           |
+| jev                    | 0.2.0               | 0.2.1        | PG14-17                                                                                                           |
+| jsonschema             | 0.1.9               | 0.1.10       | PG14-18                                                                                                           |
+| kafgres                | 0.1.0               | 0.3.0        | PG16                                                                                                              |
+| libx509pq              | -                   | 1.3          | PG14-18                                                                                                           |
+| lolor                  | 1.2.2               | 1.2.2        | PG15-18; Rebuilt with pgEdge; SQL version unchanged                                                               |
+| macavity               | 0.1.0               | 0.2.0        | PG16-18; Fault injection; testing only                                                                            |
+| mobilitydb             | 1.3.0               | 1.3.1        | PG14-18; Includes mobilitydb_datagen; fills 32 DEB coordinates                                                    |
+| nominatim_fdw          | 2.2.0               | 2.3          | PG14-18; PGDG is the principal RPM provider; same-version Pigsty supplements remain                               |
+| orioledb-16            | 1.8-beta16          | 1.10~beta19  | PG16.15; includes the OrioleDB extension                                                                          |
+| orioledb-17            | 1.8-beta16          | 1.10~beta19  | PG17.11; includes the OrioleDB extension                                                                          |
+| orioledb-18            | 1.8-beta16          | 1.10~beta19  | PG18.6; includes the OrioleDB extension                                                                           |
+| passwordcheck_cracklib | 3.2.0               | 3.2.1        | PG14-18                                                                                                           |
+| pg_anon                | 3.2.2               | 3.2.3        | PG14-18; Extension anon; follow upstream drop/recreate upgrade procedure                                          |
+| pg_background          | 2.0.3               | 2.0.4        | PG14-18; Restore latest main packages for full coverage                                                           |
+| pg_clickhouse          | 0.10.0              | 0.11.0       | PG14-18; SQL version 0.11                                                                                         |
+| pg_eviltransform       | 0.0.5               | 0.0.7        | PG14-18                                                                                                           |
+| pg_fts                 | 1.8.3               | 1.9.0        | PG17-18                                                                                                           |
+| pg_h3                  | 4.2.3               | 4.5.0        | PG14-18; Includes h3_postgis; adds 50 DEBs; follow upstream migration guidance                                    |
+| pg_ivm                 | 1.15                | 1.16         | PG14-18; Restore latest main packages for full coverage                                                           |
+| pg_json_diff           | -                   | 1.0          | PG14-18                                                                                                           |
+| pg_lake                | 3.5.1               | 3.5.3        | PG16-18; Includes eight SQL extensions; SQL version remains 3.5; EL9/10 only                                      |
+| pg_lexo                | -                   | 0.6.1        | PG16-18; SQL 0.6.0; fix rank generation and ordering                                                              |
+| pg_living_assertions   | 0.4.2               | 0.5.1        | PG14-18                                                                                                           |
+| pg_mentat              | 1.6.0               | 1.10.3       | PG14-18                                                                                                           |
+| pg_money               | -                   | 0.3.0        | PG14-18                                                                                                           |
+| pg_pinyin              | 0.0.6               | 0.0.8        | PG14-18                                                                                                           |
+| pg_profile             | 4.16                | 4.16         | PG14-18; Restore 30 RPMs; SQL-only; version unchanged                                                             |
+| pg_rusage              | -                   | 1.0          | PG14-18                                                                                                           |
+| pg_search              | 0.25.9              | 0.26.0       | PG15-18; preload                                                                                                  |
+| pg_stat_ch             | 0.3.6               | 0.4.0        | PG16-18; adds EL8 coverage; DEB stays on 0.3.6                                                                    |
+| pg_statkit             | -                   | 1.1.0        | PG14-17                                                                                                           |
+| pg_statvfs             | -                   | 1.0          | PG14-18                                                                                                           |
+| pg_statviz             | 0.9 / 1.2           | 1.2.1        | PG14-18; Production RPMs switch from older PGDG builds to Pigsty 1.2.1; SQL version 1.2; fills 30 RPM coordinates |
+| pg_textsearch          | 1.4.0               | 1.5.1        | PG17-18; RPMs from PGDG; DEBs from Pigsty                                                                         |
+| pg_trickle             | 0.107.0             | 0.108.1      | PG18                                                                                                              |
+| pg_turbovec            | 2.2.2               | 2.10.3       | PG14-18; 2.x keeps wire v8; upgrades from 1.x require REINDEX                                                     |
+| pg_vault_tde           | 1.7.1               | 1.7.2        | PG17-18; EL9/10                                                                                                   |
+| pgedge-15              | 15.19-1PGSTY        | 15.19-2PGSTY | PG15; Kernel version unchanged; update bundled Spock                                                              |
+| pgedge-16              | 16.15-1PGSTY        | 16.15-2PGSTY | PG16; Kernel version unchanged; update bundled Spock                                                              |
+| pgedge-17              | 17.11-1PGSTY        | 17.11-2PGSTY | PG17; Kernel version unchanged; update bundled Spock                                                              |
+| pgedge-18              | 18.6-1PGSTY         | 18.6-2PGSTY  | PG18; Kernel version unchanged; update bundled Spock                                                              |
+| pgextwlist             | 1.19                | 1.20         | PG14-18; RPM recipe updated; production packages from PGDG                                                        |
+| pggraph                | 1.2.0               | 1.2.1        | PG14-18; Extension graph; fix DEB SQL payload checks                                                              |
+| pgmqtt                 | 0.5.0               | 0.5.1        | PG14-18; Preload required; CDC requires logical WAL                                                               |
+| pgrdf                  | 0.6.36              | 0.6.39       | PG14-18                                                                                                           |
+| pgroonga               | 4.0.8               | 4.0.9        | PG14-18; Same-backend coexistence with PostGIS Raster remains restricted on EL8/9                                 |
+| pgs3                   | 0.1.1               | 0.1.1        | PG17-18; First full production packaging of an existing extension; 32 main packages; alpha                        |
+| pgsentinel             | 1.5.0               | 1.5.1        | PG14-18; Recipe updated; production packages from PGDG; duplicate Pigsty packages removed                         |
+| pgtde-18               | 18.4                | 18.6         | Percona 18.6.1; pg_tde 2.2.2                                                                                      |
+| pgtde-18-contrib       | 18.4                | 18.6         | pg_stat_monitor 2.4.0; vector 0.8.6                                                                               |
+| pgtelemetry            | -                   | 1.7          | PG14-18; SQL-only; requires pg_stat_statements                                                                    |
+| pgvector               | 0.8.6               | 0.8.7        | PG14-18; RPM 0.8.7 from PGDG; Pigsty packages removed as agreed                                                   |
+| pgvectorscale          | 0.9.1               | 0.9.1        | PG14-18; Extension vectorscale; same-version rebuild and correction of stale catalog label                        |
+| plpgsql_check          | 2.10.10             | 2.10.11      | PG14-18; Recipe updated; production packages from PGDG                                                            |
+| plphp                  | -                   | 2.6          | PG14-18; fix embedded runtime dependencies                                                                        |
+| plv8                   | 3.2.4               | 3.2.5        | PG14-18; Fix EL10 LTO builds                                                                                      |
+| polardb-17             | 17.10.1.0           | 17.11.1.0    | PG17.11; includes companion extensions                                                                            |
+| rdf_fdw                | 2.7.0               | 3.0.0        | PG14-18; SQL version 3.0                                                                                          |
+| rdkit                  | 202303.3 / 202503.6 | 202609.1     | PG14-18; EL9/10; EL8 stays on 202303.3                                                                            |
+| session_variable       | 3.5                 | 3.6          | PG14-18                                                                                                           |
+| snowflake              | 2.6.0               | 2.6.0        | PG15-18; Rebuilt with pgEdge; correct stale 2.5.0 catalog label                                                   |
+| spock                  | 5.0.11              | 5.0.12       | PG15-18; Bundled with the pgEdge kernel; fix DEB file ownership conflicts                                         |
+| supautils              | 3.4.3               | 3.4.4        | PG14-18                                                                                                           |
+| timescaledb            | 2.30.1              | 2.30.2       | PG16-18; TSL; PG14 stays on 2.19.3 and PG15 on 2.28.3                                                             |
+| vgram                  | -                   | 1.0          | PG14-18                                                                                                           |
 {.stretch-last}
 
 ------
 
 ## 2026-09-24
 
-| Name | Old | New | Comment |
-|:---|:---|:---|:---|
-| biscuit | 3.0.0 | 3.1.0 | PG16-18 |
-| ddlx | 0.30 | 0.31 | PG14-18; SQL-only |
-| documentdb | 0.114 | 0.117 | PG15-18 |
-| ivorysql-18 | 5.4 | 5.6 | PG18.6 kernel |
-| jev | - | 0.2.0 | PG14-17; PL/Python, TypeSafe |
-| kafgres | - | 0.1.0 | PG16; Kafka broker; ELv2 |
-| log_fdw | 1.4 | 1.5 | PG14-18 |
-| macavity | - | 0.1.0 | PG16-18; testing only |
-| nominatim_fdw | 2.1.0 | 2.2.0 | PG14-18; SQL 2.2 |
-| pg_circuit | - | 0.1.0 | PG16-18; preload |
-| pg_curl | 2.4.5 | 2.4.6 | PG14-18; SQL 2.4.1 |
-| pg_durable | 0.2.3 | 0.2.8 | PG14-18 |
-| pg_fts | 0.2.0 | 1.8.3 | PG17-18 |
-| pg_grammar_guard | - | 0.4.1 | PG14-18; requires pg_living_assertions |
-| pg_lake | 3.4.0 | 3.5.1 | PG16-18; SQL 3.5; EL9/10 |
-| pg_living_assertions | - | 0.4.2 | PG14-18; SQL 0.4.1 |
-| pg_local_cache | 1.3.0 | 2.0.4 | PG14-18; preload |
-| pg_profile | 4.11 | 4.16 | PG14-18; SQL-only |
-| pg_search | 0.25.2 | 0.25.9 | PG15-18; preload |
-| pg_stat_monitor | 2.3.2 | 2.4.0 | PG14-18; preload |
-| pg_task | 2.1.29 | 3.0.0 | PG14-18; preload |
-| pg_trickle | 0.81.0 | 0.107.0 | PG18; V2 migration required |
-| pg_vault_tde | 1.7.0 | 1.7.1 | PG17-18; export before upgrade; EL9/10 |
-| pgmq | 1.12.0 | 1.13.0 | PG14-18; SQL-only |
-| pgrdf | 0.6.20 | 0.6.36 | PG14-18 |
-| plpgsql_check | 2.10.4 | 2.10.10 | PG14-18 |
-| plprql | 18.0.1 | 18.0.2 | PG14-18 |
-| psql_bm25s | 0.4.13 | 0.4.14 | PG17-18 |
-| timescaledb | 2.29.1 | 2.30.1 | PG16-18; TSL |
-| ulak | 0.0.2 | 0.2.0 | PG14-18; preload |
-| vectorize | 0.26.2 | 0.27.1 | PG14-18; SQL 0.23.0; multi-row fix |
-| wrappers | 0.6.2 | 0.6.3 | PG14-18 |
+| Name                 | Old    | New     | Comment                                |
+|:---------------------|:-------|:--------|:---------------------------------------|
+| biscuit              | 3.0.0  | 3.1.0   | PG16-18                                |
+| ddlx                 | 0.30   | 0.31    | PG14-18; SQL-only                      |
+| documentdb           | 0.114  | 0.117   | PG15-18                                |
+| ivorysql-18          | 5.4    | 5.6     | PG18.6 kernel                          |
+| jev                  | -      | 0.2.0   | PG14-17; PL/Python, TypeSafe           |
+| kafgres              | -      | 0.1.0   | PG16; Kafka broker; ELv2               |
+| log_fdw              | 1.4    | 1.5     | PG14-18                                |
+| macavity             | -      | 0.1.0   | PG16-18; testing only                  |
+| nominatim_fdw        | 2.1.0  | 2.2.0   | PG14-18; SQL 2.2                       |
+| pg_circuit           | -      | 0.1.0   | PG16-18; preload                       |
+| pg_curl              | 2.4.5  | 2.4.6   | PG14-18; SQL 2.4.1                     |
+| pg_durable           | 0.2.3  | 0.2.8   | PG14-18                                |
+| pg_fts               | 0.2.0  | 1.8.3   | PG17-18                                |
+| pg_grammar_guard     | -      | 0.4.1   | PG14-18; requires pg_living_assertions |
+| pg_lake              | 3.4.0  | 3.5.1   | PG16-18; SQL 3.5; EL9/10               |
+| pg_living_assertions | -      | 0.4.2   | PG14-18; SQL 0.4.1                     |
+| pg_local_cache       | 1.3.0  | 2.0.4   | PG14-18; preload                       |
+| pg_profile           | 4.11   | 4.16    | PG14-18; SQL-only                      |
+| pg_search            | 0.25.2 | 0.25.9  | PG15-18; preload                       |
+| pg_stat_monitor      | 2.3.2  | 2.4.0   | PG14-18; preload                       |
+| pg_task              | 2.1.29 | 3.0.0   | PG14-18; preload                       |
+| pg_trickle           | 0.81.0 | 0.107.0 | PG18; V2 migration required            |
+| pg_vault_tde         | 1.7.0  | 1.7.1   | PG17-18; export before upgrade; EL9/10 |
+| pgmq                 | 1.12.0 | 1.13.0  | PG14-18; SQL-only                      |
+| pgrdf                | 0.6.20 | 0.6.36  | PG14-18                                |
+| plpgsql_check        | 2.10.4 | 2.10.10 | PG14-18                                |
+| plprql               | 18.0.1 | 18.0.2  | PG14-18                                |
+| psql_bm25s           | 0.4.13 | 0.4.14  | PG17-18                                |
+| timescaledb          | 2.29.1 | 2.30.1  | PG16-18; TSL                           |
+| ulak                 | 0.0.2  | 0.2.0   | PG14-18; preload                       |
+| vectorize            | 0.26.2 | 0.27.1  | PG14-18; SQL 0.23.0; multi-row fix     |
+| wrappers             | 0.6.2  | 0.6.3   | PG14-18                                |
 {.stretch-last}
 
 ------
@@ -184,36 +256,36 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 
 ## 2026-08-12
 
-| Name           | Old                   | New                   | Comment                                                      |
-|:---------------|:----------------------|:----------------------|:-------------------------------------------------------------|
-| biscuit        | 2.4.3                 | 3.0.0                 | PG16-18; 2.x indexes require REINDEX                         |
-| cat_tools      | -                     | 0.3.0                 | SQL-only; PG14-18                                           |
-| citus          | 14.1.0                | 14.2.0                | Includes citus_columnar; PG16-18                             |
-| pg_clickhouse  | 0.3.2                 | 0.10.0                | PG14-18                                                     |
-| pg_describe    | -                     | 1.0.0                 | PG17-18                                                     |
-| pg_disorder    | -                     | 0.1.0                 | PG14-18                                                     |
-| pg_local_cache | -                     | 1.3.0                 | PG14-18; preload; single-primary                             |
-| pg_mentat      | -                     | 1.5.7                 | PG14-18                                                     |
-| pg_policy      | -                     | 0.1.0                 | SQL-only; PG14-18                                           |
-| pg_rational    | 0.0.2                 | 0.0.3                 | PIGSTY; PG14-18                                             |
-| pg_readme      | 0.7.0                 | 0.7.1                 | Catalog 0.7.1; RPM remains PGDG 0.7.0                       |
-| pg_search      | 0.25.0                | 0.25.2                | PG15-18; pgrx 0.19.1; preload                               |
-| pg_squeeze     | 1.9.2                 | 1.9.4                 | PGDG; PG14-18                                               |
-| pg_statviz     | -                     | 0.9                   | PGDG; PG14-16 and EL10 PG18; no PG17; not in default groups |
-| pg_turbovec    | -                     | 1.29.0                | PG14-18; pgrx 0.19.1                                       |
-| pg_uuid_v8     | 1.0.0                 | 1.1.0                 | PG14-18; includes 1.0-to-1.1 upgrade script                 |
-| pg_vault_tde   | -                     | 1.7.0                 | PG17-18; EL9/10; preload                                    |
-| pgbson         | 2.0.4                 | 2.1.0                 | RPM package postgresbson; PG14-18                           |
-| pgmnemo        | 0.15.0                | 0.16.1                | PG17-18                                                     |
-| plpgsql_check  | 2.10.3                | 2.10.4                | PG14-18                                                     |
-| plruby         | -                     | 2.5.0                 | Includes jsonb_plruby, hstore_plruby, ltree_plruby; PG14-18 |
-| polardb-17     | 17.10.1.0-1PIGSTY     | 17.10.1.0-2PGSTY     | Rebuild; PG17                                               |
-| polarstore     | 1.2.42-1PIGSTY        | 1.2.42-2PGSTY        | Rebuild                                                      |
-| provsql        | 1.11.0                | 1.12.0                | PG14-18                                                     |
-| q3c            | 2.0.2                 | 2.0.5                 | PGDG; PIGSTY remains 2.0.2; PG14-18                         |
-| timescaledb    | 2.29.0                | 2.29.1                | PG16-18                                                     |
-| vector         | 0.8.6                 | 0.8.6                 | PGDG repository refresh; PG14-18                            |
-| zlog           | 1.2.18-1PIGSTY        | 1.2.18-2PGSTY        | Rebuild                                                      |
+| Name           | Old               | New              | Comment                                                     |
+|:---------------|:------------------|:-----------------|:------------------------------------------------------------|
+| biscuit        | 2.4.3             | 3.0.0            | PG16-18; 2.x indexes require REINDEX                        |
+| cat_tools      | -                 | 0.3.0            | SQL-only; PG14-18                                           |
+| citus          | 14.1.0            | 14.2.0           | Includes citus_columnar; PG16-18                            |
+| pg_clickhouse  | 0.3.2             | 0.10.0           | PG14-18                                                     |
+| pg_describe    | -                 | 1.0.0            | PG17-18                                                     |
+| pg_disorder    | -                 | 0.1.0            | PG14-18                                                     |
+| pg_local_cache | -                 | 1.3.0            | PG14-18; preload; single-primary                            |
+| pg_mentat      | -                 | 1.5.7            | PG14-18                                                     |
+| pg_policy      | -                 | 0.1.0            | SQL-only; PG14-18                                           |
+| pg_rational    | 0.0.2             | 0.0.3            | PIGSTY; PG14-18                                             |
+| pg_readme      | 0.7.0             | 0.7.1            | Catalog 0.7.1; RPM remains PGDG 0.7.0                       |
+| pg_search      | 0.25.0            | 0.25.2           | PG15-18; pgrx 0.19.1; preload                               |
+| pg_squeeze     | 1.9.2             | 1.9.4            | PGDG; PG14-18                                               |
+| pg_statviz     | -                 | 0.9              | PGDG; PG14-16 and EL10 PG18; no PG17; not in default groups |
+| pg_turbovec    | -                 | 1.29.0           | PG14-18; pgrx 0.19.1                                        |
+| pg_uuid_v8     | 1.0.0             | 1.1.0            | PG14-18; includes 1.0-to-1.1 upgrade script                 |
+| pg_vault_tde   | -                 | 1.7.0            | PG17-18; EL9/10; preload                                    |
+| pgbson         | 2.0.4             | 2.1.0            | RPM package postgresbson; PG14-18                           |
+| pgmnemo        | 0.15.0            | 0.16.1           | PG17-18                                                     |
+| plpgsql_check  | 2.10.3            | 2.10.4           | PG14-18                                                     |
+| plruby         | -                 | 2.5.0            | Includes jsonb_plruby, hstore_plruby, ltree_plruby; PG14-18 |
+| polardb-17     | 17.10.1.0-1PIGSTY | 17.10.1.0-2PGSTY | Rebuild; PG17                                               |
+| polarstore     | 1.2.42-1PIGSTY    | 1.2.42-2PGSTY    | Rebuild                                                     |
+| provsql        | 1.11.0            | 1.12.0           | PG14-18                                                     |
+| q3c            | 2.0.2             | 2.0.5            | PGDG; PIGSTY remains 2.0.2; PG14-18                         |
+| timescaledb    | 2.29.0            | 2.29.1           | PG16-18                                                     |
+| vector         | 0.8.6             | 0.8.6            | PGDG repository refresh; PG14-18                            |
+| zlog           | 1.2.18-1PIGSTY    | 1.2.18-2PGSTY    | Rebuild                                                     |
 {.stretch-last}
 
 ------
@@ -223,15 +295,15 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 | Name             | Old Ver    | New Ver    | Note                                                              |
 |:-----------------|:-----------|:-----------|:------------------------------------------------------------------|
 | emaj             | -          | 5.0.0      | Renamed to `e-maj`; Provides/Obsoletes `emaj`; r2                 |
-| graph            | 0.1.8      | 1.0.0      | pggraph; PG14-18; pgrx 0.19.1                                    |
+| graph            | 0.1.8      | 1.0.0      | pggraph; PG14-18; pgrx 0.19.1                                     |
 | nominatim_fdw    | 2.0.0      | 2.1.0      | PG14-18                                                           |
 | numeral          | 1.3        | 1.3        | Renamed to `postgresql-numeral`; Provides/Obsoletes `numeral`; r3 |
 | pg_ai_query      | 0.1.1      | 0.1.1      | EL9/10 only (GCC 13/OpenSSL 3); r2 not indexed                    |
 | pg_column_tetris | -          | 0.1.0      | SQL-only; PG14-18                                                 |
-| pg_net           | 0.20.5     | 0.20.5     | EL8/9: 0.9.2; EL10: 0.20.5; r3 not indexed                       |
+| pg_net           | 0.20.5     | 0.20.5     | EL8/9: 0.9.2; EL10: 0.20.5; r3 not indexed                        |
 | pg_partman       | 5.4.0      | 5.5.0      | PG14-18                                                           |
-| pg_search        | 0.24.3     | 0.25.0     | PG15-18; pgrx 0.19.1; add pgvector/OpenBLAS dependencies         |
-| pgcontext        | -          | 0.2.0      | PG17-18; pgrx 0.19.1; optional pgvector bridge                   |
+| pg_search        | 0.24.3     | 0.25.0     | PG15-18; pgrx 0.19.1; add pgvector/OpenBLAS dependencies          |
+| pgcontext        | -          | 0.2.0      | PG17-18; pgrx 0.19.1; optional pgvector bridge                    |
 | pgedge           | 18.4       | 18.4       | PG15-18 ABI fix; r2 not indexed                                   |
 | pgmnemo          | 0.13.0     | 0.15.0     | PG17-18; requires pgvector >= 0.7.0                               |
 | pgmp             | -          | 1.0.6      | PG14-18; GMP dependency                                           |
@@ -242,8 +314,8 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 | qdgc             | -          | 0.1.0      | PG14-18; includes qdgc_postgis                                    |
 | rdf_fdw          | 2.6.0      | 2.7.0      | PG14-18                                                           |
 | timescaledb      | 2.28.3     | 2.29.0     | PG16-18                                                           |
-| uri              | 1.20251029 | 1.20251029 | Renamed to `pguri`; Provides/Obsoletes `pg_uri`; r2              |
-| vector           | 0.8.5      | 0.8.6      | PG14-18; 0.8.6 not indexed                                       |
+| uri              | 1.20251029 | 1.20251029 | Renamed to `pguri`; Provides/Obsoletes `pg_uri`; r2               |
+| vector           | 0.8.5      | 0.8.6      | PG14-18; 0.8.6 not indexed                                        |
 {.stretch-last}
 
 ------
@@ -553,64 +625,64 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 ## 2026-05-01
 
-| Name              | Old Ver | New Ver | Note                                                        |
-|:------------------|:--------|:--------|:------------------------------------------------------------|
-| pg_pathcheck      | -       | 0.9.1   | new, PG 17-18, requires preload                             |
-| pg_bikram_sambat  | -       | 0.1.0   | new, Bikram Sambat date type and AD/BS conversion           |
-| timescaledb       | 2.26.3  | 2.26.4  | TimescaleDB TSL minor update                                |
-| storage_engine    | 1.2.3   | 1.3.4   | PGXN bump, table access method for row/column compression   |
-| pgproto           | 0.3.3   | 0.5.0   | PGXN bump, native Protobuf support                          |
-| pg_savior         | 0.0.1   | 0.1.0   | DDL/DML safety hook, preload or LOAD                        |
-| pg_textsearch     | 1.0.0   | 1.1.0   | Timescale BM25 full-text search, PG 17-18, requires preload |
-| pg_trickle        | 0.31.0  | 0.40.0  | Rust/pgrx bump, PG 18 only                                  |
-| pgedge            | 17.9    | 18.3    | rebuilt for PG 18                                           |
-| spock             | 5.0.5   | 5.0.6   | rebuilt for PG 18                                           |
-| lolor             | 1.2.2   | 1.2.2   | rebuilt for PG 18                                           |
-| snowflake         | 2.4     | 2.4     | rebuilt for PG 18                                           |
+| Name             | Old Ver | New Ver | Note                                                        |
+|:-----------------|:--------|:--------|:------------------------------------------------------------|
+| pg_pathcheck     | -       | 0.9.1   | new, PG 17-18, requires preload                             |
+| pg_bikram_sambat | -       | 0.1.0   | new, Bikram Sambat date type and AD/BS conversion           |
+| timescaledb      | 2.26.3  | 2.26.4  | TimescaleDB TSL minor update                                |
+| storage_engine   | 1.2.3   | 1.3.4   | PGXN bump, table access method for row/column compression   |
+| pgproto          | 0.3.3   | 0.5.0   | PGXN bump, native Protobuf support                          |
+| pg_savior        | 0.0.1   | 0.1.0   | DDL/DML safety hook, preload or LOAD                        |
+| pg_textsearch    | 1.0.0   | 1.1.0   | Timescale BM25 full-text search, PG 17-18, requires preload |
+| pg_trickle       | 0.31.0  | 0.40.0  | Rust/pgrx bump, PG 18 only                                  |
+| pgedge           | 17.9    | 18.3    | rebuilt for PG 18                                           |
+| spock            | 5.0.5   | 5.0.6   | rebuilt for PG 18                                           |
+| lolor            | 1.2.2   | 1.2.2   | rebuilt for PG 18                                           |
+| snowflake        | 2.4     | 2.4     | rebuilt for PG 18                                           |
 {.stretch-last}
 
 ------
 
 ## 2026-04-25
 
-| Name           | Old Ver | New Ver | Note                           |
-|:---------------|:--------|:--------|:-------------------------------|
-| documentdb     | 0.109   | 0.110   | bump to upstream, PG 15-18     |
-| pg_trickle     | 0.20.0  | 0.31.0  | bump, PG 18 only, pgrx 0.18.0  |
-| pg_search      | 0.23.0  | 0.23.1  | bump, PG 15-18, pgrx 0.18.0    |
-| pg_ivm         | 1.13    | 1.14    | bump, PG 14-18                 |
-| prefix         | 1.2.10  | 1.2.11  | bump, PG 14-18, PGDG           |
-| credcheck      | 4.6     | 4.7     | bump, PG 14-18, PGDG           |
-| pg_dbms_job    | 1.5     | 2.0     | bump, PG 14-18, PGDG           |
-| storage_engine | 1.0.7   | 1.2.3   | bump, PG 14-18                 |
-| pgmq           | 1.11.0  | 1.11.1  | bump, PG 14-18                 |
-| parray_gin     | 1.4.0   | 1.5.0   | bump, PG 14-18                 |
-| rdf_fdw        | 2.4.0   | 2.5.0   | bump, PG 14-18                 |
-| pg_accumulator | -       | 1.1.3   | new, PG 14-18                  |
+| Name           | Old Ver | New Ver | Note                          |
+|:---------------|:--------|:--------|:------------------------------|
+| documentdb     | 0.109   | 0.110   | bump to upstream, PG 15-18    |
+| pg_trickle     | 0.20.0  | 0.31.0  | bump, PG 18 only, pgrx 0.18.0 |
+| pg_search      | 0.23.0  | 0.23.1  | bump, PG 15-18, pgrx 0.18.0   |
+| pg_ivm         | 1.13    | 1.14    | bump, PG 14-18                |
+| prefix         | 1.2.10  | 1.2.11  | bump, PG 14-18, PGDG          |
+| credcheck      | 4.6     | 4.7     | bump, PG 14-18, PGDG          |
+| pg_dbms_job    | 1.5     | 2.0     | bump, PG 14-18, PGDG          |
+| storage_engine | 1.0.7   | 1.2.3   | bump, PG 14-18                |
+| pgmq           | 1.11.0  | 1.11.1  | bump, PG 14-18                |
+| parray_gin     | 1.4.0   | 1.5.0   | bump, PG 14-18                |
+| rdf_fdw        | 2.4.0   | 2.5.0   | bump, PG 14-18                |
+| pg_accumulator | -       | 1.1.3   | new, PG 14-18                 |
 {.stretch-last}
 
 ------
 
 ## 2026-04-19
 
-| Name              | Old Ver | New Ver | Note                                   |
-|:------------------|:--------|:--------|:---------------------------------------|
+| Name              | Old Ver | New Ver | Note                                              |
+|:------------------|:--------|:--------|:--------------------------------------------------|
 | cloudberry        | 2.0.0   | 2.1.0-2 | bump to 2.1.0, release 2 fixes initdb errno issue |
-| cloudberry-backup | -       | 2.1.0-2 | new companion package                  |
-| cloudberry-pxf    | -       | 2.1.0-2 | new companion package                  |
-| re2               | -       | 0.1.1   | new, PG 16-18                          |
-| storage_engine    | -       | 1.0.7   | new, PG 14-18                          |
-| ulak              | -       | 0.0.2   | new, PG 14-18                          |
-| orioledb          | beta14  | beta15  | paired with OriolePG 17.18             |
-| oriolepg          | 17.16   | 17.18   | kernel patchset update                 |
-| pg_clickhouse     | 0.1.10  | 0.2.0   |                                        |
-| pg_search         | 0.22.6  | 0.23.0  |                                        |
-| pg_stat_ch        | 0.3.4   | 0.3.6   | EL9+ only                              |
-| pg_trickle        | 0.17.0  | 0.20.0  | PG 18 only                             |
-| pgclone           | 3.6.0   | 4.0.0   |                                        |
-| pgproto           | 0.2.4   | 0.3.3   |                                        |
-| pgxicor           | 0.1.0   | 0.1.1   |                                        |
-| timescaledb       | 2.26.2  | 2.26.3  |                                        |
+| cloudberry-backup | -       | 2.1.0-2 | new companion package                             |
+| cloudberry-pxf    | -       | 2.1.0-2 | new companion package                             |
+| re2               | -       | 0.1.1   | new, PG 16-18                                     |
+| storage_engine    | -       | 1.0.7   | new, PG 14-18                                     |
+| ulak              | -       | 0.0.2   | new, PG 14-18                                     |
+| orioledb          | beta14  | beta15  | paired with OriolePG 17.18                        |
+| oriolepg          | 17.16   | 17.18   | kernel patchset update                            |
+| pg_clickhouse     | 0.1.10  | 0.2.0   |                                                   |
+| pg_search         | 0.22.6  | 0.23.0  |                                                   |
+| pg_stat_ch        | 0.3.4   | 0.3.6   | EL9+ only                                         |
+| pg_trickle        | 0.17.0  | 0.20.0  | PG 18 only                                        |
+| pgclone           | 3.6.0   | 4.0.0   |                                                   |
+| pgproto           | 0.2.4   | 0.3.3   |                                                   |
+| pgxicor           | 0.1.0   | 0.1.1   |                                                   |
+| timescaledb       | 2.26.2  | 2.26.3  |                                                   |
 {.stretch-last}
 
 ------
@@ -673,37 +745,38 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_incremental     | 1.4.1   | 1.5.0    | bump                                 |
 | pg_failover_slots  | 1.2.0   | 1.2.1    | bump                                 |
 | plv8               | 3.2.4   | 3.2.4-2  | fix el10 build                       |
+| PolarDB | 15.15 | 17.9.1.0 | PG 15 -> 17 |
 {.stretch-last}
 
 ------
 
 ## 2026-04-10
 
-| Name            | Old Ver | New Ver | Note                     |
-|:----------------|:--------|:--------|:-------------------------|
-| timescaledb     | 2.25.2  | 2.26.2  | available, PG15-18       |
-| pg_ivm          | 1.13    | 1.14    | upgraded, PG14-18        |
-| system_stats    | 3.2     | 4.0     | upgraded, PG14-18        |
-| nominatim_fdw   | 1.1.0   | 1.2     | upgraded, PG14-18        |
-| pg_textsearch   | 0.5.0   | 1.0.0   | PG17-18                  |
-| pg_clickhouse   | 0.1.5   | 0.1.10  | available, PG14-18       |
-| pg_dispatch     | -       | 0.1.5   | new, PG14-18             |
-| pg_search       | 0.22.2  | 0.22.6  | manual download, PG15-18 |
-| pg_fsql         | -       | 1.1.0   | new, PG14-18             |
-| pg_liquid       | -       | 0.1.7   | new, PG14-18             |
-| pg_regresql     | -       | 2.0.0   | new, PG14-18             |
-| pg_slug_gen     | -       | 1.0.0   | new, PG15-18             |
-| pg_stat_ch      | -       | 0.3.3   | new, PG16-18             |
-| pg_variables    | -       | 1.2.5   | new, PG14-18             |
-| pgcalendar      | -       | 1.1.0   | new, PG14-18             |
-| pgclone         | -       | 2.2.0   | new, PG14-18             |
-| pgelog          | -       | 1.0.2   | new, PG14-18             |
-| pglock          | -       | 1.0.0   | new, PG14-18             |
-| pgproto         | -       | 0.2.1   | new, PG14-18             |
-| postgresbson    | -       | 2.0.2   | new, PG14-18             |
-| rdf_fdw         | -       | 2.4.0   | new, PG14-18             |
-| parray_gin      | -       | 1.4.0   | new, PG14-18             |
-| pg_store_plans  | 1.9     | 1.10    | upgraded, PG14-18        |
+| Name           | Old Ver | New Ver | Note                     |
+|:---------------|:--------|:--------|:-------------------------|
+| timescaledb    | 2.25.2  | 2.26.2  | available, PG15-18       |
+| pg_ivm         | 1.13    | 1.14    | upgraded, PG14-18        |
+| system_stats   | 3.2     | 4.0     | upgraded, PG14-18        |
+| nominatim_fdw  | 1.1.0   | 1.2     | upgraded, PG14-18        |
+| pg_textsearch  | 0.5.0   | 1.0.0   | PG17-18                  |
+| pg_clickhouse  | 0.1.5   | 0.1.10  | available, PG14-18       |
+| pg_dispatch    | -       | 0.1.5   | new, PG14-18             |
+| pg_search      | 0.22.2  | 0.22.6  | manual download, PG15-18 |
+| pg_fsql        | -       | 1.1.0   | new, PG14-18             |
+| pg_liquid      | -       | 0.1.7   | new, PG14-18             |
+| pg_regresql    | -       | 2.0.0   | new, PG14-18             |
+| pg_slug_gen    | -       | 1.0.0   | new, PG15-18             |
+| pg_stat_ch     | -       | 0.3.3   | new, PG16-18             |
+| pg_variables   | -       | 1.2.5   | new, PG14-18             |
+| pgcalendar     | -       | 1.1.0   | new, PG14-18             |
+| pgclone        | -       | 2.2.0   | new, PG14-18             |
+| pgelog         | -       | 1.0.2   | new, PG14-18             |
+| pglock         | -       | 1.0.0   | new, PG14-18             |
+| pgproto        | -       | 0.2.1   | new, PG14-18             |
+| postgresbson   | -       | 2.0.2   | new, PG14-18             |
+| rdf_fdw        | -       | 2.4.0   | new, PG14-18             |
+| parray_gin     | -       | 1.4.0   | new, PG14-18             |
+| pg_store_plans | 1.9     | 1.10    | upgraded, PG14-18        |
 {.stretch-last}
 
 ------
@@ -802,13 +875,13 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 ## 2026-01-25
 
-| Name            | Old Ver        | New Ver        | Note                              |
-|:----------------|:---------------|:---------------|:----------------------------------|
-| age             | 1.6.0          | 1.7.0          | PG 18 only                        |
-| citus           | 14.0.0-1PIGSTY | 14.0.0-2PIGSTY | official branch formally released |
-| pg_clickhouse   | 0.1.2          | 0.1.3          |                                   |
-| pgmq            | 1.8.1          | 1.9.0          |                                   |
-| pg_search       | 0.21.2         | 0.21.4         |                                   |
+| Name          | Old Ver        | New Ver        | Note                              |
+|:--------------|:---------------|:---------------|:----------------------------------|
+| age           | 1.6.0          | 1.7.0          | PG 18 only                        |
+| citus         | 14.0.0-1PIGSTY | 14.0.0-2PIGSTY | official branch formally released |
+| pg_clickhouse | 0.1.2          | 0.1.3          |                                   |
+| pgmq          | 1.8.1          | 1.9.0          |                                   |
+| pg_search     | 0.21.2         | 0.21.4         |                                   |
 {.stretch-last}
 
 ------
@@ -844,37 +917,37 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 ## 2025-12-25
 
-| Name              | Old Ver     | New Ver     | Note     |
-|-------------------|-------------|-------------|----------|
-| `pg_duckdb`       | `1.1.0`     | `1.1.1`     |          |
-| `pg_search`       | `0.20.4`    | `0.20.5`    |          |
-| `vchord_bm25`     | `0.2.2`     | `0.3.0`     |          |
-| `pg_semver`       | `0.40.0`    | `0.41.0`    |          |
-| `pg_timeseries`   | `0.1.7`     | `0.1.8`     |          |
+| Name            | Old Ver  | New Ver  | Note |
+|-----------------|----------|----------|------|
+| `pg_duckdb`     | `1.1.0`  | `1.1.1`  |      |
+| `pg_search`     | `0.20.4` | `0.20.5` |      |
+| `vchord_bm25`   | `0.2.2`  | `0.3.0`  |      |
+| `pg_semver`     | `0.40.0` | `0.41.0` |      |
+| `pg_timeseries` | `0.1.7`  | `0.1.8`  |      |
 {.stretch-last}
 
 ------
 
 ## 2025-12-16
 
-| Name                                                            | Old Ver     | New Ver     | Note                   |
-|-----------------------------------------------------------------|-------------|-------------|------------------------|
-| [`pg_textsearch`](https://github.com/timescale/pg_textsearch)   | -           | `0.1.0`     | new extension          |
-| [`pg_clickhouse`](https://github.com/clickhouse/pg_clickhouse/) | -           | `0.1.0`     | new extension          |
-| [`pg_ai_query`](https://github.com/benodiwal/pg_ai_query)       | -           | `0.1.1`     | new extension          |
-| `timescaledb`                                                   | `2.23.1`    | `2.24.0`    |                        |
-| `pg_search`                                                     | `0.20.0`    | `0.20.4`    |                        |
-| `pg_duckdb`                                                     | `1.1.0-1`   | `1.1.0-2`   | official release       |
-| `pg_biscuit`                                                    | `1.0`       | `2.0.1`     | switch to new repo     |
-| `pg_convert`                                                    | `0.0.4`     | `0.0.5`     | removed pg13 support   |
-| `pgdd`                                                          | `0.6.0`     | `0.6.1`     | removed pg13 support   |
-| `pglinter`                                                      | `1.0.0`     | `1.0.1`     |                        |
-| `pg_session_jwt`                                                | `0.3.3`     | `0.4.0`     |                        |
-| `pg_anon`                                                       | `2.4.1`     | `2.5.1`     |                        |
-| `pg_enigma`                                                     | `0.4.0`     | `0.5.0`     |                        |
-| `wrappers`                                                      | `0.5.6`     | `0.5.7`     |                        |
-| `pg_vectorize`                                                  | `0.25.0`    | `0.26.0`    |                        |
-| `synchdb`                                                       | -           | `1.3`       | EL9 only               |
+| Name                                                            | Old Ver   | New Ver   | Note                 |
+|-----------------------------------------------------------------|-----------|-----------|----------------------|
+| [`pg_textsearch`](https://github.com/timescale/pg_textsearch)   | -         | `0.1.0`   | new extension        |
+| [`pg_clickhouse`](https://github.com/clickhouse/pg_clickhouse/) | -         | `0.1.0`   | new extension        |
+| [`pg_ai_query`](https://github.com/benodiwal/pg_ai_query)       | -         | `0.1.1`   | new extension        |
+| `timescaledb`                                                   | `2.23.1`  | `2.24.0`  |                      |
+| `pg_search`                                                     | `0.20.0`  | `0.20.4`  |                      |
+| `pg_duckdb`                                                     | `1.1.0-1` | `1.1.0-2` | official release     |
+| `pg_biscuit`                                                    | `1.0`     | `2.0.1`   | switch to new repo   |
+| `pg_convert`                                                    | `0.0.4`   | `0.0.5`   | removed pg13 support |
+| `pgdd`                                                          | `0.6.0`   | `0.6.1`   | removed pg13 support |
+| `pglinter`                                                      | `1.0.0`   | `1.0.1`   |                      |
+| `pg_session_jwt`                                                | `0.3.3`   | `0.4.0`   |                      |
+| `pg_anon`                                                       | `2.4.1`   | `2.5.1`   |                      |
+| `pg_enigma`                                                     | `0.4.0`   | `0.5.0`   |                      |
+| `wrappers`                                                      | `0.5.6`   | `0.5.7`   |                      |
+| `pg_vectorize`                                                  | `0.25.0`  | `0.26.0`  |                      |
+| `synchdb`                                                       | -         | `1.3`     | EL9 only             |
 {.stretch-last}
 
 
@@ -882,26 +955,26 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 ## 2025-11-20
 
-| Name                     | Old Ver     | New Ver     | Note                         |
-|--------------------------|-------------|-------------|------------------------------|
-| `vchord`                 | `0.5.3`     | `1.0.0`     |                              |
-| `pg_later`               | `0.3.1`     | `0.4.0`     |                              |
-| `pgvectorscale`          | `0.8.0`     | `0.9.0`     | -pg13, +pg18                 |
-| `pglite_fusion`          | `0.0.5`     | `0.0.6`     |                              |
-| `pgx_ulid`               | `0.2.1`     | `0.2.2`     |                              |
-| `pg_search`              | `0.19.5`    | `0.19.7`    | resume PIGSTY building       |
-| `citus`                  | `13.2.0`    | `13.2.0`    | official tag build           |
-| `timescaledb`            | `2.23.0`    | `2.23.1`    |                              |
-| `pg_profile`             | `4.10`      | `4.11`      |                              |
-| `pglinter`               |             | `1.0.0`     | new                          |
-| `pg_typeid`              |             | `0.3.0`     | align pg18 support           |
-| `pg_enigma`              |             | `0.4.0`     | vonng patched pgrx version   |
-| `pg_retry`               |             | `1.0.0`     | new, pg17-18                 |
-| `pg_biscuit`             |             | `1.0`       | new, pg16-18                 |
-| `pg_weighted_statistics` |             | `1.0.0`     | new, pg13-18                 |
-| `pg_stat_monitor`        | `2.2.0`     | `2.3.0`     | fix PGDG pg18 missing issue  |
-| `documentdb`             | `0.106`     | `0.107`     | ferretdb fork                |
-| `polardb`                |             | `15.15`     | 15.15.5.0-38948055           |
+| Name                     | Old Ver  | New Ver  | Note                        |
+|--------------------------|----------|----------|-----------------------------|
+| `vchord`                 | `0.5.3`  | `1.0.0`  |                             |
+| `pg_later`               | `0.3.1`  | `0.4.0`  |                             |
+| `pgvectorscale`          | `0.8.0`  | `0.9.0`  | -pg13, +pg18                |
+| `pglite_fusion`          | `0.0.5`  | `0.0.6`  |                             |
+| `pgx_ulid`               | `0.2.1`  | `0.2.2`  |                             |
+| `pg_search`              | `0.19.5` | `0.19.7` | resume PIGSTY building      |
+| `citus`                  | `13.2.0` | `13.2.0` | official tag build          |
+| `timescaledb`            | `2.23.0` | `2.23.1` |                             |
+| `pg_profile`             | `4.10`   | `4.11`   |                             |
+| `pglinter`               |          | `1.0.0`  | new                         |
+| `pg_typeid`              |          | `0.3.0`  | align pg18 support          |
+| `pg_enigma`              |          | `0.4.0`  | vonng patched pgrx version  |
+| `pg_retry`               |          | `1.0.0`  | new, pg17-18                |
+| `pg_biscuit`             |          | `1.0`    | new, pg16-18                |
+| `pg_weighted_statistics` |          | `1.0.0`  | new, pg13-18                |
+| `pg_stat_monitor`        | `2.2.0`  | `2.3.0`  | fix PGDG pg18 missing issue |
+| `documentdb`             | `0.106`  | `0.107`  | ferretdb fork               |
+| `polardb`                |          | `15.15`  | 15.15.5.0-38948055          |
 {.stretch-last}
 
 
@@ -911,195 +984,195 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 
 Added PostgreSQL 18 support for almost all extensions.
 
-| Name                      | Old Ver      | New Ver      | Note     |
-|---------------------------|--------------|--------------|----------|
-| `omni_csv`                | -            | `0.1.1`      | new ext  |
-| `omni_datasets`           | -            | `0.1.0`      | new ext  |
-| `omni_shmem`              | -            | `0.1.0`      | new ext  |
-| `pg_csv`                  | -            | `1.0.1`      | new ext  |
-| `pg_dbms_errlog`          | -            | `2.2`        | new ext  |
-| `pg_rrule`                | -            | `0.2.0`      | new ext  |
-| `plxslt`                  | -            | `0.20140221` | new ext  |
-| `anon`                    | `2.3.0`      | `2.4.1`      | +pg18    |
-| `collection`              | `1.0.0`      | `1.1.0`      | +pg18    |
-| `credcheck`               | `3.0`        | `4.2`        | +pg18    |
-| `emaj`                    | `4.7.0`      | `4.7.1`      | +pg18    |
-| `explain_ui`              | `0.0.1`      | `0.0.2`      | +pg18    |
-| `firebird_fdw`            | `1.4.0`      | `1.4.1`      | +pg18    |
-| `logerrors`               | `2.1.3`      | `2.1.5`      | +pg18    |
-| `multicorn`               | `3.0`        | `3.2`        | +pg18    |
-| `omni`                    | `0.2.9`      | `0.2.14`     | +pg18    |
-| `omni_email`              | `0`          | `0.1.0`      | +pg18    |
-| `omni_httpc`              | `0.1.5`      | `0.1.10`     | +pg18    |
-| `omni_httpd`              | `0.4.6`      | `0.4.11`     | +pg18    |
-| `omni_id`                 | `0.4.2`      | `0.4.3`      | +pg18    |
-| `omni_kube`               | `0.1.1`      | `0.4.2`      | +pg18    |
-| `omni_ledger`             | `0.1.2`      | `0.1.3`      | +pg18    |
-| `omni_sql`                | `0.5.1`      | `0.5.3`      | +pg18    |
-| `omni_sqlite`             | `0.1.2`      | `0.2.2`      | +pg18    |
-| `omni_types`              | `0.3.4`      | `0.3.6`      | +pg18    |
-| `omni_vfs`                | `0.2.1`      | `0.2.2`      | +pg18    |
-| `omni_worker`             | `0.1.0`      | `0.2.1`      | +pg18    |
-| `periods`                 | `1.2.2`      | `1.2.3`      | +pg18    |
-| `pg_bestmatch`            | `0.0.1`      | `0.0.2`      | +pg18    |
-| `pg_cardano`              | `1.0.5`      | `1.1.1`      | +pg18    |
-| `pg_checksums`            | `1.1`        | `1.3`        | +pg18    |
-| `pg_duckdb`               | `0.3.1`      | `1.1.0`      | +pg18    |
-| `pg_failover_slots`       | `1.1.0`      | `1.2.0`      | +pg18    |
-| `pg_graphql`              | `1.5.11`     | `1.5.12`     | +pg18    |
-| `pg_idkit`                | `0.3.1`      | `0.4.0`      | +pg18    |
-| `pg_later`                | `0.3.0`      | `0.3.1`      | +pg18    |
-| `pg_mooncake`             | `0.1.2`      | `0.2.0`      | +pg18    |
-| `pg_net`                  | `0.9.2`      | `0.20.0`     | +pg18    |
-| `pg_parquet`              | `0.4.3`      | `0.5.1`      | +pg18    |
-| `pg_render`               | `0.1.2`      | `0.1.3`      | +pg18    |
-| `pg_session_jwt`          | `0.3.1`      | `0.3.3`      | +pg18    |
-| `pg_smtp_client`          | `0.2.0`      | `0.2.1`      | +pg18    |
-| `pg_sphere`               | `1.5.1`      | `1.5.2`      | +pg18    |
-| `pg_statement_rollback`   | `1.4`        | `1.5`        | +pg18    |
-| `pg_store_plans`          | `1.8`        | `1.9`        | +pg18    |
-| `pg_tle`                  | `1.5.1`      | `1.5.2`      | +pg18    |
-| `pg_tokenizer`            | `0.1.0`      | `0.1.1`      | +pg18    |
-| `pg_uuidv7`               | `1.6.0`      | `1.7.0`      | +pg18    |
-| `pgactive`                | `2.1.6`      | `2.1.7`      | +pg18    |
-| `pglogical`               | `2.4.5`      | `2.4.6`      | +pg18    |
-| `pglogical_origin`        | `2.4.5`      | `2.4.6`      | +pg18    |
-| `pgmq`                    | `1.5.1`      | `1.7.0`      | +pg18    |
-| `pgsmcrypto`              | `0.1.0`      | `0.1.1`      | +pg18    |
-| `pgx_ulid`                | `0.2.0`      | `0.2.1`      | +pg18    |
-| `pldbgapi`                | `1.8`        | `1.9`        | +pg18    |
-| `pljava`                  | `1.6.8`      | `1.6.10`     | +pg18    |
-| `plprql`                  | `1.0.0`      | `18.0.0`     | +pg18    |
-| `roaringbitmap`           | `0.5.4`      | `0.5.5`      | +pg18    |
-| `semver`                  | `0.32.1`     | `0.40.0`     | +pg18    |
-| `supautils`               | `2.10.0`     | `3.0.2`      | +pg18    |
-| `tds_fdw`                 | `2.0.4`      | `2.0.5`      | +pg18    |
-| `timescaledb`             | `2.22.0`     | `2.23.0`     | +pg18    |
-| `timescaledb_toolkit`     | `1.21.0`     | `1.22.0`     | +pg18    |
-| `timeseries`              | `0.1.6`      | `0.1.7`      | +pg18    |
-| `pg_tzf`                  | `0.2.2`      | `0.2.3`      | +pg18    |
-| `vchord`                  | `0.5.1`      | `0.5.3`      | +pg18    |
-| `vchord_bm25`             | `0.2.1`      | `0.2.2`      | +pg18    |
-| `vectorize`               | `0.22.2`     | `0.25.0`     | +pg18    |
-| `wrappers`                | `0.5.4`      | `0.5.6`      | +pg18    |
-| `gzip`                    | `1.0.1`      | `1.0.0`      | +pg18    |
-| `hypopg`                  | `1.4.1`      | `1.4.2`      | +pg18    |
-| `mobilitydb`              | `1.2.0`      | `1.3.0`      | +pg18    |
-| `mongo_fdw`               | `5.5.1`      | `5.5.3`      | +pg18    |
-| `orafce`                  | `4.14.4`     | `4.14.6`     | +pg18    |
-| `pg_hint_plan`            | `1.7.1`      | `1.8.0`      | +pg18    |
-| `pg_ivm`                  | `1.11`       | `1.13`       | +pg18    |
-| `pg_partman`              | `5.2.4`      | `5.3.1`      | +pg18    |
-| `pg_search`               | `0.18.1`     | `0.19.2`     | +pg18    |
-| `pg_show_plans`           | `2.1.6`      | `2.1.7`      | +pg18    |
-| `pgpcre`                  | `1`          | `0.20190509` | +pg18    |
-| `pgroonga`                | `4.0.0`      | `4.0.4`      | +pg18    |
-| `pgroonga_database`       | `4.0.0`      | `4.0.4`      | +pg18    |
-| `plpgsql_check`           | `2.8.2`      | `2.8.3`      | +pg18    |
-| `uint`                    | `1.20231206` | `1.20250815` | +pg18    |
-| `uint128`                 | `1.1.0`      | `1.1.1`      | +pg18    |
-| `omni_*`                  | `20250525`   | `20251108`   | +pg18    |
-| `acl`                     | `1.0.4`      |              | +pg18    |
-| `aggs_for_arrays`         | `1.3.3`      |              | +pg18    |
-| `aggs_for_vecs`           | `1.4.0`      |              | +pg18    |
-| `arraymath`               | `1.1`        |              | +pg18    |
-| `asn1oid`                 | `1.6`        |              | +pg18    |
-| `aws_s3`                  | `0.0.1`      |              | +pg18    |
-| `base36`                  | `1.0.0`      |              | +pg18    |
-| `base62`                  | `0.0.1`      |              | +pg18    |
-| `bzip`                    | `1.0.0`      |              | +pg18    |
-| `chkpass`                 | `1.0`        |              | +pg18    |
-| `convert`                 | `0.0.4`      |              | +pg18    |
-| `count_distinct`          | `3.0.2`      |              | +pg18    |
-| `country`                 | `0.0.3`      |              | +pg18    |
-| `cryptint`                | `1.0.0`      |              | +pg18    |
-| `currency`                | `0.0.3`      |              | +pg18    |
-| `data_historization`      | `1.1.0`      |              | +pg18    |
-| `db_migrator`             | `1.0.0`      |              | +pg18    |
-| `dbt2`                    | `0.61.7`     |              | +pg18    |
-| `ddl_historization`       | `0.0.7`      |              | +pg18    |
-| `ddsketch`                | `1.0.1`      |              | +pg18    |
-| `decoder_raw`             | `1.0`        |              | +pg18    |
-| `decoderbufs`             | `3.2.0`      |              | +pg18    |
-| `emailaddr`               | `0`          |              | +pg18    |
-| `envvar`                  | `1.0.1`      |              | +pg18    |
-| `faker`                   | `0.5.3`      |              | +pg18    |
-| `financial`               | `1.0.1`      |              | +pg18    |
-| `fio`                     | `1.0`        |              | +pg18    |
-| `first_last_agg`          | `0.1.4`      |              | +pg18    |
-| `floatfile`               | `1.3.1`      |              | +pg18    |
-| `floatvec`                | `1.1.1`      |              | +pg18    |
-| `geoip`                   | `0.3.0`      |              | +pg18    |
-| `hashlib`                 | `1.1`        |              | +pg18    |
-| `hashtypes`               | `0.1.5`      |              | +pg18    |
-| `hll`                     | `2.18`       |              | +pg18    |
-| `hunspell_*`              | `1.0`        |              | +pg18    |
-| `imgsmlr`                 | `1.0`        |              | +pg18    |
-| `index_advisor`           | `0.2.0`      |              | +pg18    |
-| `kafka_fdw`               | `0.0.3`      |              | +pg18    |
-| `login_hook`              | `1.7`        |              | +pg18    |
-| `oracle_fdw`              | `2.8.0`      |              | +pg18    |
-| `pg_auth_mon`             | `3.0`        |              | +pg18    |
-| `pg_background`           | `1.3`        |              | +pg18    |
-| `pg_bigm`                 | `1.2`        |              | +pg18    |
-| `pg_cron`                 | `1.6.7`      |              | +pg18    |
-| `pg_profile`              | `4.10`       |              | +pg18    |
-| `pg_stat_kcache`          | `2.3.0`      |              | +pg18    |
-| `pgdd`                    | `0.6.0`      |              | +pg18    |
-| `pgjwt`                   | `0.2.0`      |              | +pg18    |
-| `pgnodemx`                | `1.7`        |              | +pg18    |
-| `pgsodium`                | `3.1.9`      |              | +pg18    |
-| `pgtap`                   | `1.3.3`      |              | +pg18    |
-| `plprofiler`              | `4.2.5`      |              | +pg18    |
-| `plproxy`                 | `2.11.0`     |              | +pg18    |
-| `plr`                     | `8.4.8`      |              | +pg18    |
-| `plv8`                    | `3.2.4`      |              | +pg18    |
-| `pointcloud`              | `1.2.5`      |              | +pg18    |
-| `powa`                    | `5.0.1`      |              | +pg18    |
-| `prefix`                  | `1.2.10`     |              | +pg18    |
-| `q3c`                     | `2.0.1`      |              | +pg18    |
-| `redis_fdw`               | `1.0`        |              | +pg18    |
-| `session_variable`        | `3.4`        |              | +pg18    |
-| `set_user`                | `4.1.0`      |              | +pg18    |
-| `system_stats`            | `3.2`        |              | +pg18    |
-| `temporal_tables`         | `1.2.2`      |              | +pg18    |
-| `topn`                    | `2.7.0`      |              | +pg18    |
-| `unit`                    | `7.10`       |              | +pg18    |
-| `zhparser`                | `2.3`        |              | +pg18    |
-| `zstd`                    | `1.1.2`      |              | +pg18    |
+| Name                    | Old Ver      | New Ver      | Note    |
+|-------------------------|--------------|--------------|---------|
+| `omni_csv`              | -            | `0.1.1`      | new ext |
+| `omni_datasets`         | -            | `0.1.0`      | new ext |
+| `omni_shmem`            | -            | `0.1.0`      | new ext |
+| `pg_csv`                | -            | `1.0.1`      | new ext |
+| `pg_dbms_errlog`        | -            | `2.2`        | new ext |
+| `pg_rrule`              | -            | `0.2.0`      | new ext |
+| `plxslt`                | -            | `0.20140221` | new ext |
+| `anon`                  | `2.3.0`      | `2.4.1`      | +pg18   |
+| `collection`            | `1.0.0`      | `1.1.0`      | +pg18   |
+| `credcheck`             | `3.0`        | `4.2`        | +pg18   |
+| `emaj`                  | `4.7.0`      | `4.7.1`      | +pg18   |
+| `explain_ui`            | `0.0.1`      | `0.0.2`      | +pg18   |
+| `firebird_fdw`          | `1.4.0`      | `1.4.1`      | +pg18   |
+| `logerrors`             | `2.1.3`      | `2.1.5`      | +pg18   |
+| `multicorn`             | `3.0`        | `3.2`        | +pg18   |
+| `omni`                  | `0.2.9`      | `0.2.14`     | +pg18   |
+| `omni_email`            | `0`          | `0.1.0`      | +pg18   |
+| `omni_httpc`            | `0.1.5`      | `0.1.10`     | +pg18   |
+| `omni_httpd`            | `0.4.6`      | `0.4.11`     | +pg18   |
+| `omni_id`               | `0.4.2`      | `0.4.3`      | +pg18   |
+| `omni_kube`             | `0.1.1`      | `0.4.2`      | +pg18   |
+| `omni_ledger`           | `0.1.2`      | `0.1.3`      | +pg18   |
+| `omni_sql`              | `0.5.1`      | `0.5.3`      | +pg18   |
+| `omni_sqlite`           | `0.1.2`      | `0.2.2`      | +pg18   |
+| `omni_types`            | `0.3.4`      | `0.3.6`      | +pg18   |
+| `omni_vfs`              | `0.2.1`      | `0.2.2`      | +pg18   |
+| `omni_worker`           | `0.1.0`      | `0.2.1`      | +pg18   |
+| `periods`               | `1.2.2`      | `1.2.3`      | +pg18   |
+| `pg_bestmatch`          | `0.0.1`      | `0.0.2`      | +pg18   |
+| `pg_cardano`            | `1.0.5`      | `1.1.1`      | +pg18   |
+| `pg_checksums`          | `1.1`        | `1.3`        | +pg18   |
+| `pg_duckdb`             | `0.3.1`      | `1.1.0`      | +pg18   |
+| `pg_failover_slots`     | `1.1.0`      | `1.2.0`      | +pg18   |
+| `pg_graphql`            | `1.5.11`     | `1.5.12`     | +pg18   |
+| `pg_idkit`              | `0.3.1`      | `0.4.0`      | +pg18   |
+| `pg_later`              | `0.3.0`      | `0.3.1`      | +pg18   |
+| `pg_mooncake`           | `0.1.2`      | `0.2.0`      | +pg18   |
+| `pg_net`                | `0.9.2`      | `0.20.0`     | +pg18   |
+| `pg_parquet`            | `0.4.3`      | `0.5.1`      | +pg18   |
+| `pg_render`             | `0.1.2`      | `0.1.3`      | +pg18   |
+| `pg_session_jwt`        | `0.3.1`      | `0.3.3`      | +pg18   |
+| `pg_smtp_client`        | `0.2.0`      | `0.2.1`      | +pg18   |
+| `pg_sphere`             | `1.5.1`      | `1.5.2`      | +pg18   |
+| `pg_statement_rollback` | `1.4`        | `1.5`        | +pg18   |
+| `pg_store_plans`        | `1.8`        | `1.9`        | +pg18   |
+| `pg_tle`                | `1.5.1`      | `1.5.2`      | +pg18   |
+| `pg_tokenizer`          | `0.1.0`      | `0.1.1`      | +pg18   |
+| `pg_uuidv7`             | `1.6.0`      | `1.7.0`      | +pg18   |
+| `pgactive`              | `2.1.6`      | `2.1.7`      | +pg18   |
+| `pglogical`             | `2.4.5`      | `2.4.6`      | +pg18   |
+| `pglogical_origin`      | `2.4.5`      | `2.4.6`      | +pg18   |
+| `pgmq`                  | `1.5.1`      | `1.7.0`      | +pg18   |
+| `pgsmcrypto`            | `0.1.0`      | `0.1.1`      | +pg18   |
+| `pgx_ulid`              | `0.2.0`      | `0.2.1`      | +pg18   |
+| `pldbgapi`              | `1.8`        | `1.9`        | +pg18   |
+| `pljava`                | `1.6.8`      | `1.6.10`     | +pg18   |
+| `plprql`                | `1.0.0`      | `18.0.0`     | +pg18   |
+| `roaringbitmap`         | `0.5.4`      | `0.5.5`      | +pg18   |
+| `semver`                | `0.32.1`     | `0.40.0`     | +pg18   |
+| `supautils`             | `2.10.0`     | `3.0.2`      | +pg18   |
+| `tds_fdw`               | `2.0.4`      | `2.0.5`      | +pg18   |
+| `timescaledb`           | `2.22.0`     | `2.23.0`     | +pg18   |
+| `timescaledb_toolkit`   | `1.21.0`     | `1.22.0`     | +pg18   |
+| `timeseries`            | `0.1.6`      | `0.1.7`      | +pg18   |
+| `pg_tzf`                | `0.2.2`      | `0.2.3`      | +pg18   |
+| `vchord`                | `0.5.1`      | `0.5.3`      | +pg18   |
+| `vchord_bm25`           | `0.2.1`      | `0.2.2`      | +pg18   |
+| `vectorize`             | `0.22.2`     | `0.25.0`     | +pg18   |
+| `wrappers`              | `0.5.4`      | `0.5.6`      | +pg18   |
+| `gzip`                  | `1.0.1`      | `1.0.0`      | +pg18   |
+| `hypopg`                | `1.4.1`      | `1.4.2`      | +pg18   |
+| `mobilitydb`            | `1.2.0`      | `1.3.0`      | +pg18   |
+| `mongo_fdw`             | `5.5.1`      | `5.5.3`      | +pg18   |
+| `orafce`                | `4.14.4`     | `4.14.6`     | +pg18   |
+| `pg_hint_plan`          | `1.7.1`      | `1.8.0`      | +pg18   |
+| `pg_ivm`                | `1.11`       | `1.13`       | +pg18   |
+| `pg_partman`            | `5.2.4`      | `5.3.1`      | +pg18   |
+| `pg_search`             | `0.18.1`     | `0.19.2`     | +pg18   |
+| `pg_show_plans`         | `2.1.6`      | `2.1.7`      | +pg18   |
+| `pgpcre`                | `1`          | `0.20190509` | +pg18   |
+| `pgroonga`              | `4.0.0`      | `4.0.4`      | +pg18   |
+| `pgroonga_database`     | `4.0.0`      | `4.0.4`      | +pg18   |
+| `plpgsql_check`         | `2.8.2`      | `2.8.3`      | +pg18   |
+| `uint`                  | `1.20231206` | `1.20250815` | +pg18   |
+| `uint128`               | `1.1.0`      | `1.1.1`      | +pg18   |
+| `omni_*`                | `20250525`   | `20251108`   | +pg18   |
+| `acl`                   | `1.0.4`      |              | +pg18   |
+| `aggs_for_arrays`       | `1.3.3`      |              | +pg18   |
+| `aggs_for_vecs`         | `1.4.0`      |              | +pg18   |
+| `arraymath`             | `1.1`        |              | +pg18   |
+| `asn1oid`               | `1.6`        |              | +pg18   |
+| `aws_s3`                | `0.0.1`      |              | +pg18   |
+| `base36`                | `1.0.0`      |              | +pg18   |
+| `base62`                | `0.0.1`      |              | +pg18   |
+| `bzip`                  | `1.0.0`      |              | +pg18   |
+| `chkpass`               | `1.0`        |              | +pg18   |
+| `convert`               | `0.0.4`      |              | +pg18   |
+| `count_distinct`        | `3.0.2`      |              | +pg18   |
+| `country`               | `0.0.3`      |              | +pg18   |
+| `cryptint`              | `1.0.0`      |              | +pg18   |
+| `currency`              | `0.0.3`      |              | +pg18   |
+| `data_historization`    | `1.1.0`      |              | +pg18   |
+| `db_migrator`           | `1.0.0`      |              | +pg18   |
+| `dbt2`                  | `0.61.7`     |              | +pg18   |
+| `ddl_historization`     | `0.0.7`      |              | +pg18   |
+| `ddsketch`              | `1.0.1`      |              | +pg18   |
+| `decoder_raw`           | `1.0`        |              | +pg18   |
+| `decoderbufs`           | `3.2.0`      |              | +pg18   |
+| `emailaddr`             | `0`          |              | +pg18   |
+| `envvar`                | `1.0.1`      |              | +pg18   |
+| `faker`                 | `0.5.3`      |              | +pg18   |
+| `financial`             | `1.0.1`      |              | +pg18   |
+| `fio`                   | `1.0`        |              | +pg18   |
+| `first_last_agg`        | `0.1.4`      |              | +pg18   |
+| `floatfile`             | `1.3.1`      |              | +pg18   |
+| `floatvec`              | `1.1.1`      |              | +pg18   |
+| `geoip`                 | `0.3.0`      |              | +pg18   |
+| `hashlib`               | `1.1`        |              | +pg18   |
+| `hashtypes`             | `0.1.5`      |              | +pg18   |
+| `hll`                   | `2.18`       |              | +pg18   |
+| `hunspell_*`            | `1.0`        |              | +pg18   |
+| `imgsmlr`               | `1.0`        |              | +pg18   |
+| `index_advisor`         | `0.2.0`      |              | +pg18   |
+| `kafka_fdw`             | `0.0.3`      |              | +pg18   |
+| `login_hook`            | `1.7`        |              | +pg18   |
+| `oracle_fdw`            | `2.8.0`      |              | +pg18   |
+| `pg_auth_mon`           | `3.0`        |              | +pg18   |
+| `pg_background`         | `1.3`        |              | +pg18   |
+| `pg_bigm`               | `1.2`        |              | +pg18   |
+| `pg_cron`               | `1.6.7`      |              | +pg18   |
+| `pg_profile`            | `4.10`       |              | +pg18   |
+| `pg_stat_kcache`        | `2.3.0`      |              | +pg18   |
+| `pgdd`                  | `0.6.0`      |              | +pg18   |
+| `pgjwt`                 | `0.2.0`      |              | +pg18   |
+| `pgnodemx`              | `1.7`        |              | +pg18   |
+| `pgsodium`              | `3.1.9`      |              | +pg18   |
+| `pgtap`                 | `1.3.3`      |              | +pg18   |
+| `plprofiler`            | `4.2.5`      |              | +pg18   |
+| `plproxy`               | `2.11.0`     |              | +pg18   |
+| `plr`                   | `8.4.8`      |              | +pg18   |
+| `plv8`                  | `3.2.4`      |              | +pg18   |
+| `pointcloud`            | `1.2.5`      |              | +pg18   |
+| `powa`                  | `5.0.1`      |              | +pg18   |
+| `prefix`                | `1.2.10`     |              | +pg18   |
+| `q3c`                   | `2.0.1`      |              | +pg18   |
+| `redis_fdw`             | `1.0`        |              | +pg18   |
+| `session_variable`      | `3.4`        |              | +pg18   |
+| `set_user`              | `4.1.0`      |              | +pg18   |
+| `system_stats`          | `3.2`        |              | +pg18   |
+| `temporal_tables`       | `1.2.2`      |              | +pg18   |
+| `topn`                  | `2.7.0`      |              | +pg18   |
+| `unit`                  | `7.10`       |              | +pg18   |
+| `zhparser`              | `2.3`        |              | +pg18   |
+| `zstd`                  | `1.1.2`      |              | +pg18   |
 {.stretch-last}
 
 ------
 
 ## 2025-09-04
 
-| Name          | Old Ver     | New Ver     | Note                     |
-|---------------|-------------|-------------|--------------------------|
-| `timescaledb` | `2.21.1`    | `2.22.0`    |                          |
-| `citus`       | `13.1.0`    | `13.2.0`    |                          |
-| `documentdb`  | `0.105.0`   | `0.106.0`   | work with ferretdb 2.5   |
-| `ddlx`        | `0.29`      | `0.30`      | + pg18                   |
-| `icu_ext`     | `1.9.0`     | `1.10.0`    | + pg18                   |
-| `asn1oid`     | `1.5`       | `1.6`       | + pg18                   |
-| `uint128`     | `1.0.0`     | `1.1.0`     | + pg18                   |
-| `toastinfo`   | `1.5`       | `1.6`       | + pg18                   |
-| `vchord`      | `0.4.3`     | `0.5.1`     | pgrx 0.16.0              |
-| `pg_idkit`    | `0.3.0`     | `0.3.1`     | pgrx 0.15.0              |
-| `pg_search`   | `0.17.3`    | `0.18.0`    | pgrx 0.15.0              |
-| `pg_parquet`  | `0.4.0`     | `0.4.3`     | pgrx 0.16.0              |
-| `wrappers`    | `0.5.3`     | `0.5.4`     | pgrx 0.14.3              |
-| `pg_rewrite`  | -           | `2.0.0`     | + Debian/Ubuntu (PGDG)   |
-| `pg_tracing`  | -           | `0.1.3-2`   | + pg 14/18               |
-| `pg_curl`     | `2.4`       | `2.4.5`     | new version epoch        |
-| `pg_rewrite`  | -           | `2.0.0`     | Import from PGDG         |
-| `pg_tracing`  | -           | `1.3.0`     | + pg14 / pg18            |
-| `pgactive`    | `2.1.5`     | `2.1.6`     | + pg18                   |
-| `pgsentinel`  | `1.1`       | `1.2`       | 1.2                      |
-| `pg_tle`      | `1.5.1-1`   | `1.5.1-2`   | + pg18                   |
-| `redis_fdw`   |             |             | + pg18                   |
-| `pgextwlist`  | `1.17`      | `1.19`      | + pg18                   |
-| `wal2json`    |             | `1.6`       | + pg18                   |
-| `pgvector`    |             | `0.8.1`     | + pg18                   |
+| Name          | Old Ver   | New Ver   | Note                   |
+|---------------|-----------|-----------|------------------------|
+| `timescaledb` | `2.21.1`  | `2.22.0`  |                        |
+| `citus`       | `13.1.0`  | `13.2.0`  |                        |
+| `documentdb`  | `0.105.0` | `0.106.0` | work with ferretdb 2.5 |
+| `ddlx`        | `0.29`    | `0.30`    | + pg18                 |
+| `icu_ext`     | `1.9.0`   | `1.10.0`  | + pg18                 |
+| `asn1oid`     | `1.5`     | `1.6`     | + pg18                 |
+| `uint128`     | `1.0.0`   | `1.1.0`   | + pg18                 |
+| `toastinfo`   | `1.5`     | `1.6`     | + pg18                 |
+| `vchord`      | `0.4.3`   | `0.5.1`   | pgrx 0.16.0            |
+| `pg_idkit`    | `0.3.0`   | `0.3.1`   | pgrx 0.15.0            |
+| `pg_search`   | `0.17.3`  | `0.18.0`  | pgrx 0.15.0            |
+| `pg_parquet`  | `0.4.0`   | `0.4.3`   | pgrx 0.16.0            |
+| `wrappers`    | `0.5.3`   | `0.5.4`   | pgrx 0.14.3            |
+| `pg_rewrite`  | -         | `2.0.0`   | + Debian/Ubuntu (PGDG) |
+| `pg_tracing`  | -         | `0.1.3-2` | + pg 14/18             |
+| `pg_curl`     | `2.4`     | `2.4.5`   | new version epoch      |
+| `pg_rewrite`  | -         | `2.0.0`   | Import from PGDG       |
+| `pg_tracing`  | -         | `1.3.0`   | + pg14 / pg18          |
+| `pgactive`    | `2.1.5`   | `2.1.6`   | + pg18                 |
+| `pgsentinel`  | `1.1`     | `1.2`     | 1.2                    |
+| `pg_tle`      | `1.5.1-1` | `1.5.1-2` | + pg18                 |
+| `redis_fdw`   |           |           | + pg18                 |
+| `pgextwlist`  | `1.17`    | `1.19`    | + pg18                 |
+| `wal2json`    |           | `1.6`     | + pg18                 |
+| `pgvector`    |           | `0.8.1`   | + pg18                 |
 {.stretch-last}
 
 
@@ -1138,15 +1211,15 @@ Added PostgreSQL 18 support for almost all extensions.
 
 ## 2025-05-26
 
-| Name           | Old Ver    | New Ver                                                     | Note |
-|----------------|------------|-------------------------------------------------------------|------|
-| `pgdd`         | `0.5.0`    | [`0.6.0`](https://github.com/rustprooflabs/pgdd)            |      |
-| `convert`      | -          | [`0.0.4`](https://github.com/rustprooflabs/convert)         |      |
-| `pg_idkit`     | `0.2.0`    | [`0.3.0`](https://github.com/VADOSWARE/pg_idkit)            |      |
-| `pg_tokenizer` | -          | [`0.1.0`](https://github.com/tensorchord/pg_tokenizer.rs)   |      |
-| `pg_render`    | -          | [`0.1.2`](https://github.com/mkaski/pg_render)              |      |
-| `pgx_ulid`     | -          | [`0.2.0`](https://github.com/pksunkara/pgx_ulid)            |      |
-| `orioledb`     | `1.4.0b10` | [`1.4.0b11`](https://github.com/orioledb/orioledb)          |      |
+| Name           | Old Ver    | New Ver                                                   | Note |
+|----------------|------------|-----------------------------------------------------------|------|
+| `pgdd`         | `0.5.0`    | [`0.6.0`](https://github.com/rustprooflabs/pgdd)          |      |
+| `convert`      | -          | [`0.0.4`](https://github.com/rustprooflabs/convert)       |      |
+| `pg_idkit`     | `0.2.0`    | [`0.3.0`](https://github.com/VADOSWARE/pg_idkit)          |      |
+| `pg_tokenizer` | -          | [`0.1.0`](https://github.com/tensorchord/pg_tokenizer.rs) |      |
+| `pg_render`    | -          | [`0.1.2`](https://github.com/mkaski/pg_render)            |      |
+| `pgx_ulid`     | -          | [`0.2.0`](https://github.com/pksunkara/pgx_ulid)          |      |
+| `orioledb`     | `1.4.0b10` | [`1.4.0b11`](https://github.com/orioledb/orioledb)        |      |
 {.stretch-last}
 
 ------
@@ -1198,53 +1271,53 @@ Added PostgreSQL 18 support for almost all extensions.
 
 ## 2025-03-20
 
-| Name                | Old Ver   | New Ver   | Note |
-|---------------------|-----------|-----------|------|
-| `timescaledb`       | -         | `2.19.0`  |      |
-| `citus`             | -         | `13.0.2`  |      |
-| `documentdb`        | -         | `1.102`   |      |
-| `pg_analytics`      | -         | `0.3.7`   |      |
-| `pg_search`         | -         | `0.15.8`  |      |
-| `emaj`              | -         | `4.6.0`   |      |
-| `pgsql_tweaks`      | -         | `0.11.0`  |      |
-| `pgvectorscale`     | -         | `0.6.0`   |      |
-| `pg_session_jwt`    | -         | `0.2.0`   |      |
-| `wrappers`          | -         | `0.4.5`   |      |
-| `pg_parquet`        | -         | `0.3.1`   |      |
-| `vchord`            | -         | `0.2.2`   |      |
-| `pg_tle`            | `1.2.0`   | `1.5.0`   |      |
-| `supautils`         | `2.5.0`   | `2.6.0`   |      |
-| `sslutils`          | `1.3`     | `1.4`     |      |
-| `pg_profile`        | `4.7`     | `4.8`     |      |
-| `pg_jsonschema`     | `0.3.2`   | `0.3.3`   |      |
-| `pg_incremental`    | `1.1.1`   | `1.2.0`   |      |
-| `ddl_historization` | `0.7`     | `0.0.7`   |      |
-| `pg_sqlog`          | `3.1.7`   | `1.6`     |      |
-| `pg_random`         | -         | -         |      |
-| `pg_stat_monitor`   | `2.1.0`   | `2.1.1`   |      |
-| `pg_profile`        | `4.7`     | `4.8`     |      |
+| Name                | Old Ver | New Ver  | Note |
+|---------------------|---------|----------|------|
+| `timescaledb`       | -       | `2.19.0` |      |
+| `citus`             | -       | `13.0.2` |      |
+| `documentdb`        | -       | `1.102`  |      |
+| `pg_analytics`      | -       | `0.3.7`  |      |
+| `pg_search`         | -       | `0.15.8` |      |
+| `emaj`              | -       | `4.6.0`  |      |
+| `pgsql_tweaks`      | -       | `0.11.0` |      |
+| `pgvectorscale`     | -       | `0.6.0`  |      |
+| `pg_session_jwt`    | -       | `0.2.0`  |      |
+| `wrappers`          | -       | `0.4.5`  |      |
+| `pg_parquet`        | -       | `0.3.1`  |      |
+| `vchord`            | -       | `0.2.2`  |      |
+| `pg_tle`            | `1.2.0` | `1.5.0`  |      |
+| `supautils`         | `2.5.0` | `2.6.0`  |      |
+| `sslutils`          | `1.3`   | `1.4`    |      |
+| `pg_profile`        | `4.7`   | `4.8`    |      |
+| `pg_jsonschema`     | `0.3.2` | `0.3.3`  |      |
+| `pg_incremental`    | `1.1.1` | `1.2.0`  |      |
+| `ddl_historization` | `0.7`   | `0.0.7`  |      |
+| `pg_sqlog`          | `3.1.7` | `1.6`    |      |
+| `pg_random`         | -       | -        |      |
+| `pg_stat_monitor`   | `2.1.0` | `2.1.1`  |      |
+| `pg_profile`        | `4.7`   | `4.8`    |      |
 {.stretch-last}
 
 ------
 
 ## 2024-10-16
 
-| Name              | Old Ver | New Ver       | Note            |
-|-------------------|---------|---------------|-----------------|
-| `pg_timeseries`   | -       | `0.1.6`       |                 |
-| `pgmq`            | -       | `1.4.4`       |                 |
-| `pg_protobuf`     | -       | `16` `17`     |                 |
-| `pg_uuidv7`       | -       | `1.6`         |                 |
-| `pg_readonly`     | -       | `latest`      |                 |
-| `pgddl`           | -       | `0.28`        |                 |
-| `pg_safeupdate`   | -       | `latest`      |                 |
-| `pg_stat_monitor` | -       | `2.1`         |                 |
-| `pg_profile`      | -       | `4.7`         |                 |
-| `system_stats`    | -       | `3.2`         |                 |
-| `pg_auth_mon`     | -       | `3.0`         |                 |
-| `login_hook`      | -       | `1.6`         |                 |
-| `logerrors`       | -       | `2.1.3`       |                 |
-| `pg_orphaned`     | -       | `latest`      |                 |
-| `pgnodemx`        | -       | `1.7`         |                 |
-| `sslutils`        | -       | `1.4`         | +pg16, +pg17    |
+| Name              | Old Ver | New Ver   | Note         |
+|-------------------|---------|-----------|--------------|
+| `pg_timeseries`   | -       | `0.1.6`   |              |
+| `pgmq`            | -       | `1.4.4`   |              |
+| `pg_protobuf`     | -       | `16` `17` |              |
+| `pg_uuidv7`       | -       | `1.6`     |              |
+| `pg_readonly`     | -       | `latest`  |              |
+| `pgddl`           | -       | `0.28`    |              |
+| `pg_safeupdate`   | -       | `latest`  |              |
+| `pg_stat_monitor` | -       | `2.1`     |              |
+| `pg_profile`      | -       | `4.7`     |              |
+| `system_stats`    | -       | `3.2`     |              |
+| `pg_auth_mon`     | -       | `3.0`     |              |
+| `login_hook`      | -       | `1.6`     |              |
+| `logerrors`       | -       | `2.1.3`   |              |
+| `pg_orphaned`     | -       | `latest`  |              |
+| `pgnodemx`        | -       | `1.7`     |              |
+| `sslutils`        | -       | `1.4`     | +pg16, +pg17 |
 {.stretch-last}

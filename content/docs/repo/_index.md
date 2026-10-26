@@ -6,11 +6,11 @@ description: The APT / DNF repository to deliver PostgreSQL Kernel, Extensions a
 weight: 610
 ---
 
-The Pigsty repository provides additional PostgreSQL extension packages for mainstream [Linux distributions](/docs/ref/linux). Use it with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repository. Together, these repositories provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/).
+The Pigsty repository provides additional PostgreSQL extension packages for mainstream [Linux distributions](/docs/ref/linux). Use it with the official PostgreSQL Global Development Group ([PGDG](https://www.postgresql.org/download/linux/)) repository. See the [extension catalog](/ext/list/) for each extension's source, version, and platform coverage. Together, these repositories provide [{{< param pgext_count >}} packaged PostgreSQL extensions](/ext/).
 
 |   PGSQL Repo   |                                 Description                                  |             Link              |
 |:--------------:|:----------------------------------------------------------------------------:|:-----------------------------:|
-| **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), supplementary extension packages | [pgsql.md](/docs/repo/pgsql/) |
+| **PGSQL** Repo | [Pigsty Extension Repo](/docs/repo/pgsql/), extensions and kernel variants | [pgsql.md](/docs/repo/pgsql/) |
 | **INFRA** Repo |      [Pigsty Infrastructure Repo](/docs/repo/infra/), monitoring/tools       | [infra.md](/docs/repo/infra/) |
 | **PGDG** Repo  |           [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel           |  [pgdg.md](/docs/repo/pgdg/)  |
 |  **GPG** Key   |          [GPG Public Key](/docs/repo/gpg/), signature verification           |   [gpg.md](/docs/repo/gpg/)   |
@@ -31,6 +31,14 @@ The Pigsty repository provides additional PostgreSQL extension packages for main
 | Ubuntu 24.04 | u24  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 | Ubuntu 26.04 | u26  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 
+
+---------
+
+## Repository Modules in Pigsty
+
+`repo_modules` and `node_repo_modules` select repositories by the `module` field in `roles/node_id/vars/<os>.<arch>.yml`. Development versions use `nginx` and `docker` for the corresponding upstream repositories. In the `v4.5.0` release, Docker and Nginx on EL still belong to `infra`.
+
+Add these modules explicitly when needed, for example `node_repo_modules: node,infra,pgsql,nginx,docker`. The local offline repository uses `local`. See [REPO](/docs/infra/param/#repo) and [node_repo_modules](/docs/node/param/#node_repo_modules) for the full parameters.
 
 ---------
 
@@ -57,6 +65,7 @@ You can also add these repositories [manually](#manual-install) with the standar
 
 ```bash {tab="APT" group="apt-yum" value="apt"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
 # Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute), and write the corresponding upstream repository address to the APT List file

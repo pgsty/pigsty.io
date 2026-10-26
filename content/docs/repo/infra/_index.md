@@ -63,6 +63,7 @@ On **Debian / Ubuntu** compatible Linux distros, you can add the [GPG Key](/docs
 
 ```bash {tab="Default" group="default-mirror-nokey" value="default"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures, or just trust
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
 # Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute)
@@ -79,6 +80,7 @@ sudo apt update
 ```bash {tab="Mirror" value="mirror"}
 # use when in mainland China or Cloudflare is down
 # Add Pigsty's GPG public key to your system keychain to verify package signatures, or just trust
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
 # Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute)
@@ -96,7 +98,7 @@ sudo apt update
 # If you don't want to trust any GPG key, just trust the repo directly
 distro_codename=$(lsb_release -cs)
 sudo tee /etc/apt/sources.list.d/pigsty-infra.list > /dev/null <<EOF
-deb [trust=yes] https://repo.pigsty.io/apt/infra generic main
+deb [trusted=yes] https://repo.pigsty.io/apt/infra generic main
 EOF
 
 sudo apt update

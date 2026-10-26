@@ -51,6 +51,7 @@ You can also enable this repo with `apt` directly on Debian / Ubuntu:
 
 ```bash {tab="Default" group="default-mirror" value="default"}
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.io/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
 # Get Debian / Ubuntu distribution codename (bookworm, trixie, jammy, noble, resolute), and write the corresponding upstream repository address to the APT List file
@@ -66,6 +67,7 @@ sudo apt update
 ```bash {tab="Mirror" value="mirror"}
 # Use when in mainland China or Cloudflare is unavailable
 # Add Pigsty's GPG public key to your system keychain to verify package signatures
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 
 # Get Debian distribution codename, and write the corresponding upstream repository address to the APT List file
