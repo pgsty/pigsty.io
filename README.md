@@ -8,7 +8,7 @@ This is the website repo for http://pigsty.io
 - https://github.com/pgsty/pigsty.io (English)
 - https://github.com/pgsty/pigsty.cc (Chinese)
 
-Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.3.2**](https://github.com/pgsty/oink/releases/tag/v1.3.2)
+Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.4.0**](https://github.com/pgsty/oink/releases/tag/v1.4.0)
 
 
 ---------------
