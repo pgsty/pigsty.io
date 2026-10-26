@@ -257,4 +257,4 @@ all:
     mysql_cluster_password: MySQL.Cluster
 ```
 
-Use [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml) for the full template. [`conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) belongs to OpenHalo, a MySQL-compatible PostgreSQL kernel, and is unrelated to this module.
+Use [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml) for the full template. [`conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml) belongs to OpenHalo, a MySQL-compatible PostgreSQL kernel, and is unrelated to this module. Development sources move it to `conf/fork/mysql.yml`.

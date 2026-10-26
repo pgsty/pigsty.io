@@ -19,14 +19,14 @@ Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of t
 
 - Kernel package: `agensgraph`
 - Mode identifier: `pg_mode: agens`
-- Current template version: `AgensGraph 2.17.0`
-- Current version string: `PostgreSQL 17.10 (AgensGraph 2.17.0)`
+- Example version in this guide: `AgensGraph 2.17.0`
+- Example version string: `PostgreSQL 17.10 (AgensGraph 2.17.0)`; actual patch versions depend on the installed package and `SELECT version()`
 - Built-in template: `agens`
 - Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
 AgensGraph uses the PostgreSQL wire protocol.
 Standard PostgreSQL clients, drivers, and connection pools can connect directly.
-AgensGraph adds graph objects, Cypher syntax, and the `agtype` data type to the database.
+AgensGraph adds graph models, Cypher syntax, and graph objects such as vertices and edges. Properties use JSONB.
 
 
 --------
@@ -34,6 +34,8 @@ AgensGraph adds graph objects, Cypher syntax, and the `agtype` data type to the 
 ## Installation
 
 Use the built-in Pigsty template:
+
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml). Development sources moved it to `conf/fork/agens.yml`; use `-c fork/agens` with those sources.
 
 ```bash
 ./configure -c agens
@@ -104,16 +106,16 @@ MATCH (v:person {name: 'Jack'})
 SET v.age = '24';
 ```
 
-To call Cypher from within SQL, use the `cypher()` function:
+To process Cypher results in SQL, use a graph query as a `FROM` subquery. See the [AgensGraph hybrid query manual](https://tech.skaiworldwide.com/docs/en/agensgraph/17/developer_manual/hybrid.html):
 
 ```sql
-SELECT *
-FROM cypher('g', $$ MATCH (v:person) RETURN v.name $$) AS (name agtype);
+SELECT person->>'name' AS name
+FROM (MATCH (v:person) RETURN v AS person) AS people;
 ```
 
 Projects commonly combine relational tables, graph labels, and Cypher queries.
 Transactions, privileges, and backup procedures still follow PostgreSQL.
-Graph analysis uses AgensGraph graph objects and the `cypher()` interface.
+Graph analysis uses AgensGraph's mixed Cypher and SQL syntax. Apache AGE's `cypher()` / `agtype` belongs to a different interface and cannot be used interchangeably.
 
 
 --------
@@ -144,8 +146,7 @@ Graph analysis uses AgensGraph graph objects and the `cypher()` interface.
 
 ## Available Extensions
 
-The AgensGraph kernel has **60** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

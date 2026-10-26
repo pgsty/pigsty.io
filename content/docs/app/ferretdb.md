@@ -6,14 +6,16 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs the stateless protocol proxy. PostgreSQL, the `postgres` database, DocumentDB extensions, and a backend PostgreSQL login role must already exist. The [`fork/mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
+[**FerretDB**](https://www.ferretdb.com/) provides a MongoDB-compatible protocol over PostgreSQL and the DocumentDB extension. Pigsty's `app/ferretdb` runs the stateless protocol proxy. PostgreSQL, the `postgres` database, DocumentDB extensions, and a backend PostgreSQL login role must already exist. The [`mongo` configuration template](/docs/conf/mongo/) prepares these dependencies together.
 
 ## Quick Start
+
+These commands use the `mongo` template from v4.5.0. Development sources moved it to `conf/fork/mongo.yml`; use `-c fork/mongo` with those sources.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./bootstrap
-./configure -c fork/mongo
+./configure -c mongo          # released package; development sources use fork/mongo
 ./deploy.yml
 ./docker.yml -l pg-meta
 ./app.yml -l pg-meta
@@ -50,7 +52,7 @@ FerretDB releases specify a preferred DocumentDB version, while Pigsty may ship 
 
 ## Optional Three-Node Topology
 
-The [`fork/mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container. HAProxy exposes port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). Enable the complete `pg-mongo` cluster and the additional etcd members, then run:
+The [`mongo` template](/docs/conf/mongo/) includes a commented three-node PostgreSQL / DocumentDB cluster. Each node runs a FerretDB container. HAProxy exposes port `27017` at the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). Enable the complete `pg-mongo` cluster and the additional etcd members, then run:
 
 ```bash
 ./configure -c fork/mongo

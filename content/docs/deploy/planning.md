@@ -26,9 +26,9 @@ Adjust the configuration for your requirements:
 |             Multi-node Pattern             | [**INFRA**](/docs/infra/) | [**ETCD**](/docs/etcd/) | [**PGSQL**](/docs/pgsql/) | [**MINIO**](/docs/minio) | Description                              |
 |:------------------------------------------:|:-------------------------:|:-----------------------:|:-------------------------:|:------------------------:|------------------------------------------|
 |  Two-node ([**`dual`**](/docs/conf/dual))  |             1             |            1            |             2             |                          | Semi-HA, tolerates specific node failure |
-| Three-node ([**`trio`**](/docs/conf/trio)) |             3             |            3            |             3             |                          | Standard HA, tolerates any one failure   |
+| Three-node ([**`trio`**](/docs/conf/trio)) | 3 | 3 | 3 | 3 | Three-node HA, Silo EC:1 |
 | Four-node ([**`full`**](/docs/conf/full))  |             1             |            1            |            1+3            |                          | Demo setup, single INFRA/ETCD            |
-| Production ([**`simu`**](/docs/conf/simu)) |             2             |            3            |             n             |            n             | 2 INFRA, 3 ETCD                          |
+| Production simulation ([**`simu`**](/docs/conf/simu)) | 3 | 5 | 9 | 4 | 20 nodes, including 2 additional proxies |
 |            Large-scale (custom)            |             3             |            5            |             n             |            n             | 3 INFRA, 5 ETCD                          |
 {.full-width}
 
@@ -95,15 +95,15 @@ Automatic recovery depends on which node fails:
 
 ## Three-Node Setup
 
-The [three-node template](/docs/conf/trio) supplies the minimum full HA configuration.
-It tolerates the failure of any one node and recovers automatically.
+The [three-node template](/docs/conf/trio) deploys INFRA, ETCD, PGSQL, and MINIO (Silo) on every node. It tolerates one node failure when the remaining two can communicate and replica state permits failover. Silo uses a three-node, single-drive-per-node EC:1 pool. An existing single-node object store cannot be expanded directly into this topology; create a new pool and migrate objects.
 
-| ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
-|:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
-| 1  |      `node-1`       |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         |
-| 2  |      `node-2`       |      `pg-meta-2`      |       `infra-2`       |        `etcd-2`         |
-| 3  |      `node-3`       |      `pg-meta-3`      |       `infra-3`       |        `etcd-3`         |
+| ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [**MINIO**](/docs/minio/) |
+|:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|:---:|
+| 1  |      `node-1`       |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         | `minio-1` |
+| 2  |      `node-2`       |      `pg-meta-2`      |       `infra-2`       |        `etcd-2`         | `minio-2` |
+| 3  |      `node-3`       |      `pg-meta-3`      |       `infra-3`       |        `etcd-3`         | `minio-3` |
 {.full-width}
+
 
 ## Four-Node Setup
 
@@ -130,25 +130,16 @@ You can extend the configuration as follows:
 
 ## More Nodes
 
-If your virtualization environment or hardware resources permit it, [use more nodes](/docs/conf/simu) to deploy modules separately.
-Dedicated nodes can improve reliability, monitoring, and performance.
+The [`ha/simu` simulation template](/docs/conf/simu) and `vagrant/spec/simu.rb` currently use 20 nodes, separating key services into groups:
 
-| ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [**MINIO**](/docs/minio/) | [PGSQL](/docs/pgsql/) |
-|:--:|:-------------------:|:---------------------:|:-----------------------:|:-------------------------:|:---------------------:|
-| 1  |    `10.10.10.10`    |       `infra-1`       |                         |                           |      `pg-meta-1`      |
-| 2  |    `10.10.10.11`    |       `infra-2`       |                         |                           |      `pg-meta-2`      |
-| 3  |    `10.10.10.21`    |                       |        `etcd-1`         |                           |                       |
-| 4  |    `10.10.10.22`    |                       |        `etcd-2`         |                           |                       |
-| 5  |    `10.10.10.23`    |                       |        `etcd-3`         |                           |                       |
-| 6  |    `10.10.10.31`    |                       |                         |         `minio-1`         |                       |
-| 7  |    `10.10.10.32`    |                       |                         |         `minio-2`         |                       |
-| 8  |    `10.10.10.33`    |                       |                         |         `minio-3`         |                       |
-| 9  |    `10.10.10.34`    |                       |                         |         `minio-4`         |                       |
-| 10 |    `10.10.10.40`    |                       |                         |                           |      `pg-src-1`       |
-| 11 |    `10.10.10.41`    |                       |                         |                           |      `pg-src-2`       |
-| 12 |    `10.10.10.42`    |                       |                         |                           |      `pg-src-3`       |
-| 13 |    `10.10.10.50`    |                       |                         |                           |      `pg-test-1`      |
-| 14 |    `10.10.10.51`    |                       |                         |                           |      `pg-test-2`      |
-| 15 |    `10.10.10.52`    |                       |                         |                           |      `pg-test-3`      |
-| 16 |       ......        |                       |                         |                           |                       |
+| Node Group | IP Range | Count | Main Role |
+|:-----------|:---------|:------|:----------|
+| `infra` / `pg-meta` | `10.10.10.10` to `10.10.10.12` | 3 | INFRA and metadata database cluster |
+| `proxy` | `10.10.10.18` to `10.10.10.19` | 2 | HAProxy / VIP access |
+| `minio` | `10.10.10.21` to `10.10.10.24` | 4 | Silo, four data disks per node |
+| `etcd` | `10.10.10.25` to `10.10.10.29` | 5 | ETCD, also used as Redis Sentinel test nodes |
+| `pg-src` | `10.10.10.31` to `10.10.10.33` | 3 | Source PostgreSQL cluster |
+| `pg-dst` | `10.10.10.41` to `10.10.10.43` | 3 | Destination PostgreSQL cluster |
 {.full-width}
+
+This template simulates functionality and production topology. Size real production deployments and choose service placement according to capacity, failure domains, and dependencies.

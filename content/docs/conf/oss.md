@@ -47,9 +47,11 @@ The `build/oss` template is the build configuration for Pigsty open-source editi
 
 **Build Contents**:
 - PostgreSQL 18 and all categorized extension packages
-- Infrastructure packages (Prometheus, Grafana, Nginx, etc.)
+- Infrastructure packages (VictoriaMetrics, Grafana, Nginx, etc.)
 - Node packages (monitoring agents, tools, etc.)
 - Extra modules
+
+The template also sets VM defaults `vm_cpu: 2` and `vm_mem: 4096`, plus a matching `vm_image` and `nodename` on each node, to create build environments for each operating system.
 
 **Supported Operating Systems**:
 - EL9 (Rocky/Alma/RHEL 9)

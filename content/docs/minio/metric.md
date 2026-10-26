@@ -32,13 +32,16 @@ Queries and recording rules should prefer the stable `cls`, `ins`, and `ip` iden
 
 --------
 
+## Liveness Metric Source
+
+`minio_up = up{job="minio"}` is a recording rule from [`roles/infra/templates/victoria/agent.yml`](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/victoria/agent.yml), not raw Silo Metrics V3 output. It indicates successful scraping and does not prove read or write quorum. The module's `files/victoria/rules/minio.yml` provides 5 alerting rules and no additional recording rules.
+
 ## Silo Metrics V3
 
 Each Silo instance exposes only the V3 root endpoint, `/minio/metrics/v3`. Current key metrics are:
 
 | Category | Key Metrics | Meaning |
 |:---|:---|:---|
-| Liveness | `minio_up` | Pigsty scrape/health state for the instance |
 | Nodes | `minio_cluster_health_nodes_online_count`, `minio_cluster_health_nodes_offline_count` | Online and offline nodes |
 | Drives | `minio_cluster_health_drives_online_count`, `minio_cluster_health_drives_offline_count` | Online and offline drives |
 | Capacity | `minio_cluster_health_capacity_raw_total_bytes` | Raw total capacity |

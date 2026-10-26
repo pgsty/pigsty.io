@@ -21,7 +21,7 @@ categories: [Reference]
 - [**Observability**](/img/pigsty/dashboard.jpg): [**Prometheus**](/docs/infra#victoria-observability-suite) and [**Grafana**](/docs/infra#grafana) provide a modular monitoring stack that can operate independently. See the [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) and [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
 - [**Maintainability**](/img/pigsty/iac.jpg): [**Easy to use**](/docs/setup/install), [**Infrastructure as Code**](/docs/pgsql/config), [**Management SOPs**](/docs/pgsql/admin/), auto-tuning, local software repository, [**Vagrant**](/docs/deploy/vagrant) [**sandbox**](/docs/deploy/sandbox) and [**OpenTofu**](/docs/deploy/terraform) templates, zero-downtime [**migration**](/docs/pgsql/migration) solutions.
-- [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**Silo object storage**](/docs/minio), [**ETCD**](/docs/etcd), [**DuckDB**](/docs/pilot/duckdb/), [**Docker**](/docs/app/), [**Supabase**](https://github.com/pgsty/pigsty/tree/master/app/supabase).
+- [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**Silo object storage**](/docs/minio), [**ETCD**](/docs/etcd), [**DuckDB**](/docs/pilot/duckdb/), [**Docker**](/docs/app/), [**Supabase**](https://github.com/pgsty/pigsty/tree/main/app/supabase).
 
 ![Pigsty feature overview](/img/pigsty/banner.png)
 
@@ -50,7 +50,7 @@ PostgreSQL integrates ecosystem tools and best practices:
 - Combines [pgBackRest](https://pgbackrest.org/) with optional [Silo object storage](/docs/minio/) to provide out-of-the-box point-in-time recovery (PITR), protecting against software defects and accidental data deletion.
 - Based on [Ansible](https://www.ansible.com/) providing declarative APIs to abstract complexity, greatly simplifying daily operations management in a **Database-as-Code** manner.
 - Pigsty has broad applications, can be used as complete application runtime, develop demo data/visualization applications, and massive software using PG can be spun up with [Docker](https://www.docker.com/) templates.
-- Provides [Vagrant](https://www.vagrantup.com/)-based local development and testing sandbox environment, and [Terraform](https://www.terraform.io/)-based cloud auto-deployment solutions, keeping development, testing, and production environments consistent.
+- Provides [Vagrant](https://www.vagrantup.com/)-based local development and testing sandbox environment, and [OpenTofu](https://opentofu.org/)-based cloud auto-deployment solutions, keeping development, testing, and production environments consistent.
 - Run PostgreSQL in [Mongo-compatible mode](/docs/conf/mongo/) with DocumentDB and the FerretDB Docker APP
 
 
@@ -160,7 +160,7 @@ Pigsty uses declarative inventories to describe the required database cluster. I
 
 To create or remove clusters, replicas, databases, users, services, extensions, or whitelist rules, edit the inventory and run the idempotent playbooks. Pigsty adjusts the system to the declared state. It tunes settings for the hardware. Users specify cluster names, instances, hosts, and a transaction, analytics, critical, or tiny template. Developers can manage these tasks themselves. Detailed parameters also support custom DBA requirements.
 
-Pigsty can install with one command and prepackaged dependencies, without internet access. Vagrant or Terraform templates can provision the required machines. A complete local laptop or cloud VM deployment takes about ten minutes. A 1-core 2GB sandbox VM simulates production features for development, testing, demonstrations, and learning.
+Pigsty can install with one command and prepackaged dependencies, without internet access. Vagrant or OpenTofu templates can provision the required machines. A complete local laptop or cloud VM deployment takes about ten minutes. A 1-core 2GB sandbox VM simulates production features for development, testing, demonstrations, and learning.
 
 [![pigsty-iac.jpg](/img/pigsty/iac.jpg)](/docs/setup/config)
 

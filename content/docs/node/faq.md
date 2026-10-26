@@ -21,7 +21,7 @@ Otherwise, if you have Internet access, you can use public NTP services such as 
 Without Internet access, use the configuration below to synchronize all nodes with the admin node. You can also use another internal NTP service.
 
 ```bash
-node_ntp_servers:                 # NTP servers in /etc/chrony.conf
+node_ntp_servers:                 # NTP servers in the Chrony configuration
   - pool cn.pool.ntp.org iburst
   - pool ${admin_ip} iburst       # assume non-admin nodes do not have internet access, at least sync with admin node
 ```

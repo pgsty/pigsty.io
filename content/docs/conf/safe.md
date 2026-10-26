@@ -37,13 +37,13 @@ Generate the configuration:
 | PostgreSQL HBA | Main TCP rules use `ssl`; public administrator access uses `cert` | Local `ident` and selected localhost `pwd` rules remain |
 | PgBouncer | `pgbouncer_sslmode: require` | Clients must still verify the server certificate where required |
 | Patroni | REST API uses HTTPS and a constrained listen address | Basic Auth remains; rotate the password |
-| Password check | `passwordcheck` is preloaded through `pg_libs` | Affects only newly set or changed passwords |
+| Password check | `$libdir/passwordcheck_cracklib` is preloaded through `pg_libs` | Affects only newly set or changed passwords |
 | Account lifetime | Built-in and example application users set `expire_in: 7300` | Twenty years is not a rotation policy; shorten it to organizational requirements |
 | Listen addresses | PostgreSQL is limited to `${ip},${vip},${lo}` | Firewalls and HBA are still required |
 | Backup | Uses Silo with AES-256-CBC | `pgBR.${pg_cluster}` is a predictable example and must be replaced |
 | PostgreSQL parameters | `pg-meta` uses `crit.yml` | Strict synchronous mode can block writes without a synchronous replica |
 | Logging | CRIT logs connection and disconnection events | Fine-grained SQL auditing requires explicit `pgaudit` configuration |
-| Security extensions | Installs `passwordcheck`, `credcheck`, `pgaudit`, and related packages | Installation does not preload, create, or configure an extension |
+| Security extensions | Installs `passwordcheck_cracklib`, `credcheck`, `pgaudit`, and related packages | Installation does not preload, create, or configure an extension |
 | Delayed replica | Provides a commented one-hour delayed-cluster example | Not created by default; enable it explicitly |
 {.full-width}
 

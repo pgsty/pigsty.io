@@ -477,7 +477,7 @@ kafka_parameters:
   listeners: ...                  # wrong: owned by the role
 ```
 
-For all 15 public parameters, their defaults, and the reserved keys, see the [Parameter Reference](/docs/kafka/param).
+For all 16 public parameters, their defaults, and the reserved keys, see the [Parameter Reference](/docs/kafka/param).
 
 
 --------
@@ -527,7 +527,7 @@ Use these pages for the next task:
 | What You Want to Do Next | Document |
 |:---|:---|
 | Plan a combined or separated controller/broker topology, network, rack, storage, and security | [Cluster Configuration](/docs/kafka/config) |
-| Look up the 15 public parameters, their defaults, schema, and reserved keys | [Parameter Reference](/docs/kafka/param) |
+| Look up the 16 public parameters, their defaults, schema, and reserved keys | [Parameter Reference](/docs/kafka/param) |
 | Look up quorum, topic, user, message, consumer-group, and scaling operations | [Day-to-Day Administration](/docs/kafka/admin) |
 | Understand the `kafka.yml` lifecycle, strict rolling restart, rotation, and cluster teardown | [Playbook](/docs/kafka/playbook) |
 | Use the dashboards, alerts, PromQL, and VictoriaLogs | [Monitoring and Alerting](/docs/kafka/monitor) |

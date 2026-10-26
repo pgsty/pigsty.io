@@ -105,7 +105,7 @@ The [NODE](/docs/node) module configures target nodes to the required state. It 
 |:----------------------------------------------------------|:-----------:|:-------:|:-------------------------------------------|
 | [`node_timezone`](#node_timezone)                         |  `string`   |   `C`   | setup node timezone, empty string to skip  |
 | [`node_ntp_enabled`](#node_ntp_enabled)                   |   `bool`    |   `C`   | enable chronyd time sync service?          |
-| [`node_ntp_servers`](#node_ntp_servers)                   | `string[]`  |   `C`   | ntp servers in `/etc/chrony.conf`          |
+| [`node_ntp_servers`](#node_ntp_servers)                   | `string[]`  |   `C`   | NTP servers in the Chrony configuration          |
 | [`node_crontab_overwrite`](#node_crontab_overwrite)       |   `bool`    |   `C`   | overwrite or append to `/etc/crontab`?     |
 | [`node_crontab`](#node_crontab)                           | `string[]`  |   `C`   | crontab entries in `/etc/crontab`          |
 
@@ -977,7 +977,7 @@ Database services require accurate time synchronization. Make sure that the syst
 ```yaml
 node_timezone: ''                 # setup node timezone, empty string to skip
 node_ntp_enabled: true            # enable chronyd time sync service?
-node_ntp_servers:                 # ntp servers in `/etc/chrony.conf`
+node_ntp_servers:                 # NTP servers in the Chrony configuration
   - pool pool.ntp.org iburst
 node_crontab_overwrite: true      # overwrite or append to `/etc/crontab`?
 node_crontab: [ ]                 # crontab entries in `/etc/crontab`
@@ -1001,7 +1001,7 @@ name: `node_ntp_enabled`, type: `bool`, level: `C`
 
 Specifies whether to enable chronyd time synchronization. The default is `true`.
 
-Pigsty will override the node's `/etc/chrony.conf` with the NTP server list specified in [`node_ntp_servers`](#node_ntp_servers).
+Pigsty replaces the node's Chrony configuration with the NTP server list in [`node_ntp_servers`](#node_ntp_servers): `/etc/chrony.conf` on EL, or `/etc/chrony/chrony.conf` on Debian / Ubuntu.
 
 If your node already has NTP servers configured, you can set this parameter to `false` to skip time sync configuration.
 
@@ -1012,7 +1012,7 @@ If your node already has NTP servers configured, you can set this parameter to `
 
 name: `node_ntp_servers`, type: `string[]`, level: `C`
 
-NTP server list used in `/etc/chrony.conf`. Default: `["pool pool.ntp.org iburst"]`
+NTP server list used in the Chrony configuration: `/etc/chrony.conf` on EL, or `/etc/chrony/chrony.conf` on Debian / Ubuntu. Default: `["pool pool.ntp.org iburst"]`
 
 This parameter is an array where each element is a string representing one line of NTP server configuration. Only takes effect when [`node_ntp_enabled`](#node_ntp_enabled) is enabled.
 

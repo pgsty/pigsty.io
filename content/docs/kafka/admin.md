@@ -67,7 +67,7 @@ curl -fsS http://<kafka-ip>:9404/metrics | grep -E '^(jmx_scrape_error|kafka_ser
 curl -fsS http://<exporter-ip>:9308/metrics | grep -E '^(kafka_brokers|kafka_topic_partitions)'
 ```
 
-`kafka_up` and `kafka_exporter_up` are VictoriaMetrics recording metrics. They may not appear at raw endpoints. JMX should expose `jmx_scrape_error 0.0`, JVM metrics, and role-appropriate `kafka_` metrics.
+`kafka_up` and `kafka_exporter_up` are VictoriaMetrics recording metrics. They may not appear at raw endpoints. When enabled, JMX should expose `jmx_scrape_error 0.0`, JVM metrics, and role-appropriate `kafka_` metrics. If JMX is explicitly disabled, skip the `9404` check and review the missing metrics described in [Monitoring and Alerting](/docs/kafka/monitor#disabling-jmx).
 
 
 --------

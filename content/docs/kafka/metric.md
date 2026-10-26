@@ -11,10 +11,14 @@ aliases: [/docs/pilot/kafka/metric]
 
 Both metric sources use `job=kafka`. JMX targets have a `role` label and collect each JVM's internal state. Protocol targets lack `role` and collect logical cluster, topic, partition, and consumer-group state through Kafka protocol. Protocol exporters run on the one or two broker-capable nodes with the lowest `kafka_seq`. Single-broker clusters run one.
 
+JMX is enabled by default and can be disabled per instance with [`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled). See [**Disabling JMX**](/docs/kafka/monitor#disabling-jmx) for effects on metrics and discovery.
+
 JMX uses an allowlist for standard JVM and selected broker, replication, request-path, and KRaft metrics. It excludes per-client and per-partition MBeans to limit series counts. Protocol exporters provide partition details.
 
 
 --------
+
+[`files/victoria/rules/kafka.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/kafka.yml) provides **19 module recording rules**. `kafka_up` and `kafka_exporter_up` come separately from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules) and are not counted in those 19. The JMX allowlist defines **52 distinct Kafka metric names**, excluding JVM and collector metrics. Actual presence depends on the node role and corresponding MBeans.
 
 ## Common Labels
 

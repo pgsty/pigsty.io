@@ -36,10 +36,10 @@ This page lists the default ports for Pigsty module components. Adjust them as n
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 |   [**`VIBE`**](/docs/vibe)     |         **`code-server`**          | `8443`  | [**`code_port`**](/docs/vibe/param#code_port)                                | Optional |
 |   [**`VIBE`**](/docs/vibe)     |          **`jupyterlab`**          | `8888`  | [**`jupyter_port`**](/docs/vibe/param#jupyter_port)                          | Optional |
-|  [**`KAFKA`**](/docs/kafka)    |            **`broker`**            | `9092`  | [**`kafka_port`**](/docs/kafka/param#kafka_port)                             | 🧪 BETA  |
-|  [**`KAFKA`**](/docs/kafka)    |       **`KRaft controller`**       | `9093`  | [**`kafka_controller_port`**](/docs/kafka/param#kafka_controller_port)       | 🧪 BETA  |
-|  [**`KAFKA`**](/docs/kafka)    |        **`kafka_exporter`**        | `9308`  | [**`kafka_exporter_port`**](/docs/kafka/param#kafka_exporter_port)           | 🧪 BETA  |
-|  [**`KAFKA`**](/docs/kafka)    |         **`JMX exporter`**         | `9404`  | [**`kafka_jmx_exporter_port`**](/docs/kafka/param#kafka_jmx_exporter_port)   | 🧪 BETA  |
+|  [**`KAFKA`**](/docs/kafka)    |            **`broker`**            | `9092`  | [**`kafka_port`**](/docs/kafka/param#kafka_port)                             | 🧪 PILOT  |
+|  [**`KAFKA`**](/docs/kafka)    |       **`KRaft controller`**       | `9093`  | [**`kafka_controller_port`**](/docs/kafka/param#kafka_controller_port)       | 🧪 PILOT  |
+|  [**`KAFKA`**](/docs/kafka)    |        **`kafka_exporter`**        | `9308`  | [**`kafka_exporter_port`**](/docs/kafka/param#kafka_exporter_port)           | 🧪 PILOT  |
+|  [**`KAFKA`**](/docs/kafka)    |         **`JMX exporter`**         | `9404`  | [**`kafka_jmx_exporter_port`**](/docs/kafka/param#kafka_jmx_exporter_port)   | 🧪 PILOT  |
 | [**`MYSQL`**](/docs/mysql/) |          **`mysqld`**            | `3306`  | Fixed value (the current pilot exposes no port parameter)                    | 🧪 PILOT |
 | [**`MYSQL`**](/docs/mysql/) |     **`MySQL X Protocol`**       | `33060` | Fixed value; loopback-only on a single node, member-facing in a 3-node topology | 🧪 PILOT |
 | [**`MYSQL`**](/docs/mysql/) |    **`Group Replication`**       | `33061` | Fixed value; three-node InnoDB Cluster only                                  | 🧪 PILOT |
@@ -58,6 +58,8 @@ This page lists the default ports for Pigsty module components. Adjust them as n
 |  [**`PGSQL`**](/docs/pgsql)    |  **`{{ pg_cluster }}-offline`**    | `5438`  | [**`pg_default_services`**](/docs/pgsql/param#pg_default_services)           | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    | **`{{ pg_cluster }}-<service>`**   | `543x`  | [**`pg_services`**](/docs/pgsql/param#pg_services)                           | Optional |
 {.full-width}
+
+Kafka port `9404` is enabled only when [`kafka_jmx_exporter_enabled`](/docs/kafka/param/#kafka_jmx_exporter_enabled) is `true`. The protocol exporter on `9308` is independent of this toggle.
 
 The native MySQL pilot reuses port `3306` for MySQL Shell AdminAPI. A local systemd timer runs XtraBackup, which has no listening port. The role explicitly disables the MySQL Router REST management interface. The table lists only network endpoints currently managed by the role.
 

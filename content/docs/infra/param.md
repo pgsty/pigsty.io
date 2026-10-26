@@ -422,9 +422,12 @@ Each record has a key and a value dictionary. The key, `name`, identifies the co
   - If specified, Nginx writes access logs to this file. Otherwise, the server type determines the default log file.
   - Reverse proxy servers use `/var/log/nginx/<name>.log` as the default log file path
   - Local web servers use the default Access log
-- `conf`: Nginx configuration file path
+- `conf`: Nginx template filename
   - Specifies a configuration template in [roles/infra/templates/nginx](https://github.com/pgsty/pigsty/tree/main/roles/infra/templates/nginx) or [templates/nginx](https://github.com/pgsty/pigsty/tree/main/templates/nginx).
+  - Takes precedence over automatic selection by `home` / `path` / `endpoint`. Development sources also have specialized site templates such as `repo.conf`, `beta.conf`, `demo.conf`, `pgext.conf`, and `pgweb.conf`; see [Development Maintenance Reference](/docs/infra/admin/portal#development-maintenance-reference).
   - If this parameter is not specified, the default configuration template will be used
+- `cache_dir`: Portal cache directory. When nonempty, the role creates it with owner `nginx:nginx` and mode `0750`. Directory management was added to development sources on 2026-09-01 and is absent from the `v4.5.0` release.
+- `domains`: Additional domain list included in Certbot's domain set. Development sources since 2026-09-01 also include it in SANs when issuing new self-signed certificates. Whether the template listens for these aliases still depends on its `server_name`.
 - `config`: Nginx configuration code block
   - Configuration text directly injected into the Nginx Server configuration block
 - `enforce_https`: Redirect HTTP to HTTPS
@@ -682,7 +685,7 @@ Pigsty translates these package names. It replaces `$v` with [`pg_version`](/doc
 The `pgsql-main` here translates on EL systems to:
 
 ```yaml
-postgresql$v postgresql$v-server postgresql$v-libs postgresql$v-contrib postgresql$v-plperl postgresql$v-plpython3 postgresql$v-pltcl postgresql$v-llvmjit pg_repack_$v* wal2json_$v* pgvector_$v*
+postgresql$v postgresql$v-server postgresql$v-libs postgresql$v-contrib postgresql$v-plperl postgresql$v-plpython3 postgresql$v-pltcl pg_repack_$v wal2json_$v pgvector_$v
 ```
 
 Users can typically specify PostgreSQL major version-related packages here without affecting the other PG version-independent packages defined in `repo_packages`.

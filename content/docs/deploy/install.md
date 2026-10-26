@@ -198,7 +198,7 @@ The [`deploy.yml`](/docs/setup/playbook/) [playbook](/docs/setup/playbook/) appl
 > localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 > ```
 >
-> The final installation output includes `pgsql init done` and `PLAY RECAP`.
+> Verify `failed=0` and `unreachable=0` for every target in `PLAY RECAP`, then check service status as needed. Seeing `pgsql init done` or `PLAY RECAP` alone does not prove the entire deployment succeeded.
 
 > [!WARNING] Upstream changes can stop installation
 > Incorrect updates to Linux or PGDG repositories can break dependencies and cause deployment failures.

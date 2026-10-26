@@ -10,7 +10,7 @@ categories: [Reference]
 
 Pigsty's `app/maybe` template connects stateless Maybe Web / Worker containers to Pigsty-managed PostgreSQL. Local Redis provides the Sidekiq queue. Financial data resides in a PostgreSQL cluster with backup, monitoring, and recovery support, rather than an ephemeral Docker volume.
 
-> The upstream Maybe repository has been archived, and its latest release is `v0.6.0`. GHCR currently publishes `stable` and `latest` image tags. Pigsty uses `stable` by default, which tracks the latest release image.
+> The upstream Maybe repository has been archived. Pigsty retains the `ghcr.io/maybe-finance/maybe:stable` channel by default; the source validation snapshot is `v0.6.0`. This channel does not imply ongoing upstream maintenance. Record and pin the actual image digest when controlled rollback is required.
 
 ------
 

@@ -326,7 +326,7 @@ Run the module playbook:
 ./minio.yml -l minio
 ```
 
-A production Silo deployment typically requires at least four nodes with four disks per node (`4N/16D`).
+Choose a Silo topology for capacity and fault tolerance. `ha/trio` provides a compact three-node, single-drive-per-node EC:1 pool; `ha/simu` provides a separate four-node, four-drive-per-node (`4N/16D`) pool. Verify fault tolerance against the selected erasure coding, failure domains, and available drives.
 
 ## Deploy Docker Module
 

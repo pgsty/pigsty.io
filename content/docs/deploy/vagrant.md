@@ -97,19 +97,19 @@ The [`vagrant/spec/` directory](https://github.com/pgsty/pigsty/tree/main/vagran
 | [citus.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/citus.rb) | 13 nodes |      Mixed      | Citus coordinator and six two-replica worker groups | |
 |   [oss.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/oss.rb)   | 7 nodes  |    2c2g x 7     | 7-platform OSS build environment |         |
 |   [pro.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/pro.rb)   | 7 nodes  |    2c2g x 7     | 7-platform PRO build environment |         |
-|   [rpm.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/rpm.rb)   | 2 nodes  |    1c2g x 2     |  2-node EL build environment  |         |
-|   [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes  |    1c2g x 5     | 5-node Deb build environment  |         |
-|   [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes  |    1c2g x 7     | 7-node full build environment |         |
+|   [rpm.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/rpm.rb)   | 2 nodes  |    2c2g x 2     |  2-node EL build environment  |         |
+|   [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes  |    2c2g x 5     | 5-node Deb build environment  |         |
+|   [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes  |    2c4g x 7     | 7-node full build environment |         |
 
 Each specification has a `Specs` variable that defines its nodes.
 For example, `full.rb` defines the 4-node sandbox shown below.
 
-The current templates give every virtual machine a **32 GB primary system disk**.
-Regular nodes also receive one data disk.
-Its size comes from the specification's `disk` value, with a default of 128 GB if omitted.
+The Vagrant template sets the primary system disk through `root_disk`, defaulting to **64 GiB**. The `oss`, `pro`, `rpm`, `deb`, and `all` build matrices explicitly use **128 GiB** root disks. Regular nodes also receive one data disk, sized by `disk` with a default of 128 GiB.
 
 Nodes with names that start with `minio` receive four 32 GB data disks instead.
 These disks mount at `/data1` through `/data4`.
+
+`root_disk` and `disk` control the system disk and additional data disk separately. Resizing existing VMs depends on the virtualization provider. The default VirtualBox template also sets the `vagrant` user's login shell to `/bin/bash`.
 
 The disk configuration requires the experimental Vagrant disks feature.
 The repository Makefile automatically exports `VAGRANT_EXPERIMENTAL=disks`.

@@ -18,14 +18,16 @@ Pigsty uses a **modular architecture** and **declarative interface**. [**Combine
 
 ## Modules
 
-Pigsty uses a modular design with six main default modules: [`PGSQL`](/docs/pgsql), [`INFRA`](/docs/infra), [`NODE`](/docs/node), [`ETCD`](/docs/etcd), [`REDIS`](/docs/redis), and [`MINIO`](/docs/minio).
+Pigsty uses a modular design with infrastructure commonly assembled from these six modules: [`PGSQL`](/docs/pgsql), [`INFRA`](/docs/infra), [`NODE`](/docs/node), [`ETCD`](/docs/etcd), [`REDIS`](/docs/redis), and [`MINIO`](/docs/minio).
 
 * [`PGSQL`](/docs/pgsql): Self-healing HA Postgres clusters powered by Patroni, Pgbouncer, HAproxy, PgBackrest, and more.
 * [`INFRA`](/docs/infra): Local software repo, Nginx, Grafana, Victoria, AlertManager, Blackbox Exporter—the complete observability stack.
 * [`NODE`](/docs/node): Tune nodes to desired state—hostname, timezone, NTP, ssh, sudo, haproxy, docker, vector, keepalived.
 * [`ETCD`](/docs/etcd): Distributed key-value store as DCS for HA Postgres clusters: consensus leader election/config management/service discovery.
-* [`REDIS`](/docs/redis): Redis servers supporting standalone primary-replica, sentinel, and cluster modes with full monitoring.
-* [`MINIO`](/docs/minio): S3-compatible simple object storage that can serve as an optional backup destination for PG databases.
+* [`REDIS`](/docs/redis): Redis / Valkey servers supporting standalone primary-replica, sentinel, and cluster modes with full monitoring.
+* [`MINIO`](/docs/minio): Silo-backed S3-compatible object storage that can serve as an optional backup destination for PG databases.
+
+Additional extension and pilot modules include [DOCKER](/docs/docker), [JUICE](/docs/juice), [VIBE](/docs/vibe), [KAFKA](/docs/kafka), and [MYSQL](/docs/mysql). See [Modules](/docs/ref/module/) for deployment status and maturity.
 
 Combine modules through declarative configuration. For host monitoring, install [`INFRA`](/docs/infra) on infrastructure nodes and [`NODE`](/docs/node) on managed nodes. Install [`ETCD`](/docs/etcd) and [`PGSQL`](/docs/pgsql) across multiple nodes to form an HA PostgreSQL cluster automatically. You can reuse Pigsty infrastructure for custom modules; see [`REDIS`](/docs/redis) and [`MINIO`](/docs/minio) as examples. Compatibility modes, such as [PostgreSQL Mongo mode](/docs/conf/mongo/), combine standard PGSQL and Docker APP workflows.
 

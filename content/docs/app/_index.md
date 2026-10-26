@@ -10,9 +10,11 @@ categories: [Reference]
 
 Pigsty applications have two categories:
 
-- **Software Templates**: Docker Compose templates under `~/pigsty/app/<name>` for stateless business components.
+- **Software Templates**: Deployment resources under `~/pigsty/app/<name>`, mainly using Docker Compose. [Hermes](/docs/app/hermes/) provides a separate source installation guide.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
 
+
+Use matching versions of `app.yml`, `app/<name>/`, and `conf/`. Replacing only a configuration file does not enable development features; unreleased behavior is noted on each application page.
 
 ## Application Model
 
@@ -28,7 +30,9 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 ./app.yml                     # launch applications
 ```
 
-`app.yml` copies `app/<name>` templates to `/opt/<name>`. It replaces `.env` with `apps.<name>.conf`, then runs `docker compose up -d`.
+`app.yml` copies `app/<name>` templates to `/opt/<name>`, prepares directories from `apps.<name>.file`, writes `.env` from `apps.<name>.conf`, and runs the application's default Make target. Use `apps.<name>.args` to select other Make targets. Each application's Makefile and Compose definition control initialization.
+
+`apps.<name>.conf` writes `.env` with mode `0600` and lowercase `true` / `false` for booleans. Values still pass through Compose dotenv parsing: inspect the resulting configuration when values contain `$`, quotes, or spaces. `${OTHER_VARIABLE}` is not a literal string immune to expansion. Connection strings can be evaluated with Ansible/Jinja first, but special characters in passwords still need URL encoding.
 
 ## Maintained Config Templates
 
@@ -47,13 +51,13 @@ The following app config templates are actively maintained (`conf/app/*.yml`, `c
 - `app/hindsight`
 - `supabase`
 
-These templates are ready to use with the `./configure -c ...` and `./app.yml` workflow.
+These templates use the `./configure -c ...` and `./app.yml` workflow. Check database, directory, and image requirements on the application page before deploying.
 
 ## Lightweight Compose Apps
 
-For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `minio`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, `pg_exporter`, and `wiki`, you can also use the per-app Compose templates directly.
+For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, [`pg_exporter`](/docs/app/pg-exporter/), and `wiki`, you can also use the per-app Compose templates directly. For object storage, see the [MINIO module](/docs/minio/); the standalone `app/silo` template is still a development draft.
 
-[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `fork/mongo` configuration template with `docker.yml` and `app.yml`.
+[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `mongo` configuration template with `docker.yml` and `app.yml`.
 
 ```bash
 cd ~/pigsty/app/<name>
@@ -65,6 +69,8 @@ To manage these apps with Pigsty IaC, run:
 ```bash
 ./app.yml -e app=<name>
 ```
+
+See each application page for database, directory, and initialization requirements. Hermes uses a Python virtual environment and has no Compose or `app.yml` deployment entry point.
 
 ## Legacy Applets
 

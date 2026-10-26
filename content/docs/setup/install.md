@@ -256,8 +256,7 @@ Run it from the Pigsty source directory:
 > localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 > ```
 >
-> At the end, look for `pgsql init done` and `PLAY RECAP`.
-> Make sure that the target nodes report `failed=0` and `unreachable=0`.
+> Verify `failed=0` and `unreachable=0` for every target in `PLAY RECAP`, then check service status as needed. Seeing `pgsql init done` or `PLAY RECAP` alone does not prove the entire deployment succeeded.
 
 > [!WARNING] Upstream repository changes can stop installation
 > Changes to Linux or PGDG repositories can break package dependencies.

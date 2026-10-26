@@ -38,6 +38,8 @@ For example, EL uses `ivorysql5`, and Debian/Ubuntu uses `ivorysql-5`.
 
 Install with Pigsty's built-in `ivory` configuration template:
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/ivory.yml). Development sources moved it to `conf/fork/ivory.yml`; use `-c fork/ivory` with those sources.
+
 ```bash
 ./configure -c ivory
 ./deploy.yml
@@ -75,8 +77,7 @@ Any client tool that supports the PostgreSQL wire protocol can connect to IvoryS
 
 ## Available Extensions
 
-The IvorySQL kernel has **95** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

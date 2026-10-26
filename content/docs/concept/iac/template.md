@@ -23,7 +23,7 @@ Select a template, then change it to meet your requirements.
 
 The optional [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) wizard generates an [**inventory**](/docs/setup/config/) from your environment and input, with suitable defaults.
 
-Use `./configure -c <conf>` to select a template. `<conf>` is relative to `conf`; the `.yml` suffix is optional.
+Use `./configure -c <conf>` to select a template. `<conf>` is relative to `conf`; the `.yml` suffix is optional. Development sources move kernel templates to `conf/fork/`, selected with `-c fork/<name>`. Use the actual path in your source tree.
 
 ```bash
 ./configure                     # Default to meta.yml configuration template

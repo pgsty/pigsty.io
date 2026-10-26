@@ -20,9 +20,9 @@ The configuration includes instances, users, databases, access control, extensio
 
 1. **Prepare Inventory**: Copy a `pigsty/conf/*.yml` template or write an Ansible inventory. Put cluster groups (`all.children.<cls>.hosts`) and global variables (`all.vars`) in the same file.
 2. **Define Parameters**: Override the required [`PGSQL` parameters](/docs/pgsql/param) in `vars`. The override order is global → cluster → host. The last applicable setting determines the value.
-3. **Apply Configuration**: Use `./configure -c <conf>`, `bin/pgsql-add <cls>`, and other playbooks to apply the configuration. Pigsty generates the required Patroni, PgBouncer, and pgBackRest files from these parameters.
+3. **Generate and Apply Inventory**: `./configure -c <conf>` generates `pigsty.yml` from the selected template. Then run `./pgsql.yml -l <cls>` or `bin/pgsql-add <cls>` against uninitialized targets to deploy services. Use the corresponding dedicated playbooks or tags for maintenance of initialized clusters.
 
-The default demonstration inventory, `conf/pgsql.yml`, provides a minimal example.
+The PostgreSQL kernel example inventory, `conf/pgsql.yml`, provides a minimal example.
 It defines one `pg-meta` cluster, global `pg_version: 18`, and a few application users and databases.
 You can add more clusters to this configuration.
 

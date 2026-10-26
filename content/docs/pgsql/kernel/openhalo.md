@@ -24,6 +24,8 @@ Pigsty supports OpenHalo deployment on all supported Linux platforms.
 
 Use Pigsty's [**standard installation flow**](/docs/setup/install) with the [`mysql`](/docs/conf/mysql) template.
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml). Development sources moved it to `conf/fork/mysql.yml`; use `-c fork/mysql` with those sources.
+
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 ./configure -c mysql    # Use MySQL (openHalo) template
@@ -79,7 +81,7 @@ Use the PostgreSQL usernames and passwords for MySQL access.
 
 OpenHalo listens on port `3306` for MySQL wire protocol clients.
 
-Pigsty's [`conf/mysql`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml) installs a MySQL client by default.
+Pigsty's [`conf/mysql`](/docs/conf/mysql/) installs a MySQL client by default.
 
 ```bash
 mysql -h 127.0.0.1 -u dbuser_dba
@@ -126,8 +128,7 @@ Contact the upstream vendor about kernel-specific issues.
 
 ## Available Extensions
 
-The OpenHalo kernel has **59** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

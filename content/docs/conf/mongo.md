@@ -17,6 +17,8 @@ aliases:
   - /docs/ferret/usage/
 ---
 
+Development sources use `conf/fork/mongo.yml`; v4.5.0 uses `conf/mongo.yml`, selected with `-c mongo`.
+
 The `mongo` configuration template is a **PostgreSQL deployment mode**, not an independent Pigsty module. It combines:
 
 - PostgreSQL 18 managed by the standard `PGSQL` module
@@ -35,7 +37,7 @@ The default template is a single-node deployment on `10.10.10.10`. FerretDB list
 Install `mongosh` separately if it is not already available, or use another MongoDB-compatible client.
 
 ```bash
-./configure -c fork/mongo
+./configure -c mongo
 ./deploy.yml
 ./docker.yml -l pg-meta
 ./app.yml -l pg-meta
@@ -62,7 +64,7 @@ The container connects to Pigsty's local primary service on port `5436` through 
 
 ## Configuration
 
-Source: [`pigsty/conf/fork/mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/mongo.yml)
+Development source: `conf/fork/mongo.yml`; release source: [`v4.5.0: conf/mongo.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mongo.yml).
 
 {{< include file="yaml/mongo.yml" code=true lang="yaml" >}}
 

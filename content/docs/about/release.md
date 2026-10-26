@@ -6,7 +6,7 @@ icon: fa-solid fa-scroll
 categories: [Reference]
 ---
 
-The latest Pigsty release is [**v4.5.0**](#v450).
+The current public stable release is [**v4.5.0**](#v450), released on **2026-08-15** (Beijing time). Unreleased source updates are listed under [development branch changes](#development-branch-changes-after-release).
 
 |     Version     | Release Date | Summary                                                                         |                                       Release Page                                        |
 |:---------------:|:------------:|---------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------:|
@@ -74,9 +74,25 @@ The latest Pigsty release is [**v4.5.0**](#v450).
 
 ------
 
+## Development Branch Changes After Release
+
+The following changes correspond to development source `2fb8b5bd` as of **2026-10-09** and are not included in the `v4.5.0` release archive. As of 2026-10-13, public GitHub `main` was at `745a4eab` and did not yet include all these changes.
+
+- **OpenTofu for cloud resources:** The Makefile and helper scripts under `terraform/` default to `tofu`. Set `IAC_CLI=terraform` to keep using Terraform. See [OpenTofu](/docs/deploy/terraform/) for existing state migration.
+- **Offline package workflow:** Remote cache archives and `bootstrap` default to `/var/tmp/pkg.tgz`, with a fallback to the legacy `/tmp/pkg.tgz` when the default path is absent. Extraction failures or a missing `repo_complete` marker remove incomplete output and stop the operation. Build-host bootstrap waits for all transfers and remote operations at each stage and propagates failures. See [offline installation](/docs/setup/offline/).
+- **Kernel template paths:** `agens`, `ivory`, `mongo`, `mssql`, `mysql`, `oriole`, `pgedge`, `pgsql`, `pgtde`, and `polar` move from `conf/` to `conf/fork/`. Use `-c fork/<name>` with the configuration wizard. `demo/mysql` still denotes the standalone native MySQL pilot.
+- **Infrastructure and service configuration:** INFRA adds production Nginx portal template selection and cache directory configuration. PostgreSQL HAProxy health checks convert RTO to a valid duration. The Docker upstream repository moves from `infra` to `docker`; the Nginx repository on EL moves from `infra` to `nginx`, matching Debian and Ubuntu.
+- **Optional Kafka JMX:** The new `kafka_jmx_exporter_enabled` parameter defaults to enabled. Disabling it removes the embedded Java Agent and its scrape target; the protocol exporter continues independently. See [Kafka parameters](/docs/kafka/param/#kafka_jmx_exporter_enabled).
+- **Application deployment and templates:** Preserves literal APP configuration values and improves health checks, persistent directories, initialization dependencies, credentials, and port handling. Silo replaces the standalone MinIO Compose application. Supabase moves to self-hosted 0.8.2, Dify to 1.17.1, InsForge to 2.3.3, JumpServer to 5.0.0, and Registry to 3.1.2. See the [application catalog](/docs/app/) for templates and their requirements.
+- **Package maps and automation:** Refreshes PostgreSQL extension aliases across platforms, completes extension removal, package naming, and license filtering rules, and updates GitHub Actions dependencies.
+
+------
+
 ## v4.5.0
 
 Pigsty v4.5.0 adds pilot modules, replaceable data services, and orchestration based on cluster identity. It also improves observability and the software supply chain. The release adds Kafka KRaft, MySQL 8.4, and Valkey support, and makes Silo the MINIO backend. The packaged extension catalog grows from 531 to 575 extensions. Released on **2026-08-15**. See the [GitHub release](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) and full source comparison at [`v4.4.0...v4.5.0`](https://github.com/pgsty/pigsty/compare/v4.4.0...v4.5.0).
+
+Package, extension, and template counts below are snapshots from the release.
 
 **Highlights**
 
@@ -87,7 +103,7 @@ Pigsty v4.5.0 adds pilot modules, replaceable data services, and orchestration b
 - **51 standalone configuration templates:** Adds `demo/kafka`, `demo/mysql`, and the eight-node `ha/octo` simulation template to the 48 standalone templates in v4.4.0. The compatibility symlink `conf/app/supa.yml` → `../supabase.yml` remains available.
 - **Safer cluster-identity orchestration:** PGSQL, REDIS, MINIO, KAFKA, and MYSQL initialization playbooks skip unrelated hosts by explicit cluster identity. Their removal playbooks do the same, except `mysql-rm.yml`. That playbook stops with an error for any incorrectly selected host. etcd delegation and DBSU key exchange now use actual cluster members.
 - **Observability and supply chain:** Re-exports Grafana dashboards to Dashboard API v2 and moves MinIO/Silo collection to Metrics V3. Generates local repositories atomically with SOW and removes synthetic ModuleMD metadata.
-- **Kernel and toolchain updates:** Completes pgBackRest support for PostgreSQL 19 beta2 and enables cluster mode for Percona PostgreSQL TDE. Fixes IvorySQL initialization and WAL compression. Updates extension package maps, exporters, and build tooling.
+- **Kernel and toolchain updates:** Completes pgBackRest support for PostgreSQL 19 Beta templates and enables cluster mode for Percona PostgreSQL TDE. Fixes IvorySQL initialization and WAL compression. Updates extension package maps, exporters, and build tooling.
 
 **New Modules and Data Services**
 
@@ -112,9 +128,9 @@ Pigsty v4.5.0 adds pilot modules, replaceable data services, and orchestration b
 - RPM exporter package names move from underscores to hyphens, for example `node_exporter` → `node-exporter`. Debian repository naming and PGDG YUM extension package mappings are corrected as well.
 - Tuned profiles use `/etc/tuned/profiles` on EL 10, Debian 13, and Ubuntu 26. They use `/etc/tuned` on EL 8/9, Debian 12, and Ubuntu 22/24. Debian/Ubuntu package installation also prevents premature starts of Silo, Redis/Valkey, and legacy log services.
 - This release updates China-region repository routing. OS, Docker, Grafana, Percona, supported MongoDB APT, and uv/PyPI paths prefer Tencent Cloud. EL and Docker entries retain Huawei Cloud and Aliyun fallbacks where appropriate. MySQL and Kubernetes use USTC mirrors, and ClickHouse uses Huawei Cloud. MongoDB RPM no longer advertises an unavailable China-region alternative. `roles/node_id/vars/<os>.<arch>.yml` defines the final choices for each platform.
-- The Docker image moves to Debian 13.6 and Pigsty v4.5.0. Vagrant enforces a 32 GiB root disk, accepts pinned box versions, and adds the eight-node `ha/octo` lab. `docker/Makefile` fixes its data directory at `./data`, and `make purge` deletes that directory directly.
+- The Docker image moves to Debian 13.6 and Pigsty v4.5.0. Vagrant adds `root_disk`, defaulting to 64 GiB or 128 GiB in the build matrix, accepts pinned box versions, and adds the eight-node `ha/octo` lab. `docker/Makefile` fixes its data directory at `./data`, and `make purge` deletes that directory directly.
 - GitHub Actions for checkout, CodeQL, Docker build/login, and Cosign are upgraded in one batch. Release, bootstrap, install, and validation scripts also tighten file and argument handling. Release archives now derive top-level `pigsty.yml` from `conf/meta.yml`, include the Kafka/MySQL playbooks, and drop the legacy Mongo playbook.
-- Run the release-signing workflow from `main`. It signs only the `pigsty-<tag>.tgz` source archive and excludes multi-gigabyte offline bundles. The package-build bootstrap matrix now matches `conf/build/oss.yml`: EL 9/10, Debian 12/13, and Ubuntu 22/24/26.
+- The Cosign workflow in the source must run from `main` and handles only `pigsty-<tag>.tgz`. The GitHub release separately provides GPG detached signatures for the source archive, 14 offline bundles, and `checksums`, for 32 uploaded assets in total. See [offline installation](/docs/setup/offline/) for downloads and verification. The build-host matrix matches `conf/build/oss.yml`: EL 9/10, Debian 12/13, and Ubuntu 22/24/26.
 
 **Observability**
 
@@ -545,6 +561,7 @@ Build, download, and verification status uses the original log wording. It does 
 - MySQL `mysql_databases` entries accept only `name`, `encoding`, and `collate`. Pigsty creates databases with `DEFAULT ENCRYPTION='N'`. `mysql_parameters` cannot bypass protection for platform-owned, replication, or TLS options through `loose_`, `skip_`, `disable_`, or `enable_` prefixes.
 - Custom RPM repositories and external automation must replace underscore package names with hyphenated names. For example, replace `node_exporter` and `redis_exporter` with `node-exporter` and `redis-exporter`.
 - `docker/Makefile` no longer accepts `DATA` to redirect the cleanup target. `make purge` immediately deletes repository-local `./data`, without a countdown. Preserve required data first.
+- New `ha/trio` deployments use a three-node Silo pool with one data disk per node and EC:1. An existing single-node pool cannot be expanded directly into this topology; create a new pool and migrate the objects.
 - KAFKA and MYSQL remain pilot modules. Kafka clients must resolve and reach each broker directly. Do not put the data plane behind HAProxy, a VIP, or an L4 load balancer. MySQL currently accepts exactly one or three members.
 
 GitHub publishes all 14 validated offline artifacts for this release, one per [**recommended OS version**](/docs/ref/linux/) and architecture. A `checksums` manifest accompanies them. Each file has a detached PGP signature (`.asc`).

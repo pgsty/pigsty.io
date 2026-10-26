@@ -32,6 +32,8 @@ Pigsty does not download these packages to the local software repository during 
 
 Use the built-in Pigsty template:
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/polar.yml). Development sources moved it to `conf/fork/polar.yml`; use `-c fork/polar` with those sources.
+
 ```bash
 ./configure -c polar
 ./deploy.yml
@@ -49,7 +51,6 @@ The main changes are:
 | Kernel baseline | PostgreSQL 15 | PostgreSQL 17 |
 | Default PolarDB path | `/u01/polardb_pg` | `/usr/polar-17` |
 | Supported architectures | `x86_64` | `x86_64`, `aarch64` |
-| Available extensions | Old docs said 61 | `pg_available_extensions` returns 93; 34 remain after filtering contrib |
 | Replication user requirement | `replicator` must be `SUPERUSER` | unchanged |
 {.full-width}
 
@@ -92,8 +93,7 @@ Native PostgreSQL does not have this requirement.
 
 ## Available Extensions
 
-The PolarDB PG kernel has **93** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

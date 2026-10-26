@@ -111,7 +111,7 @@ The current Vagrant configuration uses `cloud-image/*` boxes from [Vagrant Cloud
 See [Supported Images](/docs/deploy/vagrant/#supported-images) for available images, pinned versions, and architectures.
 If the source does not pin a box version, Vagrant selects its currently available version.
 
-### Cloud Sandbox (Terraform)
+### Cloud Sandbox (OpenTofu)
 
 The cloud sandbox uses public cloud APIs to create virtual machines.
 You can create and remove these resources for short tests and pay for their use.
@@ -121,11 +121,14 @@ Use [`spec/aliyun-full.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/
 ```bash
 cd ~/pigsty/terraform
 cp spec/aliyun-full.tf terraform.tf
-terraform init
-terraform apply
+tofu init
+tofu plan
+tofu apply
 ```
 
 See the [OpenTofu guide](/docs/deploy/terraform/) for details.
+
+These steps use OpenTofu directly. Before using `make` or `./ssh`, check whether the helper scripts invoke `tofu` or `terraform`. See [OpenTofu Quick Start](/docs/deploy/terraform/#quick-start).
 
 ## Other Specs
 

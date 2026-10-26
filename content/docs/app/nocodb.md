@@ -29,8 +29,8 @@ make up     # Start NocoDB with Docker Compose
 
 Access NocoDB:
 
-- Default URL: http://nocodb.pigsty
-- Alternate URL: http://10.10.10.10:8080
+- URL after configuring the portal: http://noco.pigsty
+- Default direct URL: http://10.10.10.10:9003
 - First-time access requires creating an administrator account
 
 
@@ -40,7 +40,6 @@ Use these Makefile commands to manage NocoDB:
 
 ```bash
 make up      # Start NocoDB service
-make run     # Start with Docker (connect to external PostgreSQL)
 make view    # Display NocoDB access URL
 make log     # View container logs
 make info    # View service details
@@ -48,10 +47,12 @@ make stop    # Stop the service
 make clean   # Stop and remove containers
 make pull    # Pull the latest image
 make rmi     # Remove NocoDB image
-make save    # Save image to /tmp/nocodb.tgz
-make load    # Load image from /tmp/nocodb.tgz
+make save    # Save image to /tmp/docker/nocodb.tgz
+make load    # Load image from /tmp/docker/nocodb.tgz
 ```
 
+
+`make run` uses a separate `docker run` command with a connection string and secret hardcoded in the Makefile. Use `make up` above to read the Compose configuration.
 
 ## Connect to PostgreSQL
 
@@ -88,16 +89,15 @@ NocoDB configuration is in the `.env` file:
 
 ```bash
 # Database connection (NocoDB metadata storage)
-NC_DB=pg://postgres:DBUser.Postgres@10.10.10.10:5432/nocodb
+DATABASE_URL=postgres://dbuser_noco:DBUser.Noco@10.10.10.10:5432/noco
+NC_PORT=9003
 
 # JWT secret (recommended to change)
-NC_AUTH_JWT_SECRET=your-secret-key
-
-# Other settings
-NC_PUBLIC_URL=http://nocodb.pigsty
-NC_DISABLE_TELE=true
+NC_AUTH_JWT_SECRET=change-this-nocodb-jwt-secret-at-least-32-chars
 ```
 
+
+Create the dedicated `noco` database and `dbuser_noco` user before startup, and replace the example password and JWT secret. Compose explicitly passes only `DATABASE_URL` and `NC_AUTH_JWT_SECRET`. Add other NocoDB settings to Compose `environment`; writing them to `.env` alone does not pass them into the container.
 
 ## Data Persistence
 

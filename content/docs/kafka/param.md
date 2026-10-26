@@ -1,15 +1,17 @@
 ---
 title: Parameters
 weight: 4903
-description: 15 persistent public parameters and transient protected operational variables of the KAFKA module.
+description: 16 persistent public parameters and transient protected operational variables of the KAFKA module.
 icon: fa-solid fa-sliders
 module: [KAFKA]
 categories: [Reference]
 aliases: [/docs/pilot/kafka/param]
 ---
 
+> [!NOTE] Source Version Scope
+> This page follows the current development source snapshot. `kafka_jmx_exporter_enabled` was added on 2026-09-01. The released `v4.5.0` tag does not include it: JMX is always enabled there, and the persistent public parameter count remains 15. The 16 parameters and JMX-disable procedure described here apply to sources containing that change.
 
-KAFKA exposes 15 persistent parameters. The role derives topology, listeners, security, storage subdirectories, replication safety, and exporter placement consistently. Additional persistent variables cannot override these derived settings.
+KAFKA exposes 16 persistent parameters. The role derives topology, listeners, security, storage subdirectories, replication safety, and exporter placement consistently. Additional persistent variables cannot override these derived settings.
 
 
 --------
@@ -28,6 +30,7 @@ KAFKA exposes 15 persistent parameters. The role derives topology, listeners, se
 | [`kafka_controller_port`](#kafka_controller_port)     | Instance| `9093`          | KRaft controller port                |
 | [`kafka_rack`](#kafka_rack)                           | Instance| unset           | Broker fault-domain label            |
 | [`kafka_parameters`](#kafka_parameters)               |Cluster/Instance| `{}`     | Non-role-owned broker parameters     |
+| [`kafka_jmx_exporter_enabled`](#kafka_jmx_exporter_enabled) | Instance | `true` | Enable the embedded JMX Exporter Java Agent |
 | [`kafka_jmx_exporter_port`](#kafka_jmx_exporter_port) | Instance| `9404`          | JMX Exporter HTTP port               |
 | [`kafka_exporter_port`](#kafka_exporter_port)         | Instance| `9308`          | Protocol Exporter HTTP port          |
 | [`kafka_security`](#kafka_security)                   | Cluster | `plaintext`     | `plaintext` or the production `scram` profile |
@@ -190,9 +193,17 @@ The role owns identity, listeners, security, storage, and replication policy. Re
 
 ## Observability
 
+### `kafka_jmx_exporter_enabled`
+
+Whether to enable the JMX Exporter Java Agent in this instance's Kafka JVM. Default: `true`. When `false`, the agent is not loaded and no JMX scrape target is registered for the instance. Independent protocol exporters still follow the usual placement rules.
+
+After changing this parameter, run `./kafka.yml -l <cls>` for the complete cluster so a rolling restart applies the JVM configuration. `-t register` alone changes monitoring targets, not the running JVM.
+
+Disabling JMX removes this instance's JVM, KRaft, broker-internal, and liveness metrics and corresponding alerts. If disabled throughout the cluster, it also disappears from Kafka Overview / Kafka Instance discovery, and `KafkaDown` cannot detect it. Protocol exporters still provide topic, partition, and consumer-group metrics. Lifecycle health gates use Kafka CLI/metadata channels and do not depend on JMX.
+
 ### `kafka_jmx_exporter_port`
 
-JMX HTTP port, default `9404`. Every Kafka JVM receives the agent and registers as `job=kafka`; no toggle exists. Lifecycle checks use a separate Kafka CLI/metadata channel, not JMX. INFRA nodes must reach this port. `kafka_security: scram` does not enable HTTPS here. Protect the endpoint with the monitoring network and firewall.
+JMX HTTP port, default `9404`. It listens and registers as `job=kafka` only when [`kafka_jmx_exporter_enabled`](#kafka_jmx_exporter_enabled) is `true`. INFRA nodes must reach this port. `kafka_security: scram` does not enable HTTPS here. Protect the endpoint with the monitoring network and firewall.
 
 
 ### `kafka_exporter_port`
@@ -286,7 +297,7 @@ Identity prechecks validate only unique `name` values. Kafka checks partitions a
 
 ## Transient Protected Operational Variables
 
-Use these variables only with command-line `-e` for individual operations. They are outside the 15 persistent parameters. Do not put them in `pigsty.yml`:
+Use these variables only with command-line `-e` for individual operations. They are outside the 16 persistent parameters. Do not put them in `pigsty.yml`:
 
 | Action | Playbook | Transient Variable | Protection Condition |
 |:-------|:---------------|:------------------------------------------------------------------------------------|:-------------------------------|

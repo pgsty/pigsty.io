@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 weight: 2101
-description: Vanilla PostgreSQL kernel with 575 extensions
+description: Vanilla PostgreSQL with access to Pigsty’s catalog of 600 packaged extensions
 icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Concept]
@@ -17,7 +17,9 @@ It supports PostgreSQL 14 ~ 18 and provides {{< param pgext_count >}} PG extensi
 
 ## Quick Start
 
-[**Install**](/docs/setup/install) Pigsty using the [`pgsql`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml) configuration template.
+[**Install**](/docs/setup/install) Pigsty using the [`pgsql`](/docs/conf/pgsql/) configuration template.
+
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgsql.yml). Development sources moved it to `conf/fork/pgsql.yml`; use `-c fork/pgsql` with those sources.
 
 ```bash
 ./configure -c pgsql     # Use postgres kernel
@@ -31,7 +33,7 @@ Examples include:
 - [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) : postgres with all extensions installed
 - [`slim`](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml) : postgres only, no monitoring infrastructure
 - [`ha/full`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) : 4-node sandbox for HA demonstration
-- [`pgsql`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml) : minimal postgres kernel configuration example
+- [`pgsql`](/docs/conf/pgsql/) : minimal postgres kernel configuration example
 
 
 ------
@@ -74,11 +76,7 @@ To select a different PostgreSQL major version, use `-v`:
 ./configure -c pgsql -v 14      # Use postgresql 14
 ```
 
-If a PostgreSQL cluster is already installed, uninstall it before you install a new version:
-
-```bash
-./pgsql-rm.yml -l pg-meta # Uninstall cluster pg-meta
-```
+`-v` generates configuration for a new deployment; it does not upgrade an existing data directory. To change the major version of an existing cluster, plan compatibility checks, backups, and migration using the [PostgreSQL major upgrade procedure](/docs/pgsql/admin/upgrade/).
 
 
 ------

@@ -168,13 +168,13 @@ After full cluster health, resource and monitoring stages run in order:
 5. Start protocol exporters on the first two broker-capable nodes by `kafka_seq`.
 6. Refresh discovery targets on all INFRA nodes.
 
-Each instance has one target file. It contains JMX and any selected protocol target under the `kafka` scrape job:
+Each instance has one target file containing its JMX target when enabled and any selected protocol exporter target, all under the `kafka` scrape job. An instance with JMX disabled and no protocol exporter writes an empty list, `[]`:
 
 ```text
 /infra/targets/kafka/<kafka_instance>.yml
 ```
 
-Full runs refresh targets for current exporter placement. `kafka-rm.yml` deregistration deletes targets.
+Full runs refresh targets for the current exporter placement and JMX toggle. `kafka-rm.yml` deregistration deletes targets. After changing `kafka_jmx_exporter_enabled`, run the full playbook to restart JVMs in rolling order; registration alone does not change the Java Agent's running state.
 
 
 --------

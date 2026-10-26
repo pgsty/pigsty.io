@@ -42,7 +42,7 @@ Pigsty provides:
 
 - **Monitoring and Diagnostics**
 
-  VictoriaMetrics and Grafana provide [**monitoring practices**](/docs/concept/monitor) with more than three thousand metric types. Views range from global dashboards to CRUD operations on individual objects.
+  VictoriaMetrics and Grafana provide [**monitoring practices**](/docs/concept/monitor) through 67 dashboards, 773 recording rules, and 92 alert rules covering databases, hosts, and infrastructure. See [Monitoring Scale and Counting Method](/docs/concept/monitor#monitoring-scale-and-counting-method) for definitions.
 
 - **Declarative Configuration Management**
 

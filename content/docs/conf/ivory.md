@@ -6,6 +6,8 @@ icon: fa-solid fa-gem
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/ivory.yml`; v4.5.0 uses `conf/ivory.yml`, selected with `-c ivory`.
+
 The `ivory` template replaces the standard PostgreSQL kernel with Highgo's IvorySQL.
 IvorySQL supports Oracle syntax and PL/SQL.
 
@@ -34,7 +36,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/ivory.yml`](https://github.com/pgsty/pigsty/blob/main/conf/ivory.yml)
+Development source: `conf/fork/ivory.yml`; release source: [`v4.5.0: conf/ivory.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/ivory.yml).
 
 {{< include file="yaml/ivory.yml" code=true lang="yaml" >}}
 

@@ -35,7 +35,7 @@ Run it as the database OS user, normally `postgres`, or at least as a member of 
 
 ```bash
 pg-fork 1                         # /pg/data -> /pg/data1, destination port 15432
-pg-fork 2 -d /pg/data1            # /pg/data1 -> /pg/data2, destination port 25432
+pg-fork 2 -d /pg/data1 -p 15432   # /pg/data1 -> /pg/data2, destination port 25432
 pg-fork 3 -D /srv/pg-clone -P 55432
 ```
 
@@ -62,7 +62,7 @@ If the destination directory exists, the script removes it recursively before th
 
 ### Hot Backup and Cold Copy
 
-By default, the script connects to the source port and uses one `psql` session to run:
+By default, the script connects to the source port (`-p` / `PG_PORT`) and uses one `psql` session to run:
 
 1. `CHECKPOINT`;
 2. `pg_backup_start()`;

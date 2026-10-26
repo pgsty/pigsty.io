@@ -7,7 +7,7 @@ module: [PGSQL]
 categories: [Reference]
 ---
 
-Pigsty includes {{< param pgext_count >}} precompiled PostgreSQL extensions that are ready to use.
+Pigsty includes {{< param pgext_count >}} packaged PostgreSQL extensions that are ready to use.
 
 
 --------

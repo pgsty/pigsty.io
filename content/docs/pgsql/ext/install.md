@@ -94,13 +94,13 @@ sudo apt install -y postgresql-18-pg-duckdb
 ## Using Package Aliases
 
 Pigsty supports standard package aliases.
-It converts each alias to the package name for the applicable PostgreSQL version:
+It converts each alias to the package name for the applicable PostgreSQL version. These examples use `pg_version: 18`, with `el9.x86_64` for EL and `u24.x86_64` for Debian-based systems:
 
 ```yaml
 pg_extensions:
-  - pgvector           # Auto-translates to pgvector_18* (EL) or postgresql-18-pgvector (Debian)
-  - postgis            # Auto-translates to postgis36_18* (EL) or postgresql-18-postgis-3* (Debian)
-  - pgsql-gis          # Category alias, installs entire GIS category of extensions
+  - pgvector           # Auto-translates to pgvector_18 (EL) or postgresql-18-pgvector (Debian)
+  - postgis            # Auto-translates to postgis36_18 (EL) or postgresql-18-postgis-3 (Debian)
+  - pgsql-gis          # Category alias, installs the platform's GIS package group
 ```
 
 You can also use raw package names directly:

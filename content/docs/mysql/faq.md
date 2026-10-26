@@ -101,7 +101,7 @@ Configuration changes roll secondaries first, without client interruption, then 
 
 ## Why doesn't `conf/mysql.yml` match this module?
 
-That template is **OpenHalo**, a PostgreSQL kernel with MySQL wire compatibility (`pg_mode: mysql`). It is unrelated to native MYSQL, whose template is [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml). Use this module for native MySQL ecosystem compatibility. Consider OpenHalo for MySQL-protocol applications on PostgreSQL infrastructure.
+In development sources, that template is at `conf/fork/mysql.yml`. It is **OpenHalo**, a PostgreSQL kernel with MySQL wire compatibility (`pg_mode: mysql`). It is unrelated to native MYSQL, whose template is [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml). Use this module for native MySQL ecosystem compatibility. Consider OpenHalo for MySQL-protocol applications on PostgreSQL infrastructure.
 
 
 ## The playbook fails with `no ONLINE member holds the cluster`?

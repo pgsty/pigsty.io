@@ -20,10 +20,10 @@ The KAFKA module uses two complementary exporters:
 
 | Scrape Surface | Service / Method | Job | Node Scope | Main Content |
 |:---|:---|:---|:---|:---|
-| JVM and Kafka internals | JMX Exporter Java agent `:9404` | `kafka` (with `role` label) | All Kafka nodes | JVM, broker throughput, replication, request path, KRaft, controller |
+| JVM and Kafka internals | JMX Exporter Java agent `:9404` | `kafka` (with `role` label) | Kafka nodes with JMX enabled (all by default) | JVM, broker throughput, replication, request path, KRaft, controller |
 | Kafka protocol view | `kafka_exporter :9308` | `kafka` (no `role` label) | The one or two broker-capable nodes with the smallest `kafka_seq` | Broker, topic, partition, offset, consumer group, lag |
 | Host resources | node_exporter | `node` | Managed nodes | CPU, memory, disk, network, filesystem |
-| Logs | Journald → Vector → VictoriaLogs | `syslog` | All Kafka nodes | Structured, searchable Kafka and exporter logs |
+| Logs | Journald → Vector → VictoriaLogs | `syslog` | Kafka nodes with JMX enabled (all by default) | Structured, searchable Kafka and exporter logs |
 {.full-width}
 
 On each INFRA node, the role creates one discovery file per instance. JMX and any selected protocol target share that file and `kafka` scrape job:
@@ -32,7 +32,7 @@ On each INFRA node, the role creates one discovery file per instance. JMX and an
 /infra/targets/kafka/<kafka_instance>.yml
 ```
 
-Single-broker clusters run one protocol exporter; larger clusters run at most two. Controllers register only JMX. Controllers and unselected brokers have no protocol target by design. Full runs refresh target files for current placement. `kafka-rm.yml` deregistration removes instance targets.
+Single-broker clusters run one protocol exporter; larger clusters run at most two. With JMX enabled, controllers register only JMX. Controllers and unselected brokers have no protocol target by design. Full runs refresh target files for current placement. `kafka-rm.yml` deregistration removes instance targets.
 
 
 --------
@@ -40,6 +40,16 @@ Single-broker clusters run one protocol exporter; larger clusters run at most tw
 ## Label Model
 
 Both targets use `job=kafka`. JMX has a `role` label; protocol targets do not.
+
+### Disabling JMX
+
+This feature requires development sources containing the JMX toggle added on 2026-09-01. The `v4.5.0` release tag always enables JMX.
+
+[`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled) defaults to `true`. After disabling it, run the full `kafka.yml` playbook to remove the Java Agent through a rolling restart and update monitoring targets. `-t register` refreshes target files only.
+
+An instance without JMX has no JVM, KRaft, broker-internal, or instance-liveness metrics, and the corresponding alerts lose their data. If all members disable JMX, Kafka Overview / Kafka Instance can no longer discover the cluster, and `KafkaDown` cannot detect it. Protocol exporters continue running, so topic, partition, and consumer-group monitoring remains available.
+
+An instance with neither JMX nor a protocol exporter has a valid empty target list, `[]`. This does not mean the target file is corrupt.
 
 ### JMX Target
 
@@ -260,7 +270,7 @@ curl -fsS http://<kafka-ip>:9404/metrics | grep '^jmx_scrape_error'
 curl -fsS http://127.0.0.1:9308/metrics | grep '^kafka_brokers'
 ```
 
-Check discovery files on an INFRA node. Each instance has one file; selected nodes include both JMX and protocol targets:
+Check discovery files on an INFRA node. Each instance has one file; selected nodes include both JMX and protocol targets by default. With JMX disabled, the file contains only a protocol target or an empty list:
 
 ```bash
 ls -l /infra/targets/kafka/

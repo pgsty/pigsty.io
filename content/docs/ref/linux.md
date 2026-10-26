@@ -99,8 +99,8 @@ Pigsty supports Debian 12 / 13. We recommend the latest Debian 13.6:
 
 > [!TIP] Debian 12.15 / 13.6 Recommended
 
-> [!CAUTION] Debian 11 EOL @ 2024-07
-> Debian 11 reached end of life in July 2024. For extended support on legacy OS, consider [Enterprise Subscription](/docs/about/service).
+> [!CAUTION] Debian 11 LTS Has Ended
+> Debian 11 regular support ended on 2024-08-14, and LTS ended on **2026-08-31**. See the [official Debian lifecycle](https://www.debian.org/releases/bullseye/). Pigsty's current baseline is Debian 12 / 13. Contact [Professional Support](/docs/about/service) for legacy-system support scope.
 
 
 ----------------
@@ -121,9 +121,9 @@ For local VM deployment, use these Vagrant base images. Pigsty development uses 
 
 ----------------
 
-## Terraform
+## OpenTofu
 
-For cloud deployment, use these Terraform base image prefixes (Aliyun example):
+For cloud deployment, consider these OS image prefixes in [OpenTofu](/docs/deploy/terraform/) templates (Aliyun example):
 
 | **x86_64**     | Aliyun Image Prefix       |
 |:---------------|:--------------------------|

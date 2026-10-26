@@ -121,7 +121,7 @@ Topics are created idempotently. Partitions only increase, declared settings alo
 
 ## What is the difference between the JMX Exporter and kafka_exporter?
 
-JMX Exporter runs inside every Kafka JVM. It collects JVM, broker, replication, request-path, and KRaft metrics under `job=kafka`, with a `role` label.
+JMX Exporter runs inside every Kafka JVM by default. It collects JVM, broker, replication, request-path, and KRaft metrics under `job=kafka`, with a `role` label.
 
 `kafka_exporter` queries cluster, topic, partition, offset, consumer-group, and lag data through Kafka protocol. It uses `job=kafka` without a `role` label. It runs on the first two broker-capable nodes by `kafka_seq`. A single broker runs one; pure controllers run none.
 
@@ -143,6 +143,14 @@ grep 9308 /infra/targets/kafka/*.yml
 
 Full runs refresh target files for current exporter placement. Do not run on one node only to register labels. If placement changes, ordinary playbooks do not stop the old `kafka_exporter` service. Remove it manually or with `kafka-rm.yml`.
 
+
+--------
+
+## How do I disable JMX Exporter?
+
+Set [`kafka_jmx_exporter_enabled: false`](/docs/kafka/param#kafka_jmx_exporter_enabled), then run `./kafka.yml -l <cls>` for the complete cluster. The rolling restart removes the Java Agent from the JVM. `-t register` updates targets only and cannot replace full convergence.
+
+Disabling JMX removes JVM, KRaft, and broker-internal metrics and their alerts. If every member disables JMX, Kafka Overview / Kafka Instance cannot discover the cluster, and `KafkaDown` cannot detect it. The independent protocol exporter continues to provide topic, partition, and consumer-group metrics. Lifecycle health gates still use the Kafka administration channel.
 
 --------
 
@@ -217,6 +225,6 @@ The payload verified on 2026-07-16 contained Kafka 4.3.1, `kafka_exporter` 1.9.0
 
 ## How do I safely wipe Kafka data?
 
-`kafka.yml` never performs cleanup. `kafka-rm.yml` owns deletion. Selecting a whole cluster with `-l`, or all clusters without it, performs teardown. A strict subset performs retirement. Default `kafka_rm_data=true` permanently deletes data, KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets. `kafka_rm_data=false` retains data and recovery state; `kafka_safeguard=true` blocks all deletion.
+`kafka.yml` never performs cleanup. `kafka-rm.yml` owns deletion. The playbook requires an explicit, nonempty `-l/--limit`; a bare run fails. Selecting a whole cluster with `-l` performs teardown. A strict subset performs retirement. Default `kafka_rm_data=true` permanently deletes data, KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets. `kafka_rm_data=false` retains data and recovery state; `kafka_safeguard=true` blocks all deletion.
 
 Removal commands execute immediately without an additional confirmation string. Before running, verify the exact `-l` target, recoverable backups or explicit rebuild intent, and business decommissioning. Retirement tolerates broker unregistration failure. After execution, inspect quorum, registrations, and replica health. See [Playbook: `kafka-rm.yml`](/docs/kafka/playbook#kafka-rmyml).

@@ -10,8 +10,10 @@ main_menu: True
 ---
 
 Use `-c` with [**`configure`**](/docs/concept/iac/configure) to select a template.
-Specify its path relative to `conf/`, without the `.yml` suffix.
+Specify its path relative to `conf/`, without the `.yml` suffix. For example, `-c pgsql` selects `conf/pgsql.yml`.
 If you omit `-c`, Pigsty uses the [**`meta`**](/docs/conf/meta/) template.
+
+Development sources move kernel templates into `conf/fork/`, selected with `-c fork/<name>`. Use the actual paths in your source tree. Unreleased application changes are noted on each template page.
 
 | Category         | Templates                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

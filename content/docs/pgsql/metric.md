@@ -1,22 +1,43 @@
 ---
 title: Metrics
 weight: 1902
-description: Complete monitoring metrics reference for the Pigsty PGSQL module
+description: Current PGSQL recording rules, raw metric sources, and historical scrape samples.
 icon: fa-solid fa-list-check
 module: [PGSQL]
 categories: [Reference]
 aliases: [/docs/pgsql/monitor/metric/]
 ---
 
-The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
+This page separates **raw metrics from scrape endpoints** from **recorded metrics computed by vmalert**. [**`files/victoria/rules/pgsql.yml`**](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/pgsql.yml) defines **402 recording rules**. Common examples appear below; the [**Recording Metric Index**](#recording-metric-index) lists every name and expression. Query recorded metrics in VictoriaMetrics, not at an exporter's `/metrics` endpoint.
+
+Raw metrics vary with software versions, collectors, privileges, instance roles, and runtime state. Historical scrape samples are retained for identifying metrics, not as a complete interface for the current version.
+
+Raw PostgreSQL and PgBouncer metrics are defined in [`pg_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml) and [`pgbouncer_exporter.yml`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pgbouncer_exporter.yml), respectively. Patroni, pgBackRest Exporter, and exporter runtime metrics come from their own implementations. SQL collectors are selected by `min_version` / `max_version`, role tags, and probe queries; they do not all run on the same instance.
+
+## Current Recording Rules
+
+`ins`, `cls`, and `env` refer to instance, cluster, and environment levels; actual aggregation labels depend on each expression. See [**Metric Definitions and Counts**](/docs/infra/metric/#metric-definitions-and-counts) for differences in types and counts between recorded and raw metrics.
+
+| Recorded Metric | Expression | Meaning or Unit |
+|:---|:---|:---|
+| `pg:ins:status` | `pg_up * 2 + (1 - pg_in_recovery)` | Instance status code combining availability and primary/replica role |
+| `pg:ins:cpu_usage` | `node:ins:cpu_usage_1m + on(ip) group_right() pg_up * 0` | CPU utilization fraction on the host node |
+| `pg:cls:lag_bytes` | `max by (job, cls) (pg:ins:lag_bytes)` | Maximum replication lag in the cluster, bytes |
+| `pg:cls:lag_seconds` | `max by (job, cls) (pg:ins:lag_seconds)` | Maximum replication lag in the cluster, seconds |
+| `pg:db:xact_total_rate1m` | `rate(pg_db_xact_total[1m])` | Database transactions per second |
+| `pg:cls:xact_total_rate1m` | `sum by (job, cls) (pg:ins:xact_total_rate1m)` | Cluster transactions per second |
+| `pgbouncer:ins:query_rate1m` | `sum without(datname) (pgbouncer:db:query_rate1m)` | Connection-pool queries per second |
+| `pgbouncer:ins:query_rt_1m` | `pgbouncer:ins:query_time_rate1m / pgbouncer:ins:query_rate1m` | Ratio of the cumulative query-time rate to the query rate |
+{.full-width}
+
+In addition, `pg_exporter_agent_up`, `pgbouncer_exporter_agent_up`, `pgbackrest_exporter_agent_up`, `patroni_up` come from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). They are excluded from the module rule count above and are not raw exporter metrics. They reflect scrape status and do not replace functional service checks.
+
+## Historical Scrape Sample
+
+The existing sample below retains **405 metric names**, with recording-rule and alert-state series removed. Its scrape time and software versions were not recorded, so types and labels are for reference only. `Unknown` indicates missing type metadata. See [**Metric Definitions and Counts**](/docs/infra/metric/#metric-definitions-and-counts) for the counting method.
 
 | Metric Name                                    | Type    | Labels                                                                                                                                                                                       | Description                                                                                                                              |
 |------------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| ALERTS                                         | Unknown | `category`, `job`, `level`, `ins`, `severity`, `ip`, `alertname`, `alertstate`, `instance`, `cls`                                                                                            | N/A                                                                                                                                      |
-| ALERTS_FOR_STATE                               | Unknown | `category`, `job`, `level`, `ins`, `severity`, `ip`, `alertname`, `instance`, `cls`                                                                                                          | N/A                                                                                                                                      |
-| cls:pressure1                                  | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| cls:pressure15                                 | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| cls:pressure5                                  | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
 | go_gc_duration_seconds                         | summary | `job`, `ins`, `ip`, `instance`, `quantile`, `cls`                                                                                                                                            | A summary of the pause duration of garbage collection cycles.                                                                            |
 | go_gc_duration_seconds_count                   | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | go_gc_duration_seconds_sum                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
@@ -46,9 +67,6 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | go_memstats_stack_sys_bytes                    | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | Number of bytes obtained from system for stack allocator.                                                                                |
 | go_memstats_sys_bytes                          | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | Number of bytes obtained from system.                                                                                                    |
 | go_threads                                     | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | Number of OS threads created.                                                                                                            |
-| ins:pressure1                                  | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| ins:pressure15                                 | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| ins:pressure5                                  | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
 | patroni_cluster_unlocked                       | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if the cluster is unlocked, 0 if locked.                                                                                      |
 | patroni_dcs_last_seen                          | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Epoch timestamp when DCS was last contacted successfully by Patroni.                                                                     |
 | patroni_failsafe_mode_is_active                | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if failsafe mode is active, 0 if inactive.                                                                                    |
@@ -65,214 +83,12 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | patroni_replica                                | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if this node is a replica, 0 otherwise.                                                                                       |
 | patroni_standby_leader                         | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if this node is the standby_leader, 0 otherwise.                                                                              |
 | patroni_sync_standby                           | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if this node is a sync standby replica, 0 otherwise.                                                                          |
-| patroni_up                                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | patroni_version                                | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Patroni semver without periods.                                                                                                          |
 | patroni_xlog_location                          | counter | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Current location of the Postgres transaction log, 0 if this node is not the leader.                                                      |
 | patroni_xlog_paused                            | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Value is 1 if the Postgres xlog is paused, 0 otherwise.                                                                                  |
 | patroni_xlog_received_location                 | counter | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Current location of the received Postgres transaction log, 0 if this node is not a replica.                                              |
 | patroni_xlog_replayed_location                 | counter | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Current location of the replayed Postgres transaction log, 0 if this node is not a replica.                                              |
 | patroni_xlog_replayed_timestamp                | gauge   | `job`, `ins`, `ip`, `instance`, `cls`, `scope`                                                                                                                                               | Current timestamp of the replayed Postgres transaction log, 0 if null.                                                                   |
-| pg:cls:active_backends                         | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:active_time_rate15m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:active_time_rate1m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:active_time_rate5m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:age                                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:buf_alloc_rate1m                        | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:buf_clean_rate1m                        | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:buf_flush_backend_rate1m                | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:buf_flush_checkpoint_rate1m             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:cpu_count                               | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:cpu_usage                               | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:cpu_usage_15m                           | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:cpu_usage_1m                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:cpu_usage_5m                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:db_size                                 | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:file_size                               | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:ixact_backends                          | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:ixact_time_rate1m                       | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:lag_bytes                               | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:lag_seconds                             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:leader                                  | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:cls:load1                                   | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:load15                                  | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:load5                                   | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:lock_count                              | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:locks                                   | Unknown | `job`, `cls`, `mode`                                                                                                                                                                         | N/A                                                                                                                                      |
-| pg:cls:log_size                                | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:lsn_rate1m                              | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:members                                 | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| pg:cls:num_backends                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:partition                               | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:receiver                                | Unknown | `state`, `slot_name`, `job`, `appname`, `ip`, `cls`, `sender_host`, `sender_port`                                                                                                            | N/A                                                                                                                                      |
-| pg:cls:rlock_count                             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:saturation1                             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:saturation15                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:saturation5                             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:sender                                  | Unknown | `pid`, `usename`, `address`, `job`, `ins`, `appname`, `ip`, `cls`                                                                                                                            | N/A                                                                                                                                      |
-| pg:cls:session_time_rate1m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:size                                    | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:slot_count                              | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:slot_retained_bytes                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:standby_count                           | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:sync_state                              | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:timeline                                | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:tup_deleted_rate1m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:tup_fetched_rate1m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:tup_inserted_rate1m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:tup_modified_rate1m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:tup_returned_rate1m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:wal_size                                | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_commit_rate15m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_commit_rate1m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_commit_rate5m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_rollback_rate15m                   | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_rollback_rate1m                    | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_rollback_rate5m                    | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_total_rate15m                      | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_total_rate1m                       | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xact_total_sigma15m                     | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:cls:xlock_count                             | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pg:db:active_backends                          | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:active_time_rate15m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:active_time_rate1m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:active_time_rate5m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:age                                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:age_deriv1h                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:age_exhaust                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blk_io_time_seconds_rate1m               | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blk_read_time_seconds_rate1m             | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blk_write_time_seconds_rate1m            | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blks_access_1m                           | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blks_hit_1m                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blks_hit_ratio1m                         | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:blks_read_1m                             | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:conn_limit                               | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:conn_usage                               | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:db_size                                  | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:ixact_backends                           | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:ixact_time_rate1m                        | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:lock_count                               | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:num_backends                             | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:rlock_count                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:session_time_rate1m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:temp_bytes_rate1m                        | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:temp_files_1m                            | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:tup_deleted_rate1m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:tup_fetched_rate1m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:tup_inserted_rate1m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:tup_modified_rate1m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:tup_returned_rate1m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:wlock_count                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_commit_rate15m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_commit_rate1m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_commit_rate5m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_rollback_rate15m                    | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_rollback_rate1m                     | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_rollback_rate5m                     | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_total_rate15m                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_total_rate1m                        | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_total_rate5m                        | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xact_total_sigma15m                      | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:db:xlock_count                              | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | N/A                                                                                                                                      |
-| pg:env:active_backends                         | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:active_time_rate15m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:active_time_rate1m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:active_time_rate5m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:age                                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:cpu_count                               | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:cpu_usage                               | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:cpu_usage_15m                           | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:cpu_usage_1m                            | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:cpu_usage_5m                            | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:ixact_backends                          | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:ixact_time_rate1m                       | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:lag_bytes                               | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:lag_seconds                             | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:lsn_rate1m                              | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:session_time_rate1m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:tup_deleted_rate1m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:tup_fetched_rate1m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:tup_inserted_rate1m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:tup_modified_rate1m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:tup_returned_rate1m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_commit_rate15m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_commit_rate1m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_commit_rate5m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_rollback_rate15m                   | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_rollback_rate1m                    | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_rollback_rate5m                    | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_total_rate15m                      | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_total_rate1m                       | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:env:xact_total_sigma15m                     | Unknown | `job`                                                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:active_backends                         | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:active_time_rate15m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:active_time_rate1m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:active_time_rate5m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:age                                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:blks_hit_ratio1m                        | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:buf_alloc_rate1m                        | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:buf_clean_rate1m                        | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:buf_flush_backend_rate1m                | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:buf_flush_checkpoint_rate1m             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:ckpt_1h                                 | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:ckpt_req_1m                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:ckpt_timed_1m                           | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:conn_limit                              | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:conn_usage                              | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:cpu_count                               | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:cpu_usage                               | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:cpu_usage_15m                           | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:cpu_usage_1m                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:cpu_usage_5m                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:db_size                                 | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:file_size                               | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:fs_size                                 | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:is_leader                               | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:ixact_backends                          | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:ixact_time_rate1m                       | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:lag_bytes                               | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:lag_seconds                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:load1                                   | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:load15                                  | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:load5                                   | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:lock_count                              | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:locks                                   | Unknown | `job`, `ins`, `ip`, `mode`, `instance`, `cls`                                                                                                                                                | N/A                                                                                                                                      |
-| pg:ins:log_size                                | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:lsn_rate1m                              | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:mem_size                                | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:num_backends                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:rlock_count                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:saturation1                             | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| pg:ins:saturation15                            | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| pg:ins:saturation5                             | Unknown | `job`, `ins`, `ip`, `cls`                                                                                                                                                                    | N/A                                                                                                                                      |
-| pg:ins:session_time_rate1m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:slot_retained_bytes                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:space_usage                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:status                                  | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:sync_state                              | Unknown | `job`, `ins`, `instance`, `cls`                                                                                                                                                              | N/A                                                                                                                                      |
-| pg:ins:target_count                            | Unknown | `job`, `cls`, `ins`                                                                                                                                                                          | N/A                                                                                                                                      |
-| pg:ins:timeline                                | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:tup_deleted_rate1m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:tup_fetched_rate1m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:tup_inserted_rate1m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:tup_modified_rate1m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:tup_returned_rate1m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:wal_size                                | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:wlock_count                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_commit_rate15m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_commit_rate1m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_commit_rate5m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_rollback_rate15m                   | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_rollback_rate1m                    | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_rollback_rate5m                    | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_total_rate15m                      | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_total_rate1m                       | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_total_rate5m                       | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xact_total_sigma15m                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:ins:xlock_count                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pg:query:call_rate1m                           | Unknown | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | N/A                                                                                                                                      |
-| pg:query:rt_1m                                 | Unknown | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | N/A                                                                                                                                      |
-| pg:table:scan_rate1m                           | Unknown | `datname`, `relname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                  | N/A                                                                                                                                      |
 | pg_activity_count                              | gauge   | `datname`, `state`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | Count of connection among (datname,state)                                                                                                |
 | pg_activity_max_conn_duration                  | gauge   | `datname`, `state`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | Max backend session duration since state change among (datname, state)                                                                   |
 | pg_activity_max_duration                       | gauge   | `datname`, `state`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | Max duration since last state change among (datname, state)                                                                              |
@@ -356,7 +172,6 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | pg_db_xact_rollback                            | counter | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | Number of transactions in this database that have been rolled back                                                                       |
 | pg_db_xact_total                               | counter | `datname`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                             | Number of transactions in this database                                                                                                  |
 | pg_downstream_count                            | gauge   | `state`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                               | Count of corresponding state                                                                                                             |
-| pg_exporter_agent_up                           | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | pg_exporter_last_scrape_time                   | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | seconds exporter spending on scrapping                                                                                                   |
 | pg_exporter_query_cache_ttl                    | gauge   | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | times to live of query cache                                                                                                             |
 | pg_exporter_query_scrape_duration              | gauge   | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | seconds query spending on scrapping                                                                                                      |
@@ -561,27 +376,6 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | pg_xact_xmax                                   | counter | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | First as-yet-unassigned txid. txid >= this are invisible.                                                                                |
 | pg_xact_xmin                                   | counter | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | Earliest txid that is still active                                                                                                       |
 | pg_xact_xnum                                   | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | Current active transaction count                                                                                                         |
-| pgbouncer:cls:load1                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pgbouncer:cls:load15                           | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pgbouncer:cls:load5                            | Unknown | `job`, `cls`                                                                                                                                                                                 | N/A                                                                                                                                      |
-| pgbouncer:db:conn_usage                        | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:conn_usage_reserve                | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_current_conn                 | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_disabled                     | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_max_conn                     | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_paused                       | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_reserve_size                 | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:db:pool_size                         | Unknown | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | N/A                                                                                                                                      |
-| pgbouncer:ins:free_clients                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:free_servers                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:load1                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:load15                           | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:load5                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:login_clients                    | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:pool_databases                   | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:pool_users                       | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:pools                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-| pgbouncer:ins:used_clients                     | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | pgbouncer_database_current_connections         | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | Current number of connections for this database                                                                                          |
 | pgbouncer_database_disabled                    | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | True(1) if this database is currently disabled, else 0                                                                                   |
 | pgbouncer_database_max_connections             | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | Maximum number of allowed connections for this database                                                                                  |
@@ -589,7 +383,6 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | pgbouncer_database_paused                      | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | True(1) if this database is currently paused, else 0                                                                                     |
 | pgbouncer_database_pool_size                   | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | Maximum number of server connections                                                                                                     |
 | pgbouncer_database_reserve_pool                | gauge   | `datname`, `job`, `ins`, `ip`, `instance`, `host`, `cls`, `real_datname`, `port`                                                                                                             | Maximum number of additional connections for this database                                                                               |
-| pgbouncer_exporter_agent_up                    | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | pgbouncer_exporter_last_scrape_time            | gauge   | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | seconds exporter spending on scrapping                                                                                                   |
 | pgbouncer_exporter_query_cache_ttl             | gauge   | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | times to live of query cache                                                                                                             |
 | pgbouncer_exporter_query_scrape_duration       | gauge   | `datname`, `query`, `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                    | seconds query spending on scrapping                                                                                                      |
@@ -651,3 +444,524 @@ The [**`PGSQL`**](/docs/pgsql) module provides 638 available monitoring metrics.
 | scrape_series_added                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | up                                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 {.full-width}
+
+## Recording Metric Index
+
+The following groups list every name and expression from the rule file. Use page search to locate a metric. If rules have changed, use the files deployed to `/infra/rules/` as the authority.
+
+<details>
+<summary>PostgreSQL: 233 recording rules</summary>
+
+| Recorded Metric | Expression |
+|:---|:---|
+| `pg:ins:cpu_count` | `node:ins:cpu_count + on(ip) group_right() pg_up * 0` |
+| `pg:cls:cpu_count` | `sum by (job, cls) (pg:ins:cpu_count)` |
+| `pg:env:cpu_count` | `sum by (job) (pg:cls:cpu_count)` |
+| `pg:ins:cpu_usage` | `node:ins:cpu_usage_1m + on(ip) group_right() pg_up * 0` |
+| `pg:ins:cpu_usage_1m` | `node:ins:cpu_usage_1m + on(ip) group_right() pg_up * 0` |
+| `pg:ins:cpu_usage_5m` | `node:ins:cpu_usage_5m + on(ip) group_right() pg_up * 0` |
+| `pg:ins:cpu_usage_15m` | `node:ins:cpu_usage_15m + on(ip) group_right() pg_up * 0` |
+| `pg:cls:cpu_usage` | `sum by (job, cls) (pg:ins:cpu_usage * pg:ins:cpu_count) / pg:cls:cpu_count` |
+| `pg:cls:cpu_usage_1m` | `sum by (job, cls) (pg:ins:cpu_usage_1m * pg:ins:cpu_count) / pg:cls:cpu_count` |
+| `pg:cls:cpu_usage_5m` | `sum by (job, cls) (pg:ins:cpu_usage_5m * pg:ins:cpu_count) / pg:cls:cpu_count` |
+| `pg:cls:cpu_usage_15m` | `sum by (job, cls) (pg:ins:cpu_usage_15m * pg:ins:cpu_count) / pg:cls:cpu_count` |
+| `pg:env:cpu_usage` | `sum by (job) (pg:cls:cpu_usage * pg:cls:cpu_count) / pg:env:cpu_count` |
+| `pg:env:cpu_usage_1m` | `sum by (job) (pg:cls:cpu_usage_1m * pg:cls:cpu_count) / pg:env:cpu_count` |
+| `pg:env:cpu_usage_5m` | `sum by (job) (pg:cls:cpu_usage_5m * pg:cls:cpu_count) / pg:env:cpu_count` |
+| `pg:env:cpu_usage_15m` | `sum by (job) (pg:cls:cpu_usage_15m * pg:cls:cpu_count) / pg:env:cpu_count` |
+| `pg:ins:mem_size` | `node_memory_MemTotal_bytes + on(ip) group_right() pg_up * 0` |
+| `pg:ins:fs_size` | `sum by (ip)(node_filesystem_size_bytes{fstype!~"(n\|root\|tmp\|fuse.juice)fs.*"}) + on(ip) group_right() pg_up * 0` |
+| `pg:ins:space_usage` | `max by (ip)(node:fs:space_usage)+ on(ip) group_right() pg_up * 0` |
+| `pg:ins:status` | `pg_up * 2 + (1 - pg_in_recovery)` |
+| `pg:ins:is_leader` | `1 - pg_in_recovery` |
+| `pg:cls:leader` | `(pg_in_recovery == 0) * 0 + 1` |
+| `pg:ins:target_count` | `count by (job, cls, ins) (up{cls!="", ins!="", job='pgsql'})` |
+| `pg:cls:size` | `sum by (job, cls) (group by (job, cls, ins, ip) (up{cls!="", ins!="", job='pgsql'}))` |
+| `pg:cls:members` | `group by (job, cls, ins, ip) (up{cls!="", ins!="", job='pgsql'})` |
+| `pg:cls:bridges` | `count without(appname,usename,address,pid) (pg_repl_lsn) and (pg_in_recovery == 1)` |
+| `pg:cls:partition` | `count by (job, cls) (pg_in_recovery == 0)` |
+| `pg:cls:alive_count` | `count by (job, cls) (count by (cls, ins) (pg_up==1))` |
+| `pg:cls:primary_count` | `count by (job, cls) (max by (cls, ins) (pg_in_recovery{}) == 0)` |
+| `pg:cls:replica_count` | `count by (job, cls) (max by (cls, ins) (pg_in_recovery{}) == 1)` |
+| `pg:cls:standby_count` | `max by (job, cls) (pg_sync_standby_enabled) > bool 0` |
+| `pg:cls:bridge_count` | `count by (job, cls) (pg:cls:bridges)` |
+| `pg:cls:sender` | `max by (job, cls, ins, ip, appname, usename, address, pid) (pg_repl_sync_state)` |
+| `pg:cls:receiver` | `max by ( job, cls, ip, appname, sender_host, sender_port, slot_name, state ) (   label_replace(pg_recv_flush_tli, "appname" , "$1",  "ins", "(.*)" ) )` |
+| `pg:ins:timeline` | `pg_checkpoint_tli` |
+| `pg:cls:timeline` | `max by (job, cls) (max_over_time(pg_checkpoint_tli{}[30s]))` |
+| `pg:ins:sync_state` | `max by (job,cls,ins,instance) (label_replace(pg_repl_sync_state, "ins", "$1", "appname", "(.+)"))` |
+| `pg:cls:sync_state` | `(max by (job, cls) (pg:ins:sync_state)) > bool 0` |
+| `pg:ins:lag_bytes` | `max without (address, appname, usename, pid) (   label_replace(pg_repl_replay_diff{appname!~'walreceiver\|pg_receivewal'}, "ins", "$1", "appname", "(.+)") )` |
+| `pg:cls:lag_bytes` | `max by (job, cls) (pg:ins:lag_bytes)` |
+| `pg:env:lag_bytes` | `max by (job) (pg:cls:lag_bytes)` |
+| `pg:ins:lag_seconds` | `max without (address, appname, usename, pid) (   label_replace(pg_repl_replay_lag{appname!~'walreceiver\|pg_receivewal'}, "ins", "$1", "appname", "(.+)") )` |
+| `pg:cls:lag_seconds` | `max by (job, cls) (pg:ins:lag_seconds)` |
+| `pg:env:lag_seconds` | `max by (job) (pg:cls:lag_seconds)` |
+| `pg:cls:slot_count` | `count by (job, cls) (pg_slot_active > bool 0)` |
+| `pg:ins:slot_retained_bytes` | `max without (slot_name) (pg_slot_retained_bytes)` |
+| `pg:cls:slot_retained_bytes` | `max by (job, cls) (pg:ins:slot_retained_bytes)` |
+| `pg:db:xact_commit_rate1m` | `rate(pg_db_xact_commit[1m])` |
+| `pg:ins:xact_commit_rate1m` | `sum without(datname) (pg:db:xact_commit_rate1m)` |
+| `pg:cls:xact_commit_rate1m` | `sum by (job, cls) (pg:ins:xact_commit_rate1m)` |
+| `pg:env:xact_commit_rate1m` | `sum by (job) (pg:cls:xact_commit_rate1m)` |
+| `pg:db:xact_commit_rate5m` | `rate(pg_db_xact_commit[5m])` |
+| `pg:ins:xact_commit_rate5m` | `sum without(datname) (pg:db:xact_commit_rate5m)` |
+| `pg:cls:xact_commit_rate5m` | `sum by (job, cls) (pg:ins:xact_commit_rate5m)` |
+| `pg:env:xact_commit_rate5m` | `sum by (job) (pg:cls:xact_commit_rate5m)` |
+| `pg:db:xact_commit_rate15m` | `rate(pg_db_xact_commit[15m])` |
+| `pg:ins:xact_commit_rate15m` | `sum without(datname) (pg:db:xact_commit_rate15m)` |
+| `pg:cls:xact_commit_rate15m` | `sum by (job, cls) (pg:ins:xact_commit_rate15m)` |
+| `pg:env:xact_commit_rate15m` | `sum by (job) (pg:cls:xact_commit_rate15m)` |
+| `pg:db:xact_rollback_rate1m` | `rate(pg_db_xact_rollback[1m])` |
+| `pg:ins:xact_rollback_rate1m` | `sum without(datname) (pg:db:xact_rollback_rate1m)` |
+| `pg:cls:xact_rollback_rate1m` | `sum by (job, cls) (pg:ins:xact_rollback_rate1m)` |
+| `pg:env:xact_rollback_rate1m` | `sum by (job) (pg:cls:xact_rollback_rate1m)` |
+| `pg:db:xact_rollback_rate5m` | `rate(pg_db_xact_rollback[5m])` |
+| `pg:ins:xact_rollback_rate5m` | `sum without(datname) (pg:db:xact_rollback_rate5m)` |
+| `pg:cls:xact_rollback_rate5m` | `sum by (job, cls) (pg:ins:xact_rollback_rate5m)` |
+| `pg:env:xact_rollback_rate5m` | `sum by (job) (pg:cls:xact_rollback_rate5m)` |
+| `pg:db:xact_rollback_rate15m` | `rate(pg_db_xact_rollback[15m])` |
+| `pg:ins:xact_rollback_rate15m` | `sum without(datname) (pg:db:xact_rollback_rate15m)` |
+| `pg:cls:xact_rollback_rate15m` | `sum by (job, cls) (pg:ins:xact_rollback_rate15m)` |
+| `pg:env:xact_rollback_rate15m` | `sum by (job) (pg:cls:xact_rollback_rate15m)` |
+| `pg:db:xact_total_rate1m` | `rate(pg_db_xact_total[1m])` |
+| `pg:ins:xact_total_rate1m` | `sum without(datname) (pg:db:xact_total_rate1m)` |
+| `pg:cls:xact_total_rate1m` | `sum by (job, cls) (pg:ins:xact_total_rate1m)` |
+| `pg:env:xact_total_rate1m` | `sum by (job) (pg:cls:xact_total_rate1m)` |
+| `pg:db:xact_total_rate5m` | `rate(pg_db_xact_total[5m])` |
+| `pg:ins:xact_total_rate5m` | `sum without(datname) (pg:db:xact_total_rate5m)` |
+| `pg:cls:xact_total_rate5m` | `sum by (job, cls) (pg:ins:xact_total_rate5m)` |
+| `pg:env:xact_total_rate5m` | `sum by (job) (pg:cls:xact_total_rate5m)` |
+| `pg:db:xact_total_rate15m` | `rate(pg_db_xact_total[15m])` |
+| `pg:ins:xact_total_rate15m` | `sum without(datname) (pg:db:xact_total_rate15m)` |
+| `pg:cls:xact_total_rate15m` | `sum by (job, cls) (pg:ins:xact_total_rate15m)` |
+| `pg:env:xact_total_rate15m` | `sum by (job) (pg:cls:xact_total_rate15m)` |
+| `pg:db:xact_total_sigma15m` | `stddev_over_time(pg:db:xact_total_rate1m[15m])` |
+| `pg:ins:xact_total_sigma15m` | `stddev_over_time(pg:ins:xact_total_rate1m[15m])` |
+| `pg:cls:xact_total_sigma15m` | `stddev_over_time(pg:cls:xact_total_rate1m[15m])` |
+| `pg:env:xact_total_sigma15m` | `stddev_over_time(pg:env:xact_total_rate1m[15m])` |
+| `pg:ins:locks` | `sum without (datname) (pg_lock_count)` |
+| `pg:cls:locks` | `sum by (job, cls, mode) (pg:ins:locks)` |
+| `pg:db:lock_count` | `sum without (mode) (pg_lock_count)` |
+| `pg:ins:lock_count` | `sum without(mode) (pg:ins:locks)` |
+| `pg:cls:lock_count` | `sum without(mode) (pg:cls:locks)` |
+| `pg:db:rlock_count` | `sum without (mode) (pg_lock_count{mode="AccessShareLock"})` |
+| `pg:ins:rlock_count` | `sum without(datname) (pg:db:rlock_count)` |
+| `pg:cls:rlock_count` | `sum by (job, cls) (pg:ins:rlock_count)` |
+| `pg:db:wlock_count` | `sum without (mode) (pg_lock_count{mode=~"RowShareLock\|RowExclusiveLock"})` |
+| `pg:ins:wlock_count` | `sum without(datname) (pg:db:wlock_count)` |
+| `pg:cls:wlock_count` | `sum by (job, cls) (pg:ins:wlock)` |
+| `pg:db:xlock_count` | `sum without (mode) (pg_lock_count{mode!~"AccessShareLock\|RowShareLock\|RowExclusiveLock"})` |
+| `pg:ins:xlock_count` | `sum without(datname) (pg:db:xlock_count)` |
+| `pg:cls:xlock_count` | `sum by (job, cls) (pg:ins:xlock_count)` |
+| `pg:db:session_time_rate1m` | `rate(pg_db_session_time[1m])` |
+| `pg:ins:session_time_rate1m` | `sum without(datname) (pg:db:session_time_rate1m)` |
+| `pg:cls:session_time_rate1m` | `sum by (job, cls) (pg:ins:session_time_rate1m)` |
+| `pg:env:session_time_rate1m` | `sum by (job) (pg:cls:session_time_rate1m)` |
+| `pg:db:ixact_time_rate1m` | `rate(pg_db_ixact_time[1m])` |
+| `pg:ins:ixact_time_rate1m` | `sum without(datname) (pg:db:ixact_time_rate1m)` |
+| `pg:cls:ixact_time_rate1m` | `sum by (job, cls) (pg:ins:ixact_time_rate1m)` |
+| `pg:env:ixact_time_rate1m` | `sum by (job) (pg:cls:ixact_time_rate1m)` |
+| `pg:db:ixact_time_rate5m` | `rate(pg_db_ixact_time[5m])` |
+| `pg:ins:ixact_time_rate5m` | `sum without(datname) (pg:db:ixact_time_rate5m)` |
+| `pg:cls:ixact_time_rate5m` | `sum by (job, cls) (pg:ins:ixact_time_rate5m)` |
+| `pg:env:ixact_time_rate5m` | `sum by (job) (pg:cls:ixact_time_rate5m)` |
+| `pg:db:ixact_time_rate15m` | `rate(pg_db_ixact_time[15m])` |
+| `pg:ins:ixact_time_rate15m` | `sum without(datname) (pg:db:ixact_time_rate15m)` |
+| `pg:cls:ixact_time_rate15m` | `sum by (job, cls) (pg:ins:ixact_time_rate15m)` |
+| `pg:env:ixact_time_rate15m` | `sum by (job) (pg:cls:ixact_time_rate15m)` |
+| `pg:db:active_time_rate1m` | `rate(pg_db_active_time[1m])` |
+| `pg:ins:active_time_rate1m` | `sum without(datname) (pg:db:active_time_rate1m)` |
+| `pg:cls:active_time_rate1m` | `sum by (job, cls) (pg:ins:active_time_rate1m)` |
+| `pg:env:active_time_rate1m` | `sum by (job) (pg:cls:active_time_rate1m)` |
+| `pg:db:active_time_rate5m` | `rate(pg_db_active_time[5m])` |
+| `pg:ins:active_time_rate5m` | `sum without(datname) (pg:db:active_time_rate5m)` |
+| `pg:cls:active_time_rate5m` | `sum by (job, cls) (pg:ins:active_time_rate5m)` |
+| `pg:env:active_time_rate5m` | `sum by (job) (pg:cls:active_time_rate5m)` |
+| `pg:db:active_time_rate15m` | `rate(pg_db_active_time[15m])` |
+| `pg:ins:active_time_rate15m` | `sum without(datname) (pg:db:active_time_rate15m)` |
+| `pg:cls:active_time_rate15m` | `sum by (job, cls) (pg:ins:active_time_rate15m)` |
+| `pg:env:active_time_rate15m` | `sum by (job) (pg:cls:active_time_rate15m)` |
+| `pg:ins:load1` | `pg:ins:active_time_rate1m / pg:ins:cpu_count or (0 * pg_up - 1)` |
+| `pg:ins:load5` | `pg:ins:active_time_rate5m / pg:ins:cpu_count or (0 * pg_up - 1)` |
+| `pg:ins:load15` | `pg:ins:active_time_rate15m / pg:ins:cpu_count or (0 * pg_up - 1)` |
+| `pg:cls:load1` | `pg:cls:active_time_rate1m / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pg:cls:load5` | `pg:cls:active_time_rate5m / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pg:cls:load15` | `pg:cls:active_time_rate15m / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pg:db:ixact_ratio_1m` | `pg:db:ixact_time_rate1m / (pg:db:active_time_rate1m + pg:db:ixact_time_rate1m)` |
+| `pg:ins:ixact_ratio_1m` | `pg:ins:ixact_time_rate1m / (pg:ins:active_time_rate1m + pg:ins:ixact_time_rate1m)` |
+| `pg:cls:ixact_ratio_1m` | `pg:cls:ixact_time_rate1m / (pg:cls:active_time_rate1m + pg:cls:ixact_time_rate1m)` |
+| `pg:env:ixact_ratio_1m` | `pg:env:ixact_time_rate1m / (pg:env:active_time_rate1m + pg:env:ixact_time_rate1m)` |
+| `pg:db:ixact_ratio_5m` | `pg:db:ixact_time_rate5m / (pg:db:active_time_rate5m + pg:db:ixact_time_rate5m)` |
+| `pg:ins:ixact_ratio_5m` | `pg:ins:ixact_time_rate5m / (pg:ins:active_time_rate5m + pg:ins:ixact_time_rate5m)` |
+| `pg:cls:ixact_ratio_5m` | `pg:cls:ixact_time_rate5m / (pg:cls:active_time_rate5m + pg:cls:ixact_time_rate5m)` |
+| `pg:env:ixact_ratio_5m` | `pg:env:ixact_time_rate5m / (pg:env:active_time_rate5m + pg:env:ixact_time_rate5m)` |
+| `pg:db:ixact_ratio_15m` | `pg:db:ixact_time_rate15m / (pg:db:active_time_rate15m + pg:db:ixact_time_rate15m)` |
+| `pg:ins:ixact_ratio_15m` | `pg:ins:ixact_time_rate15m / (pg:ins:active_time_rate15m + pg:ins:ixact_time_rate15m)` |
+| `pg:cls:ixact_ratio_15m` | `pg:cls:ixact_time_rate15m / (pg:cls:active_time_rate15m + pg:cls:ixact_time_rate15m)` |
+| `pg:env:ixact_ratio_15m` | `pg:env:ixact_time_rate15m / (pg:env:active_time_rate15m + pg:env:ixact_time_rate15m)` |
+| `pg:db:num_backends` | `pg_db_numbackends` |
+| `pg:ins:num_backends` | `sum without (datname) (pg:db:num_backends)` |
+| `pg:cls:num_backends` | `sum by (job, cls) (pg:ins:num_backends)` |
+| `pg:db:active_backends` | `sum without(state) (pg_activity_count{state="active"})` |
+| `pg:ins:active_backends` | `sum without(datname) (pg:db:active_backends)` |
+| `pg:cls:active_backends` | `sum by (job, cls) (pg:ins:active_backends)` |
+| `pg:env:active_backends` | `sum by (job) (pg:cls:active_backends)` |
+| `pg:db:ixact_backends` | `sum without(state) (pg_activity_count{state=~"idle in.*"})` |
+| `pg:ins:ixact_backends` | `sum without(datname) (pg:db:ixact_backends)` |
+| `pg:cls:ixact_backends` | `sum by (job, cls) (pg:ins:ixact_backends)` |
+| `pg:env:ixact_backends` | `sum by (job) (pg:cls:ixact_backends)` |
+| `pg:ins:conn_limit` | `pg_setting_max_connections` |
+| `pg:db:conn_limit` | `(pg_db_conn_limit != -1 ) or (0 * pg_db_conn_limit + on(cls, ins) group_left pg_setting_max_connections)` |
+| `pg:ins:conn_usage` | `pg:ins:num_backends / pg:ins:conn_limit` |
+| `pg:db:conn_usage` | `pg:db:num_backends / pg:db:conn_limit` |
+| `pg:db:age` | `pg_db_age / 2147483647` |
+| `pg:ins:age` | `max without (datname) (pg:db:age{datname!~"template[0-9]"})` |
+| `pg:cls:age` | `max by (job, cls) (pg:ins:age)` |
+| `pg:env:age` | `max by (job) (pg:cls:age)` |
+| `pg:db:age_deriv1h` | `deriv(pg_db_age[1h])` |
+| `pg:db:age_exhaust` | `(2147483648 - pg_db_age) / pg:db:age_deriv1h` |
+| `pg:db:tup_fetched_rate1m` | `rate(pg_db_tup_fetched[1m])` |
+| `pg:ins:tup_fetched_rate1m` | `sum without(datname) (pg:db:tup_fetched_rate1m)` |
+| `pg:cls:tup_fetched_rate1m` | `sum by (job, cls) (pg:ins:tup_fetched_rate1m)` |
+| `pg:env:tup_fetched_rate1m` | `sum by (job) (pg:cls:tup_fetched_rate1m)` |
+| `pg:db:tup_returned_rate1m` | `rate(pg_db_tup_returned[1m])` |
+| `pg:ins:tup_returned_rate1m` | `sum without(datname) (pg:db:tup_returned_rate1m)` |
+| `pg:cls:tup_returned_rate1m` | `sum by (job, cls) (pg:ins:tup_returned_rate1m)` |
+| `pg:env:tup_returned_rate1m` | `sum by (job) (pg:cls:tup_returned_rate1m)` |
+| `pg:db:tup_inserted_rate1m` | `rate(pg_db_tup_inserted[1m])` |
+| `pg:ins:tup_inserted_rate1m` | `sum without(datname) (pg:db:tup_inserted_rate1m)` |
+| `pg:cls:tup_inserted_rate1m` | `sum by (job, cls) (pg:ins:tup_inserted_rate1m)` |
+| `pg:env:tup_inserted_rate1m` | `sum by (job) (pg:cls:tup_inserted_rate1m)` |
+| `pg:db:tup_updated_rate1m` | `pg:db:tup_updated_rate1m` |
+| `pg:ins:tup_updated_rate1m` | `sum without(datname) (pg:db:tup_updated_rate1m)` |
+| `pg:cls:tup_updated_rate1m` | `sum by (job, cls) (pg:ins:tup_updated_rate1m)` |
+| `pg:env:tup_updated_rate1m` | `sum by (job) (pg:cls:tup_updated_rate1m)` |
+| `pg:db:tup_deleted_rate1m` | `rate(pg_db_tup_deleted[1m])` |
+| `pg:ins:tup_deleted_rate1m` | `sum without(datname) (pg:db:tup_deleted_rate1m)` |
+| `pg:cls:tup_deleted_rate1m` | `sum by (job, cls) (pg:ins:tup_deleted_rate1m)` |
+| `pg:env:tup_deleted_rate1m` | `sum by (job) (pg:cls:tup_deleted_rate1m)` |
+| `pg:db:tup_modified_rate1m` | `rate(pg_db_tup_modified[1m])` |
+| `pg:ins:tup_modified_rate1m` | `sum without(datname) (pg:db:tup_modified_rate1m)` |
+| `pg:cls:tup_modified_rate1m` | `sum by (job, cls) (pg:ins:tup_modified_rate1m)` |
+| `pg:env:tup_modified_rate1m` | `sum by (job) (pg:cls:tup_modified_rate1m)` |
+| `pg:db:temp_bytes_rate1m` | `rate(pg_db_temp_bytes[1m])` |
+| `pg:ins:temp_bytes` | `sum without (datname) (pg:db:temp_bytes)` |
+| `pg:cls:temp_bytes` | `sum by (job, cls) (pg:ins:temp_bytes)` |
+| `pg:db:temp_files_1m` | `increase(pg_db_temp_files[1m])` |
+| `pg:ins:temp_files_1m` | `sum without(datname) (pg:db:temp_files)` |
+| `pg:cls:temp_files_1m` | `sum by (job, cls) (pg:ins:temp_files)` |
+| `pg:db:db_size` | `pg_size_bytes{datname!~"wal\|log"}` |
+| `pg:ins:db_size` | `sum without (datname) (pg:db:db_size)` |
+| `pg:cls:db_size` | `sum by (job, cls) (pg:ins:db_size)` |
+| `pg:ins:wal_size` | `sum without (datname) (pg_size_bytes{datname="wal"})` |
+| `pg:cls:wal_size` | `sum by (job, cls) (pg:ins:wal_size)` |
+| `pg:ins:log_size` | `sum without (datname) (pg_size_bytes{datname="log"})` |
+| `pg:cls:log_size` | `sum by (job, cls) (pg:ins:log_size)` |
+| `pg:ins:file_size` | `sum without(datname) (pg_size_bytes)` |
+| `pg:cls:file_size` | `sum by (job, cls) (pg:ins:file_size)` |
+| `pg:db:blks_read_1m` | `increase(pg_db_blks_read[1m])` |
+| `pg:db:blks_hit_1m` | `increase(pg_db_blks_hit[1m])` |
+| `pg:db:blks_access_1m` | `increase(pg_db_blks_access[1m])` |
+| `pg:db:blks_hit_ratio1m` | `pg:db:blks_hit_1m / pg:db:blks_access_1m` |
+| `pg:ins:blks_hit_ratio1m` | `sum without (datname) (pg:db:blks_hit_1m) / sum without (datname) (pg:db:blks_access_1m)` |
+| `pg:db:blk_read_time_seconds_rate1m` | `rate(pg_db_blk_read_time[1m])` |
+| `pg:db:blk_write_time_seconds_rate1m` | `rate(pg_db_blk_write_time[1m])` |
+| `pg:db:blk_io_time_seconds_rate1m` | `pg:db:blk_read_time_seconds_rate1m + pg:db:blk_write_time_seconds_rate1m` |
+| `pg:ins:buf_flush_checkpoint_rate1m` | `rate(pg_checkpointer_buffers_written[1m]) or ignoring(__name__) rate(pg_bgwriter_buffers_checkpoint[1m])` |
+| `pg:cls:buf_flush_checkpoint_rate1m` | `sum by (job, cls) (pg:ins:buf_flush_checkpoint_rate1m)` |
+| `pg:ins:buf_flush_backend_rate1m` | `rate(pg_bgwriter_buffers_backend[1m])` |
+| `pg:cls:buf_flush_backend_rate1m` | `sum by (job, cls) (pg:ins:buf_flush_backend_rate1m)` |
+| `pg:ins:buf_clean_rate1m` | `rate(pg_bgwriter_buffers_clean[1m])` |
+| `pg:cls:buf_clean_rate1m` | `sum by (job, cls) (pg:ins:buf_clean_rate1m)` |
+| `pg:ins:buf_write_rate1m` | `pg:ins:buf_flush_backend + pg:ins:buf_flush_checkpoint + pg:ins:buf_clean_rate1m` |
+| `pg:cls:buf_write_rate1m` | `sum by (job, cls) (pg:ins:buf_flush_rate1m)` |
+| `pg:ins:buf_alloc_rate1m` | `rate(pg_bgwriter_buffers_alloc[1m])` |
+| `pg:cls:buf_alloc_rate1m` | `sum by (job, cls) (pg:ins:buf_alloc_rate1m)` |
+| `pg:ins:ckpt_timed_1m` | `increase(pg_checkpointer_timed[1m])` |
+| `pg:ins:ckpt_req_1m` | `increase(pg_checkpointer_req[1m])` |
+| `pg:ins:ckpt_1h` | `increase(pg_checkpointer_timed[1h]) + increase(pg_checkpointer_req[1h])` |
+| `pg:ins:lsn_rate1m` | `rate(pg_lsn[1m])` |
+| `pg:cls:lsn_rate1m` | `sum by (job, cls) (pg:ins:lsn_rate1m * on(ins) group_left() (1 - pg_in_recovery))` |
+| `pg:env:lsn_rate1m` | `sum by (job) (pg:cls:lsn_rate1m)` |
+| `pg:table:scan_rate1m` | `rate(pg_table_tbl_scan[1m])` |
+| `pg:query:call_rate1m` | `rate(pg_query_calls[1m])` |
+| `pg:query:rt_1m` | `rate(pg_query_exec_time[1m]) / pg:query:call_rate1m` |
+{.full-width}
+
+</details>
+
+<details>
+<summary>PgBouncer: 169 recording rules</summary>
+
+| Recorded Metric | Expression |
+|:---|:---|
+| `pgbouncer:ins:pools` | `sum without (list) (pgbouncer_list_items{list="pools"})` |
+| `pgbouncer:ins:pool_databases` | `sum without (list) (pgbouncer_list_items{list="databases"})` |
+| `pgbouncer:ins:pool_users` | `sum without (list) (pgbouncer_list_items{list="users"})` |
+| `pgbouncer:ins:login_clients` | `sum without (list) (pgbouncer_list_items{list="login_clients"})` |
+| `pgbouncer:ins:free_clients` | `sum without (list) (pgbouncer_list_items{list="free_clients"})` |
+| `pgbouncer:ins:used_clients` | `sum without (list) (pgbouncer_list_items{list="used_clients"})` |
+| `pgbouncer:ins:free_servers` | `sum without (list) (pgbouncer_list_items{list="free_servers"})` |
+| `pgbouncer:db:pool_max_conn` | `pgbouncer_database_pool_size{datname!="pgbouncer"} + pgbouncer_database_reserve_pool{datname!="pgbouncer"}` |
+| `pgbouncer:db:pool_size` | `pgbouncer_database_pool_size{datname!="pgbouncer"}` |
+| `pgbouncer:db:pool_reserve_size` | `pgbouncer_database_reserve_pool{datname!="pgbouncer"}` |
+| `pgbouncer:db:pool_current_conn` | `pgbouncer_database_current_connections{datname!="pgbouncer"}` |
+| `pgbouncer:db:pool_paused` | `pgbouncer_database_paused{datname!="pgbouncer"}` |
+| `pgbouncer:db:pool_disabled` | `pgbouncer_database_disabled{datname!="pgbouncer"}` |
+| `pgbouncer:db:conn_usage` | `pgbouncer:db:pool_current_conn / pgbouncer:db:pool_size` |
+| `pgbouncer:db:conn_usage_reserve` | `pgbouncer:db:pool_current_conn / pgbouncer:db:pool_max_conn` |
+| `pgbouncer:pool:maxwait` | `pgbouncer_pool_maxwait{datname!="pgbouncer"} + pgbouncer_pool_maxwait_us{datname!="pgbouncer"} / 1000000` |
+| `pgbouncer:db:maxwait` | `max without(user, pool_mode) (pgbouncer:pool:maxwait)` |
+| `pgbouncer:ins:maxwait` | `max without(datname) (pgbouncer:db:maxwait)` |
+| `pgbouncer:cls:maxwait` | `max by (job, cls) (pgbouncer:ins:maxwait)` |
+| `pgbouncer:env:maxwait` | `max by (job) (pgbouncer:cls:maxwait)` |
+| `pgbouncer:pool:active_servers` | `pgbouncer_pool_active_servers{datname!="pgbouncer"}` |
+| `pgbouncer:db:active_servers` | `sum without(user, pool_mode) (pgbouncer:pool:active_servers)` |
+| `pgbouncer:ins:active_servers` | `sum without(datname) (pgbouncer:db:active_servers)` |
+| `pgbouncer:cls:active_servers` | `sum by (job, cls) (pgbouncer:ins:active_servers)` |
+| `pgbouncer:env:active_servers` | `sum by (job) (pgbouncer:cls:active_servers)` |
+| `pgbouncer:pool:idle_servers` | `pgbouncer_pool_idle_servers{datname!="pgbouncer"}` |
+| `pgbouncer:db:idle_servers` | `max without(user, pool_mode) (pgbouncer:pool:idle_servers)` |
+| `pgbouncer:ins:idle_servers` | `sum without(datname) (pgbouncer:db:idle_servers)` |
+| `pgbouncer:cls:idle_servers` | `sum by (job, cls) (pgbouncer:ins:idle_servers)` |
+| `pgbouncer:env:idle_servers` | `sum by (job) (pgbouncer:cls:idle_servers)` |
+| `pgbouncer:pool:used_servers` | `pgbouncer_pool_used_servers{datname!="pgbouncer"}` |
+| `pgbouncer:db:used_servers` | `max without(user, pool_mode) (pgbouncer:pool:used_servers)` |
+| `pgbouncer:ins:used_servers` | `sum without(datname) (pgbouncer:db:used_servers)` |
+| `pgbouncer:cls:used_servers` | `sum by (job, cls) (pgbouncer:ins:used_servers)` |
+| `pgbouncer:env:used_servers` | `sum by (job) (pgbouncer:cls:used_servers)` |
+| `pgbouncer:pool:tested_servers` | `pgbouncer_pool_tested_servers{datname!="pgbouncer"}` |
+| `pgbouncer:db:tested_servers` | `max without(user, pool_mode) (pgbouncer:pool:tested_servers)` |
+| `pgbouncer:ins:tested_servers` | `sum without(datname) (pgbouncer:db:tested_servers)` |
+| `pgbouncer:cls:tested_servers` | `sum by (job, cls) (pgbouncer:ins:tested_servers)` |
+| `pgbouncer:env:tested_servers` | `sum by (job) (pgbouncer:cls:tested_servers)` |
+| `pgbouncer:pool:login_servers` | `pgbouncer_pool_login_servers{datname!="pgbouncer"}` |
+| `pgbouncer:db:login_servers` | `max without(user, pool_mode) (pgbouncer:pool:login_servers)` |
+| `pgbouncer:ins:login_servers` | `sum without(datname) (pgbouncer:db:login_servers)` |
+| `pgbouncer:cls:login_servers` | `sum by (job, cls) (pgbouncer:ins:login_servers)` |
+| `pgbouncer:env:login_servers` | `sum by (job) (pgbouncer:cls:login_servers)` |
+| `pgbouncer:pool:active_clients` | `pgbouncer_pool_active_clients{datname!="pgbouncer"}` |
+| `pgbouncer:db:active_clients` | `max without(user, pool_mode) (pgbouncer:pool:active_clients)` |
+| `pgbouncer:ins:active_clients` | `sum without(datname) (pgbouncer:db:active_clients)` |
+| `pgbouncer:cls:active_clients` | `sum by (job, cls) (pgbouncer:ins:active_clients)` |
+| `pgbouncer:env:active_clients` | `sum by (job) (pgbouncer:cls:active_clients)` |
+| `pgbouncer:pool:waiting_clients` | `pgbouncer_pool_waiting_clients{datname!="pgbouncer"}` |
+| `pgbouncer:db:waiting_clients` | `max without(user, pool_mode) (pgbouncer:pool:waiting_clients)` |
+| `pgbouncer:ins:waiting_clients` | `sum without(datname) (pgbouncer:db:waiting_clients)` |
+| `pgbouncer:cls:waiting_clients` | `sum by (job, cls) (pgbouncer:ins:waiting_clients)` |
+| `pgbouncer:env:waiting_clients` | `sum by (job) (pgbouncer:cls:waiting_clients)` |
+| `pgbouncer:db:tx_rate1m` | `rate(pgbouncer_stat_total_sent{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:tx_rate1m` | `sum without (datname) (pgbouncer:db:tx_rate1m)` |
+| `pgbouncer:cls:tx_rate1m` | `sum by (job, cls) (pgbouncer:ins:tx_rate1m)` |
+| `pgbouncer:env:tx_rate1m` | `sum by (job) (pgbouncer:cls:tx_rate1m)` |
+| `pgbouncer:db:rx_rate1m` | `rate(pgbouncer_stat_total_received{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:rx_rate1m` | `sum without (datname) (pgbouncer:db:rx_rate1m)` |
+| `pgbouncer:cls:rx_rate1m` | `sum by (job, cls) (pgbouncer:ins:rx_rate1m)` |
+| `pgbouncer:env:rx_rate1m` | `sum by (job) (pgbouncer:cls:rx_rate1m)` |
+| `pgbouncer:db:xact_rate1m` | `rate(pgbouncer_stat_total_xact_count{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:xact_rate1m` | `sum without(datname) (pgbouncer:db:xact_rate1m)` |
+| `pgbouncer:cls:xact_rate1m` | `sum by (job, cls) (pgbouncer:ins:xact_rate1m)` |
+| `pgbouncer:env:xact_rate1m` | `sum by (job) (pgbouncer:cls:xact_rate1m)` |
+| `pgbouncer:db:xact_rate5m` | `rate(pgbouncer_stat_total_xact_count{datname!="pgbouncer"}[5m])` |
+| `pgbouncer:ins:xact_rate5m` | `sum without(datname) (pgbouncer:db:xact_rate5m)` |
+| `pgbouncer:cls:xact_rate5m` | `sum by (job, cls) (pgbouncer:ins:xact_rate5m)` |
+| `pgbouncer:env:xact_rate5m` | `sum by (job) (pgbouncer:cls:xact_rate5m)` |
+| `pgbouncer:db:xact_rate15m` | `rate(pgbouncer_stat_total_xact_count{datname!="pgbouncer"}[15m])` |
+| `pgbouncer:ins:xact_rate15m` | `sum without(datname) (pgbouncer:db:xact_rate15m)` |
+| `pgbouncer:cls:xact_rate15m` | `sum by (job, cls) (pgbouncer:ins:xact_rate15m)` |
+| `pgbouncer:env:xact_rate15m` | `sum by (job) (pgbouncer:cls:xact_rate15m)` |
+| `pgbouncer:db:xact_time_rate1m` | `rate(pgbouncer_stat_total_xact_time{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:xact_time_rate1m` | `sum without(datname) (pgbouncer:db:xact_time_rate1m)` |
+| `pgbouncer:cls:xact_time_rate1m` | `sum by (job, cls) (pgbouncer:ins:xact_time_rate1m)` |
+| `pgbouncer:env:xact_time_rate1m` | `sum by (job) (pgbouncer:cls:xact_time_rate1m)` |
+| `pgbouncer:db:xact_time_rate5m` | `rate(pgbouncer_stat_total_xact_time{datname!="pgbouncer"}[5m])` |
+| `pgbouncer:ins:xact_time_rate5m` | `sum without(datname) (pgbouncer:db:xact_time_rate5m)` |
+| `pgbouncer:cls:xact_time_rate5m` | `sum by (job, cls) (pgbouncer:ins:xact_time_rate5m)` |
+| `pgbouncer:env:xact_time_rate5m` | `sum by (job) (pgbouncer:cls:xact_time_rate5m)` |
+| `pgbouncer:db:xact_time_rate15m` | `rate(pgbouncer_stat_total_xact_time{datname!="pgbouncer"}[15m])` |
+| `pgbouncer:ins:xact_time_rate15m` | `sum without(datname) (pgbouncer:db:xact_time_rate15m)` |
+| `pgbouncer:cls:xact_time_rate15m` | `sum by (job, cls) (pgbouncer:ins:xact_time_rate15m)` |
+| `pgbouncer:env:xact_time_rate15m` | `sum by (job) (pgbouncer:cls:xact_time_rate15m)` |
+| `pgbouncer:db:xact_rt_1m` | `pgbouncer:db:xact_time_rate1m / pgbouncer:db:xact_rate1m` |
+| `pgbouncer:ins:xact_rt_1m` | `pgbouncer:ins:xact_time_rate1m / pgbouncer:ins:xact_rate1m` |
+| `pgbouncer:cls:xact_rt_1m` | `pgbouncer:cls:xact_time_rate1m / pgbouncer:cls:xact_rate1m` |
+| `pgbouncer:env:xact_rt_1m` | `pgbouncer:env:xact_time_rate1m / pgbouncer:env:xact_rate1m` |
+| `pgbouncer:db:xact_rt_5m` | `pgbouncer:db:xact_time_rate5m / pgbouncer:db:xact_rate5m` |
+| `pgbouncer:ins:xact_rt_5m` | `pgbouncer:ins:xact_time_rate5m / pgbouncer:ins:xact_rate5m` |
+| `pgbouncer:cls:xact_rt_5m` | `pgbouncer:cls:xact_time_rate5m / pgbouncer:cls:xact_rate5m` |
+| `pgbouncer:env:xact_rt_5m` | `pgbouncer:env:xact_time_rate5m / pgbouncer:env:xact_rate5m` |
+| `pgbouncer:db:xact_rt_15m` | `pgbouncer:db:xact_time_rate15m / pgbouncer:db:xact_rate15m` |
+| `pgbouncer:ins:xact_rt_15m` | `pgbouncer:ins:xact_time_rate15m / pgbouncer:ins:xact_rate15m` |
+| `pgbouncer:cls:xact_rt_15m` | `pgbouncer:cls:xact_time_rate15m / pgbouncer:cls:xact_rate15m` |
+| `pgbouncer:env:xact_rt_15m` | `pgbouncer:env:xact_time_rate15m / pgbouncer:env:xact_rate15m` |
+| `pgbouncer:db:query_rate1m` | `rate(pgbouncer_stat_total_query_count{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:query_rate1m` | `sum without(datname) (pgbouncer:db:query_rate1m)` |
+| `pgbouncer:cls:query_rate1m` | `sum by (job, cls) (pgbouncer:ins:query_rate1m)` |
+| `pgbouncer:env:query_rate1m` | `sum by (job) (pgbouncer:cls:query_rate1m)` |
+| `pgbouncer:db:query_rate5m` | `rate(pgbouncer_stat_total_query_count{datname!="pgbouncer"}[5m])` |
+| `pgbouncer:ins:query_rate5m` | `sum without(datname) (pgbouncer:db:query_rate5m)` |
+| `pgbouncer:cls:query_rate5m` | `sum by (job, cls) (pgbouncer:ins:query_rate5m)` |
+| `pgbouncer:env:query_rate5m` | `sum by (job) (pgbouncer:cls:query_rate5m)` |
+| `pgbouncer:db:query_rate15m` | `rate(pgbouncer_stat_total_query_count{datname!="pgbouncer"}[15m])` |
+| `pgbouncer:ins:query_rate15m` | `sum without(datname) (pgbouncer:db:query_rate15m)` |
+| `pgbouncer:cls:query_rate15m` | `sum by (job, cls) (pgbouncer:ins:query_rate15m)` |
+| `pgbouncer:env:query_rate15m` | `sum by (job) (pgbouncer:cls:query_rate15m)` |
+| `pgbouncer:db:query_time_rate1m` | `rate(pgbouncer_stat_total_query_time{datname!="pgbouncer"}[1m])` |
+| `pgbouncer:ins:query_time_rate1m` | `sum without(datname) (pgbouncer:db:query_time_rate1m)` |
+| `pgbouncer:cls:query_time_rate1m` | `sum by (job, cls) (pgbouncer:ins:query_time_rate1m)` |
+| `pgbouncer:env:query_time_rate1m` | `sum by (job) (pgbouncer:cls:query_time_rate1m)` |
+| `pgbouncer:db:query_time_rate5m` | `rate(pgbouncer_stat_total_query_time{datname!="pgbouncer"}[5m])` |
+| `pgbouncer:ins:query_time_rate5m` | `sum without(datname) (pgbouncer:db:query_time_rate5m)` |
+| `pgbouncer:cls:query_time_rate5m` | `sum by (job, cls) (pgbouncer:ins:query_time_rate5m)` |
+| `pgbouncer:env:query_time_rate5m` | `sum by (job) (pgbouncer:cls:query_time_rate5m)` |
+| `pgbouncer:db:query_time_rate15m` | `rate(pgbouncer_stat_total_query_time{datname!="pgbouncer"}[15m])` |
+| `pgbouncer:ins:query_time_rate15m` | `sum without(datname) (pgbouncer:db:query_time_rate15m)` |
+| `pgbouncer:cls:query_time_rate15m` | `sum by (job, cls) (pgbouncer:ins:query_time_rate15m)` |
+| `pgbouncer:env:query_time_rate15m` | `sum by (job) (pgbouncer:cls:query_time_rate15m)` |
+| `pgbouncer:db:query_rt_1m` | `pgbouncer:db:query_time_rate1m / pgbouncer:db:query_rate1m` |
+| `pgbouncer:ins:query_rt_1m` | `pgbouncer:ins:query_time_rate1m / pgbouncer:ins:query_rate1m` |
+| `pgbouncer:cls:query_rt_1m` | `pgbouncer:cls:query_time_rate1m / pgbouncer:cls:query_rate1m` |
+| `pgbouncer:env:query_rt_1m` | `pgbouncer:env:query_time_rate1m / pgbouncer:env:query_rate1m` |
+| `pgbouncer:db:query_rt_5m` | `pgbouncer:db:query_time_rate5m / pgbouncer:db:query_rate5m` |
+| `pgbouncer:ins:query_rt_5m` | `pgbouncer:ins:query_time_rate5m / pgbouncer:ins:query_rate5m` |
+| `pgbouncer:cls:query_rt_5m` | `pgbouncer:cls:query_time_rate5m / pgbouncer:cls:query_rate5m` |
+| `pgbouncer:env:query_rt_5m` | `pgbouncer:env:query_time_rate5m / pgbouncer:env:query_rate5m` |
+| `pgbouncer:db:query_rt_15m` | `pgbouncer:db:query_time_rate15m / pgbouncer:db:query_rate15m` |
+| `pgbouncer:ins:query_rt_15m` | `pgbouncer:ins:query_time_rate15m/ pgbouncer:ins:query_rate15m` |
+| `pgbouncer:cls:query_rt_15m` | `pgbouncer:cls:query_time_rate15m / pgbouncer:cls:query_rate15m` |
+| `pgbouncer:env:query_rt_15m` | `pgbouncer:env:query_time_rate15m / pgbouncer:env:query_rate15m` |
+| `pgbouncer:db:xact_sigma15m` | `stddev_over_time(pgbouncer:db:xact_rate1m[15m])` |
+| `pgbouncer:ins:xact_sigma15m` | `stddev_over_time(pgbouncer:ins:xact_rate1m[15m])` |
+| `pgbouncer:cls:xact_sigma15m` | `stddev_over_time(pgbouncer:cls:xact_rate1m[15m])` |
+| `pgbouncer:env:xact_sigma15m` | `stddev_over_time(pgbouncer:env:xact_rate1m[15m])` |
+| `pgbouncer:db:xact_rt_sigma15m` | `stddev_over_time(pgbouncer:db:xact_rt_1m[15m])` |
+| `pgbouncer:ins:xact_rt_sigma15m` | `stddev_over_time(pgbouncer:ins:xact_rt_1m[15m])` |
+| `pgbouncer:cls:xact_rt_sigma15m` | `stddev_over_time(pgbouncer:cls:xact_rt_1m[15m])` |
+| `pgbouncer:env:xact_rt_sigma15m` | `stddev_over_time(pgbouncer:env:xact_rt_1m[15m])` |
+| `pgbouncer:db:query_sigma15m` | `stddev_over_time(pgbouncer:db:query_rate1m[15m])` |
+| `pgbouncer:ins:query_sigma15m` | `stddev_over_time(pgbouncer:ins:query_rate1m[15m])` |
+| `pgbouncer:cls:query_sigma15m` | `stddev_over_time(pgbouncer:cls:query_rate1m[15m])` |
+| `pgbouncer:env:query_sigma15m` | `stddev_over_time(pgbouncer:env:query_rate1m[15m])` |
+| `pgbouncer:db:query_rt_sigma15m` | `stddev_over_time(pgbouncer:db:query_rt_1m[15m])` |
+| `pgbouncer:ins:query_rt_sigma15m` | `stddev_over_time(pgbouncer:ins:query_rt_1m[15m])` |
+| `pgbouncer:cls:query_rt_sigma15m` | `stddev_over_time(pgbouncer:cls:query_rt_1m[15m])` |
+| `pgbouncer:env:query_rt_sigma15m` | `stddev_over_time(pgbouncer:env:query_rt_1m[15m])` |
+| `pgbouncer:ins:load1` | `pgbouncer:ins:query_time_rate1m / on(ins) group_left pg:ins:cpu_count or (0 * pgbouncer_up - 1)` |
+| `pgbouncer:ins:load5` | `pgbouncer:ins:query_time_rate5m / on(ins) group_left pg:ins:cpu_count or (0 * pgbouncer_up - 1)` |
+| `pgbouncer:ins:load15` | `pgbouncer:ins:query_time_rate15m / on(ins) group_left pg:ins:cpu_count or (0 * pgbouncer_up - 1)` |
+| `pgbouncer:cls:load1` | `pgbouncer:cls:query_time_rate1m  / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pgbouncer:cls:load5` | `pgbouncer:cls:query_time_rate5m  / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pgbouncer:cls:load15` | `pgbouncer:cls:query_time_rate15m / pg:cls:cpu_count or (0 * pg:cls:size - 1)` |
+| `pg:ins:saturation1` | `max without (instance) (pg:ins:load1 > ignoring(instance) pgbouncer:ins:load1 or pgbouncer:ins:load1)` |
+| `pg:ins:saturation5` | `max without (instance) (pg:ins:load5 > ignoring(instance) pgbouncer:ins:load5 or pgbouncer:ins:load5)` |
+| `pg:ins:saturation15` | `max without (instance) (pg:ins:load15 > ignoring(instance) pgbouncer:ins:load15 or pgbouncer:ins:load15)` |
+| `pg:cls:saturation1` | `pg:cls:load1 > pgbouncer:cls:load1 or pgbouncer:cls:load1` |
+| `pg:cls:saturation5` | `pg:cls:load5 > pgbouncer:cls:load5 or pgbouncer:cls:load5` |
+| `pg:cls:saturation15` | `pg:cls:load15 > pgbouncer:cls:load15 or pgbouncer:cls:load15` |
+| `ins:pressure1` | `clamp_min(max without (instance) (pg:ins:cpu_usage_1m > pg:ins:saturation1 or pg:ins:saturation1), 0)` |
+| `ins:pressure5` | `clamp_min(max without (instance) (pg:ins:cpu_usage_5m > pg:ins:saturation5 or pg:ins:saturation5), 0)` |
+| `ins:pressure15` | `clamp_min(max without (instance) (pg:ins:cpu_usage_15m > pg:ins:saturation15 or pg:ins:saturation15), 0)` |
+| `cls:pressure1` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_1m > pg:cls:saturation1 or pg:cls:saturation1), 0)` |
+| `cls:pressure5` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_5m > pg:cls:saturation5 or pg:cls:saturation5), 0)` |
+| `cls:pressure15` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_15m > pg:cls:saturation15 or pg:cls:saturation15), 0)` |
+{.full-width}
+
+</details>
+
+
+## Current SQL Collectors
+
+The current `pg_exporter.yml` contains **84 collector configuration entries** for PostgreSQL and optional extensions; the separate PgBouncer template has **12 entries**. Entries sharing a metric namespace usually represent version or primary/replica variants, not 84 simultaneous collection tasks. Version bounds and `tags` are copied from the configuration. Activation also depends on exporter mode, `skip`, probe queries, installed extensions, and privileges.
+
+Follow a collector link to inspect its SQL, output fields, types, and HELP text. Field counts include value fields such as `GAUGE`, `COUNTER`, and `HISTOGRAM`, but exclude `LABEL` / `DISCARD`. They include duplicate definitions across versions and cannot be summed into a raw-metric total.
+
+| Collector Configuration | Metric Namespace | Minimum Version (Inclusive) | Upper Version Bound (Exclusive) | `tags` | Value Field Count |
+|:---|:---|:---|:---|:---|---:|
+| [`pg_primary_only`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L17) | `pg` | 10 | — | `cluster, primary` | 15 |
+| [`pg_replica_only`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L59) | `pg` | 10 | — | `cluster, replica` | 15 |
+| [`pg_meta_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L107) | `pg_meta` | 13 | — | `cluster` | 1 |
+| [`pg_meta_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L145) | `pg_meta` | 9.6 | 13 | `cluster` | 1 |
+| [`pg_setting`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L188) | `pg_setting` | 10 | — | `cluster` | 36 |
+| [`pg_repl_12`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L279) | `pg_repl` | 12 | — | `cluster` | 20 |
+| [`pg_repl_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L321) | `pg_repl` | 10 | 12 | `cluster` | 19 |
+| [`pg_sync_standby`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L367) | `pg_sync_standby` | 9.4 | — | `cluster` | 1 |
+| [`pg_downstream`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L383) | `pg_downstream` | 9.4 | — | `cluster` | 1 |
+| [`pg_slot_17`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L399) | `pg_slot` | 17 | — | `cluster` | 26 |
+| [`pg_slot_16`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L448) | `pg_slot` | 16 | 17 | `cluster` | 22 |
+| [`pg_slot_14`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L492) | `pg_slot` | 14 | 16 | `cluster, primary` | 21 |
+| [`pg_slot_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L535) | `pg_slot` | 13 | 14 | `cluster, primary` | 11 |
+| [`pg_slot_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L567) | `pg_slot` | 10 | 13 | `cluster, primary` | 9 |
+| [`pg_recv_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L600) | `pg_recv` | 13 | — | `cluster, replica` | 12 |
+| [`pg_recv_11`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L631) | `pg_recv` | 11 | 13 | `cluster, replica` | 11 |
+| [`pg_recv_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L662) | `pg_recv` | 10 | 11 | `cluster, replica` | 11 |
+| [`pg_sub_19`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L697) | `pg_sub` | 19 | — | `cluster` | 21 |
+| [`pg_sub_16`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L757) | `pg_sub` | 16 | 19 | `cluster` | 9 |
+| [`pg_sub_15`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L792) | `pg_sub` | 15 | 16 | `cluster` | 9 |
+| [`pg_sub_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L826) | `pg_sub` | 10 | 15 | `cluster` | 7 |
+| [`pg_origin`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L858) | `pg_origin` | 9.5 | — | `cluster` | 2 |
+| [`pg_io_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L875) | `pg_io` | 18 | — | `cluster` | 17 |
+| [`pg_io_16`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L908) | `pg_io` | 16 | 18 | `cluster` | 14 |
+| [`pg_size`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L943) | `pg_size` | 10 | — | `cluster` | 1 |
+| [`pg_archiver`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L963) | `pg_archiver` | 9.4 | — | `cluster` | 5 |
+| [`pg_bgwriter_17`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L988) | `pg_bgwriter` | 17 | — | `cluster` | 4 |
+| [`pg_bgwriter_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1001) | `pg_bgwriter` | 9.4 | 17 | `cluster` | 11 |
+| [`pg_checkpointer_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1026) | `pg_checkpointer` | 18 | — | `cluster` | 11 |
+| [`pg_checkpointer_17`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1046) | `pg_checkpointer` | 17 | 18 | `cluster` | 9 |
+| [`pg_checkpointer_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1065) | `pg_checkpointer` | 9.4 | 17 | `cluster` | 6 |
+| [`pg_ssl`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1085) | `pg_ssl` | 9.5 | — | `cluster` | 2 |
+| [`pg_checkpoint`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1101) | `pg_checkpoint` | 10 | — | `cluster` | 19 |
+| [`pg_timeline`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1155) | `pg_timeline` | 10 | — | `cluster` | 1 |
+| [`pg_recovery`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1173) | `pg_recovery` | 9.6 | — | `cluster, replica` | 5 |
+| [`pg_recovery_prefetch`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1193) | `pg_recovery_prefetch` | 15 | — | `cluster, replica` | 10 |
+| [`pg_recovery_state`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1216) | `pg_recovery_state` | 19 | — | `cluster, replica` | 9 |
+| [`pg_slru_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1245) | `pg_slru` | 13 | — | `cluster` | 8 |
+| [`pg_shmem`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1269) | `pg_shmem` | 13 | — | `cluster, schema:monitor` | 3 |
+| [`pg_wal_19`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1288) | `pg_wal` | 19 | — | `cluster` | 6 |
+| [`pg_wal_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1303) | `pg_wal` | 18 | 19 | `cluster` | 5 |
+| [`pg_wal_14`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1318) | `pg_wal` | 14 | 18 | `cluster` | 9 |
+| [`pg_activity`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1341) | `pg_activity` | 9.4 | — | `cluster` | 4 |
+| [`pg_wait`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1364) | `pg_wait` | 9.6 | — | `cluster` | 1 |
+| [`pg_backend`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1381) | `pg_backend` | 10 | — | `cluster` | 1 |
+| [`pg_xact`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1396) | `pg_xact` | 9.4 | — | `cluster` | 3 |
+| [`pg_xact_age`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1412) | `pg_xact_age` | 10 | — | `cluster` | 2 |
+| [`pg_lock`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1438) | `pg_lock` | 9.4 | — | `cluster` | 1 |
+| [`pg_lock_stat`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1457) | `pg_lock_stat` | 19 | — | `cluster` | 3 |
+| [`pg_query_17`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1475) | `pg_query` | 17 | — | `cluster, extension:pg_stat_statements` | 9 |
+| [`pg_query_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1500) | `pg_query` | 13 | 17 | `cluster, extension:pg_stat_statements` | 9 |
+| [`pg_query_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1526) | `pg_query` | 9.4 | 13 | `cluster, extension:pg_stat_statements` | 8 |
+| [`pg_vacuuming_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1555) | `pg_vacuuming` | 18 | — | `cluster, primary` | 5 |
+| [`pg_vacuuming_17`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1578) | `pg_vacuuming` | 17 | 18 | `cluster, primary` | 4 |
+| [`pg_vacuuming_12`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1601) | `pg_vacuuming` | 12 | 17 | `cluster, primary` | 1 |
+| [`pg_indexing`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1624) | `pg_indexing` | 12 | — | `cluster, primary` | 4 |
+| [`pg_clustering`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1651) | `pg_clustering` | 12 | — | `cluster, primary` | 2 |
+| [`pg_backup`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1669) | `pg_backup` | 13 | — | `cluster` | 3 |
+| [`pg_db_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1686) | `pg_db` | 18 | — | `cluster` | 37 |
+| [`pg_db_14`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1740) | `pg_db` | 14 | 18 | `cluster` | 35 |
+| [`pg_db_12`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1793) | `pg_db` | 12 | 14 | `cluster` | 28 |
+| [`pg_db_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1837) | `pg_db` | 9.2 | 12 | `cluster` | 26 |
+| [`pg_db_confl_16`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1883) | `pg_db_confl` | 16 | — | `cluster, replica` | 6 |
+| [`pg_db_confl_15`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1900) | `pg_db_confl` | 9.1 | 16 | `cluster, replica` | 5 |
+| [`pg_pubrel`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1921) | `pg_pubrel` | 10 | — | — | 1 |
+| [`pg_subrel`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1936) | `pg_subrel` | 10 | — | — | 1 |
+| [`pg_vacuum_score`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1952) | `pg_vacuum_score` | 19 | — | `primary` | 11 |
+| [`pg_table_18`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L1991) | `pg_table` | 18 | — | — | 35 |
+| [`pg_table_16`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2060) | `pg_table` | 16 | 18 | — | 31 |
+| [`pg_table_13`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2125) | `pg_table` | 13 | 16 | — | 30 |
+| [`pg_table_10`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2188) | `pg_table` | 9.4 | 13 | — | 29 |
+| [`pg_index`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2253) | `pg_index` | 9.4 | — | — | 7 |
+| [`pg_func`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2284) | `pg_func` | 9.4 | — | — | 3 |
+| [`pg_seq`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2300) | `pg_seq` | 10 | — | — | 3 |
+| [`pg_relkind`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2316) | `pg_relkind` | 9.4 | — | — | 1 |
+| [`pg_defpart`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2332) | `pg_defpart` | 11 | — | — | 1 |
+| [`pg_table_size`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2348) | `pg_table_size` | 10 | — | — | 4 |
+| [`pg_table_bloat`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2375) | `pg_table_bloat` | 9.4 | — | — | 2 |
+| [`pg_index_bloat`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2394) | `pg_index_bloat` | 9.4 | — | — | 2 |
+| [`pg_wait_event`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2414) | `pg_wait_event` | 10 | — | `cluster, extension:pg_wait_sampling` | 1 |
+| [`pg_wait_event_1s`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2426) | `pg_wait_event_1s` | 10 | — | `cluster, extension:pg_wait_sampling` | 1 |
+| [`pg_tsdb_hypertable`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2443) | `pg_tsdb_hypertable` | 10 | — | `extension:timescaledb, schema:timescaledb_information` | 4 |
+| [`pg_citus_node`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2473) | `pg_citus_node` | 10 | — | `extension:citus` | 6 |
+| [`pg_heartbeat`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2504) | `pg_heartbeat` | 9.1 | — | `dbname:postgres, schema:monitor` | 3 |
+{.full-width}
+
+Version ranges include the lower bound and exclude the upper bound; see the [exporter version-matching logic](https://github.com/pgsty/pg_exporter/blob/main/exporter/server.go). An em dash indicates no upper bound. `predicate_queries` first checks dependencies such as TimescaleDB, Citus, and monitoring helper views. PostgreSQL major version alone does not guarantee that every optional metric can be collected.

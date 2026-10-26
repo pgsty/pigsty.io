@@ -20,9 +20,9 @@ Deploy Babelfish in `mssql` mode to add these features to PostgreSQL:
 - T-SQL compatibility
 - Unified integration with Pigsty capabilities (HA, backup, monitoring, IaC)
 
-In Pigsty v4, Babelfish supports **PostgreSQL 17/18**.
-The default template uses `pg_version: 17`.
-Babelfish is part of Pigsty's standard delivery process and supports all Linux platforms.
+Pigsty provides **PostgreSQL 17/18**-compatible Babelfish packages. The template defaults to `pg_version: 17`. See the [package lists](/docs/repo/pgsql/) for version and platform availability.
+
+`./configure -c mssql` ignores `-v`. To select PG18, explicitly adjust the generated configuration and check packages. In development sources, `-v` overrides the version for `fork/mssql`; see the [MSSQL template](/docs/conf/mssql/).
 
 
 --------
@@ -47,8 +47,10 @@ The current behavior differs from older `Babelfish/PG15` documentation as follow
 
 Use the built-in Pigsty template:
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mssql.yml). Development sources moved it to `conf/fork/mssql.yml`; use `-c fork/mssql` with those sources.
+
 ```bash
-./configure -c mssql [-v 17/18]
+./configure -c mssql
 ./deploy.yml
 ```
 
@@ -67,7 +69,7 @@ Core parameters in the `mssql` template:
 
 ```yaml
 pg_mode: mssql
-pg_version: 17  # optional: 18
+pg_version: 17
 pg_packages: [ babelfish, pgsql-common, sqlcmd ]
 pg_libs: 'babelfishpg_tds, pg_stat_statements, auto_explain'
 
@@ -140,8 +142,7 @@ sqlcmd -S <any-node-ip>,5434 -U dbuser_mssql -P DBUser.MSSQL
 
 ## Available Extensions
 
-The Babelfish kernel has **55** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

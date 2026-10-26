@@ -13,6 +13,8 @@ aliases: [/docs/pilot/mysql/metric]
 
 --------
 
+[`files/victoria/rules/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/mysql.yml) provides **68 module recording rules**, all listed here. `mysql_exporter_up = up{job="mysql"}` additionally comes from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). These recorded metrics do not appear at the raw `mysqld_exporter` endpoint. `mysql_up` is the exporter's database connection probe result.
+
 ## Common Labels
 
 Metrics carry `job=mysql`, `cls`, `ins`, `ip`, and `topology` (`standalone` or `innodb_cluster`). Instance-derived metrics retain all identity labels. Cluster metrics aggregate to `cls` and `topology`.

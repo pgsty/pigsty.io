@@ -21,7 +21,9 @@ These packages include `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit
 
 ## Quick Start
 
-Use Pigsty's [**standard installation process**](/docs/setup/install) with the [`pgtde`](https://github.com/pgsty/pigsty/blob/main/conf/pgtde.yml) configuration template.
+Use Pigsty's [**standard installation process**](/docs/setup/install) with the [`pgtde`](/docs/conf/pgtde/) configuration template.
+
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgtde.yml). Development sources moved it to `conf/fork/pgtde.yml`; use `-c fork/pgtde` with those sources.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
@@ -70,8 +72,7 @@ The legacy `percona` module is not required by this template.
 
 ## Available Extensions
 
-The Percona Postgres kernel has **73** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

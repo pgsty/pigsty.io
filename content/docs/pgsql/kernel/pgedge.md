@@ -40,6 +40,8 @@ Design the multi-master topology for your workload consistency requirements and 
 
 Use the built-in Pigsty template:
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgedge.yml). Development sources moved it to `conf/fork/pgedge.yml`; use `-c fork/pgedge` with those sources.
+
 ```bash
 ./configure -c pgedge
 ./deploy.yml
@@ -136,8 +138,7 @@ Otherwise, primary key collisions between nodes are likely.
 
 ## Available Extensions
 
-The pgEdge kernel has **63** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

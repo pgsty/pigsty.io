@@ -154,7 +154,7 @@ mysql_parameters:
 Constraints and behavior:
 
 - Keys must match `[A-Za-z][A-Za-z0-9_.-]{0,63}`; values must be single-line scalars. `mysqld --validate-config` rejects errors before changing the instance.
-- **Reserved settings are rejected**, treating `-` and `_` alike: `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `require_secure_transport`, `ssl_ca`, `ssl_cert`, `ssl_key`, `plugin_load`, `plugin_load_add`, `clone`, `plugin_clone`, `mysqlx`, `plugin_mysqlx`. This also includes `group_replication_*`, `plugin_group_replication*`, `plugin_mysqlx_bind_address`, and `ssl_*`.
+- **Reserved settings are rejected**, treating `-` and `_` alike and stripping `loose_`, `skip_`, `disable_`, `enable_`, and combinations of these prefixes before validation: `user`, `pid_file`, `server_id`, `datadir`, `socket`, `port`, `bind_address`, `mysqlx_bind_address`, `report_host`, `gtid_mode`, `enforce_gtid_consistency`, `log_bin`, `relay_log`, `require_secure_transport`, `ssl_ca`, `ssl_cert`, `ssl_key`, `plugin_load`, `plugin_load_add`, `clone`, `plugin_clone`, `mysqlx`, `plugin_mysqlx`. This also includes `group_replication_*`, `plugin_group_replication*`, `plugin_mysqlx_bind_address`, and `ssl_*`.
 - Rerun `mysql.yml` to apply changes. It rolls secondaries first, then the primary, with one brief write interruption.
 - Common overrides include `sql_require_primary_key` (default `ON`), `long_query_time` (default `1`), `binlog_expire_logs_seconds` (default seven days), and memory settings.
 
@@ -230,7 +230,7 @@ These settings are fixed or derived. They are **not inventory parameters**:
 | Item | Value |
 |:---|:---|
 | Versions | MySQL Server/Client/Shell/Router 8.4 LTS, Percona XtraBackup 8.4 |
-| Ports | `3306` (classic), `33060` (X Protocol; loopback-only on standalone), `33061` (MGR), `6446/6447` (Router RW/RO), `9104` (exporter); INFRA carries the read-only reference constant `mysql_exporter_port: 9104` for monitoring config, not as a public MYSQL parameter |
+| Ports | `3306` (classic), `33060` (X Protocol; loopback-only on standalone), `33061` (MGR), `6446/6447` (Router RW/RO), `9104` (exporter); the exporter service and MySQL target registration both use fixed port `9104`. `mysql_exporter_port` has been removed from INFRA reference variables and is not a public MYSQL parameter |
 | Data directory | `/var/lib/mysql` (binlogs under `binlog/`, 7-day expiry) |
 | Config file | EL: `/etc/my.cnf.d/pigsty.cnf`; Debian/Ubuntu: `/etc/mysql/mysql.conf.d/pigsty.cnf` |
 | Service units | MySQL: `mysqld` on EL, `mysql` on Debian/Ubuntu; Router: `mysqlrouter`; Exporter: `mysqld_exporter` |

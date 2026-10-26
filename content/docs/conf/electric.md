@@ -10,6 +10,8 @@ The `app/electric` template deploys the Electric SQL synchronization service.
 Electric synchronizes data from PostgreSQL to clients in real time.
 
 
+The preview below includes unreleased application-template updates. See the [Electric application guide](/docs/app/electric/) for port, metrics, and cache requirements.
+
 --------
 
 ## Overview
@@ -34,14 +36,21 @@ Usage:
 
 Source: [`pigsty/conf/app/electric.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/electric.yml)
 
+<details>
+<summary>Development configuration preview: requires matching Electric Compose changes</summary>
+
+This configuration separates listening and published ports and sets persistent storage parameters. Update Compose together with it.
+
 {{< include file="yaml/app/electric.yml" code=true lang="yaml" >}}
+
+</details>
 
 
 --------
 
-## Explanation
+## Development Configuration Explained
 
-Use `app/electric` to configure and deploy the Electric SQL service.
+The following describes the preview above and its matching Compose file.
 
 **What is Electric**:
 - PostgreSQL to client real-time data sync service
@@ -53,16 +62,17 @@ Use `app/electric` to configure and deploy the Electric SQL service.
 - Uses Pigsty-managed PostgreSQL as data source
 - Captures data changes via Logical Replication
 - Supports SSL encrypted connections
-- Built-in Prometheus metrics endpoint
+- Persists shape metadata and logs in the `electric-data` named volume
+- Optional Prometheus metrics endpoint, disabled by default; enable only after configuring regular scraping
 
 **Access**:
 
 ```bash
 # Electric API endpoint
-http://elec.pigsty:8002
+http://<IP>:8002
 
-# Prometheus metrics
-http://elec.pigsty:8003/metrics
+# Nginx portal
+http://elec.pigsty
 ```
 
 **Use Cases**:
@@ -75,3 +85,7 @@ http://elec.pigsty:8003/metrics
 - Give the Electric user `replication` permission.
 - Enable PostgreSQL logical replication.
 - For production, use SSL connections. The template sets `sslmode=require`.
+- The container listens on `ELECTRIC_PORT=3000`; the host publishes `ELECTRIC_PUBLISH_PORT=8002`.
+- Storage defaults to `ELECTRIC_STORAGE=FAST_FILE`, with the cache volume mounted at `/var/lib/electric`.
+- `ELECTRIC_INSECURE=true` is suitable only for trusted development networks. Disable it and set `ELECTRIC_SECRET` before public exposure.
+- The metrics port is neither enabled nor published. If enabled, scrape it continuously to avoid accumulation of unconsumed metrics.

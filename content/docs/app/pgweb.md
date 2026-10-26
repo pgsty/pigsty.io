@@ -13,10 +13,11 @@ categories: [Reference]
 
 ```bash
 cd ~/pigsty/app/pgweb
+vi docker-compose.yml      # port mappings are defined in Compose
 make up                    # docker compose up -d
 ```
 
-If the portal entry resolves to the Infra node, open [http://cli.pigsty](http://cli.pigsty). Alternatively, open `http://10.10.10.10:8886` directly. The public demo is [http://cli.pigsty.cc](http://cli.pigsty.cc).
+If the portal entry resolves to the Infra node, open [http://cli.pigsty](http://cli.pigsty). Alternatively, open `http://10.10.10.10:8886` directly. The public demo is [http://cli.pigsty.io](http://cli.pigsty.io).
 
 PGWeb asks for a PostgreSQL connection URL. For example:
 
@@ -36,7 +37,6 @@ The bundled `Makefile` provides:
 
 ```bash
 make up         # launch with docker compose
-make run        # launch with docker run
 make view       # print the local access point and example URL
 make log        # follow container logs
 make info       # inspect the container with jq
@@ -49,3 +49,5 @@ make load       # load it from /tmp/docker/pgweb.tgz
 ```
 
 The template currently uses the unpinned `sosedoff/pgweb` image. Pin an image digest or version in `app/pgweb/docker-compose.yml` when reproducible production deployment matters.
+
+`make run` is a separate `docker run` command with fixed ports and does not use Compose changes. The development template adds `PGWEB_PORT` and routes `make run` through Compose; use the matching files for that behavior.

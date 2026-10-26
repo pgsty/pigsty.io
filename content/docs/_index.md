@@ -33,6 +33,10 @@ cascade:
 
 Press {{< kbd "⌘" "K" >}} on macOS, or {{< kbd "Ctrl" "K" >}}, to open local search and the command palette from anywhere.
 
+## Version Scope
+
+The installation entry point uses the public stable release **{{< param stable_version >}}**. Content marked as development-only is not included in that release, and some changes are not yet in the public repository. See [Release Notes](/docs/about/release/#development-branch-changes-after-release) for scope.
+
 ## Getting Started
 
 Learn Pigsty in four steps: read about the project, understand the concepts, try a single-node installation, and deploy to production.

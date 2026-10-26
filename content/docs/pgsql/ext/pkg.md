@@ -20,8 +20,8 @@ Extensions have different names at different layers:
 |:-----------------|:-------------------------|:-----------------------------------|
 | Extension Name   | `vector`                 | `postgis`, `postgis_topology`, ... |
 | Package Alias    | `pgvector`               | `postgis`                          |
-| RPM Package Name | `pgvector_18`            | `postgis36_18*`                    |
-| DEB Package Name | `postgresql-18-pgvector` | `postgresql-18-postgis-3*`         |
+| RPM Package Name | `pgvector_18`            | `postgis36_18`                    |
+| DEB Package Name | `postgresql-18-pgvector` | `postgresql-18-postgis-3`         |
 
 Use a **package alias** to specify an extension without its RPM or DEB package name:
 
@@ -49,8 +49,9 @@ pg_extensions: [ pgsql-gis, pgsql-rag, pgsql-fts ]
 pg_extensions: [ pg18-gis, pg18-rag, pg18-fts ]
 ```
 
-You can install all category extensions together, except for the `olap` category.
-In the `olap` category, `pg_duckdb` and `pg_mooncake` are mutually exclusive.
+Category aliases expand to package groups in each platform's `package_map`. They do not include every extension in a category or guarantee support for every PostgreSQL version. See [alias mappings](/docs/pgsql/config/alias/) and the [availability matrix](/ext/os/) for members and version support.
+
+Check dependencies and compatibility for the versions in use. For example, the current [`pg_mooncake`](https://github.com/Mooncake-Labs/pg_mooncake/blob/main/pg_mooncake.control) depends on `pg_duckdb`; both must be installed and preloaded.
 
 
 --------

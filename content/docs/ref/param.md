@@ -8,7 +8,7 @@ categories: [Reference]
 
 Use this page to find Pigsty v4.x parameters. For full explanations, read each module's `param` page.
 
-The current source and parameter reference pages confirm **373** public parameters across the 10 official modules. Native MySQL 8.4 remains a pilot module. Its 13 public parameters appear separately and are not part of the official-module total.
+The parameter reference pages for the 10 modules below list **375** parameters, including deployment and removal settings and the development addition `kafka_jmx_exporter_enabled`. See [Modules](/docs/ref/module/) for maturity levels. The 13 native MySQL 8.4 parameters are listed separately.
 
 --------
 
@@ -18,14 +18,14 @@ The current source and parameter reference pages confirm **373** public paramete
 |:----------------------------------:|:------:|:-----:|:-----------------------------------------------------------|
 |  [**`PGSQL`**](/docs/pgsql/param)  |   9    |  124  | PostgreSQL HA cluster configuration                        |
 |  [**`INFRA`**](/docs/infra/param)  |   10   |  73   | Software repository and Victoria-based observability infra |
-|   [**`NODE`**](/docs/node/param)   |   11   |  73   | Node initialization, system tuning, and ops baseline       |
+|   [**`NODE`**](/docs/node/param)   |   11   |  74   | Node initialization, system tuning, and ops baseline       |
 |   [**`ETCD`**](/docs/etcd/param)   |   2    |  13   | ETCD cluster and removal safeguard parameters              |
 |  [**`MINIO`**](/docs/minio/param)  |   2    |  22   | Silo deployment, observability, and removal parameters                    |
 |  [**`REDIS`**](/docs/redis/param)  |   2    |  22   | Redis/Valkey deployment and removal parameters             |
 | [**`DOCKER`**](/docs/docker/param) |   1    |   8   | Docker engine parameters                                   |
 |  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
 |   [**`VIBE`**](/docs/vibe/param)   |   1    |  18   | Code/Jupyter/Node.js/Claude/Codex configuration            |
-|  [**`KAFKA`**](/docs/kafka/param)  |   2    |  18   | Kafka deployment and removal safeguard parameters          |
+|  [**`KAFKA`**](/docs/kafka/param)  |   2    |  19   | Kafka deployment and removal safeguard parameters          |
 {.stretch-last}
 
 Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) currently exposes 13 public parameters: 11 for deployment and 2 for protected removal. Fixed ports, paths, software versions, and timers are not public parameters.

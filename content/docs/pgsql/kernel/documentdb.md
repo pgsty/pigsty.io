@@ -30,6 +30,8 @@ Use the [**`mongo`**](/docs/conf/mongo/) configuration template to deploy the co
 
 Use Pigsty's [**standard installation flow**](/docs/setup/install) with the [`mongo`](/docs/conf/mongo/) configuration template:
 
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mongo.yml). Development sources moved it to `conf/fork/mongo.yml`; use `-c fork/mongo` with those sources.
+
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 ./configure -c mongo    # Use the Mongo (DocumentDB + FerretDB) configuration template
@@ -50,7 +52,7 @@ mongosh 'mongodb://mongod:DBUser.Mongo@127.0.0.1:27017/'
 
 ## Configuration
 
-Source: [`pigsty/conf/mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mongo.yml). See the [**Mongo configuration template**](/docs/conf/mongo/) documentation for the complete template.
+Source: [`pigsty/conf/mongo.yml`](/docs/conf/mongo/). See the [**Mongo configuration template**](/docs/conf/mongo/) documentation for the complete template.
 
 The key PostgreSQL settings are the `documentdb` extension and its preload libraries, plus the backend superuser used by FerretDB:
 

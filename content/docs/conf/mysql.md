@@ -6,6 +6,8 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/mysql.yml`; v4.5.0 uses `conf/mysql.yml`, selected with `-c mysql`.
+
 The `mysql` configuration template uses the OpenHalo database kernel instead of native PostgreSQL. OpenHalo provides MySQL wire protocol and SQL syntax compatibility.
 
 
@@ -31,7 +33,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/mysql.yml)
+Development source: `conf/fork/mysql.yml`; release source: [`v4.5.0: conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml).
 
 {{< include file="yaml/mysql.yml" code=true lang="yaml" >}}
 

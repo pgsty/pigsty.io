@@ -20,6 +20,14 @@ The default Pigsty home directory is `~/pigsty`. It has this file structure:
   - Application template resources
 - bin/   {open=false}
   - Management and operations scripts
+- conf/
+  - pgsql.yml
+  - mssql.yml
+  - Other kernel variant templates
+  - ha/   {open=false}
+    - High-availability topology templates
+  - build/   {open=false}
+    - Multi-platform build inventories
 - files/
   - victoria/   {open=false}
     - Rules and operations scripts
@@ -38,12 +46,14 @@ The default Pigsty home directory is `~/pigsty`. It has this file structure:
 - vagrant/   {open=false}
   - Vagrant sandbox definitions
 - terraform/   {open=false}
-  - Terraform cloud-resource templates
+  - OpenTofu cloud-resource templates (Terraform-compatible)
 - configure
 - ansible.cfg
 - pigsty.yml
 - *.yml
 ```
+
+Kernel templates reside at the root of `conf/`; development sources move them into `conf/fork/`. Select the actual path in your source tree. See [Configuration Templates](/docs/conf/).
 
 `/infra` is a runtime symlink to `/data/infra`. This directory contains observability data and generated configuration:
 
@@ -170,6 +180,8 @@ This structure is created by: `roles/infra/tasks/dir.yml`, `roles/infra/tasks/vi
 
 ----------------
 
+The development Certbot integration also writes `/etc/letsencrypt/renewal-hooks/deploy/10-reload-nginx` to reload Nginx after certificate renewal.
+
 ## NODE FHS
 
 [`node_data`](/docs/node/param#node_data) specifies the node data directory. The default is `/data`, with owner `root:root` and mode `0755`.
@@ -188,6 +200,10 @@ Most core components place their default data directories here. Some pilot modul
 #  ^-----@kafka                       # kafka:kafka 0700 (kafka_data)
 #  ^-----@...                         # Other component data directories
 ```
+
+### Chrony and tuned
+
+Chrony uses the native OS configuration path: `/etc/chrony.conf` on EL and `/etc/chrony/chrony.conf` on Debian / Ubuntu. `node_tuned_profile_dir` selects the custom tuned profile directory: `/etc/tuned/profiles` on EL 10, Debian 13, and Ubuntu 26; `/etc/tuned` on the other currently supported platforms.
 
 ### HAProxy
 

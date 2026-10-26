@@ -198,6 +198,8 @@ Infra Nginx normally exposes the public CA certificate at `http://<infra_ip>/ca.
 
 Each `infra_portal` entry can name a `certbot` certificate. Pigsty's `/etc/nginx/sign-cert` uses Certbot webroot mode. It groups `domain` and `domains` entries that share a certificate name. Then `/etc/nginx/link-cert` links the resulting certificate into Nginx.
 
+`sign-cert` uses `--expand` for existing certificates. Check the certificate domain set separately when removing aliases. `link-cert` selects a Certbot certificate based only on whether its private-key file exists; it does not validate expiration or hostnames. Check the actual certificate SANs and validity after deployment.
+
 Prerequisites:
 
 - Public DNS A/AAAA records resolve to the intended Infra node.
@@ -245,7 +247,7 @@ systemctl list-timers --all | grep -i certbot
 certbot renew --dry-run
 ```
 
-After Certbot replaces certificates on disk, Nginx still needs a reload to use them. Configure a renewal deploy hook, such as `systemctl reload nginx`, or an equivalent managed process. Verify that it works. Treat automatic renewal as proven only after a real or staging renewal exercise.
+Replacing certificate files does not make Nginx load them automatically. Check that the renewal hook runs `nginx -t && systemctl reload nginx.service` after successful issuance. If missing, add this step to the existing Certbot renewal task.
 
 --------
 

@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and 575 PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and access to 600 packaged PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---
@@ -12,8 +12,9 @@ Pigsty can deploy Supabase on your physical, virtual, or cloud servers with a si
 
 This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase cloud or plain Docker Compose self-hosting.
 
-The current template tracks the coordinated Supabase [`self-hosted/v0.8.2`](https://github.com/supabase/supabase/tree/564eab8ad7840b13324f68b1bfac074ef8d51c21/docker) release (commit `564eab8`), with Envoy `1.39.1` as the default gateway and Studio `2026.09.07-sha-7996410`.
-It uses external Pigsty-managed PostgreSQL, with PG18 as the template default. This combination has passed basic functional checks on PG18.6. See [`docker-compose.yml`](https://github.com/pgsty/pigsty/blob/main/app/supabase/docker-compose.yml) for the complete image versions and [the upgrade procedure](#upgrading-existing-deployments) for existing deployments.
+The installation commands below use the matching [application files](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [configuration template](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Kong and external PG18 by default.
+
+The Envoy integration and migration scripts for Supabase `self-hosted/v0.8.2` remain a development preview without a complete public Pigsty release. The changes below are retained for upgrade planning; copying new YAML or SQL alone does not deploy that version.
 
 
 --------
@@ -117,8 +118,8 @@ The current template supports PostgreSQL 15-18, with 18 as the default. You can 
 
 Start with single-node deployment. Multi-node high availability is covered later.
 
-[Prepare](/docs/deploy/prepare) a fresh [Linux server](/docs/deploy/prepare), use the Pigsty [`supabase`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template for [standard installation](/docs/setup/install),
-then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (Envoy uses HTTP port `8000` by default; the Nginx portal provides HTTPS).
+[Prepare](/docs/deploy/prepare) a fresh [Linux server](/docs/deploy/prepare), use the Pigsty [`supabase`](/docs/conf/supabase/) configuration template for [standard installation](/docs/setup/install),
+then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (Kong uses HTTP port `8000` by default; use the Nginx portal for HTTPS).
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -140,7 +141,7 @@ Default username and password are `supabase` and `pigsty`.
 **Notes:**
 
 - In mainland China, Pigsty uses 1Panel and 1ms DockerHub mirrors by default, which may be slow.
-- You can configure your own [proxy](/docs/docker/usage#proxy) and [registry mirror](/docs/docker/usage/#registry-mirrors), then manually pull images with `cd /opt/supabase; make pull`. Before exporting offline images, run `make pull` and then `make save`. The complete bundle includes both the default Envoy and optional Kong gateways. We also offer expert consulting services including complete offline installation packages.
+- You can configure your own [proxy](/docs/docker/usage#proxy) and [registry mirror](/docs/docker/usage/#registry-mirrors), then manually pull images with `cd /opt/supabase; make pull`. Before exporting offline images, run `make pull` and then `make save`. The image set depends on the Compose version in use. We also offer expert consulting services including complete offline installation packages.
 - If you need object storage functionality, you must access Supabase via domain and HTTPS, otherwise errors will occur.
 - For serious production deployments, **always** change all default passwords!
 
@@ -163,13 +164,20 @@ Logflare / Analytics uses `_analytics` in the separate `_supabase` database inst
 The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
 Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
 
-Envoy is the default gateway, under the Compose service name `api-gw`. Kong `3.9.3` remains available as a transition option. To enable Kong, run this combination from the application directory:
+The gateway service is named `kong`. The development integration of [`self-hosted/v0.8.2`](https://github.com/supabase/supabase/tree/564eab8ad7840b13324f68b1bfac074ef8d51c21/docker) changes the default to Envoy `1.39.1`, under service name `api-gw`, and retains Kong `3.9.3` as an option.
+
+<details>
+<summary>Gateway selection in the development version</summary>
+
+Only after obtaining the matching development application files, use this combination to enable Kong:
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.kong.yml up -d
 ```
 
 Both gateways use `API_GW_HTTP_PORT` for their HTTP port, defaulting to `8000`. Only the Kong configuration also exposes `KONG_HTTPS_PORT` (default `8443`).
+
+</details>
 
 For one server or cloud-hosted servers, Pigsty recommends external S3 instead of local Silo for PostgreSQL backups and Supabase Storage. This supports recovery on an hour scale after single-node failure. Actual RPO depends on the latest recoverable backup, WAL archives, and object-storage availability. The topology does not guarantee a fixed RPO.
 
@@ -186,13 +194,32 @@ Next, we'll discuss advanced topics for improving Supabase security, availabilit
 
 ## Upgrading Existing Deployments
 
+For maintenance within the same version, keep matching application configuration. The following preparation notes apply to the development `0.8.2` integration. Obtain a complete, validated Pigsty application version, including `app/supabase/`, `conf/supabase.yml`, and related SQL, before scheduling downtime and migration. The public application template does not yet include these development changes.
+
+<details>
+<summary>0.8.2 development migration: gateway, JWT settings, and grants</summary>
+
 Back up PostgreSQL, object storage, and application volumes, and review local customizations before upgrading. The old gateway service was named `kong`; the new service is `api-gw`. **Before replacing the old Compose files**, run `docker compose down` in the old application directory, without `-v`. This stops the old gateway and releases its ports while preserving volumes and external data. Running only `up -d` with the new files can leave the old `kong` container behind and cause port or container-name conflicts.
 
 `files/supabase.sql` is a fresh-install baseline. **Do not replay it over an existing database.** Updating containers alone does not apply new SQL grants or remove old database settings. Version `0.8.2` removes the SQL-visible `app.settings.jwt_secret` and PostgREST's `PGRST_APP_SETTINGS_JWT_SECRET`. Application-level JWT verification settings and `app.settings.jwt_exp` remain in place.
 
 First review custom SQL functions that depend on `current_setting('app.settings.jwt_secret')`. If they still need a signing key, migrate them to a restricted Vault secret as described in the [upstream migration guidance](https://github.com/supabase/supabase/pull/45003). Allow only the function owner to read it, and avoid exposing the decrypted key through a public RPC.
 
-After handling these dependencies and backing up the database, run from the Pigsty installation root, connect to the target Supabase database as an administrator, and apply the idempotent [narrow upgrade script](https://github.com/pgsty/pigsty/blob/main/files/supabase-0.8.2.sql):
+After preparing matching files, handling dependencies, and taking backups, the development version uses `files/supabase-0.8.2.sql` for the narrow upgrade below. The SQL is retained here for review; it does not upgrade the application by itself:
+
+```sql
+\set ON_ERROR_STOP on
+BEGIN;
+
+DO $$
+BEGIN
+    EXECUTE format('ALTER DATABASE %I RESET "app.settings.jwt_secret"', current_database());
+END
+$$;
+
+GRANT USAGE ON SCHEMA extensions TO supabase_functions_admin;
+COMMIT;
+```
 
 ```bash
 psql -X -v ON_ERROR_STOP=1 -d '<target-supabase-database>' -f files/supabase-0.8.2.sql
@@ -208,6 +235,8 @@ SELECT has_schema_privilege('supabase_functions_admin', 'extensions', 'USAGE')
 ```
 
 For older deployments, also check that `supabase_storage_admin` has `CREATE` on the target database and that the upstream [2026-07-30 pg_cron privilege migration](https://github.com/supabase/postgres/blob/develop/migrations/db/migrations/20260730000000_revoke_trigger_on_cron_tables_from_postgres.sql) has been applied. See the [template upgrade notes](https://github.com/pgsty/pigsty/tree/main/app/supabase#existing-deployments) for the checks and remedies. Fresh-install and same-version container recreation tests do not replace an upgrade rehearsal for an existing application database.
+
+</details>
 
 
 ------
@@ -226,7 +255,7 @@ For production, changing Pigsty component passwords is strongly recommended. The
 - [`haproxy_admin_password`](/docs/node/param/#haproxy_admin_password): `pigsty`, Load balancer admin password
 - [`minio_secret_key`](/docs/minio/param/#minio_secret_key): `S3User.MinIO`, Silo root user secret
 - [`etcd_root_password`](/docs/etcd/param/#etcd_root_password): `Etcd.Root`, ETCD root user password
-- Additionally, strongly recommend changing the [PostgreSQL business user](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L72) password for Supabase, default is `DBUser.Supa`
+- Additionally, strongly recommend changing the [PostgreSQL business user](/docs/conf/supabase/) password for Supabase, default is `DBUser.Supa`
 
 These are Pigsty component passwords. Strongly recommended to set before installation.
 
@@ -234,20 +263,20 @@ These are Pigsty component passwords. Strongly recommended to set before install
 
 Besides Pigsty component passwords, you need to [change Supabase keys](https://supabase.com/docs/guides/self-hosting/docker#securing-your-services), including:
 
-- [`JWT_SECRET`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L143): JWT signing key, at least 32 characters
-- [`ANON_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L144): Anonymous user JWT credential
-- [`SERVICE_ROLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L145): Service role JWT credential
-- [`SUPABASE_PUBLISHABLE_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L146) / [`SUPABASE_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L147): New opaque API keys, can be left empty if not enabled
-- [`JWT_KEYS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L148) / [`JWT_JWKS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L149): Asymmetric JWT keys and JWKS, can be left empty if not enabled
-- [`ANON_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L150) / [`SERVICE_ROLE_KEY_ASYMMETRIC`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L151): Asymmetric signing JWTs, can be left empty if not enabled
-- [`PG_META_CRYPTO_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L152): PostgreSQL Meta service encryption key, at least 32 characters
-- [`SECRET_KEY_BASE`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L153): Random secret used by Realtime
-- [`REALTIME_DB_ENC_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L154): Realtime database encryption key
-- [`DASHBOARD_USERNAME`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L156): Supabase Studio web UI default username, default `supabase`
-- [`DASHBOARD_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L157): Supabase Studio web UI default password, default `pigsty`
-- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L160): Logflare public access token, at least 32 random characters
-- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L161): Logflare private access token, at least 32 random characters
-- [`LOGFLARE_DB`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L162) / [`LOGFLARE_SCHEMA`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L163): Internal database and schema used by Logflare / Analytics, defaulting to `_supabase` / `_analytics`
+- [`JWT_SECRET`](/docs/conf/supabase/): JWT signing key, at least 32 characters
+- [`ANON_KEY`](/docs/conf/supabase/): Anonymous user JWT credential
+- [`SERVICE_ROLE_KEY`](/docs/conf/supabase/): Service role JWT credential
+- [`SUPABASE_PUBLISHABLE_KEY`](/docs/conf/supabase/) / [`SUPABASE_SECRET_KEY`](/docs/conf/supabase/): New opaque API keys, can be left empty if not enabled
+- [`JWT_KEYS`](/docs/conf/supabase/) / [`JWT_JWKS`](/docs/conf/supabase/): Asymmetric JWT keys and JWKS, can be left empty if not enabled
+- [`ANON_KEY_ASYMMETRIC`](/docs/conf/supabase/) / [`SERVICE_ROLE_KEY_ASYMMETRIC`](/docs/conf/supabase/): Asymmetric signing JWTs, can be left empty if not enabled
+- [`PG_META_CRYPTO_KEY`](/docs/conf/supabase/): PostgreSQL Meta service encryption key, at least 32 characters
+- [`SECRET_KEY_BASE`](/docs/conf/supabase/): Random secret used by Realtime
+- [`REALTIME_DB_ENC_KEY`](/docs/conf/supabase/): Realtime database encryption key
+- [`DASHBOARD_USERNAME`](/docs/conf/supabase/): Supabase Studio web UI default username, default `supabase`
+- [`DASHBOARD_PASSWORD`](/docs/conf/supabase/): Supabase Studio web UI default password, default `pigsty`
+- [`LOGFLARE_PUBLIC_ACCESS_TOKEN`](/docs/conf/supabase/): Logflare public access token, at least 32 random characters
+- [`LOGFLARE_PRIVATE_ACCESS_TOKEN`](/docs/conf/supabase/): Logflare private access token, at least 32 random characters
+- [`LOGFLARE_DB`](/docs/conf/supabase/) / [`LOGFLARE_SCHEMA`](/docs/conf/supabase/): Internal database and schema used by Logflare / Analytics, defaulting to `_supabase` / `_analytics`
 
 Please follow the [Supabase tutorial: Securing your services](https://supabase.com/docs/guides/self-hosting/docker#generate-api-keys):
 
@@ -258,11 +287,11 @@ Please follow the [Supabase tutorial: Securing your services](https://supabase.c
 - Specify a random string of at least 32 characters for `PG_META_CRYPTO_KEY` to encrypt Studio UI and meta service interactions.
 - `SECRET_KEY_BASE` must be at least 64 characters; `REALTIME_DB_ENC_KEY` must be exactly 16 characters.
 - Generate separate random credentials for `S3_PROTOCOL_ACCESS_KEY_ID` and `S3_PROTOCOL_ACCESS_KEY_SECRET`; do not reuse an object-storage administrator password.
-- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L169) accordingly.
-- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L180) and [`S3_SECRET_KEY`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L181) accordingly.
-- If Edge Functions are exposed to untrusted clients, set [`FUNCTIONS_VERIFY_JWT`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L194) to `true` as needed.
-- [`API_EXTERNAL_URL`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L173) should now be the external Auth service URL, retaining the `/auth/v1` suffix, for example `https://supa.pigsty.io/auth/v1`; keep `SITE_URL` and `SUPABASE_PUBLIC_URL` at the site root URL.
-- The current template defaults [`PGRST_DB_SCHEMAS`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml#L190) to `public,graphql_public`; the `storage` schema is used by the Storage API and is no longer exposed through PostgREST by default.
+- If using different PostgreSQL business user passwords, modify [`POSTGRES_PASSWORD`](/docs/conf/supabase/) accordingly.
+- If your object storage uses different passwords, modify [`S3_ACCESS_KEY`](/docs/conf/supabase/) and [`S3_SECRET_KEY`](/docs/conf/supabase/) accordingly.
+- If Edge Functions are exposed to untrusted clients, set [`FUNCTIONS_VERIFY_JWT`](/docs/conf/supabase/) to `true` as needed.
+- [`API_EXTERNAL_URL`](/docs/conf/supabase/) should now be the external Auth service URL, retaining the `/auth/v1` suffix, for example `https://supa.pigsty.io/auth/v1`; keep `SITE_URL` and `SUPABASE_PUBLIC_URL` at the site root URL.
+- The current template defaults [`PGRST_DB_SCHEMAS`](/docs/conf/supabase/) to `public,graphql_public`; the `storage` schema is used by the Storage API and is no longer exposed through PostgREST by default.
 
 To enable asymmetric authentication, configure `JWT_KEYS`, `JWT_JWKS`, and all four opaque/asymmetric API-key variables together, then enable the corresponding Compose override. Without the override, the default remains HS256:
 
@@ -270,7 +299,7 @@ To enable asymmetric authentication, configure `JWT_KEYS`, `JWT_JWKS`, and all f
 docker compose -f docker-compose.yml -f docker-compose.asymmetric.yml up -d
 ```
 
-If you also select Kong, insert `-f docker-compose.kong.yml` before `-f docker-compose.asymmetric.yml`. Use the same override combination for subsequent starts and updates. Edge Functions receive `JWT_JWKS` through `SUPABASE_JWKS` and fall back to HS256 when it is empty. Update the worker together with the shared `volumes/functions/deno.jsonc` import map to support `@supabase/functions-js`, `@supabase/server`, and the per-request `SUPABASE_FUNCTION_SLUG`. See the [pinned source notes](https://github.com/pgsty/pigsty/blob/main/app/supabase/volumes/functions/SOURCE.md).
+If you also select Kong, insert `-f docker-compose.kong.yml` before `-f docker-compose.asymmetric.yml`. Use the same override combination for subsequent starts and updates. Edge Functions receive `JWT_JWKS` through `SUPABASE_JWKS` and fall back to HS256 when it is empty. Update the worker together with the shared `volumes/functions/deno.jsonc` import map to support `@supabase/functions-js`, `@supabase/server`, and the per-request `SUPABASE_FUNCTION_SLUG`. The upstream source is the [Functions directory at the pinned Supabase commit `564eab8`](https://github.com/supabase/supabase/tree/564eab8ad7840b13324f68b1bfac074ef8d51c21/docker/volumes/functions).
 
 After changing Supabase credentials, update configuration and recreate the containers. The commands below and later startup examples without Compose overrides apply only to the default **Envoy + HS256** stack:
 

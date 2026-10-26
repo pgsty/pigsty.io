@@ -49,6 +49,7 @@ Source: [`pigsty/conf/demo/kafka.yml`](https://github.com/pgsty/pigsty/blob/main
 
 - `kf-meta` creates `quickstart.events` for single-node development and connectivity tests.
 - `kf-test` creates the `test-app` SCRAM user, prefix ACLs, and the three-replica `test.events` topic.
+- `kf-test` explicitly sets `kafka_heap_opts: '-Xms512M -Xmx512M'` for 2 GiB demo nodes. Size production nodes for the actual workload.
 - Online installation maps the platform packages `kafka-stack` and `java-runtime`.
   For installation with only a local repository, cache both complete package groups first.
 - Addresses and passwords in the template are demonstration values. Replace them for your topology and security requirements before deployment.

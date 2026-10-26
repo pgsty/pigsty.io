@@ -1,19 +1,20 @@
 ---
 title: Metrics
 weight: 4240
-description: Complete list of monitoring metrics provided by the Pigsty Docker module
+description: Docker metrics collection endpoints and historical scrape samples.
 icon: fa-solid fa-list-check
 module: [DOCKER]
 categories: [Reference]
 ---
 
-This snapshot records 123 monitoring metric families for the [**`DOCKER`**](/docs/docker) module. The metrics present at runtime vary with package version, enabled collectors, and target state.
+This page retains **122 metric names** from a historical [**DOCKER**](/docs/docker) module scrape. The original scrape time and Docker Engine version were not recorded, so it is not a complete interface for the current version. `up` and `scrape_*` come from the collection system, not Docker Engine. Multiple Histogram / Summary sample names occupy separate rows; row counts do not equal metric-family counts.
+
+The current scrape configuration is in [`roles/infra/templates/victoria/prometheus.yml`](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/victoria/prometheus.yml). It discovers Docker Engine `/metrics` endpoints from `/infra/targets/docker/*.yml` and relabels `job` to `node`. Query the actual target's `instance` with `job="node"`; do not rely only on `job="docker"` to determine whether scraping exists. Use the running endpoint for actual names, types, and labels. `docker_up` comes from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules), matching scrape state by the Docker metrics port. It is not a raw Docker Engine metric.
 
 | Metric Name                                                  | Type    | Labels                                                                                                                                          | Description                                                          |
 |--------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
 | builder_builds_failed_total                                  | counter | `ip`, `cls`, `reason`, `ins`, `job`, `instance`                                                                                                 | Number of failed image builds                                        |
 | builder_builds_triggered_total                               | counter | `ip`, `cls`, `ins`, `job`, `instance`                                                                                                           | Number of triggered image builds                                     |
-| docker_up                                                    | Unknown | `ip`, `cls`, `ins`, `job`, `instance`                                                                                                           | N/A                                                                  |
 | engine_daemon_container_actions_seconds_bucket               | Unknown | `ip`, `cls`, `ins`, `job`, `instance`, `le`, `action`                                                                                           | N/A                                                                  |
 | engine_daemon_container_actions_seconds_count                | Unknown | `ip`, `cls`, `ins`, `job`, `instance`, `action`                                                                                                 | N/A                                                                  |
 | engine_daemon_container_actions_seconds_sum                  | Unknown | `ip`, `cls`, `ins`, `job`, `instance`, `action`                                                                                                 | N/A                                                                  |
@@ -134,3 +135,4 @@ This snapshot records 123 monitoring metric families for the [**`DOCKER`**](/doc
 | swarm_store_write_tx_latency_seconds_count                   | Unknown | `ip`, `cls`, `ins`, `job`, `instance`                                                                                                           | N/A                                                                  |
 | swarm_store_write_tx_latency_seconds_sum                     | Unknown | `ip`, `cls`, `ins`, `job`, `instance`                                                                                                           | N/A                                                                  |
 | up                                                           | Unknown | `ip`, `cls`, `ins`, `job`, `instance`                                                                                                           | N/A                                                                  |
+{.full-width}

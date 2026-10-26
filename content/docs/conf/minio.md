@@ -76,5 +76,6 @@ mcli ls sss/
 
 **Notes**:
 - Each node requires 4 independent disks mounted at `/data1` - `/data4`
+- The VM example uses `vm_image: u24` and declares a `size: 64` data disk for each mount through `vm_disks`. For existing hosts, verify the actual mounts and capacity.
 - We recommend at least 4 nodes for erasure coding redundancy in production.
 - VIP requires proper network interface configuration (`vip_interface`)

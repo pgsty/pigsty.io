@@ -8,8 +8,7 @@ categories: [Concept]
 ---
 
 [OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension.
-It claims to provide 4x OLTP performance and to eliminate xid wraparound and table bloat issues.
-It also claims to provide cloud-native storage, with data stored in S3.
+It supports data storage in S3. Its MVCC uses UNDO logs to hold older row versions, reducing bloat in primary storage, and 64-bit transaction IDs avoid traditional XID wraparound. See the [upstream design](https://github.com/orioledb/orioledb) for implementation details.
 
 Pigsty ships OrioleDB as a patched PostgreSQL kernel plus the [OrioleDB extension](https://github.com/orioledb/orioledb).
 
@@ -24,7 +23,9 @@ The current Pigsty package line is OrioleDB 1.8 beta16.
 
 ## Quick Start
 
-Follow Pigsty's [**standard installation**](/docs/setup/install) process using the [`oriole`](https://github.com/pgsty/pigsty/blob/main/conf/oriole.yml) configuration template.
+Follow Pigsty's [**standard installation**](/docs/setup/install) process using the [`oriole`](/docs/conf/oriole/) configuration template.
+
+The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/oriole.yml). Development sources moved it to `conf/fork/oriole.yml`; use `-c fork/oriole` with those sources.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
@@ -120,8 +121,7 @@ ALTER TABLE pgbench_tellers_o RENAME TO pgbench_tellers;
 
 ## Available Extensions
 
-The OrioleDB kernel has **53** available extensions.
-The following table lists the extra extensions, excluding bundled PG Contrib extensions:
+The table lists selected non-Contrib extensions for reference. [Query the target instance](/docs/pgsql/kernel/#versions) to confirm actual availability and versions.
 
 | Extension | Version | Description |
 |:----------|:--------|:------------|

@@ -64,7 +64,9 @@ Pigsty generates Nginx configuration files only for services with a defined `dom
 
 | Parameter   | Description                           |
 |-------------|---------------------------------------|
-| `config`    | Custom Nginx config snippet           |
+| `conf` | Select a template in `roles/infra/templates/nginx` |
+| `cache_dir` | Development sources can create the cache directory; other deployments must prepare it and its permissions manually |
+| `config` | Custom Nginx snippet in a generic template |
 | `index`     | Enable directory listing (for static) |
 | `log`       | Custom log file name                  |
 | `websocket` | Enable WebSocket support              |
@@ -73,6 +75,8 @@ Pigsty generates Nginx configuration files only for services with a defined `dom
 
 
 ----------------
+
+When `conf` is set, that template takes precedence. Otherwise, the role selects a generic template based on `home`, `path`, and `endpoint`.
 
 ## Configuration Examples
 
@@ -279,3 +283,40 @@ infra_portal:
   odoo         : { domain: odoo.pigsty.io ,endpoint: "127.0.0.1:8069"   ,websocket: true }
   mm           : { domain: mm.pigsty.io   ,endpoint: "10.10.10.10:8065" ,websocket: true }
 ```
+
+----------------
+
+## Development Maintenance Reference
+
+The specialized development templates below maintain Pigsty's public sites and are not yet included in public sources. Ordinary portals can use the generic configuration above.
+
+<details>
+<summary>Specialized site templates and migration notes</summary>
+
+| `conf` | Purpose and Configuration |
+|:---|:---|
+| `repo.conf` | Public package repository; `path` selects the publication directory. Exposes only listed directories/files, disables directory listings, and rejects unknown Host / SNI |
+| `beta.conf` | Proxy cache for Pigsty, PGDG, distribution, and Docker repositories; `cache_dir` selects the cache directory, with an 80 GiB cache limit and at least 100 GiB free space |
+| `demo.conf` | Demo reverse proxy using `endpoint`, WebSocket support, one-hour read/write timeouts, and disabled response buffering |
+| `pgext.conf` | Extension catalog reverse proxy using `endpoint`, connection reuse, and response buffering |
+| `pgweb.conf` | Chinese PostgreSQL community website using `endpoint`; optional static directories `admin_static`, `media_root`, and `files_root` |
+{.full-width}
+
+Development files reside in `roles/infra/templates/nginx/`. All redirect HTTP to HTTPS while retaining the ACME challenge path. Upstream domains, cache limits, and the CA path in `beta.conf` are template settings. Its default CA path is EL's `/etc/pki/tls/certs/ca-bundle.crt`; adapt the template before moving to Debian / Ubuntu. `pgweb.conf` serves the community website, not the PostgreSQL browser application of the same name.
+
+`repo.conf` includes a default server and the `127.0.0.1:9180/nginx` status endpoint. Do not also generate a `home.conf` default server on the same listening address. Set `nginx_exporter_scrape_uri: http://127.0.0.1:9180/nginx` for this template. If overriding `nginx_status_port`, update the scrape URL too.
+
+```yaml
+# Dedicated public repository node
+nginx_exporter_scrape_uri: http://127.0.0.1:9180/nginx
+infra_portal:
+  repo:
+    domain: repo.example.com
+    conf: repo.conf
+    path: /data/nginx/repo
+    certbot: repo.example.com
+```
+
+The role creates the cache directory only when configuration explicitly provides a nonempty `cache_dir`. Set it explicitly for `beta.conf`, for example `/data/beta`, and verify sufficient data-disk space first.
+
+</details>

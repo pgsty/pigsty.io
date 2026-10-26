@@ -6,6 +6,8 @@ icon: fa-solid fa-network-wired
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/pgedge.yml`; v4.5.0 uses `conf/pgedge.yml`, selected with `-c pgedge`.
+
 The `pgedge` configuration template uses the pgEdge kernel instead of native PostgreSQL. The kernel provides distributed, multi-master capabilities for edge deployments.
 
 For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
@@ -33,7 +35,7 @@ Enable with:
 
 ## Template Content
 
-Source: [`pigsty/conf/pgedge.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgedge.yml)
+Development source: `conf/fork/pgedge.yml`; release source: [`v4.5.0: conf/pgedge.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgedge.yml).
 
 {{< include file="yaml/pgedge.yml" code=true lang="yaml" >}}
 

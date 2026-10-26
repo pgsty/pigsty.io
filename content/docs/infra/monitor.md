@@ -14,7 +14,7 @@ This document describes monitoring dashboards and alert rules for the INFRA modu
 
 ## Dashboards
 
-Pigsty provides the following monitoring dashboards for the Infra module:
+The current [`files/grafana/infra`](https://github.com/pgsty/pigsty/tree/main/files/grafana/infra) directory contains **11 dashboards**. The table also includes **Pigsty Home** from the root directory. See [Monitoring System](/docs/concept/monitor/) for overall dashboard and rule counts, and [Metrics](/docs/infra/metric/) for endpoints and labels.
 
 | Dashboard | Description |
 |:-----|:-----|
@@ -42,6 +42,8 @@ Pigsty provides the following two alert rules for the INFRA module:
 |:---------|:-----|
 | `InfraDown` | Infrastructure component is down |
 | `AgentDown` | Monitoring agent is down |
+
+Both alerts fire when the corresponding recorded metric stays below `1` for one minute, with severity `CRIT`. `AgentDown` covers the actual exclusion list in `agent_up`, not every exporter; see [Current Recording Rules](/docs/infra/metric#current-recording-rules). Source comments and alert summaries still contain older component names and the `type` label. Current registration uses `cls` / `ins`; troubleshoot using expressions and actual labels.
 
 You can modify or add new infrastructure alert rules in [`files/victoria/rules/infra.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/infra.yml).
 

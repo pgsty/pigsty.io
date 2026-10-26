@@ -127,8 +127,7 @@ For local access, add this entry to `/etc/hosts` on each computer that accesses 
 
 ## Linux
 
-Pigsty runs on **Linux** and currently targets **16** platform combinations.
-These combinations cover eight distribution major versions and two architectures.
+Pigsty runs on **Linux**. Source platform definitions cover eight distribution major versions and two architectures, or **16** platforms. EL8 is in the compatibility transition range; the recommended baseline comprises the other seven major versions and 14 platforms.
 See the [Compatible OS List](/docs/ref/linux/).
 
 The recommended operating system versions are:

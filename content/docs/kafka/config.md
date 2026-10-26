@@ -9,7 +9,7 @@ aliases: [/docs/pilot/kafka/config]
 ---
 
 
-KAFKA uses 15 persistent public parameters. The role derives topology, listeners, storage subdirectories, replication safety, authorization, and exporter placement consistently. Start with [Quickstart](/docs/kafka/start). See [Parameters](/docs/kafka/param) for the field reference.
+KAFKA uses 16 persistent public parameters. The role derives topology, listeners, storage subdirectories, replication safety, authorization, and exporter placement consistently. Start with [Quickstart](/docs/kafka/start). See [Parameters](/docs/kafka/param) for the field reference.
 
 > [!WARNING] Plan First, Then Format
 > `kafka_seq` becomes KRaft `node.id`. A new cluster's bootstrap manifest freezes the random Cluster ID, initial controller identities, security profile, and initial replication policy.
@@ -44,6 +44,8 @@ Before writing the inventory, confirm these requirements:
 | `broker` | `broker` | ✓ | － | ✓ | eligible |
 | `controller` | `controller` | － | ✓ | ✓ | － |
 {.full-width}
+
+JMX in the table is enabled by default. Disable it per instance with [`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled); doing so removes the corresponding JVM, broker, and KRaft metrics and alerts.
 
 Either omit `kafka_role` on every member to use `combined`, or explicitly set it on every member. Identity checks reject mixed declarations. A cluster needs at least one controller-capable and one broker-capable node. Even controller counts trigger a warning. Production usually uses three controllers.
 
@@ -117,7 +119,7 @@ kf-main:
     kafka_security: scram
 ```
 
-Controller-only nodes have no `9092` listener or protocol exporter. JMX still exposes KRaft and JVM metrics. At most two `kafka_exporter` instances run on broker-capable nodes with the lowest `kafka_seq`.
+Controller-only nodes have no `9092` listener or protocol exporter. JMX exposes KRaft and JVM metrics by default. At most two `kafka_exporter` instances run on broker-capable nodes with the lowest `kafka_seq`.
 
 
 --------
@@ -348,7 +350,7 @@ Platform mappings install `java-runtime` and `kafka-stack`. The payload verified
 | `/etc/kafka/admin.properties` | Role-generated broker admin channel; the CLI should always use it |
 | `/etc/kafka/controller.properties` | Role-generated controller admin channel |
 | `/etc/kafka/log4j2.yaml` | Journald logging configuration |
-| `/etc/kafka/jmx_exporter.yml` | Bounded JMX metrics rules |
+| `/etc/kafka/jmx_exporter.yml` | Bounded metrics rules rendered when JMX is enabled |
 | `/etc/kafka/manifest.yml` | Authoritative copy of the bootstrap manifest on the node |
 | `/etc/kafka/secrets.yml` | Copy of the internal secrets on a `scram` node |
 | `/etc/kafka/.pigsty-applied-static.sha256` | Fingerprint of the static config proven live; the rolling-restart trigger |

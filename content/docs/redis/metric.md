@@ -1,115 +1,39 @@
 ---
 title: Metrics
 weight: 3860
-description: Complete list of monitoring metrics provided by the Pigsty REDIS module
+description: Current REDIS recording rules, raw metric sources, and historical scrape samples.
   with explanations
 icon: fa-solid fa-list-check
 module: [REDIS]
 categories: [Reference]
 ---
 
-This page is a snapshot of 275 monitoring metric categories for the [**`REDIS`**](/docs/redis) module. The actual runtime metric set varies with package version, enabled collectors, and target state.
+This page separates **raw metrics from scrape endpoints** from **recorded metrics computed by vmalert**. [**`files/victoria/rules/redis.yml`**](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/redis.yml) defines **96 recording rules**. Common examples appear below; the [**Recording Metric Index**](#recording-metric-index) lists every name and expression. Query recorded metrics in VictoriaMetrics, not at an exporter's `/metrics` endpoint.
+
+Raw metrics vary with software versions, collectors, privileges, instance roles, and runtime state. Historical scrape samples are retained for identifying metrics, not as a complete interface for the current version.
+
+## Current Recording Rules
+
+`ins`, `cls`, and `env` refer to instance, cluster, and environment levels; actual aggregation labels depend on each expression. See [**Metric Definitions and Counts**](/docs/infra/metric/#metric-definitions-and-counts) for differences in types and counts between recorded and raw metrics.
+
+| Recorded Metric | Expression | Meaning or Unit |
+|:---|:---|:---|
+| `redis:ins:cpu_usage` | `rate(redis_cpu_sys_seconds_total[1m]) + rate(redis_cpu_user_seconds_total[1m])` | CPU consumption, CPU seconds per second |
+| `redis:ins:mem_usage` | `redis_memory_used_bytes / redis_memory_max_bytes` | Ratio of used memory to the configured limit |
+| `redis:ins:qps` | `rate(redis_commands_processed_total[1m])` | Commands per second |
+| `redis:cls:qps` | `sum by (job, cls) (redis:ins:qps)` | Cluster commands per second |
+| `redis:ins:key_hit_rate` | `redis:ins:key_hit / (redis:ins:key_hit + redis:ins:key_miss)` | Key lookup hit ratio |
+| `redis:ins:clients` | `redis_connected_clients` | Connected client count |
+| `redis:ins:key_miss` | `rate(redis_keyspace_misses_total[1m])` | Key lookup misses per second |
+| `redis:ins:lsn_rate` | `rate(redis_master_repl_offset[1m])` | Replication offset advancement, bytes per second |
+{.full-width}
+
+## Historical Scrape Sample
+
+The existing sample below retains **177 metric names**, with recording-rule and alert-state series removed. Its scrape time and software versions were not recorded, so types and labels are for reference only. `Unknown` indicates missing type metadata. See [**Metric Definitions and Counts**](/docs/infra/metric/#metric-definitions-and-counts) for the counting method.
 
 | Metric Name                                           | Type    | Labels                                                                                                                                                       | Description                                                     |
 |-------------------------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| ALERTS                                                | Unknown | `cls`, `ip`, `level`, `severity`, `instance`, `category`, `ins`, `alertname`, `job`, `alertstate`                                                            | N/A                                                             |
-| ALERTS_FOR_STATE                                      | Unknown | `cls`, `ip`, `level`, `severity`, `instance`, `category`, `ins`, `alertname`, `job`                                                                          | N/A                                                             |
-| redis:cls:aof_rewrite_time                            | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:blocked_clients                             | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:clients                                     | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cmd_qps                                     | Unknown | `cls`, `cmd`, `job`                                                                                                                                          | N/A                                                             |
-| redis:cls:cmd_rt                                      | Unknown | `cls`, `cmd`, `job`                                                                                                                                          | N/A                                                             |
-| redis:cls:cmd_time                                    | Unknown | `cls`, `cmd`, `job`                                                                                                                                          | N/A                                                             |
-| redis:cls:conn_rate                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:conn_reject                                 | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_sys                                     | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_sys_child                               | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_usage                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_usage_child                             | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_user                                    | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:cpu_user_child                              | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:fork_time                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:key_evict                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:key_expire                                  | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:key_hit                                     | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:key_hit_rate                                | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:key_miss                                    | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:mem_max                                     | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:mem_usage                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:mem_usage_max                               | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:mem_used                                    | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:net_traffic                                 | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:qps                                         | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:qps_mu                                      | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:qps_realtime                                | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:qps_sigma                                   | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:rt                                          | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:rt_mu                                       | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:rt_sigma                                    | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:rx                                          | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:size                                        | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:cls:tx                                          | Unknown | `cls`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:env:blocked_clients                             | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:clients                                     | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:cmd_qps                                     | Unknown | `cmd`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:env:cmd_rt                                      | Unknown | `cmd`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:env:cmd_time                                    | Unknown | `cmd`, `job`                                                                                                                                                 | N/A                                                             |
-| redis:env:conn_rate                                   | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:conn_reject                                 | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:cpu_usage                                   | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:cpu_usage_child                             | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:key_evict                                   | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:key_expire                                  | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:key_hit                                     | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:key_hit_rate                                | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:key_miss                                    | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:mem_usage                                   | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:net_traffic                                 | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:qps                                         | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:qps_mu                                      | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:qps_realtime                                | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:qps_sigma                                   | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:rt                                          | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:rt_mu                                       | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:rt_sigma                                    | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:rx                                          | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:env:tx                                          | Unknown | `job`                                                                                                                                                        | N/A                                                             |
-| redis:ins                                             | Unknown | `cls`, `id`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:blocked_clients                             | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:clients                                     | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cmd_qps                                     | Unknown | `cls`, `cmd`, `ip`, `instance`, `ins`, `job`                                                                                                                 | N/A                                                             |
-| redis:ins:cmd_rt                                      | Unknown | `cls`, `cmd`, `ip`, `instance`, `ins`, `job`                                                                                                                 | N/A                                                             |
-| redis:ins:cmd_time                                    | Unknown | `cls`, `cmd`, `ip`, `instance`, `ins`, `job`                                                                                                                 | N/A                                                             |
-| redis:ins:conn_rate                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:conn_reject                                 | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_sys                                     | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_sys_child                               | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_usage                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_usage_child                             | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_user                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:cpu_user_child                              | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:key_evict                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:key_expire                                  | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:key_hit                                     | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:key_hit_rate                                | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:key_miss                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:lsn_rate                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:mem_usage                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:net_traffic                                 | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:qps                                         | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:qps_mu                                      | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:qps_realtime                                | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:qps_sigma                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:rt                                          | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:rt_mu                                       | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:rt_sigma                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:rx                                          | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:ins:tx                                          | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:node:ip                                         | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-| redis:node:mem_alloc                                  | Unknown | `cls`, `ip`, `job`                                                                                                                                           | N/A                                                             |
-| redis:node:mem_total                                  | Unknown | `cls`, `ip`, `job`                                                                                                                                           | N/A                                                             |
-| redis:node:mem_used                                   | Unknown | `cls`, `ip`, `job`                                                                                                                                           | N/A                                                             |
-| redis:node:qps                                        | Unknown | `cls`, `ip`, `job`                                                                                                                                           | N/A                                                             |
 | redis_active_defrag_running                           | gauge   | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | active_defrag_running metric                                    |
 | redis_allocator_active_bytes                          | gauge   | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | allocator_active_bytes metric                                   |
 | redis_allocator_allocated_bytes                       | gauge   | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | allocator_allocated_bytes metric                                |
@@ -287,3 +211,113 @@ This page is a snapshot of 275 monitoring metric categories for the [**`REDIS`**
 | scrape_samples_scraped                                | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | scrape_series_added                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | up                                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
+{.full-width}
+
+## Recording Metric Index
+
+The following groups list every name and expression from the rule file. Use page search to locate a metric. If rules have changed, use the files deployed to `/infra/rules/` as the authority.
+
+<details>
+<summary>REDIS: 96 recording rules</summary>
+
+| Recorded Metric | Expression |
+|:---|:---|
+| `redis:ins` | `max by (id, ins, instance, cls, job) (   label_replace(redis_up, "id", "$1", "ins", "(.+)") OR   label_replace(redis_up, "id", "$1", "instance", "(.+)") )` |
+| `redis:node:ip` | `label_replace(redis_up, "ip", "$1", "instance", "(.*)\\:\\d+")` |
+| `redis:node:mem_total` | `max by (job,cls,ip) (label_replace(redis_total_system_memory_bytes, "ip", "$1", "instance", "(.*)\\:\\d+"))` |
+| `redis:node:mem_alloc` | `sum by (job,cls,ip) (label_replace(redis_config_maxmemory, "ip", "$1", "instance", "(.*)\\:\\d+"))` |
+| `redis:node:mem_used` | `sum by (job,cls,ip) (label_replace(redis_memory_used_bytes, "ip", "$1", "instance", "(.*)\\:\\d+"))` |
+| `redis:node:qps` | `sum by (job,cls,ip) (label_replace(redis:ins:qps, "ip", "$1", "instance", "(.*)\\:\\d+"))` |
+| `redis:ins:cpu_sys` | `rate(redis_cpu_sys_seconds_total[1m])` |
+| `redis:ins:cpu_user` | `rate(redis_cpu_user_seconds_total[1m])` |
+| `redis:ins:cpu_usage` | `rate(redis_cpu_sys_seconds_total[1m]) + rate(redis_cpu_user_seconds_total[1m])` |
+| `redis:cls:cpu_sys` | `avg by (job, cls) (redis:ins:cpu_sys)` |
+| `redis:cls:cpu_user` | `avg by (job, cls) (redis:ins:cpu_user)` |
+| `redis:cls:cpu_usage` | `avg by (job, cls) (redis:ins:cpu_usage)` |
+| `redis:env:cpu_usage` | `avg by (job)(redis:ins:cpu_usage)` |
+| `redis:ins:cpu_sys_child` | `rate(redis_cpu_sys_children_seconds_total[1m])` |
+| `redis:ins:cpu_user_child` | `rate(redis_cpu_user_children_seconds_total[1m])` |
+| `redis:ins:cpu_usage_child` | `rate(redis_cpu_sys_children_seconds_total[1m]) + rate(redis_cpu_user_children_seconds_total[1m])` |
+| `redis:cls:cpu_sys_child` | `avg by (job, cls) (redis:ins:cpu_sys_child)` |
+| `redis:cls:cpu_user_child` | `avg by (job, cls) (redis:ins:cpu_user_child)` |
+| `redis:cls:cpu_usage_child` | `avg by (job, cls) (redis:ins:cpu_usage_child)` |
+| `redis:env:cpu_usage_child` | `avg by (job) (redis:ins:cpu_usage_child)` |
+| `redis:ins:mem_usage` | `redis_memory_used_bytes / redis_memory_max_bytes` |
+| `redis:cls:mem_used` | `sum by (job, cls) (redis_memory_used_bytes)` |
+| `redis:cls:mem_max` | `sum by (job, cls) (redis_memory_max_bytes)` |
+| `redis:cls:mem_usage` | `redis:cls:mem_used / redis:cls:mem_max` |
+| `redis:cls:mem_usage_max` | `max by (job, cls) (redis:ins:mem_usage)` |
+| `redis:env:mem_usage` | `sum by (job)(redis:cls:mem_used) / sum by (job)(redis:cls:mem_max)` |
+| `redis:ins:rx` | `rate(redis_net_input_bytes_total[1m])` |
+| `redis:cls:rx` | `sum by (job, cls) (redis:ins:rx)` |
+| `redis:env:rx` | `sum by (job) (redis:cls:rx)` |
+| `redis:ins:tx` | `rate(redis_net_output_bytes_total[1m])` |
+| `redis:cls:tx` | `sum by (job, cls) (redis:ins:tx)` |
+| `redis:env:tx` | `sum by (job) (redis:cls:tx)` |
+| `redis:ins:net_traffic` | `redis:ins:rx + redis:ins:tx` |
+| `redis:cls:net_traffic` | `redis:cls:rx + redis:cls:tx` |
+| `redis:env:net_traffic` | `redis:env:rx + redis:env:tx` |
+| `redis:ins:qps_realtime` | `irate(redis_commands_processed_total[1m])` |
+| `redis:cls:qps_realtime` | `sum by (job, cls) (redis:ins:qps_realtime)` |
+| `redis:env:qps_realtime` | `sum by (job) (redis:cls:qps_realtime)` |
+| `redis:ins:qps` | `rate(redis_commands_processed_total[1m])` |
+| `redis:cls:qps` | `sum by (job, cls) (redis:ins:qps)` |
+| `redis:env:qps` | `sum by (job) (redis:cls:qps)` |
+| `redis:ins:qps_mu` | `avg_over_time(redis:ins:qps[30m])` |
+| `redis:cls:qps_mu` | `avg_over_time(redis:cls:qps[30m])` |
+| `redis:env:qps_mu` | `avg_over_time(redis:env:qps[30m])` |
+| `redis:ins:qps_sigma` | `stddev_over_time(redis:ins:qps[30m])` |
+| `redis:cls:qps_sigma` | `stddev_over_time(redis:cls:qps[30m])` |
+| `redis:env:qps_sigma` | `stddev_over_time(redis:env:qps[30m])` |
+| `redis:ins:key_expire` | `rate(redis_expired_keys_total[1m])` |
+| `redis:cls:key_expire` | `sum by (job, cls) (redis:ins:key_expire)` |
+| `redis:env:key_expire` | `sum by (job) (redis:cls:key_expire)` |
+| `redis:ins:key_evict` | `rate(redis_evicted_keys_total[1m])` |
+| `redis:cls:key_evict` | `sum by (job, cls) (redis:ins:key_evict)` |
+| `redis:env:key_evict` | `sum by (job) (redis:cls:key_evict)` |
+| `redis:ins:key_hit` | `rate(redis_keyspace_hits_total[1m])` |
+| `redis:cls:key_hit` | `sum by (job, cls) (redis:ins:key_hit)` |
+| `redis:env:key_hit` | `sum by (job) (redis:cls:key_hit)` |
+| `redis:ins:key_miss` | `rate(redis_keyspace_misses_total[1m])` |
+| `redis:cls:key_miss` | `sum by (job, cls) (redis:ins:key_miss)` |
+| `redis:env:key_miss` | `sum by (job) (redis:cls:key_miss)` |
+| `redis:ins:key_hit_rate` | `redis:ins:key_hit / (redis:ins:key_hit + redis:ins:key_miss)` |
+| `redis:cls:key_hit_rate` | `redis:cls:key_hit / (redis:cls:key_hit + redis:cls:key_miss)` |
+| `redis:env:key_hit_rate` | `redis:env:key_hit / (redis:env:key_hit + redis:env:key_miss)` |
+| `redis:ins:cmd_time` | `rate(redis_commands_duration_seconds_total[1m])` |
+| `redis:cls:cmd_time` | `sum by (job,cls,cmd) (redis:ins:cmd_time)` |
+| `redis:env:cmd_time` | `sum by (job,cmd) (redis:ins:cmd_time)` |
+| `redis:ins:cmd_qps` | `rate(redis_commands_total[1m])` |
+| `redis:cls:cmd_qps` | `sum by (job,cls,cmd) (redis:ins:cmd_qps)` |
+| `redis:env:cmd_qps` | `sum by (job,cmd) (redis:cls:cmd_qps)` |
+| `redis:ins:cmd_rt` | `redis:ins:cmd_time / redis:ins:cmd_qps` |
+| `redis:cls:cmd_rt` | `redis:cls:cmd_time / redis:cls:cmd_qps` |
+| `redis:env:cmd_rt` | `redis:env:cmd_time / redis:env:cmd_qps` |
+| `redis:ins:rt` | `sum without (cmd) (redis:ins:cmd_time) / sum without (cmd) (redis:ins:cmd_qps)` |
+| `redis:cls:rt` | `sum without (cmd) (redis:cls:cmd_time) / sum without (cmd) (redis:cls:cmd_qps)` |
+| `redis:env:rt` | `sum without (cmd) (redis:env:cmd_time) / sum without (cmd) (redis:env:cmd_qps)` |
+| `redis:ins:rt_mu` | `avg_over_time(redis:ins:rt[30m])` |
+| `redis:cls:rt_mu` | `avg_over_time(redis:cls:rt[30m])` |
+| `redis:env:rt_mu` | `avg_over_time(redis:env:rt[30m])` |
+| `redis:ins:rt_sigma` | `stddev_over_time(redis:ins:rt[30m])` |
+| `redis:cls:rt_sigma` | `stddev_over_time(redis:cls:rt[30m])` |
+| `redis:env:rt_sigma` | `stddev_over_time(redis:env:rt[30m])` |
+| `redis:ins:clients` | `redis_connected_clients` |
+| `redis:cls:clients` | `sum by (job, cls) (redis:ins:clients)` |
+| `redis:env:clients` | `sum by (job)(redis:cls:clients)` |
+| `redis:ins:blocked_clients` | `rate(redis_blocked_clients[1m])` |
+| `redis:cls:blocked_clients` | `sum by (job, cls) (redis:ins:blocked_clients)` |
+| `redis:env:blocked_clients` | `sum by (job)(redis:cls:blocked_clients)` |
+| `redis:ins:conn_rate` | `rate(redis_connections_received_total[1m])` |
+| `redis:cls:conn_rate` | `sum by (job, cls) (redis:ins:conn_rate)` |
+| `redis:env:conn_rate` | `sum by (job)(redis:cls:conn_rate)` |
+| `redis:ins:conn_reject` | `rate(redis_rejected_connections_total[1m])` |
+| `redis:cls:conn_reject` | `sum by (job, cls) (redis:ins:conn_reject)` |
+| `redis:env:conn_reject` | `sum by (job)(redis:cls:conn_reject)` |
+| `redis:ins:lsn_rate` | `rate(redis_master_repl_offset[1m])` |
+| `redis:cls:fork_time` | `max by (job, cls) (redis_latest_fork_seconds)` |
+| `redis:cls:aof_rewrite_time` | `max by (job, cls) (redis_aof_last_rewrite_duration_sec)` |
+| `redis:cls:size` | `count by (job, cls) (redis_up)` |
+{.full-width}
+
+</details>

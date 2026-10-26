@@ -8,6 +8,8 @@ categories: [Reference]
 aliases: [/docs/pilot/kafka]
 ---
 
+> [!NOTE] Source Version Scope
+> This page follows the current development source snapshot. `kafka_jmx_exporter_enabled` was added on 2026-09-01. The released `v4.5.0` tag does not include it: JMX is always enabled there, and the persistent public parameter count remains 15. The 16 parameters and JMX-disable procedure described here apply to sources containing that change.
 
 [Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module installs **Apache Kafka 4.1+ dynamic KRaft** clusters on managed nodes from RPM/DEB packages. It manages security, resources, lifecycle, and observability.
 
@@ -58,7 +60,7 @@ flowchart LR
     style grafana fill:#F29C64,stroke:#c77845,color:#fff
 ```
 
-Every Kafka JVM includes JMX Exporter and registers as `job=kafka`. `kafka_exporter` runs on the first two broker-capable nodes, ordered by `kafka_seq`. A single broker runs one exporter; pure controllers run none. Both exporters report the same logical cluster. Recording rules deduplicate their metrics before aggregation.
+By default, every Kafka JVM includes JMX Exporter and registers as `job=kafka`. Disable it per instance with [`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled). `kafka_exporter` runs on the first two broker-capable nodes, ordered by `kafka_seq`. A single broker runs one exporter; pure controllers run none. Both exporters report the same logical cluster. Recording rules deduplicate their metrics before aggregation.
 
 
 --------
@@ -69,7 +71,7 @@ Every Kafka JVM includes JMX Exporter and registers as `job=kafka`. `kafka_expor
 |:-----------------------------------|:--------------------------------------------------------------------|
 | [Quickstart](/docs/kafka/start)    | From a single node to a three-node secure cluster: client access, parameter changes, and go-live checks |
 | [Cluster Config](/docs/kafka/config)   | Topology, dynamic KRaft, network, storage, security, and resource declarations |
-| [Parameters](/docs/kafka/param)    | 15 persistent public parameters plus transient operational variables |
+| [Parameters](/docs/kafka/param)    | 16 persistent public parameters plus transient operational variables |
 | [Administration](/docs/kafka/admin)    | Status checks, topics, messages, consumer groups, and topology changes |
 | [Playbook](/docs/kafka/playbook) | `kafka.yml` lifecycle, task tags, rotation, and teardown safeguards |
 | [Monitoring](/docs/kafka/monitor)  | Metrics pipeline, dashboards, log queries, and alert rules |
@@ -96,7 +98,7 @@ If you know Kafka and Pigsty, start with [Cluster Config](/docs/kafka/config) or
 | `9092` | Kafka Broker     | Broker-capable nodes    | PLAINTEXT   | SASL_SSL + SCRAM-SHA-512 |
 | `9093` | KRaft Controller | Controller-capable nodes | PLAINTEXT   | Mutual TLS               |
 | `9308` | kafka_exporter   | Up to two broker-capable nodes | HTTP metrics | HTTP metrics, TLS/SCRAM on the backend |
-| `9404` | JMX Exporter     | All Kafka nodes         | HTTP metrics | HTTP metrics             |
+| `9404` | JMX Exporter     | Kafka nodes with JMX enabled | HTTP metrics | HTTP metrics             |
 {.full-width}
 
 All four ports must be different. Parameters can change each port. Restrict JMX and protocol exporter HTTP ports to the monitoring network through firewalls.

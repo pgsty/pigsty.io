@@ -37,11 +37,15 @@ Default access URLs:
 - `HINDSIGHT_API_VECTOR_EXTENSION`: default `pgvector`
 - `HINDSIGHT_API_TEXT_SEARCH_EXTENSION`: default `native`
 - `HINDSIGHT_API_LLM_PROVIDER`: default `none`
-- `HF_HUB_OFFLINE`: defaults to `1` to use bundled models; set it to `0` and provide outbound network access to download uncached models
+- `HINDSIGHT_MODEL_CACHE`: host model-cache directory, default `/data/hindsight`
 
 With the default LLM provider, `none`, Hindsight can retain text and recall it using local embedding/reranker models. Fact extraction, reflection, and consolidation require Ollama or an OpenAI-compatible API.
 
-The template preserves bundled and downloaded models in the `hindsight-cache` named volume. The database needs `vector`, plus `pg_trgm` installed in `public`. Check the `pg_trgm` location when reusing a database from another template; `CREATE EXTENSION IF NOT EXISTS` does not move an existing extension.
+The template mounts the host model-cache directory at `/home/hindsight/.cache`; it has no `hindsight-cache` named volume. An empty directory may hide models bundled in the image. Check model availability on first startup and allow downloads as needed.
+
+The database needs `vector`, plus `pg_trgm` in `public`. The template explicitly declares only `vector`; add `pg_trgm` and check its schema before deploying. `CREATE EXTENSION IF NOT EXISTS` does not move an existing extension.
+
+The development template uses a named volume to preserve bundled models, sets `HF_HUB_OFFLINE=1`, and adds combined API/UI health checks and `make health`. These features require matching application files. After changing the API port inside the container, also check the control-plane connection URL.
 
 ## Operations
 
@@ -53,6 +57,8 @@ make info
 make down
 make pull
 ```
+
+Request the API's `/health/ready` and the UI proxy's `/api/banks?limit=1` separately to confirm that the application is ready and the control plane can reach the API.
 
 ## References
 

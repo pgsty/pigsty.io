@@ -6,6 +6,8 @@ icon: fa-solid fa-snowflake
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/polar.yml`; v4.5.0 uses `conf/polar.yml`, selected with `-c polar`.
+
 The `polar` configuration template uses Alibaba Cloud's PolarDB for PostgreSQL kernel instead of native PostgreSQL. This cloud-native kernel separates storage and compute in an architecture similar to Aurora.
 
 For the complete tutorial, see: **[PolarDB for PostgreSQL (POLAR) Kernel Guide](/docs/pgsql/kernel/polardb/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
@@ -33,7 +35,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/polar.yml`](https://github.com/pgsty/pigsty/blob/main/conf/polar.yml)
+Development source: `conf/fork/polar.yml`; release source: [`v4.5.0: conf/polar.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/polar.yml).
 
 {{< include file="yaml/polar.yml" code=true lang="yaml" >}}
 

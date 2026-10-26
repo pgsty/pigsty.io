@@ -61,7 +61,7 @@ The native port is the port of the component behind Nginx.
 ## Domain Access
 
 Point your domain name to the Pigsty server IP address.
-Set the domain in the [`home` server configuration](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml#L139).
+Set the domain in the [`home` server configuration](https://github.com/pgsty/pigsty/blob/main/conf/meta.yml).
 This configuration is part of [`infra_portal`](/docs/infra/param#infra_portal):
 
 ```yaml

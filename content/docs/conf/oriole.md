@@ -1,12 +1,14 @@
 ---
 title: oriole
 weight: 490
-description: OrioleDB kernel, provides bloat-free OLTP enhanced storage engine
+description: OrioleDB kernel with an UNDO-based OLTP storage engine
 icon: fa-solid fa-feather
 categories: [Reference]
 ---
 
-The `oriole` configuration template uses the OrioleDB storage engine instead of PostgreSQL's default Heap storage. It provides bloat-free, high-performance OLTP capability.
+Development sources use `conf/fork/oriole.yml`; v4.5.0 uses `conf/oriole.yml`, selected with `-c oriole`.
+
+The `oriole` configuration template uses the OrioleDB storage engine instead of PostgreSQL's default Heap storage. It stores older row versions in UNDO logs, reducing bloat in primary storage.
 
 
 --------
@@ -15,7 +17,7 @@ The `oriole` configuration template uses the OrioleDB storage engine instead of 
 
 - Config Name: `oriole`
 - Node Count: Single node
-- Description: OrioleDB bloat-free storage engine configuration
+- Description: OrioleDB storage engine configuration
 - PostgreSQL Major: `16`, `17`, or `18`
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
@@ -37,7 +39,7 @@ Usage:
 
 ## Content
 
-Source: [`pigsty/conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/conf/oriole.yml)
+Development source: `conf/fork/oriole.yml`; release source: [`v4.5.0: conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/oriole.yml).
 
 {{< include file="yaml/oriole.yml" code=true lang="yaml" >}}
 
@@ -46,10 +48,10 @@ Source: [`pigsty/conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/con
 
 ## Explanation
 
-The `oriole` template uses the OrioleDB storage engine to prevent PostgreSQL table bloat.
+The `oriole` template enables the OrioleDB storage engine. See the [kernel guide](/docs/pgsql/kernel/orioledb/) for its design.
 
 **Key Features**:
-- **Bloat-free Design**: Uses UNDO logs instead of Multi-Version Concurrency Control (MVCC)
+- **Version Management**: Stores older MVCC versions in UNDO logs to reduce bloat in primary storage
 - **No VACUUM Required**: Eliminates performance jitter from autovacuum
 - **Row-level WAL**: More efficient logging and replication
 - **Compressed Storage**: Built-in data compression, reduces storage space

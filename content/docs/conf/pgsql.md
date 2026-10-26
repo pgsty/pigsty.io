@@ -6,6 +6,8 @@ icon: fa-brands fa-linux
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/pgsql.yml`; v4.5.0 uses `conf/pgsql.yml`, selected with `-c pgsql`.
+
 The `pgsql` configuration template uses the native PostgreSQL kernel. This is Pigsty's default database kernel, with stable support for PostgreSQL 14 to 18.
 
 The current `configure` command also accepts version 19. PG19 remains Beta. Use the dedicated [`pg19`](/docs/conf/pg19/) template for evaluation.
@@ -39,7 +41,7 @@ To specify a non-default PostgreSQL version (e.g., 16):
 
 ## Content
 
-Source: [`pigsty/conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/pgsql.yml)
+Development source: `conf/fork/pgsql.yml`; release source: [`v4.5.0: conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgsql.yml).
 
 {{< include file="yaml/pgsql.yml" code=true lang="yaml" >}}
 

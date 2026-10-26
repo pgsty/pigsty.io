@@ -41,6 +41,15 @@ The main task tags are:
 - `minio_register`: Write VictoriaMetrics FileSD targets
 - `minio_provision`: Have the cluster's first member provision `mcli` aliases, buckets, and users once
 
+`minio_launch` restarts cluster members in parallel, waits for services to start, and checks cluster readiness before provisioning buckets and users. If startup times out, check service logs and connectivity between members.
+
+<details>
+<summary>Startup timeout troubleshooting: readiness checks</summary>
+
+The role checks for `ActiveState=active` and a new `InvocationID` every 5 seconds, up to 120 retries. Before provisioning, `silo healthcheck --url <local-endpoint> cluster` retries up to 5 times at 5-second intervals.
+
+</details>
+
 If you run `minio.yml` again, it can restart a running object-storage service. It does not proactively rebuild data. Schedule production runs according to the cluster's failure budget.
 
 
@@ -54,7 +63,7 @@ If you run `minio.yml` again, it can restart a running object-storage service. I
 - `minio_pause`: Pause for 3 seconds so you can abort with Ctrl+C
 - `minio_deregister`: Remove VictoriaMetrics targets and DNS records
 - `minio_svc`: Stop and disable the Silo service
-- `minio_data`: Delete data and configuration according to [`minio_rm_data`](/docs/minio/param#minio_rm_data)
+- `minio_data`: Delete data and configuration according to [`minio_rm_data`](/docs/minio/param#minio_rm_data), also removing legacy `/etc/default/minio` and `minio.service` unit files
 - `minio_pkg`: Uninstall Silo and `mcli` according to [`minio_rm_pkg`](/docs/minio/param#minio_rm_pkg)
 
 > [!CAUTION] Dangerous Operation

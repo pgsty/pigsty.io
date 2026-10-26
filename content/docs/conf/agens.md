@@ -6,6 +6,8 @@ icon: fa-solid fa-project-diagram
 categories: [Reference]
 ---
 
+Development sources use `conf/fork/agens.yml`; v4.5.0 uses `conf/agens.yml`, selected with `-c agens`.
+
 The `agens` template replaces the standard PostgreSQL kernel with AgensGraph.
 It supports property graphs and Cypher queries.
 
@@ -34,7 +36,7 @@ Enable with:
 
 ## Template Content
 
-Source: [`pigsty/conf/agens.yml`](https://github.com/pgsty/pigsty/blob/main/conf/agens.yml)
+Development source: `conf/fork/agens.yml`; release source: [`v4.5.0: conf/agens.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml).
 
 {{< include file="yaml/agens.yml" code=true lang="yaml" >}}
 

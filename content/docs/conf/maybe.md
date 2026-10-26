@@ -10,6 +10,8 @@ The `app/maybe` template deploys Maybe, an open-source personal finance manageme
 It uses Pigsty-managed PostgreSQL as its database.
 
 
+The upstream repository is archived. The template retains the `ghcr.io/maybe-finance/maybe:stable` channel for existing deployments; the source validation snapshot is `v0.6.0`. `stable` does not imply ongoing maintenance releases. See the [Maybe application guide](/docs/app/maybe/).
+
 --------
 
 ## Overview

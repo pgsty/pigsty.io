@@ -10,8 +10,7 @@ categories: [Tutorial]
 [OpenTofu](https://opentofu.org/) is an open-source infrastructure-as-code tool.
 It creates public cloud virtual machines from configuration files.
 
-Pigsty uses OpenTofu by default.
-It supplies Terraform-compatible `.tf` templates for Alibaba Cloud, global AWS, AWS China, Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode.
+The examples below use `tofu` directly. Before using Makefile targets or `./ssh`, check whether they invoke `tofu` or `terraform`; `IAC_CLI` cannot switch scripts that do not support it. The source supplies `.tf` templates compatible with both tools for Alibaba Cloud, global AWS, AWS China, Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode.
 The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3 and pgBackRest.
 
 ## Quick Start
@@ -69,7 +68,7 @@ It then distributes keys with `sshpass`.
 Compatible templates include `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`.
 Do not use this script with modern templates that output `ssh_command`, private IP addresses, or access keys.
 
-For a compatible template, run:
+If your `./ssh` still invokes Terraform, install Terraform. With OpenTofu alone, configure SSH from `tofu output`. For a compatible template, run:
 
 ```bash
 ./ssh       # Write SSH config and distribute keys
@@ -95,7 +94,7 @@ tofu destroy
 
 OpenTofu supports the existing names `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate` for compatibility.
 The repository keeps these names.
-You can explicitly select Terraform as a compatibility option:
+If your Makefile supports `IAC_CLI`, select Terraform as shown below; otherwise, run `terraform plan` directly:
 
 ```bash
 make IAC_CLI=terraform plan
