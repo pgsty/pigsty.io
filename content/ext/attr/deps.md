@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**132** extensions depend on other extensions, **80** extensions are depended upon by others.
+**133** extensions depend on other extensions, **79** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **132** extensions require other extensions to be installed first:
+The following **133** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -46,8 +46,10 @@ The following **132** extensions require other extensions to be installed first:
 | [`jev`](/ext/e/jev) | [`plpython3u`](/ext/e/plpython3u) | Natural-language row filtering, ranking and classification through a Jev-compatible API |
 | [`pg4ml`](/ext/e/pg4ml) | [`plpgsql`](/ext/e/plpgsql) [`tablefunc`](/ext/e/tablefunc) [`cube`](/ext/e/cube) [`plpython3u`](/ext/e/plpython3u) | Machine learning framework for PostgreSQL |
 | [`pgmnemo`](/ext/e/pgmnemo) | [`vector`](/ext/e/vector) | Single-plan multimodal agent memory for PostgreSQL |
+| [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
 | [`pg_search`](/ext/e/pg_search) | [`vector`](/ext/e/vector) | Full text search for PostgreSQL using BM25 |
 | [`biscuit`](/ext/e/biscuit) | [`plpgsql`](/ext/e/plpgsql) | IAM-LIKE pattern matching with bitmap indexing |
+| [`textsearch_intl`](/ext/e/textsearch_intl) | [`unaccent`](/ext/e/unaccent) | Multilingual full text search with ICU segmentation, normalization and n-gram matching |
 | [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_duckdb`](/ext/e/pg_duckdb) | Columnstore Table in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`plpgsql`](/ext/e/plpgsql) | Extension to manage partitioned tables by time or ID |
 | [`pg_lake`](/ext/e/pg_lake) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_table`](/ext/e/pg_lake_table) | Data lake extension by Snowflake |
@@ -125,7 +127,6 @@ The following **132** extensions require other extensions to be installed first:
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`file_fdw`](/ext/e/file_fdw) | Provide SQL interface to logs |
 | [`powa`](/ext/e/powa) | [`plpgsql`](/ext/e/plpgsql) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gist`](/ext/e/btree_gist) | PostgreSQL Workload Analyser-core |
 | [`column_encrypt`](/ext/e/column_encrypt) | [`pgcrypto`](/ext/e/pgcrypto) | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
-| [`supabase_vault`](/ext/e/supabase_vault) | [`pgsodium`](/ext/e/pgsodium) | Supabase Vault Extension |
 | [`pg_auditor`](/ext/e/pg_auditor) | [`hstore`](/ext/e/hstore) | Audit data changes and provide flashback ability |
 | [`pg_jobmon`](/ext/e/pg_jobmon) | [`dblink`](/ext/e/dblink) | Extension for logging and monitoring functions in PostgreSQL |
 | [`pgcryptokey`](/ext/e/pgcryptokey) | [`pgcrypto`](/ext/e/pgcrypto) | cryptographic key management |
@@ -149,7 +150,7 @@ The following **132** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **80** extensions are depended upon by other extensions:
+The following **79** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -163,11 +164,12 @@ The following **80** extensions are depended upon by other extensions:
 | [`pgh_raster`](/ext/e/pgh_raster) | [`pgh_hgm`](/ext/e/pgh_hgm) | Raster hydrology extension for PgHydro |
 | [`mobilitydb`](/ext/e/mobilitydb) | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | MobilityDB geospatial trajectory data management & analysis platform |
 | [`qdgc`](/ext/e/qdgc) | [`qdgc_postgis`](/ext/e/qdgc_postgis) | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
-| [`vector`](/ext/e/vector) | `ai` `alloydb_scann` `avocado` [`documentdb`](/ext/e/documentdb) `embedding_search` `hybrid_search` `maludb_core` `pg_cuvs` `pg_diskann` `pg_gembed` `pg_knowledge_graph` `pg_llm` `pg_llm_helper` [`pg_search`](/ext/e/pg_search) `pg_semantic_cache` `pg_sentence_transformer` `pg_splade` `pg_turboquant` `pgedge_vectorizer` [`pgmnemo`](/ext/e/pgmnemo) `pgpu` `pgturbohybrid` `pgvecutils` `rag` `rag_bge_small_en_v15` `rag_jina_reranker_v1_tiny_en` `rds_ai` `rds_embedding` [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
+| [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pg_search`](/ext/e/pg_search) [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
+| [`pgcontext`](/ext/e/pgcontext) | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
-| [`citus`](/ext/e/citus) | `cigration` [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
+| [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
-| [`pg_partman`](/ext/e/pg_partman) | `partman_to_cstore` [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
+| [`pg_partman`](/ext/e/pg_partman) | [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
 | [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_extension_updater`](/ext/e/pg_extension_updater) [`pg_lake_engine`](/ext/e/pg_lake_engine) | Extension development kit by Snowflake |
 | [`pg_map`](/ext/e/pg_map) | [`pg_lake_engine`](/ext/e/pg_lake_engine) | Map type for PostgreSQL, bundled as a required pg_lake component. |
 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake_copy`](/ext/e/pg_lake_copy) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_lake_table`](/ext/e/pg_lake_table) | Query engine for data lake queries |
@@ -198,30 +200,28 @@ The following **80** extensions are depended upon by other extensions:
 | [`plluau`](/ext/e/plluau) | [`hstore_plluau`](/ext/e/hstore_plluau) | Lua as an untrusted procedural language |
 | [`plr`](/ext/e/plr) | [`fbsql`](/ext/e/fbsql) | load R interpreter and execute R script from within a database |
 | [`plruby`](/ext/e/plruby) | [`hstore_plruby`](/ext/e/hstore_plruby) [`jsonb_plruby`](/ext/e/jsonb_plruby) [`ltree_plruby`](/ext/e/ltree_plruby) | Embed MRI Ruby as an untrusted PostgreSQL procedural language |
-| [`plphp`](/ext/e/plphp) | `bytea_plphp` `hstore_plphp` `jsonb_plphp` | Embed PHP 8 as an untrusted PostgreSQL procedural language |
 | [`pgtap`](/ext/e/pgtap) | [`pgsqlmock`](/ext/e/pgsqlmock) | Unit testing for PostgreSQL |
 | [`plperl`](/ext/e/plperl) | [`bool_plperl`](/ext/e/bool_plperl) [`hstore_plperl`](/ext/e/hstore_plperl) [`jsonb_plperl`](/ext/e/jsonb_plperl) [`sparql`](/ext/e/sparql) | PL/Perl procedural language |
 | [`plperlu`](/ext/e/plperlu) | [`bool_plperlu`](/ext/e/bool_plperlu) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`jsonb_plperlu`](/ext/e/jsonb_plperlu) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`sparql`](/ext/e/sparql) | PL/PerlU untrusted procedural language |
-| [`plpgsql`](/ext/e/plpgsql) | `bedquilt` [`biscuit`](/ext/e/biscuit) [`cat_tools`](/ext/e/cat_tools) `check_orapg` [`currency`](/ext/e/currency) [`data_historization`](/ext/e/data_historization) [`db2fce`](/ext/e/db2fce) `dbpatch` `dbstat` [`ddl_historization`](/ext/e/ddl_historization) `drop_role_helper` `dsef` `event_manager` `explanation` `firefly` `geekspeak` `generic_plan` `gogudb` `grants_manager` `hello-world` `hybrid_search` `index_analyzer` `istoria` `italian_codes` `job_queue` `json_query` `json_utils` `jsonb_schema` `jx_io` `keyhippo` `kilobase` `kissfft` `lab-orders` `launchql-base32` `launchql-ext-types` `launchql-extension-utils` `launchql-extension-verify` `launchql-inflection` `launchql-jwt-claims` `launchql-stamps` `launchql-totp` `livewire` `medications` `merge_ips` `meta_triggers` `migration` `monitoring_role` `mv_rewrite` `mv_stats` `myhelper` `mypg_sharding` `mysqlcompat` `newsfeeds` `nfiesta_gisdata` `nfiesta_sdesign` `nfiesta_target_data` `nonoms` `norm` `npm` `ollama` `omnidb_plpgsql_debugger` `partman_to_cstore` `pase` `pathman_sharding` `patients` `pg-audit-json` `pg2podg` [`pg4ml`](/ext/e/pg4ml) `pgAutomator` `pg_abris` [`pg_accumulator`](/ext/e/pg_accumulator) `pg_audit` `pg_audit_tools` `pg_biscuit` `pg_bleve` `pg_bm25` `pg_cache_tree` `pg_calcpi` `pg_catalog_get_defs` [`pg_column_tetris`](/ext/e/pg_column_tetris) `pg_credereum` `pg_datatype_password` `pg_dbo_timestamp` `pg_dbwa` `pg_dms` [`pg_drop_events`](/ext/e/pg_drop_events) `pg_dropbuffers` `pg_dropcache` `pg_eyes` `pg_fairmlq` [`pg_fsql`](/ext/e/pg_fsql) `pg_gen_uid` `pg_git` `pg_graphql_server` `pg_gsl` `pg_idm` `pg_idx_advisor` [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) `pg_landmetrics` `pg_ledger` `pg_linegazer` `pg_llm_helper` `pg_lock_pool` `pg_message_queue` `pg_monitoring` `pg_normalize_email` `pg_once` `pg_os` `pg_osgr` `pg_pageprep` `pg_part` `pg_particulous` [`pg_partman`](/ext/e/pg_partman) `pg_pathman` `pg_paxos` `pg_popyramids_datamarts` [`pg_profile`](/ext/e/pg_profile) `pg_prometheus` `pg_prttn_tools` `pg_reversi` `pg_sakila_db` `pg_semantic_cache` `pg_sendmail` `pg_sentence_transformer` `pg_sessions` `pg_shardman` [`pg_statviz`](/ext/e/pg_statviz) `pg_tileless` `pg_tms` `pg_turboquant` `pg_twkb` [`pg_upless`](/ext/e/pg_upless) `pg_zlog` `pgaut` `pgcat` `pgeyes` `pgfsm` [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) [`pghydro`](/ext/e/pghydro) [`pgmemento`](/ext/e/pgmemento) `pgmock` `pgnats` `pgparts` `pgpm-base32` `pgpm-defaults` `pgpm-faker` `pgpm-inflection` `pgpm-jwt-claims` `pgpm-measurements` `pgpm-types` `pgpm-verify` `pgrao` `pgrollup` [`pgrouting`](/ext/e/pgrouting) [`pgsqlmock`](/ext/e/pgsqlmock) [`pgtap`](/ext/e/pgtap) `pgtap_fixture` [`pgtelemetry`](/ext/e/pgtelemetry) `pgvroom` `plparrot` [`plpgsql_check`](/ext/e/plpgsql_check) [`plpgsql_wrap`](/ext/e/plpgsql_wrap) `plrust` `postgres_ci` `postpic` [`powa`](/ext/e/powa) `prescriptions` `qgres` `quria` `range_partitioning` `recall` `recursively_delete` `rep_fdw` `rls_helpers` `roleman` `rpg` `rtiles` `scheduling` `session_variables` `short_ids` `skitch-extension-defaults` `skitch-extension-jobs` `skitch-extension-utils` `skitch-extension-verify` `sphinxlink` `sql_saga` `supa_queue` `supabase` `supabase_auth_apikey` `sys_syn_dblink` `tab_tier` `table_log_pl` [`table_version`](/ext/e/table_version) `tablelog` `telephone` `test_factory` `time_for_keys` `timestampandtz` `town` `types` [`unit`](/ext/e/unit) `units` `us-states` `uuidv7-sql` `variant` `vectors` `vrprouting` `wasm` `webauthn` `xl_global_views` `zombodb` | PL/pgSQL procedural language |
+| [`plpgsql`](/ext/e/plpgsql) | [`biscuit`](/ext/e/biscuit) [`cat_tools`](/ext/e/cat_tools) [`currency`](/ext/e/currency) [`data_historization`](/ext/e/data_historization) [`db2fce`](/ext/e/db2fce) [`ddl_historization`](/ext/e/ddl_historization) [`pg4ml`](/ext/e/pg4ml) [`pg_accumulator`](/ext/e/pg_accumulator) [`pg_column_tetris`](/ext/e/pg_column_tetris) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_fsql`](/ext/e/pg_fsql) [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) [`pg_partman`](/ext/e/pg_partman) [`pg_profile`](/ext/e/pg_profile) [`pg_statviz`](/ext/e/pg_statviz) [`pg_upless`](/ext/e/pg_upless) [`pgh_consistency`](/ext/e/pgh_consistency) [`pgh_hgm`](/ext/e/pgh_hgm) [`pgh_output`](/ext/e/pgh_output) [`pgh_output_en_au`](/ext/e/pgh_output_en_au) [`pgh_output_pt_br`](/ext/e/pgh_output_pt_br) [`pgh_raster`](/ext/e/pgh_raster) [`pghydro`](/ext/e/pghydro) [`pgrouting`](/ext/e/pgrouting) [`pgsqlmock`](/ext/e/pgsqlmock) [`pgtap`](/ext/e/pgtap) [`pgtelemetry`](/ext/e/pgtelemetry) [`plpgsql_check`](/ext/e/plpgsql_check) [`plpgsql_wrap`](/ext/e/plpgsql_wrap) [`powa`](/ext/e/powa) [`table_version`](/ext/e/table_version) [`unit`](/ext/e/unit) | PL/pgSQL procedural language |
 | [`plpython3u`](/ext/e/plpython3u) | [`faker`](/ext/e/faker) [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`jev`](/ext/e/jev) [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`omni_python`](/ext/e/omni_python) [`pg4ml`](/ext/e/pg4ml) | PL/Python3U untrusted procedural language |
 | [`roaringbitmap`](/ext/e/roaringbitmap) | [`pgfaceting`](/ext/e/pgfaceting) | support for Roaring Bitmaps |
 | [`pg_xenophile`](/ext/e/pg_xenophile) | [`l10n_table_dependent_extension`](/ext/e/l10n_table_dependent_extension) | More than the bare necessities for PostgreSQL i18n and l10n. |
 | [`ip4r`](/ext/e/ip4r) | [`geoip`](/ext/e/geoip) | IPv4/v6 and IPv4/v6 range index type for PostgreSQL |
 | [`cube`](/ext/e/cube) | [`earthdistance`](/ext/e/earthdistance) [`pg4ml`](/ext/e/pg4ml) | data type for multidimensional cubes |
 | [`ltree`](/ext/e/ltree) | [`fsm_core`](/ext/e/fsm_core) [`ltree_plpython3u`](/ext/e/ltree_plpython3u) [`ltree_plruby`](/ext/e/ltree_plruby) | data type for hierarchical tree-like structures |
-| [`hstore`](/ext/e/hstore) | `flux` `format` `hstore_hash_ops` `hstore_ops` [`hstore_pllua`](/ext/e/hstore_pllua) [`hstore_plluau`](/ext/e/hstore_plluau) [`hstore_plperl`](/ext/e/hstore_plperl) [`hstore_plperlu`](/ext/e/hstore_plperlu) `hstore_plpython2u` [`hstore_plpython3u`](/ext/e/hstore_plpython3u) `hstore_plpythonu` [`hstore_plruby`](/ext/e/hstore_plruby) `json_enhancements_with_hstore` `mbus` `meta_triggers` `numhstore` [`pg_auditor`](/ext/e/pg_auditor) [`pg_readme`](/ext/e/pg_readme) `pg_rowalesce` `pg_utility_trigger_functions` [`pg_xenophile`](/ext/e/pg_xenophile) `sys_syn_dblink` | data type for storing sets of (key, value) pairs |
+| [`hstore`](/ext/e/hstore) | [`hstore_pllua`](/ext/e/hstore_pllua) [`hstore_plluau`](/ext/e/hstore_plluau) [`hstore_plperl`](/ext/e/hstore_plperl) [`hstore_plperlu`](/ext/e/hstore_plperlu) [`hstore_plpython3u`](/ext/e/hstore_plpython3u) [`hstore_plruby`](/ext/e/hstore_plruby) [`pg_auditor`](/ext/e/pg_auditor) [`pg_readme`](/ext/e/pg_readme) [`pg_xenophile`](/ext/e/pg_xenophile) | data type for storing sets of (key, value) pairs |
 | [`http`](/ext/e/http) | [`pgmb`](/ext/e/pgmb) | HTTP client for PostgreSQL, allows web page retrieval inside the database. |
 | [`ddl_historization`](/ext/e/ddl_historization) | [`schedoc`](/ext/e/schedoc) | Historize the ddl changes inside PostgreSQL database |
 | [`tsm_system_rows`](/ext/e/tsm_system_rows) | [`documentdb`](/ext/e/documentdb) | TABLESAMPLE method which accepts number of rows as a limit |
-| [`uuid-ossp`](/ext/e/uuid-ossp) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) `bundle` `datalink` `launchql-extension-verify` `launchql-inflection` `launchql-jwt-claims` `npm` `pg_abris` `pg_dms` [`provsql`](/ext/e/provsql) `ruid` `skitch-extension-jobs` `skitch-extension-verify` `supa_audit` `types` | generate universally unique identifiers (UUIDs) |
+| [`uuid-ossp`](/ext/e/uuid-ossp) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) [`provsql`](/ext/e/provsql) | generate universally unique identifiers (UUIDs) |
 | [`btree_gist`](/ext/e/btree_gist) | [`emaj`](/ext/e/emaj) [`omni_auth`](/ext/e/omni_auth) [`periods`](/ext/e/periods) [`pg_lake_table`](/ext/e/pg_lake_table) [`pgautofailover`](/ext/e/pgautofailover) [`powa`](/ext/e/powa) | support for indexing common datatypes in GiST |
-| [`cat_tools`](/ext/e/cat_tools) | `extension_drop` `object_reference` | Tools for interfacing with the PostgreSQL catalog |
+| [`unaccent`](/ext/e/unaccent) | [`textsearch_intl`](/ext/e/textsearch_intl) | text search dictionary that removes accents |
 | [`pg_living_assertions`](/ext/e/pg_living_assertions) | [`pg_grammar_guard`](/ext/e/pg_grammar_guard) | Executable SQL checks with verdict dates and assertion history |
 | [`pg_prewarm`](/ext/e/pg_prewarm) | [`pgcozy`](/ext/e/pgcozy) | prewarm relation data |
 | [`pgfr_record`](/ext/e/pgfr_record) | [`pgfr_analyze`](/ext/e/pgfr_analyze) | Server-side PostgreSQL performance flight recorder |
 | [`pg_buffercache`](/ext/e/pg_buffercache) | [`pgcozy`](/ext/e/pgcozy) | examine the shared buffer cache |
 | [`pg_stat_statements`](/ext/e/pg_stat_statements) | [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`pgtelemetry`](/ext/e/pgtelemetry) [`powa`](/ext/e/powa) | track planning and execution statistics of all SQL statements executed |
-| [`pgsodium`](/ext/e/pgsodium) | [`supabase_vault`](/ext/e/supabase_vault) | Postgres extension for libsodium functions |
 | [`pgcrypto`](/ext/e/pgcrypto) | [`column_encrypt`](/ext/e/column_encrypt) [`omni_auth`](/ext/e/omni_auth) [`omni_aws`](/ext/e/omni_aws) [`omni_credentials`](/ext/e/omni_credentials) [`omni_rest`](/ext/e/omni_rest) [`pg_dispatch`](/ext/e/pg_dispatch) [`pgcryptokey`](/ext/e/pgcryptokey) [`pgjwt`](/ext/e/pgjwt) | cryptographic functions |
 | [`dblink`](/ext/e/dblink) | [`emaj`](/ext/e/emaj) [`mimeo`](/ext/e/mimeo) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) [`omni_vfs`](/ext/e/omni_vfs) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_profile`](/ext/e/pg_profile) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgelog`](/ext/e/pgelog) | connect to other PostgreSQL databases from within a database |
 | [`file_fdw`](/ext/e/file_fdw) | [`pg_sqlog`](/ext/e/pg_sqlog) | foreign-data wrapper for flat file access |

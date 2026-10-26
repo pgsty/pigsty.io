@@ -11,11 +11,12 @@ weight: 1505
     <div class="ext-card__title">https://git.osgeo.org/gitea/postgis/postgis</div>
     <div class="ext-card__desc">https://git.osgeo.org/gitea/postgis/postgis</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh">
+  <div class="ext-card ext-card--source">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh</div>
-    <div class="ext-card__desc">postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh</div>
-  </a>
+    <div class="ext-card__title"><a href="https://repo.pigsty.io/ext/src/postgis-3.6.4.tar.gz">postgis-3.6.4.tar.gz</a></div>
+    <div class="ext-card__desc"><a href="https://repo.pigsty.io/ext/src/postgis-3.6.4-en.pdf">postgis-3.6.4-en.pdf</a><br><a href="https://repo.pigsty.io/ext/src/postgis36-filter-requires-perl-Pg.sh">postgis36-filter-requires-perl-Pg.sh</a>
+    </div>
+  </div>
 </div>
 
 
@@ -56,12 +57,12 @@ weight: 1505
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 3.6.4 5 | AVAIL PGDG 3.6.4 5 | AVAIL PGDG 3.6.4 5 | AVAIL PGDG 3.6.4 5 | AVAIL PGDG 3.6.4 5 |
-| el8.aarch64 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 |
-| el9.x86_64 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 |
-| el9.aarch64 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 |
-| el10.x86_64 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 |
-| el10.aarch64 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 | AVAIL PGDG 3.6.4 11 |
+| el8.x86_64 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 | AVAIL PGDG 3.6.4 6 |
+| el8.aarch64 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 |
+| el9.x86_64 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 |
+| el9.aarch64 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 |
+| el10.x86_64 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 |
+| el10.aarch64 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 | AVAIL PGDG 3.6.4 12 |
 | d12.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
 | d12.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
 | d13.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |

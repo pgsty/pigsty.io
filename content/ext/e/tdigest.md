@@ -33,6 +33,9 @@ weight: 4710
 {.ext-table .ext-table--rel}
 
 
+> Compression is not an error bound; PostgreSQL license (PGXN labels it bsd).
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

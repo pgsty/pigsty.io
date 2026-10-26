@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **131** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **133** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -44,12 +44,13 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`ulak`](/ext/e/ulak) | `ulak` | Transactional Outbox extension for PostgreSQL with reliable asynchronous delivery |
 | [`pg_ttl_index`](/ext/e/pg_ttl_index) | `pg_ttl_index` | Automatic data expiration with TTL indexes |
 | [`pg_hint_plan`](/ext/e/pg_hint_plan) | `pg_hint_plan` | Give PostgreSQL ability to manually force some decisions in execution plans. |
-| [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | filter statements by their execution plans. |
+| [`plan_filter`](/ext/e/plan_filter) | `plan_filter` | Cooperative statement and transaction guards based on estimated plan cost |
 | [`pg_ivm`](/ext/e/pg_ivm) | `pg_ivm` | incremental view maintenance on PostgreSQL |
 | [`pg_trickle`](/ext/e/pg_trickle) | `pg_trickle` | Streaming tables and differential view maintenance for PostgreSQL 18 |
-| [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | Durable SQL functions for PostgreSQL |
+| [`pg_durable`](/ext/e/pg_durable) | `pg_durable` | SQL-native durable orchestrations for PostgreSQL |
 | [`pg_disorder`](/ext/e/pg_disorder) | `pg_disorder` | Perturb unordered SELECT row order to expose order-dependent tests |
 | [`pg_local_cache`](/ext/e/pg_local_cache) | `pg_local_cache` | Transaction-aware shared-memory cache serving PostgreSQL primary-key rows over RESP2 MGET |
+| [`pg_kv`](/ext/e/pg_kv) | `pg_kv` | Shared-memory key/value cache, token-bucket rate limits and sorted sets. |
 | [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and probability management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
@@ -92,7 +93,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pgnodemx`](/ext/e/pgnodemx) | `pgnodemx` | Capture node OS metrics via SQL queries |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | `bgw_replstatus` | Small PostgreSQL background worker to report whether a node is a replication master or standby |
 | [`pg_relusage`](/ext/e/pg_relusage) | `pg_relusage` | Log all the queries that reference a particular column |
-| [`powa`](/ext/e/powa) | `powa` | PostgreSQL Workload Analyser-core |
+| [`powa`](/ext/e/powa) | `powa,pg_stat_statements` | PostgreSQL Workload Analyser-core |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | `pg_overexplain` | Allow EXPLAIN to dump even more details |
 | [`auto_explain`](/ext/e/auto_explain) | `auto_explain` | Provides a means for logging execution plans of slow statements automatically |
 | [`pg_stat_statements`](/ext/e/pg_stat_statements) | `pg_stat_statements` | track planning and execution statistics of all SQL statements executed |
@@ -100,6 +101,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`supautils`](/ext/e/supautils) | `supautils` | Extension that secures a cluster on a cloud environment |
 | [`pgsodium`](/ext/e/pgsodium) | `pgsodium` | Postgres extension for libsodium functions |
 | [`column_encrypt`](/ext/e/column_encrypt) | `column_encrypt` | Transparent column-level encryption with encrypted_text and encrypted_bytea types |
+| [`encsearch`](/ext/e/encsearch) | `encsearch` | Experimental encrypted text search using AEAD ciphers and keyed blind indexes |
 | [`passwordpolicy`](/ext/e/passwordpolicy) | `$libdir/passwordpolicy` | Dynamically configurable PostgreSQL password complexity checks. |
 | [`anon`](/ext/e/anon) | `anon` | PostgreSQL Anonymizer (anon) extension |
 | [`pgaudit`](/ext/e/pgaudit) | `pgaudit` | provides auditing functionality |
@@ -122,8 +124,8 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`sepgsql`](/ext/e/sepgsql) | `sepgsql` | label-based mandatory access control (MAC) based on SELinux security policy. |
 | [`auth_delay`](/ext/e/auth_delay) | `auth_delay` | pause briefly before reporting authentication failure |
 | [`passwordcheck`](/ext/e/passwordcheck) | `$libdir/passwordcheck` | checks user passwords and reject weak password |
-| [`documentdb`](/ext/e/documentdb) | `pg_documentdb,pg_documentdb_core` | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_core`](/ext/e/documentdb_core) | `pg_documentdb,pg_documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
+| [`documentdb`](/ext/e/documentdb) | `pg_cron,pg_documentdb_core,pg_documentdb` | API surface for DocumentDB for PostgreSQL |
+| [`documentdb_core`](/ext/e/documentdb_core) | `pg_documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `pg_documentdb,pg_documentdb_core` | Multi-Node API surface for DocumentDB |
 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `pg_documentdb_extended_rum` | DocumentDB Extended RUM index access method |
 | [`pgtt`](/ext/e/pgtt) | `pgtt` | Extension to add Global Temporary Tables feature to PostgreSQL |

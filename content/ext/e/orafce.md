@@ -20,7 +20,7 @@ weight: 9100
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`orafce`**](/ext/e/orafce) | `4.16.13` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license 0bsd" href="/ext/license#0bsd">0BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`orafce`**](/ext/e/orafce) | `4.17.1` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license 0bsd" href="/ext/license#0bsd">0BSD</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,27 +33,27 @@ weight: 9100
 {.ext-table .ext-table--rel}
 
 
-> Upstream distribution 4.16.13 fixes possible dbms_sql crashes; SQL/control version is 4.16. Local PGDG package matrix has RPM 4.16.12 and DEB 4.16.13 on 2026-10-10.
+> Distribution 4.17.1 uses SQL/control version 4.17 and adds UTL_RAW; current PGDG package baseline is RPM 4.17.1 / DEB 4.16.13.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.16.13` | {{< pgvers "18,17,16,15,14" >}} | `orafce` | - |
-| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.16.12` | {{< pgvers "18,17,16,15,14" >}} | `orafce_$v` | - |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.17.1` | {{< pgvers "18,17,16,15,14" >}} | `orafce` | - |
+| [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.17.1` | {{< pgvers "18,17,16,15,14" >}} | `orafce_$v` | - |
 | [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.16.13` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-orafce` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 4.16.12 10 | AVAIL PGDG 4.16.12 18 | AVAIL PGDG 4.16.12 27 | AVAIL PGDG 4.16.12 27 | AVAIL PGDG 4.16.12 27 |
-| el8.aarch64 | AVAIL PGDG 4.16.12 10 | AVAIL PGDG 4.16.12 18 | AVAIL PGDG 4.16.12 27 | AVAIL PGDG 4.16.12 27 | AVAIL PGDG 4.16.12 27 |
-| el9.x86_64 | AVAIL PGDG 4.16.12 15 | AVAIL PGDG 4.16.12 23 | AVAIL PGDG 4.16.12 32 | AVAIL PGDG 4.16.12 32 | AVAIL PGDG 4.16.12 32 |
-| el9.aarch64 | AVAIL PGDG 4.16.12 15 | AVAIL PGDG 4.16.12 23 | AVAIL PGDG 4.16.12 32 | AVAIL PGDG 4.16.12 32 | AVAIL PGDG 4.16.12 32 |
-| el10.x86_64 | AVAIL PGDG 4.16.12 15 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 |
-| el10.aarch64 | AVAIL PGDG 4.16.12 15 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 | AVAIL PGDG 4.16.12 16 |
+| el8.x86_64 | AVAIL PGDG 4.17.1 11 | AVAIL PGDG 4.17.1 19 | AVAIL PGDG 4.17.1 28 | AVAIL PGDG 4.17.1 28 | AVAIL PGDG 4.17.1 28 |
+| el8.aarch64 | AVAIL PGDG 4.17.1 11 | AVAIL PGDG 4.17.1 19 | AVAIL PGDG 4.17.1 28 | AVAIL PGDG 4.17.1 28 | AVAIL PGDG 4.17.1 28 |
+| el9.x86_64 | AVAIL PGDG 4.17.1 16 | AVAIL PGDG 4.17.1 24 | AVAIL PGDG 4.17.1 33 | AVAIL PGDG 4.17.1 33 | AVAIL PGDG 4.17.1 33 |
+| el9.aarch64 | AVAIL PGDG 4.17.1 16 | AVAIL PGDG 4.17.1 24 | AVAIL PGDG 4.17.1 33 | AVAIL PGDG 4.17.1 33 | AVAIL PGDG 4.17.1 33 |
+| el10.x86_64 | AVAIL PGDG 4.17.1 16 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 |
+| el10.aarch64 | AVAIL PGDG 4.17.1 16 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 | AVAIL PGDG 4.17.1 17 |
 | d12.x86_64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
 | d12.aarch64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
 | d13.x86_64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
@@ -64,6 +64,7 @@ weight: 9100
 | u24.aarch64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
 | u26.x86_64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
 | u26.aarch64 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 | AVAIL PGDG 4.16.13 3 |
+@ el8.x86_64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.17.1 162.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.17.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.12 156.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.16.12-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.11 155.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.16.11-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.10 154.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.16.10-1PGDG.rhel8.10.x86_64.rpm
@@ -74,6 +75,7 @@ weight: 9100
 @ el8.x86_64 18 orafce_18 orafce_18-4.16.2-2PGDG.rhel8.x86_64.rpm pgdg 4.16.2 152.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.16.2-2PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 18 orafce_18 orafce_18-4.14.6-1PGDG.rhel8.x86_64.rpm pgdg 4.14.6 151.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.14.6-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 18 orafce_18 orafce_18-4.14.5-1PGDG.rhel8.x86_64.rpm pgdg 4.14.5 151.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/orafce_18-4.14.5-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.17.1 154.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.17.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.12 149.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.16.12-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.11 150.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.16.11-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.10 150.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.16.10-1PGDG.rhel8.10.aarch64.rpm
@@ -84,6 +86,7 @@ weight: 9100
 @ el8.aarch64 18 orafce_18 orafce_18-4.16.2-2PGDG.rhel8.aarch64.rpm pgdg 4.16.2 148.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.16.2-2PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 18 orafce_18 orafce_18-4.14.6-1PGDG.rhel8.aarch64.rpm pgdg 4.14.6 146.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.14.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 18 orafce_18 orafce_18-4.14.5-1PGDG.rhel8.aarch64.rpm pgdg 4.14.5 147.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/orafce_18-4.14.5-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel9.8.x86_64.rpm pgdg 4.17.1 157.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.17.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.12 152.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.16.12-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.11 151.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.16.11-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.10 150.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.16.10-1PGDG.rhel9.8.x86_64.rpm
@@ -99,6 +102,7 @@ weight: 9100
 @ el9.x86_64 18 orafce_18 orafce_18-4.16.1-1PGDG.rhel9.x86_64.rpm pgdg 4.16.1 150.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.16.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 18 orafce_18 orafce_18-4.14.6-1PGDG.rhel9.x86_64.rpm pgdg 4.14.6 148.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.14.6-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 18 orafce_18 orafce_18-4.14.5-1PGDG.rhel9.x86_64.rpm pgdg 4.14.5 148.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/orafce_18-4.14.5-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel9.8.aarch64.rpm pgdg 4.17.1 152.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.17.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.12 147.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.16.12-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.11 149.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.16.11-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.10 148.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.16.10-1PGDG.rhel9.8.aarch64.rpm
@@ -114,6 +118,7 @@ weight: 9100
 @ el9.aarch64 18 orafce_18 orafce_18-4.16.1-1PGDG.rhel9.aarch64.rpm pgdg 4.16.1 147.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.16.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 18 orafce_18 orafce_18-4.14.6-1PGDG.rhel9.aarch64.rpm pgdg 4.14.6 146.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.14.6-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 18 orafce_18 orafce_18-4.14.5-1PGDG.rhel9.aarch64.rpm pgdg 4.14.5 146.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/orafce_18-4.14.5-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel10.2.x86_64.rpm pgdg 4.17.1 157.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.17.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.12 153.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.16.12-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.11 152.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.16.11-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.10 151.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.16.10-1PGDG.rhel10.2.x86_64.rpm
@@ -129,6 +134,7 @@ weight: 9100
 @ el10.x86_64 18 orafce_18 orafce_18-4.16.1-1PGDG.rhel10.x86_64.rpm pgdg 4.16.1 150.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.16.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 orafce_18 orafce_18-4.14.6-1PGDG.rhel10.x86_64.rpm pgdg 4.14.6 150.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.14.6-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 orafce_18 orafce_18-4.14.5-1PGDG.rhel10.x86_64.rpm pgdg 4.14.5 149.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/orafce_18-4.14.5-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 orafce_18 orafce_18-4.17.1-1PGDG.rhel10.2.aarch64.rpm pgdg 4.17.1 153.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/orafce_18-4.17.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 orafce_18 orafce_18-4.16.12-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.12 149.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/orafce_18-4.16.12-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 orafce_18 orafce_18-4.16.11-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.11 150.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/orafce_18-4.16.11-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 orafce_18 orafce_18-4.16.10-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.10 149.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/orafce_18-4.16.10-1PGDG.rhel10.2.aarch64.rpm
@@ -174,6 +180,7 @@ weight: 9100
 @ u26.aarch64 18 postgresql-18-orafce postgresql-18-orafce_4.16.13-1.pgdg26.04+1_arm64.deb pgdg 4.16.13 359.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-18-orafce_4.16.13-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-orafce postgresql-18-orafce_4.16.12-1.pgdg26.04+1_arm64.deb pgdg 4.16.12 357.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-18-orafce_4.16.12-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-orafce postgresql-18-orafce_4.16.11-1.pgdg26.04+2_arm64.deb pgdg 4.16.11 356.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-18-orafce_4.16.11-1.pgdg26.04+2_arm64.deb
+@ el8.x86_64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.17.1 162.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.17.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.12 156.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.16.12-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.11 155.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.16.11-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.10 155.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.16.10-1PGDG.rhel8.10.x86_64.rpm
@@ -192,6 +199,7 @@ weight: 9100
 @ el8.x86_64 17 orafce_17 orafce_17-4.13.3-1PGDG.rhel8.x86_64.rpm pgdg 4.13.3 147.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.13.3-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 orafce_17 orafce_17-4.13.2-1PGDG.rhel8.x86_64.rpm pgdg 4.13.2 147.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.13.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 orafce_17 orafce_17-4.13.0-1PGDG.rhel8.x86_64.rpm pgdg 4.13.0 147.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/orafce_17-4.13.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.17.1 154.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.17.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.12 149.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.16.12-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.11 150.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.16.11-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.10 150.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.16.10-1PGDG.rhel8.10.aarch64.rpm
@@ -210,6 +218,7 @@ weight: 9100
 @ el8.aarch64 17 orafce_17 orafce_17-4.13.3-1PGDG.rhel8.aarch64.rpm pgdg 4.13.3 142.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.13.3-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 orafce_17 orafce_17-4.13.2-1PGDG.rhel8.aarch64.rpm pgdg 4.13.2 142.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.13.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 orafce_17 orafce_17-4.13.0-1PGDG.rhel8.aarch64.rpm pgdg 4.13.0 142.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/orafce_17-4.13.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel9.8.x86_64.rpm pgdg 4.17.1 156.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.17.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.12 152.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.16.12-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.11 151.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.16.11-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.10 150.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.16.10-1PGDG.rhel9.8.x86_64.rpm
@@ -233,6 +242,7 @@ weight: 9100
 @ el9.x86_64 17 orafce_17 orafce_17-4.13.3-1PGDG.rhel9.x86_64.rpm pgdg 4.13.3 143.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.13.3-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 orafce_17 orafce_17-4.13.2-1PGDG.rhel9.x86_64.rpm pgdg 4.13.2 143.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.13.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 orafce_17 orafce_17-4.13.0-1PGDG.rhel9.x86_64.rpm pgdg 4.13.0 143.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/orafce_17-4.13.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel9.8.aarch64.rpm pgdg 4.17.1 152.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.17.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.12 147.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.16.12-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.11 149.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.16.11-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.10 148.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.16.10-1PGDG.rhel9.8.aarch64.rpm
@@ -256,6 +266,7 @@ weight: 9100
 @ el9.aarch64 17 orafce_17 orafce_17-4.13.3-1PGDG.rhel9.aarch64.rpm pgdg 4.13.3 141.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.13.3-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 orafce_17 orafce_17-4.13.2-1PGDG.rhel9.aarch64.rpm pgdg 4.13.2 141.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.13.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 orafce_17 orafce_17-4.13.0-1PGDG.rhel9.aarch64.rpm pgdg 4.13.0 140.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/orafce_17-4.13.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel10.2.x86_64.rpm pgdg 4.17.1 158.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.17.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.12 153.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.16.12-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.11 151.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.16.11-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.10 151.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.16.10-1PGDG.rhel10.2.x86_64.rpm
@@ -272,6 +283,7 @@ weight: 9100
 @ el10.x86_64 17 orafce_17 orafce_17-4.14.6-1PGDG.rhel10.x86_64.rpm pgdg 4.14.6 150.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.14.6-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 orafce_17 orafce_17-4.14.4-1PGDG.rhel10.x86_64.rpm pgdg 4.14.4 149.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.14.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 orafce_17 orafce_17-4.14.3-2PGDG.rhel10.x86_64.rpm pgdg 4.14.3 149.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/orafce_17-4.14.3-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 orafce_17 orafce_17-4.17.1-1PGDG.rhel10.2.aarch64.rpm pgdg 4.17.1 153.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/orafce_17-4.17.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 orafce_17 orafce_17-4.16.12-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.12 148.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/orafce_17-4.16.12-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 orafce_17 orafce_17-4.16.11-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.11 150.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/orafce_17-4.16.11-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 orafce_17 orafce_17-4.16.10-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.10 149.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/orafce_17-4.16.10-1PGDG.rhel10.2.aarch64.rpm
@@ -318,6 +330,7 @@ weight: 9100
 @ u26.aarch64 17 postgresql-17-orafce postgresql-17-orafce_4.16.13-1.pgdg26.04+1_arm64.deb pgdg 4.16.13 359.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-17-orafce_4.16.13-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-orafce postgresql-17-orafce_4.16.12-1.pgdg26.04+1_arm64.deb pgdg 4.16.12 356.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-17-orafce_4.16.12-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-orafce postgresql-17-orafce_4.16.11-1.pgdg26.04+2_arm64.deb pgdg 4.16.11 355.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-17-orafce_4.16.11-1.pgdg26.04+2_arm64.deb
+@ el8.x86_64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.17.1 162.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.17.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.12 157.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.16.12-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.11 155.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.16.11-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.10 155.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.16.10-1PGDG.rhel8.10.x86_64.rpm
@@ -345,6 +358,7 @@ weight: 9100
 @ el8.x86_64 16 orafce_16 orafce_16-4.9.2-1PGDG.rhel8.x86_64.rpm pgdg 4.9.2 143.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.9.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 orafce_16 orafce_16-4.9.1-1PGDG.rhel8.x86_64.rpm pgdg 4.9.1 143.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.9.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 orafce_16 orafce_16-4.9.0-1PGDG.rhel8.x86_64.rpm pgdg 4.9.0 143.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/orafce_16-4.9.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.17.1 154.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.17.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.12 149.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.16.12-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.11 150.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.16.11-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.10 150.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.16.10-1PGDG.rhel8.10.aarch64.rpm
@@ -372,6 +386,7 @@ weight: 9100
 @ el8.aarch64 16 orafce_16 orafce_16-4.9.2-1PGDG.rhel8.aarch64.rpm pgdg 4.9.2 138.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.9.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 orafce_16 orafce_16-4.9.1-1PGDG.rhel8.aarch64.rpm pgdg 4.9.1 138.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.9.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 orafce_16 orafce_16-4.9.0-1PGDG.rhel8.aarch64.rpm pgdg 4.9.0 138.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/orafce_16-4.9.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel9.8.x86_64.rpm pgdg 4.17.1 157.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.17.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.12 152.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.16.12-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.11 151.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.16.11-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.10 150.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.16.10-1PGDG.rhel9.8.x86_64.rpm
@@ -404,6 +419,7 @@ weight: 9100
 @ el9.x86_64 16 orafce_16 orafce_16-4.9.2-1PGDG.rhel9.x86_64.rpm pgdg 4.9.2 139.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.9.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 orafce_16 orafce_16-4.9.1-1PGDG.rhel9.x86_64.rpm pgdg 4.9.1 139.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.9.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 orafce_16 orafce_16-4.9.0-1PGDG.rhel9.x86_64.rpm pgdg 4.9.0 139.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/orafce_16-4.9.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel9.8.aarch64.rpm pgdg 4.17.1 151.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.17.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.12 147.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.16.12-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.11 149.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.16.11-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.10 148.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.16.10-1PGDG.rhel9.8.aarch64.rpm
@@ -436,6 +452,7 @@ weight: 9100
 @ el9.aarch64 16 orafce_16 orafce_16-4.9.2-1PGDG.rhel9.aarch64.rpm pgdg 4.9.2 137.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 orafce_16 orafce_16-4.9.1-1PGDG.rhel9.aarch64.rpm pgdg 4.9.1 137.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.9.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 orafce_16 orafce_16-4.9.0-1PGDG.rhel9.aarch64.rpm pgdg 4.9.0 137.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/orafce_16-4.9.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel10.2.x86_64.rpm pgdg 4.17.1 158.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.17.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.12 153.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.16.12-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.11 151.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.16.11-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.10 151.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.16.10-1PGDG.rhel10.2.x86_64.rpm
@@ -452,6 +469,7 @@ weight: 9100
 @ el10.x86_64 16 orafce_16 orafce_16-4.14.6-1PGDG.rhel10.x86_64.rpm pgdg 4.14.6 149.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.14.6-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 orafce_16 orafce_16-4.14.4-1PGDG.rhel10.x86_64.rpm pgdg 4.14.4 149.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.14.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 orafce_16 orafce_16-4.14.3-2PGDG.rhel10.x86_64.rpm pgdg 4.14.3 149.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/orafce_16-4.14.3-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 orafce_16 orafce_16-4.17.1-1PGDG.rhel10.2.aarch64.rpm pgdg 4.17.1 153.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/orafce_16-4.17.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 orafce_16 orafce_16-4.16.12-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.12 148.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/orafce_16-4.16.12-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 orafce_16 orafce_16-4.16.11-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.11 150.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/orafce_16-4.16.11-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 orafce_16 orafce_16-4.16.10-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.10 149.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/orafce_16-4.16.10-1PGDG.rhel10.2.aarch64.rpm
@@ -498,6 +516,7 @@ weight: 9100
 @ u26.aarch64 16 postgresql-16-orafce postgresql-16-orafce_4.16.13-1.pgdg26.04+1_arm64.deb pgdg 4.16.13 359.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-16-orafce_4.16.13-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-orafce postgresql-16-orafce_4.16.12-1.pgdg26.04+1_arm64.deb pgdg 4.16.12 356.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-16-orafce_4.16.12-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-orafce postgresql-16-orafce_4.16.11-1.pgdg26.04+2_arm64.deb pgdg 4.16.11 355.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-16-orafce_4.16.11-1.pgdg26.04+2_arm64.deb
+@ el8.x86_64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.17.1 162.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.17.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.12 157.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.16.12-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.11 155.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.16.11-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.10 155.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.16.10-1PGDG.rhel8.10.x86_64.rpm
@@ -525,6 +544,7 @@ weight: 9100
 @ el8.x86_64 15 orafce_15 orafce_15-4.9.2-1PGDG.rhel8.x86_64.rpm pgdg 4.9.2 145.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.9.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 orafce_15 orafce_15-4.9.1-1PGDG.rhel8.x86_64.rpm pgdg 4.9.1 145.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.9.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 orafce_15 orafce_15-4.9.0-1PGDG.rhel8.x86_64.rpm pgdg 4.9.0 144.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/orafce_15-4.9.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.17.1 154.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.17.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.12 149.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.16.12-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.11 150.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.16.11-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.10 150.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.16.10-1PGDG.rhel8.10.aarch64.rpm
@@ -552,6 +572,7 @@ weight: 9100
 @ el8.aarch64 15 orafce_15 orafce_15-4.9.2-1PGDG.rhel8.aarch64.rpm pgdg 4.9.2 140.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.9.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 orafce_15 orafce_15-4.9.1-1PGDG.rhel8.aarch64.rpm pgdg 4.9.1 140.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.9.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 orafce_15 orafce_15-4.9.0-1PGDG.rhel8.aarch64.rpm pgdg 4.9.0 140.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/orafce_15-4.9.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel9.8.x86_64.rpm pgdg 4.17.1 157.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.17.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.12 152.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.16.12-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.11 151.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.16.11-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.10 151.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.16.10-1PGDG.rhel9.8.x86_64.rpm
@@ -584,6 +605,7 @@ weight: 9100
 @ el9.x86_64 15 orafce_15 orafce_15-4.9.2-1PGDG.rhel9.x86_64.rpm pgdg 4.9.2 144.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.9.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 orafce_15 orafce_15-4.9.1-1PGDG.rhel9.x86_64.rpm pgdg 4.9.1 144.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.9.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 orafce_15 orafce_15-4.9.0-1PGDG.rhel9.x86_64.rpm pgdg 4.9.0 144.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/orafce_15-4.9.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel9.8.aarch64.rpm pgdg 4.17.1 151.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.17.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.12 148.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.16.12-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.11 149.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.16.11-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.10 148.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.16.10-1PGDG.rhel9.8.aarch64.rpm
@@ -616,6 +638,7 @@ weight: 9100
 @ el9.aarch64 15 orafce_15 orafce_15-4.9.2-1PGDG.rhel9.aarch64.rpm pgdg 4.9.2 141.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 orafce_15 orafce_15-4.9.1-1PGDG.rhel9.aarch64.rpm pgdg 4.9.1 141.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.9.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 orafce_15 orafce_15-4.9.0-1PGDG.rhel9.aarch64.rpm pgdg 4.9.0 141.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/orafce_15-4.9.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel10.2.x86_64.rpm pgdg 4.17.1 158.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.17.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.12 154.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.16.12-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.11 152.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.16.11-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.10 151.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.16.10-1PGDG.rhel10.2.x86_64.rpm
@@ -632,6 +655,7 @@ weight: 9100
 @ el10.x86_64 15 orafce_15 orafce_15-4.14.6-1PGDG.rhel10.x86_64.rpm pgdg 4.14.6 150.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.14.6-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 orafce_15 orafce_15-4.14.4-1PGDG.rhel10.x86_64.rpm pgdg 4.14.4 150.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.14.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 orafce_15 orafce_15-4.14.3-2PGDG.rhel10.x86_64.rpm pgdg 4.14.3 150.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/orafce_15-4.14.3-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 orafce_15 orafce_15-4.17.1-1PGDG.rhel10.2.aarch64.rpm pgdg 4.17.1 153.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/orafce_15-4.17.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 orafce_15 orafce_15-4.16.12-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.12 149.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/orafce_15-4.16.12-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 orafce_15 orafce_15-4.16.11-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.11 150.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/orafce_15-4.16.11-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 orafce_15 orafce_15-4.16.10-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.10 150.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/orafce_15-4.16.10-1PGDG.rhel10.2.aarch64.rpm
@@ -678,6 +702,7 @@ weight: 9100
 @ u26.aarch64 15 postgresql-15-orafce postgresql-15-orafce_4.16.13-1.pgdg26.04+1_arm64.deb pgdg 4.16.13 364.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-15-orafce_4.16.13-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-orafce postgresql-15-orafce_4.16.12-1.pgdg26.04+1_arm64.deb pgdg 4.16.12 361.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-15-orafce_4.16.12-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-orafce postgresql-15-orafce_4.16.11-1.pgdg26.04+2_arm64.deb pgdg 4.16.11 360.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/o/orafce/postgresql-15-orafce_4.16.11-1.pgdg26.04+2_arm64.deb
+@ el8.x86_64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel8.10.x86_64.rpm pgdg 4.17.1 163.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.17.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.12 158.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.16.12-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.11 157.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.16.11-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel8.10.x86_64.rpm pgdg 4.16.10 156.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.16.10-1PGDG.rhel8.10.x86_64.rpm
@@ -705,6 +730,7 @@ weight: 9100
 @ el8.x86_64 14 orafce_14 orafce_14-4.9.2-1PGDG.rhel8.x86_64.rpm pgdg 4.9.2 146.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.9.2-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 orafce_14 orafce_14-4.9.1-1PGDG.rhel8.x86_64.rpm pgdg 4.9.1 146.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.9.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 orafce_14 orafce_14-4.9.0-1PGDG.rhel8.x86_64.rpm pgdg 4.9.0 146.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/orafce_14-4.9.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel8.10.aarch64.rpm pgdg 4.17.1 155.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.17.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.12 150.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.16.12-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.11 152.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.16.11-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel8.10.aarch64.rpm pgdg 4.16.10 151.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.16.10-1PGDG.rhel8.10.aarch64.rpm
@@ -732,6 +758,7 @@ weight: 9100
 @ el8.aarch64 14 orafce_14 orafce_14-4.9.2-1PGDG.rhel8.aarch64.rpm pgdg 4.9.2 141.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.9.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 orafce_14 orafce_14-4.9.1-1PGDG.rhel8.aarch64.rpm pgdg 4.9.1 140.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.9.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 orafce_14 orafce_14-4.9.0-1PGDG.rhel8.aarch64.rpm pgdg 4.9.0 140.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/orafce_14-4.9.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel9.8.x86_64.rpm pgdg 4.17.1 158.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.17.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.12 153.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.16.12-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.11 152.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.16.11-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel9.8.x86_64.rpm pgdg 4.16.10 152.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.16.10-1PGDG.rhel9.8.x86_64.rpm
@@ -764,6 +791,7 @@ weight: 9100
 @ el9.x86_64 14 orafce_14 orafce_14-4.9.2-1PGDG.rhel9.x86_64.rpm pgdg 4.9.2 145.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.9.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 orafce_14 orafce_14-4.9.1-1PGDG.rhel9.x86_64.rpm pgdg 4.9.1 145.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.9.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 orafce_14 orafce_14-4.9.0-1PGDG.rhel9.x86_64.rpm pgdg 4.9.0 145.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/orafce_14-4.9.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel9.8.aarch64.rpm pgdg 4.17.1 153.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.17.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.12 148.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.16.12-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.11 150.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.16.11-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel9.8.aarch64.rpm pgdg 4.16.10 150.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.16.10-1PGDG.rhel9.8.aarch64.rpm
@@ -796,6 +824,7 @@ weight: 9100
 @ el9.aarch64 14 orafce_14 orafce_14-4.9.2-1PGDG.rhel9.aarch64.rpm pgdg 4.9.2 142.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 orafce_14 orafce_14-4.9.1-1PGDG.rhel9.aarch64.rpm pgdg 4.9.1 142.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.9.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 orafce_14 orafce_14-4.9.0-1PGDG.rhel9.aarch64.rpm pgdg 4.9.0 142.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/orafce_14-4.9.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel10.2.x86_64.rpm pgdg 4.17.1 159.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.17.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.12 155.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.16.12-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.11 153.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.16.11-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel10.2.x86_64.rpm pgdg 4.16.10 153.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.16.10-1PGDG.rhel10.2.x86_64.rpm
@@ -812,6 +841,7 @@ weight: 9100
 @ el10.x86_64 14 orafce_14 orafce_14-4.14.6-1PGDG.rhel10.x86_64.rpm pgdg 4.14.6 151.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.14.6-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 orafce_14 orafce_14-4.14.4-1PGDG.rhel10.x86_64.rpm pgdg 4.14.4 151.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.14.4-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 orafce_14 orafce_14-4.14.3-2PGDG.rhel10.x86_64.rpm pgdg 4.14.3 151.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/orafce_14-4.14.3-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 orafce_14 orafce_14-4.17.1-1PGDG.rhel10.2.aarch64.rpm pgdg 4.17.1 154.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/orafce_14-4.17.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 orafce_14 orafce_14-4.16.12-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.12 150.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/orafce_14-4.16.12-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 orafce_14 orafce_14-4.16.11-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.11 151.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/orafce_14-4.16.11-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 orafce_14 orafce_14-4.16.10-1PGDG.rhel10.2.aarch64.rpm pgdg 4.16.10 151.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/orafce_14-4.16.10-1PGDG.rhel10.2.aarch64.rpm
@@ -910,14 +940,13 @@ CREATE EXTENSION orafce;
 
 Sources:
 
-- [4.16.13 release](https://github.com/orafce/orafce/releases/tag/VERSION_4_16_13)
-- [README.asciidoc](https://github.com/orafce/orafce/blob/e538f81acccf73bd9c40977e22e8c4984e452622/README.asciidoc)
-- [orafce.control](https://github.com/orafce/orafce/blob/e538f81acccf73bd9c40977e22e8c4984e452622/orafce.control)
-- [orafce--4.16.sql](https://github.com/orafce/orafce/blob/e538f81acccf73bd9c40977e22e8c4984e452622/orafce--4.16.sql)
-- [4.16.12 release notes](https://github.com/orafce/orafce/releases/tag/VERSION_4_16_12)
-- [File-access implementation](https://github.com/orafce/orafce/blob/e538f81acccf73bd9c40977e22e8c4984e452622/file.c)
+- [README.asciidoc](https://github.com/orafce/orafce/blob/542aed2e0297898cc9844fede3c4452f894b37ed/README.asciidoc)
+- [orafce.control](https://github.com/orafce/orafce/blob/542aed2e0297898cc9844fede3c4452f894b37ed/orafce.control)
+- [orafce--4.17.sql](https://github.com/orafce/orafce/blob/542aed2e0297898cc9844fede3c4452f894b37ed/orafce--4.17.sql)
+- [orafce--4.16--4.17.sql](https://github.com/orafce/orafce/blob/542aed2e0297898cc9844fede3c4452f894b37ed/orafce--4.16--4.17.sql)
+- [file.c](https://github.com/orafce/orafce/blob/542aed2e0297898cc9844fede3c4452f894b37ed/file.c)
 
-`orafce` provides Oracle-compatible functions, types and utility packages. Distribution 4.16.13 still uses control and SQL extension version 4.16; the two numbers describe different layers.
+`orafce` provides Oracle-compatible functions, types and utility packages. Distribution 4.17.1 uses control and SQL extension version 4.17; the two numbers describe different layers.
 
 ### Core Workflow
 
@@ -941,8 +970,12 @@ Use `oracle.date` when an Oracle-style date must retain the time of day. Date fu
 
 `utl_file` accesses server-side files within administrator-configured allowed directories; restrict grants and file-system permissions. The implementation rejects parent-directory references that remain after path canonicalization. Avoid parent references in file paths. The 4.16.12 release specifically fixes possible crashes in `dbms_sql`.
 
-Installation requires a superuser and creates fixed schemas; no preload is required. Follow the upstream configuration guidance before altering `search_path`. Since the SQL version remains 4.16, an installed 4.16 extension need not acquire a new SQL version merely because its binary distribution was patched. Reconnect as required to use the updated library and verify behavior against the exact installed distribution.
+Installation requires a superuser and creates fixed schemas; no preload is required. Follow the upstream configuration guidance before altering `search_path`. The 4.16 patch releases did not change the SQL version; upgrading to the 4.17 series does require its SQL upgrade. Reconnect as required to use the updated library and verify behavior against the exact installed distribution.
 
 ### 4.16.13 Patch
 
 Distribution 4.16.13 fixes additional possible `dbms_sql` crashes. The control version remains 4.16; update the library distribution without inventing a 4.16.13 SQL upgrade.
+
+### 4.17 Compatibility Objects
+
+Distribution 4.17.1 adds `utl_raw` byte operations, including `utl_raw.cast_to_raw`, `utl_raw.cast_to_varchar2`, `utl_raw.substr` and bitwise functions. `utl_raw.substr` rejects a null value, invalid start, nonpositive length or a range past the end. `oracle.hextoraw`, `oracle.rawtohex`, `oracle.empty_clob`, `oracle.empty_blob` and `oracle.from_tz` are also added. USER_TABLES and USER_TAB_COLUMNS now restrict their results to the current schema. After installing the new distribution, run `ALTER EXTENSION orafce UPDATE TO '4.17'` and reconnect to use the new library.

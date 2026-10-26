@@ -38,6 +38,9 @@ weight: 4600
 {.ext-table .ext-table--rel}
 
 
+> Some package coordinates may lag 2.7.1.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

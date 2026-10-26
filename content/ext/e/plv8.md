@@ -38,6 +38,9 @@ weight: 3010
 {.ext-table .ext-table--rel}
 
 
+> Upstream PG19 support; packages PG14-18.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

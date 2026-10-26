@@ -11,11 +11,12 @@ weight: 4700
     <div class="ext-card__title">apache/datasketches-postgresql</div>
     <div class="ext-card__desc">https://github.com/apache/datasketches-postgresql</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/apache-datasketches-postgresql-1.7.0-src.tar.gz apache-datasketches-cpp-5.2.0-src.tar.gz">
+  <div class="ext-card ext-card--source">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">apache-datasketches-postgresql-1.7.0-src.tar.gz apache-datasketches-cpp-5.2.0-src.tar.gz</div>
-    <div class="ext-card__desc">apache-datasketches-postgresql-1.7.0-src.tar.gz apache-datasketches-cpp-5.2.0-src.tar.gz</div>
-  </a>
+    <div class="ext-card__title"><a href="https://repo.pigsty.io/ext/src/apache-datasketches-postgresql-1.7.0-src.tar.gz">apache-datasketches-postgresql-1.7.0-src.tar.gz</a></div>
+    <div class="ext-card__desc"><a href="https://repo.pigsty.io/ext/src/apache-datasketches-cpp-5.2.0-src.tar.gz">apache-datasketches-cpp-5.2.0-src.tar.gz</a>
+    </div>
+  </div>
 </div>
 
 
@@ -38,7 +39,7 @@ weight: 4700
 {.ext-table .ext-table--rel}
 
 
-> Built against DataSketches C++ core 5.2.0.
+> DataSketches C++ core 5.2.0.
 
 
 ## Version
@@ -58,7 +59,7 @@ weight: 4700
 | el9.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 |
 | el9.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 |
 | el10.x86_64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 |
-| el10.aarch64 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 | AVAIL PIGSTY 1.7.0 2 |
+| el10.aarch64 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 |
 | d12.x86_64 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 | AVAIL PIGSTY 1.7.0 1 |
@@ -80,7 +81,6 @@ weight: 4700
 @ el10.x86_64 18 datasketches_18 datasketches_18-1.7.0-1PIGSTY.el10.x86_64.rpm pigsty 1.7.0 319.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/datasketches_18-1.7.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 datasketches_18 datasketches_18-1.7.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 316.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/datasketches_18-1.7.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 18 datasketches_18 datasketches_18-1.7.0-1PIGSTY.el10.aarch64.rpm pigsty 1.7.0 319.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/datasketches_18-1.7.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 18 datasketches_18 datasketches_18-1.7.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 314.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/datasketches_18-1.7.0-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-datasketches postgresql-18-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb pigsty 1.7.0 918.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-18-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 18 postgresql-18-datasketches postgresql-18-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb pigsty 1.7.0 920.0KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-18-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 18 postgresql-18-datasketches postgresql-18-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb pigsty 1.7.0 943.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/d/datasketches/postgresql-18-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb
@@ -102,7 +102,6 @@ weight: 4700
 @ el10.x86_64 17 datasketches_17 datasketches_17-1.7.0-1PIGSTY.el10.x86_64.rpm pigsty 1.7.0 319.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/datasketches_17-1.7.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 datasketches_17 datasketches_17-1.7.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 316.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/datasketches_17-1.7.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 17 datasketches_17 datasketches_17-1.7.0-1PIGSTY.el10.aarch64.rpm pigsty 1.7.0 319.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/datasketches_17-1.7.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 17 datasketches_17 datasketches_17-1.7.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 315.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/datasketches_17-1.7.0-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-datasketches postgresql-17-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb pigsty 1.7.0 918.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-17-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-datasketches postgresql-17-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb pigsty 1.7.0 919.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-17-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-datasketches postgresql-17-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb pigsty 1.7.0 942.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/d/datasketches/postgresql-17-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb
@@ -124,7 +123,6 @@ weight: 4700
 @ el10.x86_64 16 datasketches_16 datasketches_16-1.7.0-1PIGSTY.el10.x86_64.rpm pigsty 1.7.0 319.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/datasketches_16-1.7.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 datasketches_16 datasketches_16-1.7.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 316.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/datasketches_16-1.7.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 16 datasketches_16 datasketches_16-1.7.0-1PIGSTY.el10.aarch64.rpm pigsty 1.7.0 319.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/datasketches_16-1.7.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 16 datasketches_16 datasketches_16-1.7.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 314.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/datasketches_16-1.7.0-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-datasketches postgresql-16-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb pigsty 1.7.0 918.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-16-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 16 postgresql-16-datasketches postgresql-16-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb pigsty 1.7.0 919.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-16-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 16 postgresql-16-datasketches postgresql-16-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb pigsty 1.7.0 943.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/d/datasketches/postgresql-16-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb
@@ -146,7 +144,6 @@ weight: 4700
 @ el10.x86_64 15 datasketches_15 datasketches_15-1.7.0-1PIGSTY.el10.x86_64.rpm pigsty 1.7.0 325.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/datasketches_15-1.7.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 datasketches_15 datasketches_15-1.7.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 322.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/datasketches_15-1.7.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 15 datasketches_15 datasketches_15-1.7.0-1PIGSTY.el10.aarch64.rpm pigsty 1.7.0 325.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/datasketches_15-1.7.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 15 datasketches_15 datasketches_15-1.7.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 320.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/datasketches_15-1.7.0-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-datasketches postgresql-15-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb pigsty 1.7.0 932.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-15-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 15 postgresql-15-datasketches postgresql-15-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb pigsty 1.7.0 933.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-15-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 15 postgresql-15-datasketches postgresql-15-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb pigsty 1.7.0 957.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/d/datasketches/postgresql-15-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb
@@ -168,7 +165,6 @@ weight: 4700
 @ el10.x86_64 14 datasketches_14 datasketches_14-1.7.0-1PIGSTY.el10.x86_64.rpm pigsty 1.7.0 325.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/datasketches_14-1.7.0-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 datasketches_14 datasketches_14-1.7.0-1PGDG.rhel10.2.x86_64.rpm pgdg 1.7.0 322.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/datasketches_14-1.7.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.aarch64 14 datasketches_14 datasketches_14-1.7.0-1PIGSTY.el10.aarch64.rpm pigsty 1.7.0 325.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/datasketches_14-1.7.0-1PIGSTY.el10.aarch64.rpm
-@ el10.aarch64 14 datasketches_14 datasketches_14-1.7.0-1PGDG.rhel10.2.aarch64.rpm pgdg 1.7.0 320.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/datasketches_14-1.7.0-1PGDG.rhel10.2.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-datasketches postgresql-14-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb pigsty 1.7.0 932.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-14-datasketches_1.7.0-1PIGSTY~bookworm_amd64.deb
 @ d12.aarch64 14 postgresql-14-datasketches postgresql-14-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb pigsty 1.7.0 933.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/d/datasketches/postgresql-14-datasketches_1.7.0-1PIGSTY~bookworm_arm64.deb
 @ d13.x86_64 14 postgresql-14-datasketches postgresql-14-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb pigsty 1.7.0 957.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/d/datasketches/postgresql-14-datasketches_1.7.0-1PIGSTY~trixie_amd64.deb

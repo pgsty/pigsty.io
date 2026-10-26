@@ -29,19 +29,19 @@ weight: 1970
 | 1970  | [**`pgcontext_pgvector`**](/ext/e/pgcontext_pgvector) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
-| **Related** | [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`vectorize`](/ext/e/vectorize) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pgml`](/ext/e/pgml) |
+| **Related** | [`pgcontext`](/ext/e/pgcontext) [`vector`](/ext/e/vector) [`vector`](/ext/e/vector) [`vchord`](/ext/e/vchord) [`vectorscale`](/ext/e/vectorscale) [`vectorize`](/ext/e/vectorize) [`pg_rrf`](/ext/e/pg_rrf) [`pg_search`](/ext/e/pg_search) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`vchord_bm25`](/ext/e/vchord_bm25) [`pgml`](/ext/e/pgml) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
 
-> Removed in pgcontext 0.3.0; migrate to pgcontext.
+> Retired in 0.3; use pgcontext.enable_pgvector_binding(); old 0.2: PG17, pgvector 0.8.x in public; no current packages.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "18,17" >}} | `pgcontext` | - |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "17" >}} | `pgcontext` | `pgcontext`, `vector` |
 | [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | - | - | `pgcontext_$v` | - |
 | [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | - | - | `postgresql-$v-pgcontext` | - |
 {.ext-table}
@@ -83,17 +83,14 @@ pig install pgcontext;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
-pig ext install -y pgcontext -v 18  # PG 18
 pig ext install -y pgcontext -v 17  # PG 17
 ```
 
 ```bash {tab="dnf" value="dnf"}
-dnf install -y pgcontext_18       # PG 18
 dnf install -y pgcontext_17       # PG 17
 ```
 
 ```bash {tab="apt" value="apt"}
-apt install -y postgresql-18-pgcontext   # PG 18
 apt install -y postgresql-17-pgcontext   # PG 17
 ```
 
@@ -101,7 +98,7 @@ apt install -y postgresql-17-pgcontext   # PG 17
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pgcontext_pgvector;
+CREATE EXTENSION pgcontext_pgvector CASCADE;  -- requires: pgcontext, vector
 ```
 
 ## Usage

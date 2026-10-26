@@ -6,10 +6,10 @@ weight: 6870
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/powa-team/powa">
+  <a class="ext-card ext-card--repo" href="https://github.com/powa-team/powa-archivist">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">powa-team/powa</div>
-    <div class="ext-card__desc">https://github.com/powa-team/powa</div>
+    <div class="ext-card__title">powa-team/powa-archivist</div>
+    <div class="ext-card__desc">https://github.com/powa-team/powa-archivist</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 6870
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 6870  | [**`powa`**](/ext/e/powa) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `public` |
+| 6870  | [**`powa`**](/ext/e/powa) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table}
 
 | **Related** | [`plpgsql`](/ext/e/plpgsql) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`btree_gist`](/ext/e/btree_gist) [`pg_stat_plans`](/ext/e/pg_stat_plans) [`pg_profile`](/ext/e/pg_profile) [`pg_stat_statements`](/ext/e/pg_stat_statements) [`pg_stat_monitor`](/ext/e/pg_stat_monitor) [`pg_store_plans`](/ext/e/pg_store_plans) [`pg_track_settings`](/ext/e/pg_track_settings) [`pg_track_optimizer`](/ext/e/pg_track_optimizer) [`auto_explain`](/ext/e/auto_explain) [`pg_show_plans`](/ext/e/pg_show_plans) [`pg_qualstats`](/ext/e/pg_qualstats) |
@@ -33,7 +33,7 @@ weight: 6870
 {.ext-table .ext-table--rel}
 
 
-> RPM: PGDG 5.1.0; DEB: PGDG 5.3.0.
+> Local: preload powa+pg_stat_statements and restart; remote: powa-collector.
 
 
 ## Version

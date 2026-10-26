@@ -20,7 +20,7 @@ weight: 7310
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`credcheck`**](/ext/e/credcheck) | `5.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`credcheck`**](/ext/e/credcheck) | `6.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -33,12 +33,15 @@ weight: 7310
 {.ext-table .ext-table--rel}
 
 
+> pkg 6.0; SQL 6.0.0; restart then update extension; migrates 5.x history; PgBouncer needs setup.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.0` | {{< pgvers "18,17,16,15,14" >}} | `credcheck` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.7` | {{< pgvers "18,17,16,15,14" >}} | `credcheck_$v` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.0` | {{< pgvers "18,17,16,15,14" >}} | `credcheck` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `6.0` | {{< pgvers "18,17,16,15,14" >}} | `credcheck_$v` | - |
 | [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-credcheck` | - |
 {.ext-table}
 
@@ -47,10 +50,10 @@ weight: 7310
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | AVAIL PGDG 4.7 8 | AVAIL PGDG 4.7 9 | AVAIL PGDG 4.7 12 | AVAIL PGDG 4.7 17 | AVAIL PGDG 4.7 17 |
 | el8.aarch64 | AVAIL PGDG 4.7 8 | AVAIL PGDG 4.7 9 | AVAIL PGDG 4.7 12 | AVAIL PGDG 4.7 17 | AVAIL PGDG 4.7 17 |
-| el9.x86_64 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 15 | AVAIL PGDG 4.7 18 | AVAIL PGDG 4.7 23 | AVAIL PGDG 4.7 22 |
-| el9.aarch64 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 15 | AVAIL PGDG 4.7 18 | AVAIL PGDG 4.7 23 | AVAIL PGDG 4.7 23 |
-| el10.x86_64 | AVAIL PGDG 4.7 13 | AVAIL PGDG 4.7 13 | AVAIL PGDG 4.7 13 | AVAIL PGDG 4.7 13 | AVAIL PGDG 4.7 13 |
-| el10.aarch64 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 14 | AVAIL PGDG 4.7 14 |
+| el9.x86_64 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 16 | AVAIL PGDG 6.0 19 | AVAIL PGDG 6.0 24 | AVAIL PGDG 6.0 23 |
+| el9.aarch64 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 16 | AVAIL PGDG 6.0 19 | AVAIL PGDG 6.0 24 | AVAIL PGDG 6.0 24 |
+| el10.x86_64 | AVAIL PGDG 6.0 14 | AVAIL PGDG 6.0 14 | AVAIL PGDG 6.0 14 | AVAIL PGDG 6.0 14 | AVAIL PGDG 6.0 14 |
+| el10.aarch64 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 15 | AVAIL PGDG 6.0 15 |
 | d12.x86_64 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 |
 | d12.aarch64 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 |
 | d13.x86_64 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 | AVAIL PGDG 5.0 3 |
@@ -77,6 +80,7 @@ weight: 7310
 @ el8.aarch64 18 credcheck_18 credcheck_18-4.2-1PGDG.rhel8.aarch64.rpm pgdg 4.2 39.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/credcheck_18-4.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 18 credcheck_18 credcheck_18-4.1-1PGDG.rhel8.aarch64.rpm pgdg 4.1 38.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/credcheck_18-4.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 18 credcheck_18 credcheck_18-3.0-2PGDG.rhel8.aarch64.rpm pgdg 3.0 35.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/credcheck_18-3.0-2PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 18 credcheck_18 credcheck_18-6.0-1PGDG.rhel9.8.x86_64.rpm pgdg 6.0 54.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-6.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.8.x86_64.rpm pgdg 4.7 41.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-4.7-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.7.x86_64.rpm pgdg 4.7 41.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-4.7-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.6.x86_64.rpm pgdg 4.7 41.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-4.7-1PGDG.rhel9.6.x86_64.rpm
@@ -91,6 +95,7 @@ weight: 7310
 @ el9.x86_64 18 credcheck_18 credcheck_18-4.2-1PGDG.rhel9.x86_64.rpm pgdg 4.2 39.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-4.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 18 credcheck_18 credcheck_18-4.1-1PGDG.rhel9.x86_64.rpm pgdg 4.1 39.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-4.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 18 credcheck_18 credcheck_18-3.0-2PGDG.rhel9.x86_64.rpm pgdg 3.0 35.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/credcheck_18-3.0-2PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 18 credcheck_18 credcheck_18-6.0-1PGDG.rhel9.8.aarch64.rpm pgdg 6.0 53.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-6.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.8.aarch64.rpm pgdg 4.7 40.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-4.7-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.7.aarch64.rpm pgdg 4.7 40.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-4.7-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel9.6.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-4.7-1PGDG.rhel9.6.aarch64.rpm
@@ -105,6 +110,7 @@ weight: 7310
 @ el9.aarch64 18 credcheck_18 credcheck_18-4.2-1PGDG.rhel9.aarch64.rpm pgdg 4.2 39.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-4.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 18 credcheck_18 credcheck_18-4.1-1PGDG.rhel9.aarch64.rpm pgdg 4.1 38.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-4.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 18 credcheck_18 credcheck_18-3.0-2PGDG.rhel9.aarch64.rpm pgdg 3.0 35.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/credcheck_18-3.0-2PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 18 credcheck_18 credcheck_18-6.0-1PGDG.rhel10.2.x86_64.rpm pgdg 6.0 54.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-6.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.2.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-4.7-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.1.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-4.7-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.0.x86_64.rpm pgdg 4.7 42.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-4.7-1PGDG.rhel10.0.x86_64.rpm
@@ -118,6 +124,7 @@ weight: 7310
 @ el10.x86_64 18 credcheck_18 credcheck_18-4.2-1PGDG.rhel10.x86_64.rpm pgdg 4.2 40.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-4.2-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 credcheck_18 credcheck_18-4.1-1PGDG.rhel10.x86_64.rpm pgdg 4.1 39.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-4.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 credcheck_18 credcheck_18-3.0-2PGDG.rhel10.x86_64.rpm pgdg 3.0 36.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/credcheck_18-3.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 credcheck_18 credcheck_18-6.0-1PGDG.rhel10.2.aarch64.rpm pgdg 6.0 53.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-6.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.2.aarch64.rpm pgdg 4.7 41.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-4.7-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.1.aarch64.rpm pgdg 4.7 41.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-4.7-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 18 credcheck_18 credcheck_18-4.7-1PGDG.rhel10.0.aarch64.rpm pgdg 4.7 41.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/credcheck_18-4.7-1PGDG.rhel10.0.aarch64.rpm
@@ -180,6 +187,7 @@ weight: 7310
 @ el8.aarch64 17 credcheck_17 credcheck_17-4.1-1PGDG.rhel8.aarch64.rpm pgdg 4.1 38.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/credcheck_17-4.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 credcheck_17 credcheck_17-3.0-1PGDG.rhel8.aarch64.rpm pgdg 3.0 35.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/credcheck_17-3.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 credcheck_17 credcheck_17-2.8-1PGDG.rhel8.aarch64.rpm pgdg 2.8 34.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/credcheck_17-2.8-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 credcheck_17 credcheck_17-6.0-1PGDG.rhel9.8.x86_64.rpm pgdg 6.0 54.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-6.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.8.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-4.7-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.7.x86_64.rpm pgdg 4.7 41.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-4.7-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.6.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-4.7-1PGDG.rhel9.6.x86_64.rpm
@@ -195,6 +203,7 @@ weight: 7310
 @ el9.x86_64 17 credcheck_17 credcheck_17-4.1-1PGDG.rhel9.x86_64.rpm pgdg 4.1 39.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-4.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 credcheck_17 credcheck_17-3.0-1PGDG.rhel9.x86_64.rpm pgdg 3.0 35.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-3.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 credcheck_17 credcheck_17-2.8-1PGDG.rhel9.x86_64.rpm pgdg 2.8 35.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/credcheck_17-2.8-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 credcheck_17 credcheck_17-6.0-1PGDG.rhel9.8.aarch64.rpm pgdg 6.0 53.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-6.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.8.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-4.7-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.7.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-4.7-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel9.6.aarch64.rpm pgdg 4.7 40.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-4.7-1PGDG.rhel9.6.aarch64.rpm
@@ -210,6 +219,7 @@ weight: 7310
 @ el9.aarch64 17 credcheck_17 credcheck_17-4.1-1PGDG.rhel9.aarch64.rpm pgdg 4.1 38.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-4.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 credcheck_17 credcheck_17-3.0-1PGDG.rhel9.aarch64.rpm pgdg 3.0 35.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-3.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 credcheck_17 credcheck_17-2.8-1PGDG.rhel9.aarch64.rpm pgdg 2.8 35.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/credcheck_17-2.8-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 credcheck_17 credcheck_17-6.0-1PGDG.rhel10.2.x86_64.rpm pgdg 6.0 54.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-6.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.2.x86_64.rpm pgdg 4.7 41.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-4.7-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.1.x86_64.rpm pgdg 4.7 41.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-4.7-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.0.x86_64.rpm pgdg 4.7 42.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-4.7-1PGDG.rhel10.0.x86_64.rpm
@@ -223,6 +233,7 @@ weight: 7310
 @ el10.x86_64 17 credcheck_17 credcheck_17-4.2-1PGDG.rhel10.x86_64.rpm pgdg 4.2 40.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-4.2-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 credcheck_17 credcheck_17-4.1-1PGDG.rhel10.x86_64.rpm pgdg 4.1 39.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-4.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 credcheck_17 credcheck_17-3.0-2PGDG.rhel10.x86_64.rpm pgdg 3.0 36.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/credcheck_17-3.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 credcheck_17 credcheck_17-6.0-1PGDG.rhel10.2.aarch64.rpm pgdg 6.0 53.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-6.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.2.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-4.7-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.1.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-4.7-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 17 credcheck_17 credcheck_17-4.7-1PGDG.rhel10.0.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/credcheck_17-4.7-1PGDG.rhel10.0.aarch64.rpm
@@ -291,6 +302,7 @@ weight: 7310
 @ el8.aarch64 16 credcheck_16 credcheck_16-2.6-1PGDG.rhel8.aarch64.rpm pgdg 2.6 33.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/credcheck_16-2.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 credcheck_16 credcheck_16-2.2-1PGDG.rhel8.aarch64.rpm pgdg 2.2 32.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/credcheck_16-2.2-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 credcheck_16 credcheck_16-2.1-1PGDG.rhel8.aarch64.rpm pgdg 2.1 31.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/credcheck_16-2.1-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 credcheck_16 credcheck_16-6.0-1PGDG.rhel9.8.x86_64.rpm pgdg 6.0 54.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-6.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.8.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-4.7-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.7.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-4.7-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.6.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-4.7-1PGDG.rhel9.6.x86_64.rpm
@@ -309,6 +321,7 @@ weight: 7310
 @ el9.x86_64 16 credcheck_16 credcheck_16-2.6-1PGDG.rhel9.x86_64.rpm pgdg 2.6 34.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-2.6-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 credcheck_16 credcheck_16-2.2-1PGDG.rhel9.x86_64.rpm pgdg 2.2 33.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-2.2-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 credcheck_16 credcheck_16-2.1-1PGDG.rhel9.x86_64.rpm pgdg 2.1 32.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/credcheck_16-2.1-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 credcheck_16 credcheck_16-6.0-1PGDG.rhel9.8.aarch64.rpm pgdg 6.0 53.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-6.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.8.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-4.7-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.7.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-4.7-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel9.6.aarch64.rpm pgdg 4.7 40.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-4.7-1PGDG.rhel9.6.aarch64.rpm
@@ -327,6 +340,7 @@ weight: 7310
 @ el9.aarch64 16 credcheck_16 credcheck_16-2.6-1PGDG.rhel9.aarch64.rpm pgdg 2.6 34.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-2.6-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 credcheck_16 credcheck_16-2.2-1PGDG.rhel9.aarch64.rpm pgdg 2.2 32.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-2.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 credcheck_16 credcheck_16-2.1-1PGDG.rhel9.aarch64.rpm pgdg 2.1 31.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/credcheck_16-2.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 credcheck_16 credcheck_16-6.0-1PGDG.rhel10.2.x86_64.rpm pgdg 6.0 54.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-6.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.2.x86_64.rpm pgdg 4.7 41.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-4.7-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.1.x86_64.rpm pgdg 4.7 41.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-4.7-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.0.x86_64.rpm pgdg 4.7 42.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-4.7-1PGDG.rhel10.0.x86_64.rpm
@@ -340,6 +354,7 @@ weight: 7310
 @ el10.x86_64 16 credcheck_16 credcheck_16-4.2-1PGDG.rhel10.x86_64.rpm pgdg 4.2 40.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-4.2-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 credcheck_16 credcheck_16-4.1-1PGDG.rhel10.x86_64.rpm pgdg 4.1 39.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-4.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 credcheck_16 credcheck_16-3.0-2PGDG.rhel10.x86_64.rpm pgdg 3.0 36.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/credcheck_16-3.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 credcheck_16 credcheck_16-6.0-1PGDG.rhel10.2.aarch64.rpm pgdg 6.0 53.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-6.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.2.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-4.7-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.1.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-4.7-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 16 credcheck_16 credcheck_16-4.7-1PGDG.rhel10.0.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/credcheck_16-4.7-1PGDG.rhel10.0.aarch64.rpm
@@ -418,6 +433,7 @@ weight: 7310
 @ el8.aarch64 15 credcheck_15 credcheck_15-1.0-1.rhel8.aarch64.rpm pgdg 1.0 26.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/credcheck_15-1.0-1.rhel8.aarch64.rpm
 @ el8.aarch64 15 credcheck_15 credcheck_15-0.2.0-3.rhel8.aarch64.rpm pgdg 0.2.0 18.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/credcheck_15-0.2.0-3.rhel8.aarch64.rpm
 @ el8.aarch64 15 credcheck_15 credcheck_15-0.2.0-1.rhel8.aarch64.rpm pgdg 0.2.0 34.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/credcheck_15-0.2.0-1.rhel8.aarch64.rpm
+@ el9.x86_64 15 credcheck_15 credcheck_15-6.0-1PGDG.rhel9.8.x86_64.rpm pgdg 6.0 54.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-6.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.8.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-4.7-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.7.x86_64.rpm pgdg 4.7 41.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-4.7-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.6.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-4.7-1PGDG.rhel9.6.x86_64.rpm
@@ -441,6 +457,7 @@ weight: 7310
 @ el9.x86_64 15 credcheck_15 credcheck_15-1.0-1.rhel9.x86_64.rpm pgdg 1.0 27.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-1.0-1.rhel9.x86_64.rpm
 @ el9.x86_64 15 credcheck_15 credcheck_15-0.2.0-3.rhel9.x86_64.rpm pgdg 0.2.0 18.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-0.2.0-3.rhel9.x86_64.rpm
 @ el9.x86_64 15 credcheck_15 credcheck_15-0.2.0-1.rhel9.x86_64.rpm pgdg 0.2.0 35.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/credcheck_15-0.2.0-1.rhel9.x86_64.rpm
+@ el9.aarch64 15 credcheck_15 credcheck_15-6.0-1PGDG.rhel9.8.aarch64.rpm pgdg 6.0 53.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-6.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.8.aarch64.rpm pgdg 4.7 40.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-4.7-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.7.aarch64.rpm pgdg 4.7 40.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-4.7-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel9.6.aarch64.rpm pgdg 4.7 40.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-4.7-1PGDG.rhel9.6.aarch64.rpm
@@ -464,6 +481,7 @@ weight: 7310
 @ el9.aarch64 15 credcheck_15 credcheck_15-1.0-1.rhel9.aarch64.rpm pgdg 1.0 26.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-1.0-1.rhel9.aarch64.rpm
 @ el9.aarch64 15 credcheck_15 credcheck_15-0.2.0-3.rhel9.aarch64.rpm pgdg 0.2.0 18.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-0.2.0-3.rhel9.aarch64.rpm
 @ el9.aarch64 15 credcheck_15 credcheck_15-0.2.0-1.rhel9.aarch64.rpm pgdg 0.2.0 35.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/credcheck_15-0.2.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 15 credcheck_15 credcheck_15-6.0-1PGDG.rhel10.2.x86_64.rpm pgdg 6.0 54.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-6.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.2.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-4.7-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.1.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-4.7-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.0.x86_64.rpm pgdg 4.7 42.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-4.7-1PGDG.rhel10.0.x86_64.rpm
@@ -477,6 +495,7 @@ weight: 7310
 @ el10.x86_64 15 credcheck_15 credcheck_15-4.2-1PGDG.rhel10.x86_64.rpm pgdg 4.2 40.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-4.2-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 credcheck_15 credcheck_15-4.1-1PGDG.rhel10.x86_64.rpm pgdg 4.1 39.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-4.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 credcheck_15 credcheck_15-3.0-2PGDG.rhel10.x86_64.rpm pgdg 3.0 36.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/credcheck_15-3.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 credcheck_15 credcheck_15-6.0-1PGDG.rhel10.2.aarch64.rpm pgdg 6.0 53.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-6.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.2.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-4.7-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.1.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-4.7-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 15 credcheck_15 credcheck_15-4.7-1PGDG.rhel10.0.aarch64.rpm pgdg 4.7 41.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/credcheck_15-4.7-1PGDG.rhel10.0.aarch64.rpm
@@ -555,6 +574,7 @@ weight: 7310
 @ el8.aarch64 14 credcheck_14 credcheck_14-1.0-1.rhel8.aarch64.rpm pgdg 1.0 26.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/credcheck_14-1.0-1.rhel8.aarch64.rpm
 @ el8.aarch64 14 credcheck_14 credcheck_14-0.2.0-3.rhel8.aarch64.rpm pgdg 0.2.0 18.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/credcheck_14-0.2.0-3.rhel8.aarch64.rpm
 @ el8.aarch64 14 credcheck_14 credcheck_14-0.2.0-1.rhel8.aarch64.rpm pgdg 0.2.0 34.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/credcheck_14-0.2.0-1.rhel8.aarch64.rpm
+@ el9.x86_64 14 credcheck_14 credcheck_14-6.0-1PGDG.rhel9.8.x86_64.rpm pgdg 6.0 52.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-6.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.8.x86_64.rpm pgdg 4.7 41.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-4.7-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.7.x86_64.rpm pgdg 4.7 41.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-4.7-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.6.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-4.7-1PGDG.rhel9.6.x86_64.rpm
@@ -577,6 +597,7 @@ weight: 7310
 @ el9.x86_64 14 credcheck_14 credcheck_14-1.2-1.rhel9.x86_64.rpm pgdg 1.2 28.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-1.2-1.rhel9.x86_64.rpm
 @ el9.x86_64 14 credcheck_14 credcheck_14-1.0-1.rhel9.x86_64.rpm pgdg 1.0 27.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-1.0-1.rhel9.x86_64.rpm
 @ el9.x86_64 14 credcheck_14 credcheck_14-0.2.0-3.rhel9.x86_64.rpm pgdg 0.2.0 18.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/credcheck_14-0.2.0-3.rhel9.x86_64.rpm
+@ el9.aarch64 14 credcheck_14 credcheck_14-6.0-1PGDG.rhel9.8.aarch64.rpm pgdg 6.0 51.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-6.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.8.aarch64.rpm pgdg 4.7 40.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-4.7-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.7.aarch64.rpm pgdg 4.7 40.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-4.7-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel9.6.aarch64.rpm pgdg 4.7 40.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-4.7-1PGDG.rhel9.6.aarch64.rpm
@@ -600,6 +621,7 @@ weight: 7310
 @ el9.aarch64 14 credcheck_14 credcheck_14-1.0-1.rhel9.aarch64.rpm pgdg 1.0 26.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-1.0-1.rhel9.aarch64.rpm
 @ el9.aarch64 14 credcheck_14 credcheck_14-0.2.0-3.rhel9.aarch64.rpm pgdg 0.2.0 18.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-0.2.0-3.rhel9.aarch64.rpm
 @ el9.aarch64 14 credcheck_14 credcheck_14-0.2.0-1.rhel9.aarch64.rpm pgdg 0.2.0 35.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/credcheck_14-0.2.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 14 credcheck_14 credcheck_14-6.0-1PGDG.rhel10.2.x86_64.rpm pgdg 6.0 53.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-6.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.2.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-4.7-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.1.x86_64.rpm pgdg 4.7 41.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-4.7-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.0.x86_64.rpm pgdg 4.7 42.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-4.7-1PGDG.rhel10.0.x86_64.rpm
@@ -613,6 +635,7 @@ weight: 7310
 @ el10.x86_64 14 credcheck_14 credcheck_14-4.2-1PGDG.rhel10.x86_64.rpm pgdg 4.2 40.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-4.2-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 credcheck_14 credcheck_14-4.1-1PGDG.rhel10.x86_64.rpm pgdg 4.1 39.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-4.1-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 credcheck_14 credcheck_14-3.0-2PGDG.rhel10.x86_64.rpm pgdg 3.0 36.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/credcheck_14-3.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 credcheck_14 credcheck_14-6.0-1PGDG.rhel10.2.aarch64.rpm pgdg 6.0 52.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-6.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.2.aarch64.rpm pgdg 4.7 41.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-4.7-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.1.aarch64.rpm pgdg 4.7 41.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-4.7-1PGDG.rhel10.1.aarch64.rpm
 @ el10.aarch64 14 credcheck_14 credcheck_14-4.7-1PGDG.rhel10.0.aarch64.rpm pgdg 4.7 41.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/credcheck_14-4.7-1PGDG.rhel10.0.aarch64.rpm
@@ -716,11 +739,11 @@ CREATE EXTENSION credcheck;
 
 Sources:
 
-- [v5.0 README](https://github.com/HexaCluster/credcheck/blob/v5.0/README.md)
-- [v5.0 changelog](https://github.com/HexaCluster/credcheck/blob/v5.0/ChangeLog)
-- [SQL objects 5.0.0](https://github.com/HexaCluster/credcheck/blob/v5.0/sql/credcheck--5.0.0.sql)
-- [Password history WAL implementation](https://github.com/HexaCluster/credcheck/blob/v5.0/credcheck.c)
-- [Login-event setup](https://github.com/HexaCluster/credcheck/blob/v5.0/event_trigger.sql)
+- [v6.0 README](https://github.com/HexaCluster/credcheck/blob/ac9127dfe0892579a42bd2255638f9948074a151/README.md)
+- [v6.0 changelog](https://github.com/HexaCluster/credcheck/blob/ac9127dfe0892579a42bd2255638f9948074a151/ChangeLog)
+- [SQL objects 6.0.0](https://github.com/HexaCluster/credcheck/blob/ac9127dfe0892579a42bd2255638f9948074a151/sql/credcheck--6.0.0.sql)
+- [Password history WAL implementation](https://github.com/HexaCluster/credcheck/blob/ac9127dfe0892579a42bd2255638f9948074a151/credcheck.c)
+- [Login-event setup](https://github.com/HexaCluster/credcheck/blob/ac9127dfe0892579a42bd2255638f9948074a151/event_trigger.sql)
 
 `credcheck` enforces username and plaintext-password rules during role creation, password changes and role renames. It also tracks password reuse, bans repeated authentication failures and can require a password change at first login. Configure policy as a superuser; the defaults do not enforce a comprehensive password-strength policy.
 
@@ -742,7 +765,7 @@ CREATE ROLE app_user LOGIN PASSWORD 'example-Strong-Pass#123';
 SELECT rolename, password_date FROM pg_password_history;
 ```
 
-The interval is in days. Installing the SQL extension is separate from loading the server-wide hooks. Upstream release 5.0 uses SQL extension version 5.0.0; installing upgraded files requires a restart to reload the library.
+The interval is in days. Installing the SQL extension is separate from loading the server-wide hooks. Upstream release 6.0 uses SQL extension version 6.0.0; installing upgraded files requires a restart to reload the library.
 
 ### Policy Index
 
@@ -763,7 +786,7 @@ CrackLib strength checking is available only when the library was built with tha
 
 ### Password History and Replication
 
-History contains SHA-256 password hashes, is shared across databases, and is persisted in `$PGDATA/pg_password_history`. Include that file in backup planning and protect access to the SQL history view, which is granted to PUBLIC by default. `credcheck.history_max_size` changes the shared-memory capacity and requires a restart.
+History contains SHA-256 password hashes, is shared across databases, and is persisted in `$PGDATA/pg_password_history`. Include that file in backup planning and protect access to the SQL history view, which in 6.0 is revoked from PUBLIC and granted to pg_read_all_stats. `credcheck.history_max_size` changes the history capacity and requires a restart.
 
 Version 5.0 replicates history changes through custom WAL resource manager ID 150 on PostgreSQL 15 and later. Keep the matching library preloaded on replicas and recovery servers that replay its WAL. Earlier PostgreSQL versions retain the file-backed history path without this replication support. History-reset and timestamp-test functions reject execution during recovery.
 
@@ -797,3 +820,11 @@ Use the actual parameter `credcheck.disallow_change_password` to prohibit passwo
 ### Plaintext Boundary
 
 Strength and reuse checks need plaintext at password-change time. Already hashed passwords are rejected by default, including passwords sent by psql's `\password`. Setting `credcheck.encrypted_password_allowed` accepts them without providing equivalent plaintext checks. Protect the password-change connection and do not assume existing credentials are scanned retroactively. Username checks are skipped when creating a role without a password or renaming a role with no password.
+
+### Upgrade and New Interfaces in 6.0
+
+6.0 moves password history into an integer-indexed hash table in an mmap file. The first upgraded startup imports 5.x history and renames the old file to pg_password_history.legacy-migrated; this happens on both primary and standby. Preserve and verify the history backup before upgrading. After installing matching libraries and restarting, run `ALTER EXTENSION credcheck UPDATE TO '6.0.0'` in databases using its SQL objects. Current SQL revokes PUBLIC access to the history function/view and grants view access to pg_read_all_stats; review existing custom grants.
+
+`credcheck.password_valid_min` sets a short initial password lifetime for new roles; the default 0 disables it. Existing roles changing their password retain the previous lifetime policy. New `pg_check_password(username, password)` checks candidate credentials, raising an error on a violation and returning true on acceptance; it does not evaluate password reuse history.
+
+`credcheck.lastlog` defaults off. When enabled, pg_lastlog exposes sessions and server startup/shutdown events; optional SQL tracking records query text, so define access and retention deliberately. PgBouncer integration for failed-attempt limits and first-login password changes needs the documented extra SQL and pooler hooks; preload alone does not configure it. `credcheck.no_password_logging` now masks password literals while retaining the error statement structure. This release also fixes self-ALTER ROLE privilege escalation and memory defects.

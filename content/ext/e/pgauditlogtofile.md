@@ -33,6 +33,9 @@ weight: 7110
 {.ext-table .ext-table--rel}
 
 
+> pkg 1.8.7; SQL 1.8; preload required.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

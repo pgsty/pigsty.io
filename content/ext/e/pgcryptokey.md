@@ -38,6 +38,9 @@ weight: 7320
 {.ext-table .ext-table--rel}
 
 
+> pkg 0.85; SQL 1.0.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

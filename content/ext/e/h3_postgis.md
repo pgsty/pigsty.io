@@ -11,11 +11,12 @@ weight: 1531
     <div class="ext-card__title">postgis/h3-pg</div>
     <div class="ext-card__desc">https://github.com/postgis/h3-pg</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/h3-pg-4.5.0.tar.gz h3-4.5.0.tar.gz">
+  <div class="ext-card ext-card--source">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">h3-pg-4.5.0.tar.gz h3-4.5.0.tar.gz</div>
-    <div class="ext-card__desc">h3-pg-4.5.0.tar.gz h3-4.5.0.tar.gz</div>
-  </a>
+    <div class="ext-card__title"><a href="https://repo.pigsty.io/ext/src/h3-pg-4.5.0.tar.gz">h3-pg-4.5.0.tar.gz</a></div>
+    <div class="ext-card__desc"><a href="https://repo.pigsty.io/ext/src/h3-4.5.0.tar.gz">h3-4.5.0.tar.gz</a>
+    </div>
+  </div>
 </div>
 
 
@@ -39,7 +40,7 @@ weight: 1531
 {.ext-table .ext-table--rel}
 
 
-> RPM and DEB 4.5.0 require h3, postgis and postgis_raster; point coordinates use longitude, latitude.
+> Points use longitude,latitude.
 
 
 ## Version

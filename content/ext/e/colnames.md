@@ -33,7 +33,7 @@ weight: 4360
 | 4360  | [**`colnames`**](/ext/e/colnames) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
-| **Related** | [`pg_describe`](/ext/e/pg_describe) `describe_resultset` `get_column` `pltoolbox` [`hstore`](/ext/e/hstore) |
+| **Related** | [`pg_describe`](/ext/e/pg_describe) [`hstore`](/ext/e/hstore) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 

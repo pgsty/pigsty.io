@@ -35,7 +35,7 @@ weight: 2510
 
 | **Related** | [`plpgsql`](/ext/e/plpgsql) [`timescaledb`](/ext/e/timescaledb) [`pg_ttl_index`](/ext/e/pg_ttl_index) [`citus`](/ext/e/citus) [`pg_fkpart`](/ext/e/pg_fkpart) [`timeseries`](/ext/e/timeseries) [`pg_cron`](/ext/e/pg_cron) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Depended By** | `partman_to_cstore` [`timeseries`](/ext/e/timeseries) |
+| **Depended By** | [`timeseries`](/ext/e/timeseries) |
 {.ext-table .ext-table--rel}
 
 

@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **27** packages contain multiple extensions, totaling **132** extensions.
+The following **27** packages contain multiple extensions, totaling **135** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -123,8 +123,8 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2400 | [**`citus`**](/ext/e/citus) | `14.2.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
-| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.2.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
+| 2400 | [**`citus`**](/ext/e/citus) | `14.3-1` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
+| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.3-1` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
 {.ext-table}
 
 ## pg_lake
@@ -145,7 +145,7 @@ Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 
 ## omnigres
 
-Package [`omnigres`](/ext/e/omni) contains **37** extensions:
+Package [`omnigres`](/ext/e/omni) contains **40** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
@@ -155,6 +155,8 @@ Package [`omnigres`](/ext/e/omni) contains **37** extensions:
 | 2943 | [`omni_cloudevents`](/ext/e/omni_cloudevents) | `0.1.0` | `----dt-` | `omni_cloudevents` | CloudEvents support |
 | 2944 | [`omni_containers`](/ext/e/omni_containers) | `0.2.0` | `--s-d--` | `omni_containers` | Docker container management |
 | 2945 | [`omni_credentials`](/ext/e/omni_credentials) | `0.2.0` | `----d--` | `omni_credentials` | Application credential management |
+| 2946 | [`omni_csv`](/ext/e/omni_csv) | `0.1.1` | `--s-d--` | `omni_csv` | CSV toolkit |
+| 2947 | [`omni_datasets`](/ext/e/omni_datasets) | `0.1.0` | `----d--` | `omni_datasets` | Dataset provisioning |
 | 2948 | [`omni_email`](/ext/e/omni_email) | `0.1.0` | `----d--` | `omni_email` | E-mail framework |
 | 2949 | [`omni_http`](/ext/e/omni_http) | `0.1.0` | `----d--` | `omni_http` | Basic HTTP types |
 | 2950 | [`omni_httpc`](/ext/e/omni_httpc) | `0.1.11` | `--s-d--` | `omni_httpc` | HTTP client |
@@ -174,6 +176,7 @@ Package [`omnigres`](/ext/e/omni) contains **37** extensions:
 | 2964 | [`omni_seq`](/ext/e/omni_seq) | `0.1.1` | `--s-d--` | `omni_seq` | Distributed integer sequences |
 | 2965 | [`omni_service`](/ext/e/omni_service) | `0.1.0` | `----d--` | `omni_service` | Service management |
 | 2966 | [`omni_session`](/ext/e/omni_session) | `0.2.0` | `----d--` | `omni_session` | Session management |
+| 2967 | [`omni_shmem`](/ext/e/omni_shmem) | `0.1.0` | `--s-d--` | `omni_shmem` | Shared Memory Management |
 | 2968 | [`omni_sql`](/ext/e/omni_sql) | `0.5.3` | `--s-d--` | `omni_sql` | Programmatic SQL manipulation |
 | 2969 | [`omni_sqlite`](/ext/e/omni_sqlite) | `0.2.2` | `--s-d--` | `omni_sqlite` | Embedded SQLite |
 | 2970 | [`omni_test`](/ext/e/omni_test) | `0.4.0` | `----d--` | `omni_test` | Testing framework |
@@ -197,7 +200,7 @@ Package [`pllua`](/ext/e/pllua) contains **4** extensions:
 | 3020 | [**`pllua`**](/ext/e/pllua) | `2.0.12` | `--s-d--` | `pg_catalog` | Lua as a procedural language |
 | 3021 | [`hstore_pllua`](/ext/e/hstore_pllua) | `2.0.12` | `--s-d-r` | - | Hstore transform for Lua |
 | 3030 | [`plluau`](/ext/e/plluau) | `2.0.12` | `--s-d--` | `pg_catalog` | Lua as an untrusted procedural language |
-| 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `2.0.12` | `--s-d-r` | `pg_catalog` | Hstore transform for untrusted Lua |
+| 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `2.0.12` | `--s-d-r` | - | Hstore transform for untrusted Lua |
 {.ext-table}
 
 ## plruby
@@ -315,10 +318,10 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `0.117` | `--sLd--` | - | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `0.117` | `--sLd--` | - | Core API surface for DocumentDB on PostgreSQL |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.0` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.0` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
 | 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.116` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `0.117` | `--sLd-r` | - | DocumentDB Extended RUM index access method |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.0` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
 {.ext-table}
 
 ## ivorysql

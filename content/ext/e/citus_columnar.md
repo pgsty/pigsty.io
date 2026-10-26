@@ -11,10 +11,10 @@ weight: 2401
     <div class="ext-card__title">citusdata/citus</div>
     <div class="ext-card__desc">https://github.com/citusdata/citus</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/citus-14.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">citus-14.2.0.tar.gz</div>
-    <div class="ext-card__desc">citus-14.2.0.tar.gz</div>
+    <div class="ext-card__title">citus-14.3.0.tar.gz</div>
+    <div class="ext-card__desc">citus-14.3.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2401
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`citus`**](/ext/e/citus) | `14.2.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`citus`**](/ext/e/citus) | `14.3-1` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,37 +39,37 @@ weight: 2401
 {.ext-table .ext-table--rel}
 
 
-> Packaged with Citus 14.2.0; the control default_version is 14.2-1; citus_columnar itself does not require preload and conflicts with Hydra Columnar.
+> Packaged with Citus 14.3.0 / SQL 14.3-1 for PG16-18. citus_columnar needs no preload; conflicts with Hydra Columnar.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "16,17,18" >}} | `citus` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.2.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3-1` | {{< pgvers "16,17,18" >}} | `citus` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 14.2.0 4 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 14.2.0 17 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 28 |
-| el8.aarch64 | AVAIL PGDG 14.2.0 4 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 14.2.0 17 | AVAIL PGDG 13.2.0 20 | AVAIL PGDG 13.0.0 15 |
-| el9.x86_64 | AVAIL PGDG 14.2.0 6 | AVAIL PGDG 14.2.0 12 | AVAIL PGDG 14.2.0 19 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 25 |
-| el9.aarch64 | AVAIL PGDG 14.2.0 6 | AVAIL PGDG 14.2.0 12 | AVAIL PGDG 14.2.0 19 | AVAIL PGDG 13.2.0 21 | AVAIL PGDG 13.0.0 15 |
-| el10.x86_64 | AVAIL PGDG 14.2.0 6 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| el10.aarch64 | AVAIL PGDG 14.2.0 6 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 14.2.0 10 | AVAIL PGDG 13.2.0 4 | AVAIL PIGSTY 13.0.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 14.2.0 1 | AVAIL PIGSTY 13.2.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| el8.x86_64 | AVAIL PIGSTY 14.3.0 5 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 14.3.0 18 | AVAIL PIGSTY 13.5.0 22 | AVAIL PGDG 13.0.0 28 |
+| el8.aarch64 | AVAIL PIGSTY 14.3.0 5 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 14.3.0 18 | AVAIL PIGSTY 13.5.0 21 | AVAIL PGDG 13.0.0 15 |
+| el9.x86_64 | AVAIL PIGSTY 14.3.0 7 | AVAIL PIGSTY 14.3.0 13 | AVAIL PIGSTY 14.3.0 20 | AVAIL PIGSTY 13.5.0 22 | AVAIL PGDG 13.0.0 25 |
+| el9.aarch64 | AVAIL PIGSTY 14.3.0 7 | AVAIL PIGSTY 14.3.0 13 | AVAIL PIGSTY 14.3.0 20 | AVAIL PIGSTY 13.5.0 22 | AVAIL PGDG 13.0.0 15 |
+| el10.x86_64 | AVAIL PIGSTY 14.3.0 7 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 13.5.0 5 | AVAIL PIGSTY 13.0.0 1 |
+| el10.aarch64 | AVAIL PIGSTY 14.3.0 7 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 14.3.0 11 | AVAIL PIGSTY 13.5.0 5 | AVAIL PIGSTY 13.0.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 14.3.0 1 | AVAIL PIGSTY 13.5.0 1 | AVAIL PIGSTY 13.0.0 1 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -124,12 +124,12 @@ CREATE EXTENSION citus_columnar;
 
 Sources:
 
-- [Citus v14.2.0 columnar control file](https://github.com/citusdata/citus/blob/v14.2.0/src/backend/columnar/citus_columnar.control)
-- [Citus v14.2.0 columnar option helper](https://github.com/citusdata/citus/blob/v14.2.0/src/backend/columnar/sql/udfs/alter_columnar_table_set/latest.sql)
+- [Citus v14.3.0 columnar control file](https://github.com/citusdata/citus/blob/v14.3.0/src/backend/columnar/citus_columnar.control)
+- [Citus v14.3.0 columnar option helper](https://github.com/citusdata/citus/blob/v14.3.0/src/backend/columnar/sql/udfs/alter_columnar_table_set/latest.sql)
 - [Citus columnar-storage documentation](https://docs.citusdata.com/en/stable/admin_guide/table_management.html#columnar-storage)
-- [Citus v14.2.0 release](https://github.com/citusdata/citus/releases/tag/v14.2.0)
+- [Citus v14.3.0 release](https://github.com/citusdata/citus/releases/tag/v14.3.0)
 
-`citus_columnar` provides an append-oriented columnar table access method for PostgreSQL. It is shipped by the Citus 14.2 package but is a separate extension: the package release is `14.2.0`, while the extension control version is `14.2-1`. Use it for scan-heavy archival or analytical tables whose workload fits its write and feature restrictions.
+`citus_columnar` provides an append-oriented columnar table access method for PostgreSQL. It is shipped by the Citus 14.3 package but is a separate extension: the package release is `14.3.0`, while the extension control version is `14.3-1`. Use it for scan-heavy archival or analytical tables whose workload fits its write and feature restrictions.
 
 ### Create a Columnar Table
 
@@ -196,4 +196,8 @@ New settings affect newly written stripes. Rewrite existing data when old stripe
 - TOAST is not available; large values remain inline and can hit PostgreSQL's row-size limits.
 - Row locks, `AFTER ... FOR EACH ROW` triggers, serializable isolation, logical decoding, foreign keys, unlogged tables, and several scan types are unsupported. Check the current upstream limitation list before adopting the access method.
 - Ordinary heap assumptions about indexes, vacuum, replication, triggers, and constraints do not automatically apply. Validate every required database feature against a representative columnar table.
-- The extension installs in `pg_catalog`, is not relocatable, and has SQL version `14.2-1`; use that version when checking or updating `pg_extension`, not the package version `14.2.0`.
+- The extension installs in `pg_catalog`, is not relocatable, and has SQL version `14.3-1`; use that version when checking or updating `pg_extension`, not the package version `14.3.0`.
+
+### 14.3 Visibility Fix
+
+Release 14.3.0 corrects columnar stripe xmin visibility. Apply matching library and SQL updates throughout the deployment using extension version `14.3-1`; this does not remove the access-method restrictions above.

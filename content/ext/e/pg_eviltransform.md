@@ -38,6 +38,9 @@ weight: 1580
 {.ext-table .ext-table--rel}
 
 
+> PG19 support is beta.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |

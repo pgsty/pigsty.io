@@ -1,7 +1,7 @@
 ---
 title: "collection"
 linkTitle: "collection"
-description: "Memory optimized data type to be used inside of plpglsql func"
+description: "Associative-array data types for high-performance PL/pgSQL workflows"
 weight: 3700
 ---
 
@@ -36,6 +36,9 @@ weight: 3700
 | **Related** | [`pgbson`](/ext/e/pgbson) [`intarray`](/ext/e/intarray) [`hstore`](/ext/e/hstore) [`arraymath`](/ext/e/arraymath) [`pgjq`](/ext/e/pgjq) [`jsquery`](/ext/e/jsquery) [`pg_jsonschema`](/ext/e/pg_jsonschema) [`jsonschema`](/ext/e/jsonschema) [`floatvec`](/ext/e/floatvec) [`pg_projection`](/ext/e/pg_projection) [`istore`](/ext/e/istore) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
+
+
+> PGXN misnames it pgcollection; pkg 2.1.3, repos may lag.
 
 
 ## Version
