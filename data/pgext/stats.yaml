@@ -1,21 +1,24 @@
-# Metric cards for the landing-page "Kernels & Extensions" section, rendered in order; each card links to href
-# Fields: label · value (or param: name of a hugo.yaml params entry, use one of the two) · href
-#         hrefs starting with http open in a new tab; figures come from the pgext.cloud home page, re-check after refreshing the catalog
+# Counts verified against https://pgext.cloud/api/v1/meta on 2026-10-13.
+# Catalogued extensions include packaged extensions; package families exclude contrib.
+# Matrix slots include unavailable and inapplicable combinations, not just published binaries.
 - label: Kernel Forks
   value: 12
   href: /docs/pgsql/kernel/
 - label: Extensions Catalogued
-  value: 2241
+  value: 2622
   href: https://pgext.cloud/
 - label: Packaged Extensions
   param: pgext_count
   href: https://pgext.cloud/?scope=packaged
 - label: Extension Packages
-  value: 407
+  value: 431
   href: https://pgext.cloud/?scope=packaged&entity=pkg
-- label: OS/PG Combos
-  value: 60
+  title: Independent non-contrib package families, counted by lead extension
+- label: Linux Platforms
+  value: 16
   href: https://pgext.cloud/list/os
-- label: Build Slots
-  value: 32560
+  title: Operating system major version and CPU architecture combinations
+- label: Build Matrix Slots
+  value: 34480
   href: https://pgext.cloud/matrix
+  title: 431 package families × 16 platforms × 5 PG majors, including unavailable and inapplicable combinations

@@ -54,6 +54,7 @@ bin/*
 !bin/check_internal_links.py
 !bin/test_internal_links.py
 !bin/update-star-history.py
+!bin/gen-pgext.py
 
 # ==============================================================================
 # AI Assistant Configuration

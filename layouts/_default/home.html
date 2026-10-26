@@ -246,7 +246,7 @@
             </a>
             <a href="https://github.com/pgsty/pigsty" class="nav-github" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
               {{- partialCached "silo/icon.html" "github" "github" -}}
-              <span class="nav-star">{{ .Site.Params.github_stars }}</span>
+              <span class="nav-star">{{ partial "landing/github-stars.html" . }}</span>
             </a>
           </div>
         </div>
@@ -326,9 +326,9 @@
               <span class="pin-dot"></span>
               <span class="pin-tip"><b>{{ .Site.Params.pgext_count }} Extensions</b><i>Plug &amp; Play</i></span>
             </a>
-            <a class="board-pin" data-pin="grafana" style="--x:31.9%; --y:33%; --i:1" href="https://demo.pigsty.io" target="_blank" rel="noopener" aria-label="Grafana Observability · 3000+ metrics">
+            <a class="board-pin" data-pin="grafana" style="--x:31.9%; --y:33%; --i:1" href="https://demo.pigsty.io" target="_blank" rel="noopener" aria-label="Grafana Observability · 67 monitoring dashboards">
               <span class="pin-dot"></span>
-              <span class="pin-tip"><b>Grafana Observability</b><i>3000+ metrics</i></span>
+              <span class="pin-tip"><b>Grafana Observability</b><i>67 monitoring dashboards</i></span>
             </a>
             <a class="board-pin" data-pin="victoria" style="--x:43%; --y:19.5%; --i:2" href="/docs/infra/" aria-label="Victoria Telemetry · VictoriaMetrics and VictoriaLogs">
               <span class="pin-dot"></span>
@@ -458,7 +458,7 @@
           <p class="module-motto"><i class="fas fa-chart-line"></i> Full visibility. No blind spots</p>
           <ul class="module-list">
             <li>Best-of-breed observability stack: <strong>Grafana + Victoria</strong></li>
-            <li><strong>3000+</strong> metrics, <strong>40+</strong> curated dashboards. Ready out of the box</li>
+            <li><strong>67</strong> dashboards, <strong>773</strong> recording rules, and <strong>92</strong> alert rules. Ready out of the box</li>
             <li>Works standalone — monitor your existing RDS or Postgres as-is</li>
           </ul>
           <p class="module-value">Instant diagnosis. No more guesswork</p>
@@ -477,7 +477,7 @@
           <h3 class="module-title"><a href="/ext/">Batteries Included</a></h3>
           <p class="module-motto"><i class="fas fa-cubes"></i> Fully packed. Plug and play</p>
           <ul class="module-list">
-            <li><strong>{{ .Site.Params.pgext_count }}</strong> PG extensions across <strong>16</strong> Linux distros, ready to install</li>
+            <li><strong>{{ .Site.Params.pgext_count }}</strong> packaged PG extensions across <strong>16</strong> Linux platforms</li>
             <li><strong>12 PG kernel forks</strong>, one meta-distribution to rule them all</li>
             <li>Modules: MinIO, Redis, Docker, JuiceFS, Supabase and more</li>
           </ul>
@@ -502,7 +502,7 @@
       <div class="section-head" data-reveal>
         <p class="section-eyebrow"><span class="silkscreen">ECOSYSTEM</span><span class="eyebrow-trace" aria-hidden="true"></span></p>
         <h2 class="section-title">Ultimate Extensibility</h2>
-        <p class="section-subtitle">Unlock the full potential of PostgreSQL</p>
+        <p class="section-subtitle">{{ lang.FormatNumberCustom 0 (len hugo.Data.pgext.extension) }} extensions catalogued on pgext.cloud, including {{ .Site.Params.pgext_count }} packaged extensions</p>
       </div>
 
       {{ partial "landing/pgext-stats.html" . }}
@@ -581,7 +581,7 @@
     <div class="landing-container">
       <div class="dashwall-head" data-reveal>
         <p class="section-eyebrow"><span class="silkscreen">OBSERVABILITY</span><span class="eyebrow-trace" aria-hidden="true"></span></p>
-        <h2 class="section-title section-title--sm">40+ curated dashboards. Every detail, in real time</h2>
+        <h2 class="section-title section-title--sm">67 monitoring dashboards. Service health at a glance</h2>
         <a href="https://demo.pigsty.io/ui/d/pigsty" class="dashwall-link" target="_blank" rel="noopener">Open Live Demo <i class="fas fa-arrow-up-right-from-square"></i></a>
       </div>
     </div>
@@ -719,7 +719,8 @@
 
       <div class="stats-grid" data-reveal>
         <a href="https://github.com/pgsty/pigsty/stargazers" target="_blank" rel="noopener" class="stat-item">
-          <span class="stat-value" data-count="5660">5660</span>
+          {{ $pigsty := index (where hugo.Data.star_history.repositories "repo" "pgsty/pigsty") 0 }}
+          <span class="stat-value" data-count="{{ $pigsty.current }}" title="GitHub snapshot: {{ hugo.Data.star_history.updated_at }}">{{ $pigsty.current }}</span>
           <span class="stat-label">GitHub Stars</span>
         </a>
         <div class="stat-item">

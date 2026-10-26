@@ -225,7 +225,6 @@ params:
   pig_catalog_count: 616    # Records in the PIG bundled catalog
   pgext_count: 600          # Number of packaged PG extensions, {{< param pgext_count >}} in content
   pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
-  github_stars: '5.66 K'     # Approximate GitHub star count shown in the custom navbar
   copyright:
     authors: Ruohang Feng
     from_year: 2018
@@ -286,7 +285,6 @@ params:
     landing_search: true
     section_index: cards
     lastmod_commit: subject
-    github_stars: '5.66 K'
     alt_site:
       label: 中文
       url: https://pigsty.cc

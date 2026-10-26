@@ -1,0 +1,3 @@
+{{- /* Share one GitHub snapshot between the homepage and OINK navigation. */ -}}
+{{- $project := index (where hugo.Data.star_history.repositories "repo" "pgsty/pigsty") 0 -}}
+{{- return (printf "%.2f K" (div (float $project.current) 1000)) -}}
