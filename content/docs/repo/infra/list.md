@@ -5,10 +5,6 @@ description: Available packages in the Infra repository
 weight: 5441
 ---
 
-> On 2026-10-24, 178 artifacts for 45 packages were imported into the local APT/YUM INFRA repositories, including MCP Toolbox 1.15.0 and four new PGRun tools. Repository signatures, indexes and APT/DNF version resolution passed for both architectures; online publication is pending.
-
-
---------
 
 ## Grafana Stack
 
@@ -16,7 +12,7 @@ weight: 5441
 |------------------------------------------------------------------------------------------|----------|----------------------------------------------------------------------------------------|----------------------------------------------|
 | [`grafana`](https://github.com/grafana/grafana/)                                         | `13.2.4` | [AGPLv3](https://github.com/grafana/grafana/blob/main/LICENSE)                         | Observability and visualization platform     |
 | [`loki`](https://github.com/grafana/loki)                                                | `3.7.9`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Log aggregation system                        |
-| [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.11)                        | `3.6.11`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (obsolete, EOL; 3.6.11 artifacts) |
+| [`promtail`](https://github.com/grafana/loki/releases/tag/v3.6.11)                        | `3.6.11`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki log collection agent (EOL) |
 | [`logcli`](https://github.com/grafana/loki/releases/tag/v3.7.9)                          | `3.7.9`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki query CLI                               |
 | [`loki-canary`](https://github.com/grafana/loki/releases/tag/v3.7.9)                     | `3.7.9`  | [AGPLv3](https://github.com/grafana/loki/blob/main/LICENSE)                            | Loki write-path health probe                 |
 | [`grafana-infinity-ds`](https://github.com/grafana/grafana-infinity-datasource/)         | `4.1.3` | [Apache-2.0](https://github.com/grafana/grafana-infinity-datasource/blob/main/LICENSE) | JSON/CSV/XML datasource support              |
@@ -30,11 +26,11 @@ weight: 5441
 
 | Name                                                                                                    | Version   | License                                                                                       | Comment                                       |
 |---------------------------------------------------------------------------------------------------------|-----------|-----------------------------------------------------------------------------------------------|-----------------------------------------------|
-| [`victoria-metrics`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                | `1.154.1` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance TSDB, Prometheus alternative |
+| [`victoria-metrics`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                | `1.155.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance TSDB, Prometheus alternative |
 | [`victoria-logs`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                   | `1.53.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | High-performance log storage and query engine |
 | [`victoria-traces`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                 | `0.12.1`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | Distributed tracing backend                   |
-| [`victoria-metrics-cluster`](https://github.com/VictoriaMetrics/VictoriaMetrics)                        | `1.154.1` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics distributed cluster           |
-| [`vmutils`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.154.1` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics CLI utilities                 |
+| [`victoria-metrics-cluster`](https://github.com/VictoriaMetrics/VictoriaMetrics)                        | `1.155.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics distributed cluster           |
+| [`vmutils`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.155.0` | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaMetrics CLI utilities                 |
 | [`vlogscli`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                        | `1.53.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs interactive query client         |
 | [`vlagent`](https://github.com/VictoriaMetrics/VictoriaMetrics)                                         | `1.53.0`  | [Apache-2.0](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE)          | VictoriaLogs log collection agent             |
 | [`grafana-victorialogs-ds`](https://github.com/VictoriaMetrics/victorialogs-datasource/releases/)       | `0.33.1`  | [Apache-2.0](https://github.com/VictoriaMetrics/victorialogs-datasource/blob/main/LICENSE)    | VictoriaLogs Grafana datasource               |
@@ -78,11 +74,11 @@ weight: 5441
 | [`nginx-exporter`](https://github.com/nginxinc/nginx-prometheus-exporter) | `1.5.3`  | [Apache-2.0](https://github.com/nginxinc/nginx-prometheus-exporter/blob/main/LICENSE) | Expose nginx metrics               |
 | [`zfs-exporter`](https://github.com/waitingsong/zfs_exporter/releases/)   | `3.8.1`  | [MIT](https://github.com/waitingsong/zfs_exporter/blob/main/LICENSE)                  | Expose zfs metrics                 |
 | [`mysqld-exporter`](https://github.com/prometheus/mysqld_exporter)        | `0.21.0` | [Apache-2.0](https://github.com/prometheus/mysqld_exporter/blob/main/LICENSE)         | Expose mysql metrics               |
-| [`redis-exporter`](https://github.com/oliver006/redis_exporter)           | `1.95.0` | [MIT](https://github.com/oliver006/redis_exporter/blob/master/LICENSE)                | Expose redis metrics               |
+| [`redis-exporter`](https://github.com/oliver006/redis_exporter)           | `1.96.0` | [MIT](https://github.com/oliver006/redis_exporter/blob/master/LICENSE)                | Expose redis metrics               |
 | [`kafka-exporter`](https://github.com/danielqsj/kafka_exporter)           | `1.11.0`  | [Apache-2.0](https://github.com/danielqsj/kafka_exporter/blob/master/LICENSE)         | Expose kafka metrics               |
 | [`jmx-exporter`](https://github.com/prometheus/jmx_exporter)              | `1.7.0`  | [Apache-2.0](https://github.com/prometheus/jmx_exporter/blob/main/LICENSE)             | Expose JVM metrics (noarch)        |
 | [`mongodb-exporter`](https://github.com/percona/mongodb_exporter)         | `0.54.0` | [Apache-2.0](https://github.com/percona/mongodb_exporter/blob/main/LICENSE)           | Expose mongodb metrics             |
-| [`mtail`](https://github.com/google/mtail)                                | `3.4.17`  | [Apache-2.0](https://github.com/google/mtail/blob/main/LICENSE)                       | Parse logs and generate metrics    |
+| [`mtail`](https://github.com/google/mtail)                                | `3.4.18`  | [Apache-2.0](https://github.com/google/mtail/blob/main/LICENSE)                       | Parse logs and generate metrics    |
 | [`vector`](https://github.com/vectordotdev/vector/releases)               | `0.60.0` | [MPL-2.0](https://github.com/vectordotdev/vector/blob/master/LICENSE)                 | Versatile log collector            |
 {.stretch-last}
 
@@ -93,12 +89,13 @@ weight: 5441
 
 | Name                                                    | Version          | License                                                                         | Comment                            |
 |---------------------------------------------------------|------------------|---------------------------------------------------------------------------------|------------------------------------|
-| [`silo`](https://github.com/pgsty/silo)                 | `20261018000000.0.0` | [AGPLv3](https://github.com/pgsty/silo/blob/main/LICENSE)                      | FOSS S3-compatible object storage maintained by Pigsty |
-| [`kes`](https://github.com/pgsty/kes) | `20261018000000.0.0` | [AGPL-3.0-only](https://github.com/pgsty/kes/blob/RELEASE.2026-10-18T00-00-00Z/LICENSE) | Key management server for SILO; upstream native packages |
-| [`mcli`](https://github.com/pgsty/mc)                   | `20261018000000.0.0` | [AGPLv3](https://github.com/pgsty/mc/blob/main/LICENSE)                         | FOSS S3 client, now built by pgsty |
-| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.3`     | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | Repository-retained package; not a v4.5 MINIO backend |
-| [`garage`](https://git.deuxfleurs.fr/Deuxfleurs/garage) | `2.4.1`          | [AGPL-3.0](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main/LICENSE) | Lightweight S3                     |
-| [`seaweedfs`](https://github.com/seaweedfs/seaweedfs)   | `4.49`           | [Apache-2.0](https://github.com/seaweedfs/seaweedfs/blob/master/LICENSE)        | S3 for small files                 |
+| [`silo`](https://github.com/pgsty/silo)                 | `20261026000000.0.0` | [AGPLv3](https://github.com/pgsty/silo/blob/main/LICENSE)                      | FOSS S3-compatible object storage maintained by Pigsty |
+| [`silo-console`](https://github.com/pgsty/silo-console) | `2.5.1` | [AGPLv3](https://github.com/pgsty/silo-console/blob/v2.5.1/LICENSE) | Standalone SILO web console |
+| [`kes`](https://github.com/pgsty/kes) | `20261026000000.0.0` | [AGPL-3.0-only](https://github.com/pgsty/kes/blob/RELEASE.2026-10-26T00-00-00Z/LICENSE) | SILO key management service |
+| [`mcli`](https://github.com/pgsty/mc)                   | `20261026000000.0.0` | [AGPLv3](https://github.com/pgsty/mc/blob/main/LICENSE)                         | S3 command-line client |
+| [`rustfs`](https://github.com/rustfs/rustfs)            | `1.0.4`     | [Apache-2.0](https://github.com/rustfs/rustfs/blob/main/LICENSE)                | Repository-retained package; not a v4.5 MINIO backend |
+| [`garage`](https://git.deuxfleurs.fr/Deuxfleurs/garage) | `2.5.0`          | [AGPL-3.0](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main/LICENSE) | Lightweight S3                     |
+| [`seaweedfs`](https://github.com/seaweedfs/seaweedfs)   | `4.51`           | [Apache-2.0](https://github.com/seaweedfs/seaweedfs/blob/master/LICENSE)        | S3 for small files                 |
 | [`rclone`](https://github.com/rclone/rclone/)           | `1.75.2`         | [MIT](https://github.com/rclone/rclone/blob/master/COPYING)                     | S3 command line tool               |
 | [`restic`](https://github.com/restic/restic)            | `0.19.1`         | [BSD-2](https://github.com/restic/restic/blob/master/LICENSE)                   | Backup tool                        |
 | [`juicefs`](https://github.com/juicedata/juicefs)       | `1.4.2`          | [Apache-2.0](https://github.com/juicedata/juicefs/blob/main/LICENSE)            | Filesystem over S3                 |
@@ -144,24 +141,24 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 
 | Name                                                                                    | Version    | License                                                                                 | Comment                                                         |
 |-----------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| [`pig`](https://github.com/pgsty/pig)                                                   | `1.10.1`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                                              |
+| [`pig`](https://github.com/pgsty/pig)                                                   | `1.10.2`    | [Apache-2.0](https://github.com/pgsty/pig/blob/main/LICENSE)                            | PG package manager                                              |
 | [`sow`](https://github.com/pgsty/sow)                                                   | `0.6.1`    | [Apache-2.0](https://github.com/pgsty/sow/blob/main/LICENSE)                            | Package repository builder                                      |
-| [`barn`](https://github.com/pgsty/barn) | `0.9.1` | [Apache-2.0](https://github.com/pgsty/barn/blob/v0.9.1/LICENSE) | VM manager; upstream prerelease; native DEB/RPM |
-| [`openbao`](https://github.com/openbao/openbao)                                         | `2.7.1`    | [MPL-2.0](https://github.com/openbao/openbao/blob/main/LICENSE)                        | Open-source secrets and encryption management                   |
+| [`barn`](https://github.com/pgsty/barn) | `0.9.1` | [Apache-2.0](https://github.com/pgsty/barn/blob/v0.9.1/LICENSE) | VM manager (prerelease) |
+| [`openbao`](https://github.com/openbao/openbao)                                         | `2.7.2`    | [MPL-2.0](https://github.com/openbao/openbao/blob/main/LICENSE)                        | Open-source secrets and encryption management                   |
 | [`opentofu`](https://github.com/opentofu/opentofu)                                      | `1.13.2`   | [MPL-2.0](https://github.com/opentofu/opentofu/blob/main/LICENSE)                      | Open-source infrastructure-as-code tool                         |
 | [`vip-manager`](https://github.com/cybertec-postgresql/vip-manager)                     | `5.0.0`    | [BSD-2](https://github.com/cybertec-postgresql/vip-manager/blob/master/LICENSE)         | Bind L2 VIP to PG primary                                       |
 | [`pg-hardstorage`](https://github.com/cybertec-postgresql/pg_hardstorage)                | `1.5.0`     | [Apache-2.0](https://github.com/cybertec-postgresql/pg_hardstorage/blob/main/LICENSE)   | PostgreSQL backup with continuous WAL streaming                 |
 | [`pgschema`](https://github.com/pgplex/pgschema)                                        | `1.13.3`   | [Apache-2.0](https://github.com/pgplex/pgschema/blob/main/LICENSE)                      | Terraform-style declarative Postgres schema migration CLI       |
 | [`pgstream`](https://github.com/xataio/pgstream)                                        | `1.5.0`    | [Apache-2.0](https://github.com/xataio/pgstream/blob/main/LICENSE)                      | PostgreSQL replication with DDL changes                         |
-| [`pgbot`](https://github.com/pgrundev/pgbot) | `0.9.0` | [Apache-2.0](https://github.com/pgrundev/pgbot/blob/v0.9.0/LICENSE) | PG diagnostics and JSON/MCP; optional AI; beta; built locally |
-| [`pgterm`](https://github.com/pgrundev/pgterm) | `0.4.0` | [Apache-2.0](https://github.com/pgrundev/pgterm/blob/v0.4.0/LICENSE) | Database TUI; pairs with pgbot; beta; built locally |
-| [`pggo`](https://github.com/pgrundev/pggo) | `0.1.1` | [MIT](https://github.com/pgrundev/pggo/blob/v0.1.1/LICENSE) | JSON SQL CLI for scripts and agents; built locally |
-| [`pgsync`](https://github.com/pgrundev/pgsync) | `0.1.1` | [Apache-2.0](https://github.com/pgrundev/pgsync/blob/v0.1.1/LICENSE) | PG snapshot and CDC; upstream prerelease / controlled beta; schema bootstrap needs pg_dump; built locally |
+| [`pgbot`](https://github.com/pgrundev/pgbot) | `0.9.0` | [Apache-2.0](https://github.com/pgrundev/pgbot/blob/v0.9.0/LICENSE) | PostgreSQL diagnostics and JSON/MCP (beta) |
+| [`pgterm`](https://github.com/pgrundev/pgterm) | `0.4.0` | [Apache-2.0](https://github.com/pgrundev/pgterm/blob/v0.4.0/LICENSE) | PostgreSQL terminal workspace with pgbot (beta) |
+| [`pggo`](https://github.com/pgrundev/pggo) | `0.1.1` | [MIT](https://github.com/pgrundev/pggo/blob/v0.1.1/LICENSE) | JSON SQL CLI for scripts and agents |
+| [`pgsync`](https://github.com/pgrundev/pgsync) | `0.1.1` | [Apache-2.0](https://github.com/pgrundev/pgsync/blob/v0.1.1/LICENSE) | PostgreSQL snapshots and CDC (beta) |
 | [`pg-timetable`](https://github.com/cybertec-postgresql/pg_timetable)                   | `7.1.0`    | [PostgreSQL](https://github.com/cybertec-postgresql/pg_timetable/blob/master/LICENSE)   | Advanced scheduling for PostgreSQL                              |
 | [`timescaledb-tools`](https://github.com/timescale/timescaledb-tune)                    | `0.19.0`   | [Apache-2.0](https://github.com/timescale/timescaledb-tune/blob/main/LICENSE)           | tune 0.19.0; parallel-copy 0.13.1; release 2PGSTY |
 | [`timescaledb-event-streamer`](https://github.com/noctarius/timescaledb-event-streamer) | `0.20.0`   | [Apache-2.0](https://github.com/noctarius/timescaledb-event-streamer/blob/main/LICENSE) | CDC on timescaledb hypertable                                   |
 | [`tigerfs`](https://github.com/timescale/tigerfs)                                       | `0.7.0`    | [MIT](https://github.com/timescale/tigerfs/blob/main/LICENSE)                           | Mount PostgreSQL as a filesystem                                |
-| [`dblab`](https://github.com/danvergara/dblab)                                          | `0.53.0`   | [MIT](https://github.com/danvergara/dblab/blob/main/LICENSE)                            | Multi-database CLI tool                                         |
+| [`dblab`](https://github.com/danvergara/dblab)                                          | `0.54.0`   | [MIT](https://github.com/danvergara/dblab/blob/main/LICENSE)                            | Multi-database CLI tool                                         |
 | [`rainfrog`](https://github.com/achristmascarl/rainfrog)                                | `0.4.6`    | [MIT](https://github.com/achristmascarl/rainfrog/blob/main/LICENSE)                     | Terminal Postgres database management tool                      |
 | [`sql-studio`](https://github.com/frectonz/sql-studio)                                  | `0.1.53`   | [MIT](https://github.com/frectonz/sql-studio/blob/main/LICENSE)                         | Terminal SQL database explorer                                  |
 | [`sqlcmd`](https://github.com/microsoft/go-sqlcmd)                                      | `1.10.0`    | [MIT](https://github.com/microsoft/go-sqlcmd/blob/main/LICENSE)                         | MS SQL Server CLI client                                        |
@@ -176,10 +173,10 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`npgsqlrest`](https://github.com/vb-consulting/NpgsqlRest)                             | `3.21.0`   | [MIT](https://github.com/vb-consulting/NpgsqlRest/blob/master/LICENSE.md)               | .NET PostgreSQL REST API generator                              |
 | [`caddy`](https://github.com/caddyserver/caddy)                                         | `2.11.7`   | [Apache-2.0](https://github.com/caddyserver/caddy/blob/master/LICENSE)                  | Web server with automatic HTTPS                                 |
 | [`hugo`](https://github.com/gohugoio/hugo)                                              | `0.168.0`  | [Apache-2.0](https://github.com/gohugoio/hugo/blob/master/LICENSE)                      | Fast static site generator                                      |
-| [`cloudflared`](https://github.com/cloudflare/cloudflared)                              | `2026.10.3` | [Apache-2.0](https://github.com/cloudflare/cloudflared/blob/master/LICENSE)             | Cloudflare tunnel client                                        |
-| [`headscale`](https://github.com/juanfont/headscale)                                    | `0.29.5`   | [BSD-3](https://github.com/juanfont/headscale/blob/main/LICENSE)                        | Self-hosted Tailscale control server                            |
+| [`cloudflared`](https://github.com/cloudflare/cloudflared)                              | `2026.10.4` | [Apache-2.0](https://github.com/cloudflare/cloudflared/blob/master/LICENSE)             | Cloudflare tunnel client                                        |
+| [`headscale`](https://github.com/juanfont/headscale)                                    | `0.29.6`   | [BSD-3](https://github.com/juanfont/headscale/blob/main/LICENSE)                        | Self-hosted Tailscale control server                            |
 | [`tailcat`](https://github.com/tailscale/tailcat)                                       | `0.7.0` | [BSD-3](https://github.com/tailscale/tailcat/blob/main/LICENSE) | Netcat-like tool over Tailscale's data plane without its control plane |
-| [`stalwart`](https://github.com/stalwartlabs/stalwart)                                  | `0.16.27`  | [AGPLv3](https://github.com/stalwartlabs/stalwart/blob/main/LICENSE)                    | Modern full-featured mail server                                |
+| [`stalwart`](https://github.com/stalwartlabs/stalwart)                                  | `1.0.0`  | [AGPLv3](https://github.com/stalwartlabs/stalwart/blob/main/LICENSE)                    | Mail and collaboration server |
 | [`maddy`](https://github.com/foxcpp/maddy)                                              | `0.9.6`    | [GPL-3.0](https://github.com/foxcpp/maddy/blob/master/LICENSE)                          | Lightweight mail server                                         |
 {.stretch-last}
 
@@ -192,7 +189,7 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 
 | Name                                                           | Version   | License                                                                     | Comment                                                    |
 |----------------------------------------------------------------|-----------|-----------------------------------------------------------------------------|------------------------------------------------------------|
-| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.310` | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding                     |
+| [`claude`](https://github.com/anthropics/claude-code)          | `2.1.311` | [Proprietary](https://www.anthropic.com/legal/terms)                        | Claude Code - Anthropic agentic coding                     |
 | [`opencode`](https://github.com/anomalyco/opencode)            | `1.19.4` | [MIT](https://github.com/anomalyco/opencode/blob/main/LICENSE)              | Terminal AI coding assistant                               |
 | [`codex`](https://github.com/openai/codex)                     | `0.164.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)             | OpenAI coding agent CLI                                    |
 | [`crush`](https://github.com/charmbracelet/crush)              | `0.98.2`  | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md)  | Charm's terminal AI coding agent                           |
