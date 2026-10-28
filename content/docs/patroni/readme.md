@@ -5,12 +5,11 @@ icon: fa-solid fa-circle-info
 description: "Patroni introduction, quick start, and core high-availability concepts."
 module: [PATRONI]
 categories: [Concept]
+upstream_link: "https://patroni.readthedocs.io/en/latest/README.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/README.html
-
 <a id="readme"></a>
-Patroni is a Python template for high availability (HA) PostgreSQL solutions. It started as a fork of [Governor](https://github.com/compose/governor), a Compose project, and adds many features.
+Patroni is a template for high availability (HA) PostgreSQL solutions using Python. Patroni originated as a fork of [Governor](https://github.com/compose/governor), the project from Compose. It includes plenty of new features.
 
 For additional background info, see:
 
@@ -21,15 +20,15 @@ For additional background info, see:
 
 ## Development Status
 
-Patroni is in active development and accepts contributions. See [Contributing](/docs/patroni/contributing_guidelines#contributing_guidelines) for details.
+Patroni is in active development and accepts contributions. See our [Contributing](/docs/patroni/contributing_guidelines#contributing_guidelines) section below for more details.
 
-See [release information](/docs/patroni/releases#releases) for new releases.
+We report new releases information [here](/docs/patroni/releases#releases).
 
 --------
 
 ## Technical Requirements/Installation
 
-See the [installation guide](/docs/patroni/installation#installation) to install and upgrade Patroni on different platforms.
+Go [here](/docs/patroni/installation#installation) for guidance on installing and upgrading Patroni on various platforms.
 
 <a id="running_configuring"></a>
 
@@ -37,29 +36,31 @@ See the [installation guide](/docs/patroni/installation#installation) to install
 
 ## Planning the Number of PostgreSQL Nodes
 
-Patroni/PostgreSQL nodes are independent of DCS nodes, except when Patroni implements RAFT itself. Thus, there is no minimum node count for Patroni/PostgreSQL. A cluster can have one primary and one standby. You can add more standby nodes later.
+Patroni/PostgreSQL nodes are decoupled from DCS nodes (except when Patroni implements RAFT on its own) and therefore there is no requirement on the minimal number of nodes. Running a cluster consisting of one primary and one standby is perfectly fine. You can add more standby nodes later.
 
-**2-node clusters** (primary + standby) are common and provide automatic failover with high availability. During failover, the cluster temporarily has no redundancy until the failed node rejoins.
+**2-node clusters** (primary + standby) are common and provide automatic failover with high availability. Note that during failover, you'll temporarily have no redundancy until the failed node rejoins.
 
-**DCS requirements**: Your DCS (etcd, ZooKeeper, Consul) must have **3 or 5 nodes** for consensus and fault tolerance. One DCS cluster can store data for hundreds or thousands of Patroni clusters. Use different namespace/scope combinations for these clusters.
+**DCS requirements**: Your DCS (etcd, ZooKeeper, Consul) has to run with **3 or 5 nodes** for proper consensus and fault tolerance. A single DCS cluster can store information for hundreds or thousands of Patroni clusters using different namespace/scope combinations.
 
 --------
 
 ## Running and Configuring
 
-This section assumes you cloned the Patroni repository from <https://github.com/patroni/patroni>. You need the example configuration files `postgres0.yml` and `postgres1.yml`. If you installed Patroni with pip, get these files from the git repository. Then replace `./patroni.py` below with the `patroni` command.
+The following section assumes Patroni repository as being cloned from <https://github.com/patroni/patroni>. Namely, you will need example configuration files `postgres0.yml` and `postgres1.yml`. If you installed Patroni with pip, you can obtain those files from the git repository and replace `./patroni.py` below with `patroni` command.
 
-To start, run these commands in separate terminals:
+The commands below use the etcd v2 API and require an etcd version supporting `--enable-v2`, such as etcd 3.5. For etcd 3.6 or newer, use Patroni’s `etcd3` configuration instead, because [etcd 3.6 removed support for the v2 API](https://etcd.io/docs/v3.6/upgrades/upgrade_3_6/).
+
+To get started, do the following from different terminals: :
 
     > etcd --data-dir=data/etcd --enable-v2=true
     > ./patroni.py postgres0.yml
     > ./patroni.py postgres1.yml
 
-These commands start a high-availability cluster. Test different YAML settings to see how they change cluster behavior. Stop some components to test how the system responds.
+You will then see a high-availability cluster start up. Test different settings in the YAML files to see how the cluster's behavior changes. Kill some of the components to see how the system behaves.
 
 Add more `postgres*.yml` files to create an even larger cluster.
 
-Patroni provides an [HAProxy](https://www.haproxy.org/) configuration. It gives your application one endpoint to connect to the cluster leader. To configure it, run:
+Patroni provides an [HAProxy](https://www.haproxy.org/) configuration, which will give your application a single endpoint for connecting to the cluster's leader. To configure, run:
 
     > haproxy -f haproxy.cfg
 
@@ -69,33 +70,33 @@ Patroni provides an [HAProxy](https://www.haproxy.org/) configuration. It gives 
 
 ## YAML Configuration
 
-See [YAML settings](/docs/patroni/config/yaml#yaml) for details about etcd, consul, and ZooKeeper settings. See [postgres0.yml](https://github.com/patroni/patroni/blob/master/postgres0.yml) for an example.
+Go [here](/docs/patroni/config/yaml#yaml) for comprehensive information about settings for etcd, consul, and ZooKeeper. And for an example, see [postgres0.yml](https://github.com/patroni/patroni/blob/master/postgres0.yml).
 
 --------
 
 ## Environment Configuration
 
-See [environment settings](/docs/patroni/config/env#env) to configure or override settings with environment variables.
+Go [here](/docs/patroni/config/env#env) for comprehensive information about configuring(overriding) settings via environment variables.
 
 --------
 
 ## Replication Choices
 
-Patroni uses Postgres streaming replication, which is asynchronous by default. Set `maximum_lag_on_failover` to prevent failover when a replica is more than the specified number of bytes behind the leader. Adjust this setting for your business requirements. You can also use synchronous replication for stronger durability guarantees. See [replication modes documentation](/docs/patroni/replication_modes#replication_modes) for details.
+Patroni uses Postgres' streaming replication, which is asynchronous by default. Patroni's asynchronous replication configuration allows for `maximum_lag_on_failover` settings. This setting prevents a follower from being promoted during failover if it is more than the configured number of bytes behind the leader. This setting should be increased or decreased based on business requirements. It's also possible to use synchronous replication for better durability guarantees. See [replication modes documentation](/docs/patroni/replication_modes#replication_modes) for details.
 
 --------
 
 ## Applications Should Not Use Superusers
 
-Always use a non-superuser for application connections. Patroni needs database access to operate correctly. An application that uses a superuser can consume all connections, including those reserved by `superuser_reserved_connections`. If no connections remain, Patroni cannot access the primary and can behave incorrectly.
+When connecting from an application, always use a non-superuser. Patroni requires access to the database to function properly. By using a superuser from an application, you can potentially use the entire connection pool, including the connections reserved for superusers, with the `superuser_reserved_connections` setting. If Patroni cannot access the Primary because the connection pool is full, behavior will be undesirable.
 
 --------
 
 ## Testing Your HA Solution
 
-HA testing takes time and involves many variables, especially for a cross-platform application. A trained system administrator or consultant must do this work. These documents do not cover the process in detail.
+Testing an HA solution is a time-consuming process, with many variables. This is particularly true considering a cross-platform application. You need a trained system administrator or a consultant to do this work. It is not something we can cover in depth in the documentation.
 
-Test these parts of your infrastructure:
+That said, here are some pieces of your infrastructure you should be sure to test:
 
 - Network (the network in front of your system as well as the NICs \[physical or virtual\] themselves)
 - Disk IO
@@ -106,4 +107,4 @@ Test these parts of your infrastructure:
 - Any cgroup limitation (likely to be related to the above)
 - `kill -9` of any postgres process (except postmaster!). This is a decent simulation of a segfault.
 
-Do not run `kill -9` on a postmaster process. This does not simulate a real-world failure. If an attacker can run `kill -9`, an HA process cannot resolve the security problem. The attacker can kill the process again or cause other damage.
+One thing that you should not do is run `kill -9` on a postmaster process. This is because killing the process alone does not reproduce the underlying conditions of resource exhaustion or other infrastructure failures. If you are concerned your infrastructure is insecure and an attacker could run `kill -9`, no amount of HA process is going to fix that. The attacker will simply kill the process again, or cause chaos in another way.

@@ -6,12 +6,11 @@ icon: fa-solid fa-boxes-stacked
 description: "Replica imaging, bootstrap, and custom replica creation workflows."
 module: [PATRONI]
 categories: [Task]
+upstream_link: "https://patroni.readthedocs.io/en/latest/replica_bootstrap.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/replica_bootstrap.html
-
 <a id="replica_imaging_and_bootstrap"></a>
-Patroni supports custom replica creation and custom bootstrap for a new, empty cluster. These are separate operations. Patroni creates replicas only when the cluster has an `initialize` key in the DCS. Without that key, only the first node to acquire the initialize lock runs bootstrap.
+Patroni allows customizing creation of a new replica. It also supports defining what happens when the new empty cluster is being bootstrapped. The distinction between two is well defined: Patroni creates replicas only if the `initialize` key is present in DCS for the cluster. If there is no `initialize` key - Patroni calls bootstrap exclusively on the first node that takes the initialize key lock.
 
 <a id="custom_bootstrap"></a>
 
@@ -19,7 +18,7 @@ Patroni supports custom replica creation and custom bootstrap for a new, empty c
 
 ## Bootstrap
 
-By default, Patroni initializes new clusters with PostgreSQL `initdb`. Some operations, such as copying an existing cluster, require a custom bootstrap method. Patroni can run a user-defined script and supply the cluster name and data directory. Configure this in the `bootstrap` section:
+PostgreSQL provides `initdb` command to initialize a new cluster and Patroni calls it by default. In certain cases, particularly when creating a new cluster as a copy of an existing one, it is necessary to replace a built-in method with custom actions. Patroni supports executing user-defined scripts to bootstrap new clusters, supplying some required arguments to them, i.e. the name of the cluster and the path to the data directory. This is configured in the `bootstrap` section of the Patroni configuration. For example:
 
 ```yaml
 bootstrap:
@@ -34,7 +33,7 @@ bootstrap:
             restore_command: <method_specific_restore_command>
 ```
 
-Each bootstrap method must define a `name` and a `command`. The special `initdb` method selects the default behavior. You can also omit `method` to use this default. Specify `command` as an absolute path or a path relative to the `patroni` command. In addition to fixed configuration parameters, Patroni supplies two cluster-specific arguments:
+Each custom bootstrap method must be named by the `method` setting and define a `command` in the section bearing that name. A special `initdb` method is available to trigger the default behavior, in which case `method` parameter can be omitted altogether. The `command` can use an absolute path, a path relative to Patroni’s working directory, or a command name available in `PATH`. In addition to the fixed parameters defined in the configuration files, Patroni supplies two cluster-specific ones:
 
 `--scope`  
 Name of the cluster to be bootstrapped
@@ -42,15 +41,15 @@ Name of the cluster to be bootstrapped
 `--datadir`  
 Path to the data directory of the cluster instance to be bootstrapped
 
-Set `no_params` to `True` to omit these two arguments.
+Passing these two additional flags can be disabled by setting a special `no_params` parameter to `True`.
 
-If the script returns `0`, Patroni tries to configure and start the PostgreSQL instance it created. Any intermediate failure or non-zero script result means bootstrap failed. Patroni cleans up and releases the initialize lock so another node can try bootstrap.
+If the bootstrap script returns `0`, Patroni tries to configure and start the PostgreSQL instance produced by it. If any of the intermediate steps fail, or the script returns a non-zero value, Patroni assumes that the bootstrap has failed, cleans up after itself and releases the initialize lock to give another node the opportunity to bootstrap.
 
-If the custom method includes `recovery_conf`, Patroni generates `recovery.conf` before it starts the new instance. On PostgreSQL \>= 12, it sets recovery options in the Postgres configuration instead. Typically, specify at least one `recovery_target_*` parameter and set `recovery_target_action` to `promote`.
+If a `recovery_conf` block is defined in the same section as the custom bootstrap method, Patroni will generate a `recovery.conf` before starting the newly bootstrapped instance (or set the recovery settings on Postgres configuration if running PostgreSQL \>= 12). Typically, such recovery configuration should contain at least one of the `recovery_target_*` parameters, together with the `recovery_target_action` set to `promote`.
 
-With `keep_existing_recovery_conf` set to `True`, Patroni keeps an existing `recovery.conf` on PostgreSQL \<= 11. On PostgreSQL \>= 12, it keeps existing `recovery.signal` and `standby.signal` files and does not override recovery settings. Use this with backup tools such as pgBackRest that generate recovery configuration.
+If `keep_existing_recovery_conf` is defined and set to `True`, Patroni will not remove the existing `recovery.conf` file if it exists (PostgreSQL \<= 11). Similarly, in that case Patroni will not remove the existing `recovery.signal` or `standby.signal` if either exists, nor will it override the configured recovery settings (PostgreSQL \>= 12). This is useful when bootstrapping from a backup with tools like pgBackRest that generate the appropriate recovery configuration for you.
 
-Patroni passes additional key/value pairs from the custom method configuration to `command` as `--name=value` arguments. For example:
+Besides that, any additional key/value pairs informed in the custom bootstrap method configuration will be passed as arguments to `command` in the format `--name=value`. For example:
 
 ```yaml
 bootstrap:
@@ -61,12 +60,12 @@ bootstrap:
         arg2: value2
 ```
 
-This adds `--arg1=value1 --arg2=value2` when Patroni runs `command`.
+Makes the configured `command` to be called additionally with `--arg1=value1 --arg2=value2` command-line arguments.
 
-> > [!NOTE]
-> > Patroni does not chain bootstrap methods. If the selected method fails, it does not fall back to the default method.
+> [!NOTE]
+> Bootstrap methods are neither chained, nor fallen-back to the default one in case the primary one fails
 
-For example, bootstrap a new Patroni cluster from a Barman backup:
+As an example, you are able to bootstrap a fresh Patroni cluster from a Barman backup with a configuration like this:
 
 ```yaml
 bootstrap:
@@ -79,7 +78,7 @@ bootstrap:
 ```
 
 > [!NOTE]
-> Configure Barman and `pg-backup-api` on the Barman host before you use `patroni_barman recover`. It runs `barman recover` remotely through the backup API. The example shows only some available parameters. Run `patroni_barman recover --help` for details.
+> `patroni_barman recover` requires that you have both Barman and `pg-backup-api` configured in the Barman host, so it can execute a remote `barman recover` through the backup API. The above example uses a subset of the available parameters. You can get more information running `patroni_barman recover --help`.
 
 <a id="custom_replica_creation"></a>
 
@@ -87,7 +86,7 @@ bootstrap:
 
 ## Building replicas
 
-Patroni uses `pg_basebackup` to create replicas. This method requires a running leader. It has no backup compression during transfer or built-in cleanup of outdated backups. You may prefer `WAL-E`, `pgBackRest`, `Barman`, another backup tool, or a custom script. Patroni supports custom scripts to clone replicas. Configure them in the `postgresql` section:
+Patroni uses tried and proven `pg_basebackup` in order to create new replicas. It requires a running source PostgreSQL instance and does not provide built-in cleanup for outdated backup files. Some people prefer other backup solutions, such as `WAL-E`, `pgBackRest`, `Barman` and others, or simply roll their own scripts. In order to accommodate all those use-cases Patroni supports running custom scripts to clone a new replica. Those are configured in the `postgresql` configuration block:
 
 ```yaml
 postgresql:
@@ -147,9 +146,9 @@ postgresql:
 ```
 
 > [!NOTE]
-> Configure Barman and `pg-backup-api` on the Barman host before you use `patroni_barman recover`. It runs `barman recover` remotely through the backup API. The example shows only some available parameters. Run `patroni_barman recover --help` for details.
+> `patroni_barman recover` requires that you have both Barman and `pg-backup-api` configured in the Barman host, so it can execute a remote `barman recover` through the backup API. The above example uses a subset of the available parameters. You can get more information running `patroni_barman recover --help`.
 
-The `create_replica_methods` list specifies methods and their execution order. Patroni stops after the first method that returns 0. Give each method a separate configuration section with its command and custom parameters. Patroni passes parameters as `--name=value` arguments. In addition to custom parameters, it supplies these cluster-specific arguments:
+The `create_replica_methods` defines available replica creation methods and the order of executing them. Patroni will stop on the first one that returns 0. Each method should define a separate section in the configuration file, listing the command to execute and any custom parameters that should be passed to that command. All parameters will be passed in a `--name=value` format. Besides user-defined parameters, Patroni supplies a couple of cluster-specific ones:
 
 `--scope`  
 Which cluster this replica belongs to
@@ -161,21 +160,17 @@ Path to the data directory of the replica
 Always 'replica'
 
 `--connstring`  
-Connection string for the source cluster member, which can be the primary or another replica. The specified user can run SQL and replication protocol commands.
+Connection string to connect to the cluster member to clone from (primary or other replica). The user in the connection string can execute SQL and replication protocol commands.
 
-If `no_leader` is defined, Patroni can run the method without a running leader or replica. It passes an empty connection string. This permits restoration of a previous cluster from a binary backup.
+A special `no_leader` parameter, when enabled, allows Patroni to call the replica creation method even if there is no running leader or replicas. In that case, an empty string will be passed in a connection string. This is useful for restoring the formerly running cluster from the binary backup.
 
-If `keep_data` is defined, Patroni does not clean PGDATA before restore.
+A special `keep_data` parameter, when enabled, will instruct Patroni to not clean PGDATA folder before calling restore.
 
-If `no_params` is defined, Patroni restricts parameters passed to the custom command.
+A special `no_params` parameter, when enabled, disables the automatic addition of cluster-specific parameters to the custom command. User-defined parameters are still passed.
 
-The special `basebackup` method applies when `create_replica_methods` is empty. You can also list it explicitly. It initializes a replica with `pg_basebackup`. The backup source is the leader unless a replica has the `clonefrom` tag. If such replicas exist, Patroni selects one as the source.
+A `basebackup` method is a special case: it will be used if `create_replica_methods` is empty, although it is possible to list it explicitly among the `create_replica_methods` methods. This method initializes a new replica with the `pg_basebackup`, the base backup is taken from the leader unless there are replicas with `clonefrom` tag, in which case one of such replicas will be used as the origin for pg_basebackup. It works without any configuration; however, it is possible to specify a `basebackup` configuration section. Same rules as with the other method configuration apply, namely, only long (with --) options should be specified there. Patroni does not accept connection overrides or options that produce tar-format or client-compressed backups. On PostgreSQL 15 and newer, server-side compression is supported with `compress: server-gzip` or `compress: server-zstd`. Patroni filters out options it controls and compression settings other than server-side compression, but does not perform complete validation of all option names and values. Also note that in case symlinks are used for the WAL folder it is up to the user to specify the correct `--waldir` path as an option, so that after replica buildup or re-initialization the symlink would persist. This option is supported only since v10 though.
 
-No configuration is required, but you can add a `basebackup` section. As with other methods, specify only long options that start with --. Overriding the connection string or selecting tar or compressed backup output prevents Patroni from creating a replica. Patroni does not validate parameter names or values in `basebackup`.
-
-If the WAL directory uses a symlink, specify the correct `--waldir` path. This preserves the symlink after replica creation or reinitialization. This option requires v10 or later.
-
-Specify basebackup parameters as a key/value map or a list. Each list element can be a key/value pair or a single key for a valueless option, such as `--verbose`. For example:
+You can specify basebackup parameters as either a map (key-value pairs) or a list of elements, where each element could be either a key-value pair or a single key (for options that does not receive any values, for instance, `--verbose`). Consider those 2 examples:
 
 ```yaml
 postgresql:
@@ -194,4 +189,4 @@ postgresql:
         - waldir: /pg-wal-mount/external-waldir
 ```
 
-If every method fails, Patroni retries them all in order during the next event loop cycle.
+If all replica creation methods fail, Patroni will try again all methods in order during the next event loop cycle.

@@ -5,22 +5,21 @@ icon: fa-solid fa-lock
 description: "Security considerations for DCS, REST API, and credential handling."
 module: [PATRONI]
 categories: [Concept]
+upstream_link: "https://patroni.readthedocs.io/en/latest/security.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/security.html
-
 <a id="security"></a>
-Protect two Patroni cluster interfaces from unauthorized access: the distributed configuration storage (DCS) and the Patroni REST API.
+A Patroni cluster has two interfaces to be protected from unauthorized access: the distributed configuration storage (DCS) and the Patroni REST API.
 
 --------
 
 ## Protecting DCS
 
-Patroni and [patronictl](/docs/patroni/patronictl#patronictl) store data in the DCS and retrieve data from it.
+Patroni and [patronictl](/docs/patroni/patronictl#patronictl) both store and retrieve data to/from the DCS.
 
-The DCS contains no sensitive information, but it permits changes to some Patroni/Postgres settings. Protect the DCS first.
+Even when the DCS contains no sensitive information, it allows changing some of Patroni/Postgres configuration. Therefore the very first thing that should be protected is DCS itself.
 
-Protection depends on the DCS type. See [settings](/docs/patroni/config/yaml#yaml) for authentication and encryption parameters: tokens, basic authentication, and client certificates.
+The details of protection depend on the type of DCS used. The authentication and encryption parameters (tokens/basic-auth/client certificates) for the supported types of DCS are covered in [settings](/docs/patroni/config/yaml#yaml).
 
 The general recommendation is to enable TLS for all DCS communication.
 
@@ -30,16 +29,16 @@ The general recommendation is to enable TLS for all DCS communication.
 
 Protecting the REST API is a more complicated task.
 
-Patroni uses its REST API during leader races. The [patronictl](/docs/patroni/patronictl#patronictl) tool uses it for failovers, switchovers, reinitialization, restarts, and reloads. HAProxy and other load balancers use it for HTTP health checks. You can also use it for monitoring.
+The Patroni REST API is used by Patroni itself during the leader race, by the [patronictl](/docs/patroni/patronictl#patronictl) tool in order to perform failovers/switchovers/reinitialize/restarts/reloads, by HAProxy or any other kind of load balancer to perform HTTP health checks, and of course could also be used for monitoring.
 
-The REST API has safe endpoints (`GET` requests) that only retrieve information. Unsafe endpoints (`PUT`, `POST`, `PATCH` and `DELETE` requests) change node state.
+From the point of view of security, REST API contains safe (`GET` requests, only retrieve information) and unsafe (`PUT`, `POST`, `PATCH` and `DELETE` requests, change the state of nodes) endpoints.
 
-To protect unsafe endpoints with HTTP basic authentication, set `restapi.authentication.username` and `restapi.authentication.password`. Safe endpoints require TLS for protection.
+The unsafe endpoints can be protected with HTTP basic-auth by setting the `restapi.authentication.username` and `restapi.authentication.password` parameters. There is no way to protect the safe endpoints without enabling TLS.
 
-With TLS enabled and a PKI established, API servers and clients can authenticate each other for all endpoints.
+When TLS for the REST API is enabled and a PKI is established, mutual authentication of the API server and API client is possible for all endpoints.
 
-The `restapi` section enables TLS client authentication. The `verify_client` parameter specifies which calls require successful client certificate verification. Use `verify_client: required` for all calls, `verify_client: optional` for unsafe calls only, or `verify_client: none` for no calls.
+The `restapi` section parameters enable TLS client authentication to the server. Depending on the value of the `verify_client` parameter, the API server requires a successful client certificate verification for both safe and unsafe API calls (`verify_client: required`), or only for unsafe API calls (`verify_client: optional`), or for no API calls (`verify_client: none`).
 
-The `ctl` section enables TLS server authentication for the client. The client, [patronictl](/docs/patroni/patronictl#patronictl), uses the same configuration as Patroni. Set `insecure: true` to disable server certificate verification by the client. See [settings](/docs/patroni/config/yaml#patronictl_settings) for TLS client parameters.
+The `ctl` section parameters enable TLS server authentication to the client (the [patronictl](/docs/patroni/patronictl#patronictl) tool which uses the same config as patroni). Set `insecure: true` to disable the server certificate verification by the client. See [settings](/docs/patroni/config/yaml#patronictl_settings) for a detailed description of the TLS client parameters.
 
-PostgreSQL database access protection is outside this document. See <https://www.postgresql.org/docs/current/client-authentication.html>.
+Protecting the PostgreSQL database proper from unauthorized access is beyond the scope of this document and is covered in <https://www.postgresql.org/docs/current/client-authentication.html>

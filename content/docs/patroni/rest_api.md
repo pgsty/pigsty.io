@@ -5,18 +5,17 @@ icon: fa-solid fa-book
 description: "Reference for Patroni REST API endpoints and operational behaviors."
 module: [PATRONI]
 categories: [Reference]
+upstream_link: "https://patroni.readthedocs.io/en/latest/rest_api.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/rest_api.html
-
 <a id="rest_api"></a>
-Patroni uses its REST API during leader races. [patronictl](/docs/patroni/patronictl#patronictl) uses it for failovers, switchovers, reinitialization, restarts, and reloads. HAProxy and other load balancers use it for HTTP health checks. Monitoring systems can also use it. This page lists the available endpoints.
+Patroni has a rich REST API, which is used by Patroni itself during the leader race, by the [patronictl](/docs/patroni/patronictl#patronictl) tool in order to perform failovers/switchovers/reinitialize/restarts/reloads, by HAProxy or any other kind of load balancer to perform HTTP health checks, and of course could also be used for monitoring. Below you will find the list of Patroni REST API endpoints.
 
 --------
 
 ## Health check endpoints
 
-Health check `GET` requests return an HTTP status code and a JSON document with node status. Use `HEAD` or `OPTIONS` instead of `GET` if you do not need JSON.
+For all health check `GET` requests Patroni returns a JSON document with the status of the node, along with the HTTP status code. If you don't want or don't need the JSON document, you might consider using the `HEAD` or `OPTIONS` method instead of `GET`.
 
 - The following requests to Patroni REST API will return HTTP status code **200** only when the Patroni node is running as the primary with leader lock:
 
@@ -26,22 +25,22 @@ Health check `GET` requests return an HTTP status code and a JSON document with 
 
 - `GET /standby-leader`: returns HTTP status code **200** only when the Patroni node is running as the leader in a [standby cluster](/docs/patroni/standby_cluster#standby_cluster).
 
-- `GET /leader`: returns HTTP **200** if the node holds the leader lock. Unlike the preceding endpoints, it does not distinguish PostgreSQL roles `primary` and `standby_leader`.
+- `GET /leader`: returns HTTP status code **200** when the Patroni node has the leader lock. Unlike `GET /primary` and `GET /standby-leader`, this check does not depend on whether PostgreSQL is running as the `primary` or the `standby_leader`.
 
-- `GET /replica`: returns HTTP **200** only if the node is `running`, its role is `replica`, and `noloadbalance` is unset.
+- `GET /replica`: replica health check endpoint. It returns HTTP status code **200** only when the Patroni node is in the state `running`, the role is `replica` and `noloadbalance` tag is not set.
 
-- `GET /replica?replication_state=<required state>`: adds a replication state check to `replica`. Use `replication_state=streaming` to exclude replicas still catching up through archive recovery.
+- `GET /replica?replication_state=<required state>`: replica check endpoint. In addition to checks from `replica`, it also checks if the replication state matches the required one. Mainly useful with `replication_state=streaming`, to exclude replicas still catching up in archive recovery.
 
-- `GET /replica?lag=<max-lag>`: adds a lag check to `replica`. HTTP **200** requires lag below the limit. For performance, Patroni uses DCS cluster.last_leader_operation as the leader WAL position to calculate lag. Specify max-lag as an integer byte count or a readable value, such as 16kB, 64MB, or 1GB.
+- `GET /replica?lag=<max-lag>`: replica check endpoint. In addition to checks from `replica`, it also checks replication latency and returns status code **200** only when it is below specified value. The key cluster.last_leader_operation from DCS is used for Leader wal position and compute latency on replica for performance reasons. max-lag can be specified in bytes (integer) or in human readable values, for e.g. 16kB, 64MB, 1GB.
 
   - `GET /replica?lag=1048576`
   - `GET /replica?lag=1024kB`
   - `GET /replica?lag=10MB`
   - `GET /replica?lag=1GB`
 
-- `GET /replica?tag_key1=value1&tag_key2=value2`: also checks custom `key1` and `key2` tags in the YAML **tags** section. An undefined tag or a value different from the query value returns HTTP 503.
+- `GET /replica?tag_key1=value1&tag_key2=value2`: replica check endpoint. It also checks for user defined tags `key1` and `key2` and their respective values in the **tags** section of the yaml configuration management. If the tag isn't defined for an instance, or if the value in the yaml configuration doesn't match the querying value, it will return HTTP Status Code 503.
 
-  The following requests check leader or standby leader status. They ignore custom tags:
+  In the following requests, since we are checking for the leader or standby-leader status, Patroni doesn't apply any of the user defined tags and they will be ignored.
 
   - `GET /?tag_key1=value1&tag_key2=value2`
   - `GET /leader?tag_key1=value1&tag_key2=value2`
@@ -62,7 +61,7 @@ Health check `GET` requests return an HTTP status code and a JSON document with 
 
 - `GET /asynchronous` or `GET /async`: returns HTTP status code **200** only when the Patroni node is running as an asynchronous standby.
 
-- `GET /asynchronous?lag=<max-lag>` or `GET /async?lag=<max-lag>`: adds a lag check to `asynchronous` or `async`. HTTP **200** requires lag below the limit. For performance, Patroni uses DCS cluster.last_leader_operation as the leader WAL position to calculate lag. Specify max-lag as an integer byte count or a readable value, such as 16kB, 64MB, or 1GB.
+- `GET /asynchronous?lag=<max-lag>` or `GET /async?lag=<max-lag>`: asynchronous standby check endpoint. In addition to checks from `asynchronous` or `async`, it also checks replication latency and returns status code **200** only when it is below specified value. The key cluster.last_leader_operation from DCS is used for Leader wal position and compute latency on replica for performance reasons. max-lag can be specified in bytes (integer) or in human readable values, for e.g. 16kB, 64MB, 1GB.
 
   - `GET /async?lag=1048576`
   - `GET /async?lag=1024kB`
@@ -71,13 +70,13 @@ Health check `GET` requests return an HTTP status code and a JSON document with 
 
 - `GET /health`: returns HTTP status code **200** only when PostgreSQL is up and running.
 
-- `GET /liveness`: returns HTTP **200** if the heartbeat loop operates correctly. Returns **503** if the last run was more than `ttl` seconds ago on the primary or `2*ttl` on a replica. Use this for `livenessProbe`.
+- `GET /liveness`: returns HTTP status code **200** if Patroni heartbeat loop is properly running and **503** if the last run was more than `ttl` seconds ago on the primary or `2*ttl` on the replica. Could be used for `livenessProbe`.
 
-- `GET /readiness?lag=<max-lag>&mode=apply|write`: returns HTTP **200** for a leader or a running, replicating node within the lag limit. The lag parameter limits standby lag and defaults to `maximum_lag_on_failover`. Use bytes or readable values, such as 16kB, 64MB, or 1GB. Mode specifies whether WAL must be replayed (apply) or only received (write). The default is apply.
+- `GET /readiness?lag=<max-lag>&mode=apply|write`: returns HTTP status code **200** when the Patroni node is running as the leader or when PostgreSQL is up, replicating and not too far behind the leader. The lag parameter sets how far a standby is allowed to be behind, and it defaults to `maximum_lag_on_failover`. Lag can be specified in bytes or in human-readable values, for example 16kB, 64MB, or 1GB. Mode sets whether the WAL needs to be replayed (apply) or just received (write). The default is apply.
 
-  As a Kubernetes `readinessProbe`, this prevents new pods from becoming ready before they catch up to the leader. With a PodDisruptionBudget, it prevents premature leader termination during rolling restarts. It also excludes replicas that cannot keep up from read-only traffic. Use this endpoint for `readinessProbe` where Kubernetes endpoints cannot support leader elections, such as OpenShift.
+  When used as Kubernetes `readinessProbe` it will make sure freshly started pods only become ready when they have caught up to the leader. This combined with a PodDisruptionBudget will protect against leader being terminated too early during a rolling restart of nodes. It will also make sure that replicas that cannot keep up with replication do not service read-only traffic. The endpoint could be used for `readinessProbe` when it is not possible to use Kubernetes endpoints for leader elections (OpenShift).
 
-The `liveness` endpoint is lightweight and runs no SQL. Configure probes to start failing around leader key expiration. With the default `ttl` of `30s`, use this example:
+The `liveness` endpoint is very light-weight and not executing any SQL. Probes should be configured in such a way that they start failing about time when the leader key is expiring. With the default value of `ttl`, which is `30s` example probes would look like:
 
 ```yaml
 readinessProbe:
@@ -106,7 +105,7 @@ livenessProbe:
 
 ## Monitoring endpoint
 
-Patroni uses `GET /patroni` during leader races. Monitoring systems can also use it. Its JSON structure matches the health check endpoints.
+The `GET /patroni` is used by Patroni during the leader race. It also could be used by your monitoring system. The JSON document produced by this endpoint has the same structure as the JSON produced by the health check endpoints.
 
 **Example:** A healthy cluster
 
@@ -379,7 +378,7 @@ patroni_failover_priority{scope="batman",name="patroni1"} 1
 
 ### PostgreSQL State Values
 
-The `patroni_postgres_state` metric represents the current PostgreSQL state numerically. Monitoring and alerting systems can use it to track state changes. The `PostgresqlState.get_metrics_description()` static method generates these values.
+The `patroni_postgres_state` metric provides a numeric representation of the current PostgreSQL instance state. This is useful for monitoring and alerting systems that need to track state changes over time. The numeric values are generated using the `PostgresqlState.get_metrics_description()` static method.
 
 | Value | State Name              | Description                          |
 |-------|-------------------------|--------------------------------------|
@@ -402,7 +401,7 @@ The `patroni_postgres_state` metric represents the current PostgreSQL state nume
 PostgreSQL State Values
 
 > [!NOTE]
-> Existing numeric values never change, to preserve monitoring compatibility. Future states receive new values.
+> These numeric values are fixed and will never change to maintain backward compatibility with existing monitoring systems. If new states are added in the future, they will be assigned new numeric values without changing existing ones.
 
 --------
 
@@ -454,7 +453,7 @@ $ curl -s http://localhost:8008/cluster | jq .
 }
 ```
 
-- `GET /history` returns cluster switchover and failover history. Its format matches history files in `pg_wal`, with one addition: the timestamp when each timeline was created.
+- The `GET /history` endpoint provides a view on the history of cluster switchovers/failovers. The format is very similar to the content of history files in the `pg_wal` directory. The only difference is the timestamp field showing when the new timeline was created.
 
 ``` bash
 $ curl -s http://localhost:8008/history | jq .
@@ -542,12 +541,11 @@ $ curl -s -XPATCH -d \
 
 The above REST API call patches the existing configuration and returns the new configuration.
 
-Check that the node applied the configuration. With loop_wait=5, it should log every 5 seconds. Changing "max_connections" requires restart, so the output should show "pending_restart":
+Let's check that the node processed this configuration. First of all it should start printing log lines every 5 seconds (loop_wait=5). The change of "max_connections" requires a restart, so the "pending_restart" flag should be exposed:
 
 ``` bash
 $ curl -s http://localhost:8008/patroni | jq .
 {
-  "database_system_identifier": "6287881213849985952",
   "postmaster_start_time": "2024-08-28 19:39:26.352526+00:00",
   "xlog": {
     "location": 2197818976
@@ -575,7 +573,7 @@ $ curl -s http://localhost:8008/patroni | jq .
 
 Removing parameters:
 
-To remove or reset a setting, patch it with `null`:
+If you want to remove (reset) some setting just patch it with `null`:
 
 ``` bash
 $ curl -s -XPATCH -d \
@@ -602,7 +600,7 @@ $ curl -s -XPATCH -d \
 
 The above call removes `postgresql.parameters.max_connections` from the dynamic configuration.
 
-`PUT /config`: unconditionally replace the complete dynamic configuration:
+`PUT /config`: It's also possible to perform the full rewrite of an existing dynamic configuration unconditionally:
 
 ``` bash
 $ curl -s -XPUT -d \
@@ -634,13 +632,13 @@ $ curl -s -XPUT -d \
 
 ### Switchover
 
-The `/switchover` endpoint requires a healthy cluster with a leader. It can also schedule a future switchover.
+`/switchover` endpoint only works when the cluster is healthy (there is a leader). It also allows to schedule a switchover at a given time.
 
-A candidate is optional for `/switchover` but required for `/failover`. Without a candidate, all eligible nodes enter the leader race after the leader steps down.
+When calling `/switchover` endpoint a candidate can be specified but is not required, in contrast to `/failover` endpoint. If a candidate is not provided, all the eligible nodes of the cluster will participate in the leader race after the leader stepped down.
 
-The `POST` JSON body must include `leader`. Optional fields are `candidate` and `scheduled_at`. Use `scheduled_at` to schedule a future switchover.
+In the JSON body of the `POST` request you must specify the `leader` field. The `candidate` and the `scheduled_at` fields are optional and can be used to schedule a switchover at a specific time.
 
-HTTP **200** means switchover or failover completed successfully. HTTP **202** means Patroni scheduled the switchover. Errors return **400**, **412**, or **503**, with details in the response body.
+Depending on the situation, requests might return different HTTP status codes and bodies. Status code **200** is returned when the switchover or failover successfully completed. If the switchover was successfully scheduled, Patroni will return HTTP status code **202**. In case something went wrong, the error status code (one of **400**, **412**, or **503**) will be returned with some details in the response body.
 
 `DELETE /switchover` can be used to delete the currently scheduled switchover.
 
@@ -669,7 +667,7 @@ Switchover scheduled
 
 ### Failover
 
-Use `/failover` for manual failover when no sufficiently healthy node is available. For example, promote an asynchronous standby when all synchronous standbys are unsuitable. A missing leader is not required: failover also works on a healthy cluster.
+`/failover` endpoint can be used to perform a manual failover when there are no healthy nodes (e.g. to an asynchronous standby if all synchronous standbys are not healthy enough to promote). However there is no requirement for a cluster not to have leader - failover can also be run on a healthy cluster.
 
 In the JSON body of the `POST` request you must specify the `candidate` field. If the `leader` field is specified, a switchover is triggered instead.
 
@@ -700,19 +698,23 @@ Failover/Switchover comparison
 
 ### Healthy standby
 
-A member must pass these checks to enter a switchover leader race or become the selected failover/switchover leader:
+There are a couple of checks that a member of a cluster should pass to be able to participate in the leader race during a switchover or to become a leader as a failover/switchover candidate:
 
 - be reachable via Patroni API;
 - not have `nofailover` tag set to `true`;
 - have watchdog fully functional (if required by the configuration);
 - in case of a switchover in a healthy cluster or an automatic failover, not exceed maximum replication lag (`maximum_lag_on_failover` [configuration parameter](/docs/patroni/config/dynamic#dynamic));
-- For a healthy-cluster switchover or automatic failover, check the `check_timeline` [configuration parameter](/docs/patroni/config/dynamic#dynamic). If it is `true`, the member timeline must not be smaller than the cluster timeline;
+- in case of a switchover in a healthy cluster or an automatic failover, not have a timeline number smaller than the cluster timeline if `check_timeline` [configuration parameter](/docs/patroni/config/dynamic#dynamic) is set to `true`;
 - in [synchronous mode](/docs/patroni/replication_modes#synchronous_mode):
   - In case of a switchover (both with and without a candidate): be listed in the `/sync` key members;
   - For a failover in both healthy and unhealthy clusters, this check is omitted.
 
 > [!WARNING]
-> Without a leader, manual failover can promote a candidate that fails these checks. It can be absent from `/sync` in synchronous mode, exceed the lag limit, or have an older timeline than the last cluster timeline.
+> In case of a manual failover in a cluster without a leader, a candidate will be allowed to promote even if:
+>
+> - it is not in the `/sync` key members when synchronous mode is enabled;
+> - its lag exceeds the maximum replication lag allowed;
+> - it has the timeline number smaller than the last known cluster timeline.
 
 <a id="restart_endpoint"></a>
 
@@ -720,13 +722,13 @@ A member must pass these checks to enter a switchover leader race or become the 
 
 ## Restart endpoint
 
-- `POST /restart`: restart Postgres on the specified node. The `POST` JSON body can contain these optional conditions:
-  - **restart_pending**: if `true`, restart only when configuration changes require it.
-  - **role**: restart only if the current node role matches the request.
-  - **postgres_version**: restart only if the current Postgres version is lower than the requested version.
-  - **timeout**: maximum wait for PostgreSQL to accept connections. Overrides `primary_start_timeout`.
-  - **schedule**: future restart timestamp with time zone.
-- `DELETE /restart`: delete the scheduled restart.
+- `POST /restart`: You can restart Postgres on the specific node by performing the `POST /restart` call. In the JSON body of `POST` request it is possible to optionally specify some restart conditions:
+  - **restart_pending**: boolean, if set to `true` Patroni will restart PostgreSQL only when restart is pending in order to apply some changes in the PostgreSQL config.
+  - **role**: perform restart only if the current role of the node matches with the role from the POST request.
+  - **postgres_version**: perform restart only if the current version of postgres is smaller than specified in the POST request.
+  - **timeout**: how long we should wait before PostgreSQL starts accepting connections. Overrides `primary_start_timeout`.
+  - **schedule**: timestamp with time zone, schedule the restart somewhere in the future.
+- `DELETE /restart`: delete the scheduled restart
 
 `POST /restart` and `DELETE /restart` endpoints are used by [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) and [patronictl flush cluster-name restart](/docs/patroni/patronictl#patronictl_flush_parameters) respectively.
 
@@ -736,7 +738,7 @@ A member must pass these checks to enter a switchover leader race or become the 
 
 ## Reload endpoint
 
-`POST /reload` makes Patroni reread and apply its configuration file. This is equivalent to `SIGHUP`. Changes to parameters such as **shared_buffers** still require an explicit Postgres restart. Use `POST /restart` or [patronictl_restart](/docs/patroni/patronictl#patronictl_restart).
+The `POST /reload` call will order Patroni to re-read and apply the configuration file. This is the equivalent of sending the `SIGHUP` signal to the Patroni process. In case you changed some of the Postgres parameters which require a restart (like **shared_buffers**), you still have to explicitly do the restart of Postgres by either calling the `POST /restart` endpoint or with the help of [patronictl_restart](/docs/patroni/patronictl#patronictl_restart).
 
 The reload endpoint is used by [patronictl_reload](/docs/patroni/patronictl#patronictl_reload).
 
@@ -744,10 +746,10 @@ The reload endpoint is used by [patronictl_reload](/docs/patroni/patronictl#patr
 
 ## Reinitialize endpoint
 
-`POST /reinitialize`: recreate the data directory on the specified replica. This operation is not allowed on a primary. It removes the data directory and runs `pg_basebackup` or another [replica creation method](/docs/patroni/replica_bootstrap#custom_replica_creation).
+`POST /reinitialize`: reinitialize the PostgreSQL data directory on the specified node. It is allowed to be executed only on replicas. Once called, it will remove the data directory and start `pg_basebackup` or some alternative [replica creation method](/docs/patroni/replica_bootstrap#custom_replica_creation).
 
-This call may fail while Patroni repeatedly tries to restart a failed Postgres instance. Set `{"force":true}` in the request body to override this condition.
+The call might fail if Patroni is in a loop trying to recover (restart) a failed Postgres. In order to overcome this problem one can specify `{"force":true}` in the request body.
 
-Set {"from-leader":true} in the request body to take the basebackup directly from the leader. Use this for reinitialization when all replicas have failed.
+You can specify {"from-leader":true} in the request body to directly get basebackup from leader node. This is useful when executing reinit during all replica nodes fail.
 
 The reinitialize endpoint is used by [patronictl_reinit](/docs/patroni/patronictl#patronictl_reinit).

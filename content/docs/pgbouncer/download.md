@@ -6,9 +6,8 @@ description: "PgBouncer source releases and binary packages"
 icon: fas fa-download
 module: [PGBOUNCER]
 categories: [Reference]
+upstream_link: "https://www.pgbouncer.org/downloads/"
 ---
-
-> Source: <https://www.pgbouncer.org/downloads/>
 
 --------
 
@@ -16,6 +15,7 @@ categories: [Reference]
 
 | File | Date | Size | Checksum |
 |------|------|------|----------|
+| [pgbouncer-1.26.1.tar.gz](https://www.pgbouncer.org/downloads/files/1.26.1/pgbouncer-1.26.1.tar.gz) | 2026-10-14 | 898647 bytes | [sha256](https://www.pgbouncer.org/downloads/files/1.26.1/pgbouncer-1.26.1.tar.gz.sha256) |
 | [pgbouncer-1.26.0.tar.gz](https://www.pgbouncer.org/downloads/files/1.26.0/pgbouncer-1.26.0.tar.gz) | 2026-09-23 | 897943 bytes | [sha256](https://www.pgbouncer.org/downloads/files/1.26.0/pgbouncer-1.26.0.tar.gz.sha256) |
 
 --------
@@ -266,9 +266,9 @@ categories: [Reference]
 
 ## Binary Packages
 
-Many operating system distributions provide PgBouncer packages or ports. First check whether your operating system already provides one.
+Various OS distributions have their native package/port of PgBouncer. So it might be good to first check if it is already available on your OS.
 
-These dedicated builds may have newer versions than distribution repositories:
+Dedicated builds, might have newer versions than available at distributor repos:
 
 - RPM: [yum.postgresql.org](https://yum.postgresql.org/)
 - Deb: [apt.postgresql.org](https://apt.postgresql.org/)

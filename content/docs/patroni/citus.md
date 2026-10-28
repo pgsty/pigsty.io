@@ -5,24 +5,23 @@ icon: fas fa-lemon
 description: "Patroni integration details for Citus coordinator and worker groups."
 module: [PATRONI]
 categories: [Concept]
+upstream_link: "https://patroni.readthedocs.io/en/latest/citus.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/citus.html
-
 <a id="citus"></a>
-Patroni automates deployment of [Multi-Node Citus](https://docs.citusdata.com/en/stable/installation/multi_node.html) clusters.
+Patroni makes it extremely simple to deploy [Multi-Node Citus](https://docs.citusdata.com/en/stable/installation/multi_node.html) clusters.
 
 --------
 
 ## TL;DR
 
-Apply these rules:
+There are only a few simple rules you need to follow:
 
-1.  Install the [Citus](https://github.com/citusdata/citus) PostgreSQL extension on every node. The minimum supported version is 10.0. We recommend at least 11.2 for transparent worker switchovers and restarts.
-2.  Use the same cluster name (`scope`) on all Citus nodes.
-3.  Use the same superuser credentials on the coordinator and all workers. Configure `pg_hba.conf` to permit superuser access between all nodes.
-4.  Permit worker access to the coordinator [REST API](/docs/patroni/config/yaml#restapi_settings). Use the same credentials. If client certificates are configured, the coordinator must accept worker certificates.
-5.  Add this section to `patroni.yaml`:
+1.  [Citus](https://github.com/citusdata/citus) database extension to PostgreSQL must be available on all nodes. Absolute minimum supported Citus version is 10.0, but, to take all benefits from transparent switchovers and restarts of workers we recommend using at least Citus 11.2.
+2.  Cluster name (`scope`) must be the same for all Citus nodes!
+3.  Superuser credentials must be the same on coordinator and all worker nodes, and `pg_hba.conf` should allow superuser access between all nodes.
+4.  [REST API](/docs/patroni/config/yaml#restapi_settings) access should be allowed from worker nodes to the coordinator. E.g., credentials should be the same and if configured, client certificates from worker nodes must be accepted by the coordinator.
+5.  Add the following section to the `patroni.yaml`:
 
 ```yaml
 citus:
@@ -30,27 +29,27 @@ citus:
   database: citus  # must be the same on all nodes
 ```
 
-Then start Patroni. It performs these operations:
+After that you just need to start Patroni and it will handle the rest:
 
-0.  Set `bootstrap.dcs.synchronous_mode` to [quorum](/docs/patroni/replication_modes#quorum_mode), unless you explicitly set another value.
-1.  Add the [citus](/docs/patroni/citus#citus) extension to `shared_preload_libraries`.
-2.  Set `max_prepared_transactions` to `2*max_connections`, unless it is explicitly set in [dynamic configuration](/docs/patroni/config/dynamic#dynamic).
-3.  Change `citus.local_hostname` from `localhost` to the address Patroni uses for local PostgreSQL connections. PostgreSQL might not listen on `localhost`.
-4.  Create `citus.database`, then run `CREATE EXTENSION citus`.
-5.  Add current superuser [credentials](/docs/patroni/config/yaml#postgresql_settings) to `pg_dist_authinfo` for cross-node communication. Update them if you later change the superuser username, password, sslcert, or sslkey.
-6.  On the coordinator primary, discover worker primaries and add them to `pg_dist_node` with `citus_add_node()`.
-7.  Maintain `pg_dist_node` after failover or switchover in coordinator or worker clusters.
+0.  Patroni will set `bootstrap.dcs.synchronous_mode` to [quorum](/docs/patroni/replication_modes#quorum_mode) if it is not explicitly set to any other value.
+1.  [citus](/docs/patroni/citus#citus) extension will be automatically added to `shared_preload_libraries`.
+2.  If `max_prepared_transactions` isn't explicitly set in the global [dynamic configuration](/docs/patroni/config/dynamic#dynamic) Patroni will automatically set it to `2*max_connections`.
+3.  The `citus.local_hostname` GUC value will be adjusted from `localhost` to the value that Patroni is using in order to connect to the local PostgreSQL instance. The value sometimes should be different from the `localhost` because PostgreSQL might be not listening on it.
+4.  The `citus.database` will be automatically created followed by `CREATE EXTENSION citus`.
+5.  Current superuser [credentials](/docs/patroni/config/yaml#postgresql_settings) will be added to the `pg_dist_authinfo` table to allow cross-node communication. Don't forget to update them if later you decide to change superuser username/password/sslcert/sslkey!
+6.  The coordinator primary node will automatically discover worker primary nodes and add them to the `pg_dist_node` table using the `citus_add_node()` function.
+7.  Patroni will also maintain `pg_dist_node` in case failover/switchover on the coordinator or worker clusters occurs.
 
 --------
 
 ## patronictl
 
-Coordinator and worker clusters are separate PostgreSQL/Patroni clusters. [Citus](https://github.com/citusdata/citus) groups them logically. Most operations therefore cannot manage them as one entity.
+Coordinator and worker clusters are physically different PostgreSQL/Patroni clusters that are just logically grouped together using the [Citus](https://github.com/citusdata/citus) database extension to PostgreSQL. Therefore in most cases it is not possible to manage them as a single entity.
 
-A [citus](/docs/patroni/citus#citus) section in `patroni.yaml` changes [patronictl](/docs/patroni/patronictl#patronictl) behavior in two ways:
+It results in two major differences in [patronictl](/docs/patroni/patronictl#patronictl) behaviour when `patroni.yaml` has the [citus](/docs/patroni/citus#citus) section comparing with the usual:
 
-1.  By default, `list` and `topology` show all coordinators and workers in the Citus formation. The `Group` column identifies their Citus groups.
-2.  [patronictl](/docs/patroni/patronictl#patronictl) commands accept `--group`. Some use a default from `patroni.yaml`. For example, [patronictl_pause](/docs/patroni/patronictl#patronictl_pause) defaults to `group` in the [citus](/docs/patroni/citus#citus) section. [patronictl_switchover](/docs/patroni/patronictl#patronictl_switchover) and [patronictl_remove](/docs/patroni/patronictl#patronictl_remove) require an explicit group.
+1.  The `list` and the `topology` by default output all members of the Citus formation (coordinators and workers). The new column `Group` indicates which Citus group they belong to.
+2.  For all [patronictl](/docs/patroni/patronictl#patronictl) commands the new option is introduced, named `--group`. For some commands the default value for the group might be taken from the `patroni.yaml`. For example, [patronictl_pause](/docs/patroni/patronictl#patronictl_pause) will enable the maintenance mode by default for the `group` that is set in the [citus](/docs/patroni/citus#citus) section, but for example for [patronictl_switchover](/docs/patroni/patronictl#patronictl_switchover) or [patronictl_remove](/docs/patroni/patronictl#patronictl_remove) the group must be explicitly specified.
 
 An example of [patronictl_list](/docs/patroni/patronictl#patronictl_list) output for the Citus cluster:
 
@@ -90,7 +89,7 @@ If we add the `--group` option, the output will change to:
 
 ## Citus worker switchover
 
-Citus can make an orchestrated worker switchover nearly transparent to applications. Applications connect to the coordinator, which connects to workers. Citus can [pause](/docs/patroni/pause#pause) coordinator SQL traffic for the shards on the affected worker. The coordinator holds this traffic during switchover. Traffic resumes when the new worker primary can accept read/write queries.
+When a switchover is orchestrated for a Citus worker node, Citus offers the opportunity to make the switchover close to transparent for an application. Because the application connects to the coordinator, which in turn connects to the worker nodes, then it is possible with Citus to pause the SQL traffic on the coordinator for the shards hosted on a worker node. The switchover then happens while the traffic is kept on the coordinator, and resumes as soon as a new primary worker node is ready to accept read-write queries.
 
 An example of [patronictl_switchover](/docs/patroni/patronictl#patronictl_switchover) on the worker cluster:
 
@@ -160,7 +159,7 @@ And this is how it looks on the coordinator side:
 
 ## Secondary nodes
 
-Since Patroni v4.0.0, Citus secondary nodes without the `noloadbalance` [tag](/docs/patroni/config/yaml#tags_settings) are also registered in `pg_dist_node`. To use them for read-only queries, applications must change [citus.use_secondary_nodes](https://docs.citusdata.com/en/latest/develop/api_guc.html#citus-use-secondary-nodes-enum).
+Starting from Patroni v4.0.0 Citus secondary nodes without `noloadbalance` [tag](/docs/patroni/config/yaml#tags_settings) are also registered in `pg_dist_node`. However, to use secondary nodes for read-only queries applications need to change [citus.use_secondary_nodes](https://docs.citusdata.com/en/latest/develop/api_guc.html#citus-use-secondary-nodes-enum) GUC.
 
 --------
 
@@ -183,13 +182,13 @@ The Citus cluster (coordinator and workers) are stored in DCS as a fleet of Patr
     /service/batman/1/members/m4
     ...
 
-Most DCS implementations can read the whole Citus cluster with one recursive request using this structure. Only coordinators read the whole tree, to discover workers. Workers read their own group subtree and, in some cases, the coordinator subtree.
+Such an approach was chosen because for most DCS it becomes possible to fetch the entire Citus cluster with a single recursive read request. Only Citus coordinator nodes are reading the whole tree, because they have to discover worker nodes. Worker nodes are reading only the subtree for their own group and in some cases they could read the subtree of the coordinator group.
 
 --------
 
 ## Citus on Kubernetes
 
-Kubernetes does not support hierarchical structures. Patroni therefore includes the Citus group in every Kubernetes object name:
+Since Kubernetes doesn't support hierarchical structures we had to include the citus group to all K8s objects Patroni creates:
 
     batman-0-leader  # the leader config map for the coordinator
     batman-0-config  # the config map holding initialize, config, and history "keys"
@@ -198,10 +197,9 @@ Kubernetes does not support hierarchical structures. Patroni therefore includes 
     batman-1-config
     ...
 
-The naming pattern is `${scope}-${citus.group}-${type}`.
+I.e., the naming pattern is: `${scope}-${citus.group}-${type}`.
 
-Patroni discovers Kubernetes objects with a [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). All Patroni/Citus Pods and Endpoints/ConfigMaps must have matching labels. Configure Patroni to use these labels through Kubernetes [settings](/docs/patroni/config/yaml#kubernetes_settings) or `environment variables
-<kubernetes_environment>`.
+All Kubernetes objects are discovered by Patroni using the [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors), therefore all Pods with Patroni&Citus and Endpoints/ConfigMaps must have labels matching the common label selector, and Patroni must be configured to use them using Kubernetes [settings](/docs/patroni/config/yaml#kubernetes_settings) or [environment variables](/docs/patroni/config/env#kubernetes_environment).
 
 A couple of examples of Patroni configuration using Pods environment variables:
 
@@ -287,7 +285,7 @@ spec:
       value: "2"
 ```
 
-Both examples set the `citus-group` label to identify the object's Citus group. They set `PATRONI_CITUS_GROUP` to the same value. Patroni automatically adds `citus-group: ${env.PATRONI_CITUS_GROUP}` to new ConfigMaps and Endpoints:
+As you may have noticed, both examples have `citus-group` label set. This label allows Patroni to identify object as belonging to a certain Citus group. In addition to that, there is also `PATRONI_CITUS_GROUP` environment variable, which has the same value as the `citus-group` label. When Patroni creates new Kubernetes objects ConfigMaps or Endpoints, it automatically puts the `citus-group: ${env.PATRONI_CITUS_GROUP}` label on them:
 
 ```yaml
 apiVersion: v1
@@ -300,7 +298,7 @@ metadata:
     citus-group: '0'        # Is automatically set from the ${env.PATRONI_CITUS_GROUP}
 ```
 
-See the [kubernetes](https://github.com/patroni/patroni/tree/master/kubernetes) directory for a complete Patroni/Citus deployment example.
+You can find a complete example of Patroni deployment on Kubernetes with Citus support in the [kubernetes](https://github.com/patroni/patroni/tree/master/kubernetes) folder of the Patroni repository.
 
 There are two important files for you:
 
@@ -311,6 +309,6 @@ There are two important files for you:
 
 ## Citus upgrades and PostgreSQL major upgrades
 
-Read the Citus upgrade [documentation](https://docs.citusdata.com/en/latest/admin_guide/upgrading_citus.html). One change applies: restart PostgreSQL with [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) instead of `systemctl restart`.
+First, please read about upgrading Citus version in the [documentation](https://docs.citusdata.com/en/latest/admin_guide/upgrading_citus.html). There is one minor change in the process. When executing upgrade, you have to use [patronictl_restart](/docs/patroni/patronictl#patronictl_restart) instead of `systemctl restart` to restart PostgreSQL.
 
-A PostgreSQL major upgrade with Citus requires both projects' upgrade procedures. Combine the Citus major upgrade documentation with Patroni `PostgreSQL major upgrade<major_upgrade>` instructions. A Citus formation contains multiple Patroni clusters: the coordinator and workers. Upgrade each cluster independently.
+The PostgreSQL major upgrade with Citus is a bit more complex. You will have to combine techniques used in the Citus documentation about major upgrades and Patroni documentation about [PostgreSQL major upgrade](/docs/patroni/existing_data#major_upgrade). Please keep in mind that Citus cluster consists of many Patroni clusters (coordinator and workers) and they all have to be upgraded independently.

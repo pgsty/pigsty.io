@@ -5,9 +5,8 @@ icon: fa-solid fa-cloud-arrow-down
 description: "Installation and upgrade instructions for Patroni across supported platforms."
 module: [PATRONI]
 categories: [Tutorial]
+upstream_link: "https://patroni.readthedocs.io/en/latest/installation.html"
 ---
-
-> Source: https://patroni.readthedocs.io/en/latest/installation.html
 
 <a id="installation"></a>
 
@@ -15,7 +14,7 @@ categories: [Tutorial]
 
 ## Pre-requirements for Mac OS
 
-On a Mac, install the requirements:
+To install requirements on a Mac, run the following:
 
 ```bash
 brew install postgresql etcd haproxy libyaml python
@@ -27,7 +26,9 @@ brew install postgresql etcd haproxy libyaml python
 
 ## Psycopg
 
-Since [psycopg2-2.8](https://www.psycopg.org/articles/2019/04/04/psycopg-28-released/), the binary package is not installed by default. A source installation requires a C compiler and Postgres and Python development packages. Python dependencies cannot express `psycopg2 OR psycopg2-binary`. Select an installation method:
+Starting from [psycopg2-2.8](https://www.psycopg.org/articles/2019/04/04/psycopg-28-released/) the binary version of psycopg2 will no longer be installed by default. Installing it from the source code requires C compiler and postgres+python dev packages. Since in the python world it is not possible to specify dependency as `psycopg2 OR psycopg2-binary` you will have to decide how to install it.
+
+There are a few options available:
 
 1.  Use the package manager from your distro
 
@@ -36,7 +37,7 @@ sudo apt-get install python3-psycopg2  # install psycopg2 module on Debian/Ubunt
 sudo yum install python3-psycopg2      # install psycopg2 on RedHat/Fedora/CentOS
 ```
 
-2.  Specify one of `psycopg`, `psycopg2`, or `psycopg2-binary` in the [list of dependencies](/docs/patroni/installation#extras) when installing Patroni with pip.
+2.  Specify one of `psycopg3`, `psycopg2`, or `psycopg2-binary` in the [list of dependencies](/docs/patroni/installation#extras) when installing Patroni with pip.
 
 <a id="extras"></a>
 
@@ -50,54 +51,54 @@ Patroni can be installed with pip:
 pip install patroni[dependencies]
 ```
 
-Leave `dependencies` empty, or specify one or more of these dependencies:
+where `dependencies` can be either empty, or consist of one or more of the following:
 
 etcd or etcd3  
-`python-etcd` module to use Etcd as the Distributed Configuration Store (DCS)
+`python-etcd` module in order to use Etcd as Distributed Configuration Store (DCS)
 
 consul  
-`py-consul` module to use Consul as the DCS
+`py-consul` module in order to use Consul as DCS
 
 zookeeper  
-`kazoo` module to use Zookeeper as the DCS
+`kazoo` module in order to use Zookeeper as DCS
 
 exhibitor  
-`kazoo` module to use Exhibitor as the DCS (same dependencies as Zookeeper)
+`kazoo` module in order to use Exhibitor as DCS (same dependencies as for Zookeeper)
 
 kubernetes  
-[kubernetes](/docs/patroni/kubernetes#kubernetes) module to use Kubernetes as the DCS
+[kubernetes](/docs/patroni/kubernetes#kubernetes) module in order to use Kubernetes as DCS in Patroni
 
 raft  
-`pysyncobj` module to use the Python Raft implementation as the DCS
+`pysyncobj` module in order to use python Raft implementation as DCS
 
 aws  
-`boto3` to use AWS callbacks
+`boto3` in order to use AWS callbacks
 
 jsonlogger  
-`python-json-logger` module for JSON [logging](/docs/patroni/config/yaml#log_settings)
+`python-json-logger` module in order to enable [logging](/docs/patroni/config/yaml#log_settings) in json format
 
 systemd  
-`systemd-python` for sd_notify integration
+`systemd-python` in order to use sd_notify integration
 
 all  
 all of the above (except psycopg family)
 
 psycopg3  
-`psycopg\[binary\]\>=3.0.0` module
+`psycopg[binary]>=3.0.0` module
 
 psycopg2  
-`psycopg2\>=2.5.4` module
+`psycopg2>=2.5.4` module
 
 psycopg2-binary  
 `psycopg2-binary` module
 
-For example, install Patroni with psycopg3, Etcd DCS dependencies, and AWS callbacks:
+For example, the command in order to install Patroni together with psycopg3, dependencies for Etcd as a DCS, and AWS callbacks is:
 
 ```bash
 pip install patroni[psycopg3,etcd3,aws]
 ```
 
-Install external tools, such as WAL-E, separately if your replica creation or custom bootstrap scripts call them.
+Note that external tools to call in the replica creation or custom bootstrap scripts (i.e. WAL-E) should be installed independently of Patroni.
 
 <a id="package_installation"></a>
 
@@ -105,26 +106,26 @@ Install external tools, such as WAL-E, separately if your replica creation or cu
 
 ## Package installation on Linux
 
-The Postgres community may provide Patroni packages for these operating systems:
+Patroni packages may be available for your operating system, produced by the Postgres community for:
 
 - RHEL, RockyLinux, AlmaLinux;
 - Debian and Ubuntu;
 - SUSE Enterprise Linux.
 
-Packages may also provide direct dependencies, such as Python modules absent from the operating system repositories.
+You can also find packages for direct dependencies of Patroni, like python modules that might not be available in the official operating system repositories.
 
 For more information see the [PGDG repository](https://www.postgresql.org/download/linux/) documentation.
 
-On RedHat Enterprise Linux derivatives, you may also need EPEL packages. See the [EPEL repository](https://docs.fedoraproject.org/en-US/epel/) documentation.
+If you are on a RedHat Enterprise Linux derivative operating system you may also require packages from EPEL, see [EPEL repository](https://docs.fedoraproject.org/en-US/epel/) documentation.
 
-After you configure the PGDG repository for your operating system, install Patroni.
+Once you have installed the PGDG repository for your OS you can install patroni.
 
 > [!NOTE]
-> The Postgres community maintains these packages, rather than the Patroni developers. For support, first contact [Postgres slack](http://pgtreats.info/slack-invite).
+> Patroni packages are not maintained by the Patroni developers, but rather by the Postgres community. If you require support please first try connecting on [Postgres slack](http://pgtreats.info/slack-invite).
 
 ### Installing on Debian derivatives
 
-After you configure the [PGDG repository](/docs/patroni/installation#package_installation), install Patroni with apt:
+With PGDG repo installed, see [above](/docs/patroni/installation#package_installation), install Patroni via apt run:
 
 ```bash
 apt-get install patroni
@@ -132,13 +133,13 @@ apt-get install patroni
 
 ### Installing on RedHat derivatives
 
-On RHEL 9 and derivatives, first configure the [PGDG repository](/docs/patroni/installation#package_installation). Then install Patroni with an etcd DCS:
+With PGDG repo installed, see [above](/docs/patroni/installation#package_installation), install patroni with an etcd DCS via dnf on RHEL 9 (and derivatives) run:
 
 ```bash
 dnf install patroni patroni-etcd
 ```
 
-If your RedHat derivative does not provide etcd packages, install them from PGDG. On each DCS node, run:
+You can install etcd from PGDG if your RedHat derivative distribution does not provide packages. On the nodes that will host the DCS run:
 
 ```bash
 dnf install 'dnf-command(config-manager)'
@@ -146,13 +147,13 @@ dnf config-manager --enable pgdg-rhel9-extras
 dnf install etcd
 ```
 
-For RHEL 8, replace the version with `8` to use `pgdg-rhel8-extras`. RockyLinux, AlmaLinux, Oracle Linux, and other derivatives also use the `pgdg-rhelN-extras` repository name.
+You can replace the version of RHEL with `8` in the repo to make `pgdg-rhel8-extras` if needed. The repo name is still `pgdg-rhelN-extras` on RockyLinux, AlmaLinux, Oracle Linux, etc...
 
 ### Installing on SUSE Enterprise Linux
 
-Some dependencies may require SUSE PackageHub repositories. See the [SUSE PackageHub](https://packagehub.suse.com/how-to-use/) documentation.
+You might need to enable the SUSE PackageHub repositories for some dependencies. see [SUSE PackageHub](https://packagehub.suse.com/how-to-use/) documentation.
 
-On SLES 15, configure the [PGDG repository](/docs/patroni/installation#package_installation). Then install Patroni:
+For SLES 15 with PGDG repo installed, see [above](/docs/patroni/installation#package_installation), you can install patroni using:
 
 ```bash
 zypper install patroni patroni-etcd
@@ -169,11 +170,11 @@ zypper install etcd
 
 ## Upgrading
 
-To upgrade Patroni, update the software and restart the Patroni daemon on each cluster node.
+Upgrading patroni is a very simple process, just update the software installation and restart the Patroni daemon on each node in the cluster.
 
-A Patroni daemon restart also restarts the Postgres database. This can cause primary failover. We recommend maintenance mode until all Patroni daemon restarts finish.
+However, restarting the Patroni daemon will result in a Postgres database restart. In some situations this may cause a failover of the primary node in your cluster, therefore it is recommended to put the cluster into maintenance mode until the Patroni daemon restart has been completed.
 
-On one Patroni node, put the cluster in maintenance mode:
+To put the cluster in maintenance mode, run the following command on one of the patroni nodes:
 
 ```bash
 patronictl pause --wait
@@ -182,7 +183,7 @@ patronictl pause --wait
 Then on each node in the cluster, perform the package upgrade required for your OS:
 
 ```bash
-apt-get update && apt-get install patroni patroni-etcd
+apt-get update && apt-get install patroni
 ```
 
 Restart the patroni daemon process on each node:
@@ -191,10 +192,10 @@ Restart the patroni daemon process on each node:
 systemctl restart patroni
 ```
 
-Resume Patroni monitoring and leave maintenance mode:
+Then finally resume monitoring of Postgres with patroni to take it out of maintenance mode:
 
 ```bash
 patronictl resume --wait
 ```
 
-The cluster now operates fully with the new Patroni version.
+The cluster will now be fully operational with the new version of Patroni.

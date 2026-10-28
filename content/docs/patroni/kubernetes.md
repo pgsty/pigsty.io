@@ -6,28 +6,27 @@ icon: fas fa-dharmachakra
 description: "Using Patroni with Kubernetes objects, labels, and service discovery."
 module: [PATRONI]
 categories: [Task]
+upstream_link: "https://patroni.readthedocs.io/en/latest/kubernetes.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/kubernetes.html
-
 <a id="kubernetes"></a>
-Patroni can store cluster state and the leader key in Kubernetes objects. This lets it run Postgres in Kubernetes without a separate consistency store, such as an extra Etcd deployment. Patroni supports two object types for the leader and configuration keys. Select the type with `kubernetes.use_endpoints` or the `PATRONI_KUBERNETES_USE_ENDPOINTS` environment variable.
+Patroni can use Kubernetes objects in order to store the state of the cluster and manage the leader key. That makes it capable of operating Postgres in Kubernetes environment without any consistency store, namely, one doesn't need to run an extra Etcd deployment. There are two different types of Kubernetes objects Patroni can use to store the leader and the configuration keys, the object type is selected with the `kubernetes.use_endpoints` configuration option or the `PATRONI_KUBERNETES_USE_ENDPOINTS` environment variable.
 
 --------
 
 ## Use Endpoints
 
-This mode is recommended but disabled by default for compatibility. When enabled, Patroni creates `Endpoints` and stores cluster configuration and the leader key in their `metadata: annotations` fields. A leader change updates both the leader annotations and the addresses of the leader pod in one operation. This is safer than `ConfigMaps`.
+Despite the fact that this is the recommended mode, it is turned off by default for compatibility reasons. When it is on, Patroni stores the cluster configuration and the leader key in the `metadata: annotations` fields of the respective `Endpoints` it creates. Changing the leader is safer than when using `ConfigMaps`, since both the annotations, containing the leader information, and the actual addresses pointing to the running leader pod are updated simultaneously in one go.
 
 --------
 
 ## Use ConfigMaps
 
-In this mode, Patroni creates ConfigMaps and stores keys in their metadata. A leader change needs at least two updates: one for the leader ConfigMap and one for its Endpoint.
+In this mode, Patroni will create ConfigMaps instead of Endpoints and store keys inside meta-data of those ConfigMaps. Changing the leader takes at least two updates, one to the leader ConfigMap and another to the respective Endpoint.
 
-To route traffic to the Postgres leader, configure the Kubernetes Postgres service label selector with `role_label` from the Patroni configuration.
+To direct the traffic to the Postgres leader you need to configure the Kubernetes Postgres service to use the label selector with the `role_label` (configured in patroni configuration).
 
-Some environments, such as OpenShift, require ConfigMaps.
+Note that in some cases, for instance, when running on OpenShift, there is no alternative to using ConfigMaps.
 
 --------
 
@@ -39,11 +38,11 @@ Patroni Kubernetes [settings](/docs/patroni/config/yaml#kubernetes_settings) and
 
 ### Customize role label
 
-By default, Patroni labels its pod with the node role, such as `role=primary`. Customize the label key and values with `kubernetes.role_label`, `kubernetes.leader_label_value`, `kubernetes.follower_label_value`, and `kubernetes.standby_leader_label_value`.
+By default, Patroni will set corresponding labels on the pod it runs in based on node's role, such as `role=primary`. The key and value of label can be customized by `kubernetes.role_label`, `kubernetes.leader_label_value`, `kubernetes.follower_label_value` and `kubernetes.standby_leader_label_value`.
 
-To reduce downtime when you change default role labels to custom labels, use these steps:
+Note that if you migrate from default role labels to custom ones, you can reduce downtime by following migration steps:
 
-1.  Set `kubernetes.tmp_role_label` to a temporary label, such as `tmp_role`, with the original role value. After the pods restart, Patroni sets these labels:
+1.  Add a temporary label using original role value for the pod with `kubernetes.tmp_role_label` (like `tmp_role`). Once pods are restarted they will get following labels set by Patroni:
 
 > ```yaml
 > labels:
@@ -60,12 +59,12 @@ To reduce downtime when you change default role labels to custom labels, use the
 >   tmp_role: primary
 > ```
 
-3.  Add the custom role label, for example `kubernetes.leader_label_value=primary`. After the pods restart, Patroni sets these labels:
+3.  Add your custom role label (e.g., set `kubernetes.leader_label_value=leader`). Once pods are restarted they will get following new labels set by Patroni:
 
 > ```yaml
 > labels:
 >   cluster-name: foo
->   role: primary
+>   role: leader
 >   tmp_role: primary
 > ```
 
@@ -74,7 +73,7 @@ To reduce downtime when you change default role labels to custom labels, use the
 > ```yaml
 > selector:
 >   cluster-name: foo
->   role: primary
+>   role: leader
 > ```
 
 5.  Finally, remove the temporary label from your configuration and update all pods.
@@ -82,14 +81,14 @@ To reduce downtime when you change default role labels to custom labels, use the
 > ```yaml
 > labels:
 >   cluster-name: foo
->   role: primary
+>   role: leader
 > ```
 
 --------
 
 ## Examples
 
-- The [kubernetes](https://github.com/patroni/patroni/tree/master/kubernetes) directory contains an example Docker image and Kubernetes manifest for tests. The current example cannot use PersistentVolumes because of permission problems.
-- The [Spilo Project](https://github.com/zalando/spilo) provides a full-featured Docker image with Persistent Volume support.
-- A [Helm chart](https://github.com/kubernetes/charts/tree/master/incubator/patroni) deploys the Spilo image with Patroni configured to run in Kubernetes.
-- For Patroni and Spilo clusters at scale, see [postgres-operator](https://github.com/zalando/postgres-operator). It uses the operator pattern to manage Spilo clusters.
+- The [kubernetes](https://github.com/patroni/patroni/tree/master/kubernetes) folder of the Patroni repository contains examples of the Docker image, and the Kubernetes manifest to test Patroni Kubernetes setup. Note that in the current state it will not be able to use PersistentVolumes because of permission issues.
+- You can find the full-featured Docker image that can use Persistent Volumes in the [Spilo Project](https://github.com/zalando/spilo).
+- There is also a [Helm chart](https://github.com/kubernetes/charts/tree/master/incubator/patroni) to deploy the Spilo image configured with Patroni running using Kubernetes.
+- In order to run your database clusters at scale using Patroni and Spilo, take a look at the [postgres-operator](https://github.com/zalando/postgres-operator) project. It implements the operator pattern to manage Spilo clusters.

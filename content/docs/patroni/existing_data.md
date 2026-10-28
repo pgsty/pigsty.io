@@ -6,9 +6,8 @@ icon: fa-solid fa-truck-moving
 description: "Procedure to convert existing PostgreSQL data into a Patroni cluster."
 module: [PATRONI]
 categories: [Task]
+upstream_link: "https://patroni.readthedocs.io/en/latest/existing_data.html"
 ---
-
-> Source: https://patroni.readthedocs.io/en/latest/existing_data.html
 
 <a id="existing_data"></a>
 This section describes the process for converting a standalone PostgreSQL instance into a Patroni cluster.
@@ -19,9 +18,9 @@ To deploy a Patroni cluster without using a pre-existing PostgreSQL instance, se
 
 ## Procedure
 
-The following steps convert an existing Postgres cluster to Patroni management. All nodes must be running. These steps assume you do not intend to change the Postgres configuration during migration.
+You can find below an overview of steps for converting an existing Postgres cluster to a Patroni managed cluster. In the steps we assume all nodes that are part of the existing cluster are currently up and running, and that you *do not* intend to change Postgres configuration while the migration is ongoing. The steps:
 
-1.  Create the Postgres users described in the [authentication](/docs/patroni/config/yaml#postgresql_settings) section. In the sample SQL below, replace usernames and passwords for your environment. Skip this step if the required users already exist.
+1.  Create the Postgres users as explained for [authentication](/docs/patroni/config/yaml#postgresql_settings) section of the Patroni configuration. You can find sample SQL commands to create the users in the code block below, in which you need to replace the usernames and passwords as per your environment. If you already have the relevant users, then you can skip this step.
 
     ``` sql
     -- Patroni superuser
@@ -41,19 +40,19 @@ The following steps convert an existing Postgres cluster to Patroni management. 
     GRANT EXECUTE ON function pg_catalog.pg_read_binary_file(text, bigint, bigint, boolean) TO PATRONI_REWIND_USERNAME;
     ```
 
-2.  Complete these steps on each Postgres node. Finish one node before you continue to the next. Start with the primary, then process each standby:
+2.  Perform the following steps on all Postgres nodes. Perform all steps on one node before proceeding with the next node. Start with the primary node, then proceed with each standby node:
 
-    1.  If systemd runs Postgres, disable the Postgres systemd unit. Patroni will manage Postgres startup and shutdown.
-    2.  Create a Patroni YAML configuration file. You can use [Patroni configuration generation and validation tooling](/docs/patroni/config#validate_generate_config).
-        - **Note (specific for the primary node):** If cluster members use replication slots, we recommend enabling `use_slots`. Configure the existing slots as permanent with `slots`. When `use_slots` is enabled, Patroni creates member replication slots and drops slots it does not recognize. Permanent slot configuration preserves your existing slots during migration. See [Dynamic Configuration Settings](/docs/patroni/config/dynamic#dynamic) for details.
-    3.  Start the `patroni` systemd service. Patroni detects that Postgres is running and starts monitoring it.
+    1.  If you are running Postgres through systemd, then disable the Postgres systemd unit. This is performed as Patroni manages starting and stopping the Postgres daemon.
+    2.  Create a YAML configuration file for Patroni. You can use [Patroni configuration generation and validation tooling](/docs/patroni/config#validate_generate_config) for that.
+        - **Note (specific for the primary node):** If you have replication slots being used for replication between cluster members, then it is recommended that you enable `use_slots` and configure the existing replication slots as permanent via the `slots` configuration item. Be aware that Patroni automatically creates replication slots for replication between members, and drops replication slots that it does not recognize, when `use_slots` is enabled. The idea of using permanent slots here is to allow your existing slots to persist while the migration to Patroni is in progress. See [Dynamic Configuration Settings](/docs/patroni/config/dynamic#dynamic) for details.
+    3.  Start Patroni using the `patroni` systemd service unit. It automatically detects that Postgres is already running and starts monitoring the instance.
 
-3.  Transfer Postgres startup management to Patroni. Restart members with [patronictl restart cluster-name member-name](/docs/patroni/patronictl#patronictl_restart_parameters). To minimize downtime, you may split this step:
+3.  Hand over Postgres "start up procedure" to Patroni. In order to do that you need to restart the cluster members through [patronictl restart cluster-name member-name](/docs/patroni/patronictl#patronictl_restart_parameters) command. For minimal downtime you might want to split this step into:
 
     1.  Immediate restart of the standby nodes.
     2.  Scheduled restart of the primary node within a maintenance window.
 
-4.  If you configured permanent slots in step `1.2.`, wait for the Patroni slots to catch up. Their `restart_lsn` must reach the `restart_lsn` of the corresponding original slots. Then remove the original slots from `slots` with [patronictl edit-config cluster-name](/docs/patroni/patronictl#patronictl_edit_config_parameters). Patroni can then drop the original slots when they are no longer needed. Use this example query to compare `restart_lsn` values:
+4.  If you configured permanent slots in step `2.2.`, then you should remove them from `slots` configuration through [patronictl edit-config cluster-name](/docs/patroni/patronictl#patronictl_edit_config_parameters) command once the `restart_lsn` of the slots created by Patroni has caught up with the `restart_lsn` of the original slots for the corresponding members. By removing the slots from `slots` configuration you will allow Patroni to drop the original slots from your cluster once they are not needed anymore. You can find below an example query to check the `restart_lsn` of a couple slots, so you can compare them:
 
     ``` sql
     -- Assume original_slot_for_member_x is the name of the slot in your original
@@ -73,18 +72,18 @@ The following steps convert an existing Postgres cluster to Patroni management. 
 
 ## Major Upgrade of PostgreSQL Version
 
-The only possible way to do a major upgrade currently is:
+The procedure for a major upgrade with `pg_upgrade` is:
 
-1.  Stop Patroni.
-2.  Upgrade the PostgreSQL binaries. Run [pg_upgrade](https://www.postgresql.org/docs/current/pgupgrade.html) on the primary.
-3.  Update patroni.yml.
-4.  Remove the initialize key from the DCS, or remove all cluster state with [patronictl remove cluster-name](/docs/patroni/patronictl#patronictl_remove_parameters). This is necessary because pg_upgrade runs initdb, which creates a database with a new PostgreSQL system identifier.
-5.  If you removed all cluster state, you may copy patroni.dynamic.json from the old data directory to the new directory. This retains some PostgreSQL parameters that you set earlier.
-6.  Start Patroni on the primary.
-7.  On standby nodes, upgrade PostgreSQL binaries, update patroni.yml, and remove the contents of data_dir.
-8.  Start Patroni on the standbys. Wait for replication to complete.
+1.  Stop Patroni
+2.  Upgrade PostgreSQL binaries and perform [pg_upgrade](https://www.postgresql.org/docs/current/pgupgrade.html) on the primary node
+3.  Update patroni.yml
+4.  Remove the initialize key from DCS or wipe complete cluster state from DCS. The second one could be achieved by running [patronictl remove cluster-name](/docs/patroni/patronictl#patronictl_remove_parameters) . It is necessary because the new PostgreSQL cluster is initialized with initdb, which gives it a new PostgreSQL system identifier.
+5.  If you wiped the cluster state in the previous step, you may wish to copy patroni.dynamic.json from old data dir to the new one. It will help you to retain some PostgreSQL parameters you had set before.
+6.  Start Patroni on the primary node.
+7.  Upgrade PostgreSQL binaries, update patroni.yml and wipe the data_dir on standby nodes.
+8.  Start Patroni on the standby nodes and wait for the replication to complete.
 
-PostgreSQL does not support pg_upgrade on standby nodes. If you understand the procedure, you can use rsync as described in <https://www.postgresql.org/docs/current/pgupgrade.html> instead of removing data_dir. Letting Patroni replicate the data is the safest method.
+Running pg_upgrade on standby nodes is not supported by PostgreSQL. If you know what you are doing, you can try the rsync procedure described in <https://www.postgresql.org/docs/current/pgupgrade.html> instead of wiping data_dir on standby nodes. The safest way is however to let Patroni replicate the data for you.
 
 --------
 
@@ -92,8 +91,8 @@ PostgreSQL does not support pg_upgrade on standby nodes. If you understand the p
 
 - During Patroni startup, Patroni complains that it cannot bind to the PostgreSQL port.
 
-  Check `listen_addresses` and `port` in `postgresql.conf`, and `postgresql.listen` in `patroni.yml`. Make sure `pg_hba.conf` permits this access.
+  You need to verify `listen_addresses` and `port` in `postgresql.conf` and `postgresql.listen` in `patroni.yml`. Don't forget that `pg_hba.conf` should allow such access.
 
 - After asking Patroni to restart the node, PostgreSQL displays the error message `could not open configuration file "/etc/postgresql/10/main/pg_hba.conf": No such file or directory`
 
-  The cause depends on how you manage PostgreSQL configuration. With `postgresql.config_dir`, Patroni generates `pg_hba.conf` from [bootstrap](/docs/patroni/config/yaml#bootstrap_settings) settings only during new-cluster bootstrap. Here, `PGDATA` was not empty, so no bootstrap occurred. The file must already exist.
+  It can mean various things depending on how you manage PostgreSQL configuration. If you specified `postgresql.config_dir`, Patroni generates the `pg_hba.conf` based on the settings in the [bootstrap](/docs/patroni/config/yaml#bootstrap_settings) section only when it bootstraps a new cluster. In this scenario the `PGDATA` was not empty, therefore no bootstrap happened. This file must exist beforehand.

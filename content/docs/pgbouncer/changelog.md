@@ -5,26 +5,34 @@ description: "PgBouncer version history and release notes"
 icon: fa-solid fa-scroll
 module: [PGBOUNCER]
 categories: [Reference]
+upstream_link: "https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_1/NEWS.md"
 ---
-
-> Source: <https://www.pgbouncer.org/changelog.html> · [1.26.0 source](https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_0/NEWS.md)
 
 --------
 
-## PgBouncer 1.26.x
+## PgBouncer 1.26.x {#pgbouncer-126x}
+
+**2026-10-14  -  PgBouncer 1.26.1  -  "Only startup once"**
+
+- Security
+    * Fix CVE-2026-107350: PgBouncer 1.17.0 through 1.26.0 processed a second StartupMessage sent during SCRAM authentication when the client connected to a non-existent database. An attacker knowing the password of a user listed in `auth_file` could use this to log in as any other user that authenticates using SCRAM, including admins and backend superusers. This requires SCRAM authentication to be used for both users. The impersonated user can come from either `auth_file` or `auth_query`.
+    * Fix CVE-2026-107349: An unauthenticated client could make PgBouncer 1.20.0 through 1.26.0 spin forever on a CPU core, and thus stop serving all clients, by sending a startup `options` parameter containing an empty option name such as `-c=`. This is only exploitable when `ignore_startup_parameters` is non-empty but does not contain `options`.
+    * Fix CVE-2026-107348: An integer overflow in the packet buffer growth logic of PgBouncer 1.21.0 through 1.26.0 could cause PgBouncer to hang in an infinite loop when a client sent a packet header declaring a length above 2^31. This is only exploitable when `max_packet_size` is set to 2147483649 or higher, the default of 2147483647 is not affected. Since 1.23.0 this is reachable before authentication. This is the same class of bug as CVE-2026-6668, but in a different buffer implementation.
+- Fixes
+    * Make `ignore_startup_parameters` take precedence over tracked parameters. Since 1.26.0 `search_path` is tracked by default, which caused `ignore_startup_parameters = search_path` to silently have no effect anymore. Since the release various bugs were reported around tracking of `search_path` parameter. These bugs will be addressed in a later release. Adding `search_path` to `ignore_startup_parameters` now restores the 1.25 behaviour of ignoring it. (bug introduced in 1.26.0)
 
 **2026-09-23  -  PgBouncer 1.26.0  -  "Ignore all previous search_path"**
 
 - Security
     * Fix CVE-2026-19888: PgBouncer before 1.26.0 did not check that the SCRAM client-final-message contained a nonce. An unauthenticated remote attacker could crash PgBouncer by sending a client-final-message without one. This also applies to users that do not exist, because PgBouncer runs a mock SCRAM exchange for those. This bug has existed since SCRAM support was added in PgBouncer 1.11.0.
-    * Fix CVE-2026-6668: Before 1.26.0, integer overflow in packet buffer growth could make PgBouncer loop indefinitely. This required a large amount of data in one packet buffer. With default `max_packet_size`, an unauthenticated client could trigger it. Because PgBouncer is single-threaded, it stopped serving all clients until the process was killed.
-    * Fix CVE-2026-6669: Before 1.26.0, PgBouncer accepted an unbounded SCRAM iteration count from servers. A malicious or compromised PostgreSQL server could force unlimited work during one login. This blocked service for all other clients and databases. The iteration count must now be at most 1000000.
+    * Fix CVE-2026-6668: An integer overflow in the packet buffer growth logic of PgBouncer before 1.26.0 could cause PgBouncer to hang in an infinite loop. This required sending a large amount of data into a single packet buffer, which is possible without authenticating first when `max_packet_size` is left at its default value. Because PgBouncer is single-threaded, this hang stopped it from serving any clients until the process was killed.
+    * Fix CVE-2026-6669: PgBouncer before 1.26.0 did not bound the SCRAM iteration count that it accepted from a server. A malicious or compromised PostgreSQL server could make PgBouncer perform an unbounded amount of work during a single login, stopping it from serving all other clients and databases in the meantime. The iteration count now has to be at most 1000000.
 - Features
-    * Track all parameters that PostgreSQL reports by default. These include `search_path` on PostgreSQL 18+ and `default_transaction_read_only` on PostgreSQL 14+. Previously, `SET search_path` or `SET default_transaction_read_only = true` in transaction pooling affected later clients that used the same server connection. ([#1580], [#1573])
-    * Add `pool_idle_timeout` to remove pools unused for a configured period. This helps when many users connect infrequently and pool counts otherwise grow without limit. The default disables this setting because pool removal also removes its statistics. ([#1491])
+    * Track all parameters that PostgreSQL reports by default. Most notably this means that `search_path` (on PostgreSQL 18 and above) and `default_transaction_read_only` (on PostgreSQL 14 and above) are now tracked by default. Previously a client running `SET search_path` or `SET default_transaction_read_only = true` in transaction pooling mode would affect other clients that later used the same server connection. ([#1580], [#1573])
+    * Add `pool_idle_timeout` setting to clean up pools that have not been used for a while. This is useful in setups with many different users that connect infrequently. Without this setting enabled the number of pools grows without bound in such setups. The setting is disabled by default, because removing a pool also loses its statistics. ([#1491])
     * Allow `query_wait_timeout` to be configured per user and per database. ([#1449])
     * Add `client_login_count` stat to `SHOW STATS`, which counts successful client logins. This makes it possible to detect clients that churn connections. ([#1457])
-    * Send PgBouncer-specific `ParameterStatus` messages at client login: `pgbouncer.version`, `pgbouncer.pool_mode`, and `pgbouncer.max_prepared_statements`. Clients and drivers can use these to detect PgBouncer and adjust their behavior. ([#1490])
+    * Send PgBouncer specific `ParameterStatus` messages to clients on login: `pgbouncer.version`, `pgbouncer.pool_mode` and `pgbouncer.max_prepared_statements`. This allows clients and drivers to detect that they are connected through PgBouncer and adapt their behaviour accordingly. ([#1490])
     * Add `login_notify_message` setting. When set, its value is sent to clients as a NOTICE message after they log in. This can be used to make it clear to clients that they are connected through PgBouncer instead of directly to PostgreSQL. ([#1488])
     * Add support for building PgBouncer with meson, including a Windows build using the UCRT64 environment. Autoconf builds continue to be supported. ([#1524], [#1426], [#1568], [#1585], [#1602], [#1607])
     * Add a logo. ([#1609])
@@ -41,10 +49,10 @@ categories: [Reference]
 - Fixes
     * Fix late `COPY` messages causing pool exhaustion in transaction pooling mode. This also makes `COPY` work outside of an explicit transaction in transaction pooling mode. ([#1471])
     * Fix LDAP authentication failures with long DNs by increasing the maximum LDAP URL length. ([#1497])
-    * Fix SCRAM pass-through corruption of cached forced-user credentials. This caused server login failures because the real server rejected the SCRAM proof. ([#1612])
-    * Fix SCRAM pass-through with stored SCRAM secrets after server reconnection. It failed with "password is SCRAM secret but client authentication did not provide SCRAM keys". ([#1504], bug introduced in 1.25.1)
+    * Fix SCRAM pass-through corrupting the cached credentials of a forced user, which caused server logins to fail with the real server rejecting the SCRAM proof. ([#1612])
+    * Fix SCRAM pass-through failing with stored SCRAM secrets after a server reconnect, with the error "password is SCRAM secret but client authentication did not provide SCRAM keys". ([#1504], bug introduced in 1.25.1)
     * Fix use-after-free crash when a replication client disconnects while its server connection is still logging in. ([#1577])
-    * Fix idle server eviction for replication clients when the pool is full. Previously, one replication client could evict every idle server instead of one. No eviction occurred when reserve pools or cancel requests made the server count exceed `pool_size`. ([#1597])
+    * Fix eviction of idle server connections for replication clients when the pool is full. Previously a single replication client could evict every idle server in the pool instead of just one, and no eviction happened at all when the pool held more servers than `pool_size` because of the reserve pool or cancel requests. ([#1597])
     * Fix stalled TLS connections when a packet straddles the packet buffer boundary, for example a `SET application_name` with a long value. ([#1531])
     * Fix prepared statement responses being sent in the wrong order when a batch mixes `Parse` and `Close` messages without a `Sync` in between. ([#1555])
     * Fix parameters listed in `track_extra_parameters` that are not reported by the server causing incorrect behaviour when a client sets them in its startup packet. ([#1576])
@@ -107,13 +115,13 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.25.x
+## PgBouncer 1.25.x {#pgbouncer-125x}
 
 **2026-05-08  -  PgBouncer 1.25.2  -  "Human touch with fresh twist in title race full of uncertainties"**
 
 - Security
   * Fix CVE-2026-6664: An integer overflow in network packet parsing code in PgBouncer before 1.25.2 bypasses a boundary check and can lead to a crash. An unauthenticated remote attacker can crash PgBouncer with a malformed SCRAM authentication packet.
-  * Fix CVE-2026-6665: Before 1.25.2, SCRAM client-final-message construction checked the `strlcat()` return value incorrectly. A malicious backend could trigger stack overflow with a long nonce in its SCRAM server-final-message.
+  * Fix CVE-2026-6665: The SCRAM code in PgBouncer before 1.25.2 did not check the return value of `strlcat()` correctly when building the contents of the SCRAM client-final-message. A malicious backend that sends a SCRAM server-final-message with a long nonce can trigger a stack overflow.
   * Fix CVE-2026-6666: A possible null pointer reference in PgBouncer before 1.25.2 could lead to a crash if a server sends an error response without an SQLSTATE field.
   * Fix CVE-2026-6667: PgBouncer before 1.25.2 did not perform an appropriate authorization check for the `KILL_CLIENT` admin command. All users with access to the administration console, which itself requires authorization, could run this command. It should only be allowed for users listed in the `admin_users` parameter.
 
@@ -124,7 +132,7 @@ categories: [Reference]
 **2025-12-03  -  PgBouncer 1.25.1  -  "Fixing a bunch of bugs before Christmas"**
 
 - Security
-  * Fix CVE-2025-12819: An unauthenticated attacker could previously execute arbitrary SQL during authentication with a malicious search_path in StartupMessage. Systems are vulnerable only when ALL the following conditions apply:
+  * Fix CVE-2025-12819: Before this release it was possible for an unauthenticated attacker to execute arbitrary SQL during authentication by providing a malicious search_path parameter in the StartupMessage. Systems that have ALL the following configurations are vulnerable:
 
     1. `track_extra_parameters` includes search_path (non-default configuration, probably only configured in setups involving Citus or PostgreSQL 18)
     2. `auth_user` is set to a non-empty string (non-default configuration)
@@ -149,7 +157,7 @@ categories: [Reference]
 
 - Features
     * Add LDAP authentication! You can configure it using an HBA file or using `auth_ldap_options`. ([#731])
-    * Add client-side direct TLS connections using the faster setup introduced in PostgreSQL 17. PgBouncer cannot yet use this setup for its PostgreSQL server connections. ([#1359])
+    * Add support for client-side direct TLS connections. This allows clients to use the faster TLS connection setup that was introduced in PostgreSQL 17. PgBouncer cannot (yet) connect to PostgreSQL servers using this faster connection setup. ([#1359])
     * Add idle state to `SHOW CLIENTS`. ([#1191])
     * Add `transaction_timeout` setting, both globally and at the user level. ([#1242])
     * Send a NOTICE message to the client if it is queued without receiving a connection for more than 5 seconds. This duration can be changed/disabled using `query_wait_notify`. ([#1264])
@@ -161,10 +169,10 @@ categories: [Reference]
     * Health check query defaults to sending empty query instead of `SELECT 1`. ([#1233])
     * Log full PAM queue as a warning. This makes it easier to find the cause of slow queries caused by this. ([#1297])
     * The `RELOAD` command now reports any errors that happened during the reload. ([#1231])
-    * Allow admin connections through the PgBouncer UNIX socket during shutdown. Operators can inspect why shutdown is delayed or use `KILL_CLIENT` on stuck connections. ([#1305])
+    * Enable access to the PgBouncer UNIX socket during shutdown for admin connections. This makes it easier for an operator to find out why a PgBouncer process is not shutting down and/or manually run `KILL_CLIENT` for stuck connections. ([#1305])
     * Change `mkauth.py` to not add an obsolete third field anymore ([#1365])
     * Improve `FATAL` messages in `disconnect_client` and `disconnect_server` functions. ([#1382])
-    * Stop using deprecated OpenSSL function `EVP_PKEY_get0_EC_KEY`. This could cause issues with certain FIPS implementatinos. ([#1384])
+    * Stop using deprecated OpenSSL function `EVP_PKEY_get0_EC_KEY`. This could cause issues with certain FIPS implementations. ([#1384])
 - Fixes
     * Fix crash involving long passwords (1024 characters or more). ([#1215])
     * Fix multi-host connections when using `server_tls_sslmode=verify-full`. ([#1303])
@@ -196,12 +204,21 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.24.x
+## PgBouncer 1.24.x {#pgbouncer-124x}
 
 **2025-04-16  -  PgBouncer 1.24.1  -  "CVE-2025-2291 VALID UNTIL yesterday"**
 
 - Security
-  * Fix CVE-2025-2291: Previously, auth_query ignored password VALID UNTIL when fetching hashes. PgBouncer acting as a transparent Postgres proxy could therefore accept expired passwords. The default auth_query and documented custom function examples now check VALID UNTIL. Update custom auth_query definitions accordingly. For the default auth_query, upgrade to PgBouncer 1.24.1 or configure the new default query on an earlier release.
+  * Fix CVE-2025-2291: Previously PgBouncer did not take into account the VALID
+    UNTIL of a user password when querying for password hashes using its
+    auth_query. So if PgBouncer is used as a transparent proxy in front of
+    Postgres it could allow passwords that had already expired. To solve this
+    issue the default auth_query and the examples of custom auth_query functions
+    in the documentation have been changed to take VALID UNTIL into account. If
+    you are using a custom auth_query you should update that accordingly. If
+    you are using the default auth_query, you can either update to PgBouncer
+    1.24.1 or change your config to use the new default auth_query on a
+    previous release of PgBouncer.
 
 - Fixes
   * Fix PAM support by reverting `pam` authentication support in HBA file. ([#1291]) (bug introduced in 1.24.0)
@@ -236,8 +253,15 @@ categories: [Reference]
   * Enable `pam` authentication support in HBA file. ([#326])
 
 - Changes
-  * Retain connections on RELOAD when TLS configuration is unchanged. Previously, RELOAD recycled all TLS connections and could cause a severe temporary performance drop. Connections now recycle only when TLS settings change. ([#1157])
-  * Enable prepared statement support by default, with `max_prepared_statements` set to 200. This default change should affect only clients that use prepared statements. If you use them, read the limitations in [our documentation][prepared-docs]. ([#1144])
+  * Don't recycle connections on RELOAD if TLS config is unchanged. Previously
+    if you had TLS connections they would all be recycled on RELOAD, which could
+    cause a temporary but serious performance degradation. Now this only
+    happens when the TLS settings are actually changed. ([#1157])
+  * Enable prepared statement support by default, `max_prepared_statements` is
+    now set to 200 by default. This change in defaults should only impact
+    clients that actually use prepared statements. If you do use prepared
+    statements it's recommended to read about the limitations of the prepared
+    statement support in [our documentation][prepared-docs] ([#1144])
   * Sockets/clients/servers can now be identified by a unique ID in the admin
     output. Previously they could be identified by their pointer, but these
     would often be reused by new clients after disconnect. ([#1172])
@@ -290,7 +314,7 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.23.x
+## PgBouncer 1.23.x {#pgbouncer-123x}
 
 **2024-08-02  -  PgBouncer 1.23.1  -  "Everything is put back in order"**
 
@@ -309,8 +333,19 @@ categories: [Reference]
 **2024-07-03  -  PgBouncer 1.23.0  -  "Into the new beginnings"**
 
 - Features
-  * Add rolling restarts. SIGTERM now waits for all clients to disconnect before shutdown, instead of stopping PgBouncer immediately. This permits rolling restarts behind a load balancer or on a shared port with `so_reuseport`. This is a **minor breaking change**. If a Dockerfile or Systemd service file requires the old SIGTERM behavior, use SIGQUIT. ([#902])
-  * Add user name maps for `cert` and `peer` authentication. The connecting user no longer has to be the database user. These maps work similarly to Postgres maps, with exceptions listed in the documentation. ([#996])
+  * Add support for rolling restarts. SIGTERM doesn't cause immediate shutdown
+    of the PgBouncer process anymore. It now does a "super safe shutdown":
+    waiting for all clients to disconnect before shutting down. The new SIGTERM
+    behaviour allows rolling restarts of multiple PgBouncer processes behind a
+    load balancer, or listening on the same port using `so_reuseport`.
+    This is a **minor breaking change**. If you relied on the old behaviour of
+    SIGTERM in your Dockerfile or Systemd service file you should now use SIGQUIT.
+    ([#902])
+  * Add support for user name maps for `cert` and `peer` authentication
+    methods. This feature provides the flexibility that the user initiating
+    the connection does not have to be the database user. PgBouncer support
+    for user name maps works very similar to the postgres with the exceptions
+    listed in the docs. ([#996])
   * Add support for replication connections through PgBouncer. ([#876])
 
 - Changes
@@ -348,7 +383,7 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.22.x
+## PgBouncer 1.22.x {#pgbouncer-122x}
 
 **2024-03-04  -  PgBouncer 1.22.1  -  "It's summer in Bangalore"**
 
@@ -393,14 +428,28 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.21.x
+## PgBouncer 1.21.x {#pgbouncer-121x}
 
 **2023-10-16  -  PgBouncer 1.21.0  -  "The one with prepared statements"**
 
 - Features
-  * Add protocol-level named prepared statements, a frequently requested PgBouncer feature. Prepared statements can greatly reduce CPU use in PgBouncer and PostgreSQL. Synthetic benchmarks showed query throughput gains from 15% to 250%, depending on workload. To enable support, set `max_prepared_statements` above zero; the correct value depends on workload, but 100 is probably reasonable. See [the docs on `max_prepared_statements`](/docs/pgbouncer/config/#max_prepared_statements) for behavior, limitations, and tuning.
-
-    Then configure your client library to use prepared statements, following its documentation. Although this feature received extensive testing before release, its complexity can still cause bugs or performance problems. Report any problems that you find. ([#845])
+  * Add support for protocol-level named prepared statements! This is probably
+    one of the most requested features for PgBouncer. Using prepared statements
+    together with PgBouncer can reduce the CPU load on your system a lot (both
+    at the PgBouncer side and the PostgreSQL side). In synthetic benchmarks
+    this feature was able to increase query throughput anywhere from 15% to
+    250%, depending on the workload. To benefit from this new feature you need
+    to change the new `max_prepared_statements` setting to a non-zero value
+    (the exact value depends on your workload, but 100 is probably reasonable).
+    See [the docs on
+    `max_prepared_statements`](/docs/pgbouncer/config/#max_prepared_statements)
+    for details on how the feature works, its limitations, and how to tune the
+    value. After doing that you need to make sure your client library
+    actually uses prepared statements. How to do that differs for each client,
+    so you should look at the docs for the client you're using. This feature
+    has been tested very well before releasing, but performance issues or
+    bugs might very well exist due to the complexity of the feature. If you
+    find those, please report them. ([#845])
 
 - Changes
   * Improve security of OpenSSL settings, the defaults used were VERY outdated.
@@ -410,7 +459,10 @@ categories: [Reference]
     necessary to use PgBouncer in a FIPS compliant way. ([#949])
   * Maintain `min_pool_size` for pools with a forced user even if no clients
     are connected to PgBouncer ([#947])
-  * Change `peer_id` encoding in cancellation tokens. Peering no longer works across the v1.21.0 boundary. All peers must run versions either before this boundary or at/after it. ([#945])
+  * The way a `peer_id` is encoded in the cancellation token by PgBouncer has
+    changed, this means that peering between different PgBouncer versions will
+    not work if not all of them are on the same side of the v1.21.0 version
+    boundary. ([#945])
 
 - Fixes
   * Fix crash with error message: "FATAL in function client\_proto(): bad
@@ -446,7 +498,7 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.20.x
+## PgBouncer 1.20.x {#pgbouncer-120x}
 
 **2023-08-09  -  PgBouncer 1.20.1  -  "Optional options"**
 
@@ -462,15 +514,35 @@ categories: [Reference]
 **2023-07-20  -  PgBouncer 1.20.0  -  "A funny name goes here"**
 
 - Deprecations
-  * Deprecate online restart. It has received little recent maintenance, has known issues, and often does not support new features. Use `so_reuseport` and `peers` to run multiple PgBouncer processes on one port. Restart them one at a time so that a process always listens on the required port. ([#894])
+  * Online restart option is now considered deprecated. The feature has
+    received very little love in recent years. There are multiple known issues
+    with it and newly added features often don't support it. The recommended
+    method to do online restarts these days is using the `so_reuseport` and
+    `peers` feature. That way you can have multiple different PgBouncer
+    processes running on the same port. Then by restarting those processes
+    one-by-one, you can make sure there's always a PgBouncer process listening
+    on the desired port. ([#894])
 
 - Features
-  * Add `track_extra_parameters` to track more transaction-pooling parameters. Previously, PgBouncer tracked only `application_name`, `DateStyle`, `TimeZone`, and `standard_conforming_strings`. It now also tracks `IntervalStyle` by default. Additional settings must be [reported by PostgreSQL to clients][guc_report]. Citus 12.0+ makes PostgreSQL report `search_path`, so Citus users can add it to `track_extra_parameters`. ([#867])
+  * Introduce the `track_extra_parameters` which allows tracking of more
+    parameters in transaction pooling mode. Previously, PgBouncer only tracked
+    `application_name`, `DateStyle`, `TimeZone` and
+    `standard_conforming_strings`. Now PgBouncer also tracks `IntervalStyle` by
+    default. And by changing `track_extra_parameters` you can track even more
+    settings, but only [ones that PostgreSQL reports back to the
+    client][guc_report]. If you're using Citus 12.0+, then Citus will make sure
+    that PostgreSQL also reports `search_path` back to the client. So if you use
+    Citus you can add `search_path` to the `track_extra_parameters` setting.
+    ([#867])
   * Forward SQLSTATE in authentication phase. This allows the detection of
     database not existing, which is done by Npgsql (a .NET data provider for
     PostgreSQL). ([#814])
   * Change default `server_tls_sslmode` to `prefer`. ([#866])
-  * Add the `options` startup parameter. This enables [the `PGOPTIONS` environment variable used by `psql` and `libpq`][pgoptions]. It can set PostgreSQL parameters at startup, but only parameters tracked through `track_extra_parameters`. ([#878])
+  * Add support for the `options` startup parameter. This allows usage of [the
+    `PGOPTIONS` environment variable that `psql` and `libpq` know
+    about][pgoptions]. Using this variable you can set any PostgreSQL parameter at
+    startup. This only works for PostgreSQL parameters that PgBouncer tracks
+    through `track_extra_parameters`. ([#878])
 
 - Fixes
   * Don't crash when the `pgbouncer` admin database is used as auth_dbname. It's
@@ -497,7 +569,7 @@ categories: [Reference]
 
 --------
 
-## PgBouncer 1.19.x
+## PgBouncer 1.19.x {#pgbouncer-119x}
 
 **2023-05-31  -  PgBouncer 1.19.1  -  "Sunny Spring"**
 
@@ -522,7 +594,10 @@ This is a minor release that fixes a few recently introduced bugs:
     to run the `auth_query`. ([#764])
   * Add the `SHOW STATE` command, which shows if PgBouncer is active,
     paused or suspended. ([#528])
-  * Add peering between PgBouncer processes. Cancellation requests can then work across multiple PgBouncer processes behind one load balancer. ([#666])
+  * Add support for peering between PgBouncer processes.  This allows
+    configuring PgBouncer such that cancellation requests continue to
+    work when multiple different PgBouncer processes are behind a
+    single load balancer. ([#666])
   * Add a dedicated `cancel_wait_timeout` setting, which determines
     after how long to give up on forwarding a cancel request.  Default
     is 10 seconds. ([#833])
@@ -563,15 +638,14 @@ This is a minor release that fixes a few recently introduced bugs:
 
 --------
 
-## PgBouncer 1.18.x
+## PgBouncer 1.18.x {#pgbouncer-118x}
 
 **2022-12-12  -  PgBouncer 1.18.0  -  "No real mystery"**
 
 - Features
   * Add `application_name` to `SHOW CLIENTS`/`SERVERS`/`SOCKETS`
     output ([#449](https://github.com/pgbouncer/pgbouncer/pull/449))
-  * Add information about cancel requests to `SHOW
-    CLIENTS `/` SERVERS `/` POOLS` output
+  * Add information about cancel requests to `SHOW CLIENTS`/`SERVERS`/`POOLS` output
     ([#782](https://github.com/pgbouncer/pgbouncer/pull/782))
 
 - Fixes
@@ -587,14 +661,19 @@ This is a minor release that fixes a few recently introduced bugs:
     ([#648](https://github.com/pgbouncer/pgbouncer/pull/648))
   * Fix `SHOW HELP` with PostgreSQL 15
     ([#769](https://github.com/pgbouncer/pgbouncer/issues/769))
-  * Fix a query cancellation race. A cancel request could arrive after its target query finished and cancel another client's query instead. ([#717](https://github.com/pgbouncer/pgbouncer/pull/717))
+  * Fix race condition in query cancellation handling.  It was possible
+    that a query cancellation for one client canceled a query for
+    another one.  This could happen when a cancel request was received
+    by PgBouncer when the query it was meant to cancel already
+    completed by itself.
+    ([#717](https://github.com/pgbouncer/pgbouncer/pull/717))
 
 - Cleanups
   * Various CI updates
 
 --------
 
-## PgBouncer 1.17.x
+## PgBouncer 1.17.x {#pgbouncer-117x}
 
 **2022-03-23  -  PgBouncer 1.17.0  -  "A line has been drawn"**
 
@@ -609,7 +688,8 @@ This is a minor release that fixes a few recently introduced bugs:
   * Don't send server disconnect errors to the client before login.
     This could reveal not-quite-public information, such as
     configuration details, to a client that is not logged in yet.
-  * Increase the maximum password length again because the previous limit was still insufficient.
+  * Increase maximum password length again.  Apparently, the last
+    increase wasn't enough for long enough.
   * Remove automatic `auth_file` reload.  The `auth_file` is now
     reread only on configuration file reload, no longer automatically
     as soon as it is changed.
@@ -620,13 +700,24 @@ This is a minor release that fixes a few recently introduced bugs:
 
 - Fixes
   * OpenSSL 3 support has been fixed.  Previous releases would crash.
-  * Do not apply fast-fail before authentication, to avoid reporting server errors to unauthenticated clients. This also fixes SCRAM pass-through cases that need a client authentication exchange to repair a server connection through reauthentication. Fast-fail still applies immediately after authentication, so observed behavior is usually unchanged.
+  * Don't apply fast-fail at connect time.  This is part of the
+    above-mentioned change to not report server errors before
+    authentication.  It also fixes a particular situation with SCRAM
+    pass-through authentication, where we need to allow the
+    client-side authentication exchange in order to be able to fix the
+    server-side connection by re-authenticating.  The fast-fail
+    mechanism still applies right after authentication, so the
+    effective observed behavior will be the same in most situations.
   * Change `auth_type` in sample `pgbouncer.ini` to `md5` to match the
     built-in default.  Some deploy this file as the default
     configuration file, so check if this changed configuration still
     makes sense for you.
   * Fix crash at exit in assert-enabled builds.
-  * Correct `tcp_defer_accept` documentation and behavior. The documented default was incorrect, and "show config" sometimes showed the wrong value. If configured on an unsupported platform, it now reports an error, consistent with other platform-specific socket options.
+  * Improve `tcp_defer_accept` documentation and behavior.  The
+    documentation was incorrect and misleading about the default.  In
+    some cases the wrong value was showing in "show config".  Also, if
+    it's set but not supported, give an error instead of ignoring,
+    similar to how other platform-specific socket options are handled.
   * Fix build with c-ares on Windows.  c-ares >=1.18.0 is now required
     on Windows.
 
@@ -651,7 +742,7 @@ This is a minor release that fixes a few recently introduced bugs:
 
 --------
 
-## PgBouncer 1.16.x
+## PgBouncer 1.16.x {#pgbouncer-116x}
 
 **2021-11-11  -  PgBouncer 1.16.1  -  "Test of depth against quiet efficiency"**
 
@@ -660,7 +751,13 @@ This is a minor release with a security fix.
 * Make PgBouncer acting as a server reject extraneous data after an
   SSL or GSS encryption handshake.
 
-  An attacker able to inject data into the TCP connection could insert cleartext at the start of an apparently encrypted database session. This could send forged SQL commands to the server if PgBouncer required no authentication data. SSL certificate authentication could allow such a setup. (CVE-2021-3935)
+  A man-in-the-middle with the ability to inject data into the TCP
+  connection could stuff some cleartext data into the start of a
+  supposedly encryption-protected database session.  This could be
+  abused to send faked SQL commands to the server, although that would
+  only work if PgBouncer did not demand any authentication data.
+  (However, a PgBouncer setup relying on SSL certificate
+  authentication might well not do so.)  (CVE-2021-3935)
 
 **2021-08-09  -  PgBouncer 1.16.0  -  "Fended off a jaguar"**
 
@@ -679,20 +776,38 @@ This is a minor release with a security fix.
     POOLS`.
 
 - Fixes
-  * Enforce configuration errors more consistently. Previously, some paths logged errors and continued instead of failing startup. These errors now cause startup failure as intended. Existing invalid configurations might therefore stop working.
-  * Fix query cancellation that could remain blocked for a long time. Cancel requests can now exceed pool size by a factor of two, which should prevent this delay. ([#542](https://github.com/pgbouncer/pgbouncer/pull/542), [#543](https://github.com/pgbouncer/pgbouncer/pull/543))
+  * Configuration parsing now has tighter error handling in many
+    places.  Where previously it might have logged an error and
+    proceeded, those configuration errors would now result in startup
+    failures.  This is what always should have happened, but some code
+    didn't do this right.  Some users might discover that their
+    configurations have been faulty all along and will not work
+    anymore.
+  * Query cancel handling has been fixed.  Under some circumstances,
+    cancel requests would seemingly get stuck for a long time.  This
+    should no longer happen.  In fact, cancel requests can now exceed
+    the pool size by a factor of two, so they really shouldn't get
+    stuck
+    anymore. ([#542](https://github.com/pgbouncer/pgbouncer/pull/542),
+    [#543](https://github.com/pgbouncer/pgbouncer/pull/543))
   * Mixed use of md5 and scram via hba has been fixed.
   * The build with c-ares on Windows has been fixed.
-  * Fix the causes of "FIXME: query end, but query_start == 0" messages. These messages should no longer appear. ([#565](https://github.com/pgbouncer/pgbouncer/pull/565))
+  * The dreaded "FIXME: query end, but query_start == 0" messages have
+    been fixed.  We now know why they happen, and you shouldn't see
+    them anymore. ([#565](https://github.com/pgbouncer/pgbouncer/pull/565))
   * Fix reloading of `default_pool_size`, `min_pool_size`, and
-    `res_pool_size`.  Reloading these settings previously didn't work.
+    `reserve_pool_size`.  Reloading these settings previously didn't work.
 
 - Cleanups
   * Cirrus CI is now
     [used](https://cirrus-ci.com/github/pgbouncer/pgbouncer) instead
     of Travis CI.
   * As usual, many tests have been added.
-  * Replace "unclean server" with clearer messages: "client disconnect while server was not ready" or "client disconnect before everything was sent to the server". The first can occur when a client disconnects while its server has an open transaction block. The old message confused some users.
+  * The "unclean server" log message has been clarified a bit.  It now
+    says "client disconnect while server was not ready" or "client
+    disconnect before everything was sent to the server".  The former
+    can happen if the client connection is closed when the server has
+    a transaction block open, which confused some users.
   * You can no longer use "pgbouncer" as a database name.  This name
     is reserved for the admin console, and using it as a normal
     database name never really worked right.  This is now explicitly
@@ -706,16 +821,30 @@ This is a minor release with a security fix.
 
 --------
 
-## PgBouncer 1.15.x
+## PgBouncer 1.15.x {#pgbouncer-115x}
 
 **2020-11-19  -  PgBouncer 1.15.0  -  "Ich hab noch einen Koffer in Berlin"**
 
 - Features
-  * Return only a generic authentication failure to clients; details remain in the PgBouncer log. For nonexistent users, complete the authentication exchange and return the same failure. This prevents clients from probing user names or other authentication details, as in PostgreSQL.
+  * Improve authentication failure reporting.  The authentication
+    failure messages sent to the client now only state that
+    authentication failed but give no further details.  Details are
+    available in the PgBouncer log.  Also, if the requested user does
+    not exist, the authentication is still processed to the end and
+    will result in the same generic failure message.  All this
+    prevents clients from probing the PgBouncer instance for user
+    names and other authentication-related insights.  This is similar
+    to how PostgreSQL behaves.
   * Don't log anything if client disconnects immediately.  This avoids
     log spam when monitoring systems just open a TCP/IP connection but
     don't send anything before disconnecting.
-  * Use systemd native logging when stderr goes to the systemd journal. This avoids duplicate timestamps and PIDs. It also adds metadata such as severity, which remains useful if the journal is forwarded to syslog.
+  * Use systemd journal for logging when in use.  When we detect that
+    stderr is going to the systemd journal, we use systemd native
+    functions for log output.  This avoids printing duplicate
+    timestamp and pid, thus making the log a bit cleaner.  Also, this
+    adds metadata such as the severity to the logs, so that if the
+    journal gets sent on to syslog, the messages have useful metadata
+    attached.
   * A subset of the test suite can now be run under Windows.
   * `SHOW CONFIG` now also shows the default values of the settings.
 
@@ -742,7 +871,7 @@ This is a minor release with a security fix.
 
 --------
 
-## PgBouncer 1.14.x
+## PgBouncer 1.14.x {#pgbouncer-114x}
 
 **2020-06-11  -  PgBouncer 1.14.0  -  "La ritrovata magia"**
 
@@ -762,7 +891,7 @@ This is a minor release with a security fix.
 
 --------
 
-## PgBouncer 1.13.x
+## PgBouncer 1.13.x {#pgbouncer-113x}
 
 **2020-04-27  -  PgBouncer 1.13.0  -  "My favourite game"**
 
@@ -795,7 +924,7 @@ This is a minor release with a security fix.
 
 --------
 
-## PgBouncer 1.12.x
+## PgBouncer 1.12.x {#pgbouncer-112x}
 
 **2019-10-17  -  PgBouncer 1.12.0  -  "It's about learning and getting better"**
 
@@ -821,7 +950,11 @@ This release contains a variety of minor enhancements and fixes.
     [#401](https://github.com/pgbouncer/pgbouncer/pull/401))
   * Fix issue with PAM users losing their
     password. ([#285](https://github.com/pgbouncer/pgbouncer/issues/285))
-  * Accept clients that offer SCRAM channel binding, such as PostgreSQL 11+ clients. Previously, they could fail to connect in some cases. PgBouncer still does not support channel binding; this change permits clients that offer it.
+  * Accept SCRAM channel binding enabled clients.  Previously, a
+    client supporting channel binding (that is, PostgreSQL 11+) would
+    get a connection failure when connecting to PgBouncer in certain
+    situations.  (PgBouncer does not support channel binding.  This
+    change just fixes support for clients that offer it.)
   * Fix compilation with newer versions of musl-libc (used by Alpine
     Linux).
 
@@ -838,7 +971,7 @@ This release contains a variety of minor enhancements and fixes.
 
 --------
 
-## PgBouncer 1.11.x
+## PgBouncer 1.11.x {#pgbouncer-111x}
 
 **2019-08-27  -  PgBouncer 1.11.0  -  "Instinct for Greatness"**
 
@@ -870,12 +1003,15 @@ This release contains a variety of minor enhancements and fixes.
 
 --------
 
-## PgBouncer 1.10.x
+## PgBouncer 1.10.x {#pgbouncer-110x}
 
 **2019-07-01  -  PgBouncer 1.10.0  -  "Afraid of the World"**
 
 - Features
-  * Allow TLS protocol settings to enable or disable TLS 1.3. TLS 1.3 support previously depended on the OpenSSL library, but these settings did not include it.
+  * Add support for enabling and disabling TLS 1.3.  (TLS 1.3 was
+    already supported, depending on the OpenSSL library, but now the
+    configuration settings to pick the TLS protocol versions also
+    support it.)
 - Fixes
   * Fix TLS 1.3 support.  This was broken with OpenSSL 1.1.1 and
     1.1.1a (but not before or after).
@@ -902,7 +1038,7 @@ This release contains a variety of minor enhancements and fixes.
 
 --------
 
-## PgBouncer 1.9.x
+## PgBouncer 1.9.x {#pgbouncer-19x}
 
 **2018-08-13  -  PgBouncer 1.9.0  -  "Chaos Survival"**
 
@@ -932,7 +1068,7 @@ This release contains a variety of minor enhancements and fixes.
 
 --------
 
-## PgBouncer 1.8.x
+## PgBouncer 1.8.x {#pgbouncer-18x}
 
 **2017-12-20  -  PgBouncer 1.8.1  -  "Ground-and-pound Mentality"**
 
@@ -967,7 +1103,7 @@ This release contains a variety of minor enhancements and fixes.
 
 --------
 
-## PgBouncer 1.7.x
+## PgBouncer 1.7.x {#pgbouncer-17x}
 
 **2016-02-26  -  PgBouncer 1.7.2  -  "Finally Airborne"**
 
@@ -989,9 +1125,15 @@ This release contains a variety of minor enhancements and fixes.
 
 **2016-02-18  -  PgBouncer 1.7.1  -  "Forward To Five Friends Or Else"**
 
-WARNING: Since 1.7, PgBouncer does not execute `server_reset_query` in transaction pooling mode. The 1.7 announcement did not sufficiently highlight this change. If your applications require the old behavior, enable `server_reset_query_always`.
+WARNING: Since version 1.7, `server_reset_query` is not executed when
+database is in transaction-pooling mode.  Seems this was not highlighted
+enough in 1.7 announcement.  If your apps depend on that happening, use
+`server_reset_query_always` to restore previous behaviour.
 
-This release investigated a suspected TLS memory leak, but no leak was found. The Debian/wheezy libssl build uses 600k per connection instead of the expected 20-30k. Consider this overhead when using TLS.
+Otherwise main work of this release was to track down TLS-related memory
+leak, which turned out to not exist.  Instead there is libssl build in
+Debian/wheezy which has 600k overhead per connection (without leaking)
+instead expected 20-30k.  Something to keep an eye on when using TLS.
 
 - Fixes
   * TLS: Rename sslmode "disabled" to "disable" as that is what
@@ -1031,16 +1173,23 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
     in Postgres.  This allows to configure TLS for network connections and "peer"
     authentication for local connections.
 - Cleanups
-  * Set the default `query_wait_timeout` to 120s. The previous default, 0, allowed an unlimited wait. PgBouncer now drops clients whose pending query cannot obtain a server connection within the limit.
+  * Set `query_wait_timeout` to 120s by default.  Current default
+    (0) causes infinite queueing, which is not useful.  That
+    means if client has pending query and has not been
+    assigned to server connection, the client connection will
+    be dropped.
   * Disable `server_reset_query_always` by default.  Now reset
     query is used only in pools that are in session mode.
-  * Increase pkt_buf to 4096 bytes to improve TLS performance. The effect probably depends on load. Since v1.2, packet buffers are separate from connections and allocated lazily from a pool, so this should be safe.
+  * Increase pkt_buf to 4096 bytes.  Improves performance with TLS.
+    The behaviour is probably load-specific, but it should be
+    safe to do as since v1.2 the packet buffers are split
+    from connections and used lazily from pool.
   * Support pipelining count expected ReadyForQuery packets.
     This avoids releasing server too early.  Fixes
     [#52](https://github.com/pgbouncer/pgbouncer/issues/52).
-  * Improved sbuf_loopcnt logic - socket is guarateed to be
-    reprocessed even if there are no event from socket.
-    Required for TLS as it has it's own buffering.
+  * Improved sbuf_loopcnt logic - socket is guaranteed to be
+    reprocessed even if there are no events from the socket.
+    Required for TLS as it has its own buffering.
   * Adapt system tests to work with modern BSD and MacOS.
     (Eric Radman)
   * Remove **crypt** auth.  It's obsolete and not supported
@@ -1050,7 +1199,7 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
 
 --------
 
-## PgBouncer 1.6.x
+## PgBouncer 1.6.x {#pgbouncer-16x}
 
 **2015-09-03  -  PgBouncer 1.6.1  -  "Studio Audience Approves"**
 
@@ -1105,9 +1254,16 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
   * Add DISABLE/ENABLE commands to prevent new connections.
     (William Grant)
 
-  * Add c-ares as a DNS backend. It supports /etc/hosts refresh, SOA lookup, large replies through TCP or EDNS+UDP, and IPv6. It is now preferred and will probably become the **only** backend, replacing libraries with incomplete support.
+  * New DNS backend: c-ares.  Only DNS backend that supports all
+    interesting features:  /etc/hosts with refresh, SOA lookup,
+    large replies (via TCP/EDNS+UDP), IPv6.  It is the preferred
+    backend now, and probably will be **only** backend in the future,
+    as it's pointless to support zoo of inadequate libraries.
 
-    c-ares versions <= 1.10 have a CNAME bug when IPv6 is enabled. Upstream has fixed it. As a workaround, PgBouncer uses c-ares <= 1.10 in IPv4-only mode. Other backends will remain until c-ares >1.10, still unreleased at this point, has been available for some time.
+    SNAFU: c-ares versions <= 1.10 have bug which breaks CNAME-s support
+    when IPv6 has been enabled.  (Fixed upstream.)  As a workaround,
+    c-ares <= 1.10 is used IPv4-only.  So PgBouncer will drop other backends
+    only when c-ares >1.10 (still unreleased) has been out some time...
 
   * Show remote_pid in SHOW CLIENTS/SERVERS.  Available for clients that
     connect over unix sockets and both tcp and unix socket server.
@@ -1160,14 +1316,14 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
     (Petr Jelinek)
   * Fix 'bad packet' during login when header is delayed.
     (Michał Trojnara, Marko Kreen)
-  * Fix errors detected by Coverty.
+  * Fix errors detected by Coverity.
     (Euler Taveira)
   * Disable server_idle_timeout when server count gets below min_pool (#60)
     (Marko Kreen)
 
 --------
 
-## PgBouncer 1.5.x
+## PgBouncer 1.5.x {#pgbouncer-15x}
 
 **2015-04-09  -  PgBouncer 1.5.5  -  "Play Dead To Win"**
 
@@ -1190,9 +1346,13 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
 
 - Critical fix
 
-  * Overlong database names can crash PgBouncer. Remote clients can trigger this when autodbs are enabled.
+  * Too long database names can lead to crash, which
+    is remotely triggerable if autodbs are enabled.
 
-    The original checks assumed that all names came from configuration files, so fatal() was acceptable. With '*' in [databases], autodbs accept database names from the network. This allowed remote shutdown.
+    The original checks assumed all names come from config files,
+    thus using fatal() was fine, but when autodbs are enabled
+    - by '*' in [databases] section - the database name can come
+    from network thus making remote shutdown possible.
 
     [CVE-2012-4575](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-4575)
 
@@ -1206,7 +1366,9 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
 
 - Fixes
 
-  * AntiMake used $(relpath) and $(abspath) for path manipulation. Builds failed when the source path contained symlinks. The code now operates on plain strings.
+  * AntiMake: it used $(relpath) and $(abspath) to manipulate pathnames,
+    but the result was build failure when source tree path contained
+    symlinks.  The code is now changed to work on plain strings only.
   * console: now SET can be used to set empty string values.
   * config.txt: show that all timeouts can be set in floats.
     This is well-hidden feature introduced in 1.4.
@@ -1214,7 +1376,10 @@ This release investigated a suspected TLS memory leak, but no leak was found. Th
 **2012-05-29  -  PgBouncer 1.5.2  -  "Don't Chew, Just Swallow"**
 
 - Fixes
-  * Interpret reserve_pool_timeout in seconds as intended. Previously, it used microseconds and activated the reserve pool almost immediately when the pool filled. (Noticed by Keyur Govande)
+  * Due to mistake, reserve_pool_timeout was taken in microseconds,
+    not seconds, effectively activating reserve pool immediately
+    when pool got full.  Now use it as seconds, as was intended.
+    (Noticed by Keyur Govande)
 
 **2012-04-17  -  PgBouncer 1.5.1  -  "Abort, Retry, Ignore?"**
 
@@ -1254,7 +1419,13 @@ GNU Make 3.81+ is required for building.
   * Detect DNS reply changes and invalidate connections to IPs no longer
     present in latest reply.
     (Petr Jelinek)
-  * Add DNS zone serial-based hostname invalidation. With dns_zone_check_period set, PgBouncer queries all DNS zones for SOA and queries all hostnames when the serial changes. This gives deterministic invalidation even when normal lookups do not occur. It requires the new UDNS backend.
+  * DNS zone serial based hostname invalidation.  When option
+    dns_zone_check_period is set, all DNS zones will be queried
+    for SOA, and when serial has changed, all hostnames
+    will be queried.  This is needed to get deterministic
+    connection invalidation, because invalidation on lookup
+    is useless when no lookups are performed.
+    Works only with new UDNS backend.
   * New SHOW DNS_HOSTS, SHOW DNS_ZONES commands to examine DNS cache.
   * New param: min_pool_size - avoids dropping all connections
     when there is no load.
@@ -1291,7 +1462,7 @@ GNU Make 3.81+ is required for building.
 
 --------
 
-## PgBouncer 1.4.x
+## PgBouncer 1.4.x {#pgbouncer-14x}
 
 **2011-06-16  -  PgBouncer 1.4.2  -  "Strike-First Algorithm"**
 
@@ -1323,9 +1494,13 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
   * Disable getaddrinfo_a() on glibc < 2.9 as it crashes on older versions.
 
-    Affected systems include RHEL/CentOS 5.x (glibc 2.5) and Ubuntu 8.04 (glibc 2.7). Debian/lenny (glibc 2.7) has a non-crashing getaddrinfo_a(), but the build cannot reliably detect this exception.
+    Notable affected OS'es: RHEL/CentOS 5.x (glibc 2.5), Ubuntu 8.04 (glibc 2.7).
+    Also Debian/lenny (glibc 2.7) which has non-crashing getaddrinfo_a()
+    but we have no good way to detect it.
 
-    Use libevent 2.x on these systems. The fallback getaddrinfo_a() is not intended for production. Read the new 'DNS lookup support' section in README for backend selection details.
+    Please use libevent 2.x on such OS'es, fallback getaddrinfo_a() is not
+    meant for production systems.  And read new 'DNS lookup support' section
+    in README to see how DNS backend is picked.
 
     (Hubert Depesz Lubaczewski, Dominique Hermsdorff, David Sommerseth)
 
@@ -1340,7 +1515,9 @@ Affected OS-es: \*BSD, Solaris, Win32.
   * win32: Fix crashes with NULL unix socket addr.
     (Hiroshi Saito)
 
-  * Fix autodb cleanup confusion between databases and pools. Previously, one empty pool marked the database idle. Later cleanup could then kill a database with active users.
+  * Fix autodb cleanup: old cleanup code was mixing up databases and pools:
+    as soon as one empty pool was found, the database was tagged as 'idle',
+    potentially later killing database with active users.
 
     Reported-By: Hubert Depesz Lubaczewski
 
@@ -1352,7 +1529,7 @@ Affected OS-es: \*BSD, Solaris, Win32.
   * release_server missed setting ->last_lifetime_disconnect on lifetime disconnect.
     (Emmanuel Courreges)
   * win32: fix auth file on DOS line endings - load_file() did not take
-    account of file shringage when loading.
+    account of file shrinkage when loading.
     (Rich Schaaf)
   * <usual/endian.h>: add autoconf detection for enc/dec functions
     so it would not create conflicts on BSD.
@@ -1395,7 +1572,9 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
   * Solaris portability fixes (Hubert Depesz Lubaczewski)
 
-  * Add disable_pqexec to disable Simple Query Protocol where required. Applications must then use only Extended Query Protocol.
+  * New config var: disable_pqexec.  Highly-paranoid environments
+    can disable Simple Query Protocol with that.  Requires apps
+    that use only Extended Query Protocol.
 
   * Postgres compat: if database name is empty in startup packet,
     use user name as database.
@@ -1412,7 +1591,7 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
 --------
 
-## PgBouncer 1.3.x
+## PgBouncer 1.3.x {#pgbouncer-13x}
 
 **2010-09-09  -  PgBouncer 1.3.4  -  "Bouncer is always right"**
 
@@ -1437,8 +1616,11 @@ Affected OS-es: \*BSD, Solaris, Win32.
   * Improve disconnect messages to show what username or dbname caused
     login to fail.
 - Fixes
-  * Adjust fast-fail relaunch. Previously, permanently invalid databases or users caused retries even without waiting clients.
-  * Preserve errno in logging functions. Changing it could cause incorrect PgBouncer behavior at high log levels or after logging errors.
+  * Move fast-fail relaunch logic around.  Old one was annoying in case of
+    permanently broken databases or users, by trying to retry even if
+    there is no clients who want to login.
+  * Make logging functions keep old errno, otherwise pgbouncer may act funny
+    on higher loglevels and logging problems.
   * Increase the size of various startup-related buffers to handle
     EDB more noisy startup.
   * Detect V2 protocol startup request and give clear reason for disconnect.
@@ -1486,7 +1668,10 @@ Affected OS-es: \*BSD, Solaris, Win32.
 **2009-07-06  -  PgBouncer 1.3.1  -  "Now fully conforming to NSA monitoring requirements"**
 
 - Fixes
-  * Fix sbuf_loopcnt connection hangs. A query or result near a multiple of (pktlen*sbuf_loopcnt), 10k by default, could wait indefinitely for nonexistent extra data.
+  * Fix problem with sbuf_loopcnt which could make connections hang.
+    If query or result length is nearby of multiple of (pktlen*sbuf_loopcnt)
+    [10k by default], it could stay waiting for more data which will not
+    appear.
   * Make database reconfigure immediate.  Currently old connections
     could be reused after SIGHUP.
   * Fix SHOW DATABASES which was broken due to column addition.
@@ -1507,7 +1692,11 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
 - Features
 
-  * IANA assigned official PgBouncer port 6432, which is now the default. Existing individual users do not need to change ports. Package distributors should change their package default to 6432.
+  * IANA has assigned port 6432 to be official port for PgBouncer.
+    Thus the default port number has changed to 6432.  Existing
+    individual users do not need to change, but if you distribute
+    packages of PgBouncer, please change the package default
+    to official port.
 
   * Dynamic database creation (David Galoyan)
 
@@ -1531,7 +1720,7 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
     To use Windows Event Log, event DLL needs to be registered first:
 
-        > regsrv32 pgbevent.dll
+        > regsvr32 pgbevent.dll
 
     Afterwards you can set "syslog = 1" in config.
 
@@ -1540,11 +1729,21 @@ Affected OS-es: \*BSD, Solaris, Win32.
   * Database names in config file can now be quoted with standard SQL
     ident quoting, to allow non-standard characters in db names.
 
-  * Add 'reserve_pool_size' and 'reserve_pool_timeout'. If clients wait longer than 'reserve_pool_timeout' seconds, PgBouncer can add 'reserve_pool_size' connections. Set this per pool with the 'reserve_pool' connection variable.
+  * New tunables: 'reserve_pool_size' and 'reserve_pool_timeout'.
+    In case there are clients in pool that have waited more than
+    'reserve_pool_timeout' seconds, 'reserve_pool_size' specifies
+    the number of connections that can be added to pool.  It can also
+    set per-pool with 'reserve_pool' connection variable.
 
   * New tunable 'sbuf_loopcnt' to limit time spent on one socket.
 
-    On an SMP server with local Postgres and a fast network, recv()->send() can repeat without blocking. This delays other connections. Limit iterations per socket to distribute processing more evenly. At the limit, process other sockets and resume this socket on the next event loop.
+    In some situations - eg SMP server, local Postgres and fast network -
+    pgbouncer can run recv()->send() loop many times without blocking
+    on either side.  But that means other connections will stall for
+    a long time.  To make processing more fair, limit the times
+    of doing recv()->send() one socket.  If count reaches limit,
+    just proceed processing other sockets.  The processing for
+    that socket will resume on next event loop.
 
     Thanks to Alexander Schöcke for report and testing.
 
@@ -1559,9 +1758,12 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
 - Fixes
 
-  * Continue cleanup after event_del() failure. Previously, PgBouncer retried because failure could indicate ENOMEM. Repeated retries caused infinite log output, which suggests libevent does not support this behavior.
+  * In case event_del() reports failure, just proceed with cleanup.
+    Previously pgbouncer retried it, in case the failure was due ENOMEM.
+    But this has caused log floods with infinite repeats, so it seems
+    libevent does not like it.
 
-    The cause of the initial event_del() failure remains unknown.
+    Why event_del() report failure first time is still mystery.
 
   * --enable-debug now just toggles whether debug info is stripped from binary.
     It no longer plays with -fomit-frame-pointer as it's dangerous.
@@ -1573,7 +1775,7 @@ Affected OS-es: \*BSD, Solaris, Win32.
 
 --------
 
-## PgBouncer 1.2.x
+## PgBouncer 1.2.x {#pgbouncer-12x}
 
 **2008-08-08  -  PgBouncer 1.2.3  -  "Carefully Selected Bytes"**
 
@@ -1590,7 +1792,9 @@ Thanks to Devrim GÜNDÜZ and Bjoern Metzdorf for problem reports and testing.
 **2008-08-06  -  PgBouncer 1.2.2  -  "Barf-bag Included"**
 
 - Fixes
-  * Remove 'drop_on_error'. This workaround for broken Postgres plan cache behavior can cause problems when queries consistently return errors.
+  * Remove 'drop_on_error', it was a bad idea.  It was added as workaround
+    for broken plan cache behaviour in Postgres, but can cause damage
+    in common case when some queries always return error.
 
 **2008-08-04  -  PgBouncer 1.2.1  -  "Waterproof"**
 
@@ -1627,7 +1831,11 @@ Older libevent versions crash with new restart code.
 
     (Teodor Sigaev)
 
-  * Add 'ignore_startup_parameters' to accept and ignore additional startup parameters. By default, only 'database' and 'user' are accepted. Other parameters cause errors. This supports JDBC clients that always set 'extra_float_digits=2' at startup.
+  * New config var 'ignore_startup_parameters' to allow and ignore
+    extra parameters in startup packet.  By default only 'database'
+    and 'user' are allowed, all others raise error.  This is needed
+    to tolerate overenthusiastic JDBC wanting to unconditionally
+    set 'extra_float_digits=2' in startup packet.
 
   * Logging to syslog: new parameters syslog=0/1 and
     syslog_facility=daemon/user/local0.
@@ -1682,14 +1890,17 @@ Older libevent versions crash with new restart code.
 
 - Fixes
 
-  * Drain the listening socket fully on each event loop. Previously, one accept() per loop could create a backlog under heavy connection load. This should resolve that backlog.
+  * Only single accept() was issued per event loop which could
+    cause connection backlog when having high amount of connection
+    attempts.  Now the listening socket is always drained fully,
+    which should fix this.
   * Handle EINTR from connect().
   * Make configure.ac compatible with autoconf 2.59.
   * Solaris compatibility fixes (Magne Mæhre)
 
 --------
 
-## PgBouncer 1.1.x
+## PgBouncer 1.1.x {#pgbouncer-11x}
 
 **2007-12-10  -  PgBouncer 1.1.2  -  "The Hammer"**
 
@@ -1757,7 +1968,7 @@ Older libevent versions crash with new restart code.
 
 --------
 
-## PgBouncer 1.0.x
+## PgBouncer 1.0.x {#pgbouncer-10x}
 
 **2007-06-18  -  PgBouncer 1.0.8  -  "Undead Shovel Jutsu"**
 
@@ -1771,7 +1982,11 @@ Older libevent versions crash with new restart code.
 **2007-04-19  -  PgBouncer 1.0.7  -  "With Vitamin A-Z"**
 
 - Fixes
-  * Remove obsolete flushing logic that caused assertions when send() blocked between error or notice packets. PgBouncer does not actively buffer data, so this logic is unnecessary. It remained from kernel buffering with MSG_MORE.
+  * Sending several error/notice packets with send() blocking between
+    them triggered an assertion. Fix it by removing flushing logic altogether.
+    As PgBouncer does not actively buffer anything, this logic is not needed.
+    It was a remnant from the time when buffering was pushed to
+    kernel with MSG_MORE.
   * Additionally avoid calling recv() logic when sending unblocks.
   * List search code for admin_users and stats_users
     mishandled partial finds.  Fix it.

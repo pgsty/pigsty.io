@@ -7,23 +7,22 @@ icon: fa-solid fa-terminal
 sidebar_expanded: true
 module: [PGBACKREST]
 categories: [Reference]
+upstream_link: "https://pgbackrest.org/command.html"
 ---
-
-> Source: <https://pgbackrest.org/command.html>
 
 ## Introduction
 
-Commands execute pgBackRest functions. Each command page lists every applicable option, including options shared with other commands. The lists also include options that you can set in `pgbackrest.conf`.
+Commands are used to execute the various pgBackRest functions. Here the command options are listed exhaustively, that is, each option applicable to a command is listed with that command even if it applies to one or more other commands. This includes all the options that may also be configured in `pgbackrest.conf`.
 
-Use the `reset-` prefix on the command line to reset a non-boolean option from `pgbackrest.conf` to its default. For example, use this feature to restore a backup directly on a repository host. Normally, pgBackRest detects the remote database host and reports an error because remote restores are not supported. Add `--reset-pg1-host` to ignore the remote database host and restore locally. You might also need `--pg1-path` to select a path other than the database host path.
+Non-boolean options configured in `pgbackrest.conf` can be reset to default on the command-line by using the `reset-` prefix. This feature may be used to restore a backup directly on a repository host. Normally, pgBackRest will error because it can see that the database host is remote and restores cannot be done remotely. By adding `--reset-pg1-host` on the command-line, pgBackRest will ignore the remote database host and restore locally. It may be necessary to pass a new `--pg1-path` to force the restore to happen in a specific path, i.e. not the path used on the database host.
 
-Use the `no-` prefix on the command line to set a boolean option to false.
+The `no-` prefix may be used to set a boolean option to false on the command-line.
 
-To set an option through an environment variable, add the `PGBACKREST_` prefix. Convert the option name to uppercase and replace `-` with `_`. For example, `pg1-path` becomes `PGBACKREST_PG1_PATH`, and `stanza` becomes `PGBACKREST_STANZA`. Use configuration-file values for boolean options, such as `PGBACKREST_COMPRESS="n"`; `reset-*` variants are not permitted. For an option that accepts multiple values on the command line or in a configuration file, separate values with colons. For example, use `PGBACKREST_DB_INCLUDE="db1:db2"`.
+Any option may be set in an environment variable using the `PGBACKREST_` prefix and the option name in all caps replacing `-` with `_`, e.g. `pg1-path` becomes `PGBACKREST_PG1_PATH` and `stanza` becomes `PGBACKREST_STANZA`. Boolean options are represented as they would be in a configuration file, e.g. `PGBACKREST_COMPRESS="n"`, and `reset-*` variants are not allowed. Options that can be specified multiple times on the command-line or in a config file can be represented by separating the values with colons, e.g. `PGBACKREST_DB_INCLUDE="db1:db2"`.
 
-Command-line options override environment options. Environment options override configuration-file options.
+Command-line options override environment options which override config file options.
 
-See [Configuration Introduction](/docs/pgbackrest/configuration/#introduction) for information about option types.
+See [Configuration Introduction](/docs/pgbackrest/configuration/#introduction) for information on option types
 
 ## Commands
 

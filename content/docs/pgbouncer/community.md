@@ -5,9 +5,8 @@ description: "PgBouncer community resources, tutorials, and support"
 icon: fas fa-user-group
 module: [PGBOUNCER]
 categories: [Concept]
+upstream_link: "https://www.pgbouncer.org/community.html"
 ---
-
-> Source: <https://www.pgbouncer.org/community.html>
 
 --------
 

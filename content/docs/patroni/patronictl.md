@@ -5,15 +5,11 @@ icon: fa-solid fa-terminal
 description: "Command reference for patronictl configuration, syntax, and subcommands."
 module: [PATRONI]
 categories: [Reference]
+upstream_link: "https://patroni.readthedocs.io/en/latest/patronictl.html"
 ---
 
-> Source: https://patroni.readthedocs.io/en/latest/patronictl.html
-
-<a id="patronictl_version_description"></a>
-<a id="patronictl_version_parameters"></a>
-<a id="patronictl_version_examples"></a>
 <a id="patronictl"></a>
-The [patronictl](/docs/patroni/patronictl#patronictl) command-line interface communicates with the Patroni REST API and the DCS. Use it for cluster operations, interactively or in scripts.
+Patroni has a command-line interface named [patronictl](/docs/patroni/patronictl#patronictl), which is used basically to interact with Patroni's REST API and with the DCS. It is intended to make it easier to perform operations in the cluster, and can easily be used by humans or scripts.
 
 <a id="patronictl_configuration"></a>
 
@@ -23,15 +19,15 @@ The [patronictl](/docs/patroni/patronictl#patronictl) command-line interface com
 
 [patronictl](/docs/patroni/patronictl#patronictl) uses 3 sections of the configuration:
 
-- **ctl**: REST API authentication and server identity verification. See [ctl settings](/docs/patroni/config/yaml#patronictl_settings).
-- **restapi**: fallback settings when `ctl` does not supply REST API authentication or server verification. [patronictl](/docs/patroni/patronictl#patronictl) uses `restapi.authentication` if `ctl.authentication` is absent, and `restapi.cafile` if `ctl.cacert` is absent. See [REST API settings](/docs/patroni/config/yaml#restapi_settings).
-- DCS, such as **etcd**: DCS connection and authentication settings.
+- **ctl**: how to authenticate against the Patroni REST API, and how to validate the server identity. Refer to [ctl settings](/docs/patroni/config/yaml#patronictl_settings) for more details;
+- **restapi**: how to authenticate against the Patroni REST API, and how to validate the server identity. Only used if `ctl` configuration is not enough. [patronictl](/docs/patroni/patronictl#patronictl) is mainly interested in `restapi.authentication` section (in case `ctl.authentication` is missing) and `restapi.cafile` setting (in case `ctl.cacert` is missing). Refer to [REST API settings](/docs/patroni/config/yaml#restapi_settings) for more details;
+- DCS (e.g. **etcd**): how to contact and authenticate against the DCS used by Patroni.
 
-Supply these options through environment variables or a configuration file. See the corresponding sections in [Environment Configuration Settings](/docs/patroni/config/env#env) and [YAML Configuration Settings](/docs/patroni/config/yaml#yaml).
+Those configuration options can come either from environment variables or from a configuration file. Look for the above sections in [Environment Configuration Settings](/docs/patroni/config/env#env) or [YAML Configuration Settings](/docs/patroni/config/yaml#yaml) to understand how you can set the options for them through environment variables or through a configuration file.
 
-Patronictl reads environment variables and uses their values directly.
+If you opt for using environment variables, it's a straight forward approach. Patronictl will read the environment variables and use their values.
 
-By default, [patronictl](/docs/patroni/patronictl#patronictl) looks for `patronictl.yaml` in one of these system-specific directories. You can also specify a different file.
+If you opt for using a configuration file, you have different ways to inform [patronictl](/docs/patroni/patronictl#patronictl) about the file to be used. By default [patronictl](/docs/patroni/patronictl#patronictl) will attempt to load a configuration file named `patronictl.yaml`, which is expected to be found under either of these paths, according to your system:
 
 - Mac OS X: `~/Library/Application Support/patroni`
 - Mac OS X (POSIX): `~/.patroni`
@@ -46,7 +42,7 @@ You can override that behavior either by:
 - Using the `-c` / `--config-file` command-line argument of [patronictl](/docs/patroni/patronictl#patronictl) with the path to a custom configuration file.
 
 > [!NOTE]
-> On the `patroni` host, [patronictl](/docs/patroni/patronictl#patronictl) can use the daemon's configuration file if it contains all required sections.
+> If you are running [patronictl](/docs/patroni/patronictl#patronictl) in the same host as `patroni` daemon is running, you may just use the same configuration file if it contains all the configuration sections required by [patronictl](/docs/patroni/patronictl#patronictl).
 
 <a id="patronictl_usage"></a>
 
@@ -54,9 +50,9 @@ You can override that behavior either by:
 
 ## Usage
 
-This section describes the operations available through [patronictl](/docs/patroni/patronictl#patronictl).
+[patronictl](/docs/patroni/patronictl#patronictl) exposes several handy operations. This section is intended to describe each of them.
 
-The [patronictl](/docs/patroni/patronictl#patronictl) command accepts these global arguments:
+Before jumping into each of the sub-commands of [patronictl](/docs/patroni/patronictl#patronictl), be aware that [patronictl](/docs/patroni/patronictl#patronictl) itself has the following command-line arguments:
 
 `-c` / `--config-file`  
 As explained before, used to provide a path to a configuration file for [patronictl](/docs/patroni/patronictl#patronictl).
@@ -64,9 +60,9 @@ As explained before, used to provide a path to a configuration file for [patroni
 `-d` / `--dcs-url` / `--dcs`  
 Provide a connection string to the DCS used by Patroni.
 
-This argument sets or overrides the DCS and `namespace` in [patronictl](/docs/patroni/patronictl#patronictl) configuration.
+This argument can be used either to override the DCS and `namespace` settings from the [patronictl](/docs/patroni/patronictl#patronictl) configuration, or to define it if it's missing in the configuration.
 
-Use `DCS://HOST:PORT/NAMESPACE`. For example, `etcd3://localhost:2379/service` connects to etcd v3 on `localhost` and stores cluster data under the `service` namespace. Missing components use configuration values or defaults.
+The value should be in the format `DCS://HOST:PORT/NAMESPACE`, e.g. `etcd3://localhost:2379/service` to connect to etcd v3 running on `localhost` with Patroni cluster stored under `service` namespace. Any part that is missing in the argument value will be replaced with the value present in the configuration or with its default.
 
 `-k` / `--insecure`  
 Flag to bypass validation of REST API server SSL certificate.
@@ -81,16 +77,16 @@ patronictl [ { -c | --config-file } CONFIG_FILE ]
 ```
 
 > [!NOTE]
-> Synopsis notation:
+> This is the syntax for the synopsis:
 >
-> - Square brackets enclose optional arguments.
-> - Curly brackets enclose alternatives; select one.
-> - `[, ... ]` permits repetition.
-> - Uppercase names require a value.
+> - Options between square brackets are optional;
+> - Options between curly brackets represent a "choose one of set" operation;
+> - Options with `[, ... ]` can be specified multiple times;
+> - Things written in uppercase represent a literal that should be given a value to.
 >
-> All [patronictl](/docs/patroni/patronictl#patronictl) subcommands use this notation. Replace `SUBCOMMAND` in the general synopsis with the relevant subcommand synopsis.
+> We will use this same syntax when describing [patronictl](/docs/patroni/patronictl#patronictl) sub-commands in the following sub-sections. Also, when describing sub-commands in the following sub-sections, the commands' synopsis should be seen as a replacement for the `SUBCOMMAND` in the above synopsis.
 
-The following sections describe each [patronictl](/docs/patroni/patronictl#patronictl) command. Examples use `postgres0.yml`, `postgres1.yml`, and `postgres2.yml` from the Patroni GitHub repository.
+In the following sub-sections you can find a description of each command implemented by [patronictl](/docs/patroni/patronictl#patronictl). For sake of example, we will use the configuration files present in the GitHub repository of Patroni (files `postgres0.yml`, `postgres1.yml` and `postgres2.yml`).
 
 <a id="patronictl_demote_cluster"></a>
 
@@ -116,7 +112,7 @@ demote-cluster
 
 `patronictl demote-cluster` converts a regular Patroni cluster into a [standby cluster](/docs/patroni/standby_cluster#standby_cluster).
 
-The command builds `standby_cluster` from the supplied remote primary connection options and adds it to dynamic configuration. It waits until the leader becomes a standby leader. Before the change, it prints the topology and requests confirmation unless `--force` is set.
+The command patches the dynamic configuration with a `standby_cluster` section built from the provided remote primary connection options, then waits until the leader is running as a standby leader. It prints the current cluster topology before changing the configuration and asks for confirmation unless `--force` is used.
 
 At least one of `--host`, `--port` or `--restore-command` must be specified.
 
@@ -126,7 +122,7 @@ At least one of `--host`, `--port` or `--restore-command` must be specified.
 
 `CLUSTER_NAME`: Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--host`: Address of the remote node.
 
@@ -171,7 +167,7 @@ dsn
 
 `patronictl dsn` gets the connection string for one member of the Patroni cluster.
 
-If several members match, the command selects one and gives priority to the primary.
+If multiple members match the parameters of this command, one of them will be chosen, prioritizing the primary node.
 
 <a id="patronictl_dsn_parameters"></a>
 
@@ -179,7 +175,7 @@ If several members match, the command selects one and gives priority to the prim
 
 `CLUSTER_NAME`: Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `-r` / `--role`  
 Choose a member that has the given role.
@@ -244,10 +240,10 @@ edit-config
 
 #### Description
 
-`patronictl edit-config` changes cluster dynamic configuration and writes it to the DCS.
+`patronictl edit-config` changes the dynamic configuration of the cluster and updates the DCS with that.
 
 > [!NOTE]
-> In a TTY, the command displays the configuration diff through a pager. It tries `less` or `more` by default. Set `PAGER` to use another pager.
+> When invoked through a TTY the command attempts to show a diff of the dynamic configuration through a pager. By default, it attempts to use either `less` or `more`. If you want a different pager, set the `PAGER` environment variable with the desired one.
 
 <a id="patronictl_edit_config_parameters"></a>
 
@@ -255,12 +251,12 @@ edit-config
 
 `CLUSTER_NAME`: Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Change dynamic configuration of the given Citus group.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `citus.group` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `citus.group` configuration, if it exists.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
@@ -277,7 +273,7 @@ Set a given dynamic configuration option with a given value.
 `-p` / `--pg`  
 Set a given dynamic Postgres configuration option with the given value.
 
-This is shorthand for `--s` / `--set` with `postgresql.parameters.` before `CONFIG`.
+It is essentially a shorthand for `-s` / `--set` with `CONFIG` prepended with `postgresql.parameters.`.
 
 `PG_CONFIG` is the name of the Postgres configuration to be set.
 
@@ -288,12 +284,12 @@ Apply dynamic configuration from the given file.
 
 It is similar to specifying multiple `-s` / `--set` options, one for each configuration from `CONFIG_FILE`.
 
-`CONFIG_FILE` is the YAML file containing changes to apply. Use `-` to read from `stdin`.
+`CONFIG_FILE` is the path to a file containing the dynamic configuration to be applied, in YAML format. Use `-` if you want to read from `stdin`.
 
 `--replace`  
 Replace the dynamic configuration in the DCS with the dynamic configuration specified in the given file.
 
-`CONFIG_FILE` is the YAML file containing replacement configuration. Use `-` to read from `stdin`.
+`CONFIG_FILE` is the path to a file containing the new dynamic configuration to take effect, in YAML format. Use `-` if you want to read from `stdin`.
 
 `--force`  
 Flag to skip confirmation prompts when changing the dynamic configuration.
@@ -361,7 +357,11 @@ postgresql:
 Configuration changed
 ```
 
+<a id="patronictl_failover"></a>
+
 ### patronictl failover
+
+<a id="patronictl_failover_synopsis"></a>
 
 #### Synopsis
 
@@ -373,30 +373,32 @@ failover
   [ --force ]
 ```
 
+<a id="patronictl_failover_description"></a>
+
 #### Description
 
 `patronictl failover` performs a manual failover in the cluster.
 
-Use this command when the cluster is unhealthy, for example:
+It is designed to be used when the cluster is not healthy, e.g.:
 
 - There is no leader; or
 - There is no synchronous standby available in a synchronous cluster.
 
-With synchronous mode enabled, this command can also fail over to an asynchronous node.
+It also allows to fail over to an asynchronous node if synchronous mode is enabled.
 
 > [!NOTE]
-> `patronictl failover` also works on a healthy cluster. We recommend `patronictl switchover` for healthy clusters.
+> Nothing prevents you from running `patronictl failover` in a healthy cluster. However, we recommend using `patronictl switchover` in those cases.
 
 > [!WARNING]
-> Failover can lose data if the promoted replica is behind the primary.
+> Triggering a failover can cause data loss depending on how up-to-date the promoted replica is in comparison to the primary.
 
-<a id="patronictl_failover"></a>
+<a id="patronictl_failover_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`: Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Perform a failover in the given Citus group.
@@ -413,7 +415,7 @@ Flag to skip confirmation prompts when performing the failover.
 
 Useful for scripts.
 
-<a id="patronictl_failover_synopsis"></a>
+<a id="patronictl_failover_examples"></a>
 
 #### Examples
 
@@ -439,11 +441,11 @@ Current cluster topology
 +-------------+----------------+---------+---------+----+-------------+---------+------------+---------+
 ```
 
-<a id="patronictl_failover_description"></a>
+<a id="patronictl_flush"></a>
 
 ### patronictl flush
 
-<a id="patronictl_failover_parameters"></a>
+<a id="patronictl_flush_synopsis"></a>
 
 #### Synopsis
 
@@ -457,13 +459,13 @@ flush
   [ --force ]
 ```
 
-<a id="patronictl_failover_examples"></a>
+<a id="patronictl_flush_description"></a>
 
 #### Description
 
 `patronictl flush` discards scheduled events, if any.
 
-<a id="patronictl_flush"></a>
+<a id="patronictl_flush_parameters"></a>
 
 #### Parameters
 
@@ -473,7 +475,7 @@ Name of the Patroni cluster.
 `MEMBER_NAME`  
 Discard scheduled events for the given Patroni member(s).
 
-Specify one or more members. If omitted, the command considers all members.
+Multiple members can be specified. If no members are specified, all of them are considered.
 
 > [!NOTE]
 > Only used if discarding scheduled restart events.
@@ -509,7 +511,7 @@ Flag to skip confirmation prompts when performing the flush.
 
 Useful for scripts.
 
-<a id="patronictl_flush_synopsis"></a>
+<a id="patronictl_flush_examples"></a>
 
 #### Examples
 
@@ -550,11 +552,11 @@ Success: flush scheduled restart for member postgresql0
 Success: flush scheduled restart for member postgresql1
 ```
 
-<a id="patronictl_flush_description"></a>
+<a id="patronictl_history"></a>
 
 ### patronictl history
 
-<a id="patronictl_flush_parameters"></a>
+<a id="patronictl_history_synopsis"></a>
 
 #### Synopsis
 
@@ -565,7 +567,7 @@ history
   [ { -f | --format } { pretty | tsv | json | yaml } ]
 ```
 
-<a id="patronictl_flush_examples"></a>
+<a id="patronictl_history_description"></a>
 
 #### Description
 
@@ -588,21 +590,21 @@ Time when the event occurred.
 `New Leader`  
 Patroni member that has been promoted during the event.
 
-<a id="patronictl_history"></a>
+<a id="patronictl_history_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Show history of events from the given Citus group.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `citus.group` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `citus.group` configuration, if it exists.
 
 `-f` / `--format`  
 How to format the list of events in the output.
@@ -616,12 +618,7 @@ Format can be one of:
 
 The default is `pretty`.
 
-`--force`  
-Flag to skip confirmation prompts when performing the flush.
-
-Useful for scripts.
-
-<a id="patronictl_history_synopsis"></a>
+<a id="patronictl_history_examples"></a>
 
 #### Examples
 
@@ -665,11 +662,11 @@ $ patronictl -c postgres0.yml history batman -f yaml
   Timestamp: '2023-09-12T11:53:09.620136+00:00'
 ```
 
-<a id="patronictl_history_description"></a>
+<a id="patronictl_list"></a>
 
 ### patronictl list
 
-<a id="patronictl_history_parameters"></a>
+<a id="patronictl_list_synopsis"></a>
 
 #### Synopsis
 
@@ -683,7 +680,7 @@ list
   [ { -W | { -w | --watch } TIME } ]
 ```
 
-<a id="patronictl_history_examples"></a>
+<a id="patronictl_list_description"></a>
 
 #### Description
 
@@ -725,13 +722,13 @@ Some examples among the possible states:
 Current Postgres timeline in the Patroni member.
 
 `Receive LSN`  
-Last WAL location received through streaming replication and synchronized to disk: `pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`.
+The last write-ahead log location received and synced to disk by streaming replication of the member (`pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`).
 
 `Receive Lag`  
 Replication lag between the `Receive LSN` position of the member and its upstream in MB.
 
 `Replay LSN`  
-Last WAL location replayed during member recovery: `pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`.
+The last write-ahead log location replayed during recovery of the member (`pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`).
 
 `Replay Lag`  
 Replication lag between the `Replay LSN` position of the member and its upstream in MB.
@@ -766,7 +763,7 @@ Citus group ID.
 > - If node requires a restart.
 
 `Scheduled restart`  
-Scheduled restart time for the member's Postgres instance. Empty if no restart is scheduled.
+Timestamp at which a restart has been scheduled for the Postgres instance managed by the Patroni member. An empty value indicates there is no scheduled restart for the member.
 
 > [!NOTE]
 > Shown as a member attribute.
@@ -777,7 +774,7 @@ Scheduled restart time for the member's Postgres instance. Empty if no restart i
 > - If node has a scheduled restart.
 
 `Tags`  
-Member tags. Empty if no tags are set or all tags have default values.
+Contains tags set for the Patroni member. An empty value indicates that either no tags have been configured, or that they have been configured with default values.
 
 > [!NOTE]
 > Shown as a member attribute.
@@ -804,14 +801,14 @@ Timestamp at which a switchover has been scheduled for the Patroni cluster, if a
 > >
 > > Only shown if the cluster is paused, and output format is `pretty`.
 
-<a id="patronictl_list"></a>
+<a id="patronictl_list_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Show information about members from the given Citus group.
@@ -830,14 +827,14 @@ Force showing `Pending restart`, `Scheduled restart` and `Tags` attributes, even
 Print timestamp before printing information about the cluster and its members.
 
 `-f` / `--format`  
-How to format the list of events in the output.
+How to format the list of cluster members in the output.
 
 Format can be one of:
 
-- `pretty`: prints history as a pretty table; or
-- `tsv`: prints history as tabular information, with columns delimited by `\t`; or
-- `json`: prints history in JSON format; or
-- `yaml`: prints history in YAML format.
+- `pretty`: prints cluster members as a pretty table; or
+- `tsv`: prints cluster members as tabular information, with columns delimited by `\t`; or
+- `json`: prints cluster members in JSON format; or
+- `yaml`: prints cluster members in YAML format.
 
 The default is `pretty`.
 
@@ -849,7 +846,7 @@ Automatically refresh information at the specified interval.
 
 `TIME` is the interval between refreshes, in seconds.
 
-<a id="patronictl_list_synopsis"></a>
+<a id="patronictl_list_examples"></a>
 
 #### Examples
 
@@ -912,11 +909,11 @@ $ patronictl -c postgres0.yml list batman -f yaml -t
   TL: 5
 ```
 
-<a id="patronictl_list_description"></a>
+<a id="patronictl_pause"></a>
 
 ### patronictl pause
 
-<a id="patronictl_list_parameters"></a>
+<a id="patronictl_pause_synopsis"></a>
 
 #### Synopsis
 
@@ -927,32 +924,32 @@ pause
   [ --wait ]
 ```
 
-<a id="patronictl_list_examples"></a>
+<a id="patronictl_pause_description"></a>
 
 #### Description
 
 `patronictl pause` temporarily puts the Patroni cluster in maintenance mode and disables automatic failover.
 
-<a id="patronictl_pause"></a>
+<a id="patronictl_pause_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Pause the given Citus group.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `citus.group` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `citus.group` configuration, if it exists.
 
 `--wait`  
 Wait until all Patroni members are paused before returning control to the caller.
 
-<a id="patronictl_pause_synopsis"></a>
+<a id="patronictl_pause_examples"></a>
 
 #### Examples
 
@@ -984,7 +981,7 @@ promote-cluster
 
 `patronictl promote-cluster` converts a standby cluster into a regular Patroni cluster.
 
-The command removes `standby_cluster` from dynamic configuration and waits until the leader becomes primary. Before the change, it prints the topology and requests confirmation unless `--force` is set.
+The command removes the `standby_cluster` section from the dynamic configuration and waits until the leader is running as the primary. It prints the current cluster topology before changing the configuration and asks for confirmation unless `--force` is used.
 
 <a id="patronictl_promote_cluster_parameters"></a>
 
@@ -992,7 +989,7 @@ The command removes `standby_cluster` from dynamic configuration and waits until
 
 `CLUSTER_NAME`: Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--force`: Flag to skip confirmation prompts when promoting the cluster.
 
@@ -1008,11 +1005,11 @@ Promote the standby cluster to run as a regular Patroni cluster:
 $ patronictl -c postgres0.yml promote-cluster batman --force
 ```
 
-<a id="patronictl_pause_description"></a>
+<a id="patronictl_query"></a>
 
 ### patronictl query
 
-<a id="patronictl_pause_parameters"></a>
+<a id="patronictl_query_synopsis"></a>
 
 #### Synopsis
 
@@ -1030,20 +1027,20 @@ query
   [ { -W | { -w | --watch } TIME } ]
 ```
 
-<a id="patronictl_pause_examples"></a>
+<a id="patronictl_query_description"></a>
 
 #### Description
 
 `patronictl query` executes a SQL command or script against a member of the Patroni cluster.
 
-<a id="patronictl_query"></a>
+<a id="patronictl_query_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Query the given Citus group.
@@ -1075,12 +1072,12 @@ Database to connect and run the query.
 `-U` / `--username`  
 User to connect to the database.
 
-`USERNAME` name of the user. If not given, defaults to the operating system user running `patronictl query`.
+`USERNAME` is the name of the user. If not given, defaults to the operating system user running `patronictl query`.
 
 `--password`  
 Prompt for the password of the connecting user.
 
-Patroni uses `libpq`. You can therefore supply a password through `~/.pgpass` or `PGPASSWORD`.
+As Patroni uses `libpq`, alternatively you can create a `~/.pgpass` file or set the `PGPASSWORD` environment variable.
 
 `--format`  
 How to format the output of the query.
@@ -1115,7 +1112,7 @@ Automatically re-run the query at the specified interval.
 
 `TIME` is the interval between re-runs, in seconds.
 
-<a id="patronictl_query_synopsis"></a>
+<a id="patronictl_query_examples"></a>
 
 #### Examples
 
@@ -1181,11 +1178,11 @@ port
 5433
 ```
 
-<a id="patronictl_query_description"></a>
+<a id="patronictl_reinit"></a>
 
 ### patronictl reinit
 
-<a id="patronictl_query_parameters"></a>
+<a id="patronictl_reinit_synopsis"></a>
 
 #### Synopsis
 
@@ -1199,13 +1196,13 @@ reinit
   [ --from-leader ]
 ```
 
-<a id="patronictl_query_examples"></a>
+<a id="patronictl_reinit_description"></a>
 
 #### Description
 
 `patronictl reinit` rebuilds a Postgres standby instance managed by a replica member of the Patroni cluster.
 
-<a id="patronictl_reinit"></a>
+<a id="patronictl_reinit_parameters"></a>
 
 #### Parameters
 
@@ -1228,12 +1225,12 @@ Wait until the reinitialization of the Postgres standby node(s) is finished.
 `--force`  
 Flag to skip confirmation prompts when rebuilding Postgres standby instances.
 
+Useful for scripts.
+
 `--from-leader`  
 Flag to get basebackup from leader directly.
 
-Useful for scripts.
-
-<a id="patronictl_reinit_synopsis"></a>
+<a id="patronictl_reinit_examples"></a>
 
 #### Examples
 
@@ -1282,11 +1279,11 @@ $ patronictl -c postgres0.yml reinit batman postgresql2 --from-leader
 Success: reinitialize for member postgresql2
 ```
 
-<a id="patronictl_reinit_description"></a>
+<a id="patronictl_reload"></a>
 
 ### patronictl reload
 
-<a id="patronictl_reinit_parameters"></a>
+<a id="patronictl_reload_synopsis"></a>
 
 #### Synopsis
 
@@ -1299,7 +1296,7 @@ reload
   [ --force ]
 ```
 
-<a id="patronictl_reinit_examples"></a>
+<a id="patronictl_reload_description"></a>
 
 #### Description
 
@@ -1307,7 +1304,7 @@ reload
 
 It also triggers `pg_ctl reload` on the managed Postgres instance, even if nothing has changed.
 
-<a id="patronictl_reload"></a>
+<a id="patronictl_reload_parameters"></a>
 
 #### Parameters
 
@@ -1317,7 +1314,7 @@ Name of the Patroni cluster.
 `MEMBER_NAME`  
 Request a reload of local configuration for the given Patroni member(s).
 
-Specify one or more members. If omitted, the command considers all members.
+Multiple members can be specified. If no members are specified, all of them are considered.
 
 `--group`  
 Request a reload of members of the given Citus group.
@@ -1341,7 +1338,7 @@ Flag to skip confirmation prompts when requesting a reload of the local configur
 
 Useful for scripts.
 
-<a id="patronictl_reload_synopsis"></a>
+<a id="patronictl_reload_examples"></a>
 
 #### Examples
 
@@ -1361,11 +1358,11 @@ Reload request received for member postgresql1 and will be processed within 10 s
 Reload request received for member postgresql2 and will be processed within 10 seconds
 ```
 
-<a id="patronictl_reload_description"></a>
+<a id="patronictl_remove"></a>
 
 ### patronictl remove
 
-<a id="patronictl_reload_parameters"></a>
+<a id="patronictl_remove_synopsis"></a>
 
 #### Synopsis
 
@@ -1376,7 +1373,7 @@ remove
   [ { -f | --format } { pretty | tsv | json | yaml } ]
 ```
 
-<a id="patronictl_reload_examples"></a>
+<a id="patronictl_remove_description"></a>
 
 #### Description
 
@@ -1387,7 +1384,7 @@ It is an interactive action.
 > [!WARNING]
 > This operation will destroy the information of the Patroni cluster from the DCS.
 
-<a id="patronictl_remove"></a>
+<a id="patronictl_remove_parameters"></a>
 
 #### Parameters
 
@@ -1411,7 +1408,7 @@ Format can be one of:
 
 The default is `pretty`.
 
-<a id="patronictl_remove_synopsis"></a>
+<a id="patronictl_remove_examples"></a>
 
 #### Examples
 
@@ -1431,11 +1428,11 @@ You are about to remove all information in DCS for batman, please type: "Yes I a
 This cluster currently is healthy. Please specify the leader name to continue: postgresql0
 ```
 
-<a id="patronictl_remove_description"></a>
+<a id="patronictl_restart"></a>
 
 ### patronictl restart
 
-<a id="patronictl_remove_parameters"></a>
+<a id="patronictl_restart_synopsis"></a>
 
 #### Synopsis
 
@@ -1453,7 +1450,7 @@ restart
   [ --force ]
 ```
 
-<a id="patronictl_remove_examples"></a>
+<a id="patronictl_restart_description"></a>
 
 #### Description
 
@@ -1461,7 +1458,7 @@ restart
 
 The restart can be performed immediately or scheduled for later.
 
-<a id="patronictl_restart"></a>
+<a id="patronictl_restart_parameters"></a>
 
 #### Parameters
 
@@ -1496,21 +1493,21 @@ Select only members which version of the managed Postgres instance is older than
 `--pending`  
 Select only members which are flagged as `Pending restart`.
 
-`--timeout`: abort a restart that exceeds the timeout. If this occurs on the primary, fail over to a replica.
+`--timeout`: Abort the restart if it takes more than the specified timeout, and fail over to a replica if the issue is on the primary.
 
 `TIMEOUT` is the amount of seconds to wait before aborting the restart.
 
 `--scheduled`  
 Schedule a restart to occur at the given timestamp.
 
-`TIMESTAMP` specifies restart time. Use an unambiguous format, preferably with a time zone. Use `now` for an immediate restart.
+`TIMESTAMP` is the timestamp when the restart should occur. Specify it in unambiguous format, preferably with time zone. You can also use the literal `now` for the restart to be executed immediately.
 
 `--force`  
 Flag to skip confirmation prompts when requesting the restart operations.
 
 Useful for scripts.
 
-<a id="patronictl_restart_synopsis"></a>
+<a id="patronictl_restart_examples"></a>
 
 #### Examples
 
@@ -1560,11 +1557,11 @@ Success: restart scheduled on member postgresql1
 Success: restart scheduled on member postgresql2
 ```
 
-<a id="patronictl_restart_description"></a>
+<a id="patronictl_resume"></a>
 
 ### patronictl resume
 
-<a id="patronictl_restart_parameters"></a>
+<a id="patronictl_resume_synopsis"></a>
 
 #### Synopsis
 
@@ -1575,32 +1572,32 @@ resume
   [ --wait ]
 ```
 
-<a id="patronictl_restart_examples"></a>
+<a id="patronictl_resume_description"></a>
 
 #### Description
 
 `patronictl resume` takes the Patroni cluster out of maintenance mode and re-enables automatic failover.
 
-<a id="patronictl_resume"></a>
+<a id="patronictl_resume_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Resume the given Citus group.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `citus.group` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `citus.group` configuration, if it exists.
 
 `--wait`  
 Wait until all Patroni members are unpaused before returning control to the caller.
 
-<a id="patronictl_resume_synopsis"></a>
+<a id="patronictl_resume_examples"></a>
 
 #### Examples
 
@@ -1612,11 +1609,11 @@ $ patronictl -c postgres0.yml resume batman --wait
 Success: cluster management is resumed
 ```
 
-<a id="patronictl_resume_description"></a>
+<a id="patronictl_show_config"></a>
 
 ### patronictl show-config
 
-<a id="patronictl_resume_parameters"></a>
+<a id="patronictl_show_config_synopsis"></a>
 
 #### Synopsis
 
@@ -1626,29 +1623,29 @@ show-config
   [ --group CITUS_GROUP ]
 ```
 
-<a id="patronictl_resume_examples"></a>
+<a id="patronictl_show_config_description"></a>
 
 #### Description
 
 `patronictl show-config` shows the dynamic configuration of the cluster that is stored in the DCS.
 
-<a id="patronictl_show_config"></a>
+<a id="patronictl_show_config_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Show dynamic configuration of the given Citus group.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `citus.group` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `citus.group` configuration, if it exists.
 
-<a id="patronictl_show_config_synopsis"></a>
+<a id="patronictl_show_config_examples"></a>
 
 #### Examples
 
@@ -1668,11 +1665,11 @@ retry_timeout: 10
 ttl: 30
 ```
 
-<a id="patronictl_show_config_description"></a>
+<a id="patronictl_switchover"></a>
 
 ### patronictl switchover
 
-<a id="patronictl_show_config_parameters"></a>
+<a id="patronictl_switchover_synopsis"></a>
 
 #### Synopsis
 
@@ -1685,28 +1682,28 @@ switchover
   [ --force ]
 ```
 
-<a id="patronictl_show_config_examples"></a>
+<a id="patronictl_switchover_description"></a>
 
 #### Description
 
 `patronictl switchover` performs a switchover in the cluster.
 
-Use this command when the cluster is healthy, for example:
+It is designed to be used when the cluster is healthy, e.g.:
 
 - There is a leader;
 - There are synchronous standbys available in a synchronous cluster.
 
 > [!NOTE]
-> For an unhealthy cluster, consider `patronictl failover`.
+> If your cluster is unhealthy you might be interested in `patronictl failover` instead.
 
-<a id="patronictl_switchover"></a>
+<a id="patronictl_switchover_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Perform a switchover in the given Citus group.
@@ -1726,14 +1723,14 @@ The node to be promoted on switchover, and take the primary role.
 `--scheduled`  
 Schedule a switchover to occur at the given timestamp.
 
-`TIMESTAMP` specifies switchover time. Use an unambiguous format, preferably with a time zone. Use `now` for an immediate switchover.
+`TIMESTAMP` is the timestamp when the switchover should occur. Specify it in unambiguous format, preferably with time zone. You can also use the literal `now` for the switchover to be executed immediately.
 
 `--force`  
 Flag to skip confirmation prompts when performing the switchover.
 
 Useful for scripts.
 
-<a id="patronictl_switchover_synopsis"></a>
+<a id="patronictl_switchover_examples"></a>
 
 #### Examples
 
@@ -1784,11 +1781,11 @@ Switchover scheduled at: 2023-09-13T18:00:00-03:00
                     to: postgresql2
 ```
 
-<a id="patronictl_switchover_description"></a>
+<a id="patronictl_topology"></a>
 
 ### patronictl topology
 
-<a id="patronictl_switchover_parameters"></a>
+<a id="patronictl_topology_synopsis"></a>
 
 #### Synopsis
 
@@ -1799,11 +1796,11 @@ topology
   [ { -W | { -w | --watch } TIME } ]
 ```
 
-<a id="patronictl_switchover_examples"></a>
+<a id="patronictl_topology_description"></a>
 
 #### Description
 
-`patronictl topology` shows cluster and member information as a tree.
+`patronictl topology` shows information about the Patroni cluster and its members with a tree view approach.
 
 The following information is included in the output:
 
@@ -1853,13 +1850,13 @@ Some examples among the possible states:
 Current Postgres timeline in the Patroni member.
 
 `Receive LSN`  
-Last WAL location received through streaming replication and synchronized to disk: `pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`.
+The last write-ahead log location received and synced to disk by streaming replication of the member (`pg_catalog.pg_last_(xlog|wal)_receive_(location|lsn)()`).
 
 `Receive Lag`  
 Replication lag between the `Receive LSN` position of the member and its upstream in MB.
 
 `Replay LSN`  
-Last WAL location replayed during member recovery: `pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`.
+The last write-ahead log location replayed during recovery of the member (`pg_catalog.pg_last_(xlog|wal)_replay_(location|lsn)()`).
 
 `Replay Lag`  
 Replication lag between the `Replay LSN` position of the member and its upstream in MB.
@@ -1883,7 +1880,7 @@ Citus group ID.
 > Shown if node requires a restart.
 
 `Scheduled restart`  
-Scheduled restart time for the member's Postgres instance. Empty if no restart is scheduled.
+Timestamp at which a restart has been scheduled for the Postgres instance managed by the Patroni member. An empty value indicates there is no scheduled restart for the member.
 
 > [!NOTE]
 > Shown as a member attribute.
@@ -1891,7 +1888,7 @@ Scheduled restart time for the member's Postgres instance. Empty if no restart i
 > Shown if node has a scheduled restart.
 
 `Tags`  
-Member tags. Empty if no tags are set or all tags have default values.
+Contains tags set for the Patroni member. An empty value indicates that either no tags have been configured, or that they have been configured with default values.
 
 > [!NOTE]
 > Shown as a member attribute.
@@ -1915,14 +1912,14 @@ Timestamp at which a switchover has been scheduled for the Patroni cluster, if a
 > >
 > > Only shown if the cluster is paused.
 
-<a id="patronictl_topology"></a>
+<a id="patronictl_topology_parameters"></a>
 
 #### Parameters
 
 `CLUSTER_NAME`  
 Name of the Patroni cluster.
 
-If omitted, [patronictl](/docs/patroni/patronictl#patronictl) uses `scope` if configured.
+If not given, [patronictl](/docs/patroni/patronictl#patronictl) will attempt to fetch that from the `scope` configuration, if it exists.
 
 `--group`  
 Show information about members from the given Citus group.
@@ -1937,7 +1934,7 @@ Automatically refresh information at the specified interval.
 
 `TIME` is the interval between refreshes, in seconds.
 
-<a id="patronictl_topology_synopsis"></a>
+<a id="patronictl_topology_examples"></a>
 
 #### Examples
 
@@ -1954,11 +1951,11 @@ $ patronictl -c postgres0.yml topology batman
 +---------------+----------------+---------+-----------+----+-------------+-----+------------+-----+
 ```
 
-<a id="patronictl_topology_description"></a>
+<a id="patronictl_version"></a>
 
 ### patronictl version
 
-<a id="patronictl_topology_parameters"></a>
+<a id="patronictl_version_synopsis"></a>
 
 #### Synopsis
 
@@ -1969,13 +1966,13 @@ version
   [ --group CITUS_GROUP ]
 ```
 
-<a id="patronictl_topology_examples"></a>
+<a id="patronictl_version_description"></a>
 
 #### Description
 
-`patronictl version` shows the [patronictl](/docs/patroni/patronictl#patronictl) version. It can also show versions for Patroni clusters and their members.
+`patronictl version` gets the version of [patronictl](/docs/patroni/patronictl#patronictl) application. Besides that it may also include version information about Patroni clusters and their members.
 
-<a id="patronictl_version"></a>
+<a id="patronictl_version_parameters"></a>
 
 #### Parameters
 
@@ -1990,7 +1987,7 @@ Consider a Patroni cluster with the given Citus group.
 
 `CITUS_GROUP` is the ID of the Citus group.
 
-<a id="patronictl_version_synopsis"></a>
+<a id="patronictl_version_examples"></a>
 
 #### Examples
 

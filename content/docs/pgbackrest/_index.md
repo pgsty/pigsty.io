@@ -1,5 +1,5 @@
 ---
-title: "pgBackRest 2.59.2 Documentation"
+title: "pgBackRest 2.60.0 Documentation"
 linkTitle: "pgbackrest"
 weight: 8200
 icon: fas fa-couch
@@ -7,42 +7,50 @@ sidebar_root_for: self
 description: "Reliable PostgreSQL Backup & Restore — pgBackRest documentation and reference."
 module: [PGBACKREST]
 categories: [Concept]
+upstream_link: "https://pgbackrest.org/"
+upstream_source: "pgbackrest"
+upstream_ref: "v2.60.0"
+search_keywords: ["v2.60.0"]
+cascade: {"upstream_source": "pgbackrest"}
 ---
-
-> Snapshot of the pgBackRest 2.59.2 documentation: <https://pgbackrest.org/>
-
 
 --------
 
 ## Introduction
 
-pgBackRest provides backup and restore functions for PostgreSQL. It supports large databases and workloads.
+pgBackRest is a reliable backup and restore solution for PostgreSQL that seamlessly scales up to the largest databases and workloads.
 
-pgBackRest [v2.59.2](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.59.2) is the current stable release. Release notes are on the [Releases](/docs/pgbackrest/release/) page.
+This documentation mirror covers pgBackRest [v2.60.0](https://github.com/pgbackrest/pgbackrest/releases/tag/release/2.60.0). Release notes are on the [Releases](/docs/pgbackrest/release/) page.
 
-If you like pgBackRest, give the project a star on [GitHub](https://github.com/pgbackrest/pgbackrest).
+Version 2.60.0 adds configurable page-checksum errors, object-store read prefetch, and GCS Workload Identity Federation. `restore` and `expire` now stop on invalid page checksums by default; see the [2.60.0 release notes](/docs/pgbackrest/release/#v2600-release-notes).
+
+Version 2.59.3 fixed possible weak encryption subkeys and salts. Upgrading does not replace existing weak stanza subkeys; see [Weak Encryption Subkeys and Salts](/docs/pgbackrest/news/#weak-encryption) for checks and remediation.
+
+Please give us a star on [GitHub](https://github.com/pgbackrest/pgbackrest) if you like pgBackRest!
 
 
 --------
 
 ## News
 
+**October 18, 2026** - [pgBackRest 2.60.0 Released](/docs/pgbackrest/news/#release-2-60-0)
+
+**October 4, 2026** - [Weak Encryption Subkeys and Salts](/docs/pgbackrest/news/#weak-encryption)
+
+**October 4, 2026** - [pgBackRest 2.59.3 Released](/docs/pgbackrest/news/#release-2-59-3)
+
 **September 27, 2026** - [pgBackRest 2.59.2 Released](/docs/pgbackrest/news/#release-2-59-2)
-
-**August 17, 2026** - [pgBackRest 2.59.1 Released](/docs/pgbackrest/news/#release-2-59-1)
-
-**July 20, 2026** - [New Distribution Tarball](/docs/pgbackrest/news/#distribution-tarball)
 
 
 --------
 
 ## Sponsors
 
-Sponsorship makes pgBackRest possible. New features, bug fixes, contribution reviews, community support, and maintenance require substantial time. If your enterprise uses pgBackRest, consider a [sponsorship](https://github.com/sponsors/dwsteele).
+pgBackRest would not exist without sponsorship. Writing new features, fixing bugs, reviewing contributions, answering questions from the community, and maintenance all take a considerable amount of time. Please consider a [sponsorship](https://github.com/sponsors/dwsteele) if you use pgBackRest in your enterprise.
 
 Our sponsors: [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
 
-We thank our sponsors for supporting open-source infrastructure for the PostgreSQL community.
+We are grateful to our sponsors for investing in open-source infrastructure that benefits the entire PostgreSQL community.
 
 Past sponsors: [Crunchy Data](https://crunchydata.com), [Resonate](https://resonate.com).
 
@@ -54,85 +62,95 @@ Past sponsors: [Crunchy Data](https://crunchydata.com), [Resonate](https://reson
 
 ### Parallel Backup & Restore
 
-Compression usually limits backup speed. pgBackRest uses parallel processing and efficient compression algorithms, such as `lz4` and `zstd`, to reduce this limit.
+Compression is usually the bottleneck during backup operations so pgBackRest solves this problem with parallel processing and more efficient compression algorithms such as `lz4` and `zstd`.
 
 
 ### Local or Remote Operation
 
-A custom protocol lets pgBackRest back up, restore, and archive locally or remotely through TLS/SSH with minimal configuration. The protocol also provides an interface to query PostgreSQL. This interface removes the need for remote PostgreSQL access and improves security.
+A custom protocol allows pgBackRest to backup, restore, and archive locally or remotely via TLS/SSH with minimal configuration. An interface to query PostgreSQL is also provided via the protocol layer so that remote access to PostgreSQL is never required, which enhances security.
 
 
 ### Multiple Repositories
 
-You can use multiple repositories. For example, use a local repository with short retention for fast restores. Use a remote repository with longer retention for redundancy and access across the enterprise.
+Multiple repositories allow, for example, a local repository with minimal retention for fast restores and a remote repository with a longer retention for redundancy and access across the enterprise.
+
+
+### Backup from Standby
+
+Backups can be made from a standby to reduce load on the primary. Only the few files that are not replicated are copied from the primary.
 
 
 ### Full, Differential, & Incremental Backups (at File or Block Level)
 
-pgBackRest supports full, differential, and incremental backups. It avoids the time resolution problems of `rsync`. Thus, differential and incremental backups are safe without a checksum calculation for each file. Block-level backups save space because they copy only the changed parts of files.
+Full, differential, and incremental backups are supported. pgBackRest is not susceptible to the time resolution issues of `rsync`, making differential and incremental backups safe without the requirement to checksum each file. Block-level backups save space by only copying the parts of files that have changed.
 
 
 ### Backup Rotation & Archive Expiration
 
-Set retention policies for full and differential backups to cover the required time frame. Keep the WAL archive for all backups or only the most recent backups. In the second case, the archive still keeps the WAL necessary to make older backups consistent.
+Retention policies can be set for full and differential backups to create coverage for any time frame. The WAL archive can be maintained for all backups or strictly for the most recent backups. In the latter case WAL required to make older backups consistent will be maintained in the archive.
 
 
 ### Backup Integrity
 
-pgBackRest calculates a checksum for every backup file. It checks each checksum again during a restore or verify operation. After it copies the backup files, it waits for all WAL segments necessary for backup consistency to reach the repository.
+Checksums are calculated for every file in the backup and rechecked during a restore or verify. After a backup finishes copying files, it waits until every WAL segment required to make the backup consistent reaches the repository.
 
-Repository backups can use the same format as a standard PostgreSQL cluster, including tablespaces. With compression disabled and hard links enabled, you can take a snapshot of a repository backup. You can then start a PostgreSQL cluster directly on the snapshot. This method helps with terabyte-scale databases, where a conventional restore takes a long time.
+Backups in the repository may be stored in the same format as a standard PostgreSQL cluster (including tablespaces). If compression is disabled and hard links are enabled it is possible to snapshot a backup in the repository and bring up a PostgreSQL cluster directly on the snapshot. This is advantageous for terabyte-scale databases that are time consuming to restore in the traditional way.
 
-All operations use file and directory fsync to make changes durable.
+All operations utilize file and directory level fsync to ensure durability.
 
 
 ### Page Checksums
 
-If page checksums are enabled, pgBackRest validates them for every file copied during a backup. A full backup validates all page checksums. Differential and incremental backups validate checksums in changed files.
+If page checksums are enabled pgBackRest will validate the checksums for every file that is copied during a backup. All page checksums are validated during a full backup and checksums in files that have changed are validated during differential and incremental backups.
 
-Validation failures do not stop the backup. Console and file logs identify the pages that failed validation.
+By default, validation failures do not stop the backup process, but warnings with details of exactly which pages have failed validation are output to the console and file log. By default restore errors when the backup has invalid page checksums and expire will not leave a backup with invalid page checksums as the oldest backup.
 
-This feature detects page-level corruption before backups with valid copies of the data expire.
+This feature allows page-level corruption to be detected early, before backups that contain valid copies of the data have expired.
 
 
 ### Backup Resume
 
-You can resume an interrupted backup from its last position. pgBackRest compares checksums of previously copied files with the manifest to check their integrity. This operation can run entirely on the repository host, which reduces load on the PostgreSQL host. Checksum calculation also takes less time than compression and retransmission.
+An interrupted backup can be resumed from the point where it was stopped. Files that were already copied are compared with the checksums in the manifest to ensure integrity. Since this operation can take place entirely on the repository host, it reduces load on the PostgreSQL host and saves time since checksum calculation is faster than compressing and retransmitting data.
 
 
 ### Streaming Compression & Checksums
 
-pgBackRest calculates checksums and compresses data as it copies files to the repository. This applies to local and remote repositories.
+Compression and checksum calculations are performed in stream while files are being copied to the repository, whether the repository is located locally or remotely.
 
-For a repository on a separate host, pgBackRest compresses files on the PostgreSQL host. It transfers the compressed files and stores them on the repository host. When file compression is disabled, pgBackRest uses a lower compression level for transfers. This reduces bandwidth use with minimal CPU cost.
+If the repository is on a repository host, compression is performed on the PostgreSQL host and files are transmitted in a compressed format and simply stored on the repository host. When compression is disabled a lower level of compression is utilized to make efficient use of available bandwidth while keeping CPU cost to a minimum.
+
+
+### File Bundling
+
+Small files are combined into bundles in the repository so fewer files are created during backup. This is especially effective on object stores.
 
 
 ### Delta Restore
 
-The manifest contains a checksum for every backup file. A restore can use these checksums to substantially reduce processing time. A delta restore first removes files that are absent from the backup. It then calculates checksums for the remaining files. Files that match the backup stay in place; pgBackRest restores the other files as usual. Parallel processing can substantially reduce restore time.
+The manifest contains checksums for every file in the backup so that during a restore it is possible to use these checksums to speed processing enormously. On a delta restore any files not present in the backup are first removed and then checksums are generated for the remaining files. Files that match the backup are left in place and the rest of the files are restored as usual. Parallel processing can lead to a dramatic reduction in restore times.
 
 
 ### Parallel, Asynchronous WAL Push & Get
 
-Separate commands push WAL to the archive and get WAL from the archive. Both commands support parallel processing and asynchronous operation to reduce response time for PostgreSQL.
+Dedicated commands are included for pushing WAL to the archive and getting WAL from the archive. Both commands support parallelism to accelerate processing and run asynchronously to provide the fastest possible response time to PostgreSQL.
 
-WAL push detects repeated WAL segments. It removes duplicates when the segments are identical and reports an error when they differ. Asynchronous WAL push transfers work to another process, which compresses segments in parallel for maximum throughput. This feature can be critical for databases with very high write volumes.
+WAL push automatically detects WAL segments that are pushed multiple times and de-duplicates when the segment is identical, otherwise an error is raised. Asynchronous WAL push allows transfer to be offloaded to another process which compresses WAL segments in parallel for maximum throughput. This can be a critical feature for databases with extremely high write volume.
 
-Asynchronous WAL get keeps a local queue of decompressed WAL segments ready for replay. This queue reduces the time to supply WAL to PostgreSQL and increases replay speed. Connections and storage with high latency, such as S3, benefit most.
+Asynchronous WAL get maintains a local queue of WAL segments that are decompressed and ready for replay. This reduces the time needed to provide WAL to PostgreSQL which maximizes replay speed. Higher-latency connections and storage (such as S3) benefit the most.
 
-The push and get commands compare PostgreSQL versions and system identifiers to check that the database and repository match. This check almost eliminates incorrect WAL archive locations.
+The push and get commands both ensure that the database and repository match by comparing PostgreSQL versions and system identifiers. This virtually eliminates the possibility of misconfiguring the WAL archive location.
 
 
 ### Tablespace & Link Support
 
-pgBackRest fully supports tablespaces. During a restore, you can map tablespaces to any location. You can also map all tablespaces to one location with one command. This is useful for development restores.
+Tablespaces are fully supported and on restore tablespaces can be remapped to any location. It is also possible to remap all tablespaces to one location with a single command which is useful for development restores.
 
-pgBackRest supports links for any file or directory in the PostgreSQL cluster. During a restore, you can restore all links to their original locations or map some or all links to new locations. You can also restore some or all links as regular files or directories inside the cluster directory.
+File and directory links are supported for any file or directory in the PostgreSQL cluster. When restoring it is possible to restore all links to their original locations, remap some or all links, or restore some or all links as normal files or directories within the cluster directory.
 
 
-### S3, Azure, and GCS Compatible Object Store Support
+### S3, Azure, GCS, and SFTP Support {#s3-azure-and-gcs-compatible-object-store-support}
 
-pgBackRest repositories support S3, Azure, and GCS compatible object stores. These stores provide almost unlimited capacity and retention.
+pgBackRest repositories can be located in S3, Azure, and GCS compatible object stores to allow for virtually unlimited capacity and retention. Repositories can also be stored on an SFTP server. Object store credentials can be retrieved automatically in cloud environments using a variety of authentication methods.
 
 
 ### Encryption
@@ -142,21 +160,21 @@ pgBackRest can encrypt the repository to secure backups wherever they are stored
 
 ### Ransomware & Malware Protection
 
-On versioned object storage, pgBackRest can read the repository at a specified point in time. Backups can be deleted or corrupted by an accident, malware, or ransomware. Set a target time before the damage to recover the data.
+When the repository is stored on versioned object storage, pgBackRest can read the repository as it was at a point-in-time. If backups are deleted or corrupted by accident, malware, or ransomware, a target time can be used to recover data from before the damage occurred.
 
-S3, Azure, and GCS compatible object stores support versioning. S3 object locking and GCS or Azure soft delete can provide more protection against tampering.
+Versioning is supported by S3, Azure, and GCS compatible object stores. Object locking for S3 and soft delete for GCS or Azure can provide additional protection against tampering.
 
 
 ### Compatibility with ten versions of PostgreSQL
 
-pgBackRest supports ten PostgreSQL versions: the five supported versions and the last five EOL versions. This gives users time to upgrade to a supported version.
+pgBackRest includes support for ten versions of PostgreSQL, the five supported versions and the last five EOL versions. This allows ample time to upgrade to a supported version.
 
 
 --------
 
 ## Getting Started
 
-Use these documents to configure and operate pgBackRest:
+pgBackRest strives to be easy to configure and operate:
 
 - [User guides](/docs/pgbackrest/user-guide/) for various operating systems and PostgreSQL versions.
 - Command pages for command-line operations: [backup](/docs/pgbackrest/command/backup/), [restore](/docs/pgbackrest/command/restore/), [check](/docs/pgbackrest/command/check/), and [info](/docs/pgbackrest/command/info/).
@@ -167,7 +185,7 @@ Use these documents to configure and operate pgBackRest:
 
 ## Contributions
 
-pgBackRest welcomes contributions. See the [Contributing Guidelines](https://github.com/pgbackrest/pgbackrest/blob/main/CONTRIBUTING.md) to contribute features, improvements, or issues.
+Contributions to pgBackRest are always welcome! Please see our [Contributing Guidelines](https://github.com/pgbackrest/pgbackrest/blob/main/CONTRIBUTING.md) for details on how to contribute features, improvements or issues.
 
 
 --------
@@ -176,6 +194,12 @@ pgBackRest welcomes contributions. See the [Contributing Guidelines](https://git
 
 pgBackRest is completely free and open source under the [MIT](https://github.com/pgbackrest/pgbackrest/blob/main/LICENSE) license. You may use it for personal or commercial purposes without any restrictions whatsoever. Bug reports are taken very seriously and will be addressed as quickly as possible. Please report bugs [here](https://github.com/pgbackrest/pgbackrest/issues).
 
-A disaster recovery policy needs suitable replication and backup strategies. The design can be complex. You might need help with the architecture and ongoing support to keep your enterprise running.
+Creating a robust disaster recovery policy with proper replication and backup strategies can be a very complex and daunting task. You may find that you need help during the architecture phase and ongoing support to ensure that your enterprise continues running smoothly.
 
-Our [sponsors](#sponsors) offer products and services with pgBackRest support. They can help you meet your disaster recovery requirements.
+Our [sponsors](#sponsors) offer products and services that include pgBackRest support and can help with your disaster recovery needs.
+
+## Source and license {#upstream-attribution}
+
+This manual covers pgBackRest 2.60.0. It was synchronized from the [PG.CENTER English edition](https://doc.pg.center/pgbackrest/) on 2026-10-28, with paths and navigation adapted for this site.
+
+Copyright (c) 2015-2026 The PostgreSQL Global Development Group and David Steele. The original documentation is licensed under [MIT](https://opensource.org/license/mit); the complete copyright and license notice is retained [upstream](https://github.com/pgbackrest/pgbackrest/blob/release/2.60.0/LICENSE).

@@ -6,11 +6,10 @@ description: "Reference for pgBackRest `version` command options and behavior."
 icon: fa-solid fa-tag
 module: [PGBACKREST]
 categories: [Reference]
+upstream_link: "https://pgbackrest.org/command.html#command-version"
 ---
 
-> Source: [pgBackRest Command Docs: version](https://pgbackrest.org/command.html#command-version)
-
-Display the installed pgBackRest version.
+Displays installed pgBackRest version.
 
 ## Command Options
 

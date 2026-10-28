@@ -6,21 +6,23 @@ description: "PgBouncer frequently asked questions"
 icon: fa-solid fa-circle-question
 module: [PGBOUNCER]
 categories: [Reference]
+upstream_link: "https://www.pgbouncer.org/faq.html"
 ---
-
-> Source: <https://www.pgbouncer.org/faq.html>
 
 --------
 
 ## How to connect to PgBouncer?
 
-PgBouncer acts as a Postgres server. Configure your client to use the PgBouncer port.
+PgBouncer acts as a Postgres server, so simply point your client to the
+PgBouncer port.
 
 --------
 
 ## How to load-balance queries between several servers?
 
-PgBouncer supports comma-separated hosts in a database connection string. With [`load_balance_hosts=round-robin`](/docs/pgbouncer/config/#load_balance_hosts), new server connections use each host in turn. For example:
+PgBouncer supports a comma-separated list of hosts in a database connection
+string. With [`load_balance_hosts=round-robin`](/docs/pgbouncer/config/#load_balance_hosts),
+new server connections rotate through that list. For example:
 
 ```ini
 [databases]
@@ -29,35 +31,75 @@ app = host=pg1,pg2 port=5432 dbname=app load_balance_hosts=round-robin
 
 You can also use external tools:
 
-1.  DNS round-robin: Assign several IP addresses to one DNS name. PgBouncer caches all addresses and uses them in turn. It does not run a DNS lookup for every new connection. For more than 8 addresses per name, the DNS backend must support EDNS0. See [DNS lookup support](/docs/pgbouncer/install/#dns-lookup-support).
+1.  DNS round-robin. Use several IPs behind one DNS name. PgBouncer does
+    not look up DNS each time a new connection is launched. Instead, it
+    caches all IPs and does round-robin internally. Note: if there are
+    more than 8 IPs behind one name, the DNS backend must support the EDNS0
+    protocol. See [DNS lookup support](/docs/pgbouncer/install/#dns-lookup-support) for details.
 
-2.  Use a TCP load balancer, such as [LVS](http://www.linuxvirtualserver.org/) or [HAProxy](https://www.haproxy.org/). Consider reducing `server_lifetime` and enabling `server_round_robin` in PgBouncer. By default, idle connection reuse follows a LIFO algorithm, which may be unsuitable for load balancing.
+2.  Use a TCP connection load-balancer. Either
+    [LVS](http://www.linuxvirtualserver.org/) or
+    [HAProxy](https://www.haproxy.org/) seems to be a good choice. On the
+    PgBouncer side it may be a good idea to make `server_lifetime` smaller
+    and also turn `server_round_robin` on: by default, idle connections
+    are reused by a LIFO algorithm, which may work not so well when
+    load-balancing is needed.
 
 --------
 
 ## How to failover
 
-With comma-separated hosts and [`load_balance_hosts=disable`](/docs/pgbouncer/config/#load_balance_hosts), PgBouncer uses one host until a connection attempt fails. It then tries the next host. This does not detect primary or replica roles. Use external tools for failover that follows database topology changes:
+With a comma-separated host list and
+[`load_balance_hosts=disable`](/docs/pgbouncer/config/#load_balance_hosts),
+PgBouncer continues using the same host until a connection attempt fails,
+then tries the next host. This does not perform primary/replica role
+detection. For failover that follows changes in the database topology,
+use external tools:
 
-1. DNS reconfiguration: When the IP address for a DNS name changes, PgBouncer reconnects to the new server. Set `dns_max_ttl` to control the cache lifetime for each host name. Set `dns_zone_check_period` to control how often PgBouncer checks a zone SOA for changes. If the SOA record changes, PgBouncer looks up all host names in that zone again.
+1. DNS reconfiguration: When the IP address behind a DNS name is
+   reconfigured, PgBouncer will reconnect to the new server.  This
+   behaviour can be tuned by two configuration parameters:
+   `dns_max_ttl` tunes the lifetime for one host name, and
+   `dns_zone_check_period` tunes how often a zone SOA will be queried
+   for changes.  If a zone SOA record has changed, PgBouncer will
+   re-query all host names under that zone.
 
-2. Change the host in the configuration. To reload it, send SIGHUP or run `RELOAD` on the console. PgBouncer detects the changed host and reconnects to the new server.
+2. Write a new host to the configuration and let PgBouncer reload it:
+   send SIGHUP or use the `RELOAD` command on the console.  PgBouncer
+   will detect a changed host configuration and reconnect to the new
+   server.
 
-3. Use `RECONNECT` if neither preceding method applies. For example, HAProxy may route downstream connections from PgBouncer. After HAProxy changes its routing information, run `RECONNECT` to reopen all server connections.
+3. Use the `RECONNECT` command.  This is meant for situations where
+   neither of the two options above are applicable, for example when
+   you use the aforementioned HAProxy to route connections downstream
+   from PgBouncer.  `RECONNECT` simply causes all server connections
+   to be reopened.  So run that after that other component has changed
+   its connection routing information.
 
 --------
 
 ## How to use prepared statements with session pooling?
 
-In session pooling, the reset query must remove old prepared statements. Use `server_reset_query = DISCARD ALL;` or at least `DEALLOCATE ALL;`.
+In session pooling mode, the reset query must clean old prepared
+statements.  This can be achieved by `server_reset_query = DISCARD ALL;`
+or at least `DEALLOCATE ALL;`.
 
 --------
 
 ## How to use prepared statements with transaction pooling?
 
-Since 1.21.0, PgBouncer can track prepared statements in transaction pooling. It prepares them as needed on the linked server connection. To enable support, set `max_prepared_statements` to a non-zero value. The default is 200. See the [`max_prepared_statements` documentation](/docs/pgbouncer/config/#max_prepared_statements).
+Since version 1.21.0 PgBouncer can track prepared statements in transaction
+pooling mode and make sure they get prepared on-the-fly on the linked server
+connection. To enable this feature, `max_prepared_statements` needs to be
+set to a non-zero value (the default is 200). See the [docs for
+`max_prepared_statements`](/docs/pgbouncer/config/#max_prepared_statements)
+for more details.
 
-PHP/PDO compatibility with PgBouncer prepared statements depends on its version ([#991]). Compatibility requires [PHP 8.4+ **and** libpq 17][php-fix]. For older versions, we recommend an upgrade or disabling prepared statements on the client.
+If you use PHP/PDO, depending on its version it might be incompatible with
+PgBouncer's prepared statement support ([#991]). PHP/PDO is only compatible
+when [PHP 8.4+ **and** libpq 17][php-fix] are used. So for setups with older versions it's
+recommended to upgrade, or to disable prepared statements on the client
+side.
 
 [php-fix]: https://github.com/php/php-src/commit/f35ad560b468e3e0a6c289949ba9b19af4fa3e7b
 
@@ -65,11 +107,14 @@ PHP/PDO compatibility with PgBouncer prepared statements depends on its version 
 
 ### Disabling prepared statements in JDBC
 
-For JDBC, add `prepareThreshold=0` to the connection string.
+The proper way to do it for JDBC is adding the `prepareThreshold=0`
+parameter to the connection string.
 
 ### Disabling prepared statements in PHP/PDO
 
-To disable server-side prepared statements, set `PDO::ATTR_EMULATE_PREPARES` to `true`. You can set it when you connect:
+To disable use of server-side prepared statements, the PDO attribute
+`PDO::ATTR_EMULATE_PREPARES` must be set to `true`. Either at
+connect-time:
 
     $db = new PDO("dsn", "user", "pass", array(PDO::ATTR_EMULATE_PREPARES => true));
 
@@ -81,7 +126,8 @@ or later:
 
 ## How to upgrade PgBouncer without dropping connections?
 
-Use a rolling restart. Follow the [`SHUTDOWN WAIT_FOR_CLIENTS` procedure](/docs/pgbouncer/usage/#shutdown-wait_for_clients).
+You can use a rolling restart by following the procedure described in the
+[section of the docs for `SHUTDOWN WAIT_FOR_CLIENTS`](/docs/pgbouncer/usage/#shutdown-wait_for_clients).
 
 --------
 
@@ -104,8 +150,18 @@ Use the `SHOW CLIENTS` and `SHOW SERVERS` commands on the console.
 
 It depends.
 
-For short-lived connections, install PgBouncer on the web server to minimize connection setup latency. TCP needs several packet round trips before a connection is usable. If many hosts, such as web servers, connect to one database server, install PgBouncer on that database server. This lets PgBouncer optimize their connections together.
+Installing PgBouncer on the web server is good when short-lived
+connections are used.  Then the connection setup latency is
+minimised. (TCP requires a couple of packet roundtrips before a
+connection is usable.) Installing PgBouncer on the database server is
+good when there are many different hosts (e.g., web servers) connecting
+to it. Then their connections can be optimised together.
 
-You can install PgBouncer on both web and database servers. Each PgBouncer hop adds a small delay to each query.
+It is also possible to install PgBouncer on both web server and database
+server. One negative aspect of that is that each PgBouncer hop adds a
+small amount of latency to each query.
 
-Test each arrangement against your performance requirements. Consider how its placement affects application failover when a web server or database server fails.
+In the end, you will need to test which model works best for your
+performance needs.  You should also consider how installing PgBouncer
+will affect the failover of your applications in the event of a web
+server vs. database server going away.

@@ -6,9 +6,134 @@ description: "Official pgBackRest project news, release announcements, and maint
 icon: fa-solid fa-newspaper
 module: [PGBACKREST]
 categories: [Reference]
+upstream_link: "https://pgbackrest.org/news.html"
 ---
 
-> Source: <https://pgbackrest.org/news.html>
+--------
+
+## pgBackRest 2.60.0 Released {#release-2-60-0}
+
+**October 18, 2026**
+
+The pgBackRest community is pleased to announce the release of [pgBackRest](https://pgbackrest.org) 2.60.0, the latest version of the reliable, easy-to-use backup and restore solution that can seamlessly scale up to the largest databases and workloads.
+
+pgBackRest supports a robust set of features for managing your backup and recovery infrastructure, including: parallel backup/restore, full/differential/incremental backups, block incremental backup, multiple repositories, delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, page checksums (when enabled) validated during backup, multiple compression types, encryption, partial/failed backup resume, backup from standby, tablespace and link support, S3/Azure/GCS/SFTP support, backup expiration, local/remote operation via SSH or TLS, flexible configuration, and more.
+
+pgBackRest can be installed from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or the [PostgreSQL APT Repository](https://apt.postgresql.org) and packages are also available for many other distributions. Source code can be downloaded from [releases](/docs/pgbackrest/release/).
+
+### Significant New Features and Improvements {#release-2-60-0-feature}
+
+- Add checksum-page-error option to error on invalid page checksums (Andrew Pogrebnoi)
+- Support for GCS Workload Identity Federation (Adol Rodriguez)
+- Prefetch multi-file/range reads from object stores (David Steele)
+- Reduce keep-alive requests to remote processes (David Steele)
+- Retry Azure batch sub-requests missing from the response (David Steele)
+- Reduce the manifest checks made when reconstructing backup.info (David Steele)
+- Support building on illumos (Kalevi Kolttonen)
+- Support OpenSSL 4 (David Steele)
+- Modernize the website (David Steele, Jan Wieremjewicz)
+
+See the [2.60.0 Release Notes](/docs/pgbackrest/release/#v2600-release-notes) for additional features and improvements.
+
+### Important Notes {#release-2-60-0-note}
+
+- The restore command will now error and stop if any restored file contains an invalid page checksum, which leaves the cluster incomplete and unable to start, so the restore must be rerun. The expire command will now refuse to expire if the oldest retained backup would contain checksum errors, which also prevents archive from being expired in that repository. Set checksum-page-error=n to warn instead of erroring.
+- Building from a git checkout requires PyYAML instead of libyaml. The distribution tarball includes the generated code and requires neither.
+- PostgreSQL 19rc1 is supported by v2.59.2 and later, including this release.
+
+### Links {#release-2-60-0-link}
+
+- [Website](/docs/pgbackrest/)
+- [User Guides](/docs/pgbackrest/user-guide/)
+- [Release Notes](/docs/pgbackrest/release/)
+
+### Sponsorship {#release-2-60-0-sponsorship}
+
+This release was made possible by the generous sponsorship of [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+
+
+--------
+
+## Weak Encryption Subkeys and Salts {#weak-encryption}
+
+**October 4, 2026**
+
+Versions of pgBackRest prior to 2.59.3 did not check for an error when generating random data for encryption. If OpenSSL was unable to get random data from the operating system, then encryption subkeys and salts were generated from data already in memory and no error was reported. Repositories without encryption are not affected.
+
+This error should be rare. Possible causes include a sandbox or seccomp policy that blocks the `getrandom()` system call and an invalid OpenSSL configuration.
+
+The subkeys in `archive.info` and `backup.info` are the main concern. They are generated once by `stanza-create` and used for the life of the stanza, so upgrading does not replace a weak subkey. Weak backup subkeys and salts are removed as backups and WAL expire.
+
+### Impact {#weak-encryption-impact}
+
+The WAL subkey is stored in `archive.info` and the manifest subkey is stored in `backup.info`. A weak subkey is easier to guess than a random subkey, and a guessed subkey decrypts the files encrypted with it without `repo-cipher-pass`. How much easier depends on what was in memory, which varies by platform and build. A weak subkey in `archive.info` exposes all WAL in the repository. A weak subkey in `backup.info` exposes every backup, since the manifests are encrypted with it and each manifest stores the subkey for the files in its backup. This includes WAL and backups added after upgrading.
+
+The subkey for the files in a backup is generated for each full backup and also used by the differential and incremental backups based on it. A weak backup subkey exposes the files in those backups.
+
+A weak salt does not expose a subkey. Files encrypted with the same subkey and salt use the same key and IV, so identical data in those files produces identical encrypted data. The salt is stored unencrypted at the start of each file, and a weak salt may contain up to 8 bytes of data that was previously in memory.
+
+### Check Subkeys {#weak-encryption-check-subkey}
+
+Run the following on a host that has access to the repository, with `STANZA` set to the stanza name. Add `--repo` to the `pgbackrest` commands to check a repository other than the first one.
+
+```bash
+STANZA=demo
+
+for file in archive/$STANZA/archive.info backup/$STANZA/backup.info; do
+    for key in $(pgbackrest --stanza=$STANZA repo-get $file | grep '^cipher-pass=' | grep -oE '[A-Za-z0-9+/]{64}'); do
+        echo "$(printf '%s' $key | base64 -d | od -An -v -tx1 | tr -s ' ' '\n' | grep -c '^00$') $file"
+    done
+done
+```
+
+The first column is the number of zero bytes in the subkey. A random subkey has 6 or more zero bytes less than once in 25,000,000, while the weak subkeys found in testing had 13 or more. A subkey with 6 or more zero bytes should be considered weak.
+
+### OpenSSL 1.0 {#weak-encryption-openssl-1-0}
+
+Versions of pgBackRest prior to 2.53 could be built with OpenSSL 1.0, which generates random data from a state that was not seeded with random data when it is unable to get random data from the operating system. Weak subkeys generated this way cannot be detected with the check above.
+
+### Remediation {#weak-encryption-remediation}
+
+- Upgrade to pgBackRest 2.59.3 or later, which reports an error when random data cannot be generated.
+- If the subkey in `archive.info` or `backup.info` is weak, create the stanza in a new repository and keep the old repository only as long as its backups are needed.
+- Consider making a new full backup after upgrading, since differential and incremental backups use the subkey of their full backup.
+- Weak backup subkeys and salts are removed as backups and WAL from before the upgrade expire. Backups with a long retention period keep them until they expire.
+
+
+--------
+
+## pgBackRest 2.59.3 Released {#release-2-59-3}
+
+**October 4, 2026**
+
+The pgBackRest community is pleased to announce the release of [pgBackRest](https://pgbackrest.org) 2.59.3, the latest version of the reliable, easy-to-use backup and restore solution that can seamlessly scale up to the largest databases and workloads.
+
+pgBackRest supports a robust set of features for managing your backup and recovery infrastructure, including: parallel backup/restore, full/differential/incremental backups, block incremental backup, multiple repositories, delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, page checksums (when enabled) validated during backup, multiple compression types, encryption, partial/failed backup resume, backup from standby, tablespace and link support, S3/Azure/GCS/SFTP support, backup expiration, local/remote operation via SSH or TLS, flexible configuration, and more.
+
+pgBackRest can be installed from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or the [PostgreSQL APT Repository](https://apt.postgresql.org) and packages are also available for many other distributions. Source code can be downloaded from [releases](/docs/pgbackrest/release/).
+
+### Bug Fixes {#release-2-59-3-feature}
+
+- Fix possible weak encryption subkeys/salts (j0uinim)
+- Fix possible checksum error loading encrypted info and manifest files (j0uinim)
+
+See the [2.59.3 Release Notes](/docs/pgbackrest/release/#v2593-release-notes) for additional fixes and improvements.
+
+### Important Notes {#release-2-59-3-note}
+
+- In prior versions it was possible for weak encryption subkeys and salts to be generated if there was an error accessing system random data. See [Weak Encryption Subkeys and Salts](/docs/pgbackrest/news/#weak-encryption) for more information.
+
+### Links {#release-2-59-3-link}
+
+- [Website](/docs/pgbackrest/)
+- [User Guides](/docs/pgbackrest/user-guide/)
+- [Release Notes](/docs/pgbackrest/release/)
+
+### Sponsorship {#release-2-59-3-sponsorship}
+
+This release was made possible by the generous sponsorship of [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+
+
 
 --------
 
@@ -16,11 +141,11 @@ categories: [Reference]
 
 **September 27, 2026**
 
-The pgBackRest community released [pgBackRest](https://pgbackrest.org) 2.59.2. This backup and restore solution supports PostgreSQL databases and workloads of all sizes.
+The pgBackRest community is pleased to announce the release of [pgBackRest](https://pgbackrest.org) 2.59.2, the latest version of the reliable, easy-to-use backup and restore solution that can seamlessly scale up to the largest databases and workloads.
 
-pgBackRest provides these backup and recovery features: parallel backup and restore; full, differential, incremental, and block incremental backups; and multiple repositories. It also supports delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, and validation of enabled page checksums during backup. Other features include multiple compression types, encryption, partial/failed backup resume, standby backups, tablespaces, and links. Storage options include S3, Azure, GCS, and SFTP. pgBackRest also supports backup expiration, local or remote operation through SSH or TLS, and flexible configuration.
+pgBackRest supports a robust set of features for managing your backup and recovery infrastructure, including: parallel backup/restore, full/differential/incremental backups, block incremental backup, multiple repositories, delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, page checksums (when enabled) validated during backup, multiple compression types, encryption, partial/failed backup resume, backup from standby, tablespace and link support, S3/Azure/GCS/SFTP support, backup expiration, local/remote operation via SSH or TLS, flexible configuration, and more.
 
-Install pgBackRest from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or [PostgreSQL APT Repository](https://apt.postgresql.org). Many other distributions also provide packages. Download source code from [releases](/docs/pgbackrest/release/).
+pgBackRest can be installed from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or the [PostgreSQL APT Repository](https://apt.postgresql.org) and packages are also available for many other distributions. Source code can be downloaded from [releases](/docs/pgbackrest/release/).
 
 ### New Features and Bug Fixes {#release-2-59-2-feature}
 
@@ -36,7 +161,7 @@ See the [2.59.2 Release Notes](/docs/pgbackrest/release/#v2592-release-notes) fo
 
 ### Important Notes {#release-2-59-2-note}
 
-- PostgreSQL 19beta4 changed `pg_control` and WAL formats. Clusters and WAL from earlier 19 beta versions are no longer supported. Recreate those clusters with 19beta4.
+- PostgreSQL 19beta4 changed the `pg_control` and WAL formats, so clusters and WAL from an earlier 19 beta are no longer supported. Clusters running an earlier beta should be recreated with 19beta4.
 
 ### Links {#release-2-59-2-link}
 
@@ -46,7 +171,7 @@ See the [2.59.2 Release Notes](/docs/pgbackrest/release/#v2592-release-notes) fo
 
 ### Sponsorship {#release-2-59-2-sponsorship}
 
-The following sponsors made this release possible: [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+This release was made possible by the generous sponsorship of [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
 
 
 --------
@@ -55,11 +180,11 @@ The following sponsors made this release possible: [AWS](https://aws.amazon.com)
 
 **August 17, 2026**
 
-The pgBackRest community released [pgBackRest](https://pgbackrest.org) 2.59.1. This backup and restore solution supports PostgreSQL databases and workloads of all sizes.
+The pgBackRest community is pleased to announce the release of [pgBackRest](https://pgbackrest.org) 2.59.1, the latest version of the reliable, easy-to-use backup and restore solution that can seamlessly scale up to the largest databases and workloads.
 
-pgBackRest provides these backup and recovery features: parallel backup and restore; full, differential, incremental, and block incremental backups; and multiple repositories. It also supports delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, and validation of enabled page checksums during backup. Other features include multiple compression types, encryption, partial/failed backup resume, standby backups, tablespaces, and links. Storage options include S3, Azure, GCS, and SFTP. pgBackRest also supports backup expiration, local or remote operation through SSH or TLS, and flexible configuration.
+pgBackRest supports a robust set of features for managing your backup and recovery infrastructure, including: parallel backup/restore, full/differential/incremental backups, block incremental backup, multiple repositories, delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, page checksums (when enabled) validated during backup, multiple compression types, encryption, partial/failed backup resume, backup from standby, tablespace and link support, S3/Azure/GCS/SFTP support, backup expiration, local/remote operation via SSH or TLS, flexible configuration, and more.
 
-Install pgBackRest from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or [PostgreSQL APT Repository](https://apt.postgresql.org). Many other distributions also provide packages. Download source code from [releases](/docs/pgbackrest/release/).
+pgBackRest can be installed from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or the [PostgreSQL APT Repository](https://apt.postgresql.org) and packages are also available for many other distributions. Source code can be downloaded from [releases](/docs/pgbackrest/release/).
 
 ### New Features and Bug Fixes {#release-2-59-1-feature}
 
@@ -72,7 +197,7 @@ See the [2.59.1 Release Notes](/docs/pgbackrest/release/#v2591-release-notes) fo
 
 ### Important Notes {#release-2-59-1-note}
 
-- PostgreSQL 19beta3 changed the WAL format. WAL archived from earlier PostgreSQL 19 beta versions is no longer readable. Recreate those clusters with 19beta3.
+- PostgreSQL 19beta3 changed the WAL format, so WAL archived from an earlier PostgreSQL 19 beta is no longer readable. Clusters running an earlier beta should be recreated with 19beta3.
 
 ### Links {#release-2-59-1-link}
 
@@ -82,7 +207,7 @@ See the [2.59.1 Release Notes](/docs/pgbackrest/release/#v2591-release-notes) fo
 
 ### Sponsorship {#release-2-59-1-sponsorship}
 
-The following sponsors made this release possible: [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+This release was made possible by the generous sponsorship of [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
 
 
 --------
@@ -91,13 +216,13 @@ The following sponsors made this release possible: [AWS](https://aws.amazon.com)
 
 **July 20, 2026**
 
-Starting with pgBackRest 2.59.0, each release includes a distribution tarball for simpler source builds. It contains generated source and prebuilt documentation. Unlike a Git checkout, it does not need code-generation or documentation tools to build and install pgBackRest.
+Starting with pgBackRest 2.59.0, every release includes a distribution tarball that makes building from source simpler. Unlike a checkout of the git repository, the tarball ships the generated source and the rendered documentation pre-built, so pgBackRest builds and installs without the code generation or documentation tooling that a repository checkout requires.
 
-The tarball contains source, pregenerated code, a command reference man page, HTML documentation, and a smoke test. Build it with meson and ninja and the usual pgBackRest libraries.
+The tarball contains the pgBackRest source with the pre-generated code, the command reference man page, the HTML documentation, and a smoke test to verify the build. It builds with meson and ninja using only the usual pgBackRest libraries.
 
-Each release includes `pgbackrest-{version}.tar.gz` and a matching `.sha256sum` checksum. Download them from GitHub [releases](https://github.com/pgbackrest/pgbackrest/releases). Follow the tarball `README.md` for build and test instructions.
+The tarball is attached to each release as an asset named `pgbackrest-{version}.tar.gz`, along with a matching `.sha256sum` checksum. Download it from the [releases](https://github.com/pgbackrest/pgbackrest/releases) page on GitHub, then see the `README.md` in the tarball for build and test instructions.
 
-Packagers should use the distribution tarball. This avoids the additional code-generation and documentation tools that future releases will require.
+Packagers are encouraged to build from the distribution tarball to avoid the extra build tooling that generating code and documentation will require in future releases.
 
 
 --------
@@ -106,11 +231,11 @@ Packagers should use the distribution tarball. This avoids the additional code-g
 
 **July 20, 2026**
 
-The pgBackRest community released [pgBackRest](https://pgbackrest.org) 2.59.0. This backup and restore solution supports PostgreSQL databases and workloads of all sizes.
+The pgBackRest community is pleased to announce the release of [pgBackRest](https://pgbackrest.org) 2.59.0, the latest version of the reliable, easy-to-use backup and restore solution that can seamlessly scale up to the largest databases and workloads.
 
-pgBackRest provides these backup and recovery features: parallel backup and restore; full, differential, incremental, and block incremental backups; and multiple repositories. It also supports delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, and validation of enabled page checksums during backup. Other features include multiple compression types, encryption, partial/failed backup resume, standby backups, tablespaces, and links. Storage options include S3, Azure, GCS, and SFTP. pgBackRest also supports backup expiration, local or remote operation through SSH or TLS, and flexible configuration.
+pgBackRest supports a robust set of features for managing your backup and recovery infrastructure, including: parallel backup/restore, full/differential/incremental backups, block incremental backup, multiple repositories, delta restore, parallel asynchronous archiving, malware/ransomware protection, per-file checksums, page checksums (when enabled) validated during backup, multiple compression types, encryption, partial/failed backup resume, backup from standby, tablespace and link support, S3/Azure/GCS/SFTP support, backup expiration, local/remote operation via SSH or TLS, flexible configuration, and more.
 
-Install pgBackRest from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or [PostgreSQL APT Repository](https://apt.postgresql.org). Many other distributions also provide packages. Download source code from [releases](/docs/pgbackrest/release/).
+pgBackRest can be installed from the [PostgreSQL Yum Repository](https://yum.postgresql.org) or the [PostgreSQL APT Repository](https://apt.postgresql.org) and packages are also available for many other distributions. Source code can be downloaded from [releases](/docs/pgbackrest/release/).
 
 ### Significant New Features and Improvements {#feature}
 
@@ -132,9 +257,9 @@ See the [2.59.0 Release Notes](/docs/pgbackrest/release/#v2590-release-notes) fo
 
 ### Important Notes {#note}
 
-- By default, only `restore` can run as root. Use `allow-root` for other commands, although this is not recommended.
-- Each release includes a distribution tarball with pregenerated documentation, man page, and code to simplify packaging. See [New Distribution Tarball](#distribution-tarball).
-- `libsystemd` is a new optional dependency.
+- Only the `restore` command may be run as root by default. Use `allow-root` to run other commands as root (though this is not recommended).
+- A new distribution tarball with pregenerated documentation, man page, and code is attached to each release to simplify packaging. See [New Distribution Tarball](#distribution-tarball) for more information.
+- There is a new optional dependency on `libsystemd`.
 
 ### Links {#link}
 
@@ -144,7 +269,7 @@ See the [2.59.0 Release Notes](/docs/pgbackrest/release/#v2590-release-notes) fo
 
 ### Sponsorship {#sponsorship}
 
-The following sponsors made this release possible: [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
+This release was made possible by the generous sponsorship of [AWS](https://aws.amazon.com), [Supabase](https://supabase.com), [pgEdge](https://pgedge.com), [Tiger Data](https://tigerdata.com), [Percona](https://percona.com), [Eon](https://eon.io), [Xata](https://xata.io), [Dalibo](https://dalibo.com), and [Data Egret](https://dataegret.com/).
 
 
 --------
@@ -153,25 +278,25 @@ The following sponsors made this release possible: [AWS](https://aws.amazon.com)
 
 **May 18, 2026**
 
-pgBackRest will continue. During the previous few weeks, several sponsors agreed to fund ongoing development. The project no longer depends on one sponsor. This supports its long-term stability.
+I am pleased to announce that pgBackRest will continue! Over the last few weeks, a coalition of sponsors has come together to fund ongoing development. Their support means the project is no longer reliant on a single sponsor, giving pgBackRest the stability it needs for the long term.
 
-We thank each sponsor:
+I'd like to thank each of our sponsors:
 
-[Amazon Web Services](https://aws.amazon.com) provides on-demand cloud resources for individuals, companies, and governments. It offers computing, storage, databases, machine learning, and more than 200 services with usage-based payment. It supports growth and invests in shared communities.
+[Amazon Web Services](https://aws.amazon.com) provides on-demand cloud computing resources to individuals, companies, and governments. Access computing power, storage, databases, machine learning, and over 200 services, paying only for what you use. Built to grow with you, investing in the communities we share.
 
-[Supabase](https://supabase.com) is a PostgreSQL backend platform. It lets developers build and scale applications without managing infrastructure. It includes a Postgres database, user authentication, real-time subscriptions, file storage, edge functions, and serverless functions. An active open-source community supports it.
+[Supabase](https://supabase.com), a complete backend platform built on PostgreSQL, enables developers to build and scale applications quickly without managing infrastructure. It includes a Postgres database, user authentication, real-time subscriptions, file storage, edge functions, and serverless functions, all backed by an active open-source community.
 
-[pgEdge](https://pgedge.com) is an enterprise open-source Postgres platform for AI and high availability. It includes agentic AI tools, a DBA workbench, monitoring, incident response, flexible deployment, and maintenance without downtime. Deployments range from one node to active-active multi-master clusters in cloud, on-premises, or air-gapped environments.
+[pgEdge](https://pgedge.com) is an enterprise-class open source Postgres platform for AI, high availability and more, with Agentic AI native tooling and DBA workbench, monitoring and incident response, flexible deployment, and zero downtime maintenance. It scales from a single node to active-active multi-master within the cloud, on-premises, or air-gapped environments.
 
-[Tiger Data](https://tigerdata.com) created TimescaleDB, an open-source PostgreSQL time-series database. It also operates Tiger Cloud for managed time-series, analytics, and AI workloads. Self-managed and cloud options let organizations capture, store, and analyze time-series data at scale, from edge locations to centralized cloud deployments.
+[Tiger Data](https://tigerdata.com), the creators of TimescaleDB, develops the open-source time-series database built on PostgreSQL and operates Tiger Cloud, a managed platform for time-series, analytics, and AI workloads. Both self-managed and cloud options enable organizations to capture, store, and analyze time-series data at scale, from edge to centralized cloud deployments.
 
-[Percona](https://percona.com) provides open-source database software, support, and services to help organizations control their data infrastructure. It supports secure, efficient operation of MySQL, PostgreSQL, MongoDB, Valkey, and Redis. Services include freely available software, 24/7 expert support, and practical database assistance.
+[Percona](https://percona.com) is an open source database software, support, and services company focused on helping organizations maintain full control over their data infrastructure. They help businesses run MySQL, PostgreSQL, MongoDB, Valkey, and Redis securely and efficiently through freely available open source software, 24/7 expert support, and hands-on database expertise.
 
-[Eon.io](https://eon.io) provides cloud infrastructure for backup, recovery, and data management. It helps teams store and access backups efficiently and use the data for analytics and AI. It offers fast, granular recovery and substantially lower storage costs for Postgres and data-intensive workloads across clouds. Recovery includes accidental data loss and AI agent regressions.
+[Eon.io](https://eon.io) is an intelligent cloud infrastructure for backup, recovery, and data management that helps teams store and access backups more efficiently, making data accessible for analytics and AI workflows. It offers fast, granular recovery and significantly lower storage costs for Postgres and data-intensive workloads across all clouds, including recovery from accidental data loss and AI agent regressions.
 
-These organizations use pgBackRest for disaster recovery in their products and customer services. Their investment reflects its role in the PostgreSQL ecosystem. Their combined support sustains the project over the long term.
+These organizations rely on pgBackRest to provide reliable disaster recovery for their products and customers. Their investment reflects the critical role that pgBackRest plays in the PostgreSQL ecosystem, and their collective support ensures the project's long-term sustainability.
 
-I look forward to resuming work on features and optimizations for upcoming releases. Thank you to our sponsors for funding this work. Thank you to the community for its patience and support during this transition.
+I'm looking forward to getting back to work. There are features and optimizations in the pipeline that I'm excited to share in upcoming releases. Thank you to our sponsors for making this possible, and thank you to the community for your patience and support during this transition.
 
 
 --------
@@ -180,15 +305,15 @@ I look forward to resuming work on features and optimizations for upcoming relea
 
 **May 4, 2026**
 
-After I announced that I would stop maintaining pgBackRest, I received many messages. Many expressed thanks and good wishes for my work over the years. It took time to read them.
+After I announced that I am no longer maintaining pgBackRest my inbox blew up. It took a while to sort through the messages — many of them were well wishes and thank-yous for my work over the years.
 
-Many users want pgBackRest to continue with me as primary maintainer, especially users who support others using pgBackRest. I also want this. However, after months of fundraising, I had concluded that it was not possible.
+But a pattern soon emerged. It is clear that many pgBackRest users, especially those with pgBackRest users of their own to support, would prefer the project to continue with me as the primary maintainer. I would like nothing more, but after months of fundraising I had just decided it wasn't going to happen.
 
-The situation has changed. I now expect to secure enough funding to continue the project. Several sponsors will fund pgBackRest, so one acquisition will no longer determine whether I can continue. We should also be able to add another maintainer to share the workload and provide continuity.
+Now the situation has changed, and it appears all but certain that I will be able to secure enough funding to continue the project. This time pgBackRest will be funded by a coalition of sponsors so that a single acquisition will no longer affect my ability to continue work on the project. We should also be able to bring on another maintainer to distribute the workload and provide continuity in the future.
 
-I understand the shock and uncertainty. Please give us time. The current pgBackRest version works, with no outstanding critical bugs or security issues. There is no immediate need to fork the project.
+I know this has been a shock and there is a lot of uncertainty. Please be patient — the current version of pgBackRest works, and there are no critical outstanding bugs or security issues so there is no need to immediately fork the project.
 
-I expect to make a more definite announcement by the end of the week. Until then, we are actively working to resume pgBackRest development.
+I expect to make a more definitive announcement by the end of the week. Until then, please hold tight and know that we are actively working to revive pgBackRest.
 
 
 --------
@@ -197,14 +322,14 @@ I expect to make a more definite announcement by the end of the week. Until then
 
 **April 27, 2026**
 
-pgBackRest is no longer maintained. If you fork it, choose a new project name.
+TL;DR: pgBackRest is no longer being maintained. If you fork pgBackRest, please select a new name for your project.
 
-After careful thought, I have decided to stop working on pgBackRest. I have worked on this project for thirteen years, with corporate sponsorship for much of that time. I also spent many nights and weekends developing it with numerous contributors. This reflects the substantial personal commitment that an open-source project can require.
+After a lot of thought, I have decided to stop working on pgBackRest. I did not come to this decision lightly. pgBackRest has been my passion project for the last thirteen years, and I was fortunate to have corporate sponsorship for much of this time, but there were also many late nights and weekends as I worked to make pgBackRest the project it is today, aided by numerous contributors. Every open-source developer knows exactly what I mean and how much of your life gets devoted to a special project.
 
-Since the sale of Crunchy Data, I have maintained pgBackRest while seeking a position that would support this work. I have not found one. Sponsorship efforts have also raised much less than the project needs to remain viable.
+Since Crunchy Data was sold, I have been maintaining pgBackRest and looking for a position that would allow me to continue the work, but so far I have not been successful. Likewise, my efforts to secure sponsorship have also fallen far short of what I need to make the project viable.
 
-I need to earn a living, and few roles involve pgBackRest. I can now consider other opportunities, but they will leave no time for this project. Maintenance, bug fixes, PR reviews, and issue responses already require substantial time. New features, the work I most enjoy, need additional time. I have therefore decided to stop completely instead of working irregularly or inadequately.
+Like everyone else, I need to make a living, and the range of pgBackRest-related roles is very limited. I can now consider a wider variety of opportunities, but those will not leave me time to work on pgBackRest, which requires a fair amount of time for maintenance, bug fixes, PR reviews, answering issues, etc. That does not even include time to write new features, which is what I really love to do. Rather than do the work poorly and/or sporadically, I think it makes more sense to have a hard stop.
 
-Someone might eventually fork pgBackRest. That would be a new project with new maintainers. They would need to earn trust, as we did.
+I imagine at some point pgBackRest will be forked, but that will be a new project with new maintainers, and they will need to build trust the same way we did.
 
-Thank you to all pgBackRest contributors over the years. I enjoyed working with you.
+Again, many thanks to all the pgBackRest contributors over the years. It was a pleasure working with you!

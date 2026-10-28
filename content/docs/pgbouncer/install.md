@@ -6,15 +6,19 @@ description: "PgBouncer compilation and installation instructions"
 icon: fa-solid fa-cloud-arrow-down
 module: [PGBOUNCER]
 categories: [Tutorial]
+upstream_link: "https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_1/README.md"
 ---
-
-> Source: <https://www.pgbouncer.org/install.html> · [1.26.0 source](https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_0/README.md)
 
 --------
 
 ## Building
 
-Build PgBouncer with Autoconf or the newer, experimental [Meson] build system. Autoconf is currently recommended for production builds and packages. Meson is expected to become the default, and a future release is expected to remove Autoconf. Test Meson and report problems. Compilation requires:
+PgBouncer can be built with either the Autoconf-based build system or the
+newer, still experimental, [Meson] build system.  Autoconf is the recommended
+choice for production builds and packaging for now.  The Meson build is
+expected to become the default and the Autoconf build to be removed in a
+future release, so testing it and reporting any issues is very welcome.
+Compilation depends on a few things:
 
 * [Libevent] 2.0+
 * [pkg-config]
@@ -47,13 +51,17 @@ or with Meson (experimental):
     $ meson compile -C build
     $ meson install -C build
 
-For Git or Windows builds, see the specific instructions below.
+If you are building from Git, or are building for Windows, please see
+separate build instructions below.
 
 --------
 
 ## DNS lookup support
 
-PgBouncer looks up host names when it connects, not only when it loads configuration. This requires asynchronous DNS. The table lists supported backends in probing order:
+PgBouncer does host name lookups at connect time instead of just once
+at configuration load time.  This requires an asynchronous DNS
+implementation.  The following table shows supported backends and
+their probing order:
 
 | backend                    | parallel | EDNS0 (1) | /etc/hosts | SOA lookup (2) | note                                  |
 |----------------------------|----------|-----------|------------|----------------|---------------------------------------|
@@ -66,53 +74,75 @@ PgBouncer looks up host names when it connects, not only when it loads configura
 2. SOA lookup is needed to re-check host names on zone serial change.
 3. To enable EDNS0, add `options edns0` to `/etc/resolv.conf`.
 
-c-ares has the most features. We recommend it for most uses and binary packages when a sufficiently recent version is available. Libevent evdns also works for many uses, subject to the restrictions above. The other backends are mainly legacy options and receive little testing.
+c-ares is the most fully-featured implementation and is recommended
+for most uses and binary packaging (if a sufficiently new version is
+available).  Libevent's built-in evdns is also suitable for many uses,
+with the listed restrictions.  The other backends are mostly legacy
+options at this point and don't receive much testing anymore.
 
-PgBouncer uses c-ares by default when available. Force it with `-Dcares=enabled` (configure: `--with-cares`) or disable it with `-Dcares=disabled` (configure: `--without-cares`). If c-ares is absent or disabled, PgBouncer uses Libevent. To disable Libevent evdns and use libc, set `-Devdns=false` (configure: `--disable-evdns`).
+By default, c-ares is used if it can be found.  Its use can be forced
+with `-Dcares=enabled` (configure: `--with-cares`) or disabled with
+`-Dcares=disabled` (configure: `--without-cares`).  If c-ares is not used
+(not found or disabled), then Libevent is used.  Specify `-Devdns=false`
+(configure: `--disable-evdns`) to disable the use of Libevent's evdns and
+fall back to a libc-based implementation.
 
 --------
 
 ## Optional features
 
-Meson detects PAM, LDAP, and systemd libraries automatically. The `-Dpam`, `-Dldap`, and `-Dsystemd` options default to `auto`. Each feature builds when its libraries are present. Force a feature on with `-D<feature>=enabled` or off with `-D<feature>=disabled`. Autoconf requires explicit options: `--with-pam`, `--with-ldap`, or `--with-systemd`. It does not detect these features automatically.
+The PAM, LDAP and systemd features are auto-detected by meson: their `-Dpam`,
+`-Dldap` and `-Dsystemd` options default to `auto`, so each is built when its
+libraries are present.  Force one on with `-D<feature>=enabled` or off with
+`-D<feature>=disabled`.  The Autoconf build does not auto-detect them; opt in
+explicitly with `--with-pam`, `--with-ldap` or `--with-systemd`.
 
 --------
 
 ## PAM authentication
 
-A build with PAM support provides the global authentication type `pam` to validate users through PAM.
+When compiled with PAM support, a new global authentication type `pam` is
+available to validate users through PAM.
 
 --------
 
 ## LDAP authentication
 
-A build with LDAP support provides the global authentication type `ldap` to validate users through LDAP.
+When compiled with LDAP support, a new global authentication type `ldap` is
+available to validate users through LDAP.
 
 --------
 
 ## systemd integration
 
-systemd support enables socket activation and `Type=notify`. With systemd 253 or later, it also supports `Type=notify-reload`. See `etc/pgbouncer.service` and `etc/pgbouncer.socket` for examples.
+systemd support allows using `Type=notify` (or `Type=notify-reload` if you are
+using systemd 253 or later) as well as socket activation.  See
+`etc/pgbouncer.service` and `etc/pgbouncer.socket` for examples.
 
 --------
 
 ## Building from Git
 
-For an Autoconf build, generate the header and configuration files before you run `configure`:
+The Autoconf build requires that you generate the header and configuration
+files before you can run `configure`:
 
-	$ git clone --branch pgbouncer_1_26_0 https://github.com/pgbouncer/pgbouncer.git
+	$ git clone --branch pgbouncer_1_26_1 https://github.com/pgbouncer/pgbouncer.git
 	$ cd pgbouncer
 	$ ./autogen.sh
 	$ ./configure
 	$ make
 	$ make install
 
-The default installation directory is `/usr/local`. Pass command-line options to `configure` to customize it. Run `./configure --help` to list options and configuration environment variables.
+All files will be installed under `/usr/local` by default. You can
+supply one or more command-line options to `configure`. Run
+`./configure --help` to list the available options and the environment
+variables that customize the configuration.
 
 Additional packages required for the Autoconf build from Git: autoconf,
 automake, libtool, pandoc
 
-Meson builds directly from a checkout. It requires pandoc to build man pages:
+With the Meson build you can build straight from a checkout;
+pandoc is required to build the man pages:
 
 	$ meson setup build
 	$ meson compile -C build
@@ -126,13 +156,14 @@ Run `meson configure build` to list the available `-D` options.
 
 See the [`README.md` file in the test directory][1] on how to run the tests.
 
-[1]: https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_0/test/README.md
+[1]: https://github.com/pgbouncer/pgbouncer/blob/pgbouncer_1_26_1/test/README.md
 
 --------
 
 ## Building on Windows
 
-MinGW is the only supported Windows build environment. Cygwin and Visual $ANYTHING are not supported.
+The only supported build environment on Windows is MinGW.  Cygwin and
+Visual $ANYTHING are not supported.
 
 To build on MinGW, do the usual Autoconf build:
 
@@ -154,9 +185,11 @@ The LDAP build option is currently not supported on Windows.
 
 ## Running on Windows
 
-Command-line operation works as usual, but `-d` (daemonize) and `-u` (switch user) do not work.
+Running from the command line goes as usual, except that the `-d` (daemonize)
+and `-u` (switch user) switches will not work.
 
-To run PgBouncer as a Windows service, set `service_name`. Then register the service:
+To run PgBouncer as a Windows service, you need to configure the
+`service_name` parameter to set a name for the service.  Then:
 
 	$ pgbouncer -regservice config.ini
 
@@ -164,7 +197,8 @@ To uninstall the service:
 
 	$ pgbouncer -unregservice config.ini
 
-To use the Windows event log, first register `pgbevent.dll` as shown below. Then set `syslog = 1` in the configuration file:
+To use the Windows event log, set `syslog = 1` in the configuration file.
+But before that, you need to register `pgbevent.dll`:
 
 	$ regsvr32 pgbevent.dll
 
