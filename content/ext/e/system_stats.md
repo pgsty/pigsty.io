@@ -342,10 +342,10 @@ weight: 6420
 
 ## Build
 
-You can build the DEB packages for `system_stats` using `pig build`:
+You can build the RPM / DEB packages for `system_stats` using `pig build`:
 
 ```bash
-pig build pkg system_stats         # build DEB packages
+pig build pkg system_stats         # build RPM / DEB packages
 ```
 
 

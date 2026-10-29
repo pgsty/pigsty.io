@@ -450,10 +450,10 @@ weight: 1540
 
 ## Build
 
-You can build the RPM packages for `q3c` using `pig build`:
+You can build the RPM / DEB packages for `q3c` using `pig build`:
 
 ```bash
-pig build pkg q3c         # build RPM packages
+pig build pkg q3c         # build RPM / DEB packages
 ```
 
 

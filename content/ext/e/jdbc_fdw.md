@@ -159,10 +159,10 @@ weight: 8530
 
 ## Build
 
-You can build the DEB packages for `jdbc_fdw` using `pig build`:
+You can build the RPM / DEB packages for `jdbc_fdw` using `pig build`:
 
 ```bash
-pig build pkg jdbc_fdw         # build DEB packages
+pig build pkg jdbc_fdw         # build RPM / DEB packages
 ```
 
 

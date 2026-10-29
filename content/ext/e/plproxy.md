@@ -306,10 +306,10 @@ weight: 2520
 
 ## Build
 
-You can build the RPM packages for `plproxy` using `pig build`:
+You can build the RPM / DEB packages for `plproxy` using `pig build`:
 
 ```bash
-pig build pkg plproxy         # build RPM packages
+pig build pkg plproxy         # build RPM / DEB packages
 ```
 
 

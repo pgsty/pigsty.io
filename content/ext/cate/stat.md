@@ -8,7 +8,7 @@ icon: fas fa-file-waveform
 
 ## Extension List
 
-There are **48** extensions in **46** packages.
+There are **49** extensions in **47** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
@@ -40,6 +40,7 @@ There are **48** extensions in **46** packages.
 | [`pgnodemx`](/ext/e/pgnodemx) | [`pgnodemx`](https://github.com/CrunchyData/pgnodemx) | `2.0.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Capture node OS metrics via SQL queries |
 | [`pg_proctab`](/ext/e/pg_proctab) | [`pgnodemx`](https://github.com/markwkm/pg_proctab) | `2.0.1` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension to access the OS process table |
 | [`pg_statvfs`](/ext/e/pg_statvfs) | [`pg_statvfs`](https://github.com/michaelpq/pg_plugins/tree/ae57c1f3df697fb942f4576f873a655187193ace/pg_statvfs) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Server filesystem capacity and inode statistics through statvfs |
+| [`pg_stat_tcpinfo`](/ext/e/pg_stat_tcpinfo) | [`pg_stat_tcpinfo`](https://github.com/jakubwartakEDB/pg_stat_tcpinfo) | `1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Linux TCP connection statistics, latency and retransmissions |
 | [`pg_sqlog`](/ext/e/pg_sqlog) | [`pg_sqlog`](https://github.com/kouber/pg_sqlog) | `1.7` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Provide SQL interface to logs |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | [`bgw_replstatus`](https://github.com/mhagander/bgw_replstatus) | `1.0.8` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Small PostgreSQL background worker to report whether a node is a replication master or standby |
 | [`pgmeminfo`](/ext/e/pgmeminfo) | [`pgmeminfo`](https://github.com/okbob/pgmeminfo) | `1.0.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show memory usage |
@@ -50,16 +51,16 @@ There are **48** extensions in **46** packages.
 | [`powa`](/ext/e/powa) | [`powa`](https://github.com/powa-team/powa-archivist) | `5.3.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang plpgsql" href="/ext/language#plpgsql">PLpgSQL</a> | PostgreSQL Workload Analyser-core |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | [`pg_overexplain`](https://www.postgresql.org/docs/devel/pgoverexplain.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Allow EXPLAIN to dump even more details |
 | [`pg_logicalinspect`](/ext/e/pg_logicalinspect) | [`pg_logicalinspect`](https://www.postgresql.org/docs/devel/pglogicalinspect.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding components inspection |
-| [`pageinspect`](/ext/e/pageinspect) | [`pageinspect`](https://www.postgresql.org/docs/current/pageinspect.html) | `1.12` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | inspect the contents of database pages at a low level |
+| [`pageinspect`](/ext/e/pageinspect) | [`pageinspect`](https://www.postgresql.org/docs/current/pageinspect.html) | `1.13` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | inspect the contents of database pages at a low level |
 | [`pgrowlocks`](/ext/e/pgrowlocks) | [`pgrowlocks`](https://www.postgresql.org/docs/current/pgrowlocks.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show row-level locking information |
 | [`sslinfo`](/ext/e/sslinfo) | [`sslinfo`](https://www.postgresql.org/docs/current/sslinfo.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | information about SSL certificates |
-| [`pg_buffercache`](/ext/e/pg_buffercache) | [`pg_buffercache`](https://www.postgresql.org/docs/current/pgbuffercache.html) | `1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine the shared buffer cache |
+| [`pg_buffercache`](/ext/e/pg_buffercache) | [`pg_buffercache`](https://www.postgresql.org/docs/current/pgbuffercache.html) | `1.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine the shared buffer cache |
 | [`pg_walinspect`](/ext/e/pg_walinspect) | [`pg_walinspect`](https://www.postgresql.org/docs/current/pgwalinspect.html) | `1.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions to inspect contents of PostgreSQL Write-Ahead Log |
-| [`pg_freespacemap`](/ext/e/pg_freespacemap) | [`pg_freespacemap`](https://www.postgresql.org/docs/current/pgfreespacemap.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine the free space map (FSM) |
+| [`pg_freespacemap`](/ext/e/pg_freespacemap) | [`pg_freespacemap`](https://www.postgresql.org/docs/current/pgfreespacemap.html) | `1.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine the free space map (FSM) |
 | [`pg_visibility`](/ext/e/pg_visibility) | [`pg_visibility`](https://www.postgresql.org/docs/current/pgvisibility.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | examine the visibility map (VM) and page-level visibility info |
 | [`pgstattuple`](/ext/e/pgstattuple) | [`pgstattuple`](https://www.postgresql.org/docs/current/pgstattuple.html) | `1.5` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | show tuple-level statistics |
 | [`auto_explain`](/ext/e/auto_explain) | [`auto_explain`](https://www.postgresql.org/docs/current/auto-explain.html) | `-` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Provides a means for logging execution plans of slow statements automatically |
-| [`pg_stat_statements`](/ext/e/pg_stat_statements) | [`pg_stat_statements`](https://www.postgresql.org/docs/current/pgstatstatements.html) | `1.11` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track planning and execution statistics of all SQL statements executed |
+| [`pg_stat_statements`](/ext/e/pg_stat_statements) | [`pg_stat_statements`](https://www.postgresql.org/docs/current/pgstatstatements.html) | `1.12` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | track planning and execution statistics of all SQL statements executed |
 {.ext-table}
 
 
@@ -597,6 +598,25 @@ There are **48** extensions in **46** packages.
 
 ---------
 
+## pg_stat_tcpinfo {#pg_stat_tcpinfo}
+
+[**`pg_stat_tcpinfo`**](/ext/e/pg_stat_tcpinfo) - `1.1` : Linux TCP connection statistics, latency and retransmissions
+
+| **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
+|:---:|:---|:---:|:---:|:---:|
+| **Extension** | [`pg_stat_tcpinfo`](/ext/e/pg_stat_tcpinfo) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_stat_tcpinfo`](https://github.com/jakubwartakEDB/pg_stat_tcpinfo) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **RPM** | `pg_stat_tcpinfo_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **DEB** | `postgresql-$v-pg-stat-tcpinfo` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+{.ext-table .ext-table--cate}
+
+
+---------
+
 ## pg_sqlog {#pg_sqlog}
 
 [**`pg_sqlog`**](/ext/e/pg_sqlog) - `1.7` : Provide SQL interface to logs
@@ -789,7 +809,7 @@ There are **48** extensions in **46** packages.
 
 ## pageinspect {#pageinspect}
 
-[**`pageinspect`**](/ext/e/pageinspect) - `1.12` : inspect the contents of database pages at a low level
+[**`pageinspect`**](/ext/e/pageinspect) - `1.13` : inspect the contents of database pages at a low level
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -846,7 +866,7 @@ There are **48** extensions in **46** packages.
 
 ## pg_buffercache {#pg_buffercache}
 
-[**`pg_buffercache`**](/ext/e/pg_buffercache) - `1.5` : examine the shared buffer cache
+[**`pg_buffercache`**](/ext/e/pg_buffercache) - `1.6` : examine the shared buffer cache
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -884,7 +904,7 @@ There are **48** extensions in **46** packages.
 
 ## pg_freespacemap {#pg_freespacemap}
 
-[**`pg_freespacemap`**](/ext/e/pg_freespacemap) - `1.2` : examine the free space map (FSM)
+[**`pg_freespacemap`**](/ext/e/pg_freespacemap) - `1.3` : examine the free space map (FSM)
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -960,7 +980,7 @@ There are **48** extensions in **46** packages.
 
 ## pg_stat_statements {#pg_stat_statements}
 
-[**`pg_stat_statements`**](/ext/e/pg_stat_statements) - `1.11` : track planning and execution statistics of all SQL statements executed
+[**`pg_stat_statements`**](/ext/e/pg_stat_statements) - `1.12` : track planning and execution statistics of all SQL statements executed
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

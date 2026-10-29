@@ -11,10 +11,10 @@ weight: 2560
     <div class="ext-card__title">Snowflake-Labs/pg_lake</div>
     <div class="ext-card__desc">https://github.com/Snowflake-Labs/pg_lake</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.5.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.5.9.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_lake-3.5.3.tar.gz</div>
-    <div class="ext-card__desc">pg_lake-3.5.3.tar.gz</div>
+    <div class="ext-card__title">pg_lake-3.5.9.tar.gz</div>
+    <div class="ext-card__desc">pg_lake-3.5.9.tar.gz</div>
   </a>
 </div>
 
@@ -45,7 +45,7 @@ weight: 2560
 {.ext-table .ext-table--rel}
 
 
-> pkg 3.5.3; upstream 3.5.7; SQL 3.5; PG16-18; OpenSSL 3/no EL8; preload pg_extension_base; run matching pgduck_server; DuckDB hook/COPY order matters.
+> pkg 3.5.9; SQL 3.5; PG16-18; OpenSSL 3/no EL8; preload pg_extension_base; run matching pgduck_server; DuckDB hook/COPY order matters.
 
 
 ## Version
@@ -53,8 +53,8 @@ weight: 2560
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5` | {{< pgvers "18,17,16" >}} | `pg_lake` | `pg_lake_copy`, `pg_lake_table` |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.3` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.9` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.5.9` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
@@ -62,62 +62,62 @@ weight: 2560
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | AVAIL PIGSTY 3.5.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-@ el9.x86_64 18 pg_lake_18 pg_lake_18-3.5.3-1PGSTY.el9.x86_64.rpm pigsty 3.5.3 20.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_18-3.5.3-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_lake_18 pg_lake_18-3.5.3-1PGSTY.el9.aarch64.rpm pigsty 3.5.3 19.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_18-3.5.3-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_lake_18 pg_lake_18-3.5.3-1PGSTY.el10.x86_64.rpm pigsty 3.5.3 21.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_18-3.5.3-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_lake_18 pg_lake_18-3.5.3-1PGSTY.el10.aarch64.rpm pigsty 3.5.3 19.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_18-3.5.3-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb pigsty 3.5.3 20.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb pigsty 3.5.3 17.8MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb pigsty 3.5.3 21.1MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb pigsty 3.5.3 18.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb pigsty 3.5.3 20.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb pigsty 3.5.3 18.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~noble_amd64.deb pigsty 3.5.3 20.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~noble_arm64.deb pigsty 3.5.3 18.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb pigsty 3.5.3 20.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb pigsty 3.5.3 19.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb
-@ el9.x86_64 17 pg_lake_17 pg_lake_17-3.5.3-1PGSTY.el9.x86_64.rpm pigsty 3.5.3 20.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_17-3.5.3-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_lake_17 pg_lake_17-3.5.3-1PGSTY.el9.aarch64.rpm pigsty 3.5.3 19.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_17-3.5.3-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_lake_17 pg_lake_17-3.5.3-1PGSTY.el10.x86_64.rpm pigsty 3.5.3 21.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_17-3.5.3-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_lake_17 pg_lake_17-3.5.3-1PGSTY.el10.aarch64.rpm pigsty 3.5.3 19.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_17-3.5.3-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb pigsty 3.5.3 20.1MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb pigsty 3.5.3 17.8MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb pigsty 3.5.3 21.1MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb pigsty 3.5.3 18.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb pigsty 3.5.3 20.2MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb pigsty 3.5.3 18.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~noble_amd64.deb pigsty 3.5.3 20.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~noble_arm64.deb pigsty 3.5.3 18.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb pigsty 3.5.3 20.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb pigsty 3.5.3 19.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb
-@ el9.x86_64 16 pg_lake_16 pg_lake_16-3.5.3-1PGSTY.el9.x86_64.rpm pigsty 3.5.3 20.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_16-3.5.3-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_lake_16 pg_lake_16-3.5.3-1PGSTY.el9.aarch64.rpm pigsty 3.5.3 19.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_16-3.5.3-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_lake_16 pg_lake_16-3.5.3-1PGSTY.el10.x86_64.rpm pigsty 3.5.3 21.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_16-3.5.3-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_lake_16 pg_lake_16-3.5.3-1PGSTY.el10.aarch64.rpm pigsty 3.5.3 19.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_16-3.5.3-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb pigsty 3.5.3 20.1MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb pigsty 3.5.3 17.8MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb pigsty 3.5.3 21.1MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb pigsty 3.5.3 18.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb pigsty 3.5.3 20.2MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb pigsty 3.5.3 18.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~noble_amd64.deb pigsty 3.5.3 20.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~noble_arm64.deb pigsty 3.5.3 18.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb pigsty 3.5.3 20.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb pigsty 3.5.3 19.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.3-1PGSTY~resolute_arm64.deb
+| el9.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | AVAIL PIGSTY 3.5.9 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+@ el9.x86_64 18 pg_lake_18 pg_lake_18-3.5.9-1PGSTY.el9.x86_64.rpm pigsty 3.5.9 20.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_18-3.5.9-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_lake_18 pg_lake_18-3.5.9-1PGSTY.el9.aarch64.rpm pigsty 3.5.9 19.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_18-3.5.9-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_lake_18 pg_lake_18-3.5.9-1PGSTY.el10.x86_64.rpm pigsty 3.5.9 21.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_18-3.5.9-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_lake_18 pg_lake_18-3.5.9-1PGSTY.el10.aarch64.rpm pigsty 3.5.9 19.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_18-3.5.9-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb pigsty 3.5.9 20.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb pigsty 3.5.9 17.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb pigsty 3.5.9 21.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb pigsty 3.5.9 18.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb pigsty 3.5.9 20.1MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb pigsty 3.5.9 18.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~noble_amd64.deb pigsty 3.5.9 20.2MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~noble_arm64.deb pigsty 3.5.9 18.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb pigsty 3.5.9 20.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-lake postgresql-18-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb pigsty 3.5.9 19.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-18-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb
+@ el9.x86_64 17 pg_lake_17 pg_lake_17-3.5.9-1PGSTY.el9.x86_64.rpm pigsty 3.5.9 20.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_17-3.5.9-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_lake_17 pg_lake_17-3.5.9-1PGSTY.el9.aarch64.rpm pigsty 3.5.9 19.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_17-3.5.9-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_lake_17 pg_lake_17-3.5.9-1PGSTY.el10.x86_64.rpm pigsty 3.5.9 21.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_17-3.5.9-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_lake_17 pg_lake_17-3.5.9-1PGSTY.el10.aarch64.rpm pigsty 3.5.9 19.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_17-3.5.9-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb pigsty 3.5.9 20.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb pigsty 3.5.9 17.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb pigsty 3.5.9 21.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb pigsty 3.5.9 18.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb pigsty 3.5.9 20.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb pigsty 3.5.9 18.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~noble_amd64.deb pigsty 3.5.9 20.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~noble_arm64.deb pigsty 3.5.9 18.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb pigsty 3.5.9 20.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-lake postgresql-17-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb pigsty 3.5.9 19.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-17-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb
+@ el9.x86_64 16 pg_lake_16 pg_lake_16-3.5.9-1PGSTY.el9.x86_64.rpm pigsty 3.5.9 20.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_lake_16-3.5.9-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_lake_16 pg_lake_16-3.5.9-1PGSTY.el9.aarch64.rpm pigsty 3.5.9 19.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_lake_16-3.5.9-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_lake_16 pg_lake_16-3.5.9-1PGSTY.el10.x86_64.rpm pigsty 3.5.9 21.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_lake_16-3.5.9-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_lake_16 pg_lake_16-3.5.9-1PGSTY.el10.aarch64.rpm pigsty 3.5.9 19.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_lake_16-3.5.9-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb pigsty 3.5.9 20.1MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb pigsty 3.5.9 17.8MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb pigsty 3.5.9 21.1MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb pigsty 3.5.9 18.6MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb pigsty 3.5.9 20.2MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb pigsty 3.5.9 18.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~noble_amd64.deb pigsty 3.5.9 20.1MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~noble_arm64.deb pigsty 3.5.9 18.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb pigsty 3.5.9 20.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-lake postgresql-16-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb pigsty 3.5.9 19.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-lake/postgresql-16-pg-lake_3.5.9-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -185,10 +185,11 @@ Sources:
 - [Official project documentation index](https://github.com/Snowflake-Labs/pg_lake/blob/v3.5.3/docs/README.md)
 - [pg_lake v3.5.3 release](https://github.com/Snowflake-Labs/pg_lake/releases/tag/v3.5.3)
 - [DuckDB secrets manager](https://duckdb.org/docs/stable/configuration/secrets_manager.html)
+- [Upstream v3.5.10 release](https://github.com/Snowflake-Labs/pg_lake/releases/tag/v3.5.10)
 
 `pg_lake` is the top-level extension for Snowflake's PostgreSQL lakehouse stack. It installs the table, Iceberg, copy, query-engine, extension-base, and map components needed to query object-store files and create transactional Iceberg tables. The PostgreSQL extensions orchestrate planning and transactions while a separate local `pgduck_server` process executes vectorized work with DuckDB.
 
-The pg_lake release and package version is `3.5.3`; the SQL extension version is `3.5`. Keep the libraries and query server from the same release.
+The packaged workflow below describes `3.5.3`; the latest reviewed upstream release is `3.5.10`, and the SQL extension version remains `3.5`. Keep the libraries and query server from the same release.
 
 ### Start the Packaged Stack
 
@@ -196,13 +197,13 @@ Version `3.5` supports PostgreSQL 16 through 18. The PIGSTY RPM and DEB packages
 
 Add `pg_extension_base` to `shared_preload_libraries` and restart PostgreSQL:
 
-```conf
+```ini
 shared_preload_libraries = 'pg_extension_base'
 ```
 
 `pgduck_server` listens on `/tmp/.s.PGSQL.5332` with mode `0770` by default. Run it as the PostgreSQL operating-system user so PostgreSQL can access the socket. Do not start it as an unrelated login user with the bare command.
 
-```shell
+```bash
 # Debian/Ubuntu with PostgreSQL 18; use 16 or 17 as appropriate.
 PG_LAKE_SERVER=/usr/lib/postgresql/18/bin/pgduck_server
 # RHEL-compatible systems use /usr/pgsql-18/bin/pgduck_server.
@@ -220,7 +221,7 @@ This command runs in the foreground and must remain running. Use a service super
 
 In another terminal, verify the query engine before creating the extensions:
 
-```shell
+```bash
 sudo -u postgres psql -X \
   "host=/tmp port=5332 dbname=postgres connect_timeout=2" \
   -c 'SELECT version();'
@@ -237,7 +238,7 @@ SELECT lake.version();
 
 Object-store credentials are resolved by `pgduck_server`, not by the PostgreSQL backend. AWS and GCP can use their normal credential chains. For a local S3-compatible endpoint such as MinIO, first create the bucket, connect directly to `pgduck_server`, and create a persistent DuckDB secret:
 
-```shell
+```bash
 sudo -u postgres psql -X -h /tmp -p 5332 -d postgres
 ```
 
@@ -332,3 +333,11 @@ ORDER BY extname;
 ```
 
 The `3.5.3` patch hardens object deletion credential selection and avoids publishing nameless catalog entries. It retains SQL version `3.5`, so SQL version alone cannot prove that the matching patch-level binaries are deployed.
+
+### Upstream 3.5.10 Changes
+
+Release 3.5.10 hardens catalog-provided secret endpoints and file paths, pins background-worker search paths, and adds validation for Iceberg metadata. It supports vended Azure SAS tokens and a custom Horizon TLS CA path through `pg_lake_iceberg.horizon_tls_ca_path`. The query server also handles invalid nested values and oversized results as errors instead of crashing. These are upstream changes; the documented 3.5.3 packages do not establish that these fixes are installed. Deploy matching extension libraries and query-server binaries when upgrading.
+
+### 3.5.10 Changes
+
+Upstream 3.5.10 drops cached vended credentials after catalog vending stops, preserves Iceberg catalog URLs in object storage, and updates Brotli to 1.1.1 for CVE-2026-111497. Deploy matching extension libraries and `pgduck_server`; the SQL version remains 3.5.

@@ -11,10 +11,10 @@ weight: 1980
     <div class="ext-card__title">https://codeberg.org/gregburd/pg_turbovec</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/pg_turbovec</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_turbovec-2.14.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_turbovec-2.15.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_turbovec-2.14.1.tar.gz</div>
-    <div class="ext-card__desc">pg_turbovec-2.14.1.tar.gz</div>
+    <div class="ext-card__title">pg_turbovec-2.15.0.tar.gz</div>
+    <div class="ext-card__desc">pg_turbovec-2.15.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1980
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_turbovec`**](/ext/e/pg_turbovec) | `2.14.1` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_turbovec`**](/ext/e/pg_turbovec) | `2.15.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,117 +38,117 @@ weight: 1980
 {.ext-table .ext-table--rel}
 
 
-> 2.14.1: recycle backends; REINDEX old IVF inserted into after VACUUM, or any index emptied by VACUUM with a writer open; PG19 experimental.
+> Upstream 2.15.0 keeps wire format 8 and SQL surface. It reports empty-built IVF as degraded and fixes its later scan failure, caches query TOAST decoding and IVF rotation matrices. Healthy 2.x indexes need no routine REINDEX; rebuild empty-built IVF after loading to train cells. Earlier 1.x and corruption-repair requirements remain.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.14.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec` | - |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.14.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec_$v` | - |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.14.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-turbovec` | - |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.15.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec` | - |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.15.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_turbovec_$v` | - |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.15.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-turbovec` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| el8.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| el9.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| el9.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| el10.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| el10.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| d12.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| d12.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| d13.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| d13.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u22.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u22.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u24.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u24.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u26.x86_64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-| u26.aarch64 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 | AVAIL PIGSTY 2.14.1 1 |
-@ el8.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el8.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_18-2.14.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el8.aarch64.rpm pigsty 2.14.1 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_18-2.14.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el9.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_18-2.14.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el9.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_18-2.14.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el10.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_18-2.14.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.14.1-1PGSTY.el10.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_18-2.14.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el8.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_17-2.14.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el8.aarch64.rpm pigsty 2.14.1 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_17-2.14.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el9.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_17-2.14.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el9.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_17-2.14.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el10.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_17-2.14.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.14.1-1PGSTY.el10.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_17-2.14.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el8.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_16-2.14.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el8.aarch64.rpm pigsty 2.14.1 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_16-2.14.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el9.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_16-2.14.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el9.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_16-2.14.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el10.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_16-2.14.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.14.1-1PGSTY.el10.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_16-2.14.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el8.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_15-2.14.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el8.aarch64.rpm pigsty 2.14.1 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_15-2.14.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el9.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_15-2.14.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el9.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_15-2.14.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el10.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_15-2.14.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.14.1-1PGSTY.el10.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_15-2.14.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el8.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_14-2.14.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el8.aarch64.rpm pigsty 2.14.1 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_14-2.14.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el9.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_14-2.14.1-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el9.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_14-2.14.1-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el10.x86_64.rpm pigsty 2.14.1 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_14-2.14.1-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.14.1-1PGSTY.el10.aarch64.rpm pigsty 2.14.1 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_14-2.14.1-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb pigsty 2.14.1 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb pigsty 2.14.1 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb pigsty 2.14.1 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb pigsty 2.14.1 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.14.1-1PGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| el8.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| el9.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| el9.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| el10.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| el10.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 | AVAIL PIGSTY 2.15.0 1 |
+@ el8.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el8.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_18-2.15.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el8.aarch64.rpm pigsty 2.15.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_18-2.15.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el9.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_18-2.15.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el9.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_18-2.15.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el10.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_18-2.15.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_turbovec_18 pg_turbovec_18-2.15.0-1PGSTY.el10.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_18-2.15.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-turbovec postgresql-18-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-18-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el8.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_17-2.15.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el8.aarch64.rpm pigsty 2.15.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_17-2.15.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el9.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_17-2.15.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el9.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_17-2.15.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el10.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_17-2.15.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_turbovec_17 pg_turbovec_17-2.15.0-1PGSTY.el10.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_17-2.15.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-turbovec postgresql-17-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-17-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el8.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_16-2.15.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el8.aarch64.rpm pigsty 2.15.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_16-2.15.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el9.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_16-2.15.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el9.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_16-2.15.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el10.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_16-2.15.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_turbovec_16 pg_turbovec_16-2.15.0-1PGSTY.el10.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_16-2.15.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-turbovec postgresql-16-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-16-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el8.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_15-2.15.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el8.aarch64.rpm pigsty 2.15.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_15-2.15.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el9.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_15-2.15.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el9.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_15-2.15.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el10.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_15-2.15.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pg_turbovec_15 pg_turbovec_15-2.15.0-1PGSTY.el10.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_15-2.15.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pg-turbovec postgresql-15-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-15-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el8.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_turbovec_14-2.15.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el8.aarch64.rpm pigsty 2.15.0 1.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_turbovec_14-2.15.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el9.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_turbovec_14-2.15.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el9.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_turbovec_14-2.15.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el10.x86_64.rpm pigsty 2.15.0 2.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_turbovec_14-2.15.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 pg_turbovec_14 pg_turbovec_14-2.15.0-1PGSTY.el10.aarch64.rpm pigsty 2.15.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_turbovec_14-2.15.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb pigsty 2.15.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb pigsty 2.15.0 2.0MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb pigsty 2.15.0 1.9MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-pg-turbovec postgresql-14-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb pigsty 2.15.0 1.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-turbovec/postgresql-14-pg-turbovec_2.15.0-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -209,14 +209,14 @@ CREATE EXTENSION pg_turbovec;
 
 Sources:
 
-- [Threads per query](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/docs/PRODUCTION.md)
-- [v2.14.1 README](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/README.md)
-- [v2.14.1 changelog](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/CHANGELOG.md)
-- [Upgrade matrix](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/docs/UPGRADING.md)
-- [Control file](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/pg_turbovec.control)
-- [Filtering guide](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.14.1/docs/FILTERING.md)
+- [Threads per query](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/docs/PRODUCTION.md)
+- [v2.15.0 README](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/README.md)
+- [v2.15.0 changelog](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/CHANGELOG.md)
+- [Upgrade matrix](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/docs/UPGRADING.md)
+- [Control file](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/pg_turbovec.control)
+- [Filtering guide](https://api.pgxn.org/src/pg_turbovec/pg_turbovec-2.15.0/docs/FILTERING.md)
 
-`pg_turbovec` 2.14.1 provides the `turbovec.vector` type and compact vector indexes with candidate reranking against the original heap vectors. Flat search scans quantized codes; IVF additionally searches selected cells. Both are approximate unless the candidate set contains every true neighbour. **Upgrading any 1.x index to 2.x requires rebuilding it.**
+`pg_turbovec` 2.15.0 provides the `turbovec.vector` type and compact vector indexes with candidate reranking against the original heap vectors. Flat search scans quantized codes; IVF additionally searches selected cells. Both are approximate unless the candidate set contains every true neighbour. **Upgrading any 1.x index to 2.x requires rebuilding it.**
 
 ### Create and Query Vectors
 
@@ -323,3 +323,7 @@ New `turbovec.rerank_multiplier` defaults to 16.0, with a range of 1.0–1024.0.
 Version 2.14.1 fixes stale backend caches after overlapping commits, loss of IVF tombstones during insert flushes, resurrection of rows when VACUUM empties an index while a writer is open, and tombstone handling in degraded IVF scans. Exact scores and format 8 are unchanged. Install matching files, run `ALTER EXTENSION pg_turbovec UPDATE TO '2.14.1'`, and recycle long-lived database connections so their libraries and cached copies are replaced.
 
 Two histories require a one-time REINDEX: an IVF index that received inserts after VACUUM on an earlier release, and any index emptied by VACUUM while a writer transaction remained open. On a quiet table, `VACUUM (INDEX_CLEANUP ON)` followed by `turbovec.turbovec_check(regclass)` can help compare the estimated live index entries with the covered heap rows. Include the non-null vector condition and any partial-index predicate; excess index entries require REINDEX. Other healthy 2.x indexes need no routine rebuild. This does not remove the mandatory 1.x rebuild or repair of existing corruption.
+
+### 2.15.0 Empty IVF and Scan Caches
+
+An IVF index built empty is now reported as degraded, and scanning it after loading rows correctly falls back to a flat scan instead of failing when the rotation dimension is uninitialized. Query vectors stored out of line are decoded once per expression, and IVF rotation matrices are cached. Format 8, scoring and SQL objects remain unchanged. Install matching files, update to 2.15.0 and recycle old-library connections; healthy 2.x indexes need no routine REINDEX. Rebuild an empty-built IVF after loading if trained cells are wanted; adding only the new degraded-report flag to an existing empty build is optional. Earlier 1.x migration and corruption-repair requirements remain.

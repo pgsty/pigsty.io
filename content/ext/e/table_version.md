@@ -205,10 +205,10 @@ weight: 1060
 
 ## Build
 
-You can build the DEB packages for `table_version` using `pig build`:
+You can build the RPM / DEB packages for `table_version` using `pig build`:
 
 ```bash
-pig build pkg table_version         # build DEB packages
+pig build pkg table_version         # build RPM / DEB packages
 ```
 
 

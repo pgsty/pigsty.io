@@ -11,10 +11,10 @@ weight: 3630
     <div class="ext-card__title">ChenHuajun/pg_roaringbitmap</div>
     <div class="ext-card__desc">https://github.com/ChenHuajun/pg_roaringbitmap</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_roaringbitmap-1.2.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_roaringbitmap-1.3.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_roaringbitmap-1.2.0.tar.gz</div>
-    <div class="ext-card__desc">pg_roaringbitmap-1.2.0.tar.gz</div>
+    <div class="ext-card__title">pg_roaringbitmap-1.3.0.tar.gz</div>
+    <div class="ext-card__desc">pg_roaringbitmap-1.3.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 3630
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_roaringbitmap`**](/ext/e/roaringbitmap) | `1.2.0` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_roaringbitmap`**](/ext/e/roaringbitmap) | `1.3.0` | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,12 +39,15 @@ weight: 3630
 {.ext-table .ext-table--rel}
 
 
+> PGDG RPM package 1.3.0 installs SQL/control 1.3; the DEB package baseline remains 1.2.0. Local 1.3.0 recipes do not establish DEB publication.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_roaringbitmap` | - |
-| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_roaringbitmap_$v` | - |
+| [**EXT**](/ext/list#type) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_roaringbitmap` | - |
+| [**RPM**](/ext/rpm#type) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.3.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_roaringbitmap_$v` | - |
 | [**DEB**](/ext/deb#type) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.2.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-roaringbitmap` | - |
 {.ext-table}
 
@@ -365,10 +368,10 @@ weight: 3630
 
 ## Build
 
-You can build the RPM packages for `pg_roaringbitmap` using `pig build`:
+You can build the RPM / DEB packages for `pg_roaringbitmap` using `pig build`:
 
 ```bash
-pig build pkg pg_roaringbitmap         # build RPM packages
+pig build pkg pg_roaringbitmap         # build RPM / DEB packages
 ```
 
 

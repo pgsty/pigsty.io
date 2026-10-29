@@ -194,6 +194,14 @@ weight: 3020
 @ u26.aarch64 14 postgresql-14-pllua postgresql-14-pllua_2.0.12-7.pgdg26.04+1_arm64.deb pgdg 2.0.12 333.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-pllua/postgresql-14-pllua_2.0.12-7.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM packages for `pllua` using `pig build`:
+
+```bash
+pig build pkg pllua         # build RPM packages
+```
+
 
 ## Install
 

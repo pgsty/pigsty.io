@@ -146,10 +146,10 @@ weight: 8540
 
 ## Build
 
-You can build the DEB packages for `pgspider_ext` using `pig build`:
+You can build the RPM / DEB packages for `pgspider_ext` using `pig build`:
 
 ```bash
-pig build pkg pgspider_ext         # build DEB packages
+pig build pkg pgspider_ext         # build RPM / DEB packages
 ```
 
 

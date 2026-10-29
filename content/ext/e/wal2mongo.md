@@ -162,10 +162,10 @@ weight: 9640
 
 ## Build
 
-You can build the DEB packages for `wal2mongo` using `pig build`:
+You can build the RPM / DEB packages for `wal2mongo` using `pig build`:
 
 ```bash
-pig build pkg wal2mongo         # build DEB packages
+pig build pkg wal2mongo         # build RPM / DEB packages
 ```
 
 

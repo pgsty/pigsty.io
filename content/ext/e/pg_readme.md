@@ -204,10 +204,10 @@ weight: 4300
 
 ## Build
 
-You can build the DEB packages for `pg_readme` using `pig build`:
+You can build the RPM / DEB packages for `pg_readme` using `pig build`:
 
 ```bash
-pig build pkg pg_readme         # build DEB packages
+pig build pkg pg_readme         # build RPM / DEB packages
 ```
 
 

@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **133** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **134** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -119,6 +119,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`noset`](/ext/e/noset) | `noset` | Module for blocking SET variables for non-super users. |
 | [`block_copy_command`](/ext/e/block_copy_command) | `block_copy_command` | Block COPY commands via a configurable ProcessUtility hook |
 | [`pg_kpart`](/ext/e/pg_kpart) | `pg_kpart` | Reject full partition scans that omit the partition key |
+| [`pg_agent_gate`](/ext/e/pg_agent_gate) | `pg_agent_gate` | SQL proposal, verification and execution gate with human approval for agent roles. |
 | [`pg_tde`](/ext/e/pg_tde) | `pg_tde` | Percona pg_tde access method |
 | [`pg_vault_tde`](/ext/e/pg_vault_tde) | `pg_vault_tde` | Transparent Data Encryption for PostgreSQL through custom table and index access methods |
 | [`sepgsql`](/ext/e/sepgsql) | `sepgsql` | label-based mandatory access control (MAC) based on SELinux security policy. |

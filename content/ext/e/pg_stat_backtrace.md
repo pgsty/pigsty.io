@@ -153,10 +153,10 @@ weight: 6030
 
 ## Build
 
-You can build the DEB packages for `pg_stat_backtrace` using `pig build`:
+You can build the RPM / DEB packages for `pg_stat_backtrace` using `pig build`:
 
 ```bash
-pig build pkg pg_stat_backtrace         # build DEB packages
+pig build pkg pg_stat_backtrace         # build RPM / DEB packages
 ```
 
 

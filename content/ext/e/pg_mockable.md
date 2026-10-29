@@ -150,10 +150,10 @@ weight: 3120
 
 ## Build
 
-You can build the DEB packages for `pg_mockable` using `pig build`:
+You can build the RPM / DEB packages for `pg_mockable` using `pig build`:
 
 ```bash
-pig build pkg pg_mockable         # build DEB packages
+pig build pkg pg_mockable         # build RPM / DEB packages
 ```
 
 

@@ -222,7 +222,7 @@ Package [`pltcl`](/ext/e/pltcl) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 3240 | [**`pltcl`**](/ext/e/pltcl) | `1.0` | `c-s-dt-` | `pg_catalog` | PL/Tcl procedural language |
-| 3250 | [`pltclu`](/ext/e/pltclu) | `1.0` | `c---d--` | `pg_catalog` | PL/TclU untrusted procedural language |
+| 3250 | [`pltclu`](/ext/e/pltclu) | `1.0` | `c-s-d--` | `pg_catalog` | PL/TclU untrusted procedural language |
 {.ext-table}
 
 ## plperl
@@ -232,9 +232,9 @@ Package [`plperl`](/ext/e/plperl) contains **4** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 3260 | [**`plperl`**](/ext/e/plperl) | `1.0` | `c-s-dt-` | `pg_catalog` | PL/Perl procedural language |
-| 3261 | [`bool_plperl`](/ext/e/bool_plperl) | `1.0` | `c-s-dt-` | - | transform between bool and plperl |
-| 3262 | [`hstore_plperl`](/ext/e/hstore_plperl) | `1.0` | `c-s-d--` | - | transform between hstore and plperl |
-| 3263 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | `1.0` | `c---dt-` | - | transform between jsonb and plperl |
+| 3261 | [`bool_plperl`](/ext/e/bool_plperl) | `1.0` | `c-s-dtr` | - | transform between bool and plperl |
+| 3262 | [`hstore_plperl`](/ext/e/hstore_plperl) | `1.0` | `c-s-d-r` | - | transform between hstore and plperl |
+| 3263 | [`jsonb_plperl`](/ext/e/jsonb_plperl) | `1.0` | `c-s-dtr` | - | transform between jsonb and plperl |
 {.ext-table}
 
 ## plperlu
@@ -244,9 +244,9 @@ Package [`plperlu`](/ext/e/plperlu) contains **4** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 3270 | [**`plperlu`**](/ext/e/plperlu) | `1.0` | `c-s-d--` | `pg_catalog` | PL/PerlU untrusted procedural language |
-| 3271 | [`bool_plperlu`](/ext/e/bool_plperlu) | `1.0` | `c---d--` | - | transform between bool and plperlu |
-| 3272 | [`jsonb_plperlu`](/ext/e/jsonb_plperlu) | `1.0` | `c---d--` | - | transform between jsonb and plperlu |
-| 3273 | [`hstore_plperlu`](/ext/e/hstore_plperlu) | `1.0` | `c---d--` | - | transform between hstore and plperlu |
+| 3271 | [`bool_plperlu`](/ext/e/bool_plperlu) | `1.0` | `c-s-d-r` | - | transform between bool and plperlu |
+| 3272 | [`jsonb_plperlu`](/ext/e/jsonb_plperlu) | `1.0` | `c-s-d-r` | - | transform between jsonb and plperlu |
+| 3273 | [`hstore_plperlu`](/ext/e/hstore_plperlu) | `1.0` | `c-s-d-r` | - | transform between hstore and plperlu |
 {.ext-table}
 
 ## plpython3u
@@ -256,9 +256,9 @@ Package [`plpython3u`](/ext/e/plpython3u) contains **4** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 3290 | [**`plpython3u`**](/ext/e/plpython3u) | `1.0` | `c-s-d--` | `pg_catalog` | PL/Python3U untrusted procedural language |
-| 3291 | [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) | `1.0` | `c---d-r` | - | transform between jsonb and plpython3u |
+| 3291 | [`jsonb_plpython3u`](/ext/e/jsonb_plpython3u) | `1.0` | `c-s-d-r` | - | transform between jsonb and plpython3u |
 | 3292 | [`ltree_plpython3u`](/ext/e/ltree_plpython3u) | `1.0` | `c-s-d-r` | - | transform between ltree and plpython3u |
-| 3293 | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) | `1.0` | `c---d-r` | - | transform between hstore and plpython3u |
+| 3293 | [`hstore_plpython3u`](/ext/e/hstore_plpython3u) | `1.0` | `c-s-d-r` | - | transform between hstore and plpython3u |
 {.ext-table}
 
 ## pg_xenophile
@@ -357,5 +357,5 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
-| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.7` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
+| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.8` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table}

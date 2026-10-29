@@ -150,10 +150,10 @@ weight: 4280
 
 ## Build
 
-You can build the DEB packages for `floatfile` using `pig build`:
+You can build the RPM / DEB packages for `floatfile` using `pig build`:
 
 ```bash
-pig build pkg floatfile         # build DEB packages
+pig build pkg floatfile         # build RPM / DEB packages
 ```
 
 

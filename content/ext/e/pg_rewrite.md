@@ -421,10 +421,10 @@ weight: 5020
 
 ## Build
 
-You can build the RPM packages for `pg_rewrite` using `pig build`:
+You can build the RPM / DEB packages for `pg_rewrite` using `pig build`:
 
 ```bash
-pig build pkg pg_rewrite         # build RPM packages
+pig build pkg pg_rewrite         # build RPM / DEB packages
 ```
 
 

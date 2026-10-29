@@ -173,10 +173,10 @@ weight: 9240
 
 ## Build
 
-You can build the DEB packages for `pg_dbms_metadata` using `pig build`:
+You can build the RPM / DEB packages for `pg_dbms_metadata` using `pig build`:
 
 ```bash
-pig build pkg pg_dbms_metadata         # build DEB packages
+pig build pkg pg_dbms_metadata         # build RPM / DEB packages
 ```
 
 

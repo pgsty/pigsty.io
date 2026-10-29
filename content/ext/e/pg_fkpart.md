@@ -186,10 +186,10 @@ weight: 2500
 
 ## Build
 
-You can build the DEB packages for `pg_fkpart` using `pig build`:
+You can build the RPM / DEB packages for `pg_fkpart` using `pig build`:
 
 ```bash
-pig build pkg pg_fkpart         # build DEB packages
+pig build pkg pg_fkpart         # build RPM / DEB packages
 ```
 
 

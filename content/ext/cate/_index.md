@@ -19,10 +19,10 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 47 | 46 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
 | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 44 | 43 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
 | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 57 | 57 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
-| <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 50 | 48 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
-| <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 48 | 46 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |
-| <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | 41 | 41 | Auditing Logs, Enforce Passwords, Keep Secrets, TDE, SM Algorithm, Login Hooks, Log Errors, Extension White List, ... |
-| <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | 26 | 26 | Wrappers & Multicorn for FDW Development, Access other DBMS: MySQL, Mongo, SQLite, MSSQL, Oracle, HDFS, DB2,... |
+| <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 51 | 49 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
+| <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 49 | 47 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |
+| <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | 42 | 42 | Auditing Logs, Enforce Passwords, Keep Secrets, TDE, SM Algorithm, Login Hooks, Log Errors, Extension White List, ... |
+| <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | 27 | 27 | Wrappers & Multicorn for FDW Development, Access other DBMS: MySQL, Mongo, SQLite, MSSQL, Oracle, HDFS, DB2,... |
 | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | 31 | 20 | Protocol Simulation & heterogeneous DBMS Compatibility: Oracle, MSSQL, DB2, MySQL, Memcached, and Babelfish! |
 | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | 22 | 21 | Logical Replication, Decoding, CDC in protobuf/JSON/Mongo format, Copy & Load & Compare Postgres Databases,... |
 {.ext-table}

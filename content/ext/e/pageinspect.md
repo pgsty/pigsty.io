@@ -20,12 +20,12 @@ weight: 6900
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pageinspect`**](/ext/e/pageinspect) | `1.12` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pageinspect`**](/ext/e/pageinspect) | `1.13` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 6900  | [**`pageinspect`**](/ext/e/pageinspect) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 6900  | [**`pageinspect`**](/ext/e/pageinspect) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
 
 | **Related** | [`pagevis`](/ext/e/pagevis) [`pg_freespacemap`](/ext/e/pg_freespacemap) [`pg_visibility`](/ext/e/pg_visibility) [`pgstattuple`](/ext/e/pgstattuple) [`toastinfo`](/ext/e/toastinfo) [`pg_buffercache`](/ext/e/pg_buffercache) [`pg_orphaned`](/ext/e/pg_orphaned) [`pg_checksums`](/ext/e/pg_checksums) [`pg_catcheck`](/ext/e/pg_catcheck) [`amcheck`](/ext/e/amcheck) |
@@ -33,11 +33,14 @@ weight: 6900
 {.ext-table .ext-table--rel}
 
 
+> SQL/control baseline 1.13 in PostgreSQL 18; older PostgreSQL majors may ship older extension versions.
+
+
 ## Version
 
 | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:------:|:------:|:------:|:------:|:------:|
-| <span class="ext-badge ext-badge--avail">1.12</span> | <span class="ext-badge ext-badge--avail">1.12</span> | <span class="ext-badge ext-badge--avail">1.12</span> | <span class="ext-badge ext-badge--avail">1.12</span> | <span class="ext-badge ext-badge--avail">1.12</span> |
+| <span class="ext-badge ext-badge--avail">1.13</span> | <span class="ext-badge ext-badge--avail">1.13</span> | <span class="ext-badge ext-badge--avail">1.13</span> | <span class="ext-badge ext-badge--avail">1.13</span> | <span class="ext-badge ext-badge--avail">1.13</span> |
 {.ext-table}
 
 

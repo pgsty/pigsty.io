@@ -69,6 +69,14 @@ weight: 3021
 | u26.aarch64 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 | AVAIL PGDG 2.0.12 1 |
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM packages for `pllua` using `pig build`:
+
+```bash
+pig build pkg pllua         # build RPM packages
+```
+
 
 ## Install
 

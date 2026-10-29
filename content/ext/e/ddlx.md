@@ -295,10 +295,10 @@ weight: 5080
 
 ## Build
 
-You can build the DEB packages for `pg_ddlx` using `pig build`:
+You can build the RPM / DEB packages for `pg_ddlx` using `pig build`:
 
 ```bash
-pig build pkg pg_ddlx         # build DEB packages
+pig build pkg pg_ddlx         # build RPM / DEB packages
 ```
 
 

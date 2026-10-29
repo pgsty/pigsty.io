@@ -192,6 +192,14 @@ weight: 3550
 @ u26.aarch64 14 postgresql-14-unit postgresql-14-unit_7.10-2.pgdg26.04+1_arm64.deb pgdg 7.10 157.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-unit/postgresql-14-unit_7.10-2.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
 
+## Build
+
+You can build the RPM / DEB packages for `pgunit` using `pig build`:
+
+```bash
+pig build pkg pgunit         # build RPM / DEB packages
+```
+
 
 ## Install
 
