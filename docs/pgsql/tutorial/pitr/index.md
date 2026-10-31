@@ -1,0 +1,270 @@
+# Manual PITR Drill
+
+> Run, validate, and complete PostgreSQL point-in-time recovery in explicit stages inside an isolated sandbox.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+This tutorial performs a PostgreSQL PITR drill in Pigsty v4.5.0's four-node sandbox.
+It runs [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) in the sequence `down → pitr → up`.
+Separate validation steps precede data overwrite, timeline promotion, and HA reconstruction.
+
+For one current node, use [`pig pitr`](/docs/pig/pitr/).
+For direct pgBackRest control, see the low-level [`pg-pitr` utility](/docs/pgsql/tutorial/pg-fork/#pg-pitr).
+
+> [!CAUTION] Follow this literally only in a disposable sandbox
+> Recovery stops Patroni/PostgreSQL and overwrites the target PGDATA with `pgbackrest --force restore`.
+> The `up` stage deletes the target cluster's etcd prefix and rebuilds Patroni state.
+> The playbook prints a plan but has **no interactive confirmation**.
+> Before production use, the operator must state and confirm the exact cluster and recovery point.
+> Verify a recent usable backup that has been independently tested.
+> Run `--check` with exactly the same `-l`, variables, and tags, and schedule a maintenance window.
+> This tutorial does not authorize these commands in a production environment.
+
+
+--------
+
+## Prepare an Isolated Sandbox
+
+Use [Vagrant](/docs/deploy/vagrant/) or another disposable four-node lab and select the `ha/full` template, which includes a Silo backup repository:
+
+```bash
+curl -fsSL https://repo.pigsty.io/get | bash
+cd ~/pigsty
+./configure -c ha/full
+./deploy.yml
+```
+
+`ha/full` defines a single-node `pg-meta`, a three-node `pg-test`, and a Silo/pgBackRest repository.
+This tutorial uses the exact target `pg-meta`.
+Before you copy that selector to another environment, resolve its inventory.
+
+Initial deployment and backup both change sandbox state. Production environments require their own deployment and backup approval process.
+
+
+--------
+
+## Establish Recovery Evidence
+
+Start with read-only topology, backup-chain, and WAL-range checks:
+
+```bash
+pig pg list pg-meta
+sudo -iu postgres pig pb info
+sudo -iu postgres pig pb check
+```
+
+`info` must show at least one usable backup with `status: ok`.
+Archived WAL must cover the intended target.
+`check` validates the current stanza and archive path.
+It does not replace a real restore drill or validation of an independent copy.
+
+In the sandbox, run Pigsty's heartbeat helper to create an easy-to-verify time series:
+
+```bash
+sudo -iu postgres /pg/bin/pg-heartbeat
+```
+
+Record, then stop the workload:
+
+- the timezone-qualified timestamp you intend to recover to;
+- heartbeat, LSN, and transaction boundaries around that point;
+- current primary, timeline, and backup label;
+- target cluster `pg-meta` and target node.
+
+Inspecting real application tables requires separate authorization. This tutorial uses only sandbox heartbeat data.
+
+
+--------
+
+## Declare the Recovery Task
+
+Declare the target under `pg-meta.vars` in the sandbox inventory:
+
+```yaml
+pg_pitr:
+  cluster: pg-meta
+  time: "2026-08-13 10:00:00+08"
+  action: pause
+  archive: true
+  backup: false
+```
+
+- `cluster` is the source backup stanza and defaults to the target `pg_cluster`.
+- `action: pause` pauses PostgreSQL at the target for a human validation gate.
+- `archive: true` preserves archive settings.
+- `backup: true` is not a safe-backup substitute: it deletes an existing `<pg_data>-backup` before moving current PGDATA, so this drill keeps it `false`.
+
+You can also pass the object temporarily with `-e`.
+Preflight and all three stages must use exactly the same valid JSON to prevent variable differences.
+
+
+--------
+
+## Full Preflight
+
+Before any stop or write action, check the complete workflow against the same target:
+
+```bash
+./pgsql-pitr.yml -l pg-meta --check
+```
+
+Confirm that Ansible resolves exactly `pg-meta`, then review the output for:
+
+- source stanza, recovery type, time, timeline, and action;
+- destination `pg_data`, port, and repository;
+- tablespace/link mappings;
+- `archive` and `backup` behavior.
+
+`--check` validates inventory, variables, and task selection.
+It cannot prove that a pgBackRest backup is restorable.
+If the target, backup, or variables change, repeat preflight.
+
+
+--------
+
+## Stage One: Stop
+
+Only after the operator reconfirms exact target `pg-meta`, recovery point, and maintenance window, run:
+
+```bash
+./pgsql-pitr.yml -l pg-meta -t down
+```
+
+`down` attempts to pause Patroni automatic failover and stops Patroni on every target member.
+If PostgreSQL remains running, it uses immediate shutdown.
+Then verify every target node independently of the playbook result:
+
+```bash
+sudo systemctl is-active patroni
+sudo -iu postgres pg_ctl -D /pg/data status
+```
+
+The expected results are `inactive` and “server is not running.”
+If any member remains active, stop and diagnose the problem.
+Do not start the restore.
+
+
+--------
+
+## Stage Two: Restore and Validate
+
+Recheck `pg_pitr` and the target nodes before running the destructive stage:
+
+```bash
+./pgsql-pitr.yml -l pg-meta -t pitr
+```
+
+This stage:
+
+1. renders `/pg/conf/pitr.conf` and `/pg/bin/pg-restore`;
+2. optionally moves old PGDATA according to `backup`;
+3. creates the destination and runs pgBackRest restore with `--force` and `delta=y`;
+4. starts PostgreSQL directly and waits for a consistent recovery state in the log;
+5. prints a `pg_controldata` summary.
+
+Control data proves only that the directory contains readable control state.
+It does not verify the time, XID, or application boundary.
+With `action: pause`, confirm that WAL replay reached and paused near the target:
+
+```bash
+sudo -iu postgres psql -p 5432 -Atqc \
+  'SELECT pg_is_in_recovery(), pg_is_wal_replay_paused(), pg_last_wal_replay_lsn(), pg_last_xact_replay_timestamp()'
+```
+
+Then inspect only the smallest authorized data scope.
+In the sandbox, check heartbeat rows.
+If the target is wrong:
+
+1. keep every Patroni member stopped;
+2. stop the manually started PostgreSQL;
+3. adjust the target and rerun the complete `--check`;
+4. rerun the `pitr` stage.
+
+Do not run `up` or allow replicas from the old timeline to rejoin.
+
+
+--------
+
+## Promote and Stage Three: Rebuild HA
+
+Promote only after the operator accepts the recovered result and the creation of a new timeline:
+
+```bash
+sudo -iu postgres pg_ctl -D /pg/data promote
+sudo -iu postgres psql -p 5432 -Atqc 'SELECT pg_is_in_recovery()'
+```
+
+The expected result is `f`.
+Promotion changes state, and you cannot undo it without loss.
+
+With every Patroni member still stopped and exact target still `pg-meta`, run:
+
+```bash
+./pgsql-pitr.yml -l pg-meta -t up
+```
+
+For the primary, `up` deletes the `/pg/pg-meta/` prefix from etcd.
+The effective prefix also depends on `pg_namespace` and Citus settings.
+It stops the manually started PostgreSQL and starts Patroni on the primary.
+It then starts replicas one at a time and resumes HA.
+The etcd deletion task tolerates errors.
+Thus, a successful playbook result does not prove that it removed stale DCS state correctly.
+
+
+--------
+
+## Post-Recovery Acceptance
+
+Verify each layer.
+Service startup alone does not complete recovery:
+
+```bash
+pig pg list pg-meta
+sudo -iu postgres psql -Atqc \
+  "SELECT pg_is_in_recovery(), pg_current_wal_lsn(), current_setting('archive_mode')"
+sudo -iu postgres pig pb check
+```
+
+Also confirm:
+
+- exactly the intended member is primary and replicas stream from the new timeline;
+- HAProxy/VIP/DNS and application traffic point only to accepted instances;
+- data and event boundaries around the recovery target are correct;
+- `archive_mode`, `archive_command`, and new-WAL archiving work;
+- monitoring, alerts, and the backup repository contain no stale cluster state.
+
+After the new timeline is stable, create and verify a new full backup under the applicable approval process:
+
+```bash
+sudo -iu postgres pg-backup full
+sudo -iu postgres pig pb info
+```
+
+If recovery used `archive: false`, it wrote `archive-mode=off`.
+Validate recovery and confirm a maintenance window before you reset that override and perform a controlled restart.
+The default `archive: true` does not require this step.
+
+
+--------
+
+## Multi-Node and Cross-Cluster Recovery
+
+- Old-timeline replicas must not rejoin without validation. `up` starts replicas one at a time and waits for clone/recovery; monitor them to completion.
+- In cross-stanza recovery, `pg_pitr.cluster` is the source while `-l` is the destination being overwritten. Record and state both separately.
+- Cross-cluster recovery should normally use `archive: false` so a test destination cannot write WAL into the source stanza. Enable its own archiving only after acceptance and [post-clone stanza cleanup](/docs/pgsql/backup/cluster/#post-clone-cleanup).
+- `link_map`, `data`, `port`, and a temporary `repo` change the actual storage and data targets; include all of them in both `--check` and human review.
+
+
+--------
+
+## Related
+
+- [Complete Restore Operations Reference](/docs/pgsql/backup/restore/)
+- [PITR Concepts and Target Semantics](/docs/concept/pitr/)
+- [Backup Chains and Recovery Window](/docs/pgsql/backup/mechanism/)
+- [Clone and Low-Level `pg-pitr`](/docs/pgsql/tutorial/pg-fork/)
+- [`pig pitr`](/docs/pig/pitr/)
