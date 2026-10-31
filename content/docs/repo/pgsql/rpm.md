@@ -6,17 +6,51 @@ icon: fa-brands fa-redhat
 categories: [Reference]
 ---
 
+## 2026-10-31
 
-------
+| Name                    | Old              | New              | Comment                                                            |
+|:------------------------|:-----------------|:-----------------|:-------------------------------------------------------------------|
+| emaj                    | 5.0.0            | 5.0.1            | PG14-18; fixes emaj_adm privilege escalation and parallel rollback |
+| groonga                 | 16.1.4           | 16.1.5           | EL8/9/10; x86_64/aarch64; includes libs/devel; staged locally      |
+| groonga-tokenizer-mecab | 16.1.4           | 16.1.5           | EL8/9/10; x86_64/aarch64; MeCab tokenizer; staged locally          |
+| pg_anon                 | 3.2.3            | 3.3.2            | PG14-18; pgrx 0.19.3; security update; drop/recreate required      |
+| pg_fts                  | 1.14.3           | 1.15.1           | PG17-18; fixes configured-analyzer chunked reparsing               |
+| pg_improv               | 0.12.1           | 0.12.2           | PG15-18; pgrx 0.19.3; idle sync worker fix                         |
+| pg_integrity_checksums  | 2.0.0            | 2.0.2            | PG14-18; PostgreSQL 19 API compatibility; SQL upgrade is a no-op   |
+| pg_search               | 0.26.3           | 0.26.4           | PG15-18; pgrx 0.19.3; preload required; staged locally             |
+| pgmnemo                 | 0.20.0           | 0.21.0           | PG17-18; preserves corpus tables and sequences in pg_dump          |
+| pgroonga                | 4.1.0-3PGSTY.el9 | 4.1.0-4PGSTY.el9 | PG14-18; EL9 release; EL8/10 rebuilt at 2PGSTY; Groonga 16.1.5     |
+{.wide .expand}
+
+
+
+## 2026-10-29
+
+| Name                   | Old           | New          | Comment                                                |
+|:-----------------------|:--------------|:-------------|:-------------------------------------------------------|
+| credcheck              | 4.7           | 6.0          | PG14-18; EL8 security supplement                       |
+| oai_fdw                | -             | 1.16.0       | PG14-18; OAI-PMH FDW; SQL 1.16                         |
+| pg_agent_gate          | -             | 0.3.0        | PG18; preview; preload required                        |
+| pg_fts                 | 1.14.2        | 1.14.3       | PG17-18                                                |
+| pg_improv              | 0.10.0        | 0.12.1       | PG15-18                                                |
+| pg_integrity_checksums | -             | 2.0.0        | PG14-18; renamed from pg_checksums SQL extension       |
+| pg_stat_tcpinfo        | -             | 1.1          | PG14-18; PGDG primary, Pigsty supplement               |
+| pg_tre                 | 4.5.2         | 4.5.3        | PG17-18                                                |
+| pg_turbovec            | 2.14.1        | 2.15.0       | PG14-18                                                |
+| pgmb                   | 1.0.0-1PIGSTY | 1.0.0-2PGSTY | PG14-18; fix schema creation and pgsql_http dependency |
+{.wide .expand}
+
+
+
 
 ## 2026-10-24
 
 | Name                    | Old              | New              | Comment                                                       |
 |:------------------------|:-----------------|:-----------------|:--------------------------------------------------------------|
-| citus                   | 14.2.0           | 14.3.0           | PG16-18; includes citus_columnar                             |
+| citus                   | 14.2.0           | 14.3.0           | PG16-18; includes citus_columnar                              |
 | codesystem              | -                | 0.2.1            | PG14-18; SQL version 0.2.0                                    |
 | documentdb              | 0.117            | 1.0              | PG16-18; drops PG15; includes core/extended_rum               |
-| duckdb_fdw              | 1.4.3            | 2.0.2            | PG15-18; DuckDB 2.0.0; conflicts with pg_duckdb              |
+| duckdb_fdw              | 1.4.3            | 2.0.2            | PG15-18; DuckDB 2.0.0; conflicts with pg_duckdb               |
 | encsearch               | -                | 0.1.1            | PG17; encrypted search                                        |
 | groonga                 | 16.1.3           | 16.1.4           | EL9, both architectures; includes libs/devel                  |
 | groonga-tokenizer-mecab | 16.1.3           | 16.1.4           | EL9, both architectures; MeCab tokenizer                      |
@@ -32,7 +66,7 @@ categories: [Reference]
 | pg_kv                   | -                | 0.1.0            | PG15-18; non-persistent shared-memory KV                      |
 | pg_lease                | -                | 0.1.0            | PG14-18; SQL-only                                             |
 | pg_mentat               | 1.14.0           | 1.18.0           | PG14-18; fixes trusted-install search path                    |
-| pg_nanotime             | -                | 0.2.0            | PG17-18; nanosecond timestamps; preview                      |
+| pg_nanotime             | -                | 0.2.0            | PG17-18; nanosecond timestamps; preview                       |
 | pg_regresql             | 2.0.0            | 2.1.0            | PG14-18; SQL version 2.0                                      |
 | pg_relusage             | 1.0.1            | 1.0.2            | PG14-18; loading required                                     |
 | pg_search               | 0.26.1           | 0.26.3           | PG15-18; pgrx 0.19.3; preload required                        |
@@ -51,9 +85,10 @@ categories: [Reference]
 | textsearch_intl         | 1.0.0            | 1.0.1            | PG14-18; SQL version 1.0; DEB remains 1.0.0                   |
 | timescaledb             | 2.30.2           | 2.31.0           | PG16-18; TSL                                                  |
 | valkey                  | 9.1.1            | 9.1.2            | Includes development package                                  |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-10-15
 
@@ -77,9 +112,10 @@ categories: [Reference]
 | plpgsql_check           | 2.10.14          | 2.10.15              | PG14-18; SQL version 2.10; imported locally                                        |
 | spock                   | 5.0.12           | 5.0.13               | Updated with pgEdge 15-18; preload required                                        |
 | textsearch_intl         | -                | 1.0.0                | PG14-18; EL8/9/10 x86_64/aarch64; unreleased snapshot; imported locally            |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-10-11
 
@@ -104,9 +140,10 @@ categories: [Reference]
 | plpgsql_check           | 2.10.11         | 2.10.14         | PG14-18; SQL version 2.10; imported locally                             |
 | rdkit                   | 202609.1-1PGSTY | 202609.1-2PGSTY | PG14-18; EL9/10; remove downstream upgrade patch; built, import pending |
 | timescaledb             | 2.30.2          | 2.30.2          | PG16-18; TSL; same-version rebuild; import pending                      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-10-06
 
@@ -186,9 +223,10 @@ categories: [Reference]
 | supautils              | 3.4.3               | 3.4.4        | PG14-18                                                                                                           |
 | timescaledb            | 2.30.1              | 2.30.2       | PG16-18; TSL; PG14 stays on 2.19.3 and PG15 on 2.28.3                                                             |
 | vgram                  | -                   | 1.0          | PG14-18                                                                                                           |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-09-24
 
@@ -226,9 +264,10 @@ categories: [Reference]
 | ulak                 | 0.0.2  | 0.2.0   | PG14-18; preload                       |
 | vectorize            | 0.26.2 | 0.27.1  | PG14-18; SQL 0.23.0; multi-row fix     |
 | wrappers             | 0.6.2  | 0.6.3   | PG14-18                                |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-08-14
 
@@ -250,9 +289,10 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 | pre_prepare       | 0.9   | 0.9    | License metadata: `PostgreSQL`; r2; PG14-18                              |
 | smlar             | 1.0   | 1.0    | License metadata: `LicenseRef-Upstream-No-License`; r2; PG14-18          |
 | unit              | 7.10  | 7.10   | License metadata: `GPL-3.0-or-later`; r7; PG14-18                        |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-08-12
 
@@ -286,9 +326,10 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 | timescaledb    | 2.29.0            | 2.29.1           | PG16-18                                                     |
 | vector         | 0.8.6             | 0.8.6            | PGDG repository refresh; PG14-18                            |
 | zlog           | 1.2.18-1PIGSTY    | 1.2.18-2PGSTY    | Rebuild                                                     |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-07-30
 
@@ -316,9 +357,10 @@ This batch added `pg_relation_sql` and upgraded `pg_oidc_validator` and `pg_when
 | timescaledb      | 2.28.3     | 2.29.0     | PG16-18                                                           |
 | uri              | 1.20251029 | 1.20251029 | Renamed to `pguri`; Provides/Obsoletes `pg_uri`; r2               |
 | vector           | 0.8.5      | 0.8.6      | PG14-18; 0.8.6 not indexed                                        |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-07-24
 
@@ -488,9 +530,10 @@ This batch records extension changes from 2026-07-07 through 2026-07-24. It incl
 | sqlite_fdw              | 2.5.0    | 2.5.0    | RPM r3: +PG18, EL8 SQLite; PG14-18                    |
 | sslutils                | 1.4      | 1.4      | EL8 RPM PG18, 2 arch                                  |
 | wal2mongo               | 1.0.7    | 1.0.7    | +RPM PG14-18; PG17-18 compatible                      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-07-07
 
@@ -512,9 +555,10 @@ This batch records extension changes from 2026-07-07 through 2026-07-24. It incl
 | cloudberry        | 2.1.0-2    | 2.1.0-3    | /usr/cloudberry     |
 | cloudberry-backup | 2.1.0-2    | 2.1.0-3    | /usr/cloudberry/bin |
 | cloudberry-pxf    | 2.1.0-2    | 2.1.0-3    | /usr/cloudberry-pxf |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-07-01
 
@@ -529,9 +573,10 @@ This batch records extension changes from 2026-07-07 through 2026-07-24. It incl
 | biscuit       | 2.3.0    | 2.4.1   | PG 16-18                              |
 | pgmnemo       | 0.8.3    | 0.12.1  | PG 14-18                              |
 | rdf_fdw       | 2.5.0    | 2.6.0   | PG 14-18, libcurl compatibility patch |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-06-18
 
@@ -568,9 +613,10 @@ Updated Rust extension pgrx version to 0.18.1.
 | pg_stat_backtrace   | -          | 1.0.0      | new, PG 14-18, libunwind              |
 | db2fce              | -          | 0.0.17     | new, PG 14-18                         |
 | pgvector            | 0.8.2      | 0.8.3      | PG 14-18                              |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-06-12
 
@@ -604,9 +650,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_task        | -       | 2.1.29  | new, PG 14-18, pcre2grep fix     |
 | pg_extra_time  | -       | 2.1.0   | new, PG 14-18                    |
 | fsm_core       | -       | 1.1.0   | new, PG 15-18                    |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-05-15
 
@@ -619,9 +666,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | storage_engine | 1.3.4   | 2.3.0   | PGXN 2.x bump, PG 15-18                        |
 | pg_clickhouse  | 0.2.0   | 0.3.0   | PGXN bump, ClickHouse query integration        |
 | provsql        | 1.2.3   | 1.4.0   | PGXN bump, provenance and uncertainty engine   |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-05-01
 
@@ -639,9 +687,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | spock            | 5.0.5   | 5.0.6   | rebuilt for PG 18                                           |
 | lolor            | 1.2.2   | 1.2.2   | rebuilt for PG 18                                           |
 | snowflake        | 2.4     | 2.4     | rebuilt for PG 18                                           |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-04-25
 
@@ -659,9 +708,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | parray_gin     | 1.4.0   | 1.5.0   | bump, PG 14-18                |
 | rdf_fdw        | 2.4.0   | 2.5.0   | bump, PG 14-18                |
 | pg_accumulator | -       | 1.1.3   | new, PG 14-18                 |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-04-19
 
@@ -683,9 +733,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pgproto           | 0.2.4   | 0.3.3   |                                                   |
 | pgxicor           | 0.1.0   | 0.1.1   |                                                   |
 | timescaledb       | 2.26.2  | 2.26.3  |                                                   |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-04-14
 
@@ -745,10 +796,11 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_incremental     | 1.4.1   | 1.5.0    | bump                                 |
 | pg_failover_slots  | 1.2.0   | 1.2.1    | bump                                 |
 | plv8               | 3.2.4   | 3.2.4-2  | fix el10 build                       |
-| PolarDB | 15.15 | 17.9.1.0 | PG 15 -> 17 |
-{.stretch-last}
+| PolarDB            | 15.15   | 17.9.1.0 | PG 15 -> 17                          |
+{.wide .expand}
 
-------
+
+
 
 ## 2026-04-10
 
@@ -777,9 +829,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | rdf_fdw        | -       | 2.4.0   | new, PG14-18             |
 | parray_gin     | -       | 1.4.0   | new, PG14-18             |
 | pg_store_plans | 1.9     | 1.10    | upgraded, PG14-18        |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-03-21
 
@@ -793,9 +846,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_clickhouse      | 0.1.4   | 0.1.5     |          |
 | pdu                |         | 3.0.25.12 | new      |
 | pgdog              |         | 0.1.32    | new      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-03-05
 
@@ -808,9 +862,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_pinyin        | -       | 0.0.2   | new extension                        |
 | pg_eviltransform | -       | 0.0.2   | new extension                        |
 | pg_qos           | -       | 1.0.0   | new extension, QoS resource governor |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-02-27
 
@@ -832,9 +887,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | babelfishpg       | -        | 5.5.0    | new BabelfishPG package group        |
 | babelfish         | -        | 5.5.0    | new Babelfish compatibility package  |
 | antlr4-runtime413 | -        | 4.13     | new runtime dependency for Babelfish |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-02-12
 
@@ -869,9 +925,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_strict          | -            | 1.0.2        | new Rust extension               |
 | pg_track_optimizer | -            | 0.9.1        | new extension                    |
 | pgmb               | -            | 1.0.0        | new extension                    |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-01-25
 
@@ -882,9 +939,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | pg_clickhouse | 0.1.2          | 0.1.3          |                                   |
 | pgmq          | 1.8.1          | 1.9.0          |                                   |
 | pg_search     | 0.21.2         | 0.21.4         |                                   |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2026-01-16
 
@@ -910,10 +968,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | documentdb_extended_rum |         | 0.109   | new                            |
 | mobilitydb_datagen      |         | 1.3.0   | new                            |
 | rum                     |         | 1.3.15  | +pg18, new                     |
-{.stretch-last}
+{.wide .expand}
 
 
-------
+
 
 ## 2025-12-25
 
@@ -924,9 +982,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | `vchord_bm25`   | `0.2.2`  | `0.3.0`  |      |
 | `pg_semver`     | `0.40.0` | `0.41.0` |      |
 | `pg_timeseries` | `0.1.7`  | `0.1.8`  |      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-12-16
 
@@ -948,10 +1007,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | `wrappers`                                                      | `0.5.6`   | `0.5.7`   |                      |
 | `pg_vectorize`                                                  | `0.25.0`  | `0.26.0`  |                      |
 | `synchdb`                                                       | -         | `1.3`     | EL9 only             |
-{.stretch-last}
+{.wide .expand}
 
 
-------
+
 
 ## 2025-11-20
 
@@ -975,10 +1034,10 @@ Added most Ubuntu 26.04 Resolute core extension packages.
 | `pg_stat_monitor`        | `2.2.0`  | `2.3.0`  | fix PGDG pg18 missing issue |
 | `documentdb`             | `0.106`  | `0.107`  | ferretdb fork               |
 | `polardb`                |          | `15.15`  | 15.15.5.0-38948055          |
-{.stretch-last}
+{.wide .expand}
 
 
-------
+
 
 ## 2025-11-10
 
@@ -1140,9 +1199,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `unit`                  | `7.10`       |              | +pg18   |
 | `zhparser`              | `2.3`        |              | +pg18   |
 | `zstd`                  | `1.1.2`      |              | +pg18   |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-09-04
 
@@ -1173,10 +1233,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `pgextwlist`  | `1.17`    | `1.19`    | + pg18                 |
 | `wal2json`    |           | `1.6`     | + pg18                 |
 | `pgvector`    |           | `0.8.1`   | + pg18                 |
-{.stretch-last}
+{.wide .expand}
 
 
-------
+
 
 ## 2025-07-24
 
@@ -1192,9 +1252,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `wrappers`              | `0.5.0`      | `0.5.3`      | (pgrx 0.14.3) pgrx change     |
 | `pgvectorscale`         | `0.7.1`      | `0.8.0`      | (pgrx 0.12.9)                 |
 | `pg_search`             | `0.15.8`     | `0.17.0`     | fix el icu dep, download      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-06-24
 
@@ -1205,9 +1266,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `vchord`      | `0.3.0`   | [`0.4.3`](https://github.com/tensorchord/VectorChord/releases/tag/0.4.3) |                    |
 | `pgactive`    | -         | `2.1.5`                                                                  | requires pgfeutils |
 | `documentdb`  | `0.103.0` | `0.104.0`                                                                | add arm support    |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-05-26
 
@@ -1220,9 +1282,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `pg_render`    | -          | [`0.1.2`](https://github.com/mkaski/pg_render)            |      |
 | `pgx_ulid`     | -          | [`0.2.0`](https://github.com/pksunkara/pgx_ulid)          |      |
 | `orioledb`     | `1.4.0b10` | [`1.4.0b11`](https://github.com/orioledb/orioledb)        |      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-05-22
 
@@ -1237,9 +1300,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `pg_tzf`       | -       | [`0.2.2`](https://github.com/ringsaturn/pg-tzf/releases/tag/v0.2.2)                      |      |
 | `pg_vectorize` | -       | [`0.22.2`](https://github.com/ChuckHend/pg_vectorize/releases/tag/v0.22.2)               |      |
 | `wrappers`     | -       | [`0.5.0`](https://github.com/supabase/wrappers/releases/tag/v0.5.0)                      |      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-05-07
 
@@ -1265,9 +1329,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `timescaledb_toolkit` | -       | [`1.21.0`](https://github.com/timescale/timescaledb-toolkit/releases/tag/1.21.0)                   |      |
 | `pgvectorscale`       | -       | [`0.7.1`](https://github.com/timescale/pgvectorscale/releases/tag/0.7.1)                           |      |
 | `pg_session_jwt`      | -       | [`0.3.1`](https://github.com/neondatabase/pg_session_jwt/releases/tag/v0.3.1)                      |      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2025-03-20
 
@@ -1296,9 +1361,10 @@ Added PostgreSQL 18 support for almost all extensions.
 | `pg_random`         | -       | -        |      |
 | `pg_stat_monitor`   | `2.1.0` | `2.1.1`  |      |
 | `pg_profile`        | `4.7`   | `4.8`    |      |
-{.stretch-last}
+{.wide .expand}
 
-------
+
+
 
 ## 2024-10-16
 
@@ -1320,4 +1386,4 @@ Added PostgreSQL 18 support for almost all extensions.
 | `pg_orphaned`     | -       | `latest`  |              |
 | `pgnodemx`        | -       | `1.7`     |              |
 | `sslutils`        | -       | `1.4`     | +pg16, +pg17 |
-{.stretch-last}
+{.wide .expand}

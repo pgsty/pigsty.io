@@ -38,27 +38,27 @@ weight: 5020
 {.ext-table .ext-table--rel}
 
 
-> Pigsty RPM and DEB package version 2.2; shared_preload_libraries=pg_rewrite and wal_level=logical are required.
+> PGDG 2.2 covers EL8-10; all supported coordinates are now PGDG. Build capability retained; preload and wal_level=logical required.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_rewrite` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_rewrite_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-rewrite` | - |
+| [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_rewrite` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `pg_rewrite_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.2` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-rewrite` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 2.2 3 | AVAIL PIGSTY 2.2 3 | AVAIL PIGSTY 2.2 4 | AVAIL PIGSTY 2.2 4 | AVAIL PIGSTY 2.2 4 |
-| el8.aarch64 | AVAIL PIGSTY 2.2 3 | AVAIL PIGSTY 2.2 3 | AVAIL PIGSTY 2.2 4 | AVAIL PIGSTY 2.2 4 | AVAIL PIGSTY 2.2 4 |
-| el9.x86_64 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 |
-| el9.aarch64 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 |
-| el10.x86_64 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 |
-| el10.aarch64 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 5 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 | AVAIL PIGSTY 2.2 6 |
+| el8.x86_64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 5 | AVAIL PGDG 2.2 5 | AVAIL PGDG 2.2 5 |
+| el8.aarch64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 5 | AVAIL PGDG 2.2 5 | AVAIL PGDG 2.2 5 |
+| el9.x86_64 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 |
+| el9.aarch64 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 |
+| el10.x86_64 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 |
+| el10.aarch64 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 6 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 | AVAIL PGDG 2.2 7 |
 | d12.x86_64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
 | d12.aarch64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
 | d13.x86_64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
@@ -69,27 +69,33 @@ weight: 5020
 | u24.aarch64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
 | u26.x86_64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
 | u26.aarch64 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 | AVAIL PGDG 2.2 4 |
+@ el8.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel8.10.x86_64.rpm pgdg 2.2 39.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_rewrite_18-2.2-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el8.x86_64.rpm pigsty 2.2 39.7KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rewrite_18-2.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 38.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.0.0-1PGDG.rhel8.x86_64.rpm pgdg 2.0.0 37.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/pg_rewrite_18-2.0.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel8.10.aarch64.rpm pgdg 2.2 36.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_rewrite_18-2.2-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el8.aarch64.rpm pigsty 2.2 37.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rewrite_18-2.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 36.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.0.0-1PGDG.rhel8.aarch64.rpm pgdg 2.0.0 35.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/pg_rewrite_18-2.0.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel9.8.x86_64.rpm pgdg 2.2 39.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_rewrite_18-2.2-4PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el9.x86_64.rpm pigsty 2.2 39.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rewrite_18-2.2-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 38.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 2.1.0 38.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 2.1.0 38.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.0.0-1PGDG.rhel9.x86_64.rpm pgdg 2.0.0 38.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/pg_rewrite_18-2.0.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel9.8.aarch64.rpm pgdg 2.2 38.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_rewrite_18-2.2-4PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el9.aarch64.rpm pigsty 2.2 38.1KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rewrite_18-2.2-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1.0 37.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 2.1.0 37.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 2.1.0 37.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.0.0-1PGDG.rhel9.aarch64.rpm pgdg 2.0.0 36.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/pg_rewrite_18-2.0.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_rewrite_18-2.2-4PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el10.x86_64.rpm pigsty 2.2 40.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rewrite_18-2.2-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1.0 39.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 2.1.0 39.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 2.1.0 39.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_rewrite_18-2.1.0-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 18 pg_rewrite_18 pg_rewrite_18-2.0.0-1PGDG.rhel10.x86_64.rpm pgdg 2.0.0 39.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_rewrite_18-2.0.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-4PGDG.rhel10.2.aarch64.rpm pgdg 2.2 38.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_rewrite_18-2.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.2-1PIGSTY.el10.aarch64.rpm pigsty 2.2 38.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rewrite_18-2.2-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_rewrite_18 pg_rewrite_18-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_rewrite_18-2.1.0-1PGDG.rhel10.1.aarch64.rpm
@@ -135,27 +141,33 @@ weight: 5020
 @ u26.aarch64 18 postgresql-18-pg-rewrite postgresql-18-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb pigsty 2.2 74.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-rewrite/postgresql-18-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb
 @ u26.aarch64 18 postgresql-18-pg-rewrite postgresql-18-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb pgdg 2.2 71.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-18-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-pg-rewrite postgresql-18-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 71.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-18-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel8.10.x86_64.rpm pgdg 2.2 38.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_rewrite_17-2.2-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el8.x86_64.rpm pigsty 2.2 39.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rewrite_17-2.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 37.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.0.0-1PGDG.rhel8.x86_64.rpm pgdg 2.0.0 37.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pg_rewrite_17-2.0.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel8.10.aarch64.rpm pgdg 2.2 36.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_rewrite_17-2.2-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el8.aarch64.rpm pigsty 2.2 37.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rewrite_17-2.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 35.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.0.0-1PGDG.rhel8.aarch64.rpm pgdg 2.0.0 35.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/pg_rewrite_17-2.0.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel9.8.x86_64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_rewrite_17-2.2-4PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el9.x86_64.rpm pigsty 2.2 39.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rewrite_17-2.2-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 38.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 2.1.0 38.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 2.1.0 38.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.0.0-1PGDG.rhel9.x86_64.rpm pgdg 2.0.0 37.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/pg_rewrite_17-2.0.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel9.8.aarch64.rpm pgdg 2.2 37.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_rewrite_17-2.2-4PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el9.aarch64.rpm pigsty 2.2 37.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rewrite_17-2.2-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1.0 36.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 2.1.0 36.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 2.1.0 37.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.0.0-1PGDG.rhel9.aarch64.rpm pgdg 2.0.0 36.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/pg_rewrite_17-2.0.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_rewrite_17-2.2-4PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el10.x86_64.rpm pigsty 2.2 40.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rewrite_17-2.2-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1.0 39.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 2.1.0 39.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 2.1.0 39.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_rewrite_17-2.1.0-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 17 pg_rewrite_17 pg_rewrite_17-2.0.0-1PGDG.rhel10.x86_64.rpm pgdg 2.0.0 38.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_rewrite_17-2.0.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-4PGDG.rhel10.2.aarch64.rpm pgdg 2.2 38.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_rewrite_17-2.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.2-1PIGSTY.el10.aarch64.rpm pigsty 2.2 38.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rewrite_17-2.2-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_rewrite_17 pg_rewrite_17-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_rewrite_17-2.1.0-1PGDG.rhel10.1.aarch64.rpm
@@ -201,32 +213,38 @@ weight: 5020
 @ u26.aarch64 17 postgresql-17-pg-rewrite postgresql-17-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb pigsty 2.2 74.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-rewrite/postgresql-17-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb
 @ u26.aarch64 17 postgresql-17-pg-rewrite postgresql-17-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb pgdg 2.2 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-17-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-pg-rewrite postgresql-17-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 70.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-17-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel8.10.x86_64.rpm pgdg 2.2 38.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_rewrite_16-2.2-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el8.x86_64.rpm pigsty 2.2 39.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rewrite_16-2.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 37.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.0.0-1PGDG.rhel8.x86_64.rpm pgdg 2.0.0 37.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_rewrite_16-2.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 pg_rewrite_16 pg_rewrite_16-1.1.0-1PGDG.rhel8.x86_64.rpm pgdg 1.1.0 36.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/pg_rewrite_16-1.1.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel8.10.aarch64.rpm pgdg 2.2 36.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_rewrite_16-2.2-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el8.aarch64.rpm pigsty 2.2 37.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rewrite_16-2.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 35.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.0.0-1PGDG.rhel8.aarch64.rpm pgdg 2.0.0 35.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_rewrite_16-2.0.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 pg_rewrite_16 pg_rewrite_16-1.1.0-1PGDG.rhel8.aarch64.rpm pgdg 1.1.0 34.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/pg_rewrite_16-1.1.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel9.8.x86_64.rpm pgdg 2.2 39.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-2.2-4PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el9.x86_64.rpm pigsty 2.2 39.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rewrite_16-2.2-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 38.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 2.1.0 38.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 2.1.0 38.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.0.0-1PGDG.rhel9.x86_64.rpm pgdg 2.0.0 37.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-2.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 pg_rewrite_16 pg_rewrite_16-1.1.0-1PGDG.rhel9.x86_64.rpm pgdg 1.1.0 36.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/pg_rewrite_16-1.1.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel9.8.aarch64.rpm pgdg 2.2 37.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-2.2-4PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el9.aarch64.rpm pigsty 2.2 37.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rewrite_16-2.2-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1.0 37.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 2.1.0 36.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 2.1.0 37.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.0.0-1PGDG.rhel9.aarch64.rpm pgdg 2.0.0 36.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-2.0.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 pg_rewrite_16 pg_rewrite_16-1.1.0-1PGDG.rhel9.aarch64.rpm pgdg 1.1.0 34.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_rewrite_16-1.1.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-2.2-4PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el10.x86_64.rpm pigsty 2.2 40.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rewrite_16-2.2-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1.0 39.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 2.1.0 39.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 2.1.0 39.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-2.1.0-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-2.0.0-1PGDG.rhel10.x86_64.rpm pgdg 2.0.0 38.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-2.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 pg_rewrite_16 pg_rewrite_16-1.1.0-1PGDG.rhel10.x86_64.rpm pgdg 1.1.0 37.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_rewrite_16-1.1.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-4PGDG.rhel10.2.aarch64.rpm pgdg 2.2 38.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_rewrite_16-2.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.2-1PIGSTY.el10.aarch64.rpm pigsty 2.2 38.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rewrite_16-2.2-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 37.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_rewrite_16 pg_rewrite_16-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_rewrite_16-2.1.0-1PGDG.rhel10.1.aarch64.rpm
@@ -273,32 +291,38 @@ weight: 5020
 @ u26.aarch64 16 postgresql-16-pg-rewrite postgresql-16-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb pigsty 2.2 74.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-rewrite/postgresql-16-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb
 @ u26.aarch64 16 postgresql-16-pg-rewrite postgresql-16-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb pgdg 2.2 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-16-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-pg-rewrite postgresql-16-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 70.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-16-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel8.10.x86_64.rpm pgdg 2.2 38.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_rewrite_15-2.2-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el8.x86_64.rpm pigsty 2.2 39.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rewrite_15-2.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 38.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.0.0-1PGDG.rhel8.x86_64.rpm pgdg 2.0.0 37.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_rewrite_15-2.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 pg_rewrite_15 pg_rewrite_15-1.1.0-1PGDG.rhel8.x86_64.rpm pgdg 1.1.0 36.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/pg_rewrite_15-1.1.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel8.10.aarch64.rpm pgdg 2.2 36.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_rewrite_15-2.2-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el8.aarch64.rpm pigsty 2.2 37.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rewrite_15-2.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 35.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.0.0-1PGDG.rhel8.aarch64.rpm pgdg 2.0.0 35.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_rewrite_15-2.0.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 pg_rewrite_15 pg_rewrite_15-1.1.0-1PGDG.rhel8.aarch64.rpm pgdg 1.1.0 34.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/pg_rewrite_15-1.1.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel9.8.x86_64.rpm pgdg 2.2 39.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-2.2-4PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el9.x86_64.rpm pigsty 2.2 39.5KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rewrite_15-2.2-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 38.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 2.1.0 38.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 2.1.0 38.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.0.0-1PGDG.rhel9.x86_64.rpm pgdg 2.0.0 38.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-2.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 pg_rewrite_15 pg_rewrite_15-1.1.0-1PGDG.rhel9.x86_64.rpm pgdg 1.1.0 36.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/pg_rewrite_15-1.1.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel9.8.aarch64.rpm pgdg 2.2 37.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-2.2-4PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el9.aarch64.rpm pigsty 2.2 37.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rewrite_15-2.2-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1.0 36.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 2.1.0 36.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 2.1.0 37.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.0.0-1PGDG.rhel9.aarch64.rpm pgdg 2.0.0 36.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-2.0.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 pg_rewrite_15 pg_rewrite_15-1.1.0-1PGDG.rhel9.aarch64.rpm pgdg 1.1.0 34.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_rewrite_15-1.1.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel10.2.x86_64.rpm pgdg 2.2 39.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-2.2-4PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el10.x86_64.rpm pigsty 2.2 39.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rewrite_15-2.2-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1.0 38.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 2.1.0 38.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 2.1.0 39.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-2.1.0-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-2.0.0-1PGDG.rhel10.x86_64.rpm pgdg 2.0.0 38.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-2.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 pg_rewrite_15 pg_rewrite_15-1.1.0-1PGDG.rhel10.x86_64.rpm pgdg 1.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_rewrite_15-1.1.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-4PGDG.rhel10.2.aarch64.rpm pgdg 2.2 38.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_rewrite_15-2.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.2-1PIGSTY.el10.aarch64.rpm pigsty 2.2 38.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rewrite_15-2.2-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 37.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pg_rewrite_15 pg_rewrite_15-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 37.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_rewrite_15-2.1.0-1PGDG.rhel10.1.aarch64.rpm
@@ -345,32 +369,38 @@ weight: 5020
 @ u26.aarch64 15 postgresql-15-pg-rewrite postgresql-15-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb pigsty 2.2 73.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-rewrite/postgresql-15-pg-rewrite_2.2-2PIGSTY~resolute_arm64.deb
 @ u26.aarch64 15 postgresql-15-pg-rewrite postgresql-15-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb pgdg 2.2 70.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-15-pg-rewrite_2.2-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-pg-rewrite postgresql-15-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 70.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-rewrite/postgresql-15-pg-rewrite_2.1.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel8.10.x86_64.rpm pgdg 2.2 38.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_rewrite_14-2.2-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el8.x86_64.rpm pigsty 2.2 39.6KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_rewrite_14-2.2-1PIGSTY.el8.x86_64.rpm
 @ el8.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel8.10.x86_64.rpm pgdg 2.1.0 38.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.0.0-1PGDG.rhel8.x86_64.rpm pgdg 2.0.0 37.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_rewrite_14-2.0.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 pg_rewrite_14 pg_rewrite_14-1.1.0-1PGDG.rhel8.x86_64.rpm pgdg 1.1.0 36.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/pg_rewrite_14-1.1.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel8.10.aarch64.rpm pgdg 2.2 36.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_rewrite_14-2.2-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el8.aarch64.rpm pigsty 2.2 37.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_rewrite_14-2.2-1PIGSTY.el8.aarch64.rpm
 @ el8.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel8.10.aarch64.rpm pgdg 2.1.0 35.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.0.0-1PGDG.rhel8.aarch64.rpm pgdg 2.0.0 35.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_rewrite_14-2.0.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 pg_rewrite_14 pg_rewrite_14-1.1.0-1PGDG.rhel8.aarch64.rpm pgdg 1.1.0 34.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/pg_rewrite_14-1.1.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel9.8.x86_64.rpm pgdg 2.2 39.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-2.2-4PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el9.x86_64.rpm pigsty 2.2 39.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_rewrite_14-2.2-1PIGSTY.el9.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.8.x86_64.rpm pgdg 2.1.0 38.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.7.x86_64.rpm pgdg 2.1.0 38.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.6.x86_64.rpm pgdg 2.1.0 38.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel9.6.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.0.0-1PGDG.rhel9.x86_64.rpm pgdg 2.0.0 38.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-2.0.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 pg_rewrite_14 pg_rewrite_14-1.1.0-1PGDG.rhel9.x86_64.rpm pgdg 1.1.0 36.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/pg_rewrite_14-1.1.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel9.8.aarch64.rpm pgdg 2.2 38.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-2.2-4PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el9.aarch64.rpm pigsty 2.2 38.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_rewrite_14-2.2-1PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.8.aarch64.rpm pgdg 2.1.0 37.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.7.aarch64.rpm pgdg 2.1.0 37.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel9.6.aarch64.rpm pgdg 2.1.0 37.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel9.6.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.0.0-1PGDG.rhel9.aarch64.rpm pgdg 2.0.0 36.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-2.0.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 pg_rewrite_14 pg_rewrite_14-1.1.0-1PGDG.rhel9.aarch64.rpm pgdg 1.1.0 35.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_rewrite_14-1.1.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel10.2.x86_64.rpm pgdg 2.2 40.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-2.2-4PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el10.x86_64.rpm pigsty 2.2 40.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_rewrite_14-2.2-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel10.2.x86_64.rpm pgdg 2.1.0 39.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel10.1.x86_64.rpm pgdg 2.1.0 39.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel10.1.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel10.0.x86_64.rpm pgdg 2.1.0 39.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-2.1.0-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-2.0.0-1PGDG.rhel10.x86_64.rpm pgdg 2.0.0 39.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-2.0.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_rewrite_14 pg_rewrite_14-1.1.0-1PGDG.rhel10.x86_64.rpm pgdg 1.1.0 37.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_rewrite_14-1.1.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-4PGDG.rhel10.2.aarch64.rpm pgdg 2.2 38.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_rewrite_14-2.2-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.2-1PIGSTY.el10.aarch64.rpm pigsty 2.2 38.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_rewrite_14-2.2-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel10.2.aarch64.rpm pgdg 2.1.0 37.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_rewrite_14 pg_rewrite_14-2.1.0-1PGDG.rhel10.1.aarch64.rpm pgdg 2.1.0 37.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_rewrite_14-2.1.0-1PGDG.rhel10.1.aarch64.rpm
@@ -430,10 +460,10 @@ pig build pkg pg_rewrite         # build RPM / DEB packages
 
 ## Install
 
-You can install `pg_rewrite` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
+You can install `pg_rewrite` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
 
 ```bash
-pig repo add pgsql -u          # Add repo and update cache
+pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
@@ -480,14 +510,15 @@ shared_preload_libraries = 'pg_rewrite';
 CREATE EXTENSION pg_rewrite;
 ```
 
-
-
-
 ## Usage
 
-> [pg_rewrite: Tool allows read write to the table during the rewriting](https://github.com/cybertec-postgresql/pg_rewrite)
+Sources:
 
-`pg_rewrite` requires `wal_level = logical` and must be added to `shared_preload_libraries`. Common use cases include changing column data types, partitioning tables, reordering columns, and moving tables to different tablespaces -- all while allowing concurrent reads and writes.
+- [Official README](https://github.com/cybertec-postgresql/pg_rewrite)
+- [Release history](https://github.com/cybertec-postgresql/pg_rewrite/releases)
+- [Extension control file](https://github.com/cybertec-postgresql/pg_rewrite/blob/master/pg_rewrite.control)
+
+`pg_rewrite` 2.2 requires `wal_level = logical` and must be added to `shared_preload_libraries`. It rewrites a table while allowing concurrent reads and writes, which is useful for changing column data types, partitioning tables, reordering columns, and moving tables to different tablespaces.
 
 ### Rewrite a Table
 

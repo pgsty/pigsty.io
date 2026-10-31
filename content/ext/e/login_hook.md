@@ -38,6 +38,9 @@ weight: 7360
 {.ext-table .ext-table--rel}
 
 
+> PGDG 1.8 on EL8-10 x86_64/aarch64 for PG14-17; PG18/D/U remain PIGSTY 1.7.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
@@ -50,12 +53,12 @@ weight: 7360
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 3 |
-| el8.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 3 |
-| el9.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 4 | AVAIL PGDG 1.7 4 | AVAIL PGDG 1.7 4 |
-| el9.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 3 | AVAIL PGDG 1.7 4 | AVAIL PGDG 1.7 4 | AVAIL PGDG 1.7 4 |
-| el10.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 |
-| el10.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 | AVAIL PGDG 1.7 2 |
+| el8.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 4 |
+| el8.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 4 |
+| el9.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 5 | AVAIL PGDG 1.8 5 | AVAIL PGDG 1.8 5 |
+| el9.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 4 | AVAIL PGDG 1.8 5 | AVAIL PGDG 1.8 5 | AVAIL PGDG 1.8 5 |
+| el10.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 |
+| el10.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 | AVAIL PGDG 1.8 3 |
 | d12.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 | AVAIL PIGSTY 1.7 1 |
@@ -82,18 +85,24 @@ weight: 7360
 @ u24.aarch64 18 postgresql-18-login-hook postgresql-18-login-hook_1.7-2PIGSTY~noble_arm64.deb pigsty 1.7 28.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/login-hook/postgresql-18-login-hook_1.7-2PIGSTY~noble_arm64.deb
 @ u26.x86_64 18 postgresql-18-login-hook postgresql-18-login-hook_1.7-2PIGSTY~resolute_amd64.deb pigsty 1.7 27.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-18-login-hook_1.7-2PIGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-login-hook postgresql-18-login-hook_1.7-2PIGSTY~resolute_arm64.deb pigsty 1.7 27.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-18-login-hook_1.7-2PIGSTY~resolute_arm64.deb
+@ el8.x86_64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel8.10.x86_64.rpm pgdg 1.8 19.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/login_hook_17-1.8-3PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel8.x86_64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/login_hook_17-1.7-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 17 login_hook_17 login_hook_17-1.6-1PGDG.rhel8.x86_64.rpm pgdg 1.6 17.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/login_hook_17-1.6-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel8.10.aarch64.rpm pgdg 1.8 19.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/login_hook_17-1.8-3PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel8.aarch64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/login_hook_17-1.7-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 17 login_hook_17 login_hook_17-1.6-1PGDG.rhel8.aarch64.rpm pgdg 1.6 17.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/login_hook_17-1.6-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel9.8.x86_64.rpm pgdg 1.8 19.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/login_hook_17-1.8-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 login_hook_17 login_hook_17-1.7-3PGDG.rhel9.8.x86_64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/login_hook_17-1.7-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.7 18.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/login_hook_17-1.7-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 17 login_hook_17 login_hook_17-1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.6 17.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/login_hook_17-1.6-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel9.8.aarch64.rpm pgdg 1.8 19.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/login_hook_17-1.8-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 login_hook_17 login_hook_17-1.7-3PGDG.rhel9.8.aarch64.rpm pgdg 1.7 18.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/login_hook_17-1.7-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/login_hook_17-1.7-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 17 login_hook_17 login_hook_17-1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.6 17.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/login_hook_17-1.6-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel10.2.x86_64.rpm pgdg 1.8 19.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/login_hook_17-1.8-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 login_hook_17 login_hook_17-1.7-3PGDG.rhel10.2.x86_64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/login_hook_17-1.7-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.7 18.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/login_hook_17-1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 login_hook_17 login_hook_17-1.8-3PGDG.rhel10.2.aarch64.rpm pgdg 1.8 19.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/login_hook_17-1.8-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 login_hook_17 login_hook_17-1.7-3PGDG.rhel10.2.aarch64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/login_hook_17-1.7-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 login_hook_17 login_hook_17-1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.7 18.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/login_hook_17-1.7-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-login-hook postgresql-17-login-hook_1.7-2PIGSTY~bookworm_amd64.deb pigsty 1.7 27.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/login-hook/postgresql-17-login-hook_1.7-2PIGSTY~bookworm_amd64.deb
@@ -106,22 +115,28 @@ weight: 7360
 @ u24.aarch64 17 postgresql-17-login-hook postgresql-17-login-hook_1.7-2PIGSTY~noble_arm64.deb pigsty 1.7 28.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/login-hook/postgresql-17-login-hook_1.7-2PIGSTY~noble_arm64.deb
 @ u26.x86_64 17 postgresql-17-login-hook postgresql-17-login-hook_1.7-2PIGSTY~resolute_amd64.deb pigsty 1.7 27.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-17-login-hook_1.7-2PIGSTY~resolute_amd64.deb
 @ u26.aarch64 17 postgresql-17-login-hook postgresql-17-login-hook_1.7-2PIGSTY~resolute_arm64.deb pigsty 1.7 27.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-17-login-hook_1.7-2PIGSTY~resolute_arm64.deb
+@ el8.x86_64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel8.10.x86_64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/login_hook_16-1.8-3PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel8.x86_64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/login_hook_16-1.7-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 login_hook_16 login_hook_16-1.6-1PGDG.rhel8.x86_64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/login_hook_16-1.6-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 login_hook_16 login_hook_16-1.5-1PGDG.rhel8.x86_64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/login_hook_16-1.5-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel8.10.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/login_hook_16-1.8-3PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel8.aarch64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/login_hook_16-1.7-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 login_hook_16 login_hook_16-1.6-1PGDG.rhel8.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/login_hook_16-1.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 login_hook_16 login_hook_16-1.5-1PGDG.rhel8.aarch64.rpm pgdg 1.5 16.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/login_hook_16-1.5-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel9.8.x86_64.rpm pgdg 1.8 19.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/login_hook_16-1.8-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 login_hook_16 login_hook_16-1.7-3PGDG.rhel9.8.x86_64.rpm pgdg 1.7 18.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/login_hook_16-1.7-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/login_hook_16-1.7-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 login_hook_16 login_hook_16-1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.6 17.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/login_hook_16-1.6-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 login_hook_16 login_hook_16-1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/login_hook_16-1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel9.8.aarch64.rpm pgdg 1.8 18.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/login_hook_16-1.8-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 login_hook_16 login_hook_16-1.7-3PGDG.rhel9.8.aarch64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/login_hook_16-1.7-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/login_hook_16-1.7-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 login_hook_16 login_hook_16-1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/login_hook_16-1.6-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 login_hook_16 login_hook_16-1.5-1PGDG.rhel9.aarch64.rpm pgdg 1.5 16.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/login_hook_16-1.5-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel10.2.x86_64.rpm pgdg 1.8 19.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/login_hook_16-1.8-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 login_hook_16 login_hook_16-1.7-3PGDG.rhel10.2.x86_64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/login_hook_16-1.7-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/login_hook_16-1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 login_hook_16 login_hook_16-1.8-3PGDG.rhel10.2.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/login_hook_16-1.8-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 login_hook_16 login_hook_16-1.7-3PGDG.rhel10.2.aarch64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/login_hook_16-1.7-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 login_hook_16 login_hook_16-1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/login_hook_16-1.7-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-login-hook postgresql-16-login-hook_1.7-2PIGSTY~bookworm_amd64.deb pigsty 1.7 27.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/login-hook/postgresql-16-login-hook_1.7-2PIGSTY~bookworm_amd64.deb
@@ -134,22 +149,28 @@ weight: 7360
 @ u24.aarch64 16 postgresql-16-login-hook postgresql-16-login-hook_1.7-2PIGSTY~noble_arm64.deb pigsty 1.7 28.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/login-hook/postgresql-16-login-hook_1.7-2PIGSTY~noble_arm64.deb
 @ u26.x86_64 16 postgresql-16-login-hook postgresql-16-login-hook_1.7-2PIGSTY~resolute_amd64.deb pigsty 1.7 27.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-16-login-hook_1.7-2PIGSTY~resolute_amd64.deb
 @ u26.aarch64 16 postgresql-16-login-hook postgresql-16-login-hook_1.7-2PIGSTY~resolute_arm64.deb pigsty 1.7 26.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-16-login-hook_1.7-2PIGSTY~resolute_arm64.deb
+@ el8.x86_64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel8.10.x86_64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/login_hook_15-1.8-3PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel8.x86_64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/login_hook_15-1.7-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 login_hook_15 login_hook_15-1.6-1PGDG.rhel8.x86_64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/login_hook_15-1.6-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 login_hook_15 login_hook_15-1.5-1PGDG.rhel8.x86_64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/login_hook_15-1.5-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel8.10.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/login_hook_15-1.8-3PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel8.aarch64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/login_hook_15-1.7-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 login_hook_15 login_hook_15-1.6-1PGDG.rhel8.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/login_hook_15-1.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 login_hook_15 login_hook_15-1.5-1PGDG.rhel8.aarch64.rpm pgdg 1.5 16.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/login_hook_15-1.5-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel9.8.x86_64.rpm pgdg 1.8 19.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/login_hook_15-1.8-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 login_hook_15 login_hook_15-1.7-3PGDG.rhel9.8.x86_64.rpm pgdg 1.7 18.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/login_hook_15-1.7-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/login_hook_15-1.7-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 login_hook_15 login_hook_15-1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.6 17.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/login_hook_15-1.6-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 login_hook_15 login_hook_15-1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/login_hook_15-1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel9.8.aarch64.rpm pgdg 1.8 18.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/login_hook_15-1.8-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 login_hook_15 login_hook_15-1.7-3PGDG.rhel9.8.aarch64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/login_hook_15-1.7-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/login_hook_15-1.7-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 login_hook_15 login_hook_15-1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/login_hook_15-1.6-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 login_hook_15 login_hook_15-1.5-1PGDG.rhel9.aarch64.rpm pgdg 1.5 16.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/login_hook_15-1.5-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel10.2.x86_64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/login_hook_15-1.8-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 login_hook_15 login_hook_15-1.7-3PGDG.rhel10.2.x86_64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/login_hook_15-1.7-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/login_hook_15-1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 login_hook_15 login_hook_15-1.8-3PGDG.rhel10.2.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/login_hook_15-1.8-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 login_hook_15 login_hook_15-1.7-3PGDG.rhel10.2.aarch64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/login_hook_15-1.7-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 login_hook_15 login_hook_15-1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/login_hook_15-1.7-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-login-hook postgresql-15-login-hook_1.7-2PIGSTY~bookworm_amd64.deb pigsty 1.7 27.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/login-hook/postgresql-15-login-hook_1.7-2PIGSTY~bookworm_amd64.deb
@@ -162,22 +183,28 @@ weight: 7360
 @ u24.aarch64 15 postgresql-15-login-hook postgresql-15-login-hook_1.7-2PIGSTY~noble_arm64.deb pigsty 1.7 28.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/l/login-hook/postgresql-15-login-hook_1.7-2PIGSTY~noble_arm64.deb
 @ u26.x86_64 15 postgresql-15-login-hook postgresql-15-login-hook_1.7-2PIGSTY~resolute_amd64.deb pigsty 1.7 27.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-15-login-hook_1.7-2PIGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-login-hook postgresql-15-login-hook_1.7-2PIGSTY~resolute_arm64.deb pigsty 1.7 26.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/l/login-hook/postgresql-15-login-hook_1.7-2PIGSTY~resolute_arm64.deb
+@ el8.x86_64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel8.10.x86_64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/login_hook_14-1.8-3PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel8.x86_64.rpm pgdg 1.7 18.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/login_hook_14-1.7-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 login_hook_14 login_hook_14-1.6-1PGDG.rhel8.x86_64.rpm pgdg 1.6 17.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/login_hook_14-1.6-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 login_hook_14 login_hook_14-1.5-1PGDG.rhel8.x86_64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/login_hook_14-1.5-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel8.10.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/login_hook_14-1.8-3PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel8.aarch64.rpm pgdg 1.7 17.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/login_hook_14-1.7-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 login_hook_14 login_hook_14-1.6-1PGDG.rhel8.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/login_hook_14-1.6-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 login_hook_14 login_hook_14-1.5-1PGDG.rhel8.aarch64.rpm pgdg 1.5 16.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/login_hook_14-1.5-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel9.8.x86_64.rpm pgdg 1.8 19.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/login_hook_14-1.8-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 login_hook_14 login_hook_14-1.7-3PGDG.rhel9.8.x86_64.rpm pgdg 1.7 18.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/login_hook_14-1.7-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel9.x86_64.rpm pgdg 1.7 18.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/login_hook_14-1.7-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 login_hook_14 login_hook_14-1.6-1PGDG.rhel9.x86_64.rpm pgdg 1.6 17.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/login_hook_14-1.6-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 login_hook_14 login_hook_14-1.5-1PGDG.rhel9.x86_64.rpm pgdg 1.5 16.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/login_hook_14-1.5-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel9.8.aarch64.rpm pgdg 1.8 18.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/login_hook_14-1.8-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 login_hook_14 login_hook_14-1.7-3PGDG.rhel9.8.aarch64.rpm pgdg 1.7 18.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/login_hook_14-1.7-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel9.aarch64.rpm pgdg 1.7 18.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/login_hook_14-1.7-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 login_hook_14 login_hook_14-1.6-1PGDG.rhel9.aarch64.rpm pgdg 1.6 17.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/login_hook_14-1.6-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 login_hook_14 login_hook_14-1.5-1PGDG.rhel9.aarch64.rpm pgdg 1.5 16.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/login_hook_14-1.5-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel10.2.x86_64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/login_hook_14-1.8-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 login_hook_14 login_hook_14-1.7-3PGDG.rhel10.2.x86_64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/login_hook_14-1.7-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel10.x86_64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/login_hook_14-1.7-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 login_hook_14 login_hook_14-1.8-3PGDG.rhel10.2.aarch64.rpm pgdg 1.8 19.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/login_hook_14-1.8-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 login_hook_14 login_hook_14-1.7-3PGDG.rhel10.2.aarch64.rpm pgdg 1.7 18.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/login_hook_14-1.7-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 login_hook_14 login_hook_14-1.7-1PGDG.rhel10.aarch64.rpm pgdg 1.7 18.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/login_hook_14-1.7-1PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-login-hook postgresql-14-login-hook_1.7-2PIGSTY~bookworm_amd64.deb pigsty 1.7 27.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/l/login-hook/postgresql-14-login-hook_1.7-2PIGSTY~bookworm_amd64.deb
@@ -246,14 +273,15 @@ apt install -y postgresql-14-login-hook   # PG 14
 CREATE EXTENSION login_hook;
 ```
 
-
-
-
 ## Usage
 
-> [login_hook: Execute code on user login, comparable to Oracle's after logon trigger](https://github.com/splendiddata/login_hook)
+Sources:
 
-`login_hook` allows executing custom PL/pgSQL code whenever a user logs into the database.
+- [Official README](https://github.com/splendiddata/login_hook)
+- [1.7 to 1.8 migration SQL](https://github.com/splendiddata/login_hook/blob/master/login_hook--1.7--1.8.sql)
+- [Extension control file](https://github.com/splendiddata/login_hook/blob/master/login_hook.control)
+
+`login_hook` 1.8 allows executing custom PL/pgSQL code whenever a user logs into the database. For PostgreSQL 17 and later, prefer the native login event trigger where it meets the requirement.
 
 ```sql
 CREATE EXTENSION login_hook;

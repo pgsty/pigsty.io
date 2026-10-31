@@ -6,15 +6,10 @@ weight: 1506
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://git.osgeo.org/gitea/postgis/postgis">
+  <a class="ext-card ext-card--repo" href="https://github.com/postgis/address_standardizer">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">https://git.osgeo.org/gitea/postgis/postgis</div>
-    <div class="ext-card__desc">https://git.osgeo.org/gitea/postgis/postgis</div>
-  </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh">
-    <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh</div>
-    <div class="ext-card__desc">postgis-3.6.4.tar.gz postgis-3.6.4-en.pdf postgis36-filter-requires-perl-Pg.sh</div>
+    <div class="ext-card__title">postgis/address_standardizer</div>
+    <div class="ext-card__desc">https://github.com/postgis/address_standardizer</div>
   </a>
 </div>
 
@@ -25,16 +20,11 @@ weight: 1506
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`postgis`**](/ext/e/postgis) | `3.6.4` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
+| [**`address_standardizer`**](/ext/e/address_standardizer) | `3.7` | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | <a class="ext-badge ext-badge--license gpl20" href="/ext/license#gpl20">GPL-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1500  | [**`postgis`**](/ext/e/postgis) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
-| 1501  | [**`postgis_topology`**](/ext/e/postgis_topology) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `topology` |
-| 1502  | [**`postgis_raster`**](/ext/e/postgis_raster) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
-| 1503  | [**`postgis_sfcgal`**](/ext/e/postgis_sfcgal) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
-| 1504  | [**`postgis_tiger_geocoder`**](/ext/e/postgis_tiger_geocoder) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | `tiger` |
 | 1505  | [**`address_standardizer`**](/ext/e/address_standardizer) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 | 1506  | [**`address_standardizer_data_us`**](/ext/e/address_standardizer_data_us) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table}
@@ -44,48 +34,43 @@ weight: 1506
 {.ext-table .ext-table--rel}
 
 
+> Standalone with address_standardizer since PostGIS 3.7; control 3.7/package 3.7.0; no local recipe.
+
+
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.6.4` | {{< pgvers "18,17,16,15,14" >}} | `postgis` | - |
-| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.6.4` | {{< pgvers "18,17,16,15,14" >}} | `postgis36_$v` | - |
-| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.6.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-postgis-3` | - |
+| [**EXT**](/ext/list#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.7` | {{< pgvers "18,17,16,15,14" >}} | `address_standardizer` | - |
+| [**RPM**](/ext/rpm#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.7.0` | {{< pgvers "18,17,16,15,14" >}} | `address_standardizer_$v` | - |
+| [**DEB**](/ext/deb#gis) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `3.7.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-address-standardizer` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 | AVAIL PGDG 3.6.4 7 |
-| el8.aarch64 | AVAIL PGDG 3.6.4 8 | AVAIL PGDG 3.6.4 8 | AVAIL PGDG 3.6.4 8 | AVAIL PGDG 3.6.4 8 | AVAIL PGDG 3.6.4 8 |
-| el9.x86_64 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 |
-| el9.aarch64 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 | AVAIL PGDG 3.6.4 14 |
-| el10.x86_64 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 |
-| el10.aarch64 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 | AVAIL PGDG 3.6.4 13 |
-| d12.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| d12.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| d13.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| d13.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u22.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u22.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u24.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u24.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u26.x86_64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
-| u26.aarch64 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 | AVAIL PGDG 3.6.4 3 |
+| el8.x86_64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
+| el8.aarch64 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 | MISS PGDG - 0 |
+| el9.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| el9.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| el10.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| el10.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| d12.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| d12.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| d13.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| d13.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u22.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u22.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u24.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u24.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u26.x86_64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
+| u26.aarch64 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 | AVAIL PGDG 3.7.0 1 |
 {{< /pgext_matrix >}}
-
-## Build
-
-You can build the RPM / DEB packages for `postgis` using `pig build`:
-
-```bash
-pig build pkg postgis         # build RPM / DEB packages
-```
 
 
 ## Install
 
-You can install `postgis` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
+You can install `address_standardizer` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
 
 ```bash
 pig repo add pgdg -u          # Add PGDG repo and update cache
@@ -94,31 +79,31 @@ pig repo add pgdg -u          # Add PGDG repo and update cache
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:
 
 ```bash {tab="Install" group="extension-install" value="install"}
-pig install postgis;          # Install for current active PG version
+pig install address_standardizer;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
-pig ext install -y postgis -v 18  # PG 18
-pig ext install -y postgis -v 17  # PG 17
-pig ext install -y postgis -v 16  # PG 16
-pig ext install -y postgis -v 15  # PG 15
-pig ext install -y postgis -v 14  # PG 14
+pig ext install -y address_standardizer -v 18  # PG 18
+pig ext install -y address_standardizer -v 17  # PG 17
+pig ext install -y address_standardizer -v 16  # PG 16
+pig ext install -y address_standardizer -v 15  # PG 15
+pig ext install -y address_standardizer -v 14  # PG 14
 ```
 
 ```bash {tab="dnf" value="dnf"}
-dnf install -y postgis36_18       # PG 18
-dnf install -y postgis36_17       # PG 17
-dnf install -y postgis36_16       # PG 16
-dnf install -y postgis36_15       # PG 15
-dnf install -y postgis36_14       # PG 14
+dnf install -y address_standardizer_18       # PG 18
+dnf install -y address_standardizer_17       # PG 17
+dnf install -y address_standardizer_16       # PG 16
+dnf install -y address_standardizer_15       # PG 15
+dnf install -y address_standardizer_14       # PG 14
 ```
 
 ```bash {tab="apt" value="apt"}
-apt install -y postgresql-18-postgis-3   # PG 18
-apt install -y postgresql-17-postgis-3   # PG 17
-apt install -y postgresql-16-postgis-3   # PG 16
-apt install -y postgresql-15-postgis-3   # PG 15
-apt install -y postgresql-14-postgis-3   # PG 14
+apt install -y postgresql-18-address-standardizer   # PG 18
+apt install -y postgresql-17-address-standardizer   # PG 17
+apt install -y postgresql-16-address-standardizer   # PG 16
+apt install -y postgresql-15-address-standardizer   # PG 15
+apt install -y postgresql-14-address-standardizer   # PG 14
 ```
 
 

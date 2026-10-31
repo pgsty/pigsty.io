@@ -38,7 +38,7 @@ weight: 4080
 {.ext-table .ext-table--rel}
 
 
-> Package/source version 0.20.5 ships SQL/control version 0.20.4. PIGSTY 0.20.5 covers EL10 RPM and D12/D13/U24/U26 DEB for PostgreSQL 14-18; older PIGSTY platform cells remain on 0.9.2. shared_preload_libraries=pg_net is required.
+> pkg 0.20.5, SQL 0.20.4; PGDG EL10 RPM and PIGSTY D12/D13/U24/U26 DEB updated. Older PIGSTY cells remain 0.9.2; preload required.
 
 
 ## Version
@@ -57,8 +57,8 @@ weight: 4080
 | el8.aarch64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 |
 | el9.x86_64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 |
 | el9.aarch64 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 1 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 | AVAIL PIGSTY 0.9.2 3 |
-| el10.x86_64 | AVAIL PIGSTY 0.20.5 7 | AVAIL PIGSTY 0.20.5 15 | AVAIL PIGSTY 0.20.5 15 | AVAIL PIGSTY 0.20.5 15 | AVAIL PIGSTY 0.20.5 15 |
-| el10.aarch64 | AVAIL PIGSTY 0.20.5 6 | AVAIL PIGSTY 0.20.5 14 | AVAIL PIGSTY 0.20.5 14 | AVAIL PIGSTY 0.20.5 14 | AVAIL PIGSTY 0.20.5 14 |
+| el10.x86_64 | AVAIL PGDG 0.20.5 8 | AVAIL PGDG 0.20.5 16 | AVAIL PGDG 0.20.5 16 | AVAIL PGDG 0.20.5 16 | AVAIL PGDG 0.20.5 16 |
+| el10.aarch64 | AVAIL PGDG 0.20.5 7 | AVAIL PGDG 0.20.5 15 | AVAIL PGDG 0.20.5 15 | AVAIL PGDG 0.20.5 15 | AVAIL PGDG 0.20.5 15 |
 | d12.x86_64 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 |
 | d12.aarch64 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 |
 | d13.x86_64 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 | AVAIL PIGSTY 0.20.5 1 |
@@ -73,6 +73,7 @@ weight: 4080
 @ el8.aarch64 18 pg_net_18 pg_net_18-0.9.2-2PIGSTY.el8.aarch64.rpm pigsty 0.9.2 26.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_net_18-0.9.2-2PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_net_18 pg_net_18-0.9.2-2PIGSTY.el9.x86_64.rpm pigsty 0.9.2 26.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_net_18-0.9.2-2PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 18 pg_net_18 pg_net_18-0.9.2-2PIGSTY.el9.aarch64.rpm pigsty 0.9.2 26.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_net_18-0.9.2-2PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_net_18 pg_net_18-0.20.5-3PGDG.rhel10.2.x86_64.rpm pgdg 0.20.5 34.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.20.5-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.20.5-1PIGSTY.el10.x86_64.rpm pigsty 0.20.5 40.6KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_net_18-0.20.5-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.20.4-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.4 34.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.20.4-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.20.3-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.3 34.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.20.3-1PGDG.rhel10.2.x86_64.rpm
@@ -80,6 +81,7 @@ weight: 4080
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.20.3-1PGDG.rhel10.0.x86_64.rpm pgdg 0.20.3 34.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.20.3-1PGDG.rhel10.0.x86_64.rpm
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.20.0-1PGDG.rhel10.x86_64.rpm pgdg 0.20.0 33.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.20.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 18 pg_net_18 pg_net_18-0.19.7-1PGDG.rhel10.x86_64.rpm pgdg 0.19.7 33.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_net_18-0.19.7-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 pg_net_18 pg_net_18-0.20.5-3PGDG.rhel10.2.aarch64.rpm pgdg 0.20.5 34.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_net_18-0.20.5-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_net_18 pg_net_18-0.20.5-1PIGSTY.el10.aarch64.rpm pigsty 0.20.5 40.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_18-0.20.5-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 18 pg_net_18 pg_net_18-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 34.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_net_18-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 pg_net_18 pg_net_18-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 33.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_net_18-0.20.3-1PGDG.rhel10.1.aarch64.rpm
@@ -100,6 +102,7 @@ weight: 4080
 @ el8.aarch64 17 pg_net_17 pg_net_17-0.9.2-2PIGSTY.el8.aarch64.rpm pigsty 0.9.2 26.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_net_17-0.9.2-2PIGSTY.el8.aarch64.rpm
 @ el9.x86_64 17 pg_net_17 pg_net_17-0.9.2-2PIGSTY.el9.x86_64.rpm pigsty 0.9.2 26.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_net_17-0.9.2-2PIGSTY.el9.x86_64.rpm
 @ el9.aarch64 17 pg_net_17 pg_net_17-0.9.2-2PIGSTY.el9.aarch64.rpm pigsty 0.9.2 26.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_net_17-0.9.2-2PIGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_net_17 pg_net_17-0.20.5-3PGDG.rhel10.2.x86_64.rpm pgdg 0.20.5 34.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.20.5-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.20.5-1PIGSTY.el10.x86_64.rpm pigsty 0.20.5 40.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_net_17-0.20.5-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.20.4-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.4 34.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.20.4-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.20.3-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.3 34.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.20.3-1PGDG.rhel10.2.x86_64.rpm
@@ -115,6 +118,7 @@ weight: 4080
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.19.0-1PGDG.rhel10.x86_64.rpm pgdg 0.19.0 30.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.19.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.16.0-1PGDG.rhel10.x86_64.rpm pgdg 0.16.0 28.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.16.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 17 pg_net_17 pg_net_17-0.15.1-1PGDG.rhel10.x86_64.rpm pgdg 0.15.1 28.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_net_17-0.15.1-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 pg_net_17 pg_net_17-0.20.5-3PGDG.rhel10.2.aarch64.rpm pgdg 0.20.5 34.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_net_17-0.20.5-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_net_17 pg_net_17-0.20.5-1PIGSTY.el10.aarch64.rpm pigsty 0.20.5 40.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_17-0.20.5-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 17 pg_net_17 pg_net_17-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 34.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_net_17-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 pg_net_17 pg_net_17-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 33.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_net_17-0.20.3-1PGDG.rhel10.1.aarch64.rpm
@@ -151,6 +155,7 @@ weight: 4080
 @ el9.aarch64 16 pg_net_16 pg_net_16-0.9.2-2PIGSTY.el9.aarch64.rpm pigsty 0.9.2 26.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_net_16-0.9.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 16 pg_net_16 pg_net_16-0.9.2-1PGDG.rhel9.aarch64.rpm pgdg 0.9.2 21.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_net_16-0.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 pg_net_16 pg_net_16-0.9.1-1PGDG.rhel9.aarch64.rpm pgdg 0.9.1 20.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/pg_net_16-0.9.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 pg_net_16 pg_net_16-0.20.5-3PGDG.rhel10.2.x86_64.rpm pgdg 0.20.5 34.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.20.5-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.20.5-1PIGSTY.el10.x86_64.rpm pigsty 0.20.5 40.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_net_16-0.20.5-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.20.4-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.4 34.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.20.4-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.20.3-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.3 34.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.20.3-1PGDG.rhel10.2.x86_64.rpm
@@ -166,6 +171,7 @@ weight: 4080
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.19.0-1PGDG.rhel10.x86_64.rpm pgdg 0.19.0 30.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.19.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.16.0-1PGDG.rhel10.x86_64.rpm pgdg 0.16.0 28.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.16.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 16 pg_net_16 pg_net_16-0.15.1-1PGDG.rhel10.x86_64.rpm pgdg 0.15.1 28.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_net_16-0.15.1-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 pg_net_16 pg_net_16-0.20.5-3PGDG.rhel10.2.aarch64.rpm pgdg 0.20.5 34.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_net_16-0.20.5-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_net_16 pg_net_16-0.20.5-1PIGSTY.el10.aarch64.rpm pigsty 0.20.5 40.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_16-0.20.5-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 16 pg_net_16 pg_net_16-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 34.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_net_16-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 pg_net_16 pg_net_16-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 33.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_net_16-0.20.3-1PGDG.rhel10.1.aarch64.rpm
@@ -202,6 +208,7 @@ weight: 4080
 @ el9.aarch64 15 pg_net_15 pg_net_15-0.9.2-2PIGSTY.el9.aarch64.rpm pigsty 0.9.2 26.8KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_net_15-0.9.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 15 pg_net_15 pg_net_15-0.9.2-1PGDG.rhel9.aarch64.rpm pgdg 0.9.2 21.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_net_15-0.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 pg_net_15 pg_net_15-0.9.1-1PGDG.rhel9.aarch64.rpm pgdg 0.9.1 20.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/pg_net_15-0.9.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 15 pg_net_15 pg_net_15-0.20.5-3PGDG.rhel10.2.x86_64.rpm pgdg 0.20.5 36.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.20.5-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.20.5-1PIGSTY.el10.x86_64.rpm pigsty 0.20.5 41.9KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_net_15-0.20.5-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.20.4-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.4 36.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.20.4-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.20.3-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.3 35.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.20.3-1PGDG.rhel10.2.x86_64.rpm
@@ -217,6 +224,7 @@ weight: 4080
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.19.0-1PGDG.rhel10.x86_64.rpm pgdg 0.19.0 31.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.19.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.16.0-1PGDG.rhel10.x86_64.rpm pgdg 0.16.0 29.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.16.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 15 pg_net_15 pg_net_15-0.15.1-1PGDG.rhel10.x86_64.rpm pgdg 0.15.1 29.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_net_15-0.15.1-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 pg_net_15 pg_net_15-0.20.5-3PGDG.rhel10.2.aarch64.rpm pgdg 0.20.5 35.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_net_15-0.20.5-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pg_net_15 pg_net_15-0.20.5-1PIGSTY.el10.aarch64.rpm pigsty 0.20.5 41.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_15-0.20.5-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 15 pg_net_15 pg_net_15-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 35.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_net_15-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 pg_net_15 pg_net_15-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 35.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_net_15-0.20.3-1PGDG.rhel10.1.aarch64.rpm
@@ -253,6 +261,7 @@ weight: 4080
 @ el9.aarch64 14 pg_net_14 pg_net_14-0.9.2-2PIGSTY.el9.aarch64.rpm pigsty 0.9.2 26.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_net_14-0.9.2-2PIGSTY.el9.aarch64.rpm
 @ el9.aarch64 14 pg_net_14 pg_net_14-0.9.2-1PGDG.rhel9.aarch64.rpm pgdg 0.9.2 21.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_net_14-0.9.2-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 pg_net_14 pg_net_14-0.9.1-1PGDG.rhel9.aarch64.rpm pgdg 0.9.1 20.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/pg_net_14-0.9.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 14 pg_net_14 pg_net_14-0.20.5-3PGDG.rhel10.2.x86_64.rpm pgdg 0.20.5 36.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.20.5-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.20.5-1PIGSTY.el10.x86_64.rpm pigsty 0.20.5 41.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_net_14-0.20.5-1PIGSTY.el10.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.20.4-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.4 36.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.20.4-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.20.3-1PGDG.rhel10.2.x86_64.rpm pgdg 0.20.3 35.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.20.3-1PGDG.rhel10.2.x86_64.rpm
@@ -268,6 +277,7 @@ weight: 4080
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.19.0-1PGDG.rhel10.x86_64.rpm pgdg 0.19.0 31.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.19.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.16.0-1PGDG.rhel10.x86_64.rpm pgdg 0.16.0 29.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.16.0-1PGDG.rhel10.x86_64.rpm
 @ el10.x86_64 14 pg_net_14 pg_net_14-0.15.1-1PGDG.rhel10.x86_64.rpm pgdg 0.15.1 29.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_net_14-0.15.1-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 pg_net_14 pg_net_14-0.20.5-3PGDG.rhel10.2.aarch64.rpm pgdg 0.20.5 35.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.5-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.5-1PIGSTY.el10.aarch64.rpm pigsty 0.20.5 41.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_net_14-0.20.5-1PIGSTY.el10.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.4-1PGDG.rhel10.2.aarch64.rpm pgdg 0.20.4 35.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.4-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 pg_net_14 pg_net_14-0.20.3-1PGDG.rhel10.1.aarch64.rpm pgdg 0.20.3 34.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_net_14-0.20.3-1PGDG.rhel10.1.aarch64.rpm
@@ -355,12 +365,13 @@ shared_preload_libraries = 'pg_net';
 CREATE EXTENSION pg_net;
 ```
 
-
-
-
 ## Usage
 
-Sources: [official README](https://github.com/supabase/pg_net), [v0.20.3 release notes](https://github.com/supabase/pg_net/releases/tag/v0.20.3).
+Sources:
+
+- [Official README](https://github.com/supabase/pg_net)
+- [v0.20.5 release notes](https://github.com/supabase/pg_net/releases/tag/v0.20.5)
+- [Extension control template](https://github.com/supabase/pg_net/blob/v0.20.5/pg_net.control.in)
 
 `pg_net` queues asynchronous HTTP and HTTPS requests from SQL. It creates the `net` schema, stores pending work in `net.http_request_queue`, and stores responses in `net._http_response`. A background worker uses `libcurl` to process queued requests.
 
@@ -456,7 +467,7 @@ SELECT net.worker_restart();
 
 ### Caveats
 
-- Pigsty metadata carries `pg_net` 0.20.3 for PostgreSQL 14-18, but local package notes say 0.20.3 is available only on `d12`, `d13`, `el10`, `u24`, and `u26`; `el8`, `el9`, and `u22` remain on 0.9.2 because of older `libcurl`.
+- The package matrix carries `pg_net` 0.20.5 for PostgreSQL 14-18 on EL10 RPM and D12/D13/U24/U26 DEB; EL8, EL9, and U22 remain on 0.9.2 because of older `libcurl`.
 - Upstream documents PostgreSQL 12+ compatibility, but this catalog row is packaged for PostgreSQL 14-18.
 - `pg_net` supports only one database per cluster through `pg_net.database_name`.
-- v0.20.3 is a worker/maintenance release: it flushes pgstat counters for autovacuum visibility and reports worker activity to `pg_stat_activity`; no new SQL request API was documented.
+- v0.20.5 adds PostgreSQL 19 beta 1 compatibility and fixes a macOS worker segfault; no new request API is documented.

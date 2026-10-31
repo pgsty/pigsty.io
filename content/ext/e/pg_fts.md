@@ -11,10 +11,10 @@ weight: 2230
     <div class="ext-card__title">https://codeberg.org/gregburd/pg_fts</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/pg_fts</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_fts-1.14.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_fts-1.15.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_fts-1.14.3.tar.gz</div>
-    <div class="ext-card__desc">pg_fts-1.14.3.tar.gz</div>
+    <div class="ext-card__title">pg_fts-1.15.1.tar.gz</div>
+    <div class="ext-card__desc">pg_fts-1.15.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2230
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_fts`**](/ext/e/pg_fts) | `1.14.3` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_fts`**](/ext/e/pg_fts) | `1.15.1` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,27 +38,27 @@ weight: 2230
 {.ext-table .ext-table--rel}
 
 
-> SQL 1.14.3 fixes ranked-scan crashes and a short-dfs out-of-bounds read, plus pending-frequency and planner issues; SQL update is a no-op and the format is unchanged. Known unfixed concurrent-flush ranked scans can duplicate rows. No routine REINDEX for this patch; indexes written by 1.10.0 or earlier still require rebuilding.
+> SQL 1.15.1 fixes the 16,383-position analyzer bug; no format change. Ranked scans may still duplicate rows; indexes from <=1.10.0 need REINDEX.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.14.3` | {{< pgvers "18,17" >}} | `pg_fts` | - |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.14.3` | {{< pgvers "18,17" >}} | `pg_fts_$v` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.15.1` | {{< pgvers "18,17" >}} | `pg_fts` | - |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.15.1` | {{< pgvers "18,17" >}} | `pg_fts_$v` | - |
 | [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.14.3` | {{< pgvers "18,17" >}} | `postgresql-$v-pg-fts` | - |
 {.ext-table}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.x86_64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 1.15.1 1 | AVAIL PIGSTY 1.15.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d12.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d12.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | d13.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
@@ -69,12 +69,12 @@ weight: 2230
 | u24.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | u26.x86_64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | u26.aarch64 | AVAIL PIGSTY 1.14.3 1 | AVAIL PIGSTY 1.14.3 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-@ el8.x86_64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el8.x86_64.rpm pigsty 1.14.3 585.4KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_fts_18-1.14.3-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el8.aarch64.rpm pigsty 1.14.3 572.9KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_fts_18-1.14.3-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el9.x86_64.rpm pigsty 1.14.3 557.8KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_fts_18-1.14.3-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el9.aarch64.rpm pigsty 1.14.3 552.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_fts_18-1.14.3-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el10.x86_64.rpm pigsty 1.14.3 565.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_fts_18-1.14.3-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_fts_18 pg_fts_18-1.14.3-1PGSTY.el10.aarch64.rpm pigsty 1.14.3 556.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_fts_18-1.14.3-1PGSTY.el10.aarch64.rpm
+@ el8.x86_64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el8.x86_64.rpm pigsty 1.15.1 602.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_fts_18-1.15.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el8.aarch64.rpm pigsty 1.15.1 589.5KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_fts_18-1.15.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el9.x86_64.rpm pigsty 1.15.1 575.6KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_fts_18-1.15.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el9.aarch64.rpm pigsty 1.15.1 569.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_fts_18-1.15.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el10.x86_64.rpm pigsty 1.15.1 583.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_fts_18-1.15.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_fts_18 pg_fts_18-1.15.1-1PGSTY.el10.aarch64.rpm pigsty 1.15.1 574.3KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_fts_18-1.15.1-1PGSTY.el10.aarch64.rpm
 @ d12.x86_64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~bookworm_amd64.deb pigsty 1.14.3 569.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~bookworm_amd64.deb
 @ d12.aarch64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~bookworm_arm64.deb pigsty 1.14.3 555.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~bookworm_arm64.deb
 @ d13.x86_64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~trixie_amd64.deb pigsty 1.14.3 572.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~trixie_amd64.deb
@@ -85,12 +85,12 @@ weight: 2230
 @ u24.aarch64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~noble_arm64.deb pigsty 1.14.3 562.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~noble_arm64.deb
 @ u26.x86_64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~resolute_amd64.deb pigsty 1.14.3 564.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~resolute_amd64.deb
 @ u26.aarch64 18 postgresql-18-pg-fts postgresql-18-pg-fts_1.14.3-1PGSTY~resolute_arm64.deb pigsty 1.14.3 557.7KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-fts/postgresql-18-pg-fts_1.14.3-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el8.x86_64.rpm pigsty 1.14.3 585.3KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_fts_17-1.14.3-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el8.aarch64.rpm pigsty 1.14.3 573.0KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_fts_17-1.14.3-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el9.x86_64.rpm pigsty 1.14.3 557.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_fts_17-1.14.3-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el9.aarch64.rpm pigsty 1.14.3 552.4KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_fts_17-1.14.3-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el10.x86_64.rpm pigsty 1.14.3 565.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_fts_17-1.14.3-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_fts_17 pg_fts_17-1.14.3-1PGSTY.el10.aarch64.rpm pigsty 1.14.3 556.8KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_fts_17-1.14.3-1PGSTY.el10.aarch64.rpm
+@ el8.x86_64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el8.x86_64.rpm pigsty 1.15.1 602.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_fts_17-1.15.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el8.aarch64.rpm pigsty 1.15.1 589.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_fts_17-1.15.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el9.x86_64.rpm pigsty 1.15.1 575.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_fts_17-1.15.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el9.aarch64.rpm pigsty 1.15.1 569.3KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_fts_17-1.15.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el10.x86_64.rpm pigsty 1.15.1 583.5KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_fts_17-1.15.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_fts_17 pg_fts_17-1.15.1-1PGSTY.el10.aarch64.rpm pigsty 1.15.1 574.2KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_fts_17-1.15.1-1PGSTY.el10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-pg-fts postgresql-17-pg-fts_1.14.3-1PGSTY~bookworm_amd64.deb pigsty 1.14.3 569.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-fts/postgresql-17-pg-fts_1.14.3-1PGSTY~bookworm_amd64.deb
 @ d12.aarch64 17 postgresql-17-pg-fts postgresql-17-pg-fts_1.14.3-1PGSTY~bookworm_arm64.deb pigsty 1.14.3 555.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-fts/postgresql-17-pg-fts_1.14.3-1PGSTY~bookworm_arm64.deb
 @ d13.x86_64 17 postgresql-17-pg-fts postgresql-17-pg-fts_1.14.3-1PGSTY~trixie_amd64.deb pigsty 1.14.3 572.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-fts/postgresql-17-pg-fts_1.14.3-1PGSTY~trixie_amd64.deb
@@ -152,13 +152,13 @@ CREATE EXTENSION pg_fts;
 
 Sources:
 
-- [1.14.3 upgrade](https://api.pgxn.org/src/pg_fts/pg_fts-1.14.3/pg_fts--1.14.2--1.14.3.sql)
-- [README.md](https://api.pgxn.org/src/pg_fts/pg_fts-1.14.3/README.md)
-- [pg_fts.control](https://api.pgxn.org/src/pg_fts/pg_fts-1.14.3/pg_fts.control)
-- [CHANGELOG.md](https://api.pgxn.org/src/pg_fts/pg_fts-1.14.3/CHANGELOG.md)
-- [pg_fts--1.14.3.sql](https://api.pgxn.org/src/pg_fts/pg_fts-1.14.3/pg_fts--1.14.3.sql)
+- [1.15.0 to 1.15.1 upgrade](https://api.pgxn.org/src/pg_fts/pg_fts-1.15.1/pg_fts--1.15.0--1.15.1.sql)
+- [README.md](https://api.pgxn.org/src/pg_fts/pg_fts-1.15.1/README.md)
+- [pg_fts.control](https://api.pgxn.org/src/pg_fts/pg_fts-1.15.1/pg_fts.control)
+- [CHANGELOG.md](https://api.pgxn.org/src/pg_fts/pg_fts-1.15.1/CHANGELOG.md)
+- [pg_fts--1.15.1.sql](https://api.pgxn.org/src/pg_fts/pg_fts-1.15.1/pg_fts--1.15.1.sql)
 
-`pg_fts` 1.14.3 provides full-text search with BM25/BM25F ranking and the dedicated fts inverted index. PostgreSQL 17 and 18 are supported; PostgreSQL 19/master CI is best-effort. The control is trusted and relocatable, and core use needs no shared preload.
+`pg_fts` 1.15.1 provides full-text search with BM25/BM25F ranking and the dedicated fts inverted index. PostgreSQL 17 and 18 are supported; PostgreSQL 19/master CI is best-effort. The control is trusted and relocatable, and core use needs no shared preload.
 
 ### Search and Rank
 
@@ -219,3 +219,7 @@ Version 1.14.2 changes documentation and the extension version only; its SQL upg
 Version 1.14.3 fixes a ranked-scan backend crash during frequent concurrent pending-list flushes and an out-of-bounds read when a BM25 scorer receives a short document-frequency array. It also corrects pending-document frequencies, partial-index plan estimates and some boolean-query work. Install matching files, replace old-library sessions and run the no-op SQL upgrade to 1.14.3. Formats and SQL objects are unchanged; the historical REINDEX requirement above still applies.
 
 A separate concurrent-flush race remains unfixed: ranked scans can return a pending row twice and double-count ranking statistics. Bitmap scans, count queries and match filters remove duplicate tuple IDs and are unaffected by that specific race. Do not assume this patch makes ranked results duplicate-free under concurrent flushes.
+
+### 1.15.1 Configured-Analyzer Repair
+
+Version 1.15.1 fixes configured-analyzer chunked reparsing that could split HTML markup at the 16,383-position boundary. It changes neither the on-disk index format nor SQL objects, and its SQL upgrade is a no-op. For documents written by 1.15.0 whose markup crosses that boundary, recompute the stored `ftsdoc` and REINDEX the expression index. Data from 1.14.3 or earlier still needs the historical repair described in the 1.15.0 upgrade notice.

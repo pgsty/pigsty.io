@@ -38,7 +38,7 @@ weight: 9290
 {.ext-table .ext-table--rel}
 
 
-> Upstream v2.0/SQL 2.0.0; maintained DEB recipe/source is 2.0.0 (pg_utl_smtp-2.0.tar.gz). Requires plperlu and Perl Net::SMTP; SSL/TLS needs IO::Socket::SSL >= 2.007. Asynchronous mode optionally requires pg_dbms_job >= 2.0.
+> PGDG 2.0.0 on EL8-10; PIGSTY 1.0 on D/U. TLS needs plperlu, Net::SMTP and IO::Socket::SSL.
 
 
 ## Version
@@ -58,7 +58,7 @@ weight: 9290
 | el9.x86_64 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 |
 | el9.aarch64 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 |
 | el10.x86_64 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 |
-| el10.aarch64 | AVAIL PGDG 1.0 3 | AVAIL PGDG 1.0 3 | AVAIL PGDG 1.0 3 | AVAIL PGDG 1.0 3 | AVAIL PGDG 1.0 3 |
+| el10.aarch64 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 | AVAIL PGDG 2.0 4 |
 | d12.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
 | d12.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
 | d13.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
@@ -85,6 +85,7 @@ weight: 9290
 @ el10.x86_64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_utl_smtp_18-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_utl_smtp_18-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/pg_utl_smtp_18-1.0-2PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 18 pg_utl_smtp_18 pg_utl_smtp_18-2.0-1PGDG.rhel10.2.noarch.rpm pgdg 2.0 19.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_utl_smtp_18-2.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_utl_smtp_18-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_utl_smtp_18-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 18 pg_utl_smtp_18 pg_utl_smtp_18-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/pg_utl_smtp_18-1.0-2PGDG.rhel10.0.noarch.rpm
@@ -114,6 +115,7 @@ weight: 9290
 @ el10.x86_64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_utl_smtp_17-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_utl_smtp_17-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/pg_utl_smtp_17-1.0-2PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 17 pg_utl_smtp_17 pg_utl_smtp_17-2.0-1PGDG.rhel10.2.noarch.rpm pgdg 2.0 19.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_utl_smtp_17-2.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_utl_smtp_17-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_utl_smtp_17-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 17 pg_utl_smtp_17 pg_utl_smtp_17-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/pg_utl_smtp_17-1.0-2PGDG.rhel10.0.noarch.rpm
@@ -143,6 +145,7 @@ weight: 9290
 @ el10.x86_64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_utl_smtp_16-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_utl_smtp_16-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/pg_utl_smtp_16-1.0-2PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 16 pg_utl_smtp_16 pg_utl_smtp_16-2.0-1PGDG.rhel10.2.noarch.rpm pgdg 2.0 19.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_utl_smtp_16-2.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_utl_smtp_16-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_utl_smtp_16-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 16 pg_utl_smtp_16 pg_utl_smtp_16-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/pg_utl_smtp_16-1.0-2PGDG.rhel10.0.noarch.rpm
@@ -172,6 +175,7 @@ weight: 9290
 @ el10.x86_64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_utl_smtp_15-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_utl_smtp_15-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/pg_utl_smtp_15-1.0-2PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 15 pg_utl_smtp_15 pg_utl_smtp_15-2.0-1PGDG.rhel10.2.noarch.rpm pgdg 2.0 19.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_utl_smtp_15-2.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_utl_smtp_15-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_utl_smtp_15-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 15 pg_utl_smtp_15 pg_utl_smtp_15-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/pg_utl_smtp_15-1.0-2PGDG.rhel10.0.noarch.rpm
@@ -201,6 +205,7 @@ weight: 9290
 @ el10.x86_64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_utl_smtp_14-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.x86_64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_utl_smtp_14-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.x86_64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/pg_utl_smtp_14-1.0-2PGDG.rhel10.0.noarch.rpm
+@ el10.aarch64 14 pg_utl_smtp_14 pg_utl_smtp_14-2.0-1PGDG.rhel10.2.noarch.rpm pgdg 2.0 19.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_utl_smtp_14-2.0-1PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.2.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_utl_smtp_14-1.0-2PGDG.rhel10.2.noarch.rpm
 @ el10.aarch64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.1.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_utl_smtp_14-1.0-2PGDG.rhel10.1.noarch.rpm
 @ el10.aarch64 14 pg_utl_smtp_14 pg_utl_smtp_14-1.0-2PGDG.rhel10.0.noarch.rpm pgdg 1.0 12.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/pg_utl_smtp_14-1.0-2PGDG.rhel10.0.noarch.rpm
@@ -270,12 +275,15 @@ apt install -y postgresql-14-utl-smtp   # PG 14
 CREATE EXTENSION pg_utl_smtp CASCADE;  -- requires: plperlu
 ```
 
-
-
-
 ## Usage
 
-> [pg_utl_smtp: Oracle UTL_SMTP compatibility extension for PostgreSQL](https://github.com/hexacluster/pg_utl_smtp)
+Sources:
+
+- [Official README](https://github.com/hexacluster/pg_utl_smtp)
+- [v2.0.0 ChangeLog](https://github.com/hexacluster/pg_utl_smtp/blob/main/ChangeLog)
+- [Extension control file](https://github.com/hexacluster/pg_utl_smtp/blob/main/pg_utl_smtp.control)
+
+`pg_utl_smtp` 2.0.0 provides Oracle `UTL_SMTP` compatibility on PostgreSQL through `plperlu`. The 2.0 release adds optional asynchronous delivery through `utl_smtp.asynchronous`, the `utl_smtp.mail_queue` table, and `utl_smtp.async_resend()`; it also improves SMTP error reporting and SSL/TLS handling.
 
 ### Enabling
 

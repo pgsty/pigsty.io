@@ -5,23 +5,30 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **27** packages contain multiple extensions, totaling **135** extensions.
+The following **28** packages contain multiple extensions, totaling **134** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
 ## postgis
 
-Package [`postgis`](/ext/e/postgis) contains **7** extensions:
+Package [`postgis`](/ext/e/postgis) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1500 | [**`postgis`**](/ext/e/postgis) | `3.6.4` | `-bs-d--` | - | PostGIS geometry and geography spatial types and functions |
-| 1501 | [`postgis_topology`](/ext/e/postgis_topology) | `3.6.4` | `--s-d--` | `topology` | PostGIS topology spatial types and functions |
-| 1502 | [`postgis_raster`](/ext/e/postgis_raster) | `3.6.4` | `--s-d--` | - | PostGIS raster types and functions |
-| 1503 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | `3.6.4` | `--s-d-r` | - | PostGIS SFCGAL functions |
-| 1504 | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | `3.6.4` | `----dt-` | `tiger` | PostGIS tiger geocoder and reverse geocoder |
-| 1505 | [`address_standardizer`](/ext/e/address_standardizer) | `3.6.4` | `--s-d-r` | - | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
-| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.6.4` | `----d-r` | - | Address Standardizer US dataset example |
+| 1500 | [**`postgis`**](/ext/e/postgis) | `3.7.0` | `-bs-d--` | - | PostGIS geometry and geography spatial types and functions |
+| 1501 | [`postgis_topology`](/ext/e/postgis_topology) | `3.7.0` | `--s-d--` | `topology` | PostGIS topology spatial types and functions |
+| 1502 | [`postgis_raster`](/ext/e/postgis_raster) | `3.7.0` | `--s-d--` | - | PostGIS raster types and functions |
+| 1503 | [`postgis_sfcgal`](/ext/e/postgis_sfcgal) | `3.7.0` | `--s-d-r` | - | PostGIS SFCGAL functions |
+{.ext-table}
+
+## address_standardizer
+
+Package [`address_standardizer`](/ext/e/address_standardizer) contains **2** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 1505 | [**`address_standardizer`**](/ext/e/address_standardizer) | `3.7` | `--s-d-r` | - | Used to parse an address into constituent elements. Generally used to support geocoding address normalization step. |
+| 1506 | [`address_standardizer_data_us`](/ext/e/address_standardizer_data_us) | `3.7` | `----d-r` | - | Address Standardizer US dataset example |
 {.ext-table}
 
 ## pointcloud
@@ -197,10 +204,10 @@ Package [`pllua`](/ext/e/pllua) contains **4** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 3020 | [**`pllua`**](/ext/e/pllua) | `2.0.12` | `--s-d--` | `pg_catalog` | Lua as a procedural language |
-| 3021 | [`hstore_pllua`](/ext/e/hstore_pllua) | `2.0.12` | `--s-d-r` | - | Hstore transform for Lua |
-| 3030 | [`plluau`](/ext/e/plluau) | `2.0.12` | `--s-d--` | `pg_catalog` | Lua as an untrusted procedural language |
-| 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `2.0.12` | `--s-d-r` | - | Hstore transform for untrusted Lua |
+| 3020 | [**`pllua`**](/ext/e/pllua) | `2.0` | `--s-d--` | `pg_catalog` | Lua as a procedural language |
+| 3021 | [`hstore_pllua`](/ext/e/hstore_pllua) | `1.0` | `--s-d-r` | - | Hstore transform for Lua |
+| 3030 | [`plluau`](/ext/e/plluau) | `2.0` | `--s-d--` | `pg_catalog` | Lua as an untrusted procedural language |
+| 3031 | [`hstore_plluau`](/ext/e/hstore_plluau) | `1.0` | `--s-d-r` | - | Hstore transform for untrusted Lua |
 {.ext-table}
 
 ## plruby
@@ -320,7 +327,7 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.0` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
 | 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.0` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `0.116` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `1.0-0` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
 | 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.0` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
 {.ext-table}
 
@@ -357,5 +364,5 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
-| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `2.4.8` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
+| 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `1.0.0` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table}
