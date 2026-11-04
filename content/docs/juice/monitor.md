@@ -55,7 +55,7 @@ To register manually:
 |:-----|:----:|:-----|
 | `juicefs_object_request_durations_histogram_seconds` | histogram | Object storage request latency |
 | `juicefs_object_request_errors` | counter | Object storage errors |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Cache
 
@@ -71,7 +71,7 @@ To register manually:
 |:-----|:----:|:-----|
 | `juicefs_transaction_durations_histogram_seconds` | histogram | Metadata transaction latency (histogram) |
 | `juicefs_transaction_durations_histogram_seconds_count` | counter | Metadata transaction request count |
-{.full-width}
+{.full-width .wide .expand}
 
 --------
 

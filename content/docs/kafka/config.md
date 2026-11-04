@@ -43,7 +43,7 @@ Before writing the inventory, confirm these requirements:
 | `combined` | `broker,controller` | ✓ | ✓ | ✓ | eligible |
 | `broker` | `broker` | ✓ | － | ✓ | eligible |
 | `controller` | `controller` | － | ✓ | ✓ | － |
-{.full-width}
+{.full-width .wide .expand}
 
 JMX in the table is enabled by default. Disable it per instance with [`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled); doing so removes the corresponding JVM, broker, and KRaft metrics and alerts.
 
@@ -162,7 +162,7 @@ The manifest records bootstrap facts. After commissioning, live Raft state contr
 | Instance name | Auto-generated | `kf-main-1` | `${kafka_cluster}-${kafka_seq}` |
 | Node role | `kafka_role` | `combined` | One of the three native roles |
 | KRaft Cluster ID | Randomly generated at bootstrap | 22-character Kafka UUID | `kafka_cluster_id` is only a takeover/recovery assertion |
-{.full-width}
+{.full-width .wide .expand}
 
 A formatted node reads `cluster.id` and `node.id` from `${kafka_data}/metadata/meta.properties`. It checks them against the manifest and inventory. After startup, it checks initial controller Directory IDs against live quorum. Identity mismatches stop execution for protection. Never bypass this by deleting `meta.properties` or erasing data.
 
@@ -358,6 +358,6 @@ Platform mappings install `java-runtime` and `kafka-stack`. The payload verified
 | `${kafka_data}/data/` | Topic log data |
 | `${kafka_data}/metadata/` | KRaft metadata and `meta.properties` |
 | `files/pki/kafka/` | Issued node certs on the admin node (`<cluster>-<seq>.key/.crt`, CSRs under `files/pki/csr/`) |
-{.full-width}
+{.full-width .wide .expand}
 
 The role manages these files. Put persistent settings in `pigsty.yml`, not generated node files. Never copy passwords, private keys, or role-managed secrets into inventory, logs, or tickets.

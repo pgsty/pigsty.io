@@ -75,7 +75,7 @@ The `deploy.yml` playbook also includes this stage.
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:------------|
 | 1  |    `10.10.10.10`    |           -           |            -            |           -           | Add node    |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Add Infrastructure
 
@@ -124,7 +124,7 @@ Pigsty also supports PostgreSQL without the infrastructure through [Slim Install
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description            |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:-----------------------|
 | 1  |    `10.10.10.10`    |       `infra-1`       |            -            |           -           | Add infrastructure     |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Deploy Database Cluster
 
@@ -167,7 +167,7 @@ After these playbooks complete successfully, PostgreSQL is available.
 | ID | [NODE](/docs/node/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) | [PGSQL](/docs/pgsql/) | Description                     |
 |:--:|:-------------------:|:---------------------:|:-----------------------:|:---------------------:|:--------------------------------|
 | 1  |    `10.10.10.10`    |       `infra-1`       |        `etcd-1`         |     `pg-meta-1`       | Add etcd and PostgreSQL cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 The procedures use four playbooks to deploy four modules on one node:
 

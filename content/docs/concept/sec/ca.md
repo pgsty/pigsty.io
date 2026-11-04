@@ -26,7 +26,7 @@ During initial deployment, Pigsty checks for a CA on the [**administration node*
 |:---|:---|:---|
 | `files/pki/ca/ca.key` | CA private key and root of trust for the deployment; protect it carefully | `0600`, with directory mode `0700` |
 | `files/pki/ca/ca.crt` | CA root certificate; safe to distribute | `0644` |
-{.full-width}
+{.full-width .wide .expand}
 
 - [`ca_create`](/docs/infra/param#ca_create) controls CA behavior. Pigsty reuses an existing key and certificate unchanged. If only the key exists, it issues a replacement certificate with that key. `ca_create: false` prevents creation of a missing private key. If `ca.key` is absent, deployment stops instead of creating an unexpected trust root. Always back up and restore `ca.key` and `ca.crt` together.
 - [`ca_cn`](/docs/infra/param#ca_cn) sets the certificate CN, default `pigsty-ca`. The key is RSA 4096.
@@ -81,7 +81,7 @@ The local CA issues certificates for these components under one trust chain:
 | [**MySQL**](/docs/mysql/) | `<instance-name>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport enforced; clients and group replication verify the certificate chain |
 | [**Nginx**](/docs/concept/arch/infra#nginx) | `pigsty`, with portal domains in SAN | `/etc/nginx/conf.d/cert/` | HTTPS enabled by default ([`nginx_sslmode`](/docs/infra/param#nginx_sslmode)) |
 | [**INFRA node**](/docs/concept/arch/node#infra-node) | `<node-name>` | `/etc/pki/infra.{crt,key}` | Available to infrastructure components |
-{.full-width}
+{.full-width .wide .expand}
 
 These defaults distinguish available TLS from enabled TLS:
 

@@ -26,12 +26,12 @@ weight: 2780
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 | [**`pg_hint_plan`**](/ext/e/pg_hint_plan) | `1.8.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
-{.ext-table}
+{.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
 | 2780  | [**`pg_hint_plan`**](/ext/e/pg_hint_plan) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `hint_plan` |
-{.ext-table}
+{.ext-table .wide .expand}
 
 | **Related** | [`hypopg`](/ext/e/hypopg) [`online_advisor`](/ext/e/online_advisor) [`pg_qualstats`](/ext/e/pg_qualstats) [`index_advisor`](/ext/e/index_advisor) [`pg_stat_plans`](/ext/e/pg_stat_plans) [`plan_filter`](/ext/e/plan_filter) [`pg_strom`](/ext/e/pg_strom) [`pg_orca`](/ext/e/pg_orca) [`pg_regresql`](/ext/e/pg_regresql) [`pg_track_optimizer`](/ext/e/pg_track_optimizer) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -48,7 +48,7 @@ weight: 2780
 | [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.8.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_hint_plan` | - |
 | [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.8.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_hint_plan_$v` | - |
 | [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.8.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-hint-plan` | - |
-{.ext-table}
+{.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
@@ -386,6 +386,7 @@ ORDER BY a.aid;
 | `NoTidScan(table)` | Prevent TID scan |
 | `IndexScanRegexp(table [regexp...])` | Force index scan with regex-matched index names |
 | `DisableIndex(table index...)` | Disable specific indexes during planning |
+{.wide .expand}
 
 ### Join Method Hints
 

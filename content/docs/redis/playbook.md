@@ -249,6 +249,7 @@ Behavioral differences when `redis_port` is specified:
 | Data directory | Delete entire `redis_fs_main` (default: `/data/redis/`) | Only delete `redis_fs_main/<cluster>-<node>-<port>/` (if `redis_fs_main=/data`, removal is compat-mapped to `/data/redis`) |
 | Vector config | Delete `/etc/vector/redis.yaml` | **No operation** (other instances still need it) |
 | Packages | Optionally uninstall | **No operation** |
+{.wide .expand}
 
 
 ### Control Parameters

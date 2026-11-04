@@ -36,7 +36,7 @@ KAFKA exposes 16 persistent parameters. The role derives topology, listeners, se
 | [`kafka_security`](#kafka_security)                   | Cluster | `plaintext`     | `plaintext` or the production `scram` profile |
 | [`kafka_users`](#kafka_users)                         | Cluster | `[]`            | User credentials, ACLs, and quotas   |
 | [`kafka_topics`](#kafka_topics)                       | Cluster | `[]`            | Declarative topics                   |
-{.full-width}
+{.full-width .wide .expand}
 
 Set `kafka_cluster` and `kafka_seq`. `kafka_role` has a default. Omit it on every member or declare it on every member.
 
@@ -225,7 +225,7 @@ Defaults to `plaintext`, and accepts only:
 |:------------|:-------------------------|:-----------|:-----------------------------|:------------------------------|
 | `plaintext` | PLAINTEXT                | PLAINTEXT  | none                         | Development or a trusted, isolated network |
 | `scram`     | SASL_SSL + SCRAM-SHA-512 | mutual TLS | StandardAuthorizer, deny-by-default | Production security baseline  |
-{.full-width}
+{.full-width .wide .expand}
 
 `scram` configures Pigsty CA certificates, internal/administration/monitoring identities, and TLS/SCRAM/ACL activation order together. The manifest records this profile. After formatting, ordinary reruns cannot switch between `plaintext` and `scram` in either direction.
 
@@ -304,7 +304,7 @@ Use these variables only with command-line `-e` for individual operations. They 
 | Rotate internal credentials | `kafka.yml`    | `kafka_rotate_credentials=true`, `kafka_rotate_confirm=<cluster>`                    | A healthy, fully-formatted `scram` cluster |
 | Rotate certificates | `kafka.yml`    | `kafka_rotate_certificates=true`, `kafka_rotate_confirm=<cluster>`                   | A healthy, fully-formatted `scram` cluster |
 | Tear down the cluster | `kafka-rm.yml` | `kafka_rm_data` (default `true`), `kafka_rm_pkg` (default `false`), `kafka_safeguard` (default `false`) | Explicit `-l` required; `kafka_safeguard=true` aborts all deletion |
-{.full-width}
+{.full-width .wide .expand}
 
 Rotation actions are mutually exclusive and require one exact complete cluster. `kafka-rm.yml` deletes data and node-local `/etc/kafka` recovery state by default. `kafka_rm_data=false` retains both. Before removal, confirm the target and backup or rebuild intent. See [Playbooks](/docs/kafka/playbook) for commands and details.
 

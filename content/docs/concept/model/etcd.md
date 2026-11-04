@@ -64,7 +64,7 @@ The [**`ETCD`**](/docs/etcd/param#etcd) parameter group assigns deterministic id
 |:----------------------------------------------------|:--------:|:-----:|:-------------------------------|:--------------------------------------------|
 | [**`etcd_cluster`**](/docs/etcd/param#etcd_cluster) | `string` | Cluster | ETCD cluster name, required   | Valid DNS name, defaults to fixed `etcd`    |
 | [**`etcd_seq`**](/docs/etcd/param#etcd_seq)         |  `int`   | Instance | ETCD instance number, required | Natural number, starting from 1, unique within cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 Set the cluster name at cluster level and the instance number at instance level. Pigsty generates unique identifiers with these rules:
 

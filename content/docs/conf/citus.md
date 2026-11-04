@@ -54,6 +54,7 @@ Source: [`pigsty/conf/ha/citus.yml`](https://github.com/pgsty/pigsty/blob/main/c
 | **pg-citus4** | 2 | 10.10.10.51, 52 | 10.10.10.59 | Worker (group 3) |
 | **pg-citus5** | 2 | 10.10.10.61, 62 | 10.10.10.69 | Worker (group 4) |
 | **pg-citus6** | 2 | 10.10.10.71, 72 | 10.10.10.79 | Worker (group 5) |
+{.wide .expand}
 
 **Architecture**:
 

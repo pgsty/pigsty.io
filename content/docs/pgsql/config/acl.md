@@ -37,7 +37,7 @@ The defaults contain four business roles and four system users:
 | `replicator` | User | Streaming replication and backup; inherits monitoring and read-only privileges |
 | `dbuser_dba` | User | Primary administration account, also synchronized to PgBouncer |
 | `dbuser_monitor` | User | Monitoring account with `pg_monitor`; records slow SQL by default |
-{.full-width}
+{.full-width .wide .expand}
 
 `pg_default_roles` contains these definitions as a complete list.
 To customize it, copy and retain the required default roles and system users.

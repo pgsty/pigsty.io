@@ -26,12 +26,12 @@ weight: 1080
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
 | [**`pg_task`**](/ext/e/pg_task) | `3.0.0` | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
-{.ext-table}
+{.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
 | 1080  | [**`pg_task`**](/ext/e/pg_task) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
-{.ext-table}
+{.ext-table .wide .expand}
 
 | **Related** | [`pg_cron`](/ext/e/pg_cron) [`pg_durable`](/ext/e/pg_durable) [`pg_background`](/ext/e/pg_background) [`pgagent`](/ext/e/pgagent) [`pg_dispatch`](/ext/e/pg_dispatch) [`pg_dbms_job`](/ext/e/pg_dbms_job) [`pg_later`](/ext/e/pg_later) [`pgmq`](/ext/e/pgmq) [`ulak`](/ext/e/ulak) [`pg_retry`](/ext/e/pg_retry) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -48,7 +48,7 @@ weight: 1080
 | [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_task` | - |
 | [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_task_$v` | - |
 | [**DEB**](/ext/deb#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.0.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-task` | - |
-{.ext-table}
+{.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
@@ -344,6 +344,7 @@ Key columns:
 | output | text | | Received result(s) |
 | error | text | | Caught error |
 | remote | text | | Remote database connection string |
+{.wide .expand}
 
 ### Configuration
 
@@ -371,6 +372,7 @@ Key settings:
 | pg_task.table | text | task | Table name for tasks table |
 | pg_task.json | json | `[{"data":"postgres"}]` | Multi-database configuration |
 | pg_task.id | bigint | 0 | Current task id, read-only session setting |
+{.wide .expand}
 
 ### Multi-Database Configuration
 

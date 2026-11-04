@@ -64,7 +64,7 @@ series:
 | **Replica Detect**  |          `0`           |             `loop`             |             `loop/2`             | Best: Right at check point<br/>Worst: Just missed check point                         |
 |  **Elect Promote**  |          `0`           |              `2`               |               `1`                | Best: Acquire lock and promote directly<br/>Worst: API timeout + Promote              |
 |  **HAProxy Check**  | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check           |
-{.full-width}
+{.full-width .wide .expand}
 
 **Key Difference Between Active and Passive Failure**:
 
@@ -261,7 +261,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |  Lock & Promote   |  `0` / `1` / `2`  |  `0` / `1` / `2`  |  `0` / `1` / `2`  |   `0` / `1` / `2`   |
 |   Health Check    |  `1` / `2` / `2`  |  `2` / `3` / `4`  |  `3` / `5` / `6`  |   `4` / `6` / `8`   |
 |     **Total**     | `1` / `24` / `29` | `2` / `35` / `41` | `3` / `61` / `73` | `4` / `122` / `145` |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------
@@ -274,7 +274,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |       Core Wait       |          `start`          |            `ttl`            | start is usually less than ttl, but requires additional failure detection time |
 |    Lease Handling     |      Active release       |       Passive expiry        | Active release is more timely                                                  |
 | Self-healing Possible |            Yes            |             No              | Active detection can attempt local recovery                                    |
-{.full-width}
+{.full-width .wide .expand}
 
 **RTO Comparison** (Average case):
 

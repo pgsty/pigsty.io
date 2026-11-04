@@ -22,7 +22,7 @@ Adjust the configuration for your requirements:
 |     Slim deploy ([**`slim`**](/docs/conf/slim))      |                           |            1            |             1             |                          | Database only, no monitoring infra                            |
 |  Infra-only ([**`infra`**](/docs/conf/infra))        |             1             |                         |                           |                          | Monitoring infrastructure only                                |
 |  Rich deploy ([**`rich`**](/docs/conf/rich))         |             1             |            1            |             1             |            1             | Single-node + object storage + local repo with all extensions |
-{.full-width}
+{.full-width .wide .expand}
 |             Multi-node Pattern             | [**INFRA**](/docs/infra/) | [**ETCD**](/docs/etcd/) | [**PGSQL**](/docs/pgsql/) | [**MINIO**](/docs/minio) | Description                              |
 |:------------------------------------------:|:-------------------------:|:-----------------------:|:-------------------------:|:------------------------:|------------------------------------------|
 |  Two-node ([**`dual`**](/docs/conf/dual))  |             1             |            1            |             2             |                          | Semi-HA, tolerates specific node failure |
@@ -30,7 +30,7 @@ Adjust the configuration for your requirements:
 | Four-node ([**`full`**](/docs/conf/full))  |             1             |            1            |            1+3            |                          | Demo setup, single INFRA/ETCD            |
 | Production simulation ([**`simu`**](/docs/conf/simu)) | 3 | 5 | 9 | 4 | 20 nodes, including 2 additional proxies |
 |            Large-scale (custom)            |             3             |            5            |             n             |            n             | 3 INFRA, 5 ETCD                          |
-{.full-width}
+{.full-width .wide .expand}
 
 Select the architecture for your reliability requirements and available resources.
 Production deployments with full [high availability](#three-node-setup) require at least **3** nodes.
@@ -61,7 +61,7 @@ Use it for demonstrations, development, or testing.
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
 | 1  |      `node-1`       |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         |
-{.full-width}
+{.full-width .wide .expand}
 
 An external S3/MinIO [backup repository](/docs/pgsql/backup/) can supply the required recovery time and recovery point objectives (RTO/RPO).
 With this protection, a single-node configuration can serve standard production environments.
@@ -86,7 +86,7 @@ It improves data redundancy and supplies limited automatic failover:
 |:--:|:-------------------:|:-----------------------:|:---------------------:|:-----------------------:|
 | 1  |      `node-1`       | `pg-meta-1` (`replica`) |       `infra-1`       |        `etcd-1`         |
 | 2  |      `node-2`       | `pg-meta-2` (`primary`) |                       |                         |
-{.full-width}
+{.full-width .wide .expand}
 
 Automatic recovery depends on which node fails:
 
@@ -102,7 +102,7 @@ The [three-node template](/docs/conf/trio) deploys INFRA, ETCD, PGSQL, and MINIO
 | 1  |      `node-1`       |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         | `minio-1` |
 | 2  |      `node-2`       |      `pg-meta-2`      |       `infra-2`       |        `etcd-2`         | `minio-2` |
 | 3  |      `node-3`       |      `pg-meta-3`      |       `infra-3`       |        `etcd-3`         | `minio-3` |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ## Four-Node Setup
@@ -115,7 +115,7 @@ The Pigsty [Sandbox](/docs/deploy/sandbox/) uses the [standard four-node configu
 | 2  |      `node-2`       |      `pg-test-1`      |                       |                         |
 | 3  |      `node-3`       |      `pg-test-2`      |                       |                         |
 | 4  |      `node-4`       |      `pg-test-3`      |                       |                         |
-{.full-width}
+{.full-width .wide .expand}
 
 In the demonstration configuration, [INFRA](/docs/infra) and [ETCD](/docs/etcd) do not have HA.
 You can extend the configuration as follows:
@@ -126,7 +126,7 @@ You can extend the configuration as follows:
 | 2  |      `node-2`       |      `pg-test-1`      |       `infra-2`       |        `etcd-2`         |                           |
 | 3  |      `node-3`       |      `pg-test-2`      |                       |        `etcd-3`         |                           |
 | 4  |      `node-4`       |      `pg-test-3`      |                       |                         |                           |
-{.full-width}
+{.full-width .wide .expand}
 
 ## More Nodes
 

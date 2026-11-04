@@ -21,7 +21,7 @@ Patroni failures have 10 categories by failure target. Detection paths group the
 | 8  | Primary ↔ DCS network failure | Firewall, switch failure               | **Network Partition**                |
 | 9  | Storage failure               | Disk failure, disk full, mount failure | **Active Detection** or **Watchdog** |
 | 10 | Manual switchover             | Switchover/Failover                    | **Manual Trigger**                   |
-{.full-width}
+{.full-width .wide .expand}
 
 For RTO calculations, all failures follow two paths. This section calculates their minimum, maximum, and average recovery times.
 

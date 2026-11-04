@@ -70,6 +70,7 @@ Pigsty organizes extensions into 16 categories:
 |      FDW      | `fdw`   | Foreign data access         | postgres_fdw, mysql_fdw, oracle_fdw            |
 | Compatibility | `sim`   | Database compatibility      | orafce, babelfish                              |
 |      ETL      | `etl`   | Data synchronization        | pglogical, wal2json, decoderbufs               |
+{.wide .expand}
 
 Use category aliases to install all extensions in a category together.
 For example: `pg_extensions: [ pgsql-gis, pgsql-rag ]`.

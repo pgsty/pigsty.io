@@ -37,7 +37,7 @@ Default credentials are public in documentation and source code. Use them only f
 | pgBackRest encryption passphrase | `cipher_pass: pgBackRest` | **No** |
 | Silo users and `pgBR.${pg_cluster}` in `ha/safe` | Template example values | **No** |
 | User-defined credentials | Custom values | **No** |
-{.full-width}
+{.full-width .wide .expand}
 
 Use `-g` to randomize built-in parameters and example strings recognized by the configuration wizard:
 
@@ -127,7 +127,7 @@ This table maps database-related capabilities to the secure computing environmen
 | Data confidentiality | AES-encrypted backup plus TDE and column-encryption options | Enable as required |
 | Backup and recovery | pgBackRest, PITR, and a remote S3-compatible repository | Recovery exercise process |
 | Residual information protection | — | Media destruction and erasure process |
-{.full-width}
+{.full-width .wide .expand}
 
 MLPS also covers physical security, networks, and management systems beyond a database distribution. Pigsty supports database-related technical controls. The overall system must address facilities, network devices, and governance.
 

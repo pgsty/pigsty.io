@@ -88,7 +88,7 @@ It then reloads the services to apply the rules.
 |:-----------|:----------------------------------|:------------------------------------------|
 | PostgreSQL | `/pg/data/pg_hba.conf`            | `roles/pgsql/templates/pg_hba.conf`       |
 | Pgbouncer  | `/etc/pgbouncer/pgb_hba.conf`     | `roles/pgsql/templates/pgbouncer.hba`     |
-{.full-width}
+{.full-width .wide .expand}
 
 > [!WARNING] Don't edit config files directly
 > Direct changes to `/pg/data/pg_hba.conf` or `/etc/pgbouncer/pgb_hba.conf` work temporarily.

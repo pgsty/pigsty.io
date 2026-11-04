@@ -21,7 +21,7 @@ The default listen port is `:9630`. The following table lists all endpoints:
 | [`/stat`](#operational-endpoints)    | GET      | Per-collector runtime statistics (hits / errors / duration) |
 | `/version`                     | GET      | Version and build information (plain text) |
 | `/`                            | GET      | Landing page linking to the metrics endpoint |
-{.full-width}
+{.full-width .wide .expand}
 
 Health and routing endpoints return the cached state from background probes: `primary`, `replica`, `down`, `starting`, or `unknown`.
 They do not query the database for each HTTP request. In v1.5.0, each response reads one atomic state snapshot, so its HTTP status and body always describe the same state. The cached state can still lag behind the database. A successful PgBouncer probe maps to `primary`; it does not describe the role of its PostgreSQL backend.
@@ -96,7 +96,7 @@ The prefix follows `--namespace`. In pgBouncer mode, the prefix is `pgbouncer_`.
 | `pg_exporter_query_scrape_hit_count` / `_metric_count` | datname, query | Rows returned / metrics emitted per collector |
 | `pg_exporter_query_scrape_predicate_skip_count` | datname, query | Times skipped because a predicate returned false |
 | `pg_exporter_query_cache_ttl` | datname, query | Result cache TTL per collector |
-{.full-width}
+{.full-width .wide .expand}
 
 Use `pg_exporter_query_scrape_duration` and `_error_count` to identify slow or failed collectors.
 These metrics provide a machine-readable equivalent of `/stat`.

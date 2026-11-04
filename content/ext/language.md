@@ -9,7 +9,7 @@ icon: fas fa-code
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | <a class="ext-badge ext-badge--lang plpgsql" href="/ext/language#plpgsql">PLpgSQL</a> | <a class="ext-badge ext-badge--lang python" href="/ext/language#python">Python</a> | <a class="ext-badge ext-badge--lang java" href="/ext/language#java">Java</a> |
 |:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
 | **Count** | 438 | 80 | 70 | 15 | 10 | 4 | 2 | 1 |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -458,7 +458,7 @@ Extensions written in C (438)
 | [`pg_bulkload`](/ext/e/pg_bulkload) | [`pg_bulkload`](https://github.com/ossc-db/pg_bulkload) | `3.1.23` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | pg_bulkload is a high speed data loading utility for PostgreSQL |
 | [`test_decoding`](/ext/e/test_decoding) | [`test_decoding`](https://www.postgresql.org/docs/current/test-decoding.html) | `-` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | SQL-based test/example module for WAL logical decoding |
 | [`pgoutput`](/ext/e/pgoutput) | [`pgoutput`](https://www.postgresql.org/docs/current/protocol-logical-replication.html) | `-` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Logical Replication output plugin |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -549,7 +549,7 @@ Extensions written in SQL (80)
 | [`pg_utl_smtp`](/ext/e/pg_utl_smtp) | [`pg_utl_smtp`](https://github.com/hexacluster/pg_utl_smtp) | `2.0.0` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Oracle UTL_SMTP compatibility extension for PostgreSQL |
 | [`db_migrator`](/ext/e/db_migrator) | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | `1.0.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | Tools to migrate other databases to PostgreSQL |
 | [`mimeo`](/ext/e/mimeo) | [`mimeo`](https://github.com/omniti-labs/mimeo) | `1.5.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Extension for specialized, per-table replication between PostgreSQL instances |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -630,7 +630,7 @@ Extensions written in Rust (70)
 | [`pgs3`](/ext/e/pgs3) | [`pgs3`](https://github.com/pgsty/pgs3) | `0.1.1` | `0.19.2` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | S3-compatible object storage endpoint implemented inside PostgreSQL |
 | [`kafgres`](/ext/e/kafgres) | [`kafgres`](https://github.com/RayElg/kafgres) | `0.3.1` | `0.19.3` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | Kafka protocol broker embedded in PostgreSQL |
 | [`pgmqtt`](/ext/e/pgmqtt) | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | `0.5.1` | `0.19.2` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | CDC-to-MQTT broker for PostgreSQL |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -656,7 +656,7 @@ Extensions written in C++ (15)
 | [`datasketches`](/ext/e/datasketches) | [`datasketches`](https://github.com/apache/datasketches-postgresql) | `1.7.0` | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | Approximate analytics sketches and aggregates for PostgreSQL |
 | [`pg_stat_ch`](/ext/e/pg_stat_ch) | [`pg_stat_ch`](https://github.com/ClickHouse/pg_stat_ch) | `0.4.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | Export PostgreSQL query telemetry to ClickHouse |
 | [`pg_oidc_validator`](/ext/e/pg_oidc_validator) | [`pg_oidc_validator`](https://github.com/percona/pg_oidc_validator) | `1.1.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | OAuth and OIDC token validator for PostgreSQL 18 |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -677,7 +677,7 @@ Extensions written in Data (10)
 | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Portuguese Hunspell Dictionary |
 | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Russian Hunspell Dictionary |
 | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | `1.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Russian Hunspell Dictionary (from AOT.ru group) |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -692,7 +692,7 @@ Extensions written in PLpgSQL (4)
 | [`pg_relation_sql`](/ext/e/pg_relation_sql) | [`pg_relation_sql`](https://github.com/asmgit/pg_relation_sql) | `0.2.2` | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Generate inlinable SQL functions for navigating PostgreSQL foreign-key relations |
 | [`powa`](/ext/e/powa) | [`powa`](https://github.com/powa-team/powa-archivist) | `5.3.0` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | PostgreSQL Workload Analyser-core |
 | [`pg_fact_loader`](/ext/e/pg_fact_loader) | [`pg_fact_loader`](https://sources.debian.org/src/pg-fact-loader/2.0.1-5/) | `2.0.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | build fact tables with Postgres |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -705,7 +705,7 @@ Extensions written in Python (2)
 |:---------|:-------|:--------:|:--------:|:----------:|:---------|
 | [`jev`](/ext/e/jev) | [`jev`](https://github.com/realZachi/pg-jev) | `0.2.1` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Natural-language row filtering, ranking and classification through a Jev-compatible API |
 | [`faker`](/ext/e/faker) | [`faker`](https://gitlab.com/dalibo/postgresql_faker) | `0.5.3` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | Wrapper for the Faker Python library |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -717,4 +717,4 @@ Extensions written in Java (1)
 | **Extension** | **Package** | **Version** | **Type** | **License** | **Description** |
 |:---------|:-------|:--------:|:--------:|:----------:|:---------|
 | [`pljava`](/ext/e/pljava) | [`pljava`](https://github.com/tada/pljava) | `1.6.10` | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | PL/Java procedural language |
-{.ext-table}
+{.ext-table .wide .expand}

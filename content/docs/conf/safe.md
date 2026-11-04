@@ -45,7 +45,7 @@ Generate the configuration:
 | Logging | CRIT logs connection and disconnection events | Fine-grained SQL auditing requires explicit `pgaudit` configuration |
 | Security extensions | Installs `passwordcheck_cracklib`, `credcheck`, `pgaudit`, and related packages | Installation does not preload, create, or configure an extension |
 | Delayed replica | Provides a commented one-hour delayed-cluster example | Not created by default; enable it explicitly |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------

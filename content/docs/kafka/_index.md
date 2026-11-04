@@ -99,7 +99,7 @@ If you know Kafka and Pigsty, start with [Cluster Config](/docs/kafka/config) or
 | `9093` | KRaft Controller | Controller-capable nodes | PLAINTEXT   | Mutual TLS               |
 | `9308` | kafka_exporter   | Up to two broker-capable nodes | HTTP metrics | HTTP metrics, TLS/SCRAM on the backend |
 | `9404` | JMX Exporter     | Kafka nodes with JMX enabled | HTTP metrics | HTTP metrics             |
-{.full-width}
+{.full-width .wide .expand}
 
 All four ports must be different. Parameters can change each port. Restrict JMX and protocol exporter HTTP ports to the monitoring network through firewalls.
 

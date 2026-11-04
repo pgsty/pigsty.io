@@ -24,7 +24,7 @@ Raw metrics vary with software versions, collectors, privileges, instance roles,
 | `node:ins:network_io_bytes_rate1m` | `node:ins:network_tx_bytes_rate1m + node:ins:network_rx_bytes_rate1m` | Total network send/receive rate, bytes per second |
 | `node:ins:time_drift` | `abs(node_timex_offset_seconds)` | Absolute clock offset, seconds |
 | `haproxy:ins:service_up` | `sum by (ins,proxy) (haproxy_server_status{state="UP", proxy!='stats'}) > bool 0` | Whether at least one service backend is UP, 0 or 1 |
-{.full-width}
+{.full-width .wide .expand}
 
 In addition, `node_up`, `haproxy_up`, `keepalived_exporter_up`, `docker_up`, `vector_up` come from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). They are excluded from the module rule count above and are not raw exporter metrics. They reflect scrape status and do not replace functional service checks.
 
@@ -600,6 +600,7 @@ The existing sample below retains **566 metric names**, with recording-rule and 
 | tcp_connections                                                         | gauge   | `instance`, `ins`, `job`, `protocol`, `ip`, `cls`                                                                                                                                                                              | Current number of accepted TCP connections.                                                                                                                                                                                                                                                                                                                               |
 | tcp_connections_limit                                                   | gauge   | `instance`, `ins`, `job`, `protocol`, `ip`, `cls`                                                                                                                                                                              | The max number of TCP connections that can be accepted (0 means no limit).                                                                                                                                                                                                                                                                                                |
 | up                                                                      | Unknown | `instance`, `ins`, `job`, `ip`, `cls`                                                                                                                                                                                          | N/A                                                                                                                                                                                                                                                                                                                                                                       |
+{.wide .expand}
 
 ## Recording Metric Index
 
@@ -773,6 +774,6 @@ The following groups list every name and expression from the rule file. Use page
 | `haproxy:ins:uptime` | `time() - haproxy_process_start_time_seconds` |
 | `haproxy:ins:service_up` | `sum by (ins,proxy) (haproxy_server_status{state="UP", proxy!='stats'}) > bool 0` |
 | `haproxy:cls:service_up` | `sum by (cls,proxy) (haproxy_server_status{state="UP", proxy!='stats'}) > bool 0` |
-{.full-width}
+{.full-width .wide .expand}
 
 </details>

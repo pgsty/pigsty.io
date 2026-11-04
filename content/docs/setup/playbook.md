@@ -33,7 +33,7 @@ The table shows the module deployment targets:
 | `etcd.yml`  | `./etcd.yml`  | `-l etcd`  |         |           |   ✓    |         |           |
 | `minio.yml` | `./minio.yml` | `-l minio` |         |           |        |    ✓    |           |
 | `pgsql.yml` | `./pgsql.yml` |            |         |           |        |         |     ✓     |
-{.full-width}
+{.full-width .wide .expand}
 
 You can apply the core configuration in one run with `deploy.yml`.
 For deployment in stages, follow the [Customization Guide](/docs/setup/config/).
@@ -226,4 +226,4 @@ You can add your own playbooks or change their tasks for your deployment require
 |  [**KAFKA**](/docs/kafka/playbook/)  | [**`kafka-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/kafka-rm.yml)               | Remove a Kafka cluster or member                    |
 | **MYSQL (Pilot)** | [**`mysql.yml`**](https://github.com/pgsty/pigsty/blob/main/mysql.yml)                | Deploy native MySQL 8.4 standalone or three-node clusters |
 | **MYSQL (Pilot)** | [**`mysql-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/mysql-rm.yml)          | Stop and retire native MySQL while retaining local state |
-{.full-width}
+{.full-width .wide .expand}

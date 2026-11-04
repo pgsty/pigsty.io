@@ -416,6 +416,7 @@ journalctl -u <service> --since "5 min ago"  # Last 5 minutes logs
 | Config syntax error | INI format error | Check `/etc/pgbouncer/pgbouncer.ini` |
 | Port in use | Port 6432 already used | `lsof -i :6432` |
 | userlist.txt permissions | Incorrect file permissions | `chmod 600 /etc/pgbouncer/userlist.txt` |
+{.wide .expand}
 
 **HAProxy Won't Start**
 

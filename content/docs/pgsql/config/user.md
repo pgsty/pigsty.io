@@ -108,7 +108,7 @@ All other parameters have defaults.
 | [**`pgbouncer`**](#pgbouncer)           | Pool      | `bool`   | Mutable  | Add to connection pool, default `false`    |
 | [**`pool_mode`**](#pool_mode)           | Pool      | `enum`   | Mutable  | Pool mode: `transaction` (default)         |
 | [**`pool_connlimit`**](#pool_connlimit) | Pool      | `int`    | Mutable  | Pool user max connections                  |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------
@@ -530,7 +530,7 @@ Common role-level params:
 | `search_path`                          | Schema search path   | `'app,public'`   |
 | `log_statement`                        | Log level            | `'ddl'`          |
 | `temp_file_limit`                      | Temp file size limit | `'10GB'`         |
-{.full-width}
+{.full-width .wide .expand}
 
 Query user-level parameters through the [**`pg_db_role_setting`**](https://www.postgresql.org/docs/current/view-pg-db-role-setting.html) system view.
 

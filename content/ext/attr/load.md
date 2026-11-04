@@ -145,4 +145,4 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pgmqtt`](/ext/e/pgmqtt) | `pgmqtt` | CDC-to-MQTT broker for PostgreSQL |
 | [`decoderbufs`](/ext/e/decoderbufs) | `decoderbufs` | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`repmgr`](/ext/e/repmgr) | `repmgr` | Replication manager for PostgreSQL |
-{.ext-table}
+{.ext-table .wide .expand}

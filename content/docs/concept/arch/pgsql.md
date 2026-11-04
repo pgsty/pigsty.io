@@ -26,7 +26,7 @@ The [**PGSQL module**](/docs/pgsql) combines these components for production HA 
 | [**`pgbouncer_exporter`**](#pgbouncer_exporter)           | Metrics   | Exports Pgbouncer connection pool metrics                               |
 | [**`pgbackrest_exporter`**](#pgbackrest_exporter)         | Metrics   | Exports backup status metrics                                           |
 | [**`vip-manager`**](#vip-manager)                         | VIP       | Binds L2 VIP to current primary node for transparent failover [Optional] |
-{.full-width}
+{.full-width .wide .expand}
 
 Enable [**`vip-manager`**](#vip-manager) when needed. PGSQL also uses components from other modules:
 

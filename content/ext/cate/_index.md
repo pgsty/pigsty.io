@@ -25,4 +25,4 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | 27 | 27 | Wrappers & Multicorn for FDW Development, Access other DBMS: MySQL, Mongo, SQLite, MSSQL, Oracle, HDFS, DB2,... |
 | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | 31 | 20 | Protocol Simulation & heterogeneous DBMS Compatibility: Oracle, MSSQL, DB2, MySQL, Memcached, and Babelfish! |
 | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | 22 | 21 | Logical Replication, Decoding, CDC in protobuf/JSON/Mongo format, Copy & Load & Compare Postgres Databases,... |
-{.ext-table}
+{.ext-table .wide .expand}

@@ -34,7 +34,7 @@ The standard introduces a disaster recovery lifecycle and cloud recovery service
 | Level 4 | Electronic Transfer + Full Equipment | Hours to 12 hours | Hours | Async replication + full equipment |
 | Level 5 | Real-time Transfer + Full Equipment | Minutes to 2 hours | 0-30 min | Sync replication + hot standby |
 | Level 6 | Zero Loss + Remote Cluster | Minutes | 0 | Sync replication + standby cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 Level 6 requires real-time synchronous customer-data updates to preserve consistency and integrity. The backup center's remote cluster and network must support automatic load balancing and switching. Business recovery occurs within minutes with zero data loss.
 
@@ -62,7 +62,7 @@ Financial institutions, especially banks and securities firms, have the strictes
 | Banking | [**"Distributed Database Technology Financial Application Specification"**](http://www.caict.ac.cn/kxyj/qwfb/ztbg/202011/P020201116397348788498.pdf) (JR/T 0205-2020) | ≤ 30min to ≤ 1min | 0 | Distributed DB levels 4-6, all require RPO=0 |
 | Securities | [**"Securities and Futures Industry Information System Backup Capability Standard"**](https://neris.csrc.gov.cn/falvfagui/rdqsHeader/mainbody?navbarId=3&secFutrsLawId=ac60afab583f475bb84bfd5fb3d0e7d7) (JR/T 0059-2021) | ≤ 15 min | 0 | Core trading systems require GB Level 5-6 |
 | Insurance | [**"Insurance Industry Information System Disaster Recovery Management Guidelines"**](https://www.gov.cn/gzdt/2008-05/20/content_980596.htm) (CIRC [2008] No. 20) | ≤ 36h to ≤ 72h | ≤ 8h to ≤ 24h | Tiered 3-4 by system importance, relatively lenient |
-{.full-width}
+{.full-width .wide .expand}
 
 According to financial industry standards, distributed transaction databases for financial applications **all require RPO = 0**.
 
@@ -77,7 +77,7 @@ According to financial industry standards, distributed transaction databases for
 | Securities-General | Market data, information | ≤ 4 hours | ≤ 1 hour | Level 4-5 |
 | Insurance-Core | Policy issuance, claims | ≤ 36 hours | ≤ 8 hours | Level 4 |
 | Insurance-Important | Customer service, finance | ≤ 72 hours | ≤ 24 hours | Level 3 |
-{.full-width}
+{.full-width .wide .expand}
 
 
 -----------
@@ -117,7 +117,7 @@ The IBM user organization SHARE proposed SHARE 78 in 1978. It is the earliest in
 | Tier 5 | Active-Active/Two-Phase Commit | 1-4 hours | Minutes | Sync replication (`synchronous_commit=on`) |
 | Tier 6 | Zero Data Loss | Minutes | 0 | Sync replication + auto failure detection (Patroni + sync) |
 | Tier 7 | Automatic Failover | Seconds | 0 | Sync replication + auto failover + transparent app switching |
-{.full-width}
+{.full-width .wide .expand}
 
 **PostgreSQL/Patroni Configuration Mapping**:
 
@@ -142,7 +142,7 @@ ISO 22301 is the international standard for Business Continuity Management Syste
 | RPO | Amount of data loss an organization can accept (measured in time) | Maximum acceptable data loss time window for database |
 | MTPD | Maximum Tolerable Period of Disruption | Extreme time limit for complete business unavailability |
 | MBCO | Minimum Business Continuity Objective | Minimum service level that must be maintained during disaster |
-{.full-width}
+{.full-width .wide .expand}
 
 #### ISO 22301 Database Requirements
 
@@ -165,7 +165,7 @@ PCI-DSS defines security requirements for systems that handle credit and debit c
 | 12.10.1 | Incident response plan | Must include database recovery procedures |
 | 12.10.2 | Annual testing | Test database recovery process at least once per year |
 | 10.7 | Audit log retention | Database audit logs retained at least 1 year, 3 months online accessible |
-{.full-width}
+{.full-width .wide .expand}
 
 #### RTO/RPO Recommendations by System Type
 
@@ -189,7 +189,7 @@ US publicly traded companies must follow SOX internal-control requirements for f
 | Section 404 | Management establishes and maintains adequate internal controls for financial reporting | Database DR included in internal control scope |
 | Section 802 | Prevent falsification, destruction, or alteration of financial records | Database audit trails, immutable backups |
 | Section 103/105 | Key documents retained no less than 7 years | Database archiving strategy, long-term backup retention |
-{.full-width}
+{.full-width .wide .expand}
 
 #### SOX Database Compliance Requirements
 
@@ -285,7 +285,7 @@ Bank ICT policies should be fully documented, including:
 | SOX | Public Companies | ≤ 4 hours | ≤ 1 hour | Periodic required | 7 years |
 | HIPAA | Healthcare | ≤ 1 hour | ≤ 15 min | Periodic required | 6 years |
 | Basel III | Banking | ≤ 15 min | 0 | Periodic required | 3-7 years |
-{.full-width}
+{.full-width .wide .expand}
 
 ### PostgreSQL/Patroni Capability Coverage
 

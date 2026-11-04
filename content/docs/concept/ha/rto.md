@@ -59,7 +59,7 @@ Select one of four RTO presets for the network conditions.
 | **Target RTO**          |   <span class="text-success">**30s**</span>    |  <span class="text-primary">**45s**</span>   |  <span class="text-warning">**90s**</span>  |   <span class="text-danger">**150s**</span>    |
 | **False Failover Risk** | <span class="text-secondary">**Higher**</span> | <span class="text-primary">**Medium**</span> | <span class="text-success">**Lower**</span> | <span class="text-success">**Very Low**</span> |
 | **Configuration**       |                 `pg_rto: fast`                 |                `pg_rto: norm`                |               `pg_rto: safe`                |                 `pg_rto: wide`                 |
-{.full-width}
+{.full-width .wide .expand}
 
 
 > [!IMPORTANT] fast: Same Rack/Switch
@@ -133,7 +133,7 @@ Each preset selects values for these 10 **Patroni** and **HAProxy** parameters:
 |               |       **`downinter`**       |    1s    |    2s    |    3s    |    4s    | DOWN state check interval             |
 |               |         **`rise`**          |    3     |    3     |    3     |    3     | Consecutive successes to mark UP      |
 |               |         **`fall`**          |    3     |    3     |    3     |    3     | Consecutive failures to mark DOWN     |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ### Patroni Parameters
@@ -183,7 +183,7 @@ loop\_wait + 2 \times retry\_timeout \leq ttl
 |  `safe`   | `90`  |  `53` / `66` / `78`   |  `3` / `61` / `73`  | Same-city active-active / cross-DC DR |
 |  `wide`   | `150` | `104` / `127` / `150` | `4` / `122` / `145` | Geo-DR / cross-country  |
 | `default` | `326` |  `22` / `34` / `46`   | `2` / `314` / `326` | Patroni default params |
-{.full-width}
+{.full-width .wide .expand}
 
 
 Set [**`pg_rto`**](/docs/pgsql/param#pg_rto) to a preset name to configure Patroni and HAProxy automatically. The template checks `pg_rto in pg_rto_plan`. A numeric or unknown key falls back to `norm`. This fallback does not support an RTO expressed as seconds.

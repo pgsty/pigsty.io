@@ -167,7 +167,7 @@ An incorrect configuration can prevent primary startup or interrupt failover.
 | `track_activity_query_size` | `32KiB` | `8KiB` | Retains longer query text |
 | `log_connections` | Detailed connection events | PostgreSQL 18 logs authorization by default | Adds connection-audit detail |
 | `log_disconnections` | `on` | `off` | Records disconnections |
-{.full-width}
+{.full-width .wide .expand}
 
 CRIT also disables parallel gather for individual queries and adjusts parallel costs, autovacuum, WAL, and statistics parameters.
 The release file `roles/pgsql/templates/crit.yml` defines the active values.

@@ -85,7 +85,7 @@ For the licenses of {{< param pgext_count >}} PostgreSQL extensions, see the [**
 |  External  | [OpenTofu](https://opentofu.org/) | [MPL-2.0](https://github.com/opentofu/opentofu/blob/main/LICENSE) | Default IaC tool for cloud resource templates | **Optional** |
 |  External  | [Terraform](https://www.terraform.io/)                            | [Business Source License 1.1](https://github.com/hashicorp/terraform/blob/main/LICENSE)                   | Compatible IaC CLI, selected with `IAC_CLI=terraform`       |  **Optional**   |
 |  External  | [Virtualbox](https://www.virtualbox.org/)                         | [GPLv2](https://www.virtualbox.org/wiki/Licensing_FAQ)                                                    | Virtual machine management software         |  **Optional**   |
-{.full-width}
+{.full-width .wide .expand}
 
 **Necessity Levels:**
 

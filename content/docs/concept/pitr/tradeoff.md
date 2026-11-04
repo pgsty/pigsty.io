@@ -29,7 +29,7 @@ An **object storage repository** (`pgbackrest_method: minio` or a custom S3 defi
 | Production | Dedicated Silo or compatible S3 storage | Independent failure domain and encrypted repository |
 | Cloud deployment | Managed S3-compatible or cloud object storage supported by pgBackRest | Independent storage and lower operational burden |
 | Ransomware/compliance | Versioned storage plus correctly configured object lock/retention | Prevent privileged database-host access from deleting protected versions |
-{.full-width}
+{.full-width .wide .expand}
 
 The repository contains sensitive business data. Change default access keys and `cipher_pass`. Restrict access and protect credentials separately from database hosts. Verify any object-lock policy. See [**Backup Repository**](/docs/pgsql/backup/repository/).
 

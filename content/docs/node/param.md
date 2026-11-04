@@ -23,6 +23,7 @@ The [NODE](/docs/node) module configures target nodes to the required state. It 
 | [`HAPROXY`](#haproxy)               | HAProxy load balancer           |
 | [`NODE_EXPORTER`](#node_exporter)   | Node monitoring exporter        |
 | [`VECTOR`](#vector)                 | Vector log collector            |
+{.wide .expand}
 
 ----------------
 
@@ -75,6 +76,7 @@ The [NODE](/docs/node) module configures target nodes to the required state. It 
 | [`node_tune`](#node_tune)                               |   `enum`    |   `C`   | node tuned profile: none,oltp,olap,crit,tiny             |
 | [`node_tuned_profile_dir`](#node_tuned_profile_dir)     |   `path`    |   `C`   | tuned profile directory selected by platform mapping     |
 | [`node_sysctl_params`](#node_sysctl_params)             |   `dict`    |   `C`   | extra sysctl parameters in k:v format                    |
+{.wide .expand}
 
 [`NODE_SEC`](#node_sec) section configures node security options, including SELinux and firewall.
 
@@ -84,6 +86,7 @@ The [NODE](/docs/node) module configures target nodes to the required state. It 
 | [`node_firewall_mode`](#node_firewall_mode)               |  `enum`  |  `C`  | firewall mode: zone (default, enabled), off (disable), none (self-managed) |
 | [`node_firewall_intranet`](#node_firewall_intranet)       | `cidr[]` |  `C`  | intranet CIDR list for firewall rules                                      |
 | [`node_firewall_public_port`](#node_firewall_public_port) | `port[]` |  `C`  | public exposed port list, default [22, 80, 443]                            |
+{.wide .expand}
 
 [`NODE_ADMIN`](#node_admin) section configures admin user, data directory, and shell aliases.
 
@@ -137,6 +140,7 @@ The [NODE](/docs/node) module configures target nodes to the required state. It 
 | [`haproxy_client_timeout`](#haproxy_client_timeout)       | `interval`  |    `C`    | client connection timeout, 24h default   |
 | [`haproxy_server_timeout`](#haproxy_server_timeout)       | `interval`  |    `C`    | server connection timeout, 24h default   |
 | [`haproxy_services`](#haproxy_services)                   | `service[]` |    `C`    | list of haproxy services to expose       |
+{.wide .expand}
 
 [`NODE_EXPORTER`](#node_exporter) section configures node monitoring exporter.
 
@@ -196,6 +200,7 @@ Pigsty defaults to one exclusive PostgreSQL instance per node. Enable [`node_id_
 |      `inventory_hostname`       |   `ip`   | **-** | **Required** | **Node IP Address**   |
 |     [`nodename`](#nodename)     | `string` | **I** | Optional     | **Node Name**         |
 | [`node_cluster`](#node_cluster) | `string` | **C** | Optional     | **Node Cluster Name** |
+{.wide .expand}
 
 
 ```yaml

@@ -28,7 +28,7 @@ Raw PostgreSQL and PgBouncer metrics are defined in [`pg_exporter.yml`](https://
 | `pg:cls:xact_total_rate1m` | `sum by (job, cls) (pg:ins:xact_total_rate1m)` | Cluster transactions per second |
 | `pgbouncer:ins:query_rate1m` | `sum without(datname) (pgbouncer:db:query_rate1m)` | Connection-pool queries per second |
 | `pgbouncer:ins:query_rt_1m` | `pgbouncer:ins:query_time_rate1m / pgbouncer:ins:query_rate1m` | Ratio of the cumulative query-time rate to the query rate |
-{.full-width}
+{.full-width .wide .expand}
 
 In addition, `pg_exporter_agent_up`, `pgbouncer_exporter_agent_up`, `pgbackrest_exporter_agent_up`, `patroni_up` come from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). They are excluded from the module rule count above and are not raw exporter metrics. They reflect scrape status and do not replace functional service checks.
 
@@ -443,7 +443,7 @@ The existing sample below retains **405 metric names**, with recording-rule and 
 | scrape_samples_scraped                         | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | scrape_series_added                            | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
 | up                                             | Unknown | `job`, `ins`, `ip`, `instance`, `cls`                                                                                                                                                        | N/A                                                                                                                                      |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Recording Metric Index
 
@@ -687,7 +687,7 @@ The following groups list every name and expression from the rule file. Use page
 | `pg:table:scan_rate1m` | `rate(pg_table_tbl_scan[1m])` |
 | `pg:query:call_rate1m` | `rate(pg_query_calls[1m])` |
 | `pg:query:rt_1m` | `rate(pg_query_exec_time[1m]) / pg:query:call_rate1m` |
-{.full-width}
+{.full-width .wide .expand}
 
 </details>
 
@@ -865,7 +865,7 @@ The following groups list every name and expression from the rule file. Use page
 | `cls:pressure1` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_1m > pg:cls:saturation1 or pg:cls:saturation1), 0)` |
 | `cls:pressure5` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_5m > pg:cls:saturation5 or pg:cls:saturation5), 0)` |
 | `cls:pressure15` | `clamp_min(max by (job, cls) (pg:cls:cpu_usage_15m > pg:cls:saturation15 or pg:cls:saturation15), 0)` |
-{.full-width}
+{.full-width .wide .expand}
 
 </details>
 
@@ -962,6 +962,6 @@ Follow a collector link to inspect its SQL, output fields, types, and HELP text.
 | [`pg_tsdb_hypertable`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2443) | `pg_tsdb_hypertable` | 10 | — | `extension:timescaledb, schema:timescaledb_information` | 4 |
 | [`pg_citus_node`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2473) | `pg_citus_node` | 10 | — | `extension:citus` | 6 |
 | [`pg_heartbeat`](https://github.com/pgsty/pigsty/blob/main/roles/pg_monitor/templates/pg_exporter.yml#L2504) | `pg_heartbeat` | 9.1 | — | `dbname:postgres, schema:monitor` | 3 |
-{.full-width}
+{.full-width .wide .expand}
 
 Version ranges include the lower bound and exclude the upper bound; see the [exporter version-matching logic](https://github.com/pgsty/pg_exporter/blob/main/exporter/server.go). An em dash indicates no upper bound. `predicate_queries` first checks dependencies such as TimescaleDB, Citus, and monitoring helper views. PostgreSQL major version alone does not guarantee that every optional metric can be collected.

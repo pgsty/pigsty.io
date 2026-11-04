@@ -226,6 +226,7 @@ Thus, the template disables the idle timeout.
 | log_min_duration_statement | 1000ms | 100ms | Relaxed slow query threshold |
 | default_statistics_target | 1000 | 400 | More precise stats |
 | idle_in_transaction_session_timeout | Disabled | 10min | Allow long transactions |
+{.wide .expand}
 
 
 ----------------

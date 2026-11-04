@@ -56,7 +56,7 @@ The native port is the port of the component behind Nginx.
 | `/haproxy/*` | [**HAProxy**](/docs/node/)                 | `9101`      | Load balancer admin Web UI           |                                                                |
 | `/pev`       | [**PEV2**](https://github.com/dalibo/pev2) | `80`        | PostgreSQL execution plan visualizer | [`demo.pigsty.io/pev`](https://demo.pigsty.io/pev)             |
 | `/nginx`     | [**Nginx**](/docs/infra/)                  | `80`        | Nginx status page (for metrics)      |                                                                |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Domain Access
 

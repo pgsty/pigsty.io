@@ -40,6 +40,7 @@ Aliyun RDS and AWS RDS are closed-source cloud database services. You can only r
 | Log Collection   | <i class="fas fa-circle-check text-success"></i> VictoriaLogs / Vector       | <i class="fas fa-circle-check text-success"></i>  Basic support                     | <i class="fas fa-circle-check text-success"></i> Basic support                            |
 | Visualization  | <i class="fas fa-circle-check text-success"></i> Grafana / Echarts     | <i class="fas fa-circle-check text-secondary"></i> Basic monitoring                  | <i class="fas fa-circle-check text-secondary"></i> Basic monitoring                        |
 | Alert Aggregation | <i class="fas fa-circle-check text-success"></i> AlertManager          | <i class="fas fa-circle-check text-success"></i> Basic support                      | <i class="fas fa-circle-check text-success"></i> Basic support                            |
+{.wide .expand}
 
 
 ----------
@@ -71,6 +72,7 @@ This PostgreSQL 16 extension-support snapshot uses information available on 2024
 | Fuzzy Tokenization     | <i class="fas fa-circle-check text-success"></i> zhparser 1.1 / pg_bigm 1.2     |  <i class="fas fa-circle-check text-success"></i> zhparser 1.0 / pg_jieba  |   <i class="fas fa-circle-check text-success"></i> pg_bigm 1.2   |
 | CDC Extraction    | <i class="fas fa-circle-check text-success"></i> wal2json 2.5.3                 |              <i class="fas fa-circle-xmark text-danger"></i>               |  <i class="fas fa-circle-check text-success"></i> wal2json 2.5   |
 | Bloat Management     | <i class="fas fa-circle-check text-success"></i> pg_repack 1.5.0                |      <i class="fas fa-circle-check text-success"></i> pg_repack 1.4.8      | <i class="fas fa-circle-check text-success"></i> pg_repack 1.5.0 |
+{.wide .expand}
 
 > [!DETAILS]- AWS RDS PG Available Extensions
 > AWS RDS for PostgreSQL 16 available extensions (excluding PG built-in extensions)
@@ -182,6 +184,7 @@ This PostgreSQL 16 extension-support snapshot uses information available on 2024
 | Storage Spec: Max Latency   | 4K Random Read: 75µs, Random Write: 15µs                                                                          | 4K Random Read: 200µs                                                                                             | 500µs / Inferred as 16K random IO                                                                                                                                  |
 | Storage Spec: Max Reliability  | UBER < 1e-18, equivalent to 18 nines MTBF: 2M hours 5DWPD, 3 years continuous                                  | Reliability 9 nines, equivalent to UBER 1e-9 [Storage and Data Reliability](https://help.aliyun.com/document_detail/476273.html)                    | **Durability**: 99.999%, 5 nines (0.001% annual failure rate) [io2 specification](https://aws.amazon.com/blogs/storage/achieve-higher-database-performance-using-amazon-ebs-io2-block-express-volumes/) |
 | Storage Spec: Max Cost   | ¥31.5/TB·month (5-year warranty amortized / 3.2T / Enterprise-grade / MLC)                                                    | ¥3200/TB·month (original ¥6400, monthly ¥4000) 50% off with 3-year prepaid                                                            | ¥1900/TB·month using max spec 65536GB / 256K IOPS best discount                                                                                                         |
+{.wide .expand}
 
 -----------
 
@@ -223,6 +226,7 @@ The following projects provide more basic PostgreSQL monitoring capabilities:
 | Service & Support         | Commercial subscription support available                                       | After-sales ticket support                                                                                                              | After-sales ticket support      |
 | Air-gapped Deployment        | Offline installation supported                                          | N/A                                                                                                                   | N/A           |
 | Database Migration         | Playbooks for zero-downtime migration from existing v10+ PG instances to Pigsty managed instances via logical replication          | Cloud migration assistance [Aliyun RDS Data Sync](https://help.aliyun.com/document_detail/322179.html?spm=a2c4g.11186623.0.0.5fb374c9OOi4Dm) |               |
+{.wide .expand}
 
 -----------
 
@@ -234,6 +238,7 @@ Based on experience, RDS software and hardware resources cost 5-15 times as much
 |----|-----------|----------------------|-----------------|------------------|
 | Cost | Software License/Service Fee | Free, hardware ~¥20-40/core·month | ¥200-400/core·month | ¥400-1300/core·month |
 |    | Support Service Fee    | Service ~¥100/core·month       | Included in RDS cost     |                  |
+{.wide .expand}
 
 ------------------
 

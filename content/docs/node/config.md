@@ -29,6 +29,7 @@ In the inventory, the address is `inventory_hostname`. It is the `key` in the `<
 |   `inventory_hostname`    |   `ip`   | **-** | **Required** | **Node IP**          |
 | [`nodename`](/docs/node/param/#nodename) | `string` | **I** | Optional     | **Node Name**        |
 | [`node_cluster`](/docs/node/param/#node_cluster) | `string` | **C** | Optional     | **Node cluster name** |
+{.wide .expand}
 
 If [`nodename`](/docs/node/param/#nodename) is unset, Pigsty uses the existing hostname. If [`node_cluster`](/docs/node/param/#node_cluster) is unset, it uses `nodes`. In monitoring, the node name provides the **instance identifier** (`ins`). The cluster name provides the **cluster identifier** (`cls`).
 

@@ -8,18 +8,16 @@ This is the website repo for http://pigsty.io
 - https://github.com/pgsty/pigsty.io (English)
 - https://github.com/pgsty/pigsty.cc (Chinese)
 
-Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.4.0**](https://github.com/pgsty/oink/releases/tag/v1.4.0)
+Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.5.0**](https://github.com/pgsty/oink/releases/tag/v1.5.0)
 
 
 ---------------
 
 ## Build
 
-Install Git, Go, and Hugo Extended (v0.168.0 or newer):
-
-```bash
-brew install git go hugo
-```
+Install Git, Go 1.27.3, and Hugo Extended v0.168.0, matching CI.
+Use the [Hugo v0.168.0 release](https://github.com/gohugoio/hugo/releases/tag/v0.168.0)
+and the [Go 1.27.3 release](https://go.dev/dl/#go1.27.3).
 
 Run the local preview or production build:
 

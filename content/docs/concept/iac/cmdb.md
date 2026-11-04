@@ -175,6 +175,7 @@ These views expose configuration data:
 | `pigsty.pg_service` | PostgreSQL service definition view |
 | `pigsty.pg_hba` | PostgreSQL HBA rules view |
 | `pigsty.pg_remote` | Remote PostgreSQL instance view |
+{.wide .expand}
 
 **`pigsty.inventory`** converts database configuration to Ansible inventory JSON:
 

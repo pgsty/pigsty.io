@@ -92,6 +92,7 @@ Services using etcd in Pigsty:
 |:----|:----|:--------|
 | **Patroni** | PG HA, stores cluster state and config | `/etc/patroni/patroni.yml` |
 | **VIP-Manager** | Binds L2 VIP on PG clusters | `/etc/default/vip-manager.yml` |
+{.wide .expand}
 
 After a permanent etcd membership change, [reload the related service configurations](/docs/etcd/admin#reload-config). This updates the endpoints that services use to access etcd.
 
@@ -159,6 +160,7 @@ The module creates these directories and files on target hosts:
 | `/data/etcd/`                      | Main data dir (configurable) | 0700, etcd:etcd |
 | `/etc/profile.d/etcdctl.sh`        | Client env vars              | 0644, root:root |
 | `/etc/systemd/system/etcd.service` | Systemd service              | 0644, root:root |
+{.wide .expand}
 
 
 <br>

@@ -38,6 +38,7 @@ Common extensions that require preloading:
 | `pg_stat_kcache` | Kernel statistics |
 | `pg_squeeze` | Online table space reclamation |
 | `pgml` | PostgresML machine learning |
+{.wide .expand}
 
 For the complete list, see the [Extension Catalog](/ext/list) (marked with `LOAD`).
 

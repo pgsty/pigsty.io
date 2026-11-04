@@ -24,6 +24,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`VICTORIA`](#victoria)           | VictoriaMetrics/Logs/Traces observability stack             |
 | [`PROMETHEUS`](#prometheus)       | Alertmanager and Blackbox Exporter                          |
 | [`GRAFANA`](#grafana)             | Grafana visualization platform configuration                |
+{.wide .expand}
 
 
 ----------------
@@ -72,6 +73,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`repo_packages`](#repo_packages)             |  `string[]`  |   `G`   | Packages to download from upstream             |
 | [`repo_extra_packages`](#repo_extra_packages) |  `string[]`  | `G/C/I` | Extra packages to download                     |
 | [`repo_url_packages`](#repo_url_packages)     |  `string[]`  |   `G`   | Extra packages downloaded via URL              |
+{.wide .expand}
 
 [`INFRA_PACKAGE`](#infra_package) parameters define RPM/DEB packages to install on infrastructure nodes.
 
@@ -97,6 +99,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`certbot_sign`](#certbot_sign)                     |   `bool`   | `G/A` | Sign cert with certbot?                                  |
 | [`certbot_email`](#certbot_email)                   |  `string`  | `G/A` | Certbot notification email address                       |
 | [`certbot_options`](#certbot_options)               |  `string`  | `G/A` | Certbot extra command line options                       |
+{.wide .expand}
 
 [`DNS`](#dns) parameters configure DNSMasq DNS server, including enable switch, listen port, and dynamic DNS records.
 
@@ -127,6 +130,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`vmalert_enabled`](#vmalert_enabled)                   |   `bool`   | `G/I` | Enable VMAlert on this infra node?         |
 | [`vmalert_port`](#vmalert_port)                         |   `port`   |  `G`  | VMAlert listen port, default 8880          |
 | [`vmalert_options`](#vmalert_options)                   |   `arg`    |  `G`  | VMAlert extra CLI options                  |
+{.wide .expand}
 
 [`PROMETHEUS`](#prometheus) parameters configure Alertmanager and Blackbox Exporter, providing alert management and network probing capabilities.
 

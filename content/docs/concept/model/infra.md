@@ -37,7 +37,7 @@ Each INFRA node runs the following core components:
 | [**Blackbox Exporter**](/docs/concept/arch/infra#blackboxexporter) | `9115`   | ICMP/TCP/HTTP black-box probing                   |
 | [**DNSMASQ**](/docs/concept/arch/infra#dnsmasq)                    | `53`     | DNS server for internal domain resolution         |
 | [**Chronyd**](/docs/concept/arch/infra#chronyd)                    | `123`    | NTP time server                                   |
-{.full-width}
+{.full-width .wide .expand}
 
 These components together form Pigsty's observability infrastructure.
 
@@ -77,7 +77,7 @@ The [**`INFRA_ID`**](/docs/infra/param#infra_id) parameter group assigns determi
 | Parameter                                          |  Type  | Level | Description                      | Format                                  |
 |:---------------------------------------------------|:------:|:-----:|:---------------------------------|:----------------------------------------|
 | [**`infra_seq`**](/docs/infra/param#infra_seq)     | `int`  | Node  | INFRA node sequence, required    | Natural number, starting from 1, unique within group |
-{.full-width}
+{.full-width .wide .expand}
 
 Set the node sequence number at node level. Pigsty generates unique identifiers with these rules:
 

@@ -16,7 +16,7 @@ Pigsty provides four preset Patroni/PostgreSQL config templates optimized for di
 | [**`/docs/pgsql/template/olap.yml`**](/docs/pgsql/template/olap)   | 4-128C    | OLAP analytics    | Large queries, high parallelism |
 | [**`/docs/pgsql/template/crit.yml`**](/docs/pgsql/template/crit)   | 4-128C    | Consistency-first | Consistency-first, detailed auditing |
 | [**`/docs/pgsql/template/tiny.yml`**](/docs/pgsql/template/tiny)   | 1-3C      | Tiny instances    | Resource-constrained envs |
-{.full-width}
+{.full-width .wide .expand}
 
 Use [**`pg_conf`**](/docs/pgsql/param#pg_conf) to select a template.
 The default is [**`/docs/pgsql/template/oltp.yml`**](/docs/pgsql/template/oltp).
@@ -90,7 +90,7 @@ The four templates differ significantly in key parameters:
 | **work_mem** range              | 64MB-1GB     | 64MB-8GB     | 64MB-1GB     | 16MB-256MB   |
 | **maintenance_work_mem**        | 25% shmem    | 50% shmem    | 25% shmem    | 25% shmem    |
 | **max_locks_per_transaction**   | 1-2x maxconn | 2-4x maxconn | 1-2x maxconn | 1-2x maxconn |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Parallel Query
 
@@ -101,7 +101,7 @@ The four templates differ significantly in key parameters:
 | **max_parallel_workers_per_gather** | 20% cpu (max 8) | 50% cpu | 0 (off)   | 0 (off)   |
 | **parallel_setup_cost**             | 2000            | 1000    | 2000      | 1000      |
 | **parallel_tuple_cost**             | 0.2             | 0.1     | 0.2       | 0.1       |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Sync Replication
 
@@ -109,7 +109,7 @@ The four templates differ significantly in key parameters:
 |:-----------------------|:---------------|:---------------|:-----------|:---------------|
 | **synchronous_mode**   | depends pg_rpo | depends pg_rpo | forced on  | depends pg_rpo |
 | **data_checksums**     | optional       | optional       | forced on  | optional       |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Vacuum Config
 
@@ -118,7 +118,7 @@ The four templates differ significantly in key parameters:
 | **vacuum_cost_delay**      | 20ms | 10ms  | 20ms | 20ms |
 | **vacuum_cost_limit**      | 2000 | 10000 | 2000 | 2000 |
 | **autovacuum_max_workers** | 3    | 3     | 3    | 2    |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Timeout & Security
 
@@ -129,7 +129,7 @@ The four templates differ significantly in key parameters:
 | **default_statistics_target**           | 400     | 1000   | 400       | 200     |
 | **track_activity_query_size**           | 8KB     | 8KB    | 32KB      | 8KB     |
 | **log_connections**                     | auth    | auth   | full      | default |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ### IO Config (PG18)
@@ -138,7 +138,7 @@ The four templates differ significantly in key parameters:
 |:--------------------|:---------------|:---------------|:--------------|:----------|
 | **io_workers**      | 25% cpu (4-16) | 50% cpu (4-32) | 25% cpu (4-8) | 3         |
 | **temp_file_limit** | 1/20 disk, max 100GB | 1/5 disk, max 400GB | 1/20 disk, max 100GB | 1/20 disk, max 100GB |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------

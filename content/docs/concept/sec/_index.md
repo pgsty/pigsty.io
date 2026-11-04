@@ -59,7 +59,7 @@ The default configuration enables these controls to reduce omissions:
 | Backup and recovery | [**pgBackRest**](/docs/concept/arch/pgsql#pgbackrest) is enabled by default, with two full backups retained in the local repository | [`pgbackrest_enabled`](/docs/pgsql/param#pgbackrest_enabled) |
 | Firewall | Zone mode trusts intranet CIDRs and exposes only required ports to public networks | [`node_firewall_mode`](/docs/node/param#node_firewall_mode) |
 | Restricted sudo | Sudo access for the database OS user is limited to the required command set | [`pg_dbsu_sudo`](/docs/pgsql/param#pg_dbsu_sudo) |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------

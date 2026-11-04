@@ -95,7 +95,7 @@ Standalone restarts in place. Render-time `mysqld --validate-config` rejects inv
 | Degraded-cluster restart | Config-driven restarts require all members ONLINE |
 | Non-fresh clone target | Replacement members must be brand-new machines with empty datadirs |
 | Complete outage | Quorum is never rebuilt automatically; the error prints the manual recovery steps |
-{.full-width}
+{.full-width .wide .expand}
 
 These checks reduce risk but cannot guarantee against data loss. Before bypassing checks, verify backups and exact scope. Marker deletion and datadir erasure must be deliberate decisions.
 

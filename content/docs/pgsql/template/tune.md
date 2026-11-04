@@ -75,6 +75,7 @@ The final GUC is therefore eight higher than the intermediate variable near the 
 | `max_parallel_workers`             | max(ceil(50% CPU), 2)            | 1/2 CPU rounded up, minimum 2          |
 | `max_parallel_maintenance_workers` | max(ceil(33% CPU), 2)            | 1/3 CPU rounded up, minimum 2          |
 | `max_parallel_workers_per_gather`  | min(max(ceil(20% CPU), 2),8)     | 1/5 CPU rounded down, minimum 2, max 8 |
+{.wide .expand}
 
 | OLAP                               | Setting Logic          | Range Limits                    |
 |------------------------------------|------------------------|---------------------------------|
@@ -82,6 +83,7 @@ The final GUC is therefore eight higher than the intermediate variable near the 
 | `max_parallel_workers`             | max(ceil(80% CPU, 2))  | 4/5 CPU rounded up, minimum 2   |
 | `max_parallel_maintenance_workers` | max(ceil(33% CPU), 2)  | 1/3 CPU rounded up, minimum 2   |
 | `max_parallel_workers_per_gather`  | max(floor(50% CPU), 2) | 1/2 CPU rounded up, minimum 2   |
+{.wide .expand}
 
 | CRIT                               | Setting Logic         | Range Limits                  |
 |------------------------------------|-----------------------|-------------------------------|
@@ -89,6 +91,7 @@ The final GUC is therefore eight higher than the intermediate variable near the 
 | `max_parallel_workers`             | max(ceil(50% CPU), 2) | 1/2 CPU rounded up, minimum 2 |
 | `max_parallel_maintenance_workers` | max(ceil(33% CPU), 2) | 1/3 CPU rounded up, minimum 2 |
 | `max_parallel_workers_per_gather`  | 0, enable as needed   |                               |
+{.wide .expand}
 
 | TINY                               | Setting Logic         | Range Limits                     |
 |------------------------------------|-----------------------|----------------------------------|
@@ -96,6 +99,7 @@ The final GUC is therefore eight higher than the intermediate variable near the 
 | `max_parallel_workers`             | max(floor(50% CPU), 1) | 50% CPU rounded down, minimum 1  |
 | `max_parallel_maintenance_workers` | max(floor(33% CPU), 1) | 33% CPU rounded down, minimum 1  |
 | `max_parallel_workers_per_gather`  | 0                       | Disables parallel gather per query |
+{.wide .expand}
 
 The CRIT and TINY templates set `max_parallel_workers_per_gather = 0` to disable parallel queries.
 To enable parallel queries, change this parameter as required.

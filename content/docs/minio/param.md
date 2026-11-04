@@ -42,6 +42,7 @@ The [`MINIO`](#minio) group configures a Silo object-storage cluster, including 
 | [`minio_endpoint`](#minio_endpoint)     |  `string`  |  `C`  | endpoint for the minio client alias                  |
 | [`minio_buckets`](#minio_buckets)       | `bucket[]` |  `C`  | list of minio buckets to be created                  |
 | [`minio_users`](#minio_users)           |  `user[]`  |  `C`  | list of minio users to be created                    |
+{.wide .expand}
 
 The [`MINIO_REMOVE`](#minio_remove) group controls object-storage cluster removal, including safeguards, data cleanup, and package removal.
 

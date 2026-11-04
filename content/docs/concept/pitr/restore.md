@@ -100,7 +100,7 @@ The same mechanism supports two different workflows:
 | Downtime | Required during recovery | The source production cluster remains online |
 | Effect | Discards all writes after the target | Does not affect the source; the destination is overwritten and can be retried |
 | Best for | Whole-cluster corruption or disaster recovery | Recovering deleted objects, audit work, and recovery drills |
-{.full-width}
+{.full-width .wide .expand}
 
 For clone recovery, `cluster` names the **source backup stanza**. This example restores historical `pg-meta` data into `pg-test` while the source remains online:
 

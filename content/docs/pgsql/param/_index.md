@@ -57,6 +57,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`gp_role`](#gp_role)                   |  `enum`  |  `C`  | greenplum role of this cluster, could be master or segment               |
 | [`pg_exporters`](#pg_exporters)         |  `dict`  |  `C`  | additional pg_exporters to monitor remote postgres instances             |
 | [`pg_offline_query`](#pg_offline_query) |  `bool`  |  `I`  | set to true to mark this replica as offline instance for offline queries |
+{.wide .expand}
 
 --------
 
@@ -77,6 +78,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pg_monitor_username`](#pg_monitor_username)         |  `username`   | `G`   | postgres monitor username, `dbuser_monitor` by default            |
 | [`pg_monitor_password`](#pg_monitor_password)         |  `password`   | `G`   | postgres monitor password, `DBUser.Monitor` by default            |
 | [`pg_dbsu_password`](#pg_dbsu_password)               |  `password`   | `G/C` | dbsu password, empty string disables it by default, best not set  |
+{.wide .expand}
 
 --------
 
@@ -94,6 +96,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pg_log_dir`](#pg_log_dir)                     |  `path`     | `C`   | postgres log dir, `/pg/log/postgres` by default                    |
 | [`pg_packages`](#pg_packages)                   | `string[]`  | `C`   | pg packages to be installed, `${pg_version}` will be replaced      |
 | [`pg_extensions`](#pg_extensions)               | `string[]`  | `C`   | pg extensions to be installed, `${pg_version}` will be replaced    |
+{.wide .expand}
 
 --------
 
@@ -139,6 +142,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pg_etcd_password`](#pg_etcd_password)             | `password` | `C`   | etcd password for this PostgreSQL cluster, cluster name by default   |
 | [`pgsodium_key`](#pgsodium_key)                     |  `string`  | `C`   | pgsodium encryption master key, 64 hex digits, sha256(pg_cluster)    |
 | [`pgsodium_getkey_script`](#pgsodium_getkey_script) |   `path`   | `C`   | pgsodium getkey script path, uses template pgsodium_getkey           |
+{.wide .expand}
 
 --------
 
@@ -190,6 +194,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pg_vip_interface`](#pg_vip_interface)               |  `string`   | `C/I` | vip network interface to bind, `auto` by default                  |
 | [`pg_dns_suffix`](#pg_dns_suffix)                     |  `string`   |  `C`  | pgsql dns suffix, empty by default                                |
 | [`pg_dns_target`](#pg_dns_target)                     |   `enum`    |  `C`  | PG DNS resolves to: auto, primary, vip, none, or specific IP      |
+{.wide .expand}
 
 --------
 
@@ -215,6 +220,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pgbackrest_exporter_enabled`](#pgbackrest_exporter_enabled)   |  `bool`  | `C`   | enable pgbackrest_exporter on pgsql host?                    |
 | [`pgbackrest_exporter_port`](#pgbackrest_exporter_port)         |  `port`  | `C`   | pgbackrest_exporter listen port, 9854 by default             |
 | [`pgbackrest_exporter_options`](#pgbackrest_exporter_options)   |  `arg`   | `C`   | extra command line options for pgbackrest_exporter           |
+{.wide .expand}
 
 
 --------
@@ -1525,6 +1531,7 @@ Pigsty provides four presets tuned for different network conditions and deployme
 | `norm` | Same datacenter        | 1-5 ms, normal           | **< 45s**         | 30s         | Medium              |
 | `safe` | Cross-datacenter       | 10-50 ms                 | **< 90s**         | 60s         | Lower               |
 | `wide` | Cross-region/continent | 100-200 ms, public WAN   | **< 150s**        | 120s        | Lowest              |
+{.wide .expand}
 
 A shorter RTO speeds recovery but increases false-failure detection from network jitter.
 Select a mode for your network conditions.
@@ -1571,6 +1578,7 @@ Each mode is an array of ten values controlling Patroni and HAProxy together:
 | 7     | `downinter`             | HAProxy   | Check interval while a server is down    |
 | 8     | `rise`                  | HAProxy   | Consecutive successes required for UP    |
 | 9     | `fall`                  | HAProxy   | Consecutive failures required for DOWN   |
+{.wide .expand}
 
 Override this dictionary to customize an existing mode or add a new one:
 

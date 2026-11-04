@@ -20,6 +20,7 @@ categories: [Tutorial, Reference]
 | 5 | How do I deploy a multi-node cluster? | [**Production Deployment**](/docs/deploy/install/), [**Playbooks**](/docs/setup/playbook/), [**PGSQL Playbooks**](/docs/pgsql/playbook/) |
 | 6 | How do I operate databases daily? | [**PGSQL Administration**](/docs/pgsql/admin/), [**Cluster Management**](/docs/pgsql/admin/cluster/), [**User Management**](/docs/pgsql/admin/user/), [**Database Management**](/docs/pgsql/admin/db/) |
 | 7 | How do I validate reliability? | [**PostgreSQL HA**](/docs/concept/ha/), [**Patroni Management**](/docs/pgsql/admin/patroni/), [**Backup & Restore**](/docs/pgsql/backup/), [**Restore Operations**](/docs/pgsql/backup/restore/) |
+{.wide .expand}
 
 
 ----------------
@@ -60,6 +61,7 @@ categories: [Tutorial, Reference]
 | Maintain infrastructure | [**INFRA Administration**](/docs/infra/admin/) | `infra.yml`, `infra-rm.yml` |
 | Maintain Etcd | [**ETCD Config**](/docs/etcd/config/) | [**ETCD Management**](/docs/etcd/admin/), [**ETCD FAQ**](/docs/etcd/faq/) |
 | Deploy app templates | [**Applications**](/docs/app/) | [**Docker Module**](/docs/docker/usage/), `./app.yml` |
+{.wide .expand}
 
 
 ----------------
@@ -116,6 +118,7 @@ The main entrypoint for database operations is [**PGSQL Administration**](/docs/
 | Manage backups, checks, cleanup, and restore | [**Backup & Restore**](/docs/pgsql/backup/) |
 | Configure scheduled backup, vacuum, analyze, and other tasks | [**Crontab**](/docs/pgsql/admin/crontab/) |
 | Upgrade versions and extensions | [**Version Upgrade**](/docs/pgsql/admin/upgrade/), [**Extension Management**](/docs/pgsql/admin/ext/) |
+{.wide .expand}
 
 For background reading, see [**Routine PostgreSQL Maintenance**](https://vonng.com/pg/routine-maintain/).
 

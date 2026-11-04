@@ -31,7 +31,7 @@ Each cluster is an inventory group with two required identity parameters:
 |:---|:---:|:---|
 | `mysql_cluster` | Cluster | Cluster name; must match the inventory group holding the members. Also the backup directory and the `cls` monitoring label |
 | `mysql_seq` | Instance | `1` for standalone; sequential `1..3` for HA; doubles as `server_id` |
-{.full-width}
+{.full-width .wide .expand}
 
 **One member selects standalone; three select InnoDB Cluster.** Preflight rejects other counts. `mysql_seq=1` coordinates bootstrap only; it does not set runtime PRIMARY.
 

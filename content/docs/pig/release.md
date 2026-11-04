@@ -64,6 +64,7 @@ Changes for [v1.10.2](#v1102) and earlier versions are listed below.
 | [v0.1.1](#v011) | 2025-01-09 | Update Extension List                                              | [v0.1.1](https://github.com/pgsty/pig/releases/tag/v0.1.1) |
 | [v0.1.0](#v010) | 2024-12-29 | repo, ext, sty, and self-update                                    | [v0.1.0](https://github.com/pgsty/pig/releases/tag/v0.1.0) |
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
+{.wide .expand}
 
 
 --------
@@ -151,6 +152,7 @@ Update inherited tooling dependencies through version-specific module replacemen
 | `github.com/stretchr/objx` | `v0.1.0` | `v0.8.0` |
 | `golang.org/x/mod` | `v0.41.0` | `v0.42.0` |
 | `golang.org/x/tools` | `v0.51.0` | `v0.52.0` |
+{.wide .expand}
 
 ### Extension catalog
 
@@ -901,6 +903,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.4
 | `postgresbson`   |        | 2.0.2  | new, PG14-18             |
 | `rdf_fdw`        |        | 2.4.0  | new, PG14-18             |
 | `parray_gin`     |        | 1.4.0  | new, PG14-18             |
+{.wide .expand}
 
 **Checksums**
 
@@ -1025,6 +1028,7 @@ It improves the reliability of the `pig build` pipeline and extends catalog and 
 | `snowflake`           | 2.4     | pgEdge Snowflake-style ID generator                |
 | `spock`               | 5.0.5   | pgEdge multi-master logical replication extension  |
 | `lolor`               | 1.2.2   | pgEdge logical-replication-friendly large objects  |
+{.wide .expand}
 
 **Full Commit List (`v1.2.0..v1.3.0`)**
 
@@ -1101,6 +1105,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.0
 | `babelfishpg`       | -        | 5.5.0    | New BabelfishPG package group                     |
 | `babelfish`         | -        | 5.5.0    | New Babelfish compatibility package               |
 | `antlr4-runtime413` | -        | 4.13     | New runtime dependency for Babelfish              |
+{.wide .expand}
 
 
 **Checksums**
@@ -1201,6 +1206,7 @@ Seven new extensions are added, bringing the total available extensions to 451.
 | pg_strict          | -            | 1.0.2         |
 | pg_track_optimizer | -            | 0.9.1         |
 | pgmb               | -            | 1.0.0         |
+{.wide .expand}
 
 **Bug Fixes**
 

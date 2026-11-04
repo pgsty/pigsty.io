@@ -133,7 +133,7 @@ The [`terraform/spec/` directory](https://github.com/pgsty/pigsty/tree/main/terr
 | [`vultr.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/vultr.tf) | Vultr | Single node, Debian 12/13, currently AMD only |
 | [`digitalocean.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/digitalocean.tf) | DigitalOcean | Single node, Debian 12/13, currently AMD only |
 | [`linode.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/linode.tf) | Linode | Single node, Debian 12/13, currently AMD only |
-{.full-width}
+{.full-width .wide .expand}
 
 Copy the selected template to `terraform.tf`:
 
@@ -219,7 +219,7 @@ The recommended and validated versions are:
 | Ubuntu 26.04.0 LTS | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
 | Anolis 8.10 | `an8` | `anolisos_8_10_x64` | `anolisos_8_10_arm64` |
 | Alibaba Cloud Linux 3 | `al3` | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
-{.full-width}
+{.full-width .wide .expand}
 
 ### OSS Storage Configuration
 

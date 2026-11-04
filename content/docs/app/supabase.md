@@ -104,6 +104,7 @@ Missing packages create a dependency on the supabase/postgres Docker image for s
 | [`pgsodium`](/ext/e/pgsodium/) | Table data encryption TDE, provided by PIGSTY |
 | [`supautils`](/ext/e/supautils/) | Security utilities for cloud environments (C), provided by PIGSTY |
 | [`pg_plan_filter`](/ext/e/plan_filter/) | Filter queries by execution plan cost (C), provided by PIGSTY |
+{.wide .expand}
 
 Supabase deployments [install](/docs/pgsql/ext/install) most extensions by default. [Enable](/docs/pgsql/ext/create) them as needed. Newer templates install the `pg_graphql` package without creating its extension object. For GraphQL APIs, run `CREATE EXTENSION IF NOT EXISTS pg_graphql;` in the target database. The template event trigger rebuilds `graphql_public.graphql` and its permissions.
 

@@ -27,6 +27,7 @@ The following data shows approximate differences in cost. Cloud prices and disco
 | AWS C5D.METAL 96C 200G (Monthly No Prepaid) |    100    | AWS RDS PostgreSQL db.T2 (2x)  |   440   |
 | AWS C5D.METAL 96C 200G (3-Year Prepaid)  |    80     | AWS RDS PostgreSQL db.M5 (4x)  |   611   |
 | AWS C7A.METAL 192C 384G (3-Year Prepaid) |   104.8   | AWS RDS PostgreSQL db.R6G (8x) |   786   |
+{.wide .expand}
 
 
 --------------------
@@ -47,6 +48,7 @@ The following data shows approximate differences in cost. Cloud prices and disco
 | AWS China/Ningxia On-Demand     | ¥197,489 / month    | 237       |
 | AWS China/Ningxia 1-Year No Prepaid  | ¥143,176 / month    | 171       |
 | AWS China/Ningxia 3-Year Full Prepaid  | ¥647K + ¥116K/month  | 160.6     |
+{.wide .expand}
 
 The following table compares self-hosted and cloud database costs:
 
@@ -78,6 +80,7 @@ For Aliyun, the monthly price for compute alone is 5-7x the self-hosted baseline
 |            |           |         |            |
 | DHH @ 2023 |  ¥ 22.0   |         |            |
 | Tantan IDC Self-Hosted  |  ¥ 18.0   |         |            |
+{.wide .expand}
 
 
 ### Equivalent Price Comparison Including NVMe SSD / ESSD PL3
@@ -96,6 +99,7 @@ With common NVMe SSD specifications included, the monthly price is 11-14x the se
 |            |           |                 |             |
 | DHH @ 2023 |  ¥ 25.3   |                 |             |
 | Tantan IDC Self-Hosted  |  ¥ 19.5   |                 |             |
+{.wide .expand}
 
 > DHH Case: 192 cores with 12.8TB Gen4 SSD (1c:66); Tantan Case: 64 cores with 3.2T Gen3 MLC SSD (1c:50).
 >
@@ -114,6 +118,7 @@ With common NVMe SSD specifications included, the monthly price is 11-14x the se
 | Reliability      | UBER < 1e-18, equivalent to 18 nines, MTBF: 2M hours, 5DWPD for 3 years          | Data Reliability 9 nines [Storage and Data Reliability](https://help.aliyun.com/document_detail/476273.html)                                                                                                                                       | **Durability**: 99.999%, 5 nines (0.001% annual failure rate) [io2 Specification](https://aws.amazon.com/blogs/storage/achieve-higher-database-performance-using-amazon-ebs-io2-block-express-volumes/) |
 | Cost       | **¥16/TB·month** (5-year amortized / 3.2T MLC), 5-year warranty, ¥3000 retail | **¥3200/TB·month** (original ¥6400, monthly ¥4000), 50% off with 3-year full prepaid                                                                                                                                                            | **¥1900/TB·month** using max spec 65536GB 256K IOPS best discount                                                                                                                  |
 | SLA      | 5-year warranty, replacement on failure                                         | [Aliyun RDS SLA](https://terms.aliyun.com/legal-agreement/terms/suit_bu1_ali_cloud/suit_bu1_ali_cloud201910310944_35008.html?spm=a2c4g.11186623.0.0.270e6e37n8Exh5) Availability 99.99%: 15% monthly fee, 99%: 30% monthly fee, 95%: 100% monthly fee | [Amazon RDS SLA](https://d1.awsstatic.com/legal/amazonrdsservice/Amazon-RDS-Service-Level-Agreement-Chinese.pdf) Availability 99.95%: 15% monthly fee, 99%: 25% monthly fee, 95%: 100% monthly fee        |
+{.wide .expand}
 
 --------------------
 
@@ -132,6 +137,7 @@ With common NVMe SSD specifications included, the monthly price is 11-14x the se
 |                                                       **Other References**                                                        |  **High-Perf Storage**   | **Top-Tier Discounted** | **vs Purchased NVMe SSD** | **Price Ref** |
 |                                                       S3 Express                                                       |    0.160     |   67200   |     DHH 12T     |   1400   |
 |                                                        EBS io2                                                         | 0.125 + IOPS |  114000   |  Shannon 3.2T   |   900    |
+{.wide .expand}
 
 --------------------
 

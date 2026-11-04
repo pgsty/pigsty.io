@@ -17,7 +17,7 @@ Their risk and complexity differ substantially.
 |:---------------|:--------------|:-------------------|:-------------------|:------|
 | Minor upgrade  | 17.2 → 17.3   | Seconds (rolling)  | Fully compatible   | Low   |
 | Major upgrade  | 17 → 18       | Minutes            | Requires data dir upgrade | Medium |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ```bash {tab="Minor" group="minor-major-extension" value="minor"}

@@ -136,7 +136,7 @@ To change them, recreate the database.
 | [**`pool_connlimit`**](#pool_connlimit)             | Pool     | `int`                | Mutable   | Max database connections, default `100`              |
 | [**`pool_auth_user`**](#pool_auth_user)             | Pool     | `string`             | Mutable   | Auth query user                                      |
 | [**`register_datasource`**](#register_datasource)   | Monitor  | `bool`               | Mutable   | Register to Grafana datasource, default `true`       |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------

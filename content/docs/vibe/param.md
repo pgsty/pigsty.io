@@ -40,7 +40,7 @@ The VIBE module has **18** parameters in these groups:
 | [`claude_package`](#claude_package) | `string` | `C` | `@anthropic-ai/claude-code` | Claude Code npm package |
 | [`claude_env`](#claude_env) | `dict` | `C` | `{}` | Claude env vars |
 | [`codex_enabled`](#codex_enabled) | `bool` | `C` | `true` | Install Codex CLI |
-{.full-width}
+{.full-width .wide .expand}
 
 --------
 

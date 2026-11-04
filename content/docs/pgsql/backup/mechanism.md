@@ -127,7 +127,7 @@ incr backup: 20250715-013657F_20250715-013730I
 | Instance orchestration | [**`pig pitr`**](/docs/pig/pitr) | Preflight, keep one target offline, restore, optionally start PostgreSQL, and leave Patroni stopped for inspection |
 | Command primitive | [**`pig pb`**](/docs/pig/pb), `pb`, `pg-backup` | Supply stanza/DBSU context and call the corresponding pgBackRest command |
 | Engine | [**`pgbackrest`**](/docs/pgbackrest/) | Read `/etc/pgbackrest/pgbackrest.conf` and perform backup, archive, and restore operations |
-{.full-width}
+{.full-width .wide .expand}
 
 ### Command Primitives
 
@@ -169,7 +169,7 @@ pg-backup incr   # the default; pgBackRest promotes it when no full exists
 | `process` | — | `process-max` | Parallel restore processes |
 | `data` | `--data` / `-D` | `--pg1-path` | Target data directory |
 | `repo` | repository number only in `pig pitr` | rendered `repo1-*` | Override repository definition in the playbook |
-{.full-width}
+{.full-width .wide .expand}
 
 A selective restore is still a physical restore.
 Excluded databases receive sparse zeroed files so PostgreSQL can complete recovery.

@@ -70,7 +70,7 @@ Protocol exporters report the same logical cluster state. Before cluster aggrega
 | `kafka_topic_partition_in_sync_replica` | Gauge | `topic`, `partition`, `broker` | Current ISR members |
 | `kafka_topic_partition_under_replicated_partition` | Gauge | `topic`, `partition` | Whether the partition is under-replicated |
 | `kafka_topic_partition_leader_is_preferred` | Gauge | `topic`, `partition` | Whether the current leader is the preferred replica |
-{.full-width}
+{.full-width .wide .expand}
 
 `current_offset - oldest_offset` estimates the retained offset span. It measures neither bytes nor, for compacted topics, an exact message count.
 
@@ -84,7 +84,7 @@ Protocol exporters report the same logical cluster state. Before cluster aggrega
 | `kafka_consumergroup_current_offset_sum` | Gauge | `consumergroup`, `topic` | Sum of committed offsets |
 | `kafka_consumergroup_lag` | Gauge | `consumergroup`, `topic`, `partition` | Partition-level consumer lag |
 | `kafka_consumergroup_lag_sum` | Gauge | `consumergroup`, `topic` | Consumer lag aggregated per group/topic |
-{.full-width}
+{.full-width .wide .expand}
 
 These series may be absent for consumers that never commit offsets, use external offset storage, or have not consumed the topic.
 
@@ -119,7 +119,7 @@ These series may be absent for consumers that never commit offsets, use external
 | `process_cpu_seconds_total` | Cumulative CPU time of the Kafka JVM |
 | `process_open_fds` / `process_max_fds` | Open and maximum file descriptors |
 | `process_start_time_seconds` | Kafka JVM start time |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------
@@ -137,7 +137,7 @@ These series may be absent for consumers that never commit offsets, use external
 | `kafka_server_broker_failed_produce_requests_total` | Counter | Total failed produce requests |
 | `kafka_server_broker_fetch_requests_total` | Counter | Total fetch requests |
 | `kafka_server_broker_failed_fetch_requests_total` | Counter | Total failed fetch requests |
-{.full-width}
+{.full-width .wide .expand}
 
 Broker totals have no topic dimension. Their JMX series count therefore does not grow with topic count. Protocol exporters provide topic offsets and progress.
 
@@ -160,7 +160,7 @@ Broker totals have no topic dimension. Their JMX series count therefore does not
 | `kafka_server_replica_manager_reassigning_partitions` | Gauge | Number of leader partitions currently being reassigned |
 | `kafka_server_delayed_operation_purgatory_size` | Gauge | Number of delayed operations waiting, split by `operation` |
 | `kafka_log_manager_offline_log_directories` | Gauge | Number of log directories Kafka has marked offline |
-{.full-width}
+{.full-width .wide .expand}
 
 `Under Replicated` means some replicas are not synchronized. `Under Min ISR` means write availability or durability has fallen below the configured minimum. `At Min ISR` still meets that minimum but has no remaining replica margin.
 
@@ -178,7 +178,7 @@ Broker totals have no topic dimension. Their JMX series count therefore does not
 | `kafka_network_response_queue_size` | Gauge | — | Number of responses waiting for a network processor |
 | `kafka_server_request_handler_idle_ratio` | Gauge | — | Average request-handler idle ratio |
 | `kafka_network_processor_idle_ratio` | Gauge | — | Average network-processor idle ratio |
-{.full-width}
+{.full-width .wide .expand}
 
 For high latency, examine request volume, errors, P95/P99, both queues, thread idle ratios, GC, CPU, disk I/O, and network. A low idle ratio alone cannot locate the bottleneck.
 
@@ -199,7 +199,7 @@ For high latency, examine request volume, errors, P95/P99, both queues, thread i
 | `kafka_server_broker_metadata_apply_errors_total` | Counter | Total broker metadata image apply errors |
 | `kafka_server_metadata_snapshot_bytes` | Gauge | Size of the most recently generated or loaded metadata snapshot |
 | `kafka_server_metadata_snapshot_age_seconds` | Gauge | Age of the most recent metadata snapshot |
-{.full-width}
+{.full-width .wide .expand}
 
 `log_end_offset - high_watermark` helps estimate metadata commit lag. Also check member role, leader, epoch, and controller event latency.
 
@@ -226,7 +226,7 @@ These MBeans exist only in Kafka processes that carry the controller role:
 | `kafka_controller_unclean_leader_elections_total` | Counter | Total unclean leader elections |
 | `kafka_controller_event_queue_time_seconds` | Gauge | Controller event queue time at P50/P95/P99 |
 | `kafka_controller_event_processing_time_seconds` | Gauge | Controller event processing time at P50/P95/P99 |
-{.full-width}
+{.full-width .wide .expand}
 
 Healthy clusters should have exactly one active controller. Prioritize increases in `offline_partition_count`, `metadata_errors_total`, and `unclean_leader_elections_total`.
 
@@ -264,7 +264,7 @@ Healthy clusters should have exactly one active controller. Prioritize increases
 | `kafka:ins:request_error_rate5m` | 5-minute rate of non-`NONE` request errors |
 | `kafka:cls:under_replicated_partitions` | Total under-replicated partitions in the cluster |
 | `kafka:cls:offline_partitions` | Offline partitions in the cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------

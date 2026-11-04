@@ -32,7 +32,7 @@ Use one of these interfaces:
 | `pig pb start`                      | `up`  | [**`start`**](/docs/pgbackrest/command/start)                     | Re-enable pgBackRest operations |
 | `pig pb stop`                       | `dw`  | [**`stop`**](/docs/pgbackrest/command/stop)                       | Stop new pgBackRest operations |
 | `pig pb log [list/show/tail]`       | `l`   | —                                                                 | Inspect pgBackRest logs |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------

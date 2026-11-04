@@ -153,4 +153,4 @@ categories: [Reference]
 | 2022-06-28 | Live Stream  | Bass's Roundtable                               | DBA's Gospel: SQL Audit Best Practices                                             |
 | 2022-06-12 | Demo Day     | MiraclePlus S22 Demo Day                        | User-Friendly Cost-Effective Database Distribution Pigsty                          |
 | 2022-06-05 | Live Stream  | PG Chinese Community Sharing                    | Pigsty v1.5 Quick Start, New Features & Production Cluster Setup                   |
-{.full-width-full}
+{.full-width-full .wide .expand}

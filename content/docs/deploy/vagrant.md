@@ -100,6 +100,7 @@ The [`vagrant/spec/` directory](https://github.com/pgsty/pigsty/tree/main/vagran
 |   [rpm.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/rpm.rb)   | 2 nodes  |    2c2g x 2     |  2-node EL build environment  |         |
 |   [deb.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/deb.rb)   | 5 nodes  |    2c2g x 5     | 5-node Deb build environment  |         |
 |   [all.rb](https://github.com/pgsty/pigsty/blob/main/vagrant/spec/all.rb)   | 7 nodes  |    2c4g x 7     | 7-node full build environment |         |
+{.wide .expand}
 
 Each specification has a `Specs` variable that defines its nodes.
 For example, `full.rb` defines the 4-node sandbox shown below.
@@ -171,6 +172,7 @@ The configuration script supports these image aliases:
 | AlmaLinux 10   | `alma10`                                  | `cloud-image/almalinux-10` |
 | RHEL 8 / 9     | `rhel8`, `rhel9`                          | `generic/rhel8`, `generic/rhel9` |
 | Oracle Linux 8 / 9 | `oracle8`, `oracle9`                  | `generic/oracle8`, `generic/oracle9` |
+{.wide .expand}
 
 The mapping still contains the historical `d11`/`debian11`/`deb11` and `u20`/`ubuntu20`/`ubuntu2004` aliases.
 The current script explicitly rejects these aliases.
@@ -251,7 +253,7 @@ The `vagrant/config` script writes these validated versions for each supported i
 | AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260803` |
 | AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.8.20260810` |
 | AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.2.20260526.0` |
-{.full-width}
+{.full-width .wide .expand}
 
 The retained Debian 11 alias pins version `20260618.2513.0`.
 The retained Ubuntu 20.04 alias pins version `20250624.0.0`.

@@ -36,6 +36,7 @@ Use the [`REDIS`](/docs/redis/param/#parameter-overview) parameter group to depl
 | [`redis_rename_commands`](#redis_rename_commands)   |   `dict`   |   `C`   | Rename dangerous Redis commands                         |
 | [`redis_cluster_replicas`](#redis_cluster_replicas) |   `int`    |   `C`   | Replicas per master in Redis native cluster             |
 | [`redis_sentinel_monitor`](#redis_sentinel_monitor) | `master[]` |   `C`   | Master list for Redis Sentinel to monitor               |
+{.wide .expand}
 
 The [`REDIS_REMOVE`](#redis_remove) parameter group controls Redis instance removal behavior.
 

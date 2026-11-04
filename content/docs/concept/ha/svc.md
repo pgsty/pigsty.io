@@ -79,6 +79,7 @@ Choose a host and port combination for the required access method.
 | Cluster VIP Address | `10.10.10.3` | When `pg_vip_enabled` is enabled, an L2 VIP managed by `vip-manager` and bound to the primary node |
 | Instance Hostname | `pg-test-1` | Access via any instance hostname (resolved by dnsmasq @ infra nodes) |
 | Instance IP Address | `10.10.10.11` | Access any instance's IP address |
+{.wide .expand}
 
 **Port**
 

@@ -106,6 +106,7 @@ Pigsty provides three monitoring modes to suit different monitoring needs.
 | Deployment Playbook   | `bin/pgmon-add <cls>`   | Partial `pgsql.yml`/`node.yml` |   `pgsql.yml`   |
 | Required Permissions  | Connectable PGURL from infra | SSH & sudo on DB nodes  | SSH & sudo on DB nodes |
 | Feature Summary       |     PGCAT + PGRDS       |        Most features        |  Full features  |
+{.wide .expand}
 
 Pigsty automatically monitors fully managed databases with all supported features.
 They usually need no extra configuration.

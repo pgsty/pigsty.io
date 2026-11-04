@@ -83,7 +83,7 @@ The **`infra`** group in the [**inventory**](/docs/concept/iac/inventory) define
 |      `dnsmasq`        |   `53`     | Internal DNS resolution             |
 |      `chronyd`        |  `123`     | NTP time server                     |
 |      `ansible`        |   `-`      | Playbook execution                  |
-{.full-width}
+{.full-width .wide .expand}
 
 Nginx provides the module Web UI and software repository. Services on multiple infrastructure nodes are independent. Each Grafana can access all monitoring data sources.
 
@@ -145,7 +145,7 @@ PGSQL nodes run these additional components beyond [**regular node**](#regular-n
 |  **`{{ pg_cluster }}-default`**    | `5436` | HAProxy service: primary direct connection     | Enabled     |
 |  **`{{ pg_cluster }}-offline`**    | `5438` | HAProxy service: offline read                  | Enabled     |
 | **`{{ pg_cluster }}-<service>`**   | `543x` | HAProxy service: custom PostgreSQL services    | Custom      |
-{.full-width}
+{.full-width .wide .expand}
 
 `vip-manager` runs only when a **PG VIP** is configured. Define [**custom services**](/docs/pgsql/service/#define-service) through [**`pg_services`**](/docs/pgsql/service). `haproxy` exposes them on additional ports.
 
@@ -184,4 +184,4 @@ Typical node counts by deployment scale:
 | 3-node      |   1   |   3   |  3   |   0   |   3   |
 | Small prod  |   1   |   2   |  3   |   0   |   N   |
 | Large prod  |   2   |   3   |  5   |  4+   |   N   |
-{.full-width}
+{.full-width .wide .expand}

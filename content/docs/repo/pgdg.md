@@ -65,6 +65,7 @@ The Pigsty PGDG mirror contains part of the official PGDG repository. It covers 
 | u24.aarch64    | Ubuntu |  24   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | u26.x86_64     | Ubuntu |  26   | **18**, **17**, **16**, **15**, **14** |    OK    |
 | u26.aarch64    | Ubuntu |  26   | **18**, **17**, **16**, **15**, **14** |    OK    |
+{.wide .expand}
 
 ---------
 

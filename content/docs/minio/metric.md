@@ -56,7 +56,7 @@ Each Silo instance exposes only the V3 root endpoint, `/minio/metrics/v3`. Curre
 | Process | `minio_system_process_cpu_total_seconds`, `minio_system_process_resident_memory_bytes` | Process CPU and resident memory |
 | System | `minio_system_drive_free_bytes`, `minio_system_drive_used_bytes`, `minio_system_drive_health` | Per-drive capacity and health |
 | Audit | `minio_audit_total_messages` | Audit-message count |
-{.full-width}
+{.full-width .wide .expand}
 
 During scraping, Pigsty drops samples with a non-empty `bucket` label. It does not register dedicated per-bucket or replication endpoints. This policy controls the number of time series.
 

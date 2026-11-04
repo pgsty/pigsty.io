@@ -73,7 +73,7 @@ The configuration defines four Silo nodes with four disks each. Instance identif
 |               **`10.10.10.11`**                 | Node #2, hosts `minio-2` instance                   |
 |               **`10.10.10.12`**                 | Node #3, hosts `minio-3` instance                   |
 |               **`10.10.10.13`**                 | Node #4, hosts `minio-4` instance                   |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------
@@ -86,7 +86,7 @@ The [**`MINIO`**](/docs/minio/param#minio) parameter group assigns deterministic
 |:-----------------------------------------------------------|:--------:|:-----:|:--------------------------------|:-------------------------------------------------|
 | [**`minio_cluster`**](/docs/minio/param#minio_cluster)     | `string` | Cluster | Object-storage cluster name, required | Valid non-empty name, no default                 |
 | [**`minio_seq`**](/docs/minio/param#minio_seq)             |  `int`   | Instance | Object-storage instance number, required | Natural number, starting from 1, unique within cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 Set the cluster name at cluster level and the instance number at instance level. Pigsty generates unique identifiers with these rules:
 

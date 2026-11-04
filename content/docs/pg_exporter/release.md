@@ -44,6 +44,7 @@ The latest stable version of `pg_exporter` is [v1.5.0](https://github.com/pgsty/
 | [v0.0.3](#v003) | 2019-12-14 | Production environment testing                             | [v0.0.3](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.3) |
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                      | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                        | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
+{.wide .expand}
 
 
 ## v1.5.0
@@ -74,7 +75,7 @@ Compared with v1.4.1 on the same PostgreSQL version, **v1.5.0 does not add, remo
 | PG19 | `pg_sub_has_worker`, `pg_sub_reset_time`, `pg_sub_confl_*` | Adds worker presence, reset time, and eight conflict counters. The subscription row can remain without an apply worker; metric presence alone is not a worker-health check. |
 | PG19 | `pg_subrel_count` | Includes sequences as well as tables; `pg_pubrel_count` still counts tables only. Review panel labels and count comparisons. |
 | PG19 | `pg_wal_fpi_bytes`, `pg_lock_stat_*`, `pg_recovery_state_*`, `pg_vacuum_score_*` | Additive metrics. Recovery state is replica-only; autovacuum scores are primary-only. Existing WAL, lock-distribution, and recovery families remain. |
-{.full-width}
+{.full-width .wide .expand}
 
 Users upgrading from PG17 or earlier must also migrate older names: checkpoint metrics left `pg_bgwriter_*` in PG17, and `pg_wal_write`, `pg_wal_sync`, `pg_wal_write_time`, and `pg_wal_sync_time` are absent from PG18 onward. The [full compatibility guide](https://exp.pgsty.com/compatibility/#older-postgresql-metrics) lists each replacement, label/aggregation differences, and mixed-version PromQL.
 

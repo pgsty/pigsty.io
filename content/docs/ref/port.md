@@ -57,7 +57,7 @@ This page lists the default ports for Pigsty module components. Adjust them as n
 |  [**`PGSQL`**](/docs/pgsql)    |  **`{{ pg_cluster }}-default`**    | `5436`  | [**`pg_default_services`**](/docs/pgsql/param#pg_default_services)           | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    |  **`{{ pg_cluster }}-offline`**    | `5438`  | [**`pg_default_services`**](/docs/pgsql/param#pg_default_services)           | Enabled  |
 |  [**`PGSQL`**](/docs/pgsql)    | **`{{ pg_cluster }}-<service>`**   | `543x`  | [**`pg_services`**](/docs/pgsql/param#pg_services)                           | Optional |
-{.full-width}
+{.full-width .wide .expand}
 
 Kafka port `9404` is enabled only when [`kafka_jmx_exporter_enabled`](/docs/kafka/param/#kafka_jmx_exporter_enabled) is `true`. The protocol exporter on `9308` is independent of this toggle.
 

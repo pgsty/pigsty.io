@@ -116,7 +116,7 @@ The table lists selected non-Contrib extensions for reference. [Query the target
 | [system_stats](/ext/e/system_stats) | `3.0` | EnterpriseDB system statistics for PostgreSQL |
 | [vector](/ext/e/vector) | `0.8.1` | vector data type and ivfflat and hnsw access methods |
 | [zhparser](/ext/e/zhparser) | `2.3` | a parser for full-text search of Chinese |
-{.full-width}
+{.full-width .wide .expand}
 
 Pigsty does not assume any warranty responsibility for use of the IvorySQL kernel.
 Contact the original vendor about issues or requirements for this kernel.

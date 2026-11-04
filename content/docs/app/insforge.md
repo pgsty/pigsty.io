@@ -183,6 +183,7 @@ pg-meta:
 | `DENO_DEPLOY_TOKEN` | Empty | Optional Deno Deploy integration |
 | `VERCEL_TOKEN` / `FLY_API_TOKEN` | Empty | Optional site deployment and compute platform integrations |
 | `STRIPE_*` / `RAZORPAY_*` | Empty | Optional payment integrations |
+{.wide .expand}
 
 Generate production secrets with:
 
@@ -216,6 +217,7 @@ The default InsForge database is named `insforge` and owned by `dbuser_insforge`
 | `anon` | No | PostgREST anonymous role |
 | `authenticated` | No | PostgREST authenticated-user role |
 | `project_admin` | No | Administrative role with service-key semantics and `BYPASSRLS` |
+{.wide .expand}
 
 `files/insforge.sql` configures PostgREST role privileges, default privileges, ACLs for `project_admin`, and the helper function `public.reload_postgrest_schema()`. The function executes:
 

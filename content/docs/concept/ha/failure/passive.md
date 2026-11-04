@@ -62,7 +62,7 @@ series:
 | **Replica Detect** |          `0`           |             `loop`             |            `loop / 2`            | Best: exactly at check point<br/>Worst: just missed check point           |
 | **Election Promote**  |          `0`           |              `2`               |               `1`                | Best: direct lock and promote<br/>Worst: API timeout + Promote            |
 |   **HAProxy Check**   | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: state change before check<br/>Worst: state change right after check |
-{.full-width}
+{.full-width .wide .expand}
 
 **Key Difference Between Passive and Active Failover**:
 
@@ -230,4 +230,4 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 | Lock Contest & Promote |  `0` / `1` / `2`   |  `0` / `1` / `2`   |  `0` / `1` / `2`   |    `0` / `1` / `2`    |
 |      Health Check      |  `1` / `2` / `2`   |  `2` / `3` / `4`   |  `3` / `5` / `6`   |    `4` / `6` / `8`    |
 |       **Total**        | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78` | `104` / `127` / `150` |
-{.full-width}
+{.full-width .wide .expand}

@@ -157,6 +157,7 @@ After you add or remove etcd members, update the service endpoint references. Up
 | etcdctl env vars | `/etc/profile.d/etcdctl.sh` | `./etcd.yml -t etcd_config` |
 | Patroni DCS config | `/etc/patroni/patroni.yml` | `./pgsql.yml -t pg_conf` |
 | VIP-Manager config | `/etc/default/vip-manager.yml` | `./pgsql.yml -t pg_vip_config` |
+{.wide .expand}
 
 **Refresh etcd member config:**
 

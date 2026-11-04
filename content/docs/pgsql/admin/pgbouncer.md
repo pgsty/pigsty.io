@@ -136,7 +136,7 @@ pgbouncer=# SHOW SERVERS;
 | [**`RELOAD`**](#reload)             | Reload      | Reload config files                                         |
 | [**`WAIT_CLOSE`**](#wait_close)     | Wait Close  | Wait for server connections to close after RECONNECT/RELOAD |
 | [**Monitor Commands**](#monitoring) | Monitor     | View pool status, clients, servers, etc.                    |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------
@@ -411,7 +411,7 @@ Pgbouncer provides these `SHOW` commands to monitor pool status:
 | `SHOW FDS`              | Show file descriptor usage          |
 | `SHOW STATE`            | Show Pgbouncer running state        |
 | `SHOW VERSION`          | Show Pgbouncer version              |
-{.full-width}
+{.full-width .wide .expand}
 
 Common monitoring examples:
 

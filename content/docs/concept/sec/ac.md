@@ -31,7 +31,7 @@ Pigsty creates four **business roles** by default. They form privilege groups an
 | `dbrole_readwrite` | `NOLOGIN` | `dbrole_readonly` | Global DML access; the default choice for application accounts |
 | `dbrole_admin` | `NOLOGIN` | `dbrole_readwrite`, `pg_monitor` | Object creation and DDL for administration and release workflows |
 | `dbrole_offline` | `NOLOGIN` | — | Independent read-only role that can be restricted to offline instances through [**HBA**](/docs/concept/sec/auth) |
-{.full-width}
+{.full-width .wide .expand}
 
 Pigsty also creates four **system users**, each with a specific responsibility:
 
@@ -41,7 +41,7 @@ Pigsty also creates four **system users**, each with a specific responsibility:
 | `replicator` | `REPLICATION` | Streaming replication and backup, with `pg_monitor` and read-only privileges |
 | `dbuser_dba` | `SUPERUSER` | Routine administration user that inherits `dbrole_admin` |
 | `dbuser_monitor` | — | Monitoring user with only `pg_monitor` and read-only privileges |
-{.full-width}
+{.full-width .wide .expand}
 
 Application accounts join role groups through the `roles` field and inherit their privileges:
 

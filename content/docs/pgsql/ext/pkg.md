@@ -76,6 +76,7 @@ Check dependencies and compatibility for the versions in use. For example, the c
 |  `fdw`   | Foreign Data Wrapper | postgres_fdw, mysql_fdw, oracle_fdw            |
 |  `sim`   | Compatibility        | orafce, babelfishpg_tds                        |
 |  `etl`   | Data/ETL             | pglogical, wal2json, decoderbufs               |
+{.wide .expand}
 
 
 --------

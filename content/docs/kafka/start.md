@@ -27,7 +27,7 @@ First build a single-node cluster, create a topic, and read and write messages. 
 | 3 | Connect application clients | Produce/consume using an application principal, the Pigsty CA, and SASL_SSL |
 | 4 | Change core parameters | Walk through heap, broker parameters, topic partitions/retention, and a secure rolling restart |
 | 5 | Launch acceptance | Check quorum, ISR, end-to-end read/write, monitoring, capacity, and runbooks |
-{.full-width}
+{.full-width .wide .expand}
 
 > [!WARNING] The Two Examples Are Separate Clusters
 > `kf-dev` and `kf-main` are separate new clusters. You can also expand `kf-dev` to three controllers in place.
@@ -397,7 +397,7 @@ Explicitly review these production client settings:
 | `group.id` | A distinct, stable name | Do not reuse a group across different business or consumption semantics |
 | Offset commit | Choose per workload | Auto-commit is simple; manual commit ties commits to business processing results more reliably |
 | `client.id` | An identifiable instance name | Helps with logs, quotas, and client diagnostics |
-{.full-width}
+{.full-width .wide .expand}
 
 Set `acks`, retries, idempotence, batching, compression, and offset strategy in applications. Do not put them in broker `kafka_parameters`.
 
@@ -416,7 +416,7 @@ Declare persistent changes in `pigsty.yml`. Never edit `/etc/kafka/server.proper
 | Adjust application passwords/ACLs/quotas | `kafka_users` | Online resource convergence; passwords come from a secret system |
 | Declare failure domains | `kafka_rack` | All-or-nothing across every broker-capable node; a change triggers a rolling restart but does not relocate data |
 | Choose a security profile | `kafka_security` | Decided only when bootstrapping a new cluster; it cannot be switched online by an ordinary rerun |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ### Example: Adjust the Heap and Broker Default Parameters

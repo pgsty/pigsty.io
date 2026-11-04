@@ -222,6 +222,7 @@ Pigsty reserves the following domains for various application services:
 | `dify.pigsty` | Dify AI                 |
 | `odoo.pigsty` | Odoo ERP                |
 | `mm.pigsty`   | Mattermost              |
+{.wide .expand}
 
 Using these domains requires configuring corresponding services in [`infra_portal`](/docs/infra/param#infra_portal).
 

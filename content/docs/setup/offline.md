@@ -47,7 +47,7 @@ The public stable release [**v4.5.0**](https://github.com/pgsty/pigsty/releases/
 | Ubuntu 22.04 | `u22` | `22.04.5` | [**Download (1.97 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u22.x86_64.tgz) | [**Download (1.84 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u22.aarch64.tgz) |
 | Ubuntu 24.04 | `u24` | `24.04.4` | [**Download (1.76 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u24.x86_64.tgz) | [**Download (1.64 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u24.aarch64.tgz) |
 | Ubuntu 26.04 | `u26` | `26.04.0` | [**Download (1.88 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u26.x86_64.tgz) | [**Download (1.77 GB)**](https://github.com/pgsty/pigsty/releases/download/v4.5.0/pigsty-pkg-v4.5.0.u26.aarch64.tgz) |
-{.full-width}
+{.full-width .wide .expand}
 
 The release page also provides the source archive, `checksums`, and corresponding `.asc` GPG signatures. See [GPG Signatures](/docs/repo/gpg/#github-release-asset-verification) for verification. Older packages remain available from [historical releases](https://github.com/pgsty/pigsty/releases).
 
@@ -138,6 +138,7 @@ Override these main `cache.yml` parameters with extra variables:
 | `cache_pkg_dir` | `dist/${version}` | Output directory on the admin node |
 | `cache_tmp_dir` | `/var/tmp` | Added in development sources; temporary archive directory on the target. Create it before overriding. v4.5.0 uses fixed `/tmp` |
 | `cache_repo` | `pigsty` | Local repository to package on the target node; separate multiple repositories with commas |
+{.wide .expand}
 
 The output directory also contains MD5-format `checksums`. Prepare the source release archive separately; `cache.yml` does not archive the working tree automatically.
 

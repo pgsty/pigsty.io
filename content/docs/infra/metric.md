@@ -73,7 +73,7 @@ In addition to module rules, [`roles/infra/templates/victoria/agent.yml`](https:
 | `mysql_exporter_up` | `up{job="mysql"}` |
 | `kafka_up` | `up{job="kafka",role=~".+"}` |
 | `kafka_exporter_up` | `up{job="kafka",role=""}` |
-{.full-width}
+{.full-width .wide .expand}
 
 These recorded metrics are also absent from raw `/metrics` endpoints. Rules matching ports do not restrict `job`, so port overrides must remain consistent between the Infra rule template and service configuration.
 
@@ -92,7 +92,7 @@ The following names come from queries in the current [`files/grafana/infra`](htt
 | Alertmanager | `alertmanager_alerts`, `alertmanager_silences`, `alertmanager_notifications_total`, `alertmanager_notifications_failed_total` | Alert aggregation, silences, and notifications |
 | Grafana | `grafana_build_info`, `grafana_http_request_duration_seconds_count`, `grafana_stat_active_sessions` | Version, HTTP requests, and sessions |
 | Nginx | `nginx_up`, `nginx_http_requests_total`, `nginx_connections_active`, `nginx_connections_waiting` | Nginx status, traffic, and connections |
-{.full-width}
+{.full-width .wide .expand}
 
 These are raw metric names. Counters usually require `rate()` / `increase()` before analysis. Histogram / Summary `_bucket`, `_sum`, and `_count` are samples of one metric family, not unrelated families counted by row.
 

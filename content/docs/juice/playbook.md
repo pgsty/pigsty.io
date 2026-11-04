@@ -61,7 +61,7 @@ Examples:
 | `juice_config` | Render config files |
 | `juice_launch` | Start service |
 | `juice_register` | Write VictoriaMetrics target file |
-{.full-width}
+{.full-width .wide .expand}
 
 --------
 

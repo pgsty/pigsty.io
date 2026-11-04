@@ -87,6 +87,7 @@ OLTP template memory allocation strategy:
 | `maintenance_work_mem` | shared_buffers × 25% | For VACUUM, CREATE INDEX |
 | `work_mem` | 64MB - 1GB | Based on shared_buffers/max_connections |
 | `effective_cache_size` | total mem - shared_buffers | Estimated cache memory |
+{.wide .expand}
 
 **work_mem calculation**:
 ```text

@@ -128,6 +128,7 @@ Maybe / Rails uses `maybe_production` as its default production database name. Y
 | `POSTGRES_PASSWORD` | `MaybeFinance2026` | Application user password; must be replaced in production |
 | `POSTGRES_DB` | `maybe_production` | Maybe production database |
 | `REDIS_VERSION` | `7-alpine` | Local Redis image tag |
+{.wide .expand}
 
 Generate a production secret with:
 

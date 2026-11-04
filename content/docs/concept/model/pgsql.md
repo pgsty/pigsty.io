@@ -58,7 +58,7 @@ This configuration defines a [**high-availability**](/docs/concept/ha/) PostgreS
 |                       **`node-1`**                          | `10.10.10.11` Node #1, hosts `pg-test-1` PG instance |
 |                       **`node-2`**                          | `10.10.10.12` Node #2, hosts `pg-test-2` PG instance |
 |                       **`node-3`**                          | `10.10.10.13` Node #3, hosts `pg-test-3` PG instance |
-{.full-width}
+{.full-width .wide .expand}
 
 ![ha](/img/pigsty/ha.png)
 
@@ -74,7 +74,7 @@ The [**`PG_ID`**](/docs/pgsql/param#pg_id) parameter group assigns deterministic
 | [**`pg_cluster`**](/docs/pgsql/param#pg_cluster)     | `string` | Cluster | PG cluster name, required | Valid DNS name, regex `[a-zA-Z0-9-]+`          |
 | [**`pg_seq`**](/docs/pgsql/param#pg_seq)             |  `int`   | Instance | PG instance number, required | Natural number, starting from 0 or 1, unique within cluster |
 | [**`pg_role`**](/docs/pgsql/param#pg_role)           |  `enum`  | Instance | PG instance role, required | Enum: `primary`, `replica`, `offline`          |
-{.full-width}
+{.full-width .wide .expand}
 
 Set the cluster name at cluster level. Set each instance number and role at instance level. Pigsty generates unique identifiers with these rules:
 

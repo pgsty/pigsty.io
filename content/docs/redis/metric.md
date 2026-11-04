@@ -211,7 +211,7 @@ The existing sample below retains **177 metric names**, with recording-rule and 
 | scrape_samples_scraped                                | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | scrape_series_added                                   | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
 | up                                                    | Unknown | `cls`, `ip`, `instance`, `ins`, `job`                                                                                                                        | N/A                                                             |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Recording Metric Index
 
@@ -318,6 +318,6 @@ The following groups list every name and expression from the rule file. Use page
 | `redis:cls:fork_time` | `max by (job, cls) (redis_latest_fork_seconds)` |
 | `redis:cls:aof_rewrite_time` | `max by (job, cls) (redis_aof_last_rewrite_duration_sec)` |
 | `redis:cls:size` | `count by (job, cls) (redis_up)` |
-{.full-width}
+{.full-width .wide .expand}
 
 </details>

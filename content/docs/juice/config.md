@@ -64,7 +64,7 @@ Each entry in `juice_instances` represents a JuiceFS instance:
 | `group` |    No    | `root`           | Mount point group                            |
 | `mode`  |    No    | `0755`           | Mount point permissions                      |
 | `state` |    No    | `create`         | `create` / `absent`                          |
-{.full-width}
+{.full-width .wide .expand}
 
 > [!WARNING] Important
 > - We recommend that you explicitly set `data` on the **first format**. This makes the storage backend clear.

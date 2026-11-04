@@ -23,7 +23,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`VIBE`**](/docs/vibe/playbook)     | 1  | `vibe.yml`                                                                                                                      |
 | [**`KAFKA`**](/docs/kafka/playbook)   | 2  | `kafka.yml` `kafka-rm.yml`                                                                                                      |
 | [**`MYSQL` (pilot)**](/docs/mysql/) | 2 | `mysql.yml` `mysql-rm.yml`                                                                                                   |
-{.full-width}
+{.full-width .wide .expand}
 
 --------
 
@@ -56,7 +56,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`kafka-rm.yml`**](/docs/kafka/playbook#kafka-rmyml)               | `KAFKA`  | Remove a Kafka cluster, or safely retire a single member |
 | [**`mysql.yml`**](/docs/mysql/)                                | `MYSQL`  | Converge a native MySQL 8.4 single node or three-node InnoDB Cluster (pilot) |
 | [**`mysql-rm.yml`**](/docs/mysql/)                             | `MYSQL`  | Stop or retire a native MySQL instance or cluster while preserving local state (pilot) |
-{.full-width}
+{.full-width .wide .expand}
 
 --------
 

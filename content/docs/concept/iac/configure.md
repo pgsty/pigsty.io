@@ -121,6 +121,7 @@ The **`configure`** script makes these adjustments from your environment and inp
 | `-n, --non-interactive` | Non-interactive mode; a single/demo IP is auto-selected, while ambiguous multi-IP hosts require `-i`      |
 | `-p, --port`            | SSH port used by readiness checks only; it does not write `ansible_port` into the generated config        |
 | `-g, --generate`        | **Generate random values for passwords in config file, improving security (strongly recommended)**         |
+{.wide .expand}
 
 
 
@@ -323,6 +324,7 @@ The script reads templates from `conf/`. Set `-c` to a relative path without the
 |  `app/registry`  | Docker Registry configuration                   |
 |  `app/immich`    | Immich photo and video management               |
 | `app/jumpserver` | JumpServer bastion host                          |
+{.wide .expand}
 
 ### Special Kernel Templates
 
@@ -338,6 +340,7 @@ The script reads templates from `conf/`. Set `-c` to a relative path without the
 |  `agens`   | AgensGraph: graph database kernel                         |
 |  `pgedge`  | pgEdge: distributed PostgreSQL kernel                     |
 |  `mongo`   | MongoDB-compatible stack template                         |
+{.wide .expand}
 
 ### Demo and Build Templates
 
@@ -359,7 +362,7 @@ The script reads templates from `conf/`. Set `-c` to a relative path without the
 |  `demo/wool`   | Small cloud-instance example for China            |
 |  `build/oss`   | Cross-distribution open-source package build env  |
 |  `build/dev`   | Three-node development and build environment      |
-{.full-width}
+{.full-width .wide .expand}
 
 
 -----------------

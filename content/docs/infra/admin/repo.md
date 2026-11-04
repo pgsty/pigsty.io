@@ -64,7 +64,7 @@ On a fresh installation, the role checks whether `/www` exists. If absent, it cr
 | `repo_create` | Run SOW to clean and atomically publish repository metadata |
 | `repo_use` | Write the local Pigsty repository definition on the current host |
 | `repo_nginx` | Start a temporary Nginx when no service is already running |
-{.full-width}
+{.full-width .wide .expand}
 
 The command executed by `repo_create` is:
 

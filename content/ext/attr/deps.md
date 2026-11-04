@@ -146,7 +146,7 @@ The following **133** extensions require other extensions to be installed first:
 | [`pglogical_ticker`](/ext/e/pglogical_ticker) | [`pglogical`](/ext/e/pglogical) | Have an accurate view on pglogical replication delay |
 | [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) | [`pglogical`](/ext/e/pglogical) | automated ddl deployment using pglogical |
 | [`mimeo`](/ext/e/mimeo) | [`dblink`](/ext/e/dblink) | Extension for specialized, per-table replication between PostgreSQL instances |
-{.ext-table}
+{.ext-table .wide .expand}
 
 ## Downstream Dependencies
 
@@ -233,4 +233,4 @@ The following **79** extensions are depended upon by other extensions:
 | [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server Transact SQL Datatype Support |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | SQL Server Transact SQL compatibility |
 | [`pglogical`](/ext/e/pglogical) | [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) [`pglogical_ticker`](/ext/e/pglogical_ticker) | PostgreSQL Logical Replication |
-{.ext-table}
+{.ext-table .wide .expand}

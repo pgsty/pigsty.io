@@ -59,7 +59,7 @@ Pigsty provides the `pg` wrapper alias to simplify its use.
 | [**`topology`**](#topology)       | View Topology        | Display cluster replication topology                         |
 | [**`version`**](#version)         | View Version         | Display Patroni version info                                 |
 | [**`remove`**](#remove)           | Remove Member        | Remove cluster member from DCS (dangerous)                   |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------

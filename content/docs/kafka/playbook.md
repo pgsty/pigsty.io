@@ -45,7 +45,7 @@ A single `kafka.yml` play runs `node_id`, then `kafka`, like `pgsql.yml`. The ro
 | Launch   | `kafka_launch`    | Converge an unhealthy cluster, join controllers and admit brokers one at a time, strict rolling, commit the manifest and applied static state |
 | Provision | `kafka_provision` | Converge dynamic min-ISR, user credentials, ACLs, quotas, and declarative topics; report internal-topic RF drift |
 | Monitor  | `kafka_monitor`   | Configure the protocol exporter and register VictoriaMetrics targets                          |
-{.full-width}
+{.full-width .wide .expand}
 
 `any_errors_fatal: true` stops further dangerous work after a stage failure. Fix the cause, then rerun on the full cluster. The role uses live state and persistent fingerprints to resume without blindly reformatting.
 

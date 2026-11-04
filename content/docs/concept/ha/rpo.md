@@ -103,7 +103,7 @@ These modes use two **Patroni** parameters: [**`synchronous_mode`**](https://pat
 | **Max Performance**  | <span class="text-danger">**`false`**</span> |                      -                       | **Async**              | <span class="text-success">**No impact**</span>             |
 | **Max Availability** | <span class="text-success">**`true`**</span> | <span class="text-danger">**`false`**</span> | **Synchronous**        | <span class="text-primary">**Auto degrade to async**</span> |
 |  **Max Protection**  | <span class="text-success">**`true`**</span> | <span class="text-success">**`true`**</span> | **Strict Synchronous** | <span class="text-danger">**Primary refuses writes**</span> |
-{.full-width}
+{.full-width .wide .expand}
 
 Set [**`pg_rpo`**](/docs/pgsql/param#pg_rpo) to `0` to enable `synchronous_mode` and **Maximum Availability**. Select [**`pg_conf`**](/docs/pgsql/param#pg_conf) = [**`crit.yml`**](/docs/pgsql/template/crit) to enable `synchronous_mode_strict` and **Maximum Protection**. You can also enable [**watchdog**](/docs/pgsql/param#patroni_watchdog_mode) to fence a frozen primary node or Patroni process instead of degrading. This provides behavior equivalent to Oracle Maximum Protection.
 

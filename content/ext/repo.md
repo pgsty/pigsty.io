@@ -9,7 +9,7 @@ icon: fas fa-warehouse
 | **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **Total** |
 |:------:|:------:|:------:|:------:|:------:|:------:|
 | **Extension Count** | 105 | 399 | 43 | 71 | **618** |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -125,7 +125,7 @@ Binary packages from the PostgreSQL Global Development Group, including 105 exte
 | [`decoderbufs`](/ext/e/decoderbufs) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `postgres-decoderbufs_$v` | `3.5.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `postgresql-$v-decoderbufs` | `3.7.0` |
 | [`repmgr`](/ext/e/repmgr) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `repmgr_$v` | `5.5.0` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `postgresql-$v-repmgr` | `5.5.0` |
 | [`pg_fact_loader`](/ext/e/pg_fact_loader) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_fact_loader_$v` | `2.0.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `postgresql-$v-pg-fact-loader` | `2.0.1` |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -535,7 +535,7 @@ Pigsty extension repo provides 399 additional extensions on top of PGDG.
 | [`wal2mongo`](/ext/e/wal2mongo) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `wal2mongo_$v` | `1.0.7` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `postgresql-$v-wal2mongo` | `1.0.7` |
 | [`decoder_raw`](/ext/e/decoder_raw) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `decoder_raw_$v` | `1.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `postgresql-$v-decoder-raw` | `1.0+git20260728.2271b0d` |
 | [`pg_bulkload`](/ext/e/pg_bulkload) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `pg_bulkload_$v` | `3.1.23` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `postgresql-$v-pg-bulkload` | `3.1.23` |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -589,7 +589,7 @@ Some extensions are available in both PIGSTY and PGDG repositories (43).
 | [`pg_dbms_job`](/ext/e/pg_dbms_job) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_job_$v` | `2.0` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `postgresql-$v-pg-dbms-job` | `2.0` |
 | [`pg_dbms_errlog`](/ext/e/pg_dbms_errlog) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `pg_dbms_errlog_$v` | `2.4` | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `postgresql-$v-pg-dbms-errlog` | `2.4` |
 | [`mimeo`](/ext/e/mimeo) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `mimeo_$v` | `1.5.1` | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `postgresql-$v-mimeo` | `1.5.1` |
-{.ext-table}
+{.ext-table .wide .expand}
 
 
 --------
@@ -671,4 +671,4 @@ PostgreSQL built-in contrib extension modules, 71 extensions total, shipped with
 | [`postgres_fdw`](/ext/e/postgres_fdw) | <a class="ext-badge ext-badge--cate fdw" href="/ext/cate/fdw">FDW</a> | `1.2` | 18, 17, 16, 15, 14 | foreign-data wrapper for remote PostgreSQL servers |
 | [`test_decoding`](/ext/e/test_decoding) | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | - | 18, 17, 16, 15, 14 | SQL-based test/example module for WAL logical decoding |
 | [`pgoutput`](/ext/e/pgoutput) | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | - | 18, 17, 16, 15, 14 | Logical Replication output plugin |
-{.ext-table}
+{.ext-table .wide .expand}

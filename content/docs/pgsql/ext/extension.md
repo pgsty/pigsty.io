@@ -56,6 +56,7 @@ Pigsty enables these extensions in all databases by default through [`pg_default
 | `intagg`             | public  | Integer aggregator                 |
 | `intarray`           | public  | Integer array functions            |
 | `pg_repack`          | repack  | Online table reorganization        |
+{.wide .expand}
 
 These extensions provide basic monitoring and operations tools.
 They also add database features.

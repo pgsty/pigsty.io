@@ -82,7 +82,7 @@ Instance fields:
 | `group` | No | `root` | Mount point group |
 | `mode`  | No | `0755` | Mount point permissions |
 | `state` | No | `create` | `create` / `absent` |
-{.full-width}
+{.full-width .wide .expand}
 
 > [!WARNING] Note
 > - Only `juicefs format` uses `data`. It does not update an existing filesystem.

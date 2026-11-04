@@ -53,7 +53,7 @@ For HA, `mysql:cls:health` combines quorum, single-primary, and full-membership 
 | `mysql:ins:statement_errors` | Statement error rate |
 | `mysql:ins:slow_queries` / `mysql:ins:slow_query_ratio` | Slow query rate and ratio |
 | `mysql:ins:no_index_queries` | Rate of queries using no index |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------
@@ -105,7 +105,7 @@ For HA, `mysql:cls:health` combines quorum, single-primary, and full-membership 
 | `mysql:ins:deadlocks` | Deadlock rate |
 | `mysql:ins:history_list_length` | Purge lag (history list length) |
 | `mysql:ins:binlog_bytes` | Total on-disk binlog size (bytes) |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------

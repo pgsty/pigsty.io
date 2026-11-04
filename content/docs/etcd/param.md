@@ -34,6 +34,7 @@ Use the [`ETCD`](#etcd) parameter group to deploy and configure etcd clusters. I
 | [`etcd_election_timeout`](#etcd_election_timeout)     |   `int`    |  `C`  | etcd election timeout, 1000ms by default         |
 | [`etcd_heartbeat_interval`](#etcd_heartbeat_interval) |   `int`    |  `C`  | etcd heartbeat interval, 100ms by default        |
 | [`etcd_root_password`](#etcd_root_password)           | `password` |  `G`  | etcd root user password for RBAC authentication  |
+{.wide .expand}
 
 The [`ETCD_REMOVE`](#etcd_remove) parameter group controls etcd cluster removal behavior, including safeguard protection, data cleanup, and package uninstallation.
 

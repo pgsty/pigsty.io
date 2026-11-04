@@ -242,6 +242,7 @@ Pigsty's default `home` server provides these built-in routes:
 | `/blackbox/`          | Blackbox Exporter                 |
 | `/pev`                | PostgreSQL Explain visualization  |
 | `/haproxy/<cluster>/` | HAProxy admin interface (if any)  |
+{.wide .expand}
 
 These routes provide one entry point for all monitoring components. You do not need to configure multiple domains.
 

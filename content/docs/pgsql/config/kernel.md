@@ -58,6 +58,7 @@ Pigsty supports these modes:
 | `oriole` | OrioleDB storage engine                                              |
 | `agens`  | AgensGraph graph database kernel                                     |
 | `pgedge` | pgEdge distributed replication kernel                                |
+{.wide .expand}
 
 `pg_mode` selects binary paths, Patroni integration, and some kernel-specific behavior.
 It does not automatically add every required package, extension, and application database.

@@ -37,7 +37,7 @@ Sorted by the GitHub repository API’s `stargazers_count` in descending order. 
 | [`supervc-stack/pg_tokenizer.rs`](https://github.com/supervc-stack/pg_tokenizer.rs)                         |       [**46**](https://github.com/supervc-stack/pg_tokenizer.rs/stargazers)       | TensorChord              |  Extension   | Full-text search tokenizer extension                  |
 | [`jaiminpan/pg_scws`](https://github.com/jaiminpan/pg_scws)                                             |            [**41**](https://github.com/jaiminpan/pg_scws/stargazers)            | Pan Jiamin               |  Extension   | Chinese tokenizer extension based on SCWS             |
 | [`pgsty/pgext`](https://github.com/pgsty/pgext)                                                         |               [**35**](https://github.com/pgsty/pgext/stargazers)               | Ruohang Feng @ **PGSTY** |     Tool     | PostgreSQL extension catalog and metadata tool        |
-{.full-width .impact-table}
+{.full-width .impact-table .wide .expand}
 
 <script>
 window.OinkEchartsFunctions = window.OinkEchartsFunctions || {};
@@ -181,7 +181,7 @@ Projects appear in descending order of GitHub stars. Commercial products that do
 | [CYBERTEC PGEE](https://www.cybertec-postgresql.com/en/products/cybertec-postgresql-enterprise-edition/)  |                                      -                                       | CYBERTEC      | Linux Native | Commercial  | Enterprise PostgreSQL distribution focused on security and performance |
 | [Crunchy Postgres for Ansible](https://www.crunchydata.com/)                                              |                                      -                                       | Crunchy Data  | Linux Native | Commercial  | Crunchy bare-metal/VM automation solution                              |
 | [EDB Postgres Advanced Server (EPAS)](https://www.enterprisedb.com/products/edb-postgres-advanced-server) |                                      -                                       | EDB           | Linux Native | Commercial  | EDB flagship distribution with Oracle-compatibility features           |
-{.full-width .impact-table}
+{.full-width .impact-table .wide .expand}
 
 ### Star History and Growth
 

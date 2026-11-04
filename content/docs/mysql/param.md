@@ -28,7 +28,7 @@ Deployment exposes 11 parameters; removal adds two protected-operation parameter
 | [`mysql_backup_enabled`](#mysql_backup_enabled) | Cluster | `true` | Daily full-backup timer |
 | [`mysql_backup_repo`](#mysql_backup_repo) | Cluster | see below | Local backup path and retention |
 | [`mysql_exporter_enabled`](#mysql_exporter_enabled) | Cluster | `true` | Exporter and monitoring target |
-{.full-width}
+{.full-width .wide .expand}
 
 The removal parameters are used by `mysql-rm.yml`:
 
@@ -241,4 +241,4 @@ These settings are fixed or derived. They are **not inventory parameters**:
 | Memory | Buffer pool = max(25% of node memory, 256MB); redo = clamp(50% of buffer pool, 128MB, 4GB) |
 | Replication | GTID enforced, `sql_require_primary_key=ON`, single-primary MGR, `BEFORE_ON_PRIMARY_FAILOVER` consistency |
 | Datadir markers | `.pigsty-mysql-initialized` (ownership check) and `.pigsty-mysql-retired` (retirement guard) |
-{.full-width}
+{.full-width .wide .expand}

@@ -20,6 +20,7 @@ The default sandbox has 4 nodes and uses the [`ha/full.yml` template](https://gi
 | 2  | `10.10.10.11`  | `node-1` | `pg-test-1` |           |          |           |
 | 3  | `10.10.10.12`  | `node-2` | `pg-test-2` |           |          |           |
 | 4  | `10.10.10.13`  | `node-3` | `pg-test-3` |           |          |           |
+{.wide .expand}
 
 This example shows the sandbox configuration:
 

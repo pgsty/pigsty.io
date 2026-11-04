@@ -148,6 +148,7 @@ Each HBA rule is a YAML dict supporting these fields:
 | `role`  | string | No       | `common` | Instance role filter, see [**Role Filtering**](#role-filtering) |
 | `order` | int    | No       | `1000`   | Sort weight, lower first, see [**Order Sorting**](#order-sorting) |
 | `rules` | list   | Yes*     | -        | Raw HBA text lines, mutually exclusive with `addr`    |
+{.wide .expand}
 
 > Either `addr` or `rules` must be specified. Use `rules` to write raw HBA format directly.
 
@@ -275,6 +276,7 @@ Pigsty uses `order` to sort the generated rules.
 | 550   | dbrole_readonly localhost      |
 | 600   | dbrole_readonly intra          |
 | 650   | dbrole_offline intra           |
+{.wide .expand}
 
 **PgBouncer Default Rules Order**
 

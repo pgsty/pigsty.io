@@ -85,6 +85,7 @@ Templates for various database management systems and kernels:
 | [**`agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (17)                   |
 | [**`pgedge.yml`**](/docs/conf/pgedge/)     | pgEdge distributed database kernel (15~18, default 18)  |
 | [**`supabase.yml`**](/docs/conf/supabase/) | Supabase self-hosted configuration (15~18)              |
+{.wide .expand}
 
 You can add more nodes later or use [HA templates](#ha-templates) to plan your cluster from the start.
 
@@ -124,6 +125,7 @@ Use these templates to run applications with Docker:
 | [**`teable.yml`**](/docs/conf/teable/)         | Start Teable spreadsheet database |
 | [**`maybe.yml`**](/docs/conf/maybe/)           | Start Maybe finance app       |
 | [**`registry.yml`**](/docs/conf/registry/)     | Start Docker Registry         |
+{.wide .expand}
 
 
 ------
@@ -147,6 +149,7 @@ Pigsty also provides these demonstration templates:
 | [**`vibe.yml`**](/docs/conf/vibe/)     | Vibe Coding / AI application development template                         |
 | [**`mongo.yml`**](/docs/conf/mongo/)   | FerretDB / MongoDB-compatible example                                     |
 | [**`docker.yml`**](/docs/conf/docker/) | Docker application host template                                          |
+{.wide .expand}
 
 
 ------

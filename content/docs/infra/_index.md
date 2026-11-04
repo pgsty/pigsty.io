@@ -30,6 +30,7 @@ Each Pigsty deployment includes infrastructure components that serve managed nod
 |      [Chronyd](#chronyd)      |  `123`   | NTP time server                                                        |
 |   [PostgreSQL](#postgresql)   |  `5432`  | CMDB and default database                                              |
 |      [Ansible](#ansible)      |    -     | Runs playbooks, orchestrates all infrastructure                        |
+{.wide .expand}
 
 
 

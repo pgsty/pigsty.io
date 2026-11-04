@@ -217,3 +217,4 @@ The PolarDB 2.0 kernel in Oracle compatibility mode currently includes these **1
 | ganos_vomesh                   | 6.0             | Ganos volume mesh extension for POLARDB                                                                                    |
 | postgis_tiger_geocoder         | 3.3.2           | Ganos PostGIS tiger geocoder                                                                                               |
 | postgis_topology               | 3.3.2           | Ganos PostGIS topology                                                                                                     |
+{.wide .expand}

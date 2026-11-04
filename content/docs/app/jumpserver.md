@@ -118,6 +118,7 @@ Common parameters:
 | `ANSIBLE_DOCKER_ENABLED` | `false` | Execute Ansible inside Celery with the current data-directory layout |
 | `CORE_WORKER` | `2` | Number of Core Gunicorn workers |
 | `CELERY_WORKER_COUNT` | `2` | Worker concurrency for each Celery queue |
+{.wide .expand}
 
 For Website asset proxying, add the target hostnames or IPs to `WEB_PROXY_ALLOWED_HOSTS` and retain `localhost,127.0.0.1`. Set the JumpServer Endpoint's Web proxy port to match `KOKO_WEB_PROXY_PORT`.
 
@@ -431,6 +432,7 @@ The external PostgreSQL 18 backend and PostgreSQL asset connections are separate
 | Chen PostgreSQL asset query | Passed; version 180006 and synthetic value 42 | Passed |
 | Celery credential verification | Passed | Passed |
 | Kael authentication, conversation/message persistence, permission isolation | Passed | Passed |
+{.wide .expand}
 
 The pre-upgrade backup was restored into an independent PostgreSQL database and application directory. Original ciphertext, host key, and recordings were compared successfully. Tests used synthetic users, assets, and data in an isolated M3 VM.
 

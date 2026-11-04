@@ -59,6 +59,7 @@ The `ha/full` template shows how the Pigsty components work together.
 | redis-ms | Node 1 | Redis Primary-Replica Mode |
 | redis-meta | Node 2 | Redis Sentinel Mode |
 | redis-test | Nodes 3-4 | Redis Native Cluster Mode |
+{.wide .expand}
 
 **Use Cases**:
 - Pigsty feature demonstration and learning

@@ -69,7 +69,7 @@ The current public stable release is [**v4.5.0**](#v450), released on **2026-08-
 |     v0.0.3      |  2020-06-22  | Interface enhancement                                                           | [v0.0.3](https://github.com/pgsty/pigsty/commit/4c5c68ccd57bc32a9e9c98aa3f264aa19f45c7ee) |
 |     v0.0.2      |  2020-04-30  | First Commit                                                                    | [v0.0.2](https://github.com/pgsty/pigsty/commit/dd646775624ddb33aef7884f4f030682bdc371f8) |
 |     v0.0.1      |  2019-05-15  | POC                                                                             |   [v0.0.1](https://github.com/Vonng/pg/commit/fa2ade31f8e81093eeba9d966c20120054f0646b)   |
-{.full-width-full .release-index}
+{.full-width-full .release-index .wide .expand}
 
 
 ------
@@ -968,6 +968,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 | `vector`                     | 0.54.0         | 0.55.0         | Direct-link metadata update                                  |
 | `v2ray`                      | 5.47.0         | 5.48.0         |                                                              |
 | `xray`                       | 26.2.6         | 26.3.27        |                                                              |
+{.wide .expand}
 
 **Checksums**
 
@@ -1066,6 +1067,7 @@ fd1ea5cd5554bfe91fadd51ad80860e3  pigsty-pkg-v4.3.0.u26.x86_64.tgz
 | `mcli`                     | 20260213       | 20260321       |      |
 | `claude`                   | 2.1.68         | 2.1.81         |      |
 | `ivroysql`                 | 5.1            | 5.3            |      |
+{.wide .expand}
 
 **Checksums**
 
@@ -1152,6 +1154,7 @@ This release has no other breaking API or configuration changes.
 | `gost`                       | -              | 2.12.0         | New   |
 | `sabiql`                     | -              | 1.6.2          | New   |
 | `agentsview`                 | -              | 0.10.0         | New   |
+{.wide .expand}
 
 **Checksums**
 
@@ -1225,6 +1228,7 @@ a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
 | `antlr4-runtime413` | -               | 4.13        | New runtime dependency for Babelfish     |
 | `cloudberry`        | -               | 2.0.0       | RPM build only                           |
 | `pg_background`     | -               | 1.8         | DEB build only                           |
+{.wide .expand}
 
 **Infrastructure Software Updates**
 
@@ -1268,6 +1272,7 @@ a5574071bac1955798265f71ad73c3d4  pigsty-pkg-v4.2.1.u24.aarch64.tgz
 | `pig`                         | 1.1.2            | 1.3.0            |
 | `stalwart`                    | -                | 0.15.5           |
 | `maddy`                       | -                | 0.8.2            |
+{.wide .expand}
 
 **API Changes**
 
@@ -1552,7 +1557,7 @@ curl https://pigsty.io/get | bash -s v4.0.0
 | code-server         | 4.100.2  | caddy               | 2.10.2   |
 | hugo                | 0.154.5  | cloudflared         | 2026.1.1 |
 | headscale           | 0.27.1   |                     |          |
-{.full-width}
+{.full-width .wide .expand}
 
 **New Modules**
 
@@ -1669,7 +1674,7 @@ Major extensions add PG 18 support: age, citus, documentdb, pg_search, timescale
 | `nodejs_registry`       | string | ''            | npm registry, auto china mirror       |
 | `node_uv_env`           | path   | /data/venv    | Node UV venv path, empty to skip      |
 | `node_pip_packages`     | string | ''            | pip packages for UV venv              |
-{.full-width}
+{.full-width .wide .expand}
 
 **Removed Parameters**: `node_disable_firewall`, `node_disable_selinux`, `infra_pip_packages`, `pg_pwd_enc`, `pgbackrest_clean`, `code_home`, `jupyter_home`
 

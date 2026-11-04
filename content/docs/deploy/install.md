@@ -219,7 +219,7 @@ The [4-node template](/docs/conf/full) creates this deployment structure:
 | 2  |    `10.10.10.11`    |      `pg-test-1`      |           -           |            -            |
 | 3  |    `10.10.10.12`    |      `pg-test-2`      |           -           |            -            |
 | 4  |    `10.10.10.13`    |      `pg-test-3`      |           -           |            -            |
-{.full-width}
+{.full-width .wide .expand}
 
 The [`INFRA` module](/docs/infra) supplies the [Web UI](/docs/setup/webui) through Nginx on ports **80/443**.
 The [`PGSQL` module](/docs/pgsql/) supplies a [PostgreSQL server](/docs/setup/pgsql) on port **5432**.

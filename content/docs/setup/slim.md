@@ -69,7 +69,7 @@ The [`conf/slim.yml` template](https://github.com/pgsty/pigsty/blob/main/conf/sl
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
 | 1  |    `10.10.10.10`    |      `pg-meta-1`      |     **No INFRA module**  |        `etcd-1`         |
-{.full-width}
+{.full-width .wide .expand}
 
 {{< include file="/docs/conf/yaml/slim.yml" code=true lang="yaml" >}}
 
@@ -92,7 +92,7 @@ This example uses three nodes:
 | 1  |    `10.10.10.10`    |      `pg-meta-1`      |     **No INFRA module**  |        `etcd-1`         |
 | 2  |    `10.10.10.11`    |      `pg-meta-2`      |     **No INFRA module**  |        `etcd-2`         |
 | 3  |    `10.10.10.12`    |      `pg-meta-3`      |     **No INFRA module**  |        `etcd-3`         |
-{.full-width}
+{.full-width .wide .expand}
 
 ```yaml
 all:

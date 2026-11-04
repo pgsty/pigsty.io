@@ -126,7 +126,7 @@ This creates a **3 primary 3 replica** native Redis cluster.
 |  <span class="text-danger">**Node**</span>      | <span class="text-danger">**Description**</span>    |
 |               **`redis-test-1`**                | `10.10.10.12` Node #1, hosts 3 instances            |
 |               **`redis-test-2`**                | `10.10.10.13` Node #2, hosts 3 instances            |
-{.full-width}
+{.full-width .wide .expand}
 
 
 ----------------
@@ -140,7 +140,7 @@ The [**`REDIS`**](/docs/redis/param/#parameter-overview) parameter group assigns
 | [**`redis_cluster`**](/docs/redis/param#redis_cluster)         | `string` | Cluster  | Redis cluster name, required   | Valid DNS name, regex `[a-z][a-z0-9-]*`      |
 | [**`redis_node`**](/docs/redis/param#redis_node)               |  `int`   | Node     | Redis node number, required    | Natural number, starting from 1, unique within cluster |
 | [**`redis_instances`**](/docs/redis/param#redis_instances)     |  `dict`  | Node     | Redis instance definition, required | JSON object, key is port, value is instance config |
-{.full-width}
+{.full-width .wide .expand}
 
 Set the cluster name at cluster level. Set the node number and instance definitions at node level. Pigsty generates these unique identifiers:
 

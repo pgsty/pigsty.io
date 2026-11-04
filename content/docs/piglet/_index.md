@@ -70,7 +70,7 @@ After installation, access the sandbox homepage via IP: `http://<ip>`. Assuming 
 | Claude Code | `claude_enabled: true`  | Installs `@anthropic-ai/claude-code`, renders `~/.claude.json` and `~/.claude/settings.json`, and enables monitoring by default            | `./vibe.yml -t claude`     |
 | Codex CLI   | `codex_enabled: true`   | Only runs `npm install -g @openai/codex`; it does not manage Codex config or integrate Codex into VIBE observability                       | `./vibe.yml -t codex`      |
 | Extra npm   | `npm_packages: []`      | Installs additional global npm packages only; Claude and Codex are installed by their own tasks                                            | `./vibe.yml -t nodejs_pkg` |
-{.full-width}
+{.full-width .wide .expand}
 
 If you do not need a component, set its `*_enabled: false` in `pigsty.yml`. For one run, pass a switch such as `./vibe.yml -e codex_enabled=false`.
 

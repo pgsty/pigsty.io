@@ -78,7 +78,7 @@ Values in `auth` select the authentication method and whether TLS is mandatory:
 | `cert` | `hostssl` with `cert` | Client certificate authentication |
 | `ident`, `os` | `ident` (`peer` in PgBouncer) | OS user mapping |
 | `peer` | `peer` | Local OS user |
-{.full-width}
+{.full-width .wide .expand}
 
 The user field supports four placeholders: `${dbsu}` (superuser), `${repl}` (replication user), `${monitor}` (monitoring user), and `${admin}` (administration user). Rendering replaces them with actual names. `+role` matches all members of that role.
 

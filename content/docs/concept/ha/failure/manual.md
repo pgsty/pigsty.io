@@ -65,7 +65,7 @@ series:
 |   **Command**    |          `0`           |              `2`               |               `1`                | Best: API responds immediately<br/>Worst: Network delay or API timeout      |
 |   **Promote**    |          `0`           |              `1`               |               `0`                | Best: Promote completes instantly<br/>Worst: Checkpoint overhead            |
 | **Health Check** | `(rise-1) × fastinter` | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check |
-{.full-width}
+{.full-width .wide .expand}
 
 **Key difference between manual and automatic switchover**:
 
@@ -74,7 +74,7 @@ series:
 |   **Auto** (Expire)   |       Wait TTL       |  Wait loop wake   |  Lease expiry + Replica detection   |  16s ~ 150s  |
 |   **Auto** (Crash)    | Wait restart timeout |  Wait loop wake   | Restart timeout + Replica detection |  1s ~ 111s   |
 | **Manual** (Failover) |       **Skip**       |     **Skip**      |            Health check             | **1s ~ 11s** |
-{.full-width}
+{.full-width .wide .expand}
 
 Manual switchover skips **lease expiration** and **replica detection**, the longest phases. This substantially reduces RTO.
 
@@ -212,7 +212,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |   Promote    | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1` | `0` / `0` / `1`  |
 | Health Check | `1` / `2` / `2` | `2` / `3` / `4` | `3` / `5` / `6` | `4` / `6` / `8`  |
 |  **Total**   | `1` / `3` / `5` | `2` / `4` / `7` | `3` / `6` / `9` | `4` / `7` / `11` |
-{.full-width}
+{.full-width .wide .expand}
 
 
 --------
@@ -255,7 +255,7 @@ theme light
 |:----------:|:------------------------------------------:|:-----------------:|:------------:|:---------------:|:--------------:|
 | Switchover | Planned maintenance, rolling upgrades, migration | Running normally |     Wait     |      None       | ≈ Failover RTO |
 |  Failover  |      Primary failure, emergency switch      | Failed or unreachable |    Skip    | Possible minor  |    1s ~ 11s    |
-{.full-width}
+{.full-width .wide .expand}
 
 **WAL catch-up time** depends on replication lag. Healthy replicas normally remain synchronized or nearly synchronized, so catch-up takes milliseconds to seconds. With synchronous replication, catch-up takes 0, making Switchover and Failover RTO nearly equal.
 
@@ -274,4 +274,4 @@ theme light
 | **norm** |       4s        |      34s      |     30s      |   **8x**   |
 | **safe** |       6s        |      66s      |     46s      | **8~11x**  |
 | **wide** |       7s        |     127s      |     87s      | **12~18x** |
-{.full-width}
+{.full-width .wide .expand}

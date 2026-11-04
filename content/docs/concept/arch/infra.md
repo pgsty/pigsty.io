@@ -31,6 +31,7 @@ The following [**single-node deployment**](/docs/setup/install) diagram shows [*
 | [**Chronyd**](#chronyd)                   | Time Sync       | Provides NTP time synchronization to ensure consistent time across nodes [Optional]                            |
 | [**CA**](/docs/concept/sec/ca)            | Certificate     | Issues encryption certificates within the environment                                                          |
 | [**Ansible**](/docs/setup/playbook)       | Orchestration   | Batch, declarative, agentless tool for managing large numbers of servers                                       |
+{.wide .expand}
 
 [![pigsty-arch](/img/pigsty/arch.png)](/docs/infra/)
 
@@ -68,7 +69,7 @@ The default administration homepage is `i.pigsty`. Its endpoints proxy these com
 | `/vmalert/`  | [**VMAlert**](/docs/infra/)         | `8880`      | Alert rule management             | [`demo.pigsty.io/vmalert/`](https://demo.pigsty.io/vmalert/)   |
 | `/alertmgr/` | [**AlertManager**](/docs/infra/)    | `9059`      | Alert management Web UI           | [`demo.pigsty.io/alertmgr/`](https://demo.pigsty.io/alertmgr/) |
 | `/blackbox/` | [**Blackbox**](/docs/infra/)        | `9115`      | Blackbox probe                    |                                                                |
-{.full-width}
+{.full-width .wide .expand}
 
 [![Pigsty online demo homepage](/img/pigsty/home.png)](https://demo.pigsty.io)
 

@@ -52,6 +52,7 @@ The `vibe` template provides an **AI coding sandbox for the web**. Use your brow
 | **Codex CLI**   | OpenAI agentic coding CLI; VIBE installs it but does not manage its configuration | Terminal |
 | **JuiceFS**     | PostgreSQL-based distributed filesystem | Mount point `/fs`        |
 | **PostgreSQL 18** | Feature-rich database with `pg18-main` + categorized extension package groups | Port `5432` |
+{.wide .expand}
 
 **Node tools explicitly installed by this template** (`node_packages`):
 

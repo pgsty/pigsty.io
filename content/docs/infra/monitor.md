@@ -30,6 +30,7 @@ The current [`files/grafana/infra`](https://github.com/pgsty/pigsty/tree/main/fi
 | [VictoriaTraces Instance](https://demo.pigsty.io/d/vtraces-instance) | Trace storage and querying |
 | [Inventory CMDB](https://demo.pigsty.io/d/inventory-cmdb) | CMDB visualization |
 | [ETCD Overview](https://demo.pigsty.io/d/etcd-overview) | etcd cluster monitoring |
+{.wide .expand}
 
 
 ----------------

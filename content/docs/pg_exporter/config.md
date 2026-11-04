@@ -312,7 +312,7 @@ PG Exporter ships with pre-organized collectors:
 | 8xx   | Optional      | Expensive/optional metrics      |
 | 9xx   | pgBouncer     | Connection pooler metrics       |
 | 10xx+ | Extensions    | Extension-specific metrics      |
-{.full-width}
+{.full-width .wide .expand}
 
 ## Real-World Examples
 

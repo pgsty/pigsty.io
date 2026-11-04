@@ -164,6 +164,7 @@ The open-source edition gives junior development and operations engineers **70%+
 | **U22**  | Ubuntu 22.04 (`jammy`)     | `u22.x86_64`  | `u22.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D13**  | Debian 13 (`trixie`)       | `d13.x86_64`  | `d13.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D12**  | Debian 12 (`bookworm`)     | `d12.x86_64`  | `d12.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+{.wide .expand}
 
 > <i class="fas fa-circle-check text-primary"></i> = Primary support, <i class="fas fa-check text-primary"></i> = Optional support
 
@@ -199,6 +200,7 @@ Professional Edition starts at **¥150,000 / year**. This is equivalent to the a
 | **U22**  | Ubuntu 22.04 (`jammy`)            | `u22.x86_64`  | `u22.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D13**  | Debian 13 (`trixie`)              | `d13.x86_64`  | `d13.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D12**  | Debian 12 (`bookworm`)            | `d12.x86_64`  | `d12.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
+{.wide .expand}
 
 
 ----------------
@@ -233,6 +235,7 @@ Enterprise Edition starts at **¥400,000 / year**. This is equivalent to the ann
 | **D12**  | Debian 12 (`bookworm`)            | `d12.x86_64`  | `d12.aarch64`  | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-check text-primary"></i> |
 | **D11**  | Debian 11 (`bullseye`)            | `d11.x86_64`  | `d11.aarch64`  |                                                  |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     | <i class="fas fa-check text-primary"></i> |
 | **EL7**  | RHEL7 / CentOS7 / UOS ...         | `el7.x86_64`  |      `-`       |                                                  |                                                  |                                                  |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     |    <i class="fas fa-check text-primary"></i>     | <i class="fas fa-check text-primary"></i> |
+{.wide .expand}
 
 
 

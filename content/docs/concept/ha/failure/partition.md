@@ -74,7 +74,7 @@ series:
 | **Replica Detection** |           `0`            |           `loop`            |          `loop/2`           | Best: Right at detection point<br/>Worst: Just missed detection |
 | **Lock & Promote** |           `0`            |            `2`              |             `1`             | Best: Direct lock and promote<br/>Worst: API timeout + Promote |
 | **Health Check** |  `(rise-1) × fastinter`  | `(rise-1) × fastinter + inter` | `(rise-1) × fastinter + inter/2` | Best: State changes before check<br/>Worst: State changes right after check |
-{.full-width}
+{.full-width .wide .expand}
 
 **Key difference between network partition and node crash**:
 
@@ -82,7 +82,7 @@ series:
 |:---------------:|:----------:|:--------------------:|:---------------:|:----------:|
 | **Node Crash** (Expire)  |  Dies with node   |        Completely unavailable         | Passive wait for TTL expiration |     None      |
 | **Network Partition** (This scenario)  | Alive but cannot access DCS |   May still be running (needs active demotion)   | Passive wait for TTL expiration | **Yes, needs protection** |
-{.full-width}
+{.full-width .wide .expand}
 
 During a network partition, the primary can continue accepting writes, creating **split-brain risk**. If Patroni cannot renew the Leader Key, it actively demotes PostgreSQL to read-only or shuts it down.
 
@@ -263,7 +263,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 | **norm** |  5   |  10   |  30s  |      25s       |   ✓ Safe    |
 | **safe** |  10  |  20   |  60s  |      50s       |   ✓ Safe    |
 | **wide** |  20  |  30   | 120s  |      80s       |   ✓ Safe    |
-{.full-width}
+{.full-width .wide .expand}
 
 **Four mode calculation results** (seconds, format: min / avg / max)
 
@@ -275,7 +275,7 @@ pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, r
 |   Lock & Promote   |  `0` / `1` / `2`   |  `0` / `1` / `2`   |   `0` / `1` / `2`   |    `0` / `1` / `2`    |
 |    Health Check    |  `1` / `2` / `2`   |  `2` / `3` / `4`   |   `3` / `5` / `6`   |    `4` / `6` / `8`    |
 |     **Total**      | `16` / `23` / `29` | `27` / `34` / `41` | `53` / `66` / `78`  | `104` / `127` / `150` |
-{.full-width}
+{.full-width .wide .expand}
 
 Network partitions and node crashes have the same RTO in this model because both wait for TTL expiration.
 
@@ -390,6 +390,6 @@ The following is the most common partition scenario and the main subject of this
 |  **Crash Failure**  | PG crash, Patroni alive | Release after restart timeout | 1s ~ 111s  |    None     |
 |  **Network Partition**  | Alive but isolated from DCS | Passive wait TTL expiration | 16s ~ 150s | **Yes, needs protection** |
 |  **Manual Switchover**  |  Normal or failed  |  Direct release/acquire  |  1s ~ 11s  |    None     |
-{.full-width}
+{.full-width .wide .expand}
 
 A network partition has the same RTO as an expired-lease failure, but also needs split-brain protection. The constraint `loop_wait + 2 × retry_timeout ≤ ttl` is central to that protection.

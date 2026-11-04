@@ -276,7 +276,7 @@ A default single-node installation puts four modules on the current node:
 | ID | [NODE](/docs/node/) | [PGSQL](/docs/pgsql/) | [INFRA](/docs/infra/) | [**ETCD**](/docs/etcd/) |
 |:--:|:-------------------:|:---------------------:|:---------------------:|:-----------------------:|
 | 1  |    `10.10.10.10`    |      `pg-meta-1`      |       `infra-1`       |        `etcd-1`         |
-{.full-width}
+{.full-width .wide .expand}
 
 [INFRA](/docs/infra/) supplies the [Web UI](/docs/setup/webui/) through Nginx on ports `80` and `443`.
 [PGSQL](/docs/pgsql/) supplies the [PostgreSQL service](/docs/setup/pgsql/) on port `5432`.

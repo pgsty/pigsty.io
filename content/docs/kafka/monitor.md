@@ -24,7 +24,7 @@ The KAFKA module uses two complementary exporters:
 | Kafka protocol view | `kafka_exporter :9308` | `kafka` (no `role` label) | The one or two broker-capable nodes with the smallest `kafka_seq` | Broker, topic, partition, offset, consumer group, lag |
 | Host resources | node_exporter | `node` | Managed nodes | CPU, memory, disk, network, filesystem |
 | Logs | Journald → Vector → VictoriaLogs | `syslog` | Kafka nodes with JMX enabled (all by default) | Structured, searchable Kafka and exporter logs |
-{.full-width}
+{.full-width .wide .expand}
 
 On each INFRA node, the role creates one discovery file per instance. JMX and any selected protocol target share that file and `kafka` scrape job:
 
@@ -176,7 +176,7 @@ The Kafka rule file lives at `/infra/rules/kafka.yml`. The main recorded metrics
 | `kafka:ins:request_error_rate5m` | Broker 5-minute request error rate |
 | `kafka:cls:under_replicated_partitions` | Total under-replicated partitions in the cluster |
 | `kafka:cls:offline_partitions` | Offline partitions in the cluster |
-{.full-width}
+{.full-width .wide .expand}
 
 Offset-change rates measure progress, not client requests. Truncation, offset rollback, and exporter restarts can briefly produce negative changes. Rules use `clamp_min(..., 0)` to retain forward progress only.
 
@@ -202,7 +202,7 @@ Offset-change rates measure progress, not client requests. Truncation, offset ro
 | `KafkaFencedBrokers` | Fenced brokers > 0 | 5m | WARN | Kafka Overview / `cls` |
 | `KafkaUncleanLeaderElection` | An unclean leader election in the last 5 minutes | immediate | CRIT | Kafka Overview / `cls` |
 | `KafkaConsumerLagGrowing` | Group lag > 100000 and still growing after 30m | 30m | WARN | Kafka Consumer / `group` |
-{.full-width}
+{.full-width .wide .expand}
 
 An unclean leader election can indicate data loss. Immediately preserve controller and broker logs. Identify affected topics and replicas before choosing recovery actions.
 
