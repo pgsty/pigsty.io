@@ -37,6 +37,14 @@ The wizard prints generated passwords to the terminal.
 Protect terminal records and automation logs that contain these passwords.
 See the [Default Credentials Checklist](/docs/concept/sec/compliance#default-credentials-checklist) for the complete scope.
 
+## Grafana Access Control
+
+Changing the admin password does not disable anonymous access. By default, anonymous users can still access Grafana with the `Viewer` role.
+To require login before viewing monitoring data, set [`grafana_anon_enabled`](/docs/infra/param#grafana_anon_enabled) to `false`, then render the configuration and restart Grafana as described in [Administration](/docs/infra/admin/sop/#manage-grafana-anonymous-access).
+
+Setting `auth: true` on the Nginx home server does not enable Basic Auth for `/ui/`; this path uses Grafana's own authentication.
+The Grafana switch also does not protect VictoriaMetrics, VictoriaLogs, or other endpoints. Restrict access to them separately.
+
 ## Firewall
 
 The default value of [`node_firewall_mode`](/docs/node/param#node_firewall_mode) is `zone`.

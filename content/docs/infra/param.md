@@ -1,6 +1,6 @@
 ---
 title: Parameters
-description: INFRA module provides 10 sections with 70+ configurable parameters
+description: INFRA module provides 10 sections with 74 configurable parameters
 weight: 3030
 icon: fa-solid fa-sliders
 categories: [Reference]
@@ -149,6 +149,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`grafana_clean`](#grafana_clean)                   |   `bool`   | `G/A` | Clean Grafana data during init?                 |
 | [`grafana_admin_username`](#grafana_admin_username) | `username` |  `G`  | Grafana admin username, default `admin`         |
 | [`grafana_admin_password`](#grafana_admin_password) | `password` |  `G`  | Grafana admin password, default `pigsty`        |
+| [`grafana_anon_enabled`](#grafana_anon_enabled)           |   `bool`   | `G/I` | Allow anonymous Viewer access, default `true`   |
 | [`grafana_auth_proxy`](#grafana_auth_proxy)         |   `bool`   |  `G`  | Enable Grafana auth proxy?                      |
 | [`grafana_pgurl`](#grafana_pgurl)                   |   `url`    |  `G`  | External PostgreSQL URL for Grafana persistence |
 | [`grafana_view_password`](#grafana_view_password)   | `password` |  `G`  | Grafana metadb PG datasource password           |
@@ -1343,6 +1344,7 @@ grafana_port: 3000                # Grafana listen port
 grafana_clean: false              # clean data during init?
 grafana_admin_username: admin     # admin username
 grafana_admin_password: pigsty    # admin password
+grafana_anon_enabled: true        # allow anonymous Viewer access?
 grafana_auth_proxy: false         # enable auth proxy?
 grafana_pgurl: ''                 # external PostgreSQL URL
 grafana_view_password: DBUser.Viewer  # PG datasource password
@@ -1404,6 +1406,34 @@ Grafana admin password, default is `pigsty`.
 
 
 
+### `grafana_anon_enabled`
+
+name: `grafana_anon_enabled`, type: `bool`, level: `G/I`
+
+Controls anonymous access to Grafana. The default is `true`: anonymous users access the `Pigsty` organization with the `Viewer` role.
+
+This parameter is new in the development version. It is not available in v4.5.0 or earlier.
+
+Set it to `false` to require authentication through Grafana login or a configured authentication proxy before accessing dashboards and data sources.
+Set it in `all.vars`, the `infra` group, or an individual infrastructure host:
+
+```yaml
+grafana_anon_enabled: false
+```
+
+After changing the inventory, render the configuration and restart Grafana:
+
+```bash
+./infra.yml -l infra -t grafana_config,grafana_launch
+```
+
+Replace `-l infra` with `-l <infra-node>` to apply the change to one node. The `grafana_config` tag only writes configuration files; Grafana must restart for the change to take effect.
+
+This switch is independent of [`grafana_auth_proxy`](#grafana_auth_proxy). To require proxy authentication for every visitor, disable anonymous access as well.
+[`grafana_view_password`](#grafana_view_password) is a PostgreSQL datasource password and does not control visitor login.
+This parameter only controls Grafana. Other infrastructure endpoints still require their own firewall or portal access controls.
+
+
 ### `grafana_auth_proxy`
 
 name: `grafana_auth_proxy`, type: `bool`, level: `G`
@@ -1412,7 +1442,7 @@ Specifies whether to enable the Grafana authentication proxy. The default is `fa
 
 If enabled, Grafana trusts user identity information from the Nginx reverse proxy. This supports single sign-on (SSO).
 
-This is typically used for integration with external identity authentication systems.
+This is typically used for integration with external identity authentication systems. To require authentication for every visitor, also set [`grafana_anon_enabled`](#grafana_anon_enabled) to `false`.
 
 
 
@@ -1436,4 +1466,4 @@ name: `grafana_view_password`, type: `password`, level: `G`
 
 Read-only user password used by Grafana metadb PG data source, default is `DBUser.Viewer`.
 
-This password is used for Grafana to connect to the PostgreSQL CMDB data source to query metadata in read-only mode.
+This password is used for Grafana to connect to the PostgreSQL CMDB data source to query metadata in read-only mode. It is not a visitor login password; [`grafana_anon_enabled`](#grafana_anon_enabled) controls anonymous access.
