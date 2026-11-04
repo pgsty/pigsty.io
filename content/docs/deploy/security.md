@@ -92,6 +92,8 @@ The default firewall does not expose these ports directly to public networks.
 Prefer Nginx for external access.
 Restrict management pages by source address and identity.
 
+Grafana allows anonymous access by default. Changing the admin password does not disable it. To require authentication, set [`grafana_auth_anon`](/docs/infra/param#grafana_auth_anon) to `false`, render the configuration, and restart Grafana. Other infrastructure endpoints still need separate access controls.
+
 ## Authentication and Access Control
 
 - Use [HBA](/docs/concept/sec/auth) to define the user, database, source address, and authentication method.

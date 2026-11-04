@@ -145,6 +145,27 @@ Common maintenance commands:
 
 ----------------
 
+## Manage Grafana Anonymous Access
+
+Grafana allows anonymous users to access it with the `Viewer` role by default. On a version that supports [`grafana_auth_anon`](/docs/infra/param#grafana_auth_anon), set the following in `all.vars` or the `infra` group's variables:
+
+```yaml
+grafana_auth_anon: false
+```
+
+Then render the configuration and restart Grafana:
+
+```bash
+./infra.yml -l infra -t grafana_config,grafana_launch
+```
+
+Running `grafana_config` alone does not apply the change immediately. Replace `-l infra` with `-l <infra-node>` to target a single node.
+The inventory setting persists across subsequent playbook runs. Direct edits to `/etc/grafana/grafana.ini` are overwritten by the template.
+This switch is independent of [`grafana_auth_proxy`](/docs/infra/param#grafana_auth_proxy) and only protects Grafana access.
+
+
+----------------
+
 ## Manage Grafana Passwords
 
 Grafana uses two password parameters. [**`grafana_admin_password`**](/docs/infra/param/#grafana_admin_password) defaults to the public value `pigsty`. [**`grafana_view_password`**](/docs/infra/param/#grafana_view_password) defaults to `DBUser.Viewer`.
@@ -161,4 +182,4 @@ Change the public defaults before production. After initialization, a change to 
 ./infra.yml -t env_var            # Re-render environment variables
 ```
 
-`grafana_view_password` is the password used by the default PostgreSQL metadb data source as `dbuser_view`. If the database role password changes, update both the declared value and the Grafana data source. A change on only one side breaks the dashboard connection.
+`grafana_view_password` is the password used by the default PostgreSQL metadb data source as `dbuser_view`. If the database role password changes, update `grafana_view_password`, render the datasource configuration, and restart Grafana. A change on only one side breaks the dashboard connection. This is not a visitor login password.
