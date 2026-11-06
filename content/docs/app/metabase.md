@@ -10,7 +10,7 @@ categories: [Reference]
 
 Metabase provides many chart types and connects to different databases. These features support enterprise data analysis.
 
-The template defaults to `metabase/metabase:v0.64.1.x`. Use the single `METABASE_IMAGE` setting to override the full image reference. On 2026-10-08, the tag resolved to `0.64.1.1`; validation on PostgreSQL 18.6 covered upgrading a restored metadata database, login, and querying an existing saved question.
+The template defaults to `metabase/metabase:v0.64.x`, the channel for the latest Metabase 64 release (also published as `v0.64-lts`; `0.64.5.2` as of 2026-11-06). Use the single `METABASE_IMAGE` setting to override the full image reference. On 2026-10-08, the previous `v0.64.1.x` channel resolved to `0.64.1.1`; validation on PostgreSQL 18.6 covered upgrading a restored metadata database, login, and querying an existing saved question.
 
 
 ## Quick Start
@@ -98,7 +98,7 @@ Metabase configuration is in the `.env` file:
 
 ```bash
 # Image and host port
-METABASE_IMAGE=metabase/metabase:v0.64.1.x
+METABASE_IMAGE=metabase/metabase:v0.64.x
 MB_PORT=9004
 
 # Metabase metadata database

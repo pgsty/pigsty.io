@@ -12,7 +12,7 @@ Public Demo: [http://wiki.pigsty.cc](http://wiki.pigsty.cc)
 
 ![Wiki.js](/img/docs/app/wiki.jpg)
 
-The current Compose uses the untagged `requarks/wiki` image. Stable 2.x releases are maintained in [`requarks/wiki-v2`](https://github.com/requarks/wiki-v2/releases); the original `requarks/wiki` repository contains 3.x Beta releases. The image resolved to 2.5.316 during validation on 2026-10-08. Record and verify the actual image version before production upgrades.
+The current Compose follows the Wiki.js `2` major-version tag (`requarks/wiki:2`, resolving to 2.5.317 on 2026-11-06). Stable 2.x releases are maintained in [`requarks/wiki-v2`](https://github.com/requarks/wiki-v2/releases). Wiki.js 3.0 reached GA in November 2026 under the `3` tag; it is a major rewrite with its own [requirements](https://docs.js.wiki/setup/requirements) and [upgrade procedure](https://docs.js.wiki/setup/upgrade), so do not switch an existing 2.x deployment by changing the image tag. Record and verify the actual image version before production upgrades.
 
 
 ## TL; DR
@@ -42,7 +42,7 @@ bin/pgsql-db   pg-meta wiki
 services:
   wiki:
     container_name: wiki
-    image: requarks/wiki
+    image: requarks/wiki:2
     environment:
       DB_TYPE: postgres
       DB_HOST: 10.10.10.10

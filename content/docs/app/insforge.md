@@ -10,7 +10,7 @@ categories: [Reference]
 
 Pigsty provides the `app/insforge` template. It runs stateless InsForge OSS services in Docker Compose and stores critical state in Pigsty-managed PostgreSQL. This provides high availability, backup and recovery, monitoring, ingress domains, and infrastructure services. The database does not depend on an ephemeral container volume.
 
-The template targets InsForge OSS `v2.3.3` and uses external PostgreSQL. It runs three services by default: InsForge Dashboard/API, PostgREST, and Deno Runtime. The latter two bind only to host loopback.
+The template targets InsForge OSS `v2.3.5` and uses external PostgreSQL. It runs three services by default: InsForge Dashboard/API, PostgREST, and Deno Runtime. The latter two bind only to host loopback.
 
 ------
 
@@ -90,7 +90,7 @@ The InsForge template separates the database from the application containers by 
 
 Components:
 
-- **InsForge App**: `ghcr.io/insforge/insforge-oss:v2.3.3`, providing the Dashboard and main API on port `7130`.
+- **InsForge App**: `ghcr.io/insforge/insforge-oss:v2.3.5`, providing the Dashboard and main API on port `7130`.
 - **PostgREST**: `postgrest/postgrest:v12.2.12`, generating REST APIs from PostgreSQL schemas; bound to `127.0.0.1:5430` on the host.
 - **Deno Runtime**: `denoland/deno:alpine-2.0.6`, running the bundled, pinned function host and bound to `127.0.0.1:7133` on the host.
 - **PostgreSQL**: Managed by Pigsty for persistent state, backup, monitoring, and high availability.
@@ -170,7 +170,7 @@ pg-meta:
 | `POSTGRES_DB` | `insforge` | InsForge database |
 | `POSTGRES_USER` | `dbuser_insforge` | Application user that connects InsForge to PostgreSQL |
 | `POSTGRES_PASSWORD` | `DBUser.Insforge` | Application user password; must be replaced in production |
-| `INSFORGE_VERSION` | `v2.3.3` | InsForge OSS image tag |
+| `INSFORGE_VERSION` | `v2.3.5` | InsForge OSS image tag |
 | `DENO_RUNTIME_IMAGE` | `denoland/deno:alpine-2.0.6` | Full Deno Runtime image reference |
 | `INSFORGE_IMAGE` | Empty | Optional full app image override, taking precedence over `INSFORGE_VERSION` |
 | `APP_PORT` | `7130` | External InsForge App port |
@@ -320,6 +320,12 @@ make down     # Stop containers
 make clean    # Remove stopped containers
 make edit     # Edit .env
 ```
+
+### Upgrade to v2.3.5
+
+v2.3.5 is a patch release with dependency security fixes; PostgREST `v12.2.12`, Deno `alpine-2.0.6`, and the vendored function runtime are unchanged. When upgrading from a release before v2.3.3, also follow the v2.3.3 section below.
+
+Take the same backups, then recreate the InsForge container. Its startup migration runner applies `066_storage-objects-default-owner-policies`. It only acts when `storage.objects` has **no** policies: it then creates owner-only policies for `authenticated` (reads also allow objects in public buckets) and enables RLS. Projects that already have any policy on the table are left unchanged. Objects written through the S3 protocol have `uploaded_by = NULL`, so end users cannot see them in private buckets or modify them; API-key / `project_admin` callers bypass RLS. The `files/insforge.sql` baseline does not touch `storage`; do not replay it. See the [template upgrade checks](https://github.com/pgsty/pigsty/tree/main/app/insforge#upgrade-to-v235) and [official migration](https://github.com/InsForge/InsForge/blob/c1c886e775d286433e4b50c78c24335783e8fc00/backend/src/infra/database/migrations/066_storage-objects-default-owner-policies.sql).
 
 ### Upgrade to v2.3.3
 
