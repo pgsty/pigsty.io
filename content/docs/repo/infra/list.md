@@ -5,6 +5,8 @@ description: Available packages in the Infra repository
 weight: 5441
 ---
 
+The 2026-11-06 batch updates seven recipes with 28 locally built and verified amd64/arm64 DEB/RPM packages. APT/YUM import and online publication remain pending. The table includes local build versions and does not imply that all versions are available online. See the [release log](../log/#2026-11-06).
+
 The 2026-11-05 batch contains ten updated recipes and 40 verified amd64/arm64 DEB/RPM packages, now imported into the local APT/YUM repositories. It supersedes the earlier Caddy and dblab builds; other November 3 and 4 builds in this list still await import. Online publication remains pending. See the [release log](../log/#2026-11-05).
 
 
@@ -57,8 +59,8 @@ The 2026-11-05 batch contains ten updated recipes and 40 verified amd64/arm64 DE
 ## Prometheus Stack
 
 | Name                                                                   | Version  | License                                                                           | Comment                                   |
-|:-----------------------------------------------------------------------|:---------|:----------------------------------------------------------------------------------|:------------------------------------------|
-| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.15.1` | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
+| :--------------------------------------------------------------------- | :------- | :-------------------------------------------------------------------------------- | :---------------------------------------- |
+| [`prometheus`](https://github.com/prometheus/prometheus)               | `3.16.0` | [Apache-2.0](https://github.com/prometheus/prometheus/blob/main/LICENSE)          | Cloud-native monitoring & TSDB            |
 | [`pushgateway`](https://github.com/prometheus/pushgateway)             | `1.11.4` | [Apache-2.0](https://github.com/prometheus/pushgateway/blob/master/LICENSE)       | Metrics push gateway for short-lived jobs |
 | [`alertmanager`](https://github.com/prometheus/alertmanager)           | `0.34.2` | [Apache-2.0](https://github.com/prometheus/alertmanager/blob/main/LICENSE)        | Alert management & notification dispatch  |
 | [`blackbox-exporter`](https://github.com/prometheus/blackbox_exporter) | `0.29.1` | [Apache-2.0](https://github.com/prometheus/blackbox_exporter/blob/master/LICENSE) | Blackbox probing, endpoint availability   |
@@ -151,7 +153,7 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`sow`](https://github.com/pgsty/sow)                                                   | `0.6.1`     | [Apache-2.0](https://github.com/pgsty/sow/blob/main/LICENSE)                            | Package repository builder                                                |
 | [`barn`](https://github.com/pgsty/barn)                                                 | `1.0.0`     | [Apache-2.0](https://github.com/pgsty/barn/blob/v1.0.0/LICENSE)                         | VM manager (stable)                                                       |
 | [`openbao`](https://github.com/openbao/openbao)                                         | `2.7.2`     | [MPL-2.0](https://github.com/openbao/openbao/blob/main/LICENSE)                         | Open-source secrets and encryption management                             |
-| [`opentofu`](https://github.com/opentofu/opentofu)                                      | `1.13.8`    | [MPL-2.0](https://github.com/opentofu/opentofu/blob/main/LICENSE)                       | Open-source infrastructure-as-code tool                                   |
+| [`opentofu`](https://github.com/opentofu/opentofu)                                      | `1.13.9`    | [MPL-2.0](https://github.com/opentofu/opentofu/blob/main/LICENSE)                       | Open-source infrastructure-as-code tool                                   |
 | [`vip-manager`](https://github.com/cybertec-postgresql/vip-manager)                     | `5.0.0`     | [BSD-2](https://github.com/cybertec-postgresql/vip-manager/blob/master/LICENSE)         | Bind L2 VIP to PG primary                                                 |
 | [`pg-hardstorage`](https://github.com/cybertec-postgresql/pg_hardstorage)               | `1.6.0`     | [Apache-2.0](https://github.com/cybertec-postgresql/pg_hardstorage/blob/main/LICENSE)   | PostgreSQL backup with continuous WAL streaming                           |
 | [`pgschema`](https://github.com/pgplex/pgschema)                                        | `1.13.4`    | [Apache-2.0](https://github.com/pgplex/pgschema/blob/main/LICENSE)                      | Terraform-style declarative Postgres schema migration CLI                 |
@@ -183,7 +185,7 @@ Pig package manager, PostgreSQL tools, and other database related utilities
 | [`headscale`](https://github.com/juanfont/headscale)                                    | `0.29.6`    | [BSD-3](https://github.com/juanfont/headscale/blob/main/LICENSE)                        | Self-hosted Tailscale control server                                      |
 | [`tailcat`](https://github.com/tailscale/tailcat)                                       | `0.7.0`     | [BSD-3](https://github.com/tailscale/tailcat/blob/main/LICENSE)                         | Netcat-like tool over Tailscale's data plane without its control plane    |
 | [`stalwart`](https://github.com/stalwartlabs/stalwart)                                  | `1.0.3`     | [AGPLv3](https://github.com/stalwartlabs/stalwart/blob/main/LICENSE)                    | Mail and collaboration server; 0.16.x upgrades require database migration |
-| [`maddy`](https://github.com/foxcpp/maddy)                                              | `0.9.6`     | [GPL-3.0](https://github.com/foxcpp/maddy/blob/master/LICENSE)                          | Lightweight mail server                                                   |
+| [`maddy`](https://github.com/foxcpp/maddy)                                              | `0.9.7`     | [GPL-3.0](https://github.com/foxcpp/maddy/blob/master/LICENSE)                          | Lightweight mail server                                                   |
 {.wide .expand}
 
 
@@ -197,12 +199,12 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 | :--------------------------------------------------------- | :-------- | :------------------------------------------------------------------------- | :--------------------------------------------------------- |
 | [`claude`](https://github.com/anthropics/claude-code)      | `2.1.318` | [Proprietary](https://www.anthropic.com/legal/terms)                       | Claude Code - Anthropic agentic coding                     |
 | [`opencode`](https://github.com/anomalyco/opencode)        | `1.19.5`  | [MIT](https://github.com/anomalyco/opencode/blob/main/LICENSE)             | Terminal AI coding assistant                               |
-| [`codex`](https://github.com/openai/codex)                 | `0.165.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)            | OpenAI coding agent CLI                                    |
-| [`crush`](https://github.com/charmbracelet/crush)          | `0.98.2`  | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md) | Charm's terminal AI coding agent                           |
+| [`codex`](https://github.com/openai/codex)                 | `0.167.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)            | OpenAI coding agent CLI                                    |
+| [`crush`](https://github.com/charmbracelet/crush)          | `0.100.0` | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md) | Charm's terminal AI coding agent                           |
 | [`agentsview`](https://github.com/kenn-io/agentsview)      | `0.46.1`  | [MIT](https://github.com/kenn-io/agentsview/blob/main/LICENSE)             | Browse and replay AI coding agent trajectories in terminal |
-| [`code`](https://code.visualstudio.com/)                   | `1.145.0` | [MIT](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)           | Visual Studio Code editor                                  |
+| [`code`](https://code.visualstudio.com/)                   | `1.145.1` | [MIT](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)           | Visual Studio Code editor                                  |
 | [`code-server`](https://github.com/coder/code-server)      | `4.145.0` | [MIT](https://github.com/coder/code-server/blob/main/LICENSE)              | VS Code in the browser                                     |
-| [`mcp-toolbox`](https://github.com/googleapis/mcp-toolbox) | `1.15.0`  | [Apache-2.0](https://github.com/googleapis/mcp-toolbox/blob/main/LICENSE)  | Google database MCP server                                 |
+| [`mcp-toolbox`](https://github.com/googleapis/mcp-toolbox) | `1.16.0`  | [Apache-2.0](https://github.com/googleapis/mcp-toolbox/blob/main/LICENSE)  | Google database MCP server                                 |
 | [`uv`](https://github.com/astral-sh/uv)                    | `0.13.7`  | [MIT](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)               | Next-gen Python package manager                            |
 | [`golang`](https://golang.org/)                            | `1.27.3`  | [BSD-3](https://github.com/golang/go/blob/master/LICENSE)                  | Go compiler                                                |
 | [`nodejs`](https://nodejs.org/)                            | `26.13.0` | [MIT/Mixed](https://github.com/nodejs/node/blob/main/LICENSE)              | Node.js 26 LTS server-side JavaScript runtime              |
