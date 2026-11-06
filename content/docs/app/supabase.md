@@ -14,7 +14,7 @@ This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase
 
 The installation commands below use the matching [application files](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [configuration template](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Kong and external PG18 by default.
 
-The Envoy integration and migration scripts for Supabase `self-hosted/v0.8.2` remain a development preview without a complete public Pigsty release. The changes below are retained for upgrade planning; copying new YAML or SQL alone does not deploy that version.
+The Envoy integration and migration scripts for Supabase `self-hosted/v0.8.4` remain a development preview without a complete public Pigsty release. The changes below are retained for upgrade planning; copying new YAML or SQL alone does not deploy that version.
 
 
 --------
@@ -165,7 +165,7 @@ Logflare / Analytics uses `_analytics` in the separate `_supabase` database inst
 The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
 Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
 
-The gateway service is named `kong`. The development integration of [`self-hosted/v0.8.2`](https://github.com/supabase/supabase/tree/564eab8ad7840b13324f68b1bfac074ef8d51c21/docker) changes the default to Envoy `1.39.1`, under service name `api-gw`, and retains Kong `3.9.3` as an option.
+The gateway service is named `kong`. The development integration of [`self-hosted/v0.8.4`](https://github.com/supabase/supabase/tree/189adda99d1b56da55fc5a6ee3f849354aaea92a/docker) changes the default to Envoy `1.39.6`, under service name `api-gw`, and retains Kong `3.9.3` as an option.
 
 <details>
 <summary>Gateway selection in the development version</summary>
@@ -195,7 +195,28 @@ Next, we'll discuss advanced topics for improving Supabase security, availabilit
 
 ## Upgrading Existing Deployments
 
-For maintenance within the same version, keep matching application configuration. The following preparation notes apply to the development `0.8.2` integration. Obtain a complete, validated Pigsty application version, including `app/supabase/`, `conf/supabase.yml`, and related SQL, before scheduling downtime and migration. The public application template does not yet include these development changes.
+For maintenance within the same version, keep matching application configuration. The following preparation notes apply to the development `0.8.4` integration. Obtain a complete, validated Pigsty application version, including `app/supabase/`, `conf/supabase.yml`, and related SQL, before scheduling downtime and migration. The public application template does not yet include these development changes.
+
+<details>
+<summary>0.8.4 development migration: security update, one-way Storage migrations, and Edge Functions</summary>
+
+`self-hosted/v0.8.4` is a security update. It fixes Storage signed resumable (TUS) upload URLs that bypass RLS, a multipart-upload denial of service, and replayable presigned URLs. It also fixes forged Realtime broadcasts and cross-tenant channel access, and includes security fixes for Envoy, imgproxy, and Edge Runtime.
+
+**Back up the database first.** Storage `v1.89.12` runs one-way migrations on the `storage` schema at startup. After that, rolling back to Storage `v1.74.0` makes every upload fail. Check `pb info` for a recent recoverable backup before you recreate the containers. If the instance ever ran Storage `v1.72.0`-`v1.72.3` through a manually pinned image, apply the fix from [storage#1394](https://github.com/supabase/storage/issues/1394) first.
+
+No new SQL is required: upstream `docker/volumes/db/` and the bundled `supabase/postgres` image are identical in 0.8.2 and 0.8.4. Pigsty has no `files/supabase-0.8.4.sql`, and `files/supabase.sql` is unchanged. Auth, Storage, and Realtime apply their own schema migrations at startup. Databases that have not reached 0.8.2 still need the 0.8.2 steps below first.
+
+Review these behavior changes:
+
+- The gateway no longer answers preflights or adds CORS headers on `/functions/v1/`. Edge Functions called from a browser must [handle CORS](https://supabase.com/docs/guides/functions/cors) themselves. Both gateways translate `sb_` publishable/secret keys on this route.
+- `FUNCTIONS_MEMORY_LIMIT` (default `2g`) limits the functions container. All workers share it, with up to 256 MiB per worker. Raise it in `apps.supabase.conf` before recreating the container if needed. The request idle timeout is 150 seconds; the Pigsty Nginx portal still applies its own 120-second read timeout.
+- The bare `/.well-known/oauth-authorization-server` route is removed. Use `/.well-known/oauth-authorization-server/auth/v1`, or the `/auth/v1/.well-known/oauth-authorization-server` and `/auth/v1/.well-known/openid-configuration` routes, which no longer require an API key.
+- Realtime runs as UID 65534. Custom files mounted into it must be readable by that user; the template mounts none. Postgres Changes subscriptions now match schema and table names exactly.
+- Logflare remains on `1.50.15`: `1.52` and later break Studio log queries on the Postgres backend.
+
+The service names are unchanged. Update the files, then recreate the stack with the same Compose override combination. See the [template upgrade notes](https://github.com/pgsty/pigsty/tree/main/app/supabase#existing-deployments) for the complete list.
+
+</details>
 
 <details>
 <summary>0.8.2 development migration: gateway, JWT settings, and grants</summary>
@@ -300,7 +321,7 @@ To enable asymmetric authentication, configure `JWT_KEYS`, `JWT_JWKS`, and all f
 docker compose -f docker-compose.yml -f docker-compose.asymmetric.yml up -d
 ```
 
-If you also select Kong, insert `-f docker-compose.kong.yml` before `-f docker-compose.asymmetric.yml`. Use the same override combination for subsequent starts and updates. Edge Functions receive `JWT_JWKS` through `SUPABASE_JWKS` and fall back to HS256 when it is empty. Update the worker together with the shared `volumes/functions/deno.jsonc` import map to support `@supabase/functions-js`, `@supabase/server`, and the per-request `SUPABASE_FUNCTION_SLUG`. The upstream source is the [Functions directory at the pinned Supabase commit `564eab8`](https://github.com/supabase/supabase/tree/564eab8ad7840b13324f68b1bfac074ef8d51c21/docker/volumes/functions).
+If you also select Kong, insert `-f docker-compose.kong.yml` before `-f docker-compose.asymmetric.yml`. Use the same override combination for subsequent starts and updates. Edge Functions receive `JWT_JWKS` through `SUPABASE_JWKS` and fall back to HS256 when it is empty. Update the worker together with the shared `volumes/functions/deno.jsonc` import map to support `@supabase/functions-js`, `@supabase/server`, and the per-request `SUPABASE_FUNCTION_SLUG`. The upstream source is the [Functions directory at the pinned Supabase commit `189adda`](https://github.com/supabase/supabase/tree/189adda99d1b56da55fc5a6ee3f849354aaea92a/docker/volumes/functions), including the new `main/memory-pressure.ts`.
 
 After changing Supabase credentials, update configuration and recreate the containers. The commands below and later startup examples without Compose overrides apply only to the default **Envoy + HS256** stack:
 

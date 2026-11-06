@@ -39,7 +39,7 @@ Usage:
 Source: [`conf/supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), used with `app/supabase/` from the same version.
 
 <details>
-<summary>Development configuration preview: Supabase 0.8.2 has no complete public deployment entry point</summary>
+<summary>Development configuration preview: Supabase 0.8.4 has no complete public deployment entry point</summary>
 
 This configuration requires the matching development application files, database baseline, and migration scripts. Do not use it alone to replace stable configuration. See the [application guide](/docs/app/supabase/) for gateway and upgrade differences.
 

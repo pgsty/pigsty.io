@@ -34,7 +34,7 @@ For the complete procedure, see: [**Supabase Self-Hosting Guide**](/docs/app/sup
 ## Quick Start
 
 Pigsty's default [`supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml) configuration template defines a single-node Supabase.
-The current application combination tracks `self-hosted/v0.8.2` (commit `564eab8`), with Envoy and external Pigsty-managed PostgreSQL 18 as the defaults. The template still supports PostgreSQL 15–18. See the [self-hosting guide](/docs/app/supabase) for complete versions and the upgrade procedure for existing deployments.
+The current application combination tracks `self-hosted/v0.8.4` (commit `189adda`), with Envoy and external Pigsty-managed PostgreSQL 18 as the defaults. The template still supports PostgreSQL 15–18. See the [self-hosting guide](/docs/app/supabase) for complete versions and the upgrade procedure for existing deployments.
 
 First, use Pigsty's [standard installation process](/docs/setup/install) to install the Silo and PostgreSQL instances required for Supabase:
 
