@@ -44,7 +44,7 @@ Source: [`pigsty/conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/c
 ## Explanation
 
 The `app/dify` template supplies the Dify deployment configuration.
-The current image is Dify v1.17.1; basic functionality was validated on Linux amd64 with PostgreSQL 18.6 on 2026-10-08.
+The current image is Dify v1.19.0 with plugin daemon v0.6.14-local; the previous v1.17.1 template was validated on Linux amd64 with PostgreSQL 18.6 on 2026-10-08.
 
 **What is Dify**:
 - Open-source LLM application development platform
@@ -76,7 +76,7 @@ https://dify.pigsty
 - AI Agent development and deployment
 
 **Notes**:
-- Replace `SECRET_KEY` and the three `DIFY_AGENT_*` development secrets; see the [deployment checklist](/docs/app/dify/#checklist).
+- Replace `SECRET_KEY` and the three `DIFY_AGENT_*` development secrets; see the [deployment checklist](/docs/app/dify/#checklist). Since Dify 1.18, `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN` must not be blank.
 - Dify v1.16 and later support PostgreSQL 18's `uuidv7()` without a local migration patch.
 - Configure LLM API keys (e.g., OpenAI API Key)
 - Permit PostgreSQL access from the Docker networks. The template supplies an HBA rule for `172.16.0.0/12`.

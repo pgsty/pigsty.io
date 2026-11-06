@@ -20,7 +20,7 @@ Pigsty supports self-hosted Dify with single-command deployment. Critical state 
 - [Upgrading](#upgrading)
 - [File Backup](#file-backup)
 
-> The template uses Dify `v1.17.1` with plugin daemon `v0.6.10-local` and sandbox `v0.2.15`. Validation on 2026-10-08 covered login, an existing Code workflow, and service connections on Linux amd64 with PostgreSQL 18.6. Dify v1.16 and later handle PostgreSQL 18's built-in `uuidv7()` without a local migration patch.
+> The template uses Dify `v1.19.0` with plugin daemon `v0.6.14-local` and sandbox `v0.2.15`. The previous `v1.17.1` template was validated on 2026-10-08 for login, an existing Code workflow, and service connections on Linux amd64 with PostgreSQL 18.6. Dify v1.16 and later handle PostgreSQL 18's built-in `uuidv7()` without a local migration patch.
 
 ------
 
@@ -117,6 +117,7 @@ Check these configuration items:
 - Change Dify's default encryption key.
   - You can randomly generate a password string with `openssl rand -base64 42` and fill in the `SECRET_KEY` parameter
   - Also replace the three Agent development secrets: `DIFY_AGENT_API_TOKEN`, `DIFY_AGENT_SERVER_SECRET_KEY`, and `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN`. Generate independent random values; use the format produced by `secrets.token_urlsafe(32)` for the server secret.
+  - Since Dify 1.18, the local Agent sandbox refuses to start with a blank `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN`. Generate it with `openssl rand -hex 32` and keep the same value across upgrades.
 - Change the domain used by Dify.
   - Replace placeholder domain `dify.pigsty` with your actual domain, e.g., `dify.pigsty.io`
   - You can use `sed -ie 's/dify.pigsty/dify.pigsty.io/g' pigsty.yml` to modify Dify's domain
@@ -174,6 +175,19 @@ Before upgrading, verify the PostgreSQL backup and back up the files and named v
 ```bash
 docker compose exec api flask db upgrade
 ```
+
+**Upgrading from 1.17.x to 1.19.0.** Dify 1.19.0 includes the 1.18.0 changes. Read the upgrade guides in the [1.18.0](https://github.com/langgenius/dify/releases/tag/1.18.0) and [1.19.0](https://github.com/langgenius/dify/releases/tag/1.19.0) release notes. For this template:
+
+- Upgrade the API, worker, Beat, web, Agent backend, and local sandbox to `1.19.0` together, with plugin daemon `0.6.14-local`. The Agent backend uses a new run protocol, and older Agent runtimes cannot read session snapshots saved by 1.18 and later. Use a maintenance window: stop the old stack in `/opt/dify` with `docker compose stop -t -1`, then rerun `./app.yml -l dify`. Keep overrides in `apps.dify.conf`, because `app.yml` rewrites `/opt/dify/.env` from the template.
+- Plugin daemon 0.6.12 and later run as the non-root `dify` user (uid 1001). The template's `init_permissions` service now also changes `/data/dify/plugin_daemon` to `1001:1001` once (recorded by a `.init_permissions` flag file there) before `plugin_daemon` starts; otherwise plugin installation fails with `permission denied`. The first start after upgrading can take a while on large plugin directories.
+- The local sandbox now starts with `--require-auth-token`. Compose passes the same `DIFY_AGENT_LOCAL_SANDBOX_AUTH_TOKEN` value from `.env` to `agent_backend` and `local_sandbox`; it must not be blank. Keep an existing value unchanged.
+- The template does not set `PASSWORD_PEPPER`. Leave it unset on existing installations: setting, changing, or removing it invalidates all stored password hashes.
+- The bundled Nginx now replaces `X-Forwarded-For` with `$remote_addr`, and `api`/`api_websocket` default to `RESPECT_XFORWARD_HEADERS_ENABLED=true`. Behind Pigsty's portal Nginx, all visitors share the proxy's address for rate limiting unless you add an `nginx/conf.d/real-ip.conf` that trusts only that proxy with `set_real_ip_from`. Never trust `0.0.0.0/0`; set `RESPECT_XFORWARD_HEADERS_ENABLED: false` to opt out.
+- New tracing tasks use the `ops_trace_v2` queue (`OPS_TRACE_QUEUE` application default). API, worker, and Beat share the same `.env`, so they agree. Custom `CELERY_QUEUES` or `CELERY_WORKER_QUEUES` lists must include `ops_trace_v2`, `human_input_delivery`, and `human_input_contact_sync`.
+- Migrations run from 1.17.1 to `b9d3f7a5c102` (1.18.0) and then to `53c10126d551` (1.19.0). Several PostgreSQL indexes are built `CONCURRENTLY`, scanning large tables such as `workflow_runs` and `message_files`. If an index build is interrupted, confirm that no build is still running, drop only the invalid index with `DROP INDEX CONCURRENTLY`, and rerun `flask db upgrade`; never drop a healthy index. Revision `53c10126d551` deletes duplicate tracing configurations; a downgrade does not restore them.
+- App exports now use `.ifpkg` package format v2, which older Dify installations may reject. v1 imports and explicit YAML export remain available.
+- The Beta KnowledgeFS (Agent Knowledge Base) integration is not included. It requires a separate service and database and an amd64-only image. See the upstream [KnowledgeFS guide](https://github.com/langgenius/dify/blob/1.19.0/docker/README.md#enable-the-knowledgefs-integration) to add it with a Compose override.
+- Upstream Compose now splits settings into `envs/**/*.defaults` and requires Compose 2.35.0 or later for that layout. Pigsty keeps a single `.env` generated from `apps.dify.conf` and does not use `envs/`.
 
 Dify 1.17.1 includes the pre-1.15 legacy model type migration in this process. The separate `flask data-migrate legacy-model-types` command is no longer needed. Deployments upgrading from before 1.15 that have not completed the plugin auto-upgrade backfill must still run it once:
 
