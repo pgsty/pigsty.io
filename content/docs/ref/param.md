@@ -8,7 +8,7 @@ categories: [Reference]
 
 Use this page to find Pigsty v4.x parameters. For full explanations, read each module's `param` page.
 
-The parameter reference pages for the 10 modules below list **375** parameters, including deployment and removal settings and the development addition `kafka_jmx_exporter_enabled`. See [Modules](/docs/ref/module/) for maturity levels. The 13 native MySQL 8.4 parameters are listed separately.
+The parameter reference pages for the 10 modules below list **376** parameters, including deployment and removal settings and the development additions `kafka_jmx_exporter_enabled` and `grafana_anon_enabled`. See [Modules](/docs/ref/module/) for maturity levels. The 13 native MySQL 8.4 parameters are listed separately.
 
 --------
 
@@ -17,7 +17,7 @@ The parameter reference pages for the 10 modules below list **375** parameters, 
 |               Module               | Groups | Count | Description                                                |
 |:----------------------------------:|:------:|:-----:|:-----------------------------------------------------------|
 |  [**`PGSQL`**](/docs/pgsql/param)  |   9    |  124  | PostgreSQL HA cluster configuration                        |
-|  [**`INFRA`**](/docs/infra/param)  |   10   |  73   | Software repository and Victoria-based observability infra |
+|  [**`INFRA`**](/docs/infra/param)  |   10   |  74   | Software repository and Victoria-based observability infra |
 |   [**`NODE`**](/docs/node/param)   |   11   |  74   | Node initialization, system tuning, and ops baseline       |
 |   [**`ETCD`**](/docs/etcd/param)   |   2    |  13   | ETCD cluster and removal safeguard parameters              |
 |  [**`MINIO`**](/docs/minio/param)  |   2    |  22   | Silo deployment, observability, and removal parameters                    |

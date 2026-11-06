@@ -26,7 +26,7 @@ Default credentials are public in documentation and source code. Use them only f
 
 | Scope | Example Default | `configure -g` |
 |:---|:---|:---:|
-| Grafana administrator and viewer | `pigsty`, `DBUser.Viewer` | Yes |
+| Grafana administrator and PostgreSQL datasource user | `pigsty`, `DBUser.Viewer` | Yes |
 | HAProxy administration interface | `pigsty` | Yes |
 | PostgreSQL administration, monitoring, and replication users | `DBUser.DBA`, `DBUser.Monitor`, `DBUser.Replicator` | Yes |
 | Patroni REST API | `Patroni.API` | Yes |

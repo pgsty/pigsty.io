@@ -7,10 +7,12 @@ module: [PIG]
 categories: [Reference]
 ---
 
-Changes for [v1.10.2](#v1102) and earlier versions are listed below.
+Changes for [v1.10.4](#v1104) and earlier versions are listed below.
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.10.4](#v1104) | 2026-11-06 | Seven new catalog entries, refreshed package metadata, target-version alias fixes, and 626 entries. | [v1.10.4](https://github.com/pgsty/pig/releases/tag/v1.10.4) |
+| [v1.10.3](#v1103) | 2026-10-29 | Four new extensions, metadata refresh, 620 catalog entries | [v1.10.3](https://github.com/pgsty/pig/releases/tag/v1.10.3) |
 | [v1.10.2](#v1102) | 2026-10-24 | pg_nanotime, extension and package updates, 616 catalog entries | [v1.10.2](https://github.com/pgsty/pig/releases/tag/v1.10.2) |
 | [v1.10.1](#v1101) | 2026-10-24 | Go 1.27.3 security fix, dependency updates, 615 catalog entries | [v1.10.1](https://github.com/pgsty/pig/releases/tag/v1.10.1) |
 | [v1.10.0](#v1100) | 2026-10-17 | 603 catalog entries, PostgreSQL target and recovery safety, faithful Inventory, automation fixes | [v1.10.0](https://github.com/pgsty/pig/releases/tag/v1.10.0) |
@@ -68,6 +70,122 @@ Changes for [v1.10.2](#v1102) and earlier versions are listed below.
 
 
 --------
+
+## v1.10.4
+
+PIG `v1.10.4` refreshes the embedded PostgreSQL extension catalog from **620 to 626 entries** and fixes category aliases to respect the requested PostgreSQL major version. The November 6, 2026 snapshot adds seven entries and drops the retired `pgcontext_pgvector` record, for a net increase of six.
+
+### New catalog entries
+
+| Extension | Version | PostgreSQL support | Description |
+|:----------|:--------|:-------------------|:------------|
+| `pg_warren` | `0.8.0` | 15–18 | Versioned graph traversal and computation over PostgreSQL tables |
+| `pg_statecharts` | `0.1.0` | 16–18 | Hierarchical state machines and transactional event handling |
+| `pg_statecharts_dev` | `0.1.0` | 16–18 | SCXML import and migration tooling for pg_statecharts |
+| `pg_lion` | `0.3.0` | 16–18 | Roaring bitmap inverted indexes for filtering, counts and aggregates |
+| `pg_lion_citext` | `0.3.0` | 16–18 | Case-insensitive citext operator class for lion indexes |
+| `pg_lion_vector` | `0.3.0` | 16–18 | Filtered nearest-neighbor indexes for pgvector vector and halfvec |
+| `opencc` | `0.1.0` | 14–18 | OpenCC conversion between Simplified Chinese, Traditional Chinese, regional variants and Japanese Shinjitai |
+
+Installability depends on the target PostgreSQL major, operating system, architecture, and configured repository.
+
+### Version and package metadata updates
+
+Selected catalog version changes:
+
+| Extension | Version change |
+|:----------|:---------------|
+| `postgis` | `3.6.4` → `3.7.0` |
+| `timescaledb_toolkit` | `1.26.0` → `1.27.0` |
+| `vchord` | `1.1.1` → `1.2.0` |
+| `vchord_bm25` | `0.3.0` → `1.0.0` |
+| `pg_tokenizer` | `0.1.1` → `1.0.0` |
+| `pg_search` | `0.26.3` → `0.26.5` |
+| `pg_duckdb` | `1.1.1` → `1.2.0` |
+| `pg_lake` | `3.5` → `3.6` |
+| `anon` | `3.2.3` → `3.3.2` |
+| `pg_integrity_checksums` | `2.0.0` → `2.1.0` |
+
+The refresh also updates package availability, dependencies, descriptions, and source metadata. PostGIS 3.7 uses the `postgis37_N` RPM family, with separate address-standardizer and Tiger Geocoder packages. The EL pgaudit catalog uses `pgaudit_14` and `pgaudit_15` for PostgreSQL 14 and 15.
+
+### Category aliases follow the target version
+
+For stable PostgreSQL versions, `pgsql-<category> -v N` now selects the same platform and PostgreSQL-major matrix as `pgN-<category>`. For example, `pig ext add pgsql-gis -v 14 --plan` no longer includes packages available only for a newer PostgreSQL major. Package names come from the catalog, replacing the obsolete pgaudit rename in the resolver. Beta targets retain the existing latest-stable, PGDG-only fallback.
+
+### Catalog count and build versions
+
+The embedded catalog contains **626 records**: **624 available** entries and **2 retained removed** records. They map to **518 distinct package names**, including PostgreSQL contrib modules, or **457 non-contrib package families**. See the [catalog-entry counting rule](/docs/pig/ext/#catalog-count).
+
+Go remains at `1.27.3`, embedded Pigsty at `4.5.0`, and default `cargo-pgrx` at `0.19.3`. Follow the [installation guide](/docs/pig/install/) to upgrade PIG.
+
+Release artifacts: [v1.10.4](https://github.com/pgsty/pig/releases/tag/v1.10.4)
+
+### Checksums
+
+```text
+4981a060779423ab4d6c5baaa8fe6c26adb972fc34b9515119b9e5d4723513ce  pig-1.10.4-1.aarch64.rpm
+d1624bbcec5d3f4715d223acca8311182ef1ee36542c16bcf82602674ee82b07  pig-1.10.4-1.x86_64.rpm
+9384759851af53f5cddc381007f78de9a226b43b914848291df86ec41096119e  pig-v1.10.4.darwin-amd64.tar.gz
+d0f876a518b82f021c83914c5909f1ac914cbe8c0aa0957cef37c83d69b79b0d  pig-v1.10.4.darwin-arm64.tar.gz
+1caa6f4af13e1f40f5faa9752628efe1dd85190b344bf1597cb3c8d23e99fe0b  pig-v1.10.4.linux-amd64.tar.gz
+756b7c94936a4c8cca1b0a15f3bcac8eee9669480b8d6af205e920b673a680ba  pig-v1.10.4.linux-arm64.tar.gz
+98bbfce9dc263e94d4025debdd9bf0e137d9ec12afff4d57e4e08530b1255bf3  pig_1.10.4-1_amd64.deb
+18447ccff10fd31c90ae16b34f2885a0415bc6efca5d0ff78f435e68ba6438e1  pig_1.10.4-1_arm64.deb
+```
+
+## v1.10.3
+
+PIG `v1.10.3` refreshes the embedded PostgreSQL extension catalog from
+**616 to 620 entries**, adding four extensions and updating package, version,
+compatibility, and availability metadata.
+
+### New extensions
+
+| Extension | Version | PostgreSQL support | Description |
+|:----------|:--------|:-------------------|:------------|
+| `oai_fdw` | `1.16` | 14–18 | Read-only OAI-PMH foreign data wrapper for metadata harvesting over HTTP/HTTPS |
+| `pg_agent_gate` | `0.3.0` | 18 | SQL proposal, verification, and execution gate with human approval for agent roles |
+| `pg_integrity_checksums` | `2.0.0` | 14–18 | Physical and logical checksums for PostgreSQL pages, rows, tables, indexes, and databases |
+| `pg_stat_tcpinfo` | `1.1` | 14–18 | Linux TCP connection statistics, latency, and retransmission metrics |
+
+These records describe catalog and package availability; actual installability
+still depends on the target PostgreSQL major, operating system, architecture,
+and repository snapshot.
+
+### Version and metadata refresh
+
+The catalog updates existing package and extension metadata, including
+`pg_nanotime` `0.2.0` → `0.3.0`, `supautils` `3.4.4` → `4.0.0`,
+`pg_ducklake` `1.0.2` → `1.0.3`, `pg_improv` `0.10.0` → `0.12.1`,
+`wrappers` `0.6.3` → `0.6.4`, `edtf_postgres` `1.2.3` → `1.3.2`,
+`hypopg` `1.4.3` → `1.4.4`, and `rdf_fdw` `3.0` → `3.1`.
+It also refreshes package matrices, compatibility ranges, descriptions, and
+source metadata for the maintained catalog.
+
+### Catalog count
+
+The catalog now contains **620 entries**: 617 available records and 3 retained
+removed records. The [catalog-entry counting rule](/docs/pig/ext/#catalog-count) includes
+SQL utilities and lifecycle records; availability remains platform-specific.
+
+Go remains at `1.27.3`, embedded Pigsty at `4.5.0`, and default `cargo-pgrx` at
+`0.19.3`. Follow the [installation guide](/docs/pig/install/) to upgrade PIG.
+
+
+### Checksums
+
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.10.3"}
+2068ca8150df3ee837d0ba6e533ba651703c7223c14c522703ee1be9c41666ea  pig-1.10.3-1.aarch64.rpm
+97ff1c1799262650a92d669dafc905d498d5ab3cf58619198322bc2d274b4ceb  pig-1.10.3-1.x86_64.rpm
+16203993bbba93dee16a38eac3eedbf67ed2cce3c7894cedbba613e95578004c  pig-v1.10.3.darwin-amd64.tar.gz
+0eb3f0447107734ae7decf3bc16caf99087e86119e83ce34987ebb376285fb14  pig-v1.10.3.darwin-arm64.tar.gz
+a3e61d0d71b9226ac89aa3b1e29baa8c92e5109ecaa2c7e26343f474e5832e04  pig-v1.10.3.linux-amd64.tar.gz
+5f25ff6cf634f708d5f70bde39a07d83fe9c7d1ef7d944395eb294eb64554ecf  pig-v1.10.3.linux-arm64.tar.gz
+dfabbcf4fcdf612d79a7cce76db08d36683e00bd2b0f27c7e78258f54fcb721a  pig_1.10.3-1_amd64.deb
+4065ed14209a4857b26fa1c7e19adbeee2e5be68df41710db33b64b18159045f  pig_1.10.3-1_arm64.deb
+```
+
+Release artifacts: [v1.10.3](https://github.com/pgsty/pig/releases/tag/v1.10.3)
 
 ## v1.10.2
 

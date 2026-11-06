@@ -14,20 +14,20 @@ Use **inventory** parameters to customize infrastructure settings and database c
 
 ## Parameter List
 
-The current source and reference pages list **373** public parameters across 10 official modules. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module has 13 additional public parameters. They are listed separately and excluded from this total.
+The current source and reference pages list **376** public parameters across 10 official modules. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module has 13 additional public parameters. They are listed separately and excluded from this total.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
 | [**PGSQL**](/docs/pgsql/param)     |   9    |  124   | PostgreSQL high-availability cluster configuration |
-| [**INFRA**](/docs/infra/param)     |   10   |   73   | Software repositories and Victoria observability infrastructure |
-| [**NODE**](/docs/node/param)       |   11   |   73   | Node initialization, system tuning, and operations baseline |
+| [**INFRA**](/docs/infra/param)     |   10   |   74   | Software repositories and Victoria observability infrastructure |
+| [**NODE**](/docs/node/param)       |   11   |   74   | Node initialization, system tuning, and operations baseline |
 | [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
 | [**MINIO**](/docs/minio/param)     |   2    |   22   | Silo deployment, observability, and removal parameters                    |
 | [**REDIS**](/docs/redis/param)     |   2    |   22   | Redis/Valkey deployment and removal parameters |
 | [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
 | [**VIBE**](/docs/vibe/param)       |   1    |   18   | Code/Jupyter/Node.js/Claude/Codex configuration |
-| [**KAFKA**](/docs/kafka/param)     |   2    |   18   | Kafka deployment and removal-protection parameters |
+| [**KAFKA**](/docs/kafka/param)     |   2    |   19   | Kafka deployment and removal-protection parameters |
 {.stretch-last}
 
 

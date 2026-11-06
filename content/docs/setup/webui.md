@@ -34,6 +34,8 @@ To open the Grafana dashboards, add `/ui` to the server address:
 | [**`http://10.10.10.10/ui`**](http://10.10.10.10/ui) | [**`http://i.pigsty/ui`**](http://i.pigsty/ui) | [**`https://i.pigsty/ui`**](https://i.pigsty/ui) | [**`https://demo.pigsty.io/ui`**](https://demo.pigsty.io/ui) |
 {.full-width}
 
+Grafana allows anonymous access by default. To require login before viewing dashboards, set [`grafana_anon_enabled`](/docs/infra/param#grafana_anon_enabled) to `false` and apply the configuration as described in [Administration](/docs/infra/admin/sop/#manage-grafana-anonymous-access).
+
 If the service is accessible from the Internet or an office network, use a [domain name](/docs/infra/admin/domain/).
 Enable [HTTPS](/docs/infra/admin/cert/) to encrypt the connection.
 
