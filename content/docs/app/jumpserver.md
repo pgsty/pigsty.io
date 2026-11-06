@@ -8,9 +8,9 @@ categories: [Reference]
 
 [**JumpServer**](https://www.jumpserver.com/) is an open-source PAM and bastion-host system. It manages centralized access to SSH, RDP, database, and web assets. Pigsty's `app/jumpserver` template runs Community Edition application containers with Docker Compose. Pigsty-managed PostgreSQL provides persistent database storage.
 
-The template uses JumpServer `v5.0.0-ce`. It retains Community Edition `core`, `celery`, `koko`, `kael`, `chen`, and `web` services, plus local Redis. It removes the upstream installer's built-in PostgreSQL service. Pigsty manages PostgreSQL, backups, monitoring, Nginx ingress, and the database lifecycle.
+The template uses JumpServer `v5.1.1-ce`. It retains Community Edition `core`, `celery`, `koko`, `kael`, `chen`, and `web` services, plus local Redis. It removes the upstream installer's built-in PostgreSQL service. Pigsty manages PostgreSQL, backups, monitoring, Nginx ingress, and the database lifecycle.
 
-The image set follows the [official v5.0.0 installer](https://github.com/jumpserver/installer/tree/33785347d95677ad87c0cc2f754d4f671b4e086f), checked on 2026-10-08. Docker Hub returned `MANIFEST_UNKNOWN` for the Core, KoKo, Chen, and Web `v5.0.0-ce` tags that day. The official Aliyun namespace provided the full set, so the template uses `IMAGE_PULL_PREFIX`. Keep component versions aligned when upgrading.
+The image set follows the [official v5.1.1 installer](https://github.com/jumpserver/installer/tree/83facb768be7b60e7d38d498ed24214538899c67), checked on 2026-11-06. That day, both the official Aliyun namespace and Docker Hub served all five `v5.1.1-ce` application tags as `linux/amd64`. The two registries publish separate builds with different digests. The template keeps the Aliyun namespace as the `IMAGE_PULL_PREFIX` default; set it to `docker.io/jumpserver` to pull from Docker Hub. Keep component versions aligned when upgrading.
 
 ------
 
@@ -60,8 +60,8 @@ Change the administrator password immediately after the first login.
 - [ ] Prepare a fresh Linux server with at least `4C8G` and 100 GB of disk; size production resources for concurrency and recording retention.
 - [ ] Verify that the server IP, DNS, NTP, SSH, and sudo work correctly.
 - [ ] Verify that the Docker daemon can pull from `IMAGE_PULL_PREFIX`, which defaults to the official Aliyun registry. Configure download proxies on the daemon that performs the pull; container loopback refers to that container.
-- [ ] After running `./configure -c app/jumpserver`, change the default passwords, `SECRET_KEY`, `BOOTSTRAP_TOKEN`, `CHAT_AI_DELEGATION_SECRET`, and `DOMAINS` in `pigsty.yml`.
-- [ ] Ensure that `DOMAINS` contains the hostname or IP actually used by the browser, such as `10.10.10.10:8080`.
+- [ ] After running `./configure -c app/jumpserver`, change the default passwords, `SECRET_KEY`, `BOOTSTRAP_TOKEN`, `DOMAINS`, and `WS_ALLOWED_ORIGINS` in `pigsty.yml`.
+- [ ] Ensure that `DOMAINS` contains the hostname or IP actually used by the browser, such as `10.10.10.10:8080`, and that `WS_ALLOWED_ORIGINS` contains the matching full origin, such as `http://10.10.10.10:8080`.
 - [ ] Ensure that PostgreSQL backup jobs work; check `pig pb info` or `pgbackrest info` after deployment.
 
 ------
@@ -97,13 +97,13 @@ Common parameters:
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | `IMAGE_PULL_PREFIX` | `registry.cn-beijing.aliyuncs.com/jumpservice` | Full official image namespace |
-| `JUMPSERVER_VERSION` | `v5.0.0-ce` | One coordinated Community Edition version for all components |
-| `REDIS_VERSION` | `7.4.11-bookworm` | Local Redis image version |
+| `JUMPSERVER_VERSION` | `v5.1.1-ce` | One coordinated Community Edition version for all components |
+| `REDIS_VERSION` | `7.4.12-bookworm` | Local Redis image version |
 | `JUMPSERVER_DATA` | `/data/jumpserver` | Persistent application directory |
 | `DOMAINS` | `10.10.10.10:8080,10.10.10.10,jump.pigsty` | Trusted domains and IPs allowed for login |
+| `WS_ALLOWED_ORIGINS` | `http://10.10.10.10:8080,http://10.10.10.10,http://jump.pigsty,https://jump.pigsty` | Browser origins allowed on Core WebSockets; keep in sync with `DOMAINS` |
 | `SECRET_KEY` | Example value | Encryption key; replace and retain it for production |
 | `BOOTSTRAP_TOKEN` | Example value | Component registration token; replace and retain it for production |
-| `CHAT_AI_DELEGATION_SECRET` | Example value | Shared Core / Kael delegation key; generate once and retain |
 | `DB_HOST` / `DB_PORT` | `10.10.10.10` / `5432` | Pigsty PostgreSQL endpoint |
 | `DB_USER` / `DB_NAME` | `jumpserver` / `jumpserver` | Application user and database |
 | `DB_PASSWORD` | `DBUser.JumpServer` | Application user password; replace it for production |
@@ -127,11 +127,12 @@ Example commands for generating production keys:
 ```bash
 openssl rand -base64 36 | tr -dc A-Za-z0-9 | head -c 48; echo
 openssl rand -base64 24 | tr -dc A-Za-z0-9 | head -c 24; echo
-openssl rand -hex 32           # CHAT_AI_DELEGATION_SECRET
 ```
 
+JumpServer 5.1 no longer uses `CHAT_AI_DELEGATION_SECRET`: Kael forwards the user's Core session instead of signing delegation tokens.
+
 > [!WARNING] Production keys must remain stable
-> Retain `SECRET_KEY`, `BOOTSTRAP_TOKEN`, and `CHAT_AI_DELEGATION_SECRET` after generation. Preserve their original values during upgrades. Store them together with database backups, `/data/jumpserver`, and `/opt/jumpserver/.env`. Losing the original `SECRET_KEY` may make encrypted account credentials in the database unrecoverable.
+> Retain `SECRET_KEY` and `BOOTSTRAP_TOKEN` after generation. Preserve their original values during upgrades. Store them together with database backups, `/data/jumpserver`, and `/opt/jumpserver/.env`. Losing the original `SECRET_KEY` may make encrypted account credentials in the database unrecoverable.
 
 > [!WARNING] Password character restrictions
 > Do not use single or double quotes in `DB_PASSWORD` or `REDIS_PASSWORD`. This matches the behavior of the official JumpServer installer.
@@ -177,6 +178,14 @@ docker compose up -d --force-recreate core
 Also update `pigsty.yml` or `conf/app/jumpserver.yml`; otherwise, the next `./app.yml` run will overwrite `/opt/jumpserver/.env` again.
 
 An old URL containing `csrf_failure=1` shows a `DOMAINS=...` warning from the failed request. It does not verify the corrected configuration. Retest with the normal login page. Use an incognito window if necessary.
+
+Since 5.1.0, Core also rejects browser WebSocket connections whose `Origin` is not allowed. These connections carry task logs, job output, site messages, system tools, and LDAP actions. Without `WS_ALLOWED_ORIGINS`, Core derives the list from `SITE_URL` and `DOMAINS`. With the default loopback `SITE_URL`, scheme-less public `DOMAINS` entries only allow `https://` origins, so plain-HTTP access would lose these features. The template therefore lists every browser origin explicitly:
+
+```ini
+WS_ALLOWED_ORIGINS=http://10.10.10.10:8080,http://10.10.10.10,http://jump.pigsty,https://jump.pigsty
+```
+
+Use comma-separated `scheme://host[:port]` values without paths or wildcards, and update this list whenever `DOMAINS` changes. Never set it to an empty value: Core reads the list at startup and fails to start if it is invalid.
 
 ------
 
@@ -260,7 +269,7 @@ Expected results:
 - `jms_core`, `jms_celery`, `jms_web`, `jms_redis`, `jms_koko`, `jms_kael`, and `jms_chen` are all `healthy`.
 - `make health` returns `status=true`, `db_status=true`, and `redis_status=true`.
 - `jms_init` is `Exited (0)`; its log shows completed migrations and the terminal public-key fingerprint. An init failure blocks Core startup.
-- Sign in, create a test asset and permission, execute a safe command, and check audits and replay. Healthy containers alone do not prove every feature works.
+- Sign in, create a test asset and permission, execute a safe command, and check audits and replay. Open a task log to confirm that Core WebSockets accept the browser origin. Healthy containers alone do not prove every feature works.
 
 Database checks:
 
@@ -367,9 +376,28 @@ make migrate   # Same ordered stop/init/start sequence as restart, during mainte
 make exec      # Enter the core container
 ```
 
+### Upgrade from 5.0.0 to 5.1.1
+
+Between the v5.0.0 and v5.1.1 installers, upstream changed no PostgreSQL-related setting. The changes that affect this template are the coordinated `v5.1.1-ce` images, Redis `7.4.12-bookworm`, removal of the Kael delegation key, and the Core WebSocket origin check. This path has not yet been run end to end in Pigsty validation.
+
+1. Verify a recoverable PostgreSQL backup and schedule maintenance. Back up the database, all of `/opt/jumpserver`, and `/data/jumpserver` together.
+2. Update the full Compose file and `.env`, or `apps.jumpserver.conf` in `pigsty.yml`. Preserve the original `SECRET_KEY`, `BOOTSTRAP_TOKEN`, database password, and Redis password. Add `WS_ALLOWED_ORIGINS` with every origin browsers use. `CHAT_AI_DELEGATION_SECRET` is no longer used and can be removed.
+3. Pull the new images, then restart through init:
+
+```bash
+cd /opt/jumpserver
+make pull
+make restart   # stop, migrate through init, then start
+make status
+make health
+docker compose logs init
+```
+
+Recheck original logins, credential decryption, host-key fingerprint, real sessions, and historical recordings. Also open a task log or job output in the browser to confirm Core WebSockets, and test the Kael assistant. After 5.1 migrations, rollback requires restoring the pre-upgrade database, application files, and original keys.
+
 ### Upgrade from 4.10.19 to 5.0.0
 
-The [official v5.0.0 upgrade script](https://github.com/jumpserver/installer/blob/33785347d95677ad87c0cc2f754d4f671b4e086f/scripts/7_upgrade.sh) accepts source versions from `v3.10.11` onward. This template was tested on `v4.10.19-ce → v5.0.0-ce`, with no intermediate version. Check the official guide before upgrading other old versions.
+The [official v5.0.0 upgrade script](https://github.com/jumpserver/installer/blob/33785347d95677ad87c0cc2f754d4f671b4e086f/scripts/7_upgrade.sh) accepts source versions from `v3.10.11` onward. This template was tested on `v4.10.19-ce → v5.0.0-ce`, with no intermediate version. Check the official guide before upgrading other old versions. These steps use the v5.0.0 template files; continue with the 5.0.0 → 5.1.1 steps afterwards.
 
 1. Verify a recoverable PostgreSQL backup, schedule maintenance, and stop the old stack.
 2. Back up the database, all of `/opt/jumpserver`, and `/data/jumpserver` together. Restore them into an independent database and directory to prove recovery.
@@ -418,9 +446,11 @@ Restoring PostgreSQL without the original `SECRET_KEY` prevents JumpServer from 
 
 ## Community Edition Scope
 
-This template uses JumpServer 5.0.0 Community Edition Core, Celery, KoKo, Chen, Kael, and Web, with a one-shot init service and local Redis. In 5.x, remote-desktop handling is integrated into KoKo, so there is no separate Lion container. JumpServer is licensed under GPLv3; the Pigsty template is Apache-2.0.
+This template uses JumpServer 5.1.1 Community Edition Core, Celery, KoKo, Chen, Kael, and Web, with a one-shot init service and local Redis. In 5.x, remote-desktop handling is integrated into KoKo, so there is no separate Lion container. JumpServer is licensed under GPLv3; the Pigsty template is Apache-2.0.
 
-The external PostgreSQL 18 backend and PostgreSQL asset connections are separate paths. The tested scope is listed below. RDP/VNC, native clients, ARM64, enterprise components, and external-model inference were not validated. Kael authentication, conversation storage, and permission isolation can be checked without a model provider; inference needs separate configuration and validation. Upstream persists ordinary conversations that contain messages; empty drafts do not survive a restart. Core / Kael delegation was verified by loading 952 operation definitions.
+The runtime validation below was performed on `v5.0.0-ce`. For `v5.1.1-ce`, the Compose rendering and the image manifests on both registries have been checked; the runtime checks still need to be repeated.
+
+The external PostgreSQL 18 backend and PostgreSQL asset connections are separate paths. The tested scope is listed below. RDP/VNC, native clients, ARM64, enterprise components, and external-model inference were not validated. Kael authentication, conversation storage, and permission isolation can be checked without a model provider; inference needs separate configuration and validation. Upstream persists ordinary conversations that contain messages; empty drafts do not survive a restart. On 5.0.0, Core / Kael delegation was verified by loading 952 operation definitions; 5.1 replaces delegation with the user's Core session.
 
 | Validation path | Fresh 5.x | 4.10.19 → 5.0.0 |
 |-----------------|-----------|-------------------|
@@ -440,8 +470,10 @@ The pre-upgrade backup was restored into an independent PostgreSQL database and 
 
 ## References
 
+- [Official JumpServer v5.1.1 release](https://github.com/jumpserver/jumpserver/releases/tag/v5.1.1)
+- [Official JumpServer v5.1.0 release](https://github.com/jumpserver/jumpserver/releases/tag/v5.1.0)
 - [Official JumpServer v5.0.0 release](https://github.com/jumpserver/jumpserver/releases/tag/v5.0.0)
-- [Pinned installer source](https://github.com/jumpserver/installer/tree/33785347d95677ad87c0cc2f754d4f671b4e086f)
+- [Pinned installer source](https://github.com/jumpserver/installer/tree/83facb768be7b60e7d38d498ed24214538899c67)
 - [Official upgrade guide](https://docs.jumpserver.org/zh/v4/installation/upgrade/)
 - JumpServer project: https://github.com/jumpserver/jumpserver
 - JumpServer installer: https://github.com/jumpserver/installer

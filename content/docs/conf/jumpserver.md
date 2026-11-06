@@ -8,7 +8,7 @@ categories: [Reference]
 
 The `app/jumpserver` template deploys JumpServer Community Edition.
 It uses Pigsty-managed PostgreSQL 18 as its external database.
-The current validation uses JumpServer v5.0.0-ce.
+The template uses JumpServer v5.1.1-ce; the latest runtime validation was performed on v5.0.0-ce.
 
 
 --------
@@ -50,7 +50,7 @@ Source: [`pigsty/conf/app/jumpserver.yml`](https://github.com/pgsty/pigsty/blob/
 - Runs Redis inside the application Compose stack
 - Proxies `jump.pigsty` to `10.10.10.10:8080`
 
-Before deployment, replace `SECRET_KEY`, `BOOTSTRAP_TOKEN`, `CHAT_AI_DELEGATION_SECRET`, Redis and database passwords, and the domain.
+Before deployment, replace `SECRET_KEY`, `BOOTSTRAP_TOKEN`, Redis and database passwords, the domain in `DOMAINS`, and the matching browser origins in `WS_ALLOWED_ORIGINS`.
 After production data exists, keep `SECRET_KEY` unchanged.
 
-The one-shot init service migrates the database and validates the host key before Core starts. Celery and connection components wait for Core health. `jms_init` should be `Exited (0)`. See the [JumpServer application guide](/docs/app/jumpserver/) for installation, the 4.10.19 upgrade, backup, recovery, and acceptance checks.
+The one-shot init service migrates the database and validates the host key before Core starts. Celery and connection components wait for Core health. `jms_init` should be `Exited (0)`. See the [JumpServer application guide](/docs/app/jumpserver/) for installation, the 5.0.0 and 4.10.19 upgrades, backup, recovery, and acceptance checks.
