@@ -5,9 +5,7 @@ description: Available packages in the Infra repository
 weight: 5441
 ---
 
-The 2026-11-06 batch updates seven recipes with 28 locally built and verified amd64/arm64 DEB/RPM packages. APT/YUM import and online publication remain pending. The table includes local build versions and does not imply that all versions are available online. See the [release log](../log/#2026-11-06).
-
-The 2026-11-05 batch contains ten updated recipes and 40 verified amd64/arm64 DEB/RPM packages, now imported into the local APT/YUM repositories. It supersedes the earlier Caddy and dblab builds; other November 3 and 4 builds in this list still await import. Online publication remains pending. See the [release log](../log/#2026-11-05).
+The 2026-11-06 batch consolidates updates after November 1: 23 software packages and 92 amd64/arm64 DEB/RPM artifacts, all imported into the local APT/YUM repositories with verified signatures and indexes. Online publication remains pending. See the [release log](../log/#2026-11-06).
 
 
 ## Grafana Stack
