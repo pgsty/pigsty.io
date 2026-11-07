@@ -1,0 +1,118 @@
+# PostgreSQL
+
+> Everything about PostgreSQL - development, administration, internals, ecosystem, tools, extensions, and best practices
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+Section pages:
+
+- [Happy 30th Birthday, PostgreSQL](/blog/pg/happy-30-birthday/): On July 8, 1996, the PostgreSQL community picked up the flame from Postgres95. Thirty years later, it has grown from a Berkeley research project into a default foundation of the global database ecosystem.
+- [Extensions for Everyone](/blog/pg/extensions-for-everyone/): A field report on the PostgreSQL extension ecosystem: 1,617 discovered projects, 511 deliverable extensions, and the shared delivery layer needed to make extensibility work for users, authors, vendors, and PostgreSQL hackers.
+- [504 Extensions: Expand the PostgreSQL Landscape](/blog/pg/extension-504/): One GitHub issue turned into an extension sprint. 32 new additions, 504 in total, say a lot about where PostgreSQL is headed.
+- [From AGPL to Apache: Why I Changed Pigsty's License](/blog/pg/pigsty-relicense/): Pigsty switched from AGPLv3 to Apache 2.0. Aren't you worried about freeloaders? Freeloaders welcome — if you want to become the Debian of databases, a permissive license is table stakes.
+- [Git for Data: Instant PostgreSQL Database Cloning](/blog/pg/pg-clone/): How to instantly clone a massive PostgreSQL database without consuming extra storage? PostgreSQL 18 and XFS can spark some serious magic.
+- [Why PostgreSQL Will Dominate the AI Era](/blog/pg/ai-db-king/): Context window economics, the polyglot persistence problem, and the triumph of zero-glue architecture make PostgreSQL the database king of the AI era.
+- [Forging a China-Rooted, Global PostgreSQL Distro](/blog/pg/forge-a-pg-distro/): PostgreSQL already won. The real battle is the distro layer. Will Chinese developers watch from the sideline or craft a PG “Ubuntu” for the world?
+- [PG Extension Cloud: Unlocking PostgreSQL’s Entire Ecosystem](/blog/pg/pgext-cloud/): Free and open. Install PostgreSQL and 575 packaged extensions on 16 Linux system and architecture combinations × 5 supported PG major versions via native RPM/DEB—and a tiny CLI.
+- [The PostgreSQL 'Supply Cut' and Trust Issues in Software Supply Chain](/blog/pg/pg-mirror-pigsty/): PostgreSQL official repos cut off global mirror sync channels, open-source binaries supply disrupted, revealing the true colors of various database and cloud vendors.
+- [PostgreSQL Dominates Database World, but Who Will Devour PG?](/blog/pg/proprity-pg/): The same forces that once led MongoDB and MySQL toward closure are now at work in the PostgreSQL ecosystem. The PG world needs a distribution that represents "software freedom" values.
+- [PostgreSQL Has Dominated the Database World](/blog/pg/so2025-pg/): The 2025 SO global developer survey results are fresh out, and PostgreSQL has become the most popular, most loved, and most wanted database for the third consecutive year. Nothing can stop PostgreSQL from consolidating the entire database world!
+- [PGDG Cuts Off Mirror Sync Channel](/blog/pg/pg-mirror-break/): PGDG cuts off FTP rsync sync channels, global mirror sites universally disconnected - this time they really strangled global users' supply chain.
+- [Postgres Extension Day - See You There!](/blog/pg/pgext-day/): The annual PostgreSQL developer conference will be held in Montreal in May. Like the first PG Con.Dev, there's also an additional dedicated event - Postgres Extensions Day
+- [OrioleDB is Coming! 4x Performance, Eliminates Pain Points, Storage-Compute Separation](/blog/pg/orioledb-is-coming/): A PG kernel fork acquired by Supabase, claiming to solve PG's XID wraparound problem, eliminate table bloat issues, improve performance by 4x, and support cloud-native storage. Now part of the Pigsty family.
+- [OpenHalo: MySQL Wire-Compatible PostgreSQL is Here!](/blog/pg/openhalo-mysql/): What? PostgreSQL can now be accessed using MySQL clients? That's right, openHalo, which was open-sourced on April Fool's Day, provides exactly this capability and has now joined the Pigsty kernel family.
+- [PGFS: Using Database as a Filesystem](/blog/pg/pgfs/): Leverage JuiceFS to turn PostgreSQL into a filesystem with PITR capabilities!
+- [PostgreSQL Ecosystem Frontier Developments](/blog/pg/pg-frontier/): Sharing some interesting recent developments in the PG ecosystem.
+- [Pig, The Postgres Extension Wizard](/blog/pg/pig/): Why would we need yet another package manager for PostgreSQL & extensions?
+- [Don't Upgrade! Released and Immediately Pulled - Even PostgreSQL Isn't Immune to Epic Fails](/blog/pg/pg-faint/): Never deploy on Friday, or you'll be working all weekend! PostgreSQL minor releases were pulled on the day of release, requiring emergency rollback.
+- [PostgreSQL 12 End-of-Life, PG 17 Takes the Throne](/blog/pg/pg12-eol-pg17-up/): PG17 achieved extension ecosystem adaptation in half the time of PG16, with 300 available extensions ready for production use. PG 12 officially exits support lifecycle.
+- [The ideal way to deliver PostgreSQL Extensions](/blog/pg/pg-ext-repo/): PostgreSQL Is Eating the Database World through the power of extensibility. With 575 packaged extensions powering PG, we may not say it's invincible, but it’s definitely getting much closer.
+- [PostgreSQL Convention 2024](/blog/pg/pg-convention/): No rules, no standards. Some developer conventions for PostgreSQL 16.
+- [PostgreSQL 17 Released: No More Pretending!](/blog/pg/pg-17/): PostgreSQL is now the world's most advanced open-source database and has become the preferred open-source database for organizations of all sizes, matching or exceeding top commercial databases.
+- [Can PostgreSQL Replace Microsoft SQL Server?](/blog/pg/pg-replace-mssql/): PostgreSQL can directly replace Oracle, SQL Server, and MongoDB at the kernel level. Of course, the most thorough replacement is SQL Server - AWS's Babelfish provides wire-protocol-level compatibility.
+- [Whoever Integrates DuckDB Best Wins the OLAP World](/blog/pg/pg-duckdb/): Just like the vector database extension race two years ago, the current PostgreSQL ecosystem extension competition has begun revolving around DuckDB. MotherDuck's official entry into the PostgreSQL extension space undoubtedly signals that competition has entered white-hot territory.
+- [StackOverflow 2024 Survey: PostgreSQL Has Gone Completely Berserk](/blog/pg/pg-is-no1-again/): The 2024 StackOverflow Global Developer Survey results are fresh out, and PostgreSQL has become the most popular, most loved, and most wanted database globally for the second consecutive year. Nothing can stop PostgreSQL from devouring the entire database world anymore!
+- [Self-Hosting Dify with PG, PGVector, and Pigsty](/blog/pg/dify-setup/): Dify is an open-source LLM app development platform. This article explains how to self-host Dify using Pigsty.
+- [PGCon.Dev 2024, The conf that shutdown PG for a week](/blog/pg/pgcondev-2024/): Experience & Feeling on the PGCon.Dev 2024
+- [PostgreSQL 17 Beta1 Released!](/blog/pg/pg-17-beta1/): The PostgreSQL Global Development Group announces PostgreSQL 17's first Beta version is now available. This time, PostgreSQL has truly burst the toothpaste tube!
+- [Why PostgreSQL is the Future Standard?](/blog/pg/pg-for-everything/): One of the biggest trends in software development today is PostgreSQL becoming the de facto database standard. This article explains why.
+- [Will PostgreSQL Change Its License?](/blog/pg/pg-license/): PostgreSQL will not change its license. This article is a response from PostgreSQL core team members on this question.
+- [Postgres is eating the database world](/blog/pg/pg-eat-db-world/)
+- [Technical Minimalism: Just Use PostgreSQL for Everything](/blog/pg/just-use-pg/): Whether **production databases** should be containerized remains a controversial topic. From a DBA's perspective, I believe that **currently**, putting production databases in Docker is still a bad idea.
+- [New PostgreSQL Ecosystem Player: ParadeDB](/blog/pg/paradedb/): ParadeDB aims to be an Elasticsearch alternative: "Modern Elasticsearch Alternative built on Postgres" — PostgreSQL for search and analytics.
+- [PostgreSQL's Impressive Scalability](/blog/pg/pg-scalability/): This article describes how Cloudflare scaled to support 55 million requests per second using 15 PostgreSQL clusters, and PostgreSQL's scalability performance.
+- [PostgreSQL Outlook for 2024](/blog/pg/pg-in-2024/): PostgreSQL core team member Jonathan Katzs outlook for PostgreSQL in 2024, reviewing the progress made over the past few years.
+- [PostgreSQL Wins 2024 Database of the Year Award! (Fifth Time)](/blog/pg/pg-dbeng-2024/): DB-Engines officially announced today that PostgreSQL has once again been crowned "Database of the Year." This is the fifth time PG has received this honor in the past seven years. If not for Snowflake stealing the spotlight for two years, the database world would have almost become a PostgreSQL solo show.
+- [PostgreSQL Macro Query Optimization with pg_stat_statements](/blog/pg/pgss/): **Query optimization** is one of the core responsibilities of DBAs. This article introduces how to use metrics provided by `pg_stat_statements` for macro-level PostgreSQL query optimization.
+- [FerretDB: PostgreSQL Disguised as MongoDB](/blog/pg/ferretdb/): FerretDB aims to provide a truly open-source MongoDB alternative based on PostgreSQL.
+- [How to Use pg_filedump for Data Recovery?](/blog/pg/pg-filedump/): Backups are a DBA's lifeline — but what if your PostgreSQL database has already exploded and you have no backups? Maybe `pg_filedump` can help you!
+- [Vector is the New JSON](/blog/pg/vector-json-pg/): Vectors will become a key element in building applications, just like JSON historically. PostgreSQL leads the AI era with vector extensions.
+- [PostgreSQL, The most successful database](/blog/pg/pg-is-no1/): StackOverflow 2023 Survey shows PostgreSQL is the most popular, loved, and wanted database, solidifying its status as the 'Linux of Database'.
+- [AI Large Models and Vector Database PGVector](/blog/pg/llm-and-pgvector/): This article focuses on vector databases hyped by AI, introduces the basic principles of AI embeddings and vector storage/retrieval, and demonstrates the functionality, performance, acquisition, and application of the vector database extension PGVECTOR through a concrete knowledge base retrieval case study.
+- [How Powerful is PostgreSQL Really?](/blog/pg/pg-performence/): Let performance data speak: Why PostgreSQL is the world's most advanced open-source relational database, aka the world's most successful database. MySQL vs PostgreSQL performance showdown and distributed database reality check.
+- [Why PostgreSQL is the Most Successful Database?](/blog/pg/pg-is-best/): Database users are developers, but what about developers' preferences, likes, and choices? Looking at StackOverflow survey results over the past six years, it's clear that in 2022, PostgreSQL has won all three categories, becoming literally the "most successful database"
+- [Ready-to-Use PostgreSQL Distribution: Pigsty](/blog/pg/pigsty-intro/): Yesterday I gave a live presentation in the PostgreSQL Chinese community, introducing the open-source PostgreSQL full-stack solution: Pigsty.
+- [Why Does PostgreSQL Have a Bright Future?](/blog/pg/pg-is-great/): Databases are the core component of information systems, relational databases are the absolute backbone of databases, and PostgreSQL is the world's most advanced open source relational database. With such favorable timing and positioning, how can it not achieve great success?
+- [Implementing Advanced Fuzzy Search](/blog/pg/fuzzymatch/): How to implement relatively complex fuzzy search logic in PostgreSQL?
+- [Localization and Collation Rules in PostgreSQL](/blog/pg/collate/): What? Don't know what COLLATION is? Remember one thing: using C COLLATE is always the right choice!
+- [PG Replica Identity Explained](/blog/pg/replica-identity/): Replica identity is important - it determines the success or failure of logical replication
+- [PostgreSQL Logical Replication Deep Dive](/blog/pg/logical-replication/): This article introduces the principles and best practices of logical replication in PostgreSQL 13.
+- [A Methodology for Diagnosing PostgreSQL Slow Queries](/blog/pg/slow-query/): Slow queries are the sworn enemy of OLTP databases. Here’s how to identify, analyze, and fix them using metrics (Pigsty dashboards), pg_stat_statements, and logs.
+- [Incident-Report: Patroni Failure Due to Time Travel](/blog/pg/time-travel/): Machine restarted due to failure, NTP service corrected PG time after PG startup, causing Patroni to fail to start.
+- [Online Primary Key Column Type Change](/blog/pg/alter-type/): How to change column types online, such as upgrading from INT to BIGINT?
+- [Golden Monitoring Metrics: Errors, Latency, Throughput, Saturation](/blog/pg/golden-metrics/): Understanding the golden monitoring metrics in PostgreSQL
+- [Database Cluster Management Concepts and Entity Naming Conventions](/blog/pg/entity-and-naming/): Concepts and their naming are very important. Naming style reflects an engineer's understanding of system architecture. Poorly defined concepts lead to communication confusion, while carelessly set names create unexpected additional burden. Therefore, they need careful design.
+- [PostgreSQL's KPI](/blog/pg/pg-load/): Managing databases is similar to managing people - both need KPIs (Key Performance Indicators). So what are database KPIs? This article introduces a way to measure PostgreSQL load: using a single horizontally comparable metric that is basically independent of workload type and machine type, called **PG Load**.
+- [Online PostgreSQL Column Type Migration](/blog/pg/migrate-column-type/): How to modify PostgreSQL column types online? A general approach
+- [Frontend-Backend Communication Wire Protocol](/blog/pg/wire-protocol/): Understanding the TCP protocol used for communication between PostgreSQL server and client, and printing messages using Go
+- [Transaction Isolation Level Considerations](/blog/pg/isolation-level/): PostgreSQL actually has only two transaction isolation levels: **Read Committed** and **Serializable**
+- [Incident: PostgreSQL Extension Installation Causes Connection Failure](/blog/pg/extension/): Today encountered an interesting case where a customer reported database connection issues caused by extensions.
+- [CDC Change Data Capture Mechanisms](/blog/pg/logical-decoding/): Change Data Capture is an interesting ETL alternative solution.
+- [Locks in PostgreSQL](/blog/pg/pg-lock/): Snapshot isolation does most of the heavy lifting in PG, but locks still matter. Here’s a practical guide to table locks, row locks, intention locks, and `pg_locks`.
+- [O(n2) Complexity of GIN Search](/blog/pg/gin/): When GIN indexes are used to search with very long keyword lists, performance degrades significantly. This article explains why GIN index keyword search has O(n^2) time complexity.
+- [PostgreSQL Common Replication Topology Plans](/blog/pg/replication-plan/): Replication is one of the core issues in system architecture.
+- [Warm Standby: Using pg_receivewal](/blog/pg/backup-plan/): There are various backup strategies. Physical backups can usually be divided into four types.
+- [Incident-Report: Connection-Pool Contamination Caused by pg_dump](/blog/pg/pg-dump-failure/): Sometimes, interactions between components manifest in subtle ways. For example, using pg_dump to export data from a connection pool can cause connection pool contamination issues.
+- [PostgreSQL Data Page Corruption Repair](/blog/pg/page-corruption/): Using binary editing to repair PostgreSQL data pages, and how to make a primary key query return two records.
+- [Relation Bloat Monitoring and Management](/blog/pg/bloat/): PostgreSQL uses MVCC as its primary concurrency control technology. While it has many benefits, it also brings other effects, such as relation bloat.
+- [Getting Started with PipelineDB](/blog/pg/pipeline-intro/): PipelineDB is a PostgreSQL extension for streaming analytics. Here’s how to install it and build continuous views over live data.
+- [TimescaleDB Quick Start](/blog/pg/timescale-install/): TimescaleDB is a PostgreSQL extension plugin that provides time-series database functionality.
+- [Incident-Report: Integer Overflow from Rapid Sequence Number Consumption](/blog/pg/sequence-overflow/): If you use Integer sequences on tables, you should consider potential overflow scenarios.
+- [Incident-Report: PostgreSQL Transaction ID Wraparound](/blog/pg/xid-wrap-around/): XID WrapAround is perhaps a unique type of failure specific to PostgreSQL
+- [GeoIP Geographic Reverse Lookup Optimization](/blog/pg/geoip/): A common requirement in application development is GeoIP conversion - converting source IP addresses to geographic coordinates or administrative divisions (country-state-city-county-town-village)
+- [PostgreSQL Trigger Usage Considerations](/blog/pg/sql-trigger/): Detailed understanding of trigger management and usage in PostgreSQL
+- [PostgreSQL Development Convention (2018 Edition)](/blog/pg/pg-convention-2018/): Without rules, there can be no order. This article compiles a development specification for PostgreSQL database principles and features, which can reduce confusion encountered when using PostgreSQL.
+- [What Are PostgreSQL's Advantages?](/blog/pg/pg-is-good/): PostgreSQL's slogan is "The World's Most Advanced Open-Source Relational Database," but I think the most vivid characterization should be: The Full-Stack Database That Does It All - one tool to rule them all.
+- [Efficient Administrative Region Lookup with PostGIS](/blog/pg/adcode-geodecode/): How to efficiently solve the typical reverse geocoding problem: determining administrative regions based on user coordinates.
+- [KNN Ultimate Optimization: From RDS to PostGIS](/blog/pg/knn-optimize/): Ultimate optimization of KNN problems, from traditional relational design to PostGIS
+- [Monitoring Table Size in PostgreSQL](/blog/pg/mon-table-size/): Tables in PostgreSQL correspond to many physical files. This article explains how to calculate the actual size of a table in PostgreSQL.
+- [PgAdmin Installation and Configuration](/blog/pg/pgadmin-install/): PgAdmin is a GUI program for managing PostgreSQL, written in Python, but it's quite dated and requires some additional configuration.
+- [Incident-Report: Uneven Load Avalanche](/blog/pg/download-failure/): Recently there was a perplexing incident where a database had half its data volume and load migrated away, but ended up being overwhelmed due to increased load.
+- [Bash and psql Tips](/blog/pg/psql-and-bash/): Some tips for interacting between PostgreSQL and Bash.
+- [Distinct On: Remove Duplicate Data](/blog/pg/sql-distinct-on/): Use Distinct On extension clause to quickly find records with maximum/minimum values within groups
+- [Function Volatility Classification Levels](/blog/pg/sql-func-volatility/): PostgreSQL functions have three volatility levels by default. Proper use can significantly improve performance.
+- [Implementing Mutual Exclusion Constraints with Exclude](/blog/pg/sql-exclude/): Exclude constraint is a PostgreSQL extension that can implement more advanced and sophisticated database constraints.
+- [PostgreSQL Routine Maintenance](/blog/pg/routine-maintain/): Cars need oil changes, databases need maintenance. For PG, three important maintenance tasks: backup, repack, vacuum
+- [Backup and Recovery Methods Overview](/blog/pg/backup-overview/): Backup is the foundation of a DBA's livelihood. With backups, there's no need to panic.
+- [PgBackRest2 Documentation](/blog/pg/pgbackrest/): PgBackRest is a set of PostgreSQL backup tools written in Perl
+- [Pgbouncer Quick Start](/blog/pg/pgbouncer-usage/): Pgbouncer is a lightweight database connection pool. This guide covers basic Pgbouncer configuration, management, and usage.
+- [PostgreSQL Server Log Regular Configuration](/blog/pg/logging/): It's recommended to configure PostgreSQL's log format as CSV for easy analysis, and it can be directly imported into PostgreSQL data tables.
+- [Testing Disk Performance with FIO](/blog/pg/fio/): FIO is a convenient tool for testing disk I/O performance
+- [Using sysbench to Test PostgreSQL Performance](/blog/pg/sysbench/): Although PostgreSQL provides pgbench, sometimes you need sysbench to outperform MySQL.
+- [Changing Engines Mid-Flight — PostgreSQL Zero-Downtime Data Migration](/blog/pg/migration-without-downtime/): Data migration typically involves stopping services for updates. Zero-downtime data migration is a relatively advanced operation.
+- [Finding Unused Indexes](/blog/pg/find-dummy-index/): Indexes are useful, but they're not free. Unused indexes are a waste. Use these methods to identify unused indexes.
+- [Batch Configure SSH Passwordless Login](/blog/pg/ssh-add-key/): Quick configuration for passwordless login to all machines
+- [Wireshark Packet Capture Protocol Analysis](/blog/pg/wireshark-capture/): Wireshark is a very useful tool, especially suitable for analyzing network protocols. Here's a simple introduction to using Wireshark for packet capture and PostgreSQL protocol analysis.
+- [The Versatile file_fdw — Reading System Information from Your Database](/blog/pg/file_fdw/): With `file_fdw`, you can easily view operating system information, fetch network data, and feed various data sources into your database for unified viewing and management.
+- [Common Linux Statistics CLI Tools](/blog/pg/unix-tool/): top, free, vmstat, iostat: Quick reference for four commonly used CLI tools
+- [Installing PostGIS from Source](/blog/pg/postgis-install/): PostGIS is PostgreSQL's killer extension, but compiling and installing it isn't easy.
+- [Go Database Tutorial: database/sql](/blog/pg/pg-go-driver/): Similar to JDBC, Go also has a standard database access interface. This article details how to use database/sql in Go and important considerations.
+- [Implementing Cache Synchronization with Go and PostgreSQL](/blog/pg/notify-trigger-based-repl/): Cleverly utilizing PostgreSQL's Notify feature, you can conveniently notify applications of metadata changes and implement trigger-based logical replication.
+- [Auditing Data Changes with Triggers](/blog/pg/audit-change/): Sometimes we want to record important metadata changes for audit purposes. PostgreSQL triggers can conveniently solve this need automatically.
+- [Building an ItemCF Recommender in Pure SQL](/blog/pg/pg-recsys/): Five minutes, PostgreSQL, and the MovieLens dataset—that’s all you need to implement a classic item-based collaborative filtering recommender.
+- [UUID Properties, Principles and Applications](/blog/pg/uuid/): UUID properties, principles and applications, and how to manipulate UUIDs using PostgreSQL stored procedures.
+- [PostgreSQL MongoFDW Installation and Deployment](/blog/pg/mongo_fdw-install/): Recently had business requirements to access MongoDB through PostgreSQL FDW, but compiling MongoDB FDW is really a nightmare.
