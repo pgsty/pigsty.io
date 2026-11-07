@@ -30,7 +30,7 @@ weight: 5080
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5080  | [**`ddlx`**](/ext/e/ddlx) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 5080  | [**`ddlx`**](/ext/e/ddlx) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`pg_readme`](/ext/e/pg_readme) [`pgdd`](/ext/e/pgdd) [`meta`](/ext/e/meta) [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_get_functiondef`](/ext/e/pg_get_functiondef) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_render`](/ext/e/pg_render) [`schedoc`](/ext/e/schedoc) [`pg_query_rewrite`](/ext/e/pg_query_rewrite) [`pgpdf`](/ext/e/pgpdf) |

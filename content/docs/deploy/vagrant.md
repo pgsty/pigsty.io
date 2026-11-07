@@ -14,8 +14,8 @@ You can use Vagrant to create local Linux virtual machines for testing.
 The recommended and validated versions are:
 
 - Rocky Linux 9.8 / 10.2.
-- Debian 12.15 / 13.6.
-- Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+- Debian 12.15 / 13.7.
+- Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
 Major-version aliases select pinned box versions.
 
 ## Quick Start
@@ -58,15 +58,15 @@ To select a different operating system image, use a variant alias:
 ```bash
 make meta9      # Create single node with Rocky Linux 9.8
 make full12     # Create 4-node sandbox with Debian 12.15
-make simu24     # Create 20-node simubox with Ubuntu 24.04.4
-make full26     # Create 4-node sandbox with Ubuntu 26.04.0
+make simu24     # Create 20-node simubox with Ubuntu 24.04.5
+make full26     # Create 4-node sandbox with Ubuntu 26.04.1
 ```
 
 These operating system suffixes are available:
 
 - `8`: EL8; `9`: EL9; `10`: EL10.
-- `12`: Debian 12.15; `13`: Debian 13.6.
-- `22`: Ubuntu 22.04.5; `24`: Ubuntu 24.04.4; `26`: Ubuntu 26.04.0.
+- `12`: Debian 12.15; `13`: Debian 13.7.
+- `22`: Ubuntu 22.04.5; `24`: Ubuntu 24.04.5; `26`: Ubuntu 26.04.1.
 
 ### Build Environment
 
@@ -146,11 +146,11 @@ cd ~/pigsty/vagrant
 vagrant/config [spec] [image] [scale] [provider]
 
 # Examples
-vagrant/config meta u24            # Use 1-node spec with Ubuntu 24.04.4 image
-vagrant/config dual el9            # Use 2-node spec with RockyLinux 9.7 image
-vagrant/config trio d12 2          # Use 3-node spec with Debian 12.14, double resources
+vagrant/config meta u24            # Use 1-node spec with Ubuntu 24.04.5 image
+vagrant/config dual el9            # Use 2-node spec with RockyLinux 9.8 image
+vagrant/config trio d12 2          # Use 3-node spec with Debian 12.15, double resources
 vagrant/config full u22 4          # Use 4-node spec with Ubuntu 22.04.5, 4x resources
-vagrant/config simu u26 1 libvirt  # Use 20-node spec with Ubuntu 26.04.0, libvirt provider
+vagrant/config simu u26 1 libvirt  # Use 20-node spec with Ubuntu 26.04.1, libvirt provider
 ```
 
 ### Image Aliases
@@ -165,8 +165,8 @@ The configuration script supports these image aliases:
 | Debian 12      | `d12`, `debian12`, `deb12`                | `cloud-image/debian-12`    |
 | Debian 13      | `d13`, `debian13`, `deb13`                | `cloud-image/debian-13`    |
 | Ubuntu 22.04.5 | `u22`, `ubuntu22`, `ubuntu2204`           | `cloud-image/ubuntu-22.04` |
-| Ubuntu 24.04.4 | `u24`, `ubuntu24`, `ubuntu2404`, `ubuntu` | `cloud-image/ubuntu-24.04` |
-| Ubuntu 26.04.0 | `u26`, `ubuntu26`, `ubuntu2604`           | `cloud-image/ubuntu-26.04` |
+| Ubuntu 24.04.5 | `u24`, `ubuntu24`, `ubuntu2404`, `ubuntu` | `cloud-image/ubuntu-24.04` |
+| Ubuntu 26.04.1 | `u26`, `ubuntu26`, `ubuntu2604`           | `cloud-image/ubuntu-26.04` |
 | AlmaLinux 8    | `alma8`                                   | `cloud-image/almalinux-8`  |
 | AlmaLinux 9    | `alma9`                                   | `cloud-image/almalinux-9`  |
 | AlmaLinux 10   | `alma10`                                  | `cloud-image/almalinux-10` |
@@ -245,14 +245,14 @@ The `vagrant/config` script writes these validated versions for each supported i
 | Rocky 8 | [`cloud-image/rocky-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-8) | `8.10.20240528.0` |
 | Rocky 9 | [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9) | `9.8.20260525.0` |
 | Rocky 10 | [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10) | `10.2.20260525.0` |
-| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | `20260806.2562.0` |
-| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | `20260810.2566.0` |
-| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | `20260810.0.0` |
-| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | `20260801.0.0` |
-| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | `20260731.0.0` |
-| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260803` |
+| Debian 12 | [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12) | `20260923.2610.0` |
+| Debian 13 | [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13) | `20260914.2601.0` |
+| Ubuntu 22.04 | [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04) | `20260926.0.0` |
+| Ubuntu 24.04 | [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04) | `20260926.0.0` |
+| Ubuntu 26.04 | [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04) | `20260927.0.0` |
+| AlmaLinux 8 | [`cloud-image/almalinux-8`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-8) | `8.10.20260928` |
 | AlmaLinux 9 | [`cloud-image/almalinux-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-9) | `9.8.20260810` |
-| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.2.20260526.0` |
+| AlmaLinux 10 | [`cloud-image/almalinux-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/almalinux-10) | `10.2.20260817.0` |
 {.full-width .wide .expand}
 
 The retained Debian 11 alias pins version `20260618.2513.0`.

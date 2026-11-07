@@ -36,7 +36,7 @@ bin/pgsql-add pg-new              # Create new version cluster
 ```
 
 ```bash {tab="Extension" value="extension"}
-ansible <cls> -b -a 'yum upgrade -y postgis36_17*'
+ansible <cls> -b -a 'yum upgrade -y postgis37_17*'
 psql -c 'ALTER EXTENSION postgis UPDATE;'
 ```
 
@@ -335,7 +335,7 @@ When you upgrade PostgreSQL, you usually also need to upgrade its extensions.
 **Upgrade extension packages**
 
 ```bash {tab="EL" group="el-debian" value="el"}
-ansible <cls> -b -a 'yum upgrade -y postgis36_17 timescaledb-2-postgresql-17* pgvector_17*'
+ansible <cls> -b -a 'yum upgrade -y postgis37_17 timescaledb-2-postgresql-17* pgvector_17*'
 ```
 
 ```bash {tab="Debian" value="debian"}

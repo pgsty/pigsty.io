@@ -11,6 +11,11 @@ weight: 6870
     <div class="ext-card__title">powa-team/powa-archivist</div>
     <div class="ext-card__desc">https://github.com/powa-team/powa-archivist</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/powa-5.3.0.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">powa-5.3.0.tar.gz</div>
+    <div class="ext-card__desc">powa-5.3.0.tar.gz</div>
+  </a>
 </div>
 
 
@@ -360,6 +365,14 @@ weight: 6870
 @ u26.aarch64 14 postgresql-14-powa postgresql-14-powa_5.3.0-1.pgdg26.04+1_arm64.deb pgdg 5.3.0 63.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/powa-archivist/postgresql-14-powa_5.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-powa postgresql-14-powa_5.2.0-1.pgdg26.04+1_arm64.deb pgdg 5.2.0 63.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/powa-archivist/postgresql-14-powa_5.2.0-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `powa` using `pig build`:
+
+```bash
+pig build pkg powa         # build RPM / DEB packages
+```
 
 
 ## Install

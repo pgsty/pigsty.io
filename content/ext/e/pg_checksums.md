@@ -1,7 +1,7 @@
 ---
 title: "pg_checksums"
 linkTitle: "pg_checksums"
-description: "Activate/deactivate/verify checksums in offline Postgres clusters"
+description: "Enable/disable checksums offline and verify them online or offline"
 weight: 5110
 ---
 
@@ -10,6 +10,11 @@ weight: 5110
     <div class="ext-card__kicker">Repository</div>
     <div class="ext-card__title">credativ/pg_checksums</div>
     <div class="ext-card__desc">https://github.com/credativ/pg_checksums</div>
+  </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_checksums-1.4.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pg_checksums-1.4.tar.gz</div>
+    <div class="ext-card__desc">pg_checksums-1.4.tar.gz</div>
   </a>
 </div>
 
@@ -20,12 +25,12 @@ weight: 5110
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_checksums`**](/ext/e/pg_checksums) | `1.4` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license bsd2clause" href="/ext/license#bsd2clause">BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_checksums`**](/ext/e/pg_checksums) | `1.4` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5110  | [**`pg_checksums`**](/ext/e/pg_checksums) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 5110  | [**`pg_checksums`**](/ext/e/pg_checksums) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`amcheck`](/ext/e/amcheck) [`pg_catcheck`](/ext/e/pg_catcheck) [`pg_orphaned`](/ext/e/pg_orphaned) [`pg_pathcheck`](/ext/e/pg_pathcheck) [`pg_isok`](/ext/e/pg_isok) [`pg_surgery`](/ext/e/pg_surgery) [`pageinspect`](/ext/e/pageinspect) [`pg_repack`](/ext/e/pg_repack) [`adminpack`](/ext/e/adminpack) |
@@ -288,6 +293,14 @@ weight: 5110
 @ u26.aarch64 14 postgresql-14-pg-checksums postgresql-14-pg-checksums_1.4-1.pgdg26.04+2_arm64.deb pgdg 1.4 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-checksums/postgresql-14-pg-checksums_1.4-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-pg-checksums postgresql-14-pg-checksums_1.4-1.pgdg26.04+1_arm64.deb pgdg 1.4 33.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-checksums/postgresql-14-pg-checksums_1.4-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `pg_checksums` using `pig build`:
+
+```bash
+pig build pkg pg_checksums         # build RPM / DEB packages
+```
 
 
 ## Install

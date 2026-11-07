@@ -11,10 +11,10 @@ weight: 2580
     <div class="ext-card__title">https://codeberg.org/gregburd/improv</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/improv</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/improv-0.12.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/improv-0.13.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">improv-0.12.2.tar.gz</div>
-    <div class="ext-card__desc">improv-0.12.2.tar.gz</div>
+    <div class="ext-card__title">improv-0.13.0.tar.gz</div>
+    <div class="ext-card__desc">improv-0.13.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2580
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_improv`**](/ext/e/pg_improv) | `0.12.2` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20 or mit" href="/ext/license#apache20ormit">Apache-2.0 OR MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_improv`**](/ext/e/pg_improv) | `0.13.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20 or mit" href="/ext/license#apache20ormit">Apache-2.0 OR MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -34,101 +34,101 @@ weight: 2580
 {.ext-table .wide .expand}
 
 
-> Superuser install; commit mode needs preload. Logical mode needs preload/restart, wal_level=logical and a worker DB; slots retain WAL. PG15-18.
+> Commit/logical modes need preload; policies bypassed by owners.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.12.2` | {{< pgvers "15,16,17,18" >}} | `pg_improv` | - |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.12.2` | {{< pgvers "15,16,17,18" >}} | `pg_improv_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.12.1` | {{< pgvers "15,16,17,18" >}} | `postgresql-$v-pg-improv` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.13.0` | {{< pgvers "15,16,17,18" >}} | `pg_improv` | - |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.13.0` | {{< pgvers "15,16,17,18" >}} | `pg_improv_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.12.2` | {{< pgvers "15,16,17,18" >}} | `postgresql-$v-pg-improv` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | AVAIL PIGSTY 0.12.1 1 | N/A PIGSTY - 0 |
-@ el8.x86_64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el8.x86_64.rpm pigsty 0.12.2 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_18-0.12.2-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el8.aarch64.rpm pigsty 0.12.2 4.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_18-0.12.2-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el9.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_18-0.12.2-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el9.aarch64.rpm pigsty 0.12.2 4.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_18-0.12.2-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el10.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_18-0.12.2-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_improv_18 pg_improv_18-0.12.2-1PGSTY.el10.aarch64.rpm pigsty 0.12.2 4.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_18-0.12.2-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~noble_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~noble_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el8.x86_64.rpm pigsty 0.12.2 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_17-0.12.2-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el8.aarch64.rpm pigsty 0.12.2 4.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_17-0.12.2-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el9.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_17-0.12.2-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el9.aarch64.rpm pigsty 0.12.2 4.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_17-0.12.2-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el10.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_17-0.12.2-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_improv_17 pg_improv_17-0.12.2-1PGSTY.el10.aarch64.rpm pigsty 0.12.2 4.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_17-0.12.2-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~noble_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~noble_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el8.x86_64.rpm pigsty 0.12.2 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_16-0.12.2-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el8.aarch64.rpm pigsty 0.12.2 4.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_16-0.12.2-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el9.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_16-0.12.2-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el9.aarch64.rpm pigsty 0.12.2 4.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_16-0.12.2-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el10.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_16-0.12.2-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_improv_16 pg_improv_16-0.12.2-1PGSTY.el10.aarch64.rpm pigsty 0.12.2 4.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_16-0.12.2-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~noble_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~noble_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el8.x86_64.rpm pigsty 0.12.2 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_15-0.12.2-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el8.aarch64.rpm pigsty 0.12.2 4.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_15-0.12.2-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el9.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_15-0.12.2-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el9.aarch64.rpm pigsty 0.12.2 4.8MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_15-0.12.2-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el10.x86_64.rpm pigsty 0.12.2 5.2MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_15-0.12.2-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pg_improv_15 pg_improv_15-0.12.2-1PGSTY.el10.aarch64.rpm pigsty 0.12.2 4.8MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_15-0.12.2-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb pigsty 0.12.1 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb pigsty 0.12.1 4.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~noble_amd64.deb pigsty 0.12.1 4.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~noble_arm64.deb pigsty 0.12.1 4.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb pigsty 0.12.1 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb pigsty 0.12.1 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.1-1PGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| el8.aarch64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | AVAIL PIGSTY 0.13.0 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | AVAIL PIGSTY 0.12.2 1 | N/A PIGSTY - 0 |
+@ el8.x86_64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el8.x86_64.rpm pigsty 0.13.0 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_18-0.13.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el8.aarch64.rpm pigsty 0.13.0 4.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_18-0.13.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el9.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_18-0.13.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el9.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_18-0.13.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el10.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_18-0.13.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_improv_18 pg_improv_18-0.13.0-1PGSTY.el10.aarch64.rpm pigsty 0.13.0 4.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_18-0.13.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~noble_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~noble_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-improv postgresql-18-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-18-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el8.x86_64.rpm pigsty 0.13.0 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_17-0.13.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el8.aarch64.rpm pigsty 0.13.0 4.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_17-0.13.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el9.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_17-0.13.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el9.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_17-0.13.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el10.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_17-0.13.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_improv_17 pg_improv_17-0.13.0-1PGSTY.el10.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_17-0.13.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~noble_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~noble_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-improv postgresql-17-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-17-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el8.x86_64.rpm pigsty 0.13.0 5.3MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_16-0.13.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el8.aarch64.rpm pigsty 0.13.0 4.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_16-0.13.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el9.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_16-0.13.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el9.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_16-0.13.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el10.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_16-0.13.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_improv_16 pg_improv_16-0.13.0-1PGSTY.el10.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_16-0.13.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~noble_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~noble_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-improv postgresql-16-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-16-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el8.x86_64.rpm pigsty 0.13.0 5.2MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_improv_15-0.13.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el8.aarch64.rpm pigsty 0.13.0 4.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_improv_15-0.13.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el9.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_improv_15-0.13.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el9.aarch64.rpm pigsty 0.13.0 4.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_improv_15-0.13.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el10.x86_64.rpm pigsty 0.13.0 5.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_improv_15-0.13.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pg_improv_15 pg_improv_15-0.13.0-1PGSTY.el10.aarch64.rpm pigsty 0.13.0 4.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_improv_15-0.13.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb pigsty 0.12.2 3.7MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb pigsty 0.12.2 4.9MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~noble_amd64.deb pigsty 0.12.2 4.9MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~noble_arm64.deb pigsty 0.12.2 4.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb pigsty 0.12.2 4.8MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pg-improv postgresql-15-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb pigsty 0.12.2 4.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-improv/postgresql-15-pg-improv_0.12.2-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -186,13 +186,14 @@ CREATE EXTENSION pg_improv;
 
 Sources:
 
-- [Release changelog](https://api.pgxn.org/src/pg_improv/pg_improv-0.12.2/CHANGELOG.md)
+- [Release changelog](https://api.pgxn.org/src/pg_improv/pg_improv-0.13.0/CHANGELOG.md)
 
-- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.12.2/crates/pg_improv/README.md)
-- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.12.2/crates/pg_improv/pg_improv.control)
-- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.12.2/crates/pg_improv/Cargo.toml)
+- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.13.0/crates/pg_improv/README.md)
+- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.13.0/crates/pg_improv/pg_improv.control)
+- [Official source](https://api.pgxn.org/src/pg_improv/pg_improv-0.13.0/crates/pg_improv/Cargo.toml)
+- [SQL update](https://api.pgxn.org/src/pg_improv/pg_improv-0.13.0/crates/pg_improv/sql/pg_improv--0.12.2--0.13.0.sql)
 
-`pg_improv` 0.12.2 binds PostgreSQL tables to multidimensional models, evaluates formulas and materializes results. It supports PostgreSQL 15–18 and requires superuser installation. This example uses manual synchronization, which works without preloading the library.
+`pg_improv` 0.13.0 binds PostgreSQL tables to multidimensional models, evaluates formulas and materializes results. It supports PostgreSQL 15–18 and requires superuser installation. This example uses manual synchronization, which works without preloading the library.
 
 ### Core Workflow
 
@@ -225,14 +226,25 @@ The `improv` language supports scalar formulas as well as model expressions, but
 
 Back up model definitions and result state with database dumps and rehearse restoration; logical mode needs a fresh slot and recomputation after restore. Library upgrades require restarting preloaded processes and updating the extension SQL. Model computation is distinct from an application transaction's source-of-truth tables.
 
-### Ownership and Database-Wide Logical Sync since 0.11.0
+### Model Access Policies in 0.13.0
 
-Each model now reads and writes as its owner; row-level security protects its catalog, items and cells. Only a superuser or a role allowed to act as the owner may change or recalculate that model. Grant improv_user to a model creator and grant the source-table privileges it needs; the administrator role does not automatically become every model owner. A shared result table still needs ordinary grants. what_if can reveal owner-visible data, so grant access deliberately. Logical models in one database now share one slot and publication. Upgrade with the matching library and SQL scripts, restore roles before model dumps, and monitor retained WAL.
+Models execute with their owner's privileges. Grant `improv_user` to model creators and give them the required source-table privileges. Version 0.13.0 adds Cedar policies through `improv.set_policies`, inspection through `improv.policies`, and decision explanations through `improv.explain_access`.
 
-### 0.12.2 Release Note
+```sql
+SELECT * FROM improv.policies('plan');
+SELECT * FROM improv.explain_access('plan', 'Read');
+```
 
-Release 0.12.2 fixes idle logical-sync workers so they no longer reread the model catalog on every poll; there are no other code changes in this release. The Pigsty build uses pgrx 0.19.3 for the current package, while upstream source metadata still declares pgrx 0.17.0.
+Grant `improv_reader` (or `improv_user`) to restricted users and separately grant access to result tables. Policies filter result rows and the `improv.categories`, `improv.items`, `improv.measures` and `improv.cells` functions. Superusers, the owner and roles allowed to act as the owner bypass these policies. A model without policies retains its ordinary grant behavior; configured policies deny by default, and invalid policies deny access to restricted users.
 
-### 0.12.1 Release Note
+Derived values are calculated over all owner-visible inputs before filtering. Hiding an input does not remove its contribution from an allowed total. Model policies do not restrict direct access to source tables. Permitted cell edits and policy changes are recorded in `improv.policy_audit`; rejected operations are logged by the server. Review grants and totals before exposing a model.
 
-The 0.12.0 SQL migration adds `improv.measure.format` for persisted display formatting; update the extension before saving formats. Release 0.12.1 changes the version from 0.12.0 without additional code changes and restores RHEL 8 (glibc 2.28) compatible artifacts. Upstream still uses pgrx 0.17.0. Logical synchronization still requires `shared_preload_libraries`, `wal_level=logical` and a restart; trigger and manual modes do not.
+### Upgrading to 0.13.0
+
+Install matching files and restart PostgreSQL when the library is preloaded, then update each database:
+
+```sql
+ALTER EXTENSION pg_improv UPDATE TO '0.13.0';
+```
+
+The 0.12.2-to-0.13.0 migration adds the policy objects and functions without changing model rows. The release also fixes an upgrade deadlock with the logical-sync worker. Back up roles and model data and rehearse the update. Upstream now uses pgrx 0.19.3; this does not establish availability of a matching distribution package.

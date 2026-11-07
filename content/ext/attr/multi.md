@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **28** packages contain multiple extensions, totaling **134** extensions.
+The following **29** packages contain multiple extensions, totaling **137** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -38,7 +38,7 @@ Package [`pointcloud`](/ext/e/pointcloud) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 1520 | [**`pointcloud`**](/ext/e/pointcloud) | `1.2.5` | `--s-d--` | - | data type for lidar point clouds |
-| 1521 | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | `1.2.5` | `--s-dt-` | - | integration for pointcloud LIDAR data and PostGIS geometry data |
+| 1521 | [`pointcloud_postgis`](/ext/e/pointcloud_postgis) | `1.2.5` | `----dt-` | - | integration for pointcloud LIDAR data and PostGIS geometry data |
 {.ext-table .wide .expand}
 
 ## pg_h3
@@ -86,16 +86,6 @@ Package [`qdgc`](/ext/e/qdgc) contains **2** extensions:
 | 1710 | [`qdgc_postgis`](/ext/e/qdgc_postgis) | `0.1.0` | `----d-r` | - | Add PostGIS geometry and geography bindings plus area-to-cell fills for QDGC. |
 {.ext-table .wide .expand}
 
-## pgcontext
-
-Package [`pgcontext`](/ext/e/pgcontext) contains **2** extensions:
-
-| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
-|:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1960 | [**`pgcontext`**](/ext/e/pgcontext) | `0.3.0` | `--s-d--` | `pgcontext` | Vector, filter-aware HNSW, and hybrid retrieval over authoritative PostgreSQL tables. |
-| 1970 | [`pgcontext_pgvector`](/ext/e/pgcontext_pgvector) | `0.2.0` | `--s-d--` | - | Optional pgvector compatibility bridge for pgcontext HNSW indexes. |
-{.ext-table .wide .expand}
-
 ## pgroonga
 
 Package [`pgroonga`](/ext/e/pgroonga) contains **2** extensions:
@@ -130,8 +120,8 @@ Package [`citus`](/ext/e/citus) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2400 | [**`citus`**](/ext/e/citus) | `14.3-1` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
-| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.3-1` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
+| 2400 | [**`citus`**](/ext/e/citus) | `14.3.0` | `--sLd--` | `pg_catalog` | Distributed PostgreSQL as an extension |
+| 2401 | [`citus_columnar`](/ext/e/citus_columnar) | `14.3.0` | `--s-d--` | `pg_catalog` | Citus columnar storage engine |
 {.ext-table .wide .expand}
 
 ## pg_lake
@@ -140,14 +130,35 @@ Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.5` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
-| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.5` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
-| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.5` | `--sLd--` | `extension_updater` | Automatic extension updater |
-| 2563 | [`pg_map`](/ext/e/pg_map) | `3.5` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
-| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.5` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
-| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.5` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
-| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.5` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
-| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.5` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
+| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.6` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
+| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.6` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
+| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.6` | `--sLd--` | `extension_updater` | Automatic extension updater |
+| 2563 | [`pg_map`](/ext/e/pg_map) | `3.6` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.6` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
+| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.6` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
+| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.6` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
+| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.6` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
+{.ext-table .wide .expand}
+
+## pg_statecharts
+
+Package [`pg_statecharts`](/ext/e/pg_statecharts) contains **2** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 2695 | [**`pg_statecharts`**](/ext/e/pg_statecharts) | `0.1.0` | `----d--` | `fsm` | Hierarchical state machines and transactional event handling |
+| 2696 | [`pg_statecharts_dev`](/ext/e/pg_statecharts_dev) | `0.1.0` | `----d--` | `fsm` | SCXML import and migration tooling for pg_statecharts |
+{.ext-table .wide .expand}
+
+## pg_lion
+
+Package [`pg_lion`](/ext/e/pg_lion) contains **3** extensions:
+
+| **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
+|:------:|:-----------|:--------:|:--------:|:---------|:---------|
+| 2715 | [**`pg_lion`**](/ext/e/pg_lion) | `0.3.0` | `--s-d-r` | - | Roaring bitmap inverted indexes for filtering, counts and aggregates |
+| 2716 | [`pg_lion_citext`](/ext/e/pg_lion_citext) | `0.3.0` | `----d-r` | - | Case-insensitive citext operator class for lion indexes |
+| 2717 | [`pg_lion_vector`](/ext/e/pg_lion_vector) | `0.3.0` | `--s-d-r` | - | Filtered nearest-neighbor indexes for pgvector vector and halfvec |
 {.ext-table .wide .expand}
 
 ## omnigres
@@ -316,7 +327,7 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 6450 | [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | `--sLd-r` | - | Capture node OS metrics via SQL queries |
-| 6460 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `--s-d-r` | - | PostgreSQL extension to access the OS process table |
+| 6460 | [`pg_proctab`](/ext/e/pg_proctab) | `2.0.1` | `----d-r` | - | PostgreSQL extension to access the OS process table |
 {.ext-table .wide .expand}
 
 ## documentdb
@@ -327,7 +338,7 @@ Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.0` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
 | 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.0` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `1.0-0` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
+| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `1.0` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
 | 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.0` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
 {.ext-table .wide .expand}
 
@@ -363,6 +374,6 @@ Package [`pglogical`](/ext/e/pglogical) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `--sLd--` | `pglogical` | PostgreSQL Logical Replication |
+| 9500 | [**`pglogical`**](/ext/e/pglogical) | `2.4.8` | `-bsLd--` | `pglogical` | PostgreSQL Logical Replication |
 | 9501 | [`pglogical_origin`](/ext/e/pglogical_origin) | `1.0.0` | `--s-d--` | `pglogical_origin` | Dummy extension for compatibility when upgrading from Postgres 9.4 |
 {.ext-table .wide .expand}

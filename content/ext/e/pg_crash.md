@@ -38,7 +38,7 @@ weight: 5210
 {.ext-table .ext-table--rel}
 
 
-> Upstream module-only; Pigsty adds control/empty SQL; epoch 1 retains 1.0 upgrades; rebuild 0.3.
+> Module-only; Pigsty DDL shim.
 
 
 ## Version
@@ -46,8 +46,8 @@ weight: 5210
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash` | - |
-| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash_$v` | - |
-| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-crash` | - |
+| [**RPM**](/ext/rpm#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_crash_$v` | - |
+| [**DEB**](/ext/deb#admin) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-crash` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}

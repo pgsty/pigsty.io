@@ -154,10 +154,12 @@ You can also edit `pigsty.yml` directly without the wizard.
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-The output below is from {{< param version >}}.
+Development versions move kernel templates into `conf/fork/`, so use `./configure -c fork/ivory` there. The commands above apply to the `v4.5.0` release package.
+
+The output below is from the current `main` branch ({{< param version >}}).
 If you install a different version, the first line shows that version.
 
-{{< eg num="1" id="configure-output" caption="Configuration output from the current release" >}}
+{{< eg num="1" id="configure-output" caption="Configuration output from the current main branch" >}}
 
 > [!DETAILS]- Configuration output
 > ```console {title="configure output" copy="command" collapse=12 label="configure Example Output"}

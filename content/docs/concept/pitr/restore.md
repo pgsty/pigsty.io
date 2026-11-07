@@ -55,19 +55,19 @@ See [**Restore Operations**](/docs/pgsql/backup/restore/) for the complete field
 | **print** | Print the source cluster, target, and restore command; this stage reports the plan and does not prompt for confirmation |
 | **pause** | Run `patronictl pause` so Patroni does not intervene during maintenance |
 | **stop** | Stop Patroni and PostgreSQL on replicas, then on the primary |
-| **pitr** | Render recovery settings, run an incremental pgBackRest restore, start PostgreSQL to replay WAL, wait for consistency, and print control data |
+| **pitr** | On the primary only: render recovery settings, run an incremental pgBackRest restore, start PostgreSQL to replay WAL, wait until replay reaches the target, and print control data |
 | **etcd** | Remove stale cluster metadata from etcd so old and new timelines are not mixed |
-| **start** | Start Patroni again, resume HA management, and rebuild replicas |
+| **start** | Promote the primary at the target if needed, start Patroni again, resume HA management, then wipe replicas and clone them from the new primary |
 {.full-width}
 
 Keep these details in mind:
 
 * **Incremental restore:** pgBackRest uses `delta` to rewrite only files that differ from the backup. This can substantially reduce RTO for large databases.
 * **Verification:** The playbook prints checkpoint LSN, timeline, and NextXID from `pg_controldata`. An operator must still verify the recovered business state.
-* **Rollback copy:** `backup: true` moves the original data directory to `/pg/data-backup` before recovery. A later run with this option removes any existing `/pg/data-backup`. It does not retain multiple snapshot versions.
-* **Staged execution:** Run `-t down`, `-t pitr`, and `-t up` separately for an operator checkpoint between phases. The `pitr` phase completes when PostgreSQL reaches a consistent recovery state. For time, XID, LSN, or named targets, also confirm that WAL replay reached the target.
+* **Rollback copy:** `backup: true` moves the primary's original data directory to `/pg/data-backup` before recovery; replicas are re-cloned. A later run with this option removes any existing `/pg/data-backup`. It does not retain multiple snapshot versions.
+* **Staged execution:** Run `-t down`, `-t pitr`, and `-t up` separately for an operator checkpoint between phases. The `pitr` phase completes only when WAL replay reaches the target, and fails if PostgreSQL exits or pauses before it.
 
-`action` controls behavior at the target. `promote` opens a new timeline, `pause` waits for inspection, and `shutdown` stops PostgreSQL. Targeted recovery defaults to `pause` if you omit `action`. Run stages separately to retain a manual checkpoint for `pause` or `shutdown`. For a single-run recovery, explicitly select `promote`. The playbook performs recovery steps but cannot determine whether the business data is correct.
+`action` controls behavior at the target. `promote` opens a new timeline, `pause` waits for inspection, and `shutdown` stops PostgreSQL. Targeted recovery defaults to `pause` if you omit `action`. Run stages separately to retain a manual checkpoint for `pause` or `shutdown`. In a single run, `up` promotes the primary at the target before Patroni starts, because Patroni discards the recovery target. The playbook performs recovery steps but cannot determine whether the business data is correct.
 
 
 ----------------

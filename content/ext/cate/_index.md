@@ -11,13 +11,13 @@ sidebar_expanded: true
 |:--------:|:-------:|:------:|:-------|
 | <a class="ext-badge ext-badge--cate time" href="/ext/cate/time">TIME</a> | 16 | 16 | TimescaleDB, Versioning & Temporal Table, Crontab, Async & Background Job Scheduler, ... |
 | <a class="ext-badge ext-badge--cate gis" href="/ext/cate/gis">GIS</a> | 31 | 17 | GeoSpatial Data Types, Operators, and Indexes, Hexagonal Indexing, OGR Data FDW, GeoIP & MobilityDB, etc... |
-| <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | 19 | 18 | Vector Database with Ivfflat, HNSW, DiskANN Indexes, AI & ML in SQL interface, Similarity Funcs, etc...  |
+| <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | 18 | 18 | Vector Database with Ivfflat, HNSW, DiskANN Indexes, AI & ML in SQL interface, Similarity Funcs, etc...  |
 | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | 36 | 26 | ElasticSearch Alternative with BM25, 2-gram/3-gram Fuzzy Search, Zhparser & Hunspell Segregation Dicts, etc... |
 | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | 27 | 19 | DuckDB Integration with FDW & PG Lakehouse, Access Parquet from File/S3, Sharding with Citus/Partman/PlProxy, ... |
-| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 78 | 39 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
+| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 84 | 42 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
 | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 43 | 27 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |
 | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 47 | 46 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
-| <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 44 | 43 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
+| <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 45 | 44 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |
 | <a class="ext-badge ext-badge--cate func" href="/ext/cate/func">FUNC</a> | 57 | 57 | Function such as id generator, aggregations, sketches, vector functions, mathematical functions and digest functions... |
 | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | 51 | 49 | Utilities for Bloat Control, DirtyRead, BufferInspect, DDL Generate, ChecksumVerify, Permission, Priority, Catalog,... |
 | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | 49 | 47 | Observability Catalogs, Monitoring Metrics & Views, Statistics, Query Plans, WaitSampling, SlowLogs, and etc... |

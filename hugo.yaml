@@ -42,86 +42,527 @@ module:
 #=======================================#
 # Menu Customization
 #=======================================#
+# Shared OINK navigation; links and grouped dropdowns are configured here.
 menus:
   main:
-    - identifier: docs
-      name: Docs
-      weight: 10
-      pageRef: /docs
-      params:
-        columns: 2
-    - identifier: docs-setup
-      parent: docs
-      name: Quick Start
-      pageRef: /docs/setup
-      weight: 10
-      params:
-        icon: fa-solid fa-rocket
-        description: Install Pigsty starting from a single Linux host
-    - identifier: docs-deploy
-      parent: docs
-      name: Production Deployment
-      pageRef: /docs/deploy
-      weight: 20
-      params:
-        icon: fa-solid fa-server
-        description: Plan and deliver multi-node high-availability database services
-    - identifier: docs-pgsql
-      parent: docs
-      name: PostgreSQL
-      pageRef: /docs/pgsql
-      weight: 30
-      params:
-        icon: fa-solid fa-database
-        description: Clusters, services, backup, monitoring, and daily operations
-    - identifier: docs-components
-      parent: docs
-      name: Component Manuals
-      pageRef: /docs/pig
-      weight: 40
-      params:
-        icon: fa-solid fa-toolbox
-        description: Pig, Patroni, PgBouncer, pgBackRest, and related tools
-
-    - identifier: ext
-      name: Extensions
-      weight: 20
-      pageRef: /ext
-      params:
-        columns: 2
-    - identifier: ext-list
-      parent: ext
-      name: Extension Catalog
-      pageRef: /ext/list
-      weight: 10
-      params:
-        icon: fa-solid fa-puzzle-piece
-        description: Browse 600 packaged PostgreSQL extensions
-    - identifier: ext-os
-      parent: ext
-      name: System Support
-      pageRef: /ext/os
-      weight: 20
-      params:
-        icon: fa-brands fa-linux
-        description: Check operating-system and PostgreSQL compatibility
-    - identifier: ext-repo
-      parent: ext
-      name: Software Repository
-      pageRef: /docs/repo
-      weight: 30
-      params:
-        icon: fa-solid fa-box-archive
-        description: Configure Pigsty repositories and install extension packages
-
-    - identifier: blog
-      name: Blog
-      pageRef: /blog
-      weight: 30
-    - identifier: price
-      name: Services
-      pageRef: /price
-      weight: 40
+  - identifier: docs
+    name: Docs
+    weight: 10
+    pageRef: /docs
+    params:
+      icon: fa-solid fa-book
+      pigsty_groups:
+      - name: Docs
+        columns:
+        - 1
+        - 2
+      - name: Modules
+        columns:
+        - 1
+        - 2
+        mono: true
+  - identifier: docs-docs
+    parent: docs
+    name: Pigsty v4.5
+    url: /docs/
+    weight: 10
+    params:
+      icon: fas fa-book
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-doc-pgsty-com
+    parent: docs
+    name: Pigsty v3.7
+    url: https://doc.pgsty.com
+    weight: 20
+    params:
+      icon: fas fa-book-open
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-docs-about-release
+    parent: docs
+    name: Release Notes
+    url: /docs/about/release/
+    weight: 30
+    params:
+      icon: fas fa-clipboard-list
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-docs-repo
+    parent: docs
+    name: PG Repository
+    url: /docs/repo/
+    weight: 40
+    params:
+      icon: fas fa-warehouse
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-docs-pgsql-kernel
+    parent: docs
+    name: PG Kernels
+    url: /docs/pgsql/kernel/
+    weight: 50
+    params:
+      icon: fas fa-microchip
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-ext
+    parent: docs
+    name: PG Extensions
+    url: /ext/
+    weight: 60
+    params:
+      icon: fas fa-puzzle-piece
+      pigsty_group: Docs
+      pigsty_column: 1
+  - identifier: docs-pgsql-manual
+    parent: docs
+    name: PG Documentation
+    url: https://www.postgresql.org/docs/18/index.html
+    weight: 70
+    params:
+      icon: fas fa-republican
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-pig
+    parent: docs
+    name: PIG CLI
+    url: /docs/pig/
+    weight: 80
+    params:
+      icon: fas fa-piggy-bank
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-pgbouncer
+    parent: docs
+    name: PgBouncer
+    url: /docs/pgbouncer/
+    weight: 90
+    params:
+      icon: fas fa-baseball
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-patroni
+    parent: docs
+    name: Patroni
+    url: /docs/patroni/
+    weight: 100
+    params:
+      icon: fas fa-yin-yang
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-pgbackrest
+    parent: docs
+    name: pgBackRest
+    url: /docs/pgbackrest/
+    weight: 110
+    params:
+      icon: fas fa-couch
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-pg-exporter
+    parent: docs
+    name: pg_exporter
+    url: /docs/pg_exporter/
+    weight: 120
+    params:
+      icon: fas fa-chart-line
+      pigsty_group: Docs
+      pigsty_column: 2
+  - identifier: docs-docs-pgsql
+    parent: docs
+    name: PGSQL
+    url: /docs/pgsql/
+    weight: 130
+    params:
+      icon: fas fa-database
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-infra
+    parent: docs
+    name: INFRA
+    url: /docs/infra/
+    weight: 140
+    params:
+      icon: fas fa-bank
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-node
+    parent: docs
+    name: NODE
+    url: /docs/node/
+    weight: 150
+    params:
+      icon: fas fa-server
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-etcd
+    parent: docs
+    name: ETCD
+    url: /docs/etcd/
+    weight: 160
+    params:
+      icon: fas fa-gears
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-minio
+    parent: docs
+    name: MINIO
+    url: /docs/minio/
+    weight: 170
+    params:
+      icon: fas fa-boxes-stacked
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-redis
+    parent: docs
+    name: REDIS
+    url: /docs/redis/
+    weight: 180
+    params:
+      icon: fas fa-layer-group
+      pigsty_group: Modules
+      pigsty_column: 1
+  - identifier: docs-docs-docker
+    parent: docs
+    name: DOCKER
+    url: /docs/docker/
+    weight: 190
+    params:
+      icon: fa-brands fa-docker
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: docs-docs-juice
+    parent: docs
+    name: JUICE
+    url: /docs/juice/
+    weight: 200
+    params:
+      icon: fas fa-folder-tree
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: docs-docs-vibe
+    parent: docs
+    name: VIBE
+    url: /docs/vibe/
+    weight: 210
+    params:
+      icon: fas fa-laptop-code
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: docs-docs-kafka
+    parent: docs
+    name: KAFKA
+    url: /docs/kafka/
+    weight: 220
+    params:
+      icon: fas fa-share-nodes
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: docs-docs-mysql
+    parent: docs
+    name: MYSQL
+    url: /docs/mysql/
+    weight: 230
+    params:
+      icon: fas fa-fish
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: docs-docs-pilot
+    parent: docs
+    name: PILOT
+    url: /docs/pilot/
+    weight: 240
+    params:
+      icon: fas fa-flask-vial
+      pigsty_group: Modules
+      pigsty_column: 2
+  - identifier: ext
+    name: Extensions
+    weight: 20
+    pageRef: /ext
+    params:
+      icon: fa-solid fa-puzzle-piece
+      pigsty_groups:
+      - name: Extensions
+        columns:
+        - 1
+      - name: Categories
+        columns:
+        - 1
+        - 2
+        mono: true
+  - identifier: ext-ext-list
+    parent: ext
+    name: Extension List
+    url: /ext/list/
+    weight: 10
+    params:
+      icon: fas fa-puzzle-piece
+      pigsty_group: Extensions
+      pigsty_column: 1
+      description: Browse 620 packaged PostgreSQL extensions
+  - identifier: ext-ext-rpm
+    parent: ext
+    name: RPM Packages
+    url: /ext/rpm/
+    weight: 20
+    params:
+      icon: fa-brands fa-redhat
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-ext-deb
+    parent: ext
+    name: DEB Packages
+    url: /ext/deb/
+    weight: 30
+    params:
+      icon: fa-brands fa-debian
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-ext-repo
+    parent: ext
+    name: By Repository
+    url: /ext/repo/
+    weight: 40
+    params:
+      icon: fas fa-warehouse
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-ext-language
+    parent: ext
+    name: By Language
+    url: /ext/language/
+    weight: 50
+    params:
+      icon: fas fa-code
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-ext-license
+    parent: ext
+    name: By License
+    url: /ext/license/
+    weight: 60
+    params:
+      icon: fas fa-scale-balanced
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-docs-ref-linux
+    parent: ext
+    name: By Linux OS
+    url: /docs/ref/linux/
+    weight: 70
+    params:
+      icon: fa-brands fa-linux
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-docs-repo
+    parent: ext
+    name: Changelog
+    url: /docs/repo/
+    weight: 80
+    params:
+      icon: fas fa-clipboard-list
+      pigsty_group: Extensions
+      pigsty_column: 1
+  - identifier: ext-ext-cate-time
+    parent: ext
+    name: TIME
+    url: /ext/cate/time/
+    weight: 90
+    params:
+      icon: fas fa-clock
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-gis
+    parent: ext
+    name: GIS
+    url: /ext/cate/gis/
+    weight: 100
+    params:
+      icon: fas fa-globe
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-rag
+    parent: ext
+    name: RAG
+    url: /ext/cate/rag/
+    weight: 110
+    params:
+      icon: fas fa-brain
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-fts
+    parent: ext
+    name: FTS
+    url: /ext/cate/fts/
+    weight: 120
+    params:
+      icon: fas fa-magnifying-glass
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-olap
+    parent: ext
+    name: OLAP
+    url: /ext/cate/olap/
+    weight: 130
+    params:
+      icon: fas fa-chart-line
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-feat
+    parent: ext
+    name: FEAT
+    url: /ext/cate/feat/
+    weight: 140
+    params:
+      icon: fas fa-icons
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-lang
+    parent: ext
+    name: LANG
+    url: /ext/cate/lang/
+    weight: 150
+    params:
+      icon: fas fa-language
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-type
+    parent: ext
+    name: TYPE
+    url: /ext/cate/type/
+    weight: 160
+    params:
+      icon: fas fa-cubes
+      pigsty_group: Categories
+      pigsty_column: 1
+  - identifier: ext-ext-cate-util
+    parent: ext
+    name: UTIL
+    url: /ext/cate/util/
+    weight: 170
+    params:
+      icon: fas fa-wrench
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-func
+    parent: ext
+    name: FUNC
+    url: /ext/cate/func/
+    weight: 180
+    params:
+      icon: fas fa-square-root-variable
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-admin
+    parent: ext
+    name: ADMIN
+    url: /ext/cate/admin/
+    weight: 190
+    params:
+      icon: fas fa-bank
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-stat
+    parent: ext
+    name: STAT
+    url: /ext/cate/stat/
+    weight: 200
+    params:
+      icon: fas fa-file-waveform
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-sec
+    parent: ext
+    name: SEC
+    url: /ext/cate/sec/
+    weight: 210
+    params:
+      icon: fas fa-shield-halved
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-fdw
+    parent: ext
+    name: FDW
+    url: /ext/cate/fdw/
+    weight: 220
+    params:
+      icon: fas fa-file-import
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-sim
+    parent: ext
+    name: SIM
+    url: /ext/cate/sim/
+    weight: 230
+    params:
+      icon: fas fa-user-ninja
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: ext-ext-cate-etl
+    parent: ext
+    name: ETL
+    url: /ext/cate/etl/
+    weight: 240
+    params:
+      icon: fas fa-truck
+      pigsty_group: Categories
+      pigsty_column: 2
+  - identifier: blog
+    name: Blog
+    weight: 30
+    pageRef: /blog
+    params:
+      icon: fa-solid fa-blog
+  - identifier: blog-blog-pigsty
+    parent: blog
+    name: Pigsty
+    url: /blog/pigsty/
+    weight: 10
+    params:
+      icon: fas fa-newspaper
+  - identifier: blog-blog-pg
+    parent: blog
+    name: PostgreSQL
+    url: /blog/pg/
+    weight: 20
+    params:
+      icon: fas fa-republican
+  - identifier: blog-blog-cloud
+    parent: blog
+    name: Cloud
+    url: /blog/cloud/
+    weight: 30
+    params:
+      icon: fas fa-cloud
+  - identifier: blog-blog-db
+    parent: blog
+    name: Database
+    url: /blog/db/
+    weight: 40
+    params:
+      icon: fas fa-database
+  - identifier: blog-blog-ai
+    parent: blog
+    name: AI Agent
+    url: /blog/ai/
+    weight: 50
+    params:
+      icon: fas fa-robot
+  - identifier: blog-vonng-com
+    parent: blog
+    name: Vonng's Blog
+    url: https://vonng.com/en
+    weight: 60
+    params:
+      icon: fas fa-blog
+  - identifier: price
+    name: Service
+    pageRef: /price
+    weight: 40
+    params:
+      icon: fa-solid fa-handshake
 
 #=======================================#
 # Taxonomies Support
@@ -214,7 +655,7 @@ cascade:
 #=======================================#
 params:
   # metadata
-  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, and 600 PG extensions and 12 kernels'
+  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, 620 packaged PG extensions, and 12 kernels and solutions'
   version: v4.5.0           # Current source/docs baseline, {{< param version >}} in content
   version_short: v4.5       # Short form (major.minor) of the current source/docs baseline
   stable_version: v4.5.0    # Current public stable release; use for install and Git tag examples
@@ -223,7 +664,12 @@ params:
   pig_version: 1.10.4        # Latest PIG release, {{< param pig_version >}} in PIG docs
   pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
   pig_catalog_count: 626    # Records in the PIG bundled catalog
-  pgext_count: 600          # Number of packaged PG extensions, {{< param pgext_count >}} in content
+  pgext_count: 620          # PGEXT packaged extensions as of 2026-10-28; matches data/pgext/extension.yaml
+  pg_kernel_count: 12      # Homepage variants and solutions; excludes vanilla PG, includes Supabase, Citus, DocumentDB
+  # Verified 2026-10-28 against pgsty/pigsty e7a77472: files/grafana/*.json (recursive), files/victoria/rules/*.yml.
+  dashboard_count: 67
+  recording_rule_count: 759
+  alert_rule_count: 92
   pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
   copyright:
     authors: Ruohang Feng
@@ -243,8 +689,6 @@ params:
   # Version dropdown menu
   version_menu: "Ver"
   versions:
-    - version: "Pigsty 中文网站"
-      url: 'https://pigsty.cc'
     - version: "Pigsty v3.7 Doc"
       url: 'https://doc.pgsty.com'
     - version: "Pigsty v3.4 Doc"
@@ -305,7 +749,9 @@ params:
     sidebar_width_max: 480
     sidebar_item_overflow: ellipsis
     sidebar_expand_levels: 2
-    dark_mode: true
+    dark_mode:
+      enable: true
+      show_menu: true
     scroll_spy: false
     image_zoom: true
     page_context_menu:

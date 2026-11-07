@@ -13,7 +13,7 @@ Pigsty runs directly on the host without containers. It supports actively mainta
 
 ## Overview
 
-**Recommended OS versions:** Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.6, Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+**Recommended OS versions:** Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.7, Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
 
 | Distro                    |                Arch                |                                             OS Code                                             |                       PG18                       |                       PG17                       |                       PG16                       |                       PG15                       |                       PG14                       |
 |:--------------------------|:----------------------------------:|:-----------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|
@@ -81,7 +81,7 @@ Pigsty supports Ubuntu 26.04 / 24.04 / 22.04:
 | Ubuntu 22.04 (`jammy`)    | <b class="text-danger">aarch64</b> | [`u22.aarch64`](https://github.com/pgsty/pigsty/blob/main/roles/node_id/vars/u22.aarch64.yml) | <i class="fas fa-circle-check text-primary"></i> | <i class="fas fa-circle-check text-primary"></i> |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |    <i class="fas fa-circle-check text-primary"></i>     |
 {.wide .expand}
 
-> [!TIP] Ubuntu 22.04.5 / 24.04.4 / 26.04.0 LTS Recommended
+> [!TIP] Ubuntu 22.04.5 / 24.04.5 / 26.04.1 LTS Recommended
 > Ubuntu 26.04 provides the newest LTS baseline, while Ubuntu 24.04 remains the conservative default for Ubuntu users.
 
 
@@ -89,7 +89,7 @@ Pigsty supports Ubuntu 26.04 / 24.04 / 22.04:
 
 ## Debian
 
-Pigsty supports Debian 12 / 13. We recommend the latest Debian 13.6:
+Pigsty supports Debian 12 / 13. We recommend the latest Debian 13.7:
 
 | Debian Distro          |                Arch                |                                            OS Code                                            |                       PG18                       |                       PG17                       |                          PG16                           |                          PG15                           |                          PG14                           |
 |:-----------------------|:----------------------------------:|:---------------------------------------------------------------------------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|:-------------------------------------------------------:|
@@ -101,7 +101,7 @@ Pigsty supports Debian 12 / 13. We recommend the latest Debian 13.6:
 | Debian 11 (`bullseye`) | <b class="text-danger">aarch64</b> |                                               -                                               |                                                  |                                                  |                                                         |                                                         |                                                         |
 {.wide .expand}
 
-> [!TIP] Debian 12.15 / 13.6 Recommended
+> [!TIP] Debian 12.15 / 13.7 Recommended
 
 > [!CAUTION] Debian 11 LTS Has Ended
 > Debian 11 regular support ended on 2024-08-14, and LTS ended on **2026-08-31**. See the [official Debian lifecycle](https://www.debian.org/releases/bullseye/). Pigsty's current baseline is Debian 12 / 13. Contact [Professional Support](/docs/about/service) for legacy-system support scope.
@@ -117,10 +117,10 @@ For local VM deployment, use these Vagrant base images. Pigsty development uses 
 - [`cloud-image/rocky-9`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-9): Rocky 9.8
 - [`cloud-image/rocky-10`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/rocky-10): Rocky 10.2
 - [`cloud-image/debian-12`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-12): Debian 12.15
-- [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.6
+- [`cloud-image/debian-13`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/debian-13): Debian 13.7
 - [`cloud-image/ubuntu-22.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-22.04): Ubuntu 22.04.5
-- [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04): Ubuntu 24.04.4
-- [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04): Ubuntu 26.04.0
+- [`cloud-image/ubuntu-24.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-24.04): Ubuntu 24.04.5
+- [`cloud-image/ubuntu-26.04`](https://portal.cloud.hashicorp.com/vagrant/discover/cloud-image/ubuntu-26.04): Ubuntu 26.04.1
 
 
 ----------------
@@ -135,8 +135,8 @@ For cloud deployment, consider these OS image prefixes in [OpenTofu](/docs/deplo
 | Rocky 9.8      | `rockylinux_9_8_x64`      |
 | Rocky 10.2     | `rockylinux_10_2_x64`     |
 | Ubuntu 22.04.5 | `ubuntu_22_04_x64_20G`    |
-| Ubuntu 24.04.4 | `ubuntu_24_04_x64_20G`    |
-| Ubuntu 26.04.0 | `ubuntu_26_04_x64_20G`    |
+| Ubuntu 24.04.5 | `ubuntu_24_04_x64_20G`    |
+| Ubuntu 26.04.1 | `ubuntu_26_04_x64_20G`    |
 | Debian 12.15   | `debian_12_15_x64`        |
 | Debian 13.6    | `debian_13_6_x64`         |
 {.full-width}
@@ -148,8 +148,10 @@ For cloud deployment, consider these OS image prefixes in [OpenTofu](/docs/deplo
 | Rocky 9.8      | `rockylinux_9_8_arm64`      |
 | Rocky 10.2     | `rockylinux_10_2_arm64`     |
 | Ubuntu 22.04.5 | `ubuntu_22_04_arm64_20G`    |
-| Ubuntu 24.04.4 | `ubuntu_24_04_arm64_20G`    |
-| Ubuntu 26.04.0 | `ubuntu_26_04_arm64_20G`    |
+| Ubuntu 24.04.5 | `ubuntu_24_04_arm64_20G`    |
+| Ubuntu 26.04.1 | `ubuntu_26_04_arm64_20G`    |
 | Debian 12.15   | `debian_12_15_arm64`        |
 | Debian 13.6    | `debian_13_6_arm64`         |
 {.full-width}
+
+> Note: Debian upstream is currently 13.7, but Alibaba Cloud has not published a Debian 13.7 public image yet, so the OpenTofu Aliyun prefix remains `debian_13_6_*`.

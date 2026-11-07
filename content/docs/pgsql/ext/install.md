@@ -99,7 +99,7 @@ It converts each alias to the package name for the applicable PostgreSQL version
 ```yaml
 pg_extensions:
   - pgvector           # Auto-translates to pgvector_18 (EL) or postgresql-18-pgvector (Debian)
-  - postgis            # Auto-translates to postgis36_18 (EL) or postgresql-18-postgis-3 (Debian)
+  - postgis            # Auto-translates to postgis37_18 (EL) or postgresql-18-postgis-3 (Debian)
   - pgsql-gis          # Category alias, installs the platform's GIS package group
 ```
 

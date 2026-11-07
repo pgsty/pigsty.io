@@ -25,7 +25,7 @@ weight: 2401
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`citus`**](/ext/e/citus) | `14.3-1` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`citus`**](/ext/e/citus) | `14.3.0` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -39,14 +39,14 @@ weight: 2401
 {.ext-table .ext-table--rel}
 
 
-> Packaged with Citus 14.3.0 / SQL 14.3-1 for PG16-18. citus_columnar needs no preload; conflicts with Hydra Columnar.
+> SQL 14.3-1; no preload; conflicts with Hydra Columnar.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3-1` | {{< pgvers "16,17,18" >}} | `citus` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3.0` | {{< pgvers "16,17,18" >}} | `citus` | - |
 | [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3.0` | {{< pgvers "18,17,16" >}} | `citus_$v` | - |
 | [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `14.3.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-citus` | - |
 {.ext-table .wide .expand}

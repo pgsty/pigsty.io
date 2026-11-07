@@ -46,7 +46,7 @@ weight: 6000
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.16` | {{< pgvers "18,17,16,15,14" >}} | `pg_profile` | `dblink`, `plpgsql` |
-| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.16` | {{< pgvers "18,17,16,15,14" >}} | `pg_profile_$v` | `postgresql$v-contrib` |
+| [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.16` | {{< pgvers "18,17,16,15,14" >}} | `pg_profile_$v` | `postgresql$v-contrib` |
 | [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `4.16` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-profile` | `postgresql-contrib-$v` |
 {.ext-table .wide .expand}
 

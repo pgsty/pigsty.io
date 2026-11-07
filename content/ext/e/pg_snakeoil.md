@@ -38,7 +38,7 @@ weight: 7380
 {.ext-table .ext-table--rel}
 
 
-> require clamV libs
+> Requires ClamAV.
 
 
 ## Version

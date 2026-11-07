@@ -133,8 +133,8 @@ See the [Compatible OS List](/docs/ref/linux/).
 The recommended operating system versions are:
 
 - **Rocky Linux 9.8 / 10.2**.
-- **Debian 12.15 / 13.6**.
-- **Ubuntu 22.04.5 / 24.04.4 / 26.04.0**.
+- **Debian 12.15 / 13.7**.
+- **Ubuntu 22.04.5 / 24.04.5 / 26.04.1**.
 
 On macOS or Windows, use a virtual machine or a Docker image with systemd.
 

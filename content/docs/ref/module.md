@@ -26,7 +26,7 @@ The table lists modules with separate configuration and documentation. GA, BETA,
 |  [**`JUICE`**](/docs/juice)  | Extension |  BETA  | `/docs/juice`  | JuiceFS distributed file system using PostgreSQL as metadata engine.                                  |
 |   [**`VIBE`**](/docs/vibe)   | Extension |  BETA  |  `/docs/vibe`  | Browser-based dev environment with Code-Server, JupyterLab, Node.js, Claude Code, and Codex CLI.      |
 |  [**`KAFKA`**](/docs/kafka)  | Extension |  PILOT  | `/docs/kafka`  | Apache Kafka 4.x dynamic KRaft cluster deployment, security baseline, and monitoring.                 |
-{.stretch-last}
+{.wide .expand}
 
 
 ----------------

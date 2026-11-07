@@ -12,11 +12,11 @@ There are **27** extensions in **19** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`citus`](/ext/e/citus) | [`citus`](https://github.com/citusdata/citus) | `14.3-1` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Distributed PostgreSQL as an extension |
-| [`citus_columnar`](/ext/e/citus_columnar) | [`citus`](https://github.com/citusdata/citus) | `14.3-1` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Citus columnar storage engine |
+| [`citus`](/ext/e/citus) | [`citus`](https://github.com/citusdata/citus) | `14.3.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Distributed PostgreSQL as an extension |
+| [`citus_columnar`](/ext/e/citus_columnar) | [`citus`](https://github.com/citusdata/citus) | `14.3.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Citus columnar storage engine |
 | [`columnar`](/ext/e/columnar) | [`hydra`](https://github.com/hydradatabase/columnar) | `1.1.2` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Hydra Columnar extension |
-| [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_duckdb`](https://github.com/duckdb/pg_duckdb) | `1.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | DuckDB Embedded in Postgres |
-| [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_mooncake`](https://github.com/Mooncake-Labs/pg_mooncake) | `0.2.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Columnstore Table in Postgres |
+| [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_duckdb`](https://github.com/duckdb/pg_duckdb) | `1.2.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | DuckDB Embedded in Postgres |
+| [`pg_mooncake`](/ext/e/pg_mooncake) | [`pg_mooncake`](https://github.com/pgsty/pg_mooncake) | `0.3.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Columnstore Table in Postgres |
 | [`storage_engine`](/ext/e/storage_engine) | [`storage_engine`](https://github.com/saulojb/storage_engine) | `2.4.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_clickhouse`](/ext/e/pg_clickhouse) | [`pg_clickhouse`](https://github.com/ClickHouse/pg_clickhouse) | `0.11` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Interfaces to query ClickHouse databases from PostgreSQL |
 | [`duckdb_fdw`](/ext/e/duckdb_fdw) | [`duckdb_fdw`](https://github.com/alitrack/duckdb_fdw) | `2.0.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | DuckDB Foreign Data Wrapper |
@@ -28,16 +28,16 @@ There are **27** extensions in **19** packages.
 | [`pg_strom`](/ext/e/pg_strom) | [`pg_strom`](https://github.com/heterodb/pg-strom) | `6.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PG-Strom - big-data processing acceleration using GPU and NVME |
 | [`pg_orca`](/ext/e/pg_orca) | [`pg_orca`](https://github.com/quantumiodb/pgorca) | `1.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | ORCA query optimizer as a PostgreSQL extension |
 | [`pg_sorted_heap`](/ext/e/pg_sorted_heap) | [`pg_sorted_heap`](https://github.com/skuznetsov/pg_sorted_heap) | `0.14.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Sorted heap table AM with zone map scan pruning and built-in vector search |
-| [`pg_lake`](/ext/e/pg_lake) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Data lake extension by Snowflake |
-| [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_base) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extension development kit by Snowflake |
-| [`pg_extension_updater`](/ext/e/pg_extension_updater) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_updater) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Automatic extension updater |
-| [`pg_map`](/ext/e/pg_map) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_map) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Map type for PostgreSQL, bundled as a required pg_lake component. |
-| [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_engine) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Query engine for data lake queries |
-| [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_iceberg) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Iceberg implementation in Postgres |
-| [`pg_lake_table`](/ext/e/pg_lake_table) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_table) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Data lake tables and Iceberg tables |
-| [`pg_lake_copy`](/ext/e/pg_lake_copy) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_copy) | `3.5` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Copy to/from data lake files |
+| [`pg_lake`](/ext/e/pg_lake) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Data lake extension by Snowflake |
+| [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_base) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Extension development kit by Snowflake |
+| [`pg_extension_updater`](/ext/e/pg_extension_updater) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_extension_updater) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Automatic extension updater |
+| [`pg_map`](/ext/e/pg_map) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_map) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| [`pg_lake_engine`](/ext/e/pg_lake_engine) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_engine) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Query engine for data lake queries |
+| [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_iceberg) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Iceberg implementation in Postgres |
+| [`pg_lake_table`](/ext/e/pg_lake_table) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_table) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Data lake tables and Iceberg tables |
+| [`pg_lake_copy`](/ext/e/pg_lake_copy) | [`pg_lake`](https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_copy) | `3.6` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Copy to/from data lake files |
 | [`pg_table_range`](/ext/e/pg_table_range) | [`pg_table_range`](https://github.com/bitner/pg_table_range) | `0.1.2` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Planning-time partition pruning by per-partition data ranges, including non-key columns. |
-| [`pg_improv`](/ext/e/pg_improv) | [`pg_improv`](https://codeberg.org/gregburd/improv) | `0.12.2` | <a class="ext-badge ext-badge--license apache20 or mit" href="/ext/license#apache20ormit">Apache-2.0 OR MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Incremental multidimensional models and formula functions over PostgreSQL tables. |
+| [`pg_improv`](/ext/e/pg_improv) | [`pg_improv`](https://codeberg.org/gregburd/improv) | `0.13.0` | <a class="ext-badge ext-badge--license apache20 or mit" href="/ext/license#apache20ormit">Apache-2.0 OR MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Incremental multidimensional models and formula functions over PostgreSQL tables. |
 | [`tablefunc`](/ext/e/tablefunc) | [`tablefunc`](https://www.postgresql.org/docs/current/tablefunc.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | functions that manipulate whole tables, including crosstab |
 {.ext-table .wide .expand}
 
@@ -46,7 +46,7 @@ There are **27** extensions in **19** packages.
 
 ## citus {#citus}
 
-[**`citus`**](/ext/e/citus) - `14.3-1` : Distributed PostgreSQL as an extension
+[**`citus`**](/ext/e/citus) - `14.3.0` : Distributed PostgreSQL as an extension
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -65,7 +65,7 @@ There are **27** extensions in **19** packages.
 
 ## citus_columnar {#citus_columnar}
 
-[**`citus`**](/ext/e/citus_columnar) - `14.3-1` : Citus columnar storage engine
+[**`citus`**](/ext/e/citus_columnar) - `14.3.0` : Citus columnar storage engine
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -103,7 +103,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_duckdb {#pg_duckdb}
 
-[**`pg_duckdb`**](/ext/e/pg_duckdb) - `1.1.1` : DuckDB Embedded in Postgres
+[**`pg_duckdb`**](/ext/e/pg_duckdb) - `1.2.0` : DuckDB Embedded in Postgres
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -122,12 +122,12 @@ There are **27** extensions in **19** packages.
 
 ## pg_mooncake {#pg_mooncake}
 
-[**`pg_mooncake`**](/ext/e/pg_mooncake) - `0.2.0` : Columnstore Table in Postgres
+[**`pg_mooncake`**](/ext/e/pg_mooncake) - `0.3.0` : Columnstore Table in Postgres
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`pg_mooncake`](/ext/e/pg_mooncake) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_mooncake`](https://github.com/Mooncake-Labs/pg_mooncake) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Package** | [`pg_mooncake`](https://github.com/pgsty/pg_mooncake) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **RPM** | `pg_mooncake_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-pg-mooncake` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
@@ -350,7 +350,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_lake {#pg_lake}
 
-[**`pg_lake`**](/ext/e/pg_lake) - `3.5` : Data lake extension by Snowflake
+[**`pg_lake`**](/ext/e/pg_lake) - `3.6` : Data lake extension by Snowflake
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -369,7 +369,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_extension_base {#pg_extension_base}
 
-[**`pg_lake`**](/ext/e/pg_extension_base) - `3.5` : Extension development kit by Snowflake
+[**`pg_lake`**](/ext/e/pg_extension_base) - `3.6` : Extension development kit by Snowflake
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -388,7 +388,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_extension_updater {#pg_extension_updater}
 
-[**`pg_lake`**](/ext/e/pg_extension_updater) - `3.5` : Automatic extension updater
+[**`pg_lake`**](/ext/e/pg_extension_updater) - `3.6` : Automatic extension updater
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -407,7 +407,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_map {#pg_map}
 
-[**`pg_lake`**](/ext/e/pg_map) - `3.5` : Map type for PostgreSQL, bundled as a required pg_lake component.
+[**`pg_lake`**](/ext/e/pg_map) - `3.6` : Map type for PostgreSQL, bundled as a required pg_lake component.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -426,7 +426,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_lake_engine {#pg_lake_engine}
 
-[**`pg_lake`**](/ext/e/pg_lake_engine) - `3.5` : Query engine for data lake queries
+[**`pg_lake`**](/ext/e/pg_lake_engine) - `3.6` : Query engine for data lake queries
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -445,7 +445,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_lake_iceberg {#pg_lake_iceberg}
 
-[**`pg_lake`**](/ext/e/pg_lake_iceberg) - `3.5` : Iceberg implementation in Postgres
+[**`pg_lake`**](/ext/e/pg_lake_iceberg) - `3.6` : Iceberg implementation in Postgres
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -464,7 +464,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_lake_table {#pg_lake_table}
 
-[**`pg_lake`**](/ext/e/pg_lake_table) - `3.5` : Data lake tables and Iceberg tables
+[**`pg_lake`**](/ext/e/pg_lake_table) - `3.6` : Data lake tables and Iceberg tables
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -483,7 +483,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_lake_copy {#pg_lake_copy}
 
-[**`pg_lake`**](/ext/e/pg_lake_copy) - `3.5` : Copy to/from data lake files
+[**`pg_lake`**](/ext/e/pg_lake_copy) - `3.6` : Copy to/from data lake files
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -521,7 +521,7 @@ There are **27** extensions in **19** packages.
 
 ## pg_improv {#pg_improv}
 
-[**`pg_improv`**](/ext/e/pg_improv) - `0.12.2` : Incremental multidimensional models and formula functions over PostgreSQL tables.
+[**`pg_improv`**](/ext/e/pg_improv) - `0.13.0` : Incremental multidimensional models and formula functions over PostgreSQL tables.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

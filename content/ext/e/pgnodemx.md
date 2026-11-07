@@ -31,15 +31,16 @@ weight: 6450
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
 | 6450  | [**`pgnodemx`**](/ext/e/pgnodemx) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
-| 6460  | [**`pg_proctab`**](/ext/e/pg_proctab) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 6460  | [**`pg_proctab`**](/ext/e/pg_proctab) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`system_stats`](/ext/e/system_stats) [`pgmonitor`](/ext/e/pgmonitor) [`pg_stat_ch`](/ext/e/pg_stat_ch) [`pgsentinel`](/ext/e/pgsentinel) [`pg_datasentinel`](/ext/e/pg_datasentinel) [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`pgmeminfo`](/ext/e/pgmeminfo) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgpool_adm`](/ext/e/pgpool_adm) [`pgexporter_ext`](/ext/e/pgexporter_ext) [`pg_statvfs`](/ext/e/pg_statvfs) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Depended By** | [`pg_proctab`](/ext/e/pg_proctab) |
 {.ext-table .ext-table--rel}
 
 
-> Package/source version 2.0.1 ships SQL/control version 2.0. PIGSTY RPM and PGDG DEB cover PostgreSQL 14-18 and also ship the pg_proctab compatibility stub; the release tarball reports pgnodemx_version() as none. shared_preload_libraries=pgnodemx is required.
+> Preload; Pigsty fixes unavailable cgroups.
 
 
 ## Version

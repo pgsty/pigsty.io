@@ -178,10 +178,10 @@ weight: 3900
 
 ## Build
 
-You can build the DEB packages for `timestamp9` using `pig build`:
+You can build the RPM / DEB packages for `timestamp9` using `pig build`:
 
 ```bash
-pig build pkg timestamp9         # build DEB packages
+pig build pkg timestamp9         # build RPM / DEB packages
 ```
 
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the English documentation website for [Pigsty](https://github.com/pgsty/pigsty), an open-source PostgreSQL distribution. The site is built with Hugo using the OINK v1.5.0 theme.
+This is the English documentation website for [Pigsty](https://github.com/pgsty/pigsty), an open-source PostgreSQL distribution. The site is built with Hugo using the OINK v1.5.1 theme.
 
 - **Site URL**: https://pigsty.io (Global English docs)
 - **English docs**: https://pigsty.cc (separate repository at ~/pgsty/pigsty.cc)
@@ -43,7 +43,7 @@ python bin/gen-pgext.py --lang en [--src DIR | --remote]
 ## Architecture
 
 ### Hugo Configuration
-- `hugo.yaml` - Main Hugo configuration, uses OINK v1.5.0 via Hugo modules
+- `hugo.yaml` - Main Hugo configuration, uses OINK v1.5.1 via Hugo modules
 - Build toolchain: Hugo Extended 0.168.0 and Go 1.27.3
 - Default language: zh-CN (Chinese)
 

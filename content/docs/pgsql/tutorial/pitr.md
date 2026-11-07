@@ -157,12 +157,12 @@ Recheck `pg_pitr` and the target nodes before running the destructive stage:
 ./pgsql-pitr.yml -l pg-meta -t pitr
 ```
 
-This stage:
+This stage runs on the primary only. Replicas stay stopped and keep their old data until `up`.
 
-1. renders `/pg/conf/pitr.conf` and `/pg/bin/pg-restore`;
+1. renders `/pg/conf/pitr.conf`, `/pg/bin/pg-restore`, and `/pg/bin/pg-recovery`;
 2. optionally moves old PGDATA according to `backup`;
 3. creates the destination and runs pgBackRest restore with `--force` and `delta=y`;
-4. starts PostgreSQL directly and waits for a consistent recovery state in the log;
+4. starts PostgreSQL directly and waits until WAL replay reaches the target, failing if PostgreSQL exits or pauses before it;
 5. prints a `pg_controldata` summary.
 
 Control data proves only that the directory contains readable control state.
@@ -183,7 +183,7 @@ If the target is wrong:
 3. adjust the target and rerun the complete `--check`;
 4. rerun the `pitr` stage.
 
-Do not run `up` or allow replicas from the old timeline to rejoin.
+Do not run `up` until the result is accepted.
 
 
 --------
@@ -198,6 +198,7 @@ sudo -iu postgres psql -p 5432 -Atqc 'SELECT pg_is_in_recovery()'
 ```
 
 The expected result is `f`.
+If the primary is still paused at the target when you run `up`, `up` promotes it there before it starts Patroni.
 Promotion changes state, and you cannot undo it without loss.
 
 With every Patroni member still stopped and exact target still `pg-meta`, run:
@@ -209,7 +210,8 @@ With every Patroni member still stopped and exact target still `pg-meta`, run:
 For the primary, `up` deletes the `/pg/pg-meta/` prefix from etcd.
 The effective prefix also depends on `pg_namespace` and Citus settings.
 It stops the manually started PostgreSQL and starts Patroni on the primary.
-It then starts replicas one at a time and resumes HA.
+It resumes HA, then rebuilds replicas one at a time.
+For each replica, it waits until the new primary is writable, wipes the replica data directory, and lets Patroni clone it from the new primary.
 The etcd deletion task tolerates errors.
 Thus, a successful playbook result does not prove that it removed stale DCS state correctly.
 
@@ -252,7 +254,7 @@ The default `archive: true` does not require this step.
 
 ## Multi-Node and Cross-Cluster Recovery
 
-- Old-timeline replicas must not rejoin without validation. `up` starts replicas one at a time and waits for clone/recovery; monitor them to completion.
+- Only the primary is restored. Replicas keep their old data until `up`, which wipes them and lets Patroni clone them from the new primary one at a time. Budget time and primary bandwidth for a full `pg_basebackup` per replica, and monitor each clone to completion.
 - In cross-stanza recovery, `pg_pitr.cluster` is the source while `-l` is the destination being overwritten. Record and state both separately.
 - Cross-cluster recovery should normally use `archive: false` so a test destination cannot write WAL into the source stanza. Enable its own archiving only after acceptance and [post-clone stanza cleanup](/docs/pgsql/backup/cluster/#post-clone-cleanup).
 - `link_map`, `data`, `port`, and a temporary `repo` change the actual storage and data targets; include all of them in both `--check` and human review.

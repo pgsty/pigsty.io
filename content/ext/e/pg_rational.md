@@ -1,7 +1,7 @@
 ---
 title: "pg_rational"
 linkTitle: "pg_rational"
-description: "bigint fractions"
+description: "Precise fractions stored as two 32-bit integers"
 weight: 3740
 ---
 

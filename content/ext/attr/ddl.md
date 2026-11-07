@@ -6,7 +6,7 @@ weight: 20
 slug: ddl
 ---
 
-The following **30** extensions can be used without running `CREATE EXTENSION`.
+The following **32** extensions can be used without running `CREATE EXTENSION`.
 
 These extensions typically exist as shared libraries (hooks) or standalone tools that take effect through configuration parameters.
 
@@ -16,13 +16,15 @@ These extensions typically exist as shared libraries (hooks) or standalone tools
 | [`plan_filter`](/ext/e/plan_filter) | [`pg_plan_filter`](https://github.com/pgexperts/pg_plan_filter) | `1.0.0` | `--sL---` | Cooperative statement and transaction guards based on estimated plan cost |
 | [`pg_disorder`](/ext/e/pg_disorder) | [`pg_disorder`](https://github.com/viralpraxis/pg_disorder) | `0.1.0` | `--sL---` | Perturb unordered SELECT row order to expose order-dependent tests |
 | [`pg_relation_sql`](/ext/e/pg_relation_sql) | [`pg_relation_sql`](https://github.com/asmgit/pg_relation_sql) | `0.2.2` | `-------` | Generate inlinable SQL functions for navigating PostgreSQL foreign-key relations |
-| [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.4` | `--s---r` | Activate/deactivate/verify checksums in offline Postgres clusters |
+| [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.4` | `-b-----` | Enable/disable checksums offline and verify them online or offline |
+| [`pg_catcheck`](/ext/e/pg_catcheck) | [`pg_catcheck`](https://github.com/EnterpriseDB/pg_catcheck) | `1.6.0` | `-b-----` | Diagnosing system catalog corruption |
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | [`pg_pathcheck`](https://github.com/danolivo/pg_pathcheck) | `0.9.1` | `--sL---` | Validate planner Path trees for freed or corrupt memory |
+| [`pg_savior`](/ext/e/pg_savior) | [`pg_savior`](https://github.com/viggy28/pg_savior) | `0.1.0` | `--sL--r` | Prevent accidental data loss and risky schema changes |
 | [`safeupdate`](/ext/e/safeupdate) | [`safeupdate`](https://github.com/eradman/pg-safeupdate) | `1.7` | `--sL---` | Require criteria for UPDATE and DELETE |
 | [`basic_archive`](/ext/e/basic_archive) | [`basic_archive`](https://www.postgresql.org/docs/current/basic-archive.html) | `-` | `c-s----` | an example of an archive module |
 | [`basebackup_to_shell`](/ext/e/basebackup_to_shell) | [`basebackup_to_shell`](https://www.postgresql.org/docs/current/basebackup-to-shell.html) | `-` | `c-s----` | adds a custom basebackup target called shell |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | [`bgw_replstatus`](https://github.com/mhagander/bgw_replstatus) | `1.0.8` | `--sL---` | Small PostgreSQL background worker to report whether a node is a replication master or standby |
-| [`pg_relusage`](/ext/e/pg_relusage) | [`pg_relusage`](https://github.com/adept/pg_relusage) | `1.0.2` | `--sL--r` | Log all the queries that reference a particular column |
+| [`pg_relusage`](/ext/e/pg_relusage) | [`pg_relusage`](https://github.com/adept/pg_relusage) | `1.0.2` | `--sL--r` | Log the relations actually used by each SQL statement |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | [`pg_overexplain`](https://www.postgresql.org/docs/devel/pgoverexplain.html) | `1.0` | `c-sL---` | Allow EXPLAIN to dump even more details |
 | [`auto_explain`](/ext/e/auto_explain) | [`auto_explain`](https://www.postgresql.org/docs/current/auto-explain.html) | `-` | `c-sL---` | Provides a means for logging execution plans of slow statements automatically |
 | [`passwordcheck_cracklib`](/ext/e/passwordcheck_cracklib) | [`passwordcheck_cracklib`](https://github.com/devrimgunduz/passwordcheck_cracklib) | `3.2.1` | `--sL---` | Strengthen PostgreSQL user password checks with cracklib |

@@ -1,7 +1,7 @@
 ---
 title: AgensGraph
 weight: 2115
-description: Use the AgensGraph (PG17) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
+description: Use the AgensGraph (PG18) graph database kernel in Pigsty to get property graph and Cypher/SQL hybrid query capabilities within the PostgreSQL ecosystem.
 icon: fa-solid fa-project-diagram
 module: [PGSQL]
 categories: [Concept]
@@ -17,11 +17,11 @@ It supports openCypher queries and mixed Cypher/SQL workflows.
 
 Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of the standard PostgreSQL operational model.
 
-- Kernel package: `agensgraph`
+- Kernel package alias: `agensgraph`, resolved to `agensgraph-18` by the PG18 template
 - Mode identifier: `pg_mode: agens`
-- Example version in this guide: `AgensGraph 2.17.0`
-- Example version string: `PostgreSQL 17.10 (AgensGraph 2.17.0)`; actual patch versions depend on the installed package and `SELECT version()`
-- Built-in template: `agens`
+- Validated version in this guide: `AgensGraph 2.18.6.0` (`agensgraph-18`, Debian 13 packages for amd64 / arm64)
+- Example version string: `PostgreSQL 18.6 (AgensGraph 2.18.6.0)`; actual patch versions depend on the installed package and `SELECT version()`
+- Current development template: `fork/agens`
 - Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
 AgensGraph uses the PostgreSQL wire protocol.
@@ -35,14 +35,14 @@ AgensGraph adds graph models, Cypher syntax, and graph objects such as vertices 
 
 Use the built-in Pigsty template:
 
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml). Development sources moved it to `conf/fork/agens.yml`; use `-c fork/agens` with those sources.
+The commands below use the [current development template](https://github.com/pgsty/pigsty/blob/main/conf/fork/agens.yml), which defaults to AgensGraph 2.18 / PostgreSQL 18. The released [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml) still uses `-c agens` and defaults to PG17. For a new PG18 deployment with that release, explicitly set `pg_version: 18`.
 
 ```bash
-./configure -c agens
+./configure -c fork/agens
 ./deploy.yml
 ```
 
-The `agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package.
+The `fork/agens` template automatically enables `pg_mode: agens` and installs the `agensgraph` kernel package.
 After deployment, verify the kernel version:
 
 ```bash
@@ -60,7 +60,7 @@ Key configuration for AgensGraph in Pigsty:
 all:
   vars:
     node_repo_modules: node,infra,pgsql
-    pg_version: 17
+    pg_version: 18
 
   children:
     pg-meta:
@@ -106,11 +106,12 @@ MATCH (v:person {name: 'Jack'})
 SET v.age = '24';
 ```
 
-To process Cypher results in SQL, use a graph query as a `FROM` subquery. See the [AgensGraph hybrid query manual](https://tech.skaiworldwide.com/docs/en/agensgraph/17/developer_manual/hybrid.html):
+To process Cypher results in SQL, use a graph query as a `FROM` subquery. See the [AgensGraph hybrid query manual](https://tech.skaiworldwide.com/docs/en/agensgraph/latest/querying/combining-sql-and-cypher.html):
 
 ```sql
-SELECT person->>'name' AS name
-FROM (MATCH (v:person) RETURN v AS person) AS people;
+SELECT name #>> '{}' AS name
+FROM (MATCH (v:person) RETURN v.name AS name) AS people
+ORDER BY name;
 ```
 
 Projects commonly combine relational tables, graph labels, and Cypher queries.
@@ -122,8 +123,8 @@ Graph analysis uses AgensGraph's mixed Cypher and SQL syntax. Apache AGE's `cyph
 
 ## Notes
 
-- AgensGraph currently uses the PG17-compatible line. Do not assume that PG18 extensions are available.
-- The default `agens` template uses one node for quick validation. Production deployments should use an HA topology.
+- The current development template targets new AgensGraph 2.18 / PG18 deployments. PG18 cannot start a PG17 data directory. For existing clusters, follow the [upstream upgrade guide](https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/upgrade-to-2.18.html) to evaluate `pg_upgrade` or dump and reload, and verify query compatibility.
+- The default `fork/agens` template uses one node for quick validation. Production deployments should use an HA topology.
 - Third-party PostgreSQL extensions may be incompatible with AgensGraph. Verify compatibility first.
 - Graph objects and relational objects can coexist in one database. For production, clear database or naming conventions usually help you distinguish them.
 - Tune memory and cost parameters for the size of your graph model. Check that the defaults are suitable before you use them.
@@ -138,8 +139,8 @@ Graph analysis uses AgensGraph's mixed Cypher and SQL syntax. Apache AGE's `cyph
 - [PGSQL kernel mode config](/docs/pgsql/config/kernel/)
 - AgensGraph repository: <https://github.com/skaiworldwide-oss/agensgraph>
 - AgensGraph official docs: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/>
-- AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/17/quick_guide/index.html>
-- AgensGraph 2.17.0 Release Notes: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/agensgraph_release_notes_2_17_0.html>
+- AgensGraph Quick Guide: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/get_started/index.html>
+- AgensGraph 2.18 Release Notes: <https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/2.18.html>
 
 
 --------

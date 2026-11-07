@@ -394,7 +394,7 @@ The first extension batch after July 10 is July 24. The original batch covers Ju
 | 2026-07-24 | `sslutils` | `1.4` → `1.4` | EL8 RPM PG18, 2 arch |
 | 2026-07-24 | `wal2mongo` | `1.0.7` → `1.0.7` | RPM: +RPM PG14-18; PG17-18 compatible<br>DEB: 10 DEB: +PG17-18; PG14-18 |
 | 2026-07-24 | `system_stats` | DEB only: `4.0` → `4.1` | PG14-18; 10 DEB targets |
-{.stretch-last}
+{.wide .expand}
 
 **Infrastructure Package Update Log**
 
@@ -548,7 +548,7 @@ Build, download, and verification status uses the original log wording. It does 
 | 2026-07-16 | `code` | `1.128.0` | `1.129.0` | Direct-download artifacts |
 | 2026-07-16 | `code-server` | `4.127.0` | `4.128.0` | Direct-download artifacts |
 | 2026-07-16 | `cloudflared` | `2026.7.1` | `2026.7.2` | Direct-download artifacts |
-{.stretch-last}
+{.wide .expand}
 
 **Compatibility Changes and Upgrade Notes**
 
@@ -720,7 +720,7 @@ The release adds 21 extensions and updates the PostgreSQL 18.4 package graph. It
 | `toastinfo`           | `1.5`               | `1.7`                          | PG 14-18                                         |
 | `pg_ivm`              | `1.14`              | `1.15` DEB / `1.14` RPM        | PG 14-18                                         |
 | `timeseries`          | `0.2.0`             | `0.2.1`                        | PG 14-18                                         |
-{.stretch-last}
+{.wide .expand}
 
 **Infrastructure Package Changes**
 
@@ -784,7 +784,7 @@ The release adds 21 extensions and updates the PostgreSQL 18.4 package graph. It
 | `sabiql`                     | `1.11.1`         | `1.14.0`         |                                     |
 | `pev2`                       | `1.21.0`         | `1.22.0`         |                                     |
 | `rainfrog`                   | `0.3.18`         | `0.3.19`         |                                     |
-{.stretch-last}
+{.wide .expand}
 
 The MD5 list below covers all 14 validated artifacts. GitHub publishes six Community Edition artifacts. The Professional Edition provides the remaining eight. GitHub records SHA-256 digests for the uploaded Community Edition artifacts.
 
@@ -907,7 +907,7 @@ d092c48ee55116ed5e2c99a3d909ccdd  pigsty-pkg-v4.4.0.u24.aarch64.tgz
 | `timescaledb`        | 2.25.2      | 2.26.4      | Upgrade; TSL minor update                                               |
 | `ulak`               | -           | 0.0.2       | New; PG 14-18                                                           |
 | `wrappers`           | 0.5.7       | 0.6.0       | Upgrade; Rust/pgrx 0.16.1 -> 0.17.0                                     |
-{.stretch-last}
+{.wide .expand}
 
 
 **Infrastructure Package Updates**

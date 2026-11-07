@@ -11,6 +11,11 @@ weight: 3100
     <div class="ext-card__title">postgres-plr/plr</div>
     <div class="ext-card__desc">https://github.com/postgres-plr/plr</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/plr-8.4.8.10.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">plr-8.4.8.10.tar.gz</div>
+    <div class="ext-card__desc">plr-8.4.8.10.tar.gz</div>
+  </a>
 </div>
 
 
@@ -34,16 +39,13 @@ weight: 3100
 {.ext-table .ext-table--rel}
 
 
-> Release/control 8.4.8.10; PG18 RPM/DEB verified. Relocatable=true; package versions vary by platform and PG major.
-
-
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `8.4.8.10` | {{< pgvers "18,17,16,15,14" >}} | `plr` | - |
-| [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `8.4.8.10` | {{< pgvers "18,17,16,15,14" >}} | `plr_$v` | - |
-| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `8.4.8.10` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-plr` | - |
+| [**RPM**](/ext/rpm#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `8.4.8.10` | {{< pgvers "18,17,16,15,14" >}} | `plr_$v` | `R-core` |
+| [**DEB**](/ext/deb#lang) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `8.4.8.10` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-plr` | `r-base-core` |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
@@ -446,6 +448,14 @@ weight: 3100
 @ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.9-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.9 122.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.9-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-plr postgresql-14-plr_8.4.8.8-1.pgdg26.04+1_arm64.deb pgdg 8.4.8.8 122.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/plr/postgresql-14-plr_8.4.8.8-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `plr` using `pig build`:
+
+```bash
+pig build pkg plr         # build RPM / DEB packages
+```
 
 
 ## Install

@@ -1,7 +1,7 @@
 ---
 title: "pg_query_rewrite"
 linkTitle: "pg_query_rewrite"
-description: "Rewrite SQL statements with a PostgreSQL ProcessUtility hook"
+description: "Translate a given SQL statement into another predefined SQL statement"
 weight: 5030
 ---
 

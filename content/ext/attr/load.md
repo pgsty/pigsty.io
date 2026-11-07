@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **134** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **136** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -18,7 +18,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`mobilitydb`](/ext/e/mobilitydb) | `postgis-3` | MobilityDB geospatial trajectory data management & analysis platform |
 | [`vchord`](/ext/e/vchord) | `vchord` | Vector database plugin for Postgres, written in Rust |
 | [`vectorize`](/ext/e/vectorize) | `vectorize` | The simplest way to do vector search on Postgres |
-| [`pgml`](/ext/e/pgml) | `pgml` | Run AL/ML workloads with SQL interface |
+| [`pgml`](/ext/e/pgml) | `pgml` | Run AI/ML workloads with SQL interface |
 | [`pg_search`](/ext/e/pg_search) | `pg_search` | Full text search for PostgreSQL using BM25 |
 | [`pg_bigm`](/ext/e/pg_bigm) | `pg_bigm` | create 2-gram (bigram) index for faster full text search. |
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | `pg_bestmatch` | Generate BM25 sparse vector inside PostgreSQL |
@@ -31,6 +31,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`storage_engine`](/ext/e/storage_engine) | `storage_engine` | colcompress and rowcompress Table Access Methods with vectorized execution |
 | [`pg_parquet`](/ext/e/pg_parquet) | `pg_parquet` | copy data between Postgres and Parquet |
 | [`pg_ducklake`](/ext/e/pg_ducklake) | `pg_ducklake` | DuckLake lakehouse extension for PostgreSQL, backed by DuckDB and Parquet |
+| [`pg_strom`](/ext/e/pg_strom) | `pg_strom` | PG-Strom - big-data processing acceleration using GPU and NVME |
 | [`pg_orca`](/ext/e/pg_orca) | `pg_orca` | ORCA query optimizer as a PostgreSQL extension |
 | [`pg_sorted_heap`](/ext/e/pg_sorted_heap) | `pg_sorted_heap` | Sorted heap table AM with zone map scan pruning and built-in vector search |
 | [`pg_lake`](/ext/e/pg_lake) | `pg_extension_base` | Data lake extension by Snowflake |
@@ -40,6 +41,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_lake_table`](/ext/e/pg_lake_table) | `pg_extension_base` | Data lake tables and Iceberg tables |
 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `pg_extension_base` | Copy to/from data lake files |
 | [`age`](/ext/e/age) | `age` | AGE graph database extension |
+| [`onesparse`](/ext/e/onesparse) | `onesparse` | Sparse linear algebra and graph extension for PostgreSQL 18 |
 | [`pgrdf`](/ext/e/pgrdf) | `pgrdf` | RDF, SPARQL, SHACL, and OWL reasoning for PostgreSQL |
 | [`ulak`](/ext/e/ulak) | `ulak` | Transactional Outbox extension for PostgreSQL with reliable asynchronous delivery |
 | [`pg_ttl_index`](/ext/e/pg_ttl_index) | `pg_ttl_index` | Automatic data expiration with TTL indexes |
@@ -58,12 +60,11 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pldbgapi`](/ext/e/pldbgapi) | `$libdir/plugin_debugger` | server-side support for debugging PL/pgSQL functions |
 | [`plprofiler`](/ext/e/plprofiler) | `plprofiler` | server-side support for profiling PL/pgSQL functions |
 | [`pg_regresql`](/ext/e/pg_regresql) | `pg_regresql` | Trust pg_class statistics for planning instead of physical relation size |
-| [`pgpdf`](/ext/e/pgpdf) | `pgpdf` | PDF type with meta admin & Full-Text Search |
 | [`pglite_fusion`](/ext/e/pglite_fusion) | `pglite_fusion` | Embed an SQLite database in your PostgreSQL table |
 | [`pg_net`](/ext/e/pg_net) | `pg_net` | Async HTTP Requests |
 | [`pgx_ulid`](/ext/e/pgx_ulid) | `pgx_ulid` | ulid type and methods |
 | [`pg_rewrite`](/ext/e/pg_rewrite) | `pg_rewrite` | Tool allows read write to the table during the rewriting |
-| [`pg_query_rewrite`](/ext/e/pg_query_rewrite) | `pg_query_rewrite` | Rewrite SQL statements with a PostgreSQL ProcessUtility hook |
+| [`pg_query_rewrite`](/ext/e/pg_query_rewrite) | `pg_query_rewrite` | Translate a given SQL statement into another predefined SQL statement |
 | [`pg_squeeze`](/ext/e/pg_squeeze) | `pg_squeeze` | A tool to remove unused space from a relation. |
 | [`pg_readonly`](/ext/e/pg_readonly) | `pg_readonly` | cluster database read only |
 | [`pgautofailover`](/ext/e/pgautofailover) | `pgautofailover` | pg_auto_failover |
@@ -72,6 +73,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pg_pathcheck`](/ext/e/pg_pathcheck) | `pg_pathcheck` | Validate planner Path trees for freed or corrupt memory |
 | [`pgdisablelogerror`](/ext/e/pgdisablelogerror) | `$libdir/pgdisablelogerror` | Disable selected SQLSTATE error codes from PostgreSQL server logging. |
 | [`online_advisor`](/ext/e/online_advisor) | `online_advisor` | Suggest missing indexes and extended statistics online |
+| [`pg_savior`](/ext/e/pg_savior) | `pg_savior` | Prevent accidental data loss and risky schema changes |
 | [`pg_circuit`](/ext/e/pg_circuit) | `pg_circuit` | Runtime observation, warnings and blocking for dangerous SQL statements |
 | [`safeupdate`](/ext/e/safeupdate) | `safeupdate` | Require criteria for UPDATE and DELETE |
 | [`pg_strict`](/ext/e/pg_strict) | `pg_strict` | Prevent dangerous UPDATE and DELETE without WHERE clause |
@@ -92,7 +94,7 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`pgsentinel`](/ext/e/pgsentinel) | `pgsentinel` | active session history |
 | [`pgnodemx`](/ext/e/pgnodemx) | `pgnodemx` | Capture node OS metrics via SQL queries |
 | [`bgw_replstatus`](/ext/e/bgw_replstatus) | `bgw_replstatus` | Small PostgreSQL background worker to report whether a node is a replication master or standby |
-| [`pg_relusage`](/ext/e/pg_relusage) | `pg_relusage` | Log all the queries that reference a particular column |
+| [`pg_relusage`](/ext/e/pg_relusage) | `pg_relusage` | Log the relations actually used by each SQL statement |
 | [`powa`](/ext/e/powa) | `powa,pg_stat_statements` | PostgreSQL Workload Analyser-core |
 | [`pg_overexplain`](/ext/e/pg_overexplain) | `pg_overexplain` | Allow EXPLAIN to dump even more details |
 | [`auto_explain`](/ext/e/auto_explain) | `auto_explain` | Provides a means for logging execution plans of slow statements automatically |

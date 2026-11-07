@@ -26,7 +26,7 @@ The parameter reference pages for the 10 modules below list **376** parameters, 
 |  [**`JUICE`**](/docs/juice/param)  |   1    |   2   | JuiceFS instance and cache parameters                      |
 |   [**`VIBE`**](/docs/vibe/param)   |   1    |  18   | Code/Jupyter/Node.js/Claude/Codex configuration            |
 |  [**`KAFKA`**](/docs/kafka/param)  |   2    |  19   | Kafka deployment and removal safeguard parameters          |
-{.stretch-last}
+{.wide .expand}
 
 Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) currently exposes 13 public parameters: 11 for deployment and 2 for protected removal. Fixed ports, paths, software versions, and timers are not public parameters.
 
@@ -46,7 +46,7 @@ Pilot module: [**native `MYSQL` 8.4**](/docs/mysql/param/#quick-reference) curre
 |  [**`JUICE`**](/docs/juice/param)   | [`JUICE`](/docs/juice/param) |
 |   [**`VIBE`**](/docs/vibe/param)    | [`VIBE`](/docs/vibe/param) |
 |  [**`KAFKA`**](/docs/kafka/param)   | [`KAFKA`](/docs/kafka/param/#parameter-overview), [`KAFKA_REMOVE`](/docs/kafka/param/#transient-protected-operational-variables) |
-{.stretch-last}
+{.wide .expand}
 
 --------
 

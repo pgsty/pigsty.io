@@ -11,6 +11,11 @@ weight: 2650
     <div class="ext-card__title">pgq/pgq</div>
     <div class="ext-card__desc">https://github.com/pgq/pgq</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgq-3.5.2.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pgq-3.5.2.tar.gz</div>
+    <div class="ext-card__desc">pgq-3.5.2.tar.gz</div>
+  </a>
 </div>
 
 
@@ -173,6 +178,14 @@ weight: 2650
 @ u26.x86_64 14 postgresql-14-pgq3 postgresql-14-pgq3_3.5.1-2.pgdg26.04+1_amd64.deb pgdg 3.5.1 123.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgq/postgresql-14-pgq3_3.5.1-2.pgdg26.04+1_amd64.deb
 @ u26.aarch64 14 postgresql-14-pgq3 postgresql-14-pgq3_3.5.1-2.pgdg26.04+1_arm64.deb pgdg 3.5.1 122.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pgq/postgresql-14-pgq3_3.5.1-2.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `pgq` using `pig build`:
+
+```bash
+pig build pkg pgq         # build RPM / DEB packages
+```
 
 
 ## Install

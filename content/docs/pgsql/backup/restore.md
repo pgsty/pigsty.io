@@ -63,10 +63,13 @@ You can pass the same object temporarily on the command line:
 > Booleans are not quoted. Invalid quoting can fail parsing or silently produce the wrong value.
 
 The playbook pauses Patroni HA, stops the cluster, and performs a delta pgBackRest restore.
-It starts PostgreSQL and waits for a consistent recovery state.
+It starts PostgreSQL and waits until WAL replay reaches the recovery target: promoted, paused, or shut down there.
+It fails if PostgreSQL exits or pauses before the target, for example when the target lies beyond the end of the archive.
 It then prints control data, removes old etcd metadata, and starts the cluster under Patroni again.
+Only the primary is restored. Replicas are left untouched until `up`.
+Then each one is wiped and cloned from the new primary by Patroni, one at a time, after the new primary is writable.
+Before Patroni starts, the primary is promoted at the target if it is still paused or shut down there, because Patroni discards the recovery target.
 The playbook first prints the source, target, and restore command, but does not ask for interactive approval.
-For a one-shot targeted recovery, explicitly set `action: promote`.
 To inspect data at the target, use [step-by-step execution](#step-by-step-execution) with `action: pause`.
 
 
@@ -190,7 +193,7 @@ Then run the stages in order:
 # down                 : # stop HA and PostgreSQL
 #   - pause            : # pause Patroni automatic failover
 #   - stop             : # stop Patroni and PostgreSQL
-# pitr                 : # perform PITR
+# pitr                 : # perform PITR on the primary only
 #   - config           : # render pgBackRest config and restore script
 #   - backup           : # optionally move PGDATA to /pg/data-backup
 #   - restore          : # run pgBackRest restore
@@ -198,12 +201,13 @@ Then run the stages in order:
 #   - verify           : # print recovered control data
 # up                   : # rebuild HA
 #   - etcd             : # remove old cluster metadata
-#   - start            : # start Patroni/PostgreSQL
+#   - start            : # start primary, then wipe and re-clone replicas
 #   - resume           : # resume Patroni automatic failover
 ```
 
 After `down`, confirm that the processes have stopped.
-After `pitr`, inspect `/pg/tmp/recovery.log` and query the recovery state.
+The `pitr` stage returns only after WAL replay reaches the target.
+Inspect `/pg/tmp/recovery.log` and query the recovery state.
 Then perform the narrowly authorized checks of business data.
 `pg_controldata /pg/data` reports checkpoint and timeline metadata.
 This information alone does not prove that recovery reached a time, XID, or LSN target.
@@ -213,18 +217,19 @@ SELECT pg_is_in_recovery(), pg_is_wal_replay_paused(),
        pg_last_wal_replay_lsn(), pg_last_xact_replay_timestamp();
 ```
 
-With `action: pause`, validate the data before promotion, then run `up`.
+With `action: pause`, validate the data, then run `up`.
+`up` promotes the primary at the target before it starts Patroni, so a manual promotion is optional.
 If the target is wrong, adjust `pg_pitr` and repeat `pitr` before `up`.
 `pause` or `shutdown` provides an effective human decision point only in this staged procedure.
-For a one-shot targeted recovery, explicitly set `action: promote`.
 
 ```bash
-pg_ctl -D /pg/data promote            # only after validating an action: pause recovery
-./pgsql-pitr.yml -l pg-meta -t up     # rebuild Patroni HA
+pg_ctl -D /pg/data promote            # optional: only after validating an action: pause recovery
+./pgsql-pitr.yml -l pg-meta -t up     # promote at the target if needed, rebuild Patroni HA
 ```
 
 > [!WARNING] Repeating the pitr stage
-> With `backup: true`, the playbook moves the current data directory to `/pg/data-backup`.
+> With `backup: true`, the playbook moves the primary's current data directory to `/pg/data-backup`.
+> Replicas do not keep a copy: `up` wipes them and clones them from the new primary.
 > It deletes any existing `/pg/data-backup` first.
 > The staged procedure is supported. A restore with `backup: true` is not generally idempotent.
 

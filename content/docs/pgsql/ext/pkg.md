@@ -20,7 +20,7 @@ Extensions have different names at different layers:
 |:-----------------|:-------------------------|:-----------------------------------|
 | Extension Name   | `vector`                 | `postgis`, `postgis_topology`, ... |
 | Package Alias    | `pgvector`               | `postgis`                          |
-| RPM Package Name | `pgvector_18`            | `postgis36_18`                    |
+| RPM Package Name | `pgvector_18`            | `postgis37_18`                    |
 | DEB Package Name | `postgresql-18-pgvector` | `postgresql-18-postgis-3`         |
 
 Use a **package alias** to specify an extension without its RPM or DEB package name:

@@ -30,7 +30,7 @@ weight: 9700
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9700  | [**`mimeo`**](/ext/e/mimeo) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 9700  | [**`mimeo`**](/ext/e/mimeo) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`dblink`](/ext/e/dblink) [`pglogical`](/ext/e/pglogical) [`spock`](/ext/e/spock) [`db_migrator`](/ext/e/db_migrator) [`pgactive`](/ext/e/pgactive) [`postgres_fdw`](/ext/e/postgres_fdw) [`pgoutput`](/ext/e/pgoutput) [`pgclone`](/ext/e/pgclone) [`repmgr`](/ext/e/repmgr) [`pg_failover_slots`](/ext/e/pg_failover_slots) [`pgspider_ext`](/ext/e/pgspider_ext) |

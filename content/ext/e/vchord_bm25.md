@@ -6,15 +6,15 @@ weight: 2160
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/supervc-stack/VectorChord-bm25">
+  <a class="ext-card ext-card--repo" href="https://vchord.pgsty.com/docs/bm25/">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">supervc-stack/VectorChord-bm25</div>
-    <div class="ext-card__desc">https://github.com/supervc-stack/VectorChord-bm25</div>
+    <div class="ext-card__title">https://vchord.pgsty.com/docs/bm25/</div>
+    <div class="ext-card__desc">https://vchord.pgsty.com/docs/bm25/</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/VectorChord-bm25-0.3.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/vchord_bm25-1.0.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">VectorChord-bm25-0.3.0.tar.gz</div>
-    <div class="ext-card__desc">VectorChord-bm25-0.3.0.tar.gz</div>
+    <div class="ext-card__title">vchord_bm25-1.0.0.tar.gz</div>
+    <div class="ext-card__desc">vchord_bm25-1.0.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,12 +25,12 @@ weight: 2160
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`vchord_bm25`**](/ext/e/vchord_bm25) | `0.3.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`vchord_bm25`**](/ext/e/vchord_bm25) | `1.0.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 2160  | [**`vchord_bm25`**](/ext/e/vchord_bm25) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `bm25_catalog` |
+| 2160  | [**`vchord_bm25`**](/ext/e/vchord_bm25) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`pg_search`](/ext/e/pg_search) [`pg_textsearch`](/ext/e/pg_textsearch) [`pg_bestmatch`](/ext/e/pg_bestmatch) [`pg_fts`](/ext/e/pg_fts) [`pgroonga`](/ext/e/pgroonga) [`pg_rrf`](/ext/e/pg_rrf) [`psql_bm25s`](/ext/e/psql_bm25s) [`pgcontext`](/ext/e/pgcontext) [`vectorize`](/ext/e/vectorize) |
@@ -38,117 +38,117 @@ weight: 2160
 {.ext-table .ext-table--rel}
 
 
-> bm25 am conflicts with pg_textsearch and pg_search, build require clang upgrade.
+> PGSTY fork 1.0.0; native tsvector and new index format; preload required. In-place upgrade from 0.3.x is rejected.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `vchord_bm25` | - |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `vchord_bm25_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-vchord-bm25` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `vchord_bm25` | - |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `vchord_bm25_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.0.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-vchord-bm25` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| el8.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| el9.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 | AVAIL PIGSTY 0.3.0 1 |
-@ el8.x86_64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el8.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_18-0.3.0-3PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el8.aarch64.rpm pigsty 0.3.0 1014.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_18-0.3.0-3PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el9.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_18-0.3.0-3PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el9.aarch64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_18-0.3.0-3PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el10.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_18-0.3.0-3PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 vchord_bm25_18 vchord_bm25_18-0.3.0-3PIGSTY.el10.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_18-0.3.0-3PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb pigsty 0.3.0 881.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb pigsty 0.3.0 774.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb pigsty 0.3.0 881.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb pigsty 0.3.0 774.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb pigsty 0.3.0 984.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb pigsty 0.3.0 920.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb pigsty 0.3.0 974.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb pigsty 0.3.0 907.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb pigsty 0.3.0 970.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb pigsty 0.3.0 905.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb
-@ el8.x86_64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el8.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_17-0.3.0-3PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el8.aarch64.rpm pigsty 0.3.0 1012.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_17-0.3.0-3PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el9.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_17-0.3.0-3PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el9.aarch64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_17-0.3.0-3PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el10.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_17-0.3.0-3PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 vchord_bm25_17 vchord_bm25_17-0.3.0-3PIGSTY.el10.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_17-0.3.0-3PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb pigsty 0.3.0 878.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb pigsty 0.3.0 772.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb pigsty 0.3.0 879.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb pigsty 0.3.0 772.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb pigsty 0.3.0 981.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb pigsty 0.3.0 917.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb pigsty 0.3.0 974.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb pigsty 0.3.0 906.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb pigsty 0.3.0 967.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb pigsty 0.3.0 904.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb
-@ el8.x86_64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el8.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_16-0.3.0-3PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el8.aarch64.rpm pigsty 0.3.0 1009.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_16-0.3.0-3PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el9.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_16-0.3.0-3PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el9.aarch64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_16-0.3.0-3PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el10.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_16-0.3.0-3PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 vchord_bm25_16 vchord_bm25_16-0.3.0-3PIGSTY.el10.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_16-0.3.0-3PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb pigsty 0.3.0 879.9KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb pigsty 0.3.0 772.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb pigsty 0.3.0 880.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb pigsty 0.3.0 772.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb pigsty 0.3.0 984.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb pigsty 0.3.0 916.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb pigsty 0.3.0 972.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb pigsty 0.3.0 905.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb pigsty 0.3.0 968.8KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb pigsty 0.3.0 903.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb
-@ el8.x86_64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el8.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_15-0.3.0-3PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el8.aarch64.rpm pigsty 0.3.0 1003.8KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_15-0.3.0-3PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el9.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_15-0.3.0-3PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el9.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_15-0.3.0-3PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el10.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_15-0.3.0-3PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 vchord_bm25_15 vchord_bm25_15-0.3.0-3PIGSTY.el10.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_15-0.3.0-3PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb pigsty 0.3.0 877.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb pigsty 0.3.0 770.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb pigsty 0.3.0 878.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb pigsty 0.3.0 770.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb pigsty 0.3.0 976.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb pigsty 0.3.0 914.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb pigsty 0.3.0 970.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb pigsty 0.3.0 902.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb pigsty 0.3.0 965.3KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb pigsty 0.3.0 900.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb
-@ el8.x86_64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el8.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_14-0.3.0-3PIGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el8.aarch64.rpm pigsty 0.3.0 1001.6KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_14-0.3.0-3PIGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el9.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_14-0.3.0-3PIGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el9.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_14-0.3.0-3PIGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el10.x86_64.rpm pigsty 0.3.0 1.1MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_14-0.3.0-3PIGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 vchord_bm25_14 vchord_bm25_14-0.3.0-3PIGSTY.el10.aarch64.rpm pigsty 0.3.0 1.0MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_14-0.3.0-3PIGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb pigsty 0.3.0 873.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb pigsty 0.3.0 768.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb pigsty 0.3.0 873.8KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb pigsty 0.3.0 769.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb pigsty 0.3.0 976.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb pigsty 0.3.0 912.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb pigsty 0.3.0 966.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb pigsty 0.3.0 901.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb pigsty 0.3.0 962.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb pigsty 0.3.0 898.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_0.3.0-4PIGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| el8.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| el9.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| el10.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| el10.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| d12.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 | AVAIL PIGSTY 1.0.0 1 |
+@ el8.x86_64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el8.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_18-1.0.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el8.aarch64.rpm pigsty 1.0.0 1.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_18-1.0.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el9.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_18-1.0.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el9.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_18-1.0.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el10.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_18-1.0.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 vchord_bm25_18 vchord_bm25_18-1.0.0-1PGSTY.el10.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_18-1.0.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-vchord-bm25 postgresql-18-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-18-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el8.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_17-1.0.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el8.aarch64.rpm pigsty 1.0.0 1.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_17-1.0.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el9.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_17-1.0.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el9.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_17-1.0.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el10.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_17-1.0.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 vchord_bm25_17 vchord_bm25_17-1.0.0-1PGSTY.el10.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_17-1.0.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-vchord-bm25 postgresql-17-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-17-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el8.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_16-1.0.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el8.aarch64.rpm pigsty 1.0.0 1.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_16-1.0.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el9.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_16-1.0.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el9.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_16-1.0.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el10.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_16-1.0.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 vchord_bm25_16 vchord_bm25_16-1.0.0-1PGSTY.el10.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_16-1.0.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-vchord-bm25 postgresql-16-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-16-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el8.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_15-1.0.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el8.aarch64.rpm pigsty 1.0.0 1.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_15-1.0.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el9.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_15-1.0.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el9.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_15-1.0.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el10.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_15-1.0.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 vchord_bm25_15 vchord_bm25_15-1.0.0-1PGSTY.el10.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_15-1.0.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb pigsty 1.0.0 1.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-vchord-bm25 postgresql-15-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-15-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el8.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/vchord_bm25_14-1.0.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el8.aarch64.rpm pigsty 1.0.0 1.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/vchord_bm25_14-1.0.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el9.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/vchord_bm25_14-1.0.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el9.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/vchord_bm25_14-1.0.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el10.x86_64.rpm pigsty 1.0.0 1.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/vchord_bm25_14-1.0.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 vchord_bm25_14 vchord_bm25_14-1.0.0-1PGSTY.el10.aarch64.rpm pigsty 1.0.0 1.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/vchord_bm25_14-1.0.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb pigsty 1.0.0 1.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb pigsty 1.0.0 1.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb pigsty 1.0.0 1.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-vchord-bm25 postgresql-14-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb pigsty 1.0.0 1.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/v/vchord-bm25/postgresql-14-vchord-bm25_1.0.0-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -216,70 +216,78 @@ CREATE EXTENSION vchord_bm25;
 
 Sources:
 
-- [0.3.0 README](https://github.com/supervc-stack/VectorChord-bm25/blob/0.3.0/README.md)
-- [Control file](https://github.com/supervc-stack/VectorChord-bm25/blob/0.3.0/vchord_bm25.control)
-- [0.3.0 SQL objects](https://github.com/supervc-stack/VectorChord-bm25/blob/0.3.0/sql/install/vchord_bm25--0.3.0.sql)
-- [Query settings](https://github.com/supervc-stack/VectorChord-bm25/blob/0.3.0/src/guc.rs)
-- [0.3.0 migration](https://github.com/supervc-stack/VectorChord-bm25/blob/0.3.0/sql/vchord_bm25--0.2.2--0.3.0.sql)
-- [0.3.0 release](https://github.com/supervc-stack/VectorChord-bm25/releases/tag/0.3.0)
-- [Tokenizer installation](https://github.com/supervc-stack/pg_tokenizer.rs/blob/0.1.1/docs/01-installation.md)
-- [Tokenizer models](https://github.com/supervc-stack/pg_tokenizer.rs/blob/0.1.1/docs/06-model.md)
+- [Installation](https://vchord.pgsty.com/docs/bm25/getting-started/installation/)
+- [Native tsvector quick start](https://vchord.pgsty.com/docs/bm25/getting-started/quick-start/)
+- [1.0.0 migration and permissions](https://vchord.pgsty.com/docs/bm25/reference/migration/)
+- [SQL reference](https://vchord.pgsty.com/docs/bm25/reference/sql/)
+- [GUCs and index options](https://vchord.pgsty.com/docs/bm25/reference/gucs/)
+- [Index maintenance](https://vchord.pgsty.com/docs/bm25/usage/indexing/)
+- [1.0.0 control file](https://github.com/pgsty/vchord_bm25/blob/1.0.0/vchord_bm25.control)
 
-`vchord_bm25` provides BM25 ranking with a sparse token-frequency type and the `bm25` index access method. Tokenization is supplied separately, commonly by pg_tokenizer. Extension objects live in the fixed `bm25_catalog` schema, and creation requires superuser privileges.
+`vchord_bm25` 1.0.0 adds BM25 relevance ranking over native PostgreSQL `tsvector` values on PostgreSQL 14–18. Its `bm25` access method and `bm25_ops` operator class use a new index format. Standard text search needs no tokenizer extension; `pg_tokenizer` 1.0.0 is optional for custom analyzers and multilingual models. Installation requires superuser privileges and shared preloading.
 
-### Core Workflow
+### Create and Query an Index
 
-The example uses pg_tokenizer, which requires preloading and a restart. Preserve existing entries in the preload list:
+Add the library to the existing preload list and restart PostgreSQL:
 
-```conf
-shared_preload_libraries = 'pg_tokenizer'
+```ini
+shared_preload_libraries = 'vchord_bm25'
 ```
 
 ```sql
-CREATE EXTENSION pg_tokenizer;
 CREATE EXTENSION vchord_bm25;
-SET search_path = public, tokenizer_catalog, bm25_catalog;
-
-SELECT create_tokenizer('english', $$
-model = "bert_base_uncased"
-$$);
 CREATE TABLE documents (
-    id bigserial PRIMARY KEY,
-    passage text,
-    embedding bm25vector
+    id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    passage text NOT NULL,
+    terms tsvector GENERATED ALWAYS AS (to_tsvector('english', passage)) STORED
 );
-INSERT INTO documents(passage) VALUES ('PostgreSQL full text search');
-UPDATE documents SET embedding = tokenize(passage, 'english')::bm25vector;
-CREATE INDEX documents_bm25 ON documents USING bm25 (embedding bm25_ops);
+INSERT INTO documents (passage) VALUES
+    ('PostgreSQL provides full text search.'),
+    ('BM25 ranks PostgreSQL documents by relevance.'),
+    ('A guide to database indexing.');
+CREATE INDEX documents_bm25 ON documents USING bm25 (terms bm25_ops)
+WITH (options = $$
+k1 = 1.2
+b = 0.75
+$$, limit = 100);
 
 SELECT id, passage,
-       embedding <&> to_bm25query('documents_bm25',
-           tokenize('PostgreSQL', 'english')::bm25vector) AS score
+       terms <&> to_bm25query(to_tsvector('english', 'PostgreSQL'), 'documents_bm25') AS rank
 FROM documents
-ORDER BY score
-LIMIT 10;
+WHERE terms @@ plainto_tsquery('english', 'PostgreSQL')
+ORDER BY rank LIMIT 10;
 ```
 
-The index supplies corpus statistics to `to_bm25query`; the score from `<&>` is negative, so ascending order returns greater relevance first. Use the same tokenizer/model for documents and queries. Update stored token vectors when source text changes, or use the tokenizer's maintenance-trigger helper. Changing the vocabulary requires retokenizing stored documents before rebuilding their index.
+`to_bm25query(tsvector, regclass)` takes the query vector first and the target index second. `<&>` returns a negative BM25 score as `double precision`: ascending order puts greater relevance first. Negate the result only for display if a positive score is preferred. Ordering alone also includes zero-score nonmatches and NULLs; the example uses an explicit match predicate.
 
-### Types, Functions, and Search Limits
+Keep positions in stored vectors: `strip(tsvector)` and `array_to_tsvector` cannot provide the term frequencies required by the index. Document weights are ignored, and native position limits can reduce frequency detail for long documents. Use the same analyzer for documents and queries. With custom tokenization, `analyze_to_tsvector` stores string lexemes and `tokenize_to_tsvector` stores model IDs as lexemes; both are `STABLE`, so maintain an ordinary column through the application or a trigger.
 
-- `bm25vector` stores token IDs and frequencies; the integer-array cast aggregates duplicate IDs and discards token order.
-- `bm25query` binds the query vector to an index. `to_bm25query(regclass, bm25vector)` constructs it; `bm25_ops` is the index operator class.
-- `bm25_catalog.bm25_limit` defaults to 100 and limits candidates returned by the index. Increase it for larger SQL limits or restrictive filters; changing SQL LIMIT alone does not increase this candidate budget.
-- `bm25_catalog.enable_index` controls use of the index; `bm25_catalog.enable_prefilter` controls prefiltering. Both default to true.
-- `bm25_catalog.segment_growing_max_page_size` defaults to 4096 pages before sealing a growing segment.
+### Search Controls and Maintenance
+
+| Setting or function | Meaning in 1.0.0 |
+| --- | --- |
+| `bm25.enable_scan` | Allow BM25 index plans; default true. |
+| `bm25.limit`, index `limit` | Initial scan batch size, default 100; zero also selects 100. Scans continue for SQL limits, offsets, and filtering. |
+| `bm25.prefilter`, index `prefilter` | Apply supported predicates before ranking candidates; default false. |
+| `k1`, `b` | TOML scoring parameters; defaults 1.2 and 0.75, ranges 1.2–2.0 and 0–1. |
+| `maintenance_min_rows`, `maintenance_scale_factor` | Automatic merge thresholds; defaults 1000 and 0.1. |
+| `bm25_maintain(regclass)` | Request a merge without the automatic thresholds; returns whether a segment was published. |
+
+Explicit GUC values, including false or the nominal default, override index options. Server, database, role, and startup settings also take precedence. Index defaults apply only when the GUC source is the built-in default.
 
 ```sql
-SET bm25_catalog.bm25_limit = 1000;
+SET "bm25.limit" = 200;
+SET bm25.prefilter = true;
+VACUUM documents;
+SELECT bm25_maintain('documents_bm25');
 ```
 
-The access-method name is global: this extension cannot coexist in a database with another extension that creates the same bm25 access method, including pg_textsearch and the compatibility alias in pg_search. Sparse frequencies do not preserve positions for phrase matching. Chinese text can use a custom corpus model with a Jieba pre-tokenizer; Japanese Lindera support depends on the tokenizer build and dictionary configuration.
+`VACUUM` marks dead records and can merge segments; `ANALYZE` alone does not merge them. Manual maintenance requires table ownership or, on PostgreSQL 17+, `MAINTAIN` privilege, and does not replace dead-tuple detection. Deleted records stop appearing in results immediately but remain in corpus statistics until compaction. Long snapshots can delay page reuse and further merges. Standby readers encountering recycled pages can receive SQLSTATE `40001` and need to retry.
 
-### Upgrade to 0.3.0
+### Permissions and Migration
 
-```sql
-ALTER EXTENSION vchord_bm25 UPDATE TO '0.3.0';
-```
+The extension is relocatable; applications need access to the selected installation schema and indexed data. Scoring requires `SELECT` on the indexed table, or column-level access for an ordinary non-partial single-column index. Expression and partial indexes require table-level access. Both scalar scoring and native scans reject queries when row-level security applies to the current role, because scores use global corpus statistics.
 
-The 0.2.2-to-0.3.0 migration adds `bm25_page_inspect(regclass, integer)`, returning diagnostic page text. The release changes sealed-segment page allocation for small tokens and does not document a mandatory index rebuild. Install matching extension files before updating database objects; replacing the preloaded tokenizer library also requires a restart. Keep tokenization and ranking upgrades compatible and check representative query results.
+The index supports one indexed column and does not support unlogged tables. The access-method name is database-wide, so another extension defining `bm25` cannot coexist in that database.
+
+Upgrades from 0.3.x are deliberately blocked. Keep the old database and library available, export source text, and create a fresh 1.0.0 installation with its own library directory. Recompute native vectors, rebuild indexes, and adapt query argument order, types, settings, and triggers before switching the application. Another database or port sharing the old library directory is insufficient isolation. Neither a binary index copy nor `REINDEX` on an old `bm25vector` column migrates the API.

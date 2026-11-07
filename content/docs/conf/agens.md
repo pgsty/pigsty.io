@@ -6,9 +6,9 @@ icon: fa-solid fa-project-diagram
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/agens.yml`; v4.5.0 uses `conf/agens.yml`, selected with `-c agens`.
+Current development sources use `conf/fork/agens.yml` and default to AgensGraph 2.18 / PG18. The v4.5.0 release still uses `conf/agens.yml` (`-c agens`) and defaults to PG17. Explicitly set `pg_version: 18` for a new PG18 cluster with that release.
 
-The `agens` template replaces the standard PostgreSQL kernel with AgensGraph.
+The `fork/agens` template replaces the standard PostgreSQL kernel with AgensGraph.
 It supports property graphs and Cypher queries.
 
 For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgraph/)**
@@ -18,9 +18,9 @@ For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgra
 
 ## Overview
 
-- Config name: `agens`
+- Config name: `fork/agens`
 - Node count: Single node
-- Description: AgensGraph (PG17) graph database kernel template
+- Description: AgensGraph (PG18) graph database kernel template
 - Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
@@ -28,7 +28,7 @@ For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgra
 Enable with:
 
 ```bash
-./configure -c agens [-i <primary_ip>]
+./configure -c fork/agens [-i <primary_ip>]
 ```
 
 
@@ -36,7 +36,7 @@ Enable with:
 
 ## Template Content
 
-Development source: `conf/fork/agens.yml`; release source: [`v4.5.0: conf/agens.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml).
+The embedded YAML below matches the development source: `conf/fork/agens.yml`; previous release source: [`v4.5.0: conf/agens.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml).
 
 {{< include file="yaml/agens.yml" code=true lang="yaml" >}}
 
@@ -45,7 +45,7 @@ Development source: `conf/fork/agens.yml`; release source: [`v4.5.0: conf/agens.
 
 ## Notes
 
-The `agens` template sets `pg_mode: agens` in the `pg-meta` cluster.
+The `fork/agens` template sets `pg_mode: agens` in the `pg-meta` cluster.
 It installs the `agensgraph` kernel package instead of standard PostgreSQL.
 
 **Key features**:
@@ -53,7 +53,7 @@ It installs the `agensgraph` kernel package instead of standard PostgreSQL.
 - Property graph model support (Vertex / Edge)
 - Cypher query syntax, can be combined with SQL
 - Compatible with PostgreSQL ecosystem and standard operations
-- Based on PostgreSQL 17-compatible kernel by default
+- Based on PostgreSQL 18-compatible kernel by default
 
 **Typical use cases**:
 
@@ -63,6 +63,7 @@ It installs the `agensgraph` kernel package instead of standard PostgreSQL.
 
 **Caveats**:
 
-- Current AgensGraph template is pinned to `pg_version: 17`
+- The current development template sets `pg_version: 18`, resolving the `agensgraph` alias to `agensgraph-18`.
+- This default applies to new deployments. Existing PG17 clusters require a major upgrade and cannot reuse their data directory directly.
 - The default topology has one node for validation. For production, plan and extend it for high availability.
 - Follow the official AgensGraph documentation for graph schemas and Cypher semantics.

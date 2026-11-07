@@ -11,6 +11,11 @@ weight: 6050
     <div class="ext-card__title">pganalyze/pg_stat_plans</div>
     <div class="ext-card__desc">https://github.com/pganalyze/pg_stat_plans</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_stat_plans-2.1.1.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">pg_stat_plans-2.1.1.tar.gz</div>
+    <div class="ext-card__desc">pg_stat_plans-2.1.1.tar.gz</div>
+  </a>
 </div>
 
 
@@ -33,7 +38,7 @@ weight: 6050
 {.ext-table .ext-table--rel}
 
 
-> pkg 2.1.1; SQL 2.1.
+> SQL 2.1.
 
 
 ## Version
@@ -177,6 +182,14 @@ weight: 6050
 @ u26.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb pgdg 2.1.1 94.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.1-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-pg-stat-plans postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb pgdg 2.1.0 94.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/pg-stat-plans/postgresql-16-pg-stat-plans_2.1.0-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `pg_stat_plans` using `pig build`:
+
+```bash
+pig build pkg pg_stat_plans         # build RPM / DEB packages
+```
 
 
 ## Install

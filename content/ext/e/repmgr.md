@@ -11,6 +11,11 @@ weight: 9710
     <div class="ext-card__title">EnterpriseDB/repmgr</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/repmgr</div>
   </a>
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/repmgr-5.5.1.tar.gz">
+    <div class="ext-card__kicker">Source</div>
+    <div class="ext-card__title">repmgr-5.5.1.tar.gz</div>
+    <div class="ext-card__desc">repmgr-5.5.1.tar.gz</div>
+  </a>
 </div>
 
 
@@ -20,12 +25,12 @@ weight: 9710
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`repmgr`**](/ext/e/repmgr) | `5.5.0` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`repmgr`**](/ext/e/repmgr) | `5.5.1` | <a class="ext-badge ext-badge--cate etl" href="/ext/cate/etl">ETL</a> | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 9710  | [**`repmgr`**](/ext/e/repmgr) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `repmgr` |
+| 9710  | [**`repmgr`**](/ext/e/repmgr) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `repmgr` |
 {.ext-table .wide .expand}
 
 | **Related** | [`pg_failover_slots`](/ext/e/pg_failover_slots) [`bgw_replstatus`](/ext/e/bgw_replstatus) [`pgautofailover`](/ext/e/pgautofailover) [`pgpool_adm`](/ext/e/pgpool_adm) [`pglogical`](/ext/e/pglogical) [`pgactive`](/ext/e/pgactive) [`pglogical_ticker`](/ext/e/pglogical_ticker) |
@@ -37,7 +42,7 @@ weight: 9710
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.5.0` | {{< pgvers "18,17,16,15,14" >}} | `repmgr` | - |
+| [**EXT**](/ext/list#etl) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.5.1` | {{< pgvers "18,17,16,15,14" >}} | `repmgr` | - |
 | [**RPM**](/ext/rpm#etl) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.5.0` | {{< pgvers "18,17,16,15,14" >}} | `repmgr_$v` | - |
 | [**DEB**](/ext/deb#etl) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `5.5.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-repmgr` | - |
 {.ext-table .wide .expand}
@@ -45,12 +50,12 @@ weight: 9710
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 4 | AVAIL PGDG 5.5.0 7 |
-| el8.aarch64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 4 | AVAIL PGDG 5.5.0 4 |
-| el9.x86_64 | AVAIL PGDG 5.5.0 3 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 4 | AVAIL PGDG 5.5.0 6 |
-| el9.aarch64 | AVAIL PGDG 5.5.0 3 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 3 | AVAIL PGDG 5.5.0 4 | AVAIL PGDG 5.5.0 4 |
-| el10.x86_64 | AVAIL PGDG 5.5.0 3 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 |
-| el10.aarch64 | AVAIL PGDG 5.5.0 3 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 | AVAIL PGDG 5.5.0 2 |
+| el8.x86_64 | AVAIL PGDG 5.5.1 2 | AVAIL PGDG 5.5.1 2 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 5 | AVAIL PGDG 5.5.1 8 |
+| el8.aarch64 | AVAIL PGDG 5.5.1 2 | AVAIL PGDG 5.5.1 2 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 5 | AVAIL PGDG 5.5.1 5 |
+| el9.x86_64 | AVAIL PGDG 5.5.1 4 | AVAIL PGDG 5.5.1 2 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 5 | AVAIL PGDG 5.5.1 7 |
+| el9.aarch64 | AVAIL PGDG 5.5.1 4 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 4 | AVAIL PGDG 5.5.1 5 | AVAIL PGDG 5.5.1 5 |
+| el10.x86_64 | AVAIL PGDG 5.5.1 4 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 |
+| el10.aarch64 | AVAIL PGDG 5.5.1 4 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 | AVAIL PGDG 5.5.1 3 |
 | d12.x86_64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
 | d12.aarch64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
 | d13.x86_64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
@@ -61,17 +66,23 @@ weight: 9710
 | u24.aarch64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
 | u26.x86_64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
 | u26.aarch64 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 | AVAIL PGDG 5.5.0 1 |
+@ el8.x86_64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 5.5.1 298.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/repmgr_18-5.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel8.10.x86_64.rpm pgdg 5.5.0 295.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/repmgr_18-5.5.0-6PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 5.5.1 288.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/repmgr_18-5.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel8.10.aarch64.rpm pgdg 5.5.0 285.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/repmgr_18-5.5.0-6PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 5.5.1 268.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/repmgr_18-5.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 repmgr_18 repmgr_18-5.5.0-7PGDG.rhel9.8.x86_64.rpm pgdg 5.5.0 266.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/repmgr_18-5.5.0-7PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel9.7.x86_64.rpm pgdg 5.5.0 266.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/repmgr_18-5.5.0-6PGDG.rhel9.7.x86_64.rpm
 @ el9.x86_64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel9.6.x86_64.rpm pgdg 5.5.0 267.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/repmgr_18-5.5.0-6PGDG.rhel9.6.x86_64.rpm
+@ el9.aarch64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 5.5.1 261.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/repmgr_18-5.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 repmgr_18 repmgr_18-5.5.0-7PGDG.rhel9.8.aarch64.rpm pgdg 5.5.0 260.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/repmgr_18-5.5.0-7PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel9.7.aarch64.rpm pgdg 5.5.0 260.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/repmgr_18-5.5.0-6PGDG.rhel9.7.aarch64.rpm
 @ el9.aarch64 18 repmgr_18 repmgr_18-5.5.0-6PGDG.rhel9.6.aarch64.rpm pgdg 5.5.0 260.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/repmgr_18-5.5.0-6PGDG.rhel9.6.aarch64.rpm
+@ el10.x86_64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 5.5.1 271.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/repmgr_18-5.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 repmgr_18 repmgr_18-5.5.0-7PGDG.rhel10.2.x86_64.rpm pgdg 5.5.0 269.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/repmgr_18-5.5.0-7PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 repmgr_18 repmgr_18-5.5.0-6PGDGrhel10.1.x86_64.rpm pgdg 5.5.0 269.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/repmgr_18-5.5.0-6PGDGrhel10.1.x86_64.rpm
 @ el10.x86_64 18 repmgr_18 repmgr_18-5.5.0-6PGDGrhel10.0.x86_64.rpm pgdg 5.5.0 270.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/repmgr_18-5.5.0-6PGDGrhel10.0.x86_64.rpm
+@ el10.aarch64 18 repmgr_18 repmgr_18-5.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 5.5.1 262.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/repmgr_18-5.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 repmgr_18 repmgr_18-5.5.0-7PGDG.rhel10.2.aarch64.rpm pgdg 5.5.0 261.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/repmgr_18-5.5.0-7PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 repmgr_18 repmgr_18-5.5.0-6PGDGrhel10.1.aarch64.rpm pgdg 5.5.0 261.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/repmgr_18-5.5.0-6PGDGrhel10.1.aarch64.rpm
 @ el10.aarch64 18 repmgr_18 repmgr_18-5.5.0-6PGDGrhel10.0.aarch64.rpm pgdg 5.5.0 261.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/repmgr_18-5.5.0-6PGDGrhel10.0.aarch64.rpm
@@ -85,13 +96,19 @@ weight: 9710
 @ u24.aarch64 18 postgresql-18-repmgr postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb pgdg 5.5.0 208.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb
 @ u26.x86_64 18 postgresql-18-repmgr postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb pgdg 5.5.0 233.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb
 @ u26.aarch64 18 postgresql-18-repmgr postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb pgdg 5.5.0 209.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-18-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb
+@ el8.x86_64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 5.5.1 298.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/repmgr_17-5.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 repmgr_17 repmgr_17-5.5.0-1PGDG.rhel8.x86_64.rpm pgdg 5.5.0 295.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/repmgr_17-5.5.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 5.5.1 288.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/repmgr_17-5.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 repmgr_17 repmgr_17-5.5.0-1PGDG.rhel8.aarch64.rpm pgdg 5.5.0 285.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/repmgr_17-5.5.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 5.5.1 268.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/repmgr_17-5.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 repmgr_17 repmgr_17-5.5.0-7PGDG.rhel9.8.x86_64.rpm pgdg 5.5.0 266.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/repmgr_17-5.5.0-7PGDG.rhel9.8.x86_64.rpm
+@ el9.aarch64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 5.5.1 262.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/repmgr_17-5.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 repmgr_17 repmgr_17-5.5.0-7PGDG.rhel9.8.aarch64.rpm pgdg 5.5.0 260.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/repmgr_17-5.5.0-7PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 repmgr_17 repmgr_17-5.5.0-1PGDG.rhel9.aarch64.rpm pgdg 5.5.0 261.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/repmgr_17-5.5.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 5.5.1 271.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/repmgr_17-5.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 repmgr_17 repmgr_17-5.5.0-7PGDG.rhel10.2.x86_64.rpm pgdg 5.5.0 270.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/repmgr_17-5.5.0-7PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 repmgr_17 repmgr_17-5.5.0-3PGDG.rhel10.x86_64.rpm pgdg 5.5.0 270.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/repmgr_17-5.5.0-3PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 repmgr_17 repmgr_17-5.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 5.5.1 262.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/repmgr_17-5.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 repmgr_17 repmgr_17-5.5.0-7PGDG.rhel10.2.aarch64.rpm pgdg 5.5.0 261.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/repmgr_17-5.5.0-7PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 repmgr_17 repmgr_17-5.5.0-3PGDG.rhel10.aarch64.rpm pgdg 5.5.0 261.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/repmgr_17-5.5.0-3PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 17 postgresql-17-repmgr postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb pgdg 5.5.0 246.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb
@@ -104,17 +121,23 @@ weight: 9710
 @ u24.aarch64 17 postgresql-17-repmgr postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb pgdg 5.5.0 207.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb
 @ u26.x86_64 17 postgresql-17-repmgr postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb pgdg 5.5.0 234.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb
 @ u26.aarch64 17 postgresql-17-repmgr postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb pgdg 5.5.0 209.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-17-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb
+@ el8.x86_64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 5.5.1 295.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/repmgr_16-5.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 repmgr_16 repmgr_16-5.5.0-1PGDG.rhel8.x86_64.rpm pgdg 5.5.0 293.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/repmgr_16-5.5.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 repmgr_16 repmgr_16-5.4.1-1PGDG.rhel8.x86_64.rpm pgdg 5.4.1 291.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/repmgr_16-5.4.1-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 5.5.1 285.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/repmgr_16-5.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 repmgr_16 repmgr_16-5.5.0-1PGDG.rhel8.aarch64.rpm pgdg 5.5.0 282.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/repmgr_16-5.5.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 repmgr_16 repmgr_16-5.4.1-1PGDG.rhel8.aarch64.rpm pgdg 5.4.1 280.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/repmgr_16-5.4.1-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 5.5.1 268.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/repmgr_16-5.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 repmgr_16 repmgr_16-5.5.0-7PGDG.rhel9.8.x86_64.rpm pgdg 5.5.0 266.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/repmgr_16-5.5.0-7PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 repmgr_16 repmgr_16-5.4.1-1PGDG.rhel9.x86_64.rpm pgdg 5.4.1 266.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/repmgr_16-5.4.1-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 5.5.1 261.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/repmgr_16-5.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 repmgr_16 repmgr_16-5.5.0-7PGDG.rhel9.8.aarch64.rpm pgdg 5.5.0 260.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/repmgr_16-5.5.0-7PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 repmgr_16 repmgr_16-5.5.0-1PGDG.rhel9.aarch64.rpm pgdg 5.5.0 261.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/repmgr_16-5.5.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 repmgr_16 repmgr_16-5.4.1-1PGDG.rhel9.aarch64.rpm pgdg 5.4.1 261.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/repmgr_16-5.4.1-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 5.5.1 271.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/repmgr_16-5.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 repmgr_16 repmgr_16-5.5.0-7PGDG.rhel10.2.x86_64.rpm pgdg 5.5.0 269.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/repmgr_16-5.5.0-7PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 repmgr_16 repmgr_16-5.5.0-3PGDG.rhel10.x86_64.rpm pgdg 5.5.0 270.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/repmgr_16-5.5.0-3PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 repmgr_16 repmgr_16-5.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 5.5.1 262.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/repmgr_16-5.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 repmgr_16 repmgr_16-5.5.0-7PGDG.rhel10.2.aarch64.rpm pgdg 5.5.0 261.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/repmgr_16-5.5.0-7PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 repmgr_16 repmgr_16-5.5.0-3PGDG.rhel10.aarch64.rpm pgdg 5.5.0 261.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/repmgr_16-5.5.0-3PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 16 postgresql-16-repmgr postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb pgdg 5.5.0 244.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb
@@ -127,24 +150,30 @@ weight: 9710
 @ u24.aarch64 16 postgresql-16-repmgr postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb pgdg 5.5.0 205.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb
 @ u26.x86_64 16 postgresql-16-repmgr postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb pgdg 5.5.0 231.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb
 @ u26.aarch64 16 postgresql-16-repmgr postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb pgdg 5.5.0 207.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-16-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb
+@ el8.x86_64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 5.5.1 294.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/repmgr_15-5.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 repmgr_15 repmgr_15-5.5.0-1PGDG.rhel8.x86_64.rpm pgdg 5.5.0 291.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/repmgr_15-5.5.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 repmgr_15 repmgr_15-5.4.1-1PGDG.rhel8.x86_64.rpm pgdg 5.4.1 290.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/repmgr_15-5.4.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 repmgr_15 repmgr_15-5.4.0-1.rhel8.x86_64.rpm pgdg 5.4.0 289.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/repmgr_15-5.4.0-1.rhel8.x86_64.rpm
 @ el8.x86_64 15 repmgr_15 repmgr_15-5.3.3-1.rhel8.x86_64.rpm pgdg 5.3.3 286.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/repmgr_15-5.3.3-1.rhel8.x86_64.rpm
+@ el8.aarch64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 5.5.1 284.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/repmgr_15-5.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 repmgr_15 repmgr_15-5.5.0-1PGDG.rhel8.aarch64.rpm pgdg 5.5.0 282.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/repmgr_15-5.5.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 repmgr_15 repmgr_15-5.4.1-1PGDG.rhel8.aarch64.rpm pgdg 5.4.1 280.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/repmgr_15-5.4.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 repmgr_15 repmgr_15-5.4.0-1.rhel8.aarch64.rpm pgdg 5.4.0 280.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/repmgr_15-5.4.0-1.rhel8.aarch64.rpm
 @ el8.aarch64 15 repmgr_15 repmgr_15-5.3.3-1.rhel8.aarch64.rpm pgdg 5.3.3 276.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/repmgr_15-5.3.3-1.rhel8.aarch64.rpm
+@ el9.x86_64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 5.5.1 270.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/repmgr_15-5.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 repmgr_15 repmgr_15-5.5.0-7PGDG.rhel9.8.x86_64.rpm pgdg 5.5.0 268.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/repmgr_15-5.5.0-7PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 repmgr_15 repmgr_15-5.4.1-1PGDG.rhel9.x86_64.rpm pgdg 5.4.1 268.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/repmgr_15-5.4.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 repmgr_15 repmgr_15-5.4.0-1.rhel9.x86_64.rpm pgdg 5.4.0 268.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/repmgr_15-5.4.0-1.rhel9.x86_64.rpm
 @ el9.x86_64 15 repmgr_15 repmgr_15-5.3.3-1.rhel9.x86_64.rpm pgdg 5.3.3 266.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/repmgr_15-5.3.3-1.rhel9.x86_64.rpm
+@ el9.aarch64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 5.5.1 263.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/repmgr_15-5.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 repmgr_15 repmgr_15-5.5.0-7PGDG.rhel9.8.aarch64.rpm pgdg 5.5.0 261.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/repmgr_15-5.5.0-7PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 repmgr_15 repmgr_15-5.5.0-1PGDG.rhel9.aarch64.rpm pgdg 5.5.0 263.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/repmgr_15-5.5.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 repmgr_15 repmgr_15-5.4.1-1PGDG.rhel9.aarch64.rpm pgdg 5.4.1 263.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/repmgr_15-5.4.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 repmgr_15 repmgr_15-5.4.0-1.rhel9.aarch64.rpm pgdg 5.4.0 262.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/repmgr_15-5.4.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 5.5.1 271.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/repmgr_15-5.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 repmgr_15 repmgr_15-5.5.0-7PGDG.rhel10.2.x86_64.rpm pgdg 5.5.0 270.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/repmgr_15-5.5.0-7PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 repmgr_15 repmgr_15-5.5.0-3PGDG.rhel10.x86_64.rpm pgdg 5.5.0 270.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/repmgr_15-5.5.0-3PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 repmgr_15 repmgr_15-5.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 5.5.1 263.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/repmgr_15-5.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 repmgr_15 repmgr_15-5.5.0-7PGDG.rhel10.2.aarch64.rpm pgdg 5.5.0 261.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/repmgr_15-5.5.0-7PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 repmgr_15 repmgr_15-5.5.0-3PGDG.rhel10.aarch64.rpm pgdg 5.5.0 262.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/repmgr_15-5.5.0-3PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 15 postgresql-15-repmgr postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb pgdg 5.5.0 243.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb
@@ -157,6 +186,7 @@ weight: 9710
 @ u24.aarch64 15 postgresql-15-repmgr postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb pgdg 5.5.0 206.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg24.04+1_arm64.deb
 @ u26.x86_64 15 postgresql-15-repmgr postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb pgdg 5.5.0 231.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb
 @ u26.aarch64 15 postgresql-15-repmgr postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb pgdg 5.5.0 206.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-15-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb
+@ el8.x86_64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel8.10.x86_64.rpm pgdg 5.5.1 292.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.5.1-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.5.0-1PGDG.rhel8.x86_64.rpm pgdg 5.5.0 289.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.5.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.4.1-1PGDG.rhel8.x86_64.rpm pgdg 5.4.1 288.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.4.1-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.4.0-1.rhel8.x86_64.rpm pgdg 5.4.0 288.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.4.0-1.rhel8.x86_64.rpm
@@ -164,22 +194,27 @@ weight: 9710
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.3.2-1.rhel8.x86_64.rpm pgdg 5.3.2 296.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.3.2-1.rhel8.x86_64.rpm
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.3.1-1.rhel8.x86_64.rpm pgdg 5.3.1 296.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.3.1-1.rhel8.x86_64.rpm
 @ el8.x86_64 14 repmgr_14 repmgr_14-5.3.0-1.rhel8.x86_64.rpm pgdg 5.3.0 296.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/repmgr_14-5.3.0-1.rhel8.x86_64.rpm
+@ el8.aarch64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel8.10.aarch64.rpm pgdg 5.5.1 283.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/repmgr_14-5.5.1-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 repmgr_14 repmgr_14-5.5.0-1PGDG.rhel8.aarch64.rpm pgdg 5.5.0 280.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/repmgr_14-5.5.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 repmgr_14 repmgr_14-5.4.1-1PGDG.rhel8.aarch64.rpm pgdg 5.4.1 279.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/repmgr_14-5.4.1-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 repmgr_14 repmgr_14-5.4.0-1.rhel8.aarch64.rpm pgdg 5.4.0 278.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/repmgr_14-5.4.0-1.rhel8.aarch64.rpm
 @ el8.aarch64 14 repmgr_14 repmgr_14-5.3.3-1.rhel8.aarch64.rpm pgdg 5.3.3 275.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/repmgr_14-5.3.3-1.rhel8.aarch64.rpm
+@ el9.x86_64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel9.8.x86_64.rpm pgdg 5.5.1 269.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.5.1-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.5.0-7PGDG.rhel9.8.x86_64.rpm pgdg 5.5.0 268.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.5.0-7PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.4.1-1PGDG.rhel9.x86_64.rpm pgdg 5.4.1 268.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.4.1-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.4.0-1.rhel9.x86_64.rpm pgdg 5.4.0 267.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.4.0-1.rhel9.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.3.3-1.rhel9.x86_64.rpm pgdg 5.3.3 266.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.3.3-1.rhel9.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.3.2-1.rhel9.x86_64.rpm pgdg 5.3.2 279.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.3.2-1.rhel9.x86_64.rpm
 @ el9.x86_64 14 repmgr_14 repmgr_14-5.3.1-1.rhel9.x86_64.rpm pgdg 5.3.1 278.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/repmgr_14-5.3.1-1.rhel9.x86_64.rpm
+@ el9.aarch64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel9.8.aarch64.rpm pgdg 5.5.1 262.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/repmgr_14-5.5.1-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 repmgr_14 repmgr_14-5.5.0-7PGDG.rhel9.8.aarch64.rpm pgdg 5.5.0 261.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/repmgr_14-5.5.0-7PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 repmgr_14 repmgr_14-5.5.0-1PGDG.rhel9.aarch64.rpm pgdg 5.5.0 262.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/repmgr_14-5.5.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 repmgr_14 repmgr_14-5.4.1-1PGDG.rhel9.aarch64.rpm pgdg 5.4.1 262.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/repmgr_14-5.4.1-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 repmgr_14 repmgr_14-5.4.0-1.rhel9.aarch64.rpm pgdg 5.4.0 262.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/repmgr_14-5.4.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel10.2.x86_64.rpm pgdg 5.5.1 271.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/repmgr_14-5.5.1-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 repmgr_14 repmgr_14-5.5.0-7PGDG.rhel10.2.x86_64.rpm pgdg 5.5.0 269.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/repmgr_14-5.5.0-7PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 repmgr_14 repmgr_14-5.5.0-3PGDG.rhel10.x86_64.rpm pgdg 5.5.0 269.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/repmgr_14-5.5.0-3PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 repmgr_14 repmgr_14-5.5.1-1PGDG.rhel10.2.aarch64.rpm pgdg 5.5.1 262.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/repmgr_14-5.5.1-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 repmgr_14 repmgr_14-5.5.0-7PGDG.rhel10.2.aarch64.rpm pgdg 5.5.0 260.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/repmgr_14-5.5.0-7PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 repmgr_14 repmgr_14-5.5.0-3PGDG.rhel10.aarch64.rpm pgdg 5.5.0 261.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/repmgr_14-5.5.0-3PGDG.rhel10.aarch64.rpm
 @ d12.x86_64 14 postgresql-14-repmgr postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb pgdg 5.5.0 243.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg12+1_amd64.deb
@@ -193,6 +228,14 @@ weight: 9710
 @ u26.x86_64 14 postgresql-14-repmgr postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb pgdg 5.5.0 230.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_amd64.deb
 @ u26.aarch64 14 postgresql-14-repmgr postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb pgdg 5.5.0 206.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/r/repmgr/postgresql-14-repmgr_5.5.0+debpgdg-3.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
+
+## Build
+
+You can build the RPM / DEB packages for `repmgr` using `pig build`:
+
+```bash
+pig build pkg repmgr         # build RPM / DEB packages
+```
 
 
 ## Install
@@ -247,16 +290,23 @@ shared_preload_libraries = 'repmgr';
 CREATE EXTENSION repmgr;
 ```
 
-
-
-
 ## Usage
 
-> [repmgr: Replication manager for PostgreSQL](https://github.com/EnterpriseDB/repmgr)
+Sources:
 
-A suite of tools to manage replication and failover within a PostgreSQL cluster. Supports setting up standby servers, monitoring replication, and performing failover/switchover.
+- [README v5.5.1](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/README.md)
+- [Control](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/repmgr.control)
+- [SQL 5.5](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/repmgr--5.5.sql)
+- [Quickstart](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/doc/quickstart.xml)
+- [repmgrd configuration](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/doc/repmgrd-configuration.xml)
+- [Upgrade guide](https://github.com/EnterpriseDB/repmgr/blob/v5.5.1/doc/upgrading-repmgr.xml)
+- [5.5.1 release](https://github.com/EnterpriseDB/repmgr/releases/tag/v5.5.1)
+
+`repmgr` manages PostgreSQL physical replication, monitoring and failover. Release 5.5.1 supports PostgreSQL 13–18 and retains SQL extension version 5.5. It fixes escaping of values substituted into external notification commands. Use the same repmgr release on all cluster nodes.
 
 ### Enabling
+
+Use a dedicated metadata database and management role, with replication connections and the required SSH access configured. The upstream quickstart uses a superuser role; a normal role needs `--superuser` for privileged operations. Run the following SQL in the metadata database with sufficient privileges:
 
 ```sql
 CREATE EXTENSION repmgr;
@@ -312,6 +362,12 @@ repmgr -f /etc/repmgr.conf standby switchover
 
 ### Automatic Failover with repmgrd
 
+Before using `repmgrd`, configure this on each node and restart PostgreSQL:
+
+```ini
+shared_preload_libraries = 'repmgr'
+```
+
 Start the repmgr daemon on each node:
 
 ```bash
@@ -337,3 +393,7 @@ follow_command='repmgr standby follow -f /etc/repmgr.conf --upstream-node-id=%n'
 - `repmgr cluster show` - display cluster status
 - `repmgr cluster event` - show cluster events
 - `repmgr node check` - health check a node
+
+### 5.5.1 Upgrade
+
+Pause or stop automatic failover as directed by the upgrade guide, update the programs on each node, then restart a running `repmgrd` and check cluster status. Both 5.5.0 and 5.5.1 use SQL version `5.5`; do not request a nonexistent SQL version 5.5.1. Follow the appropriate extension upgrade chain when coming from an older SQL version.

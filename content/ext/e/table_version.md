@@ -30,7 +30,7 @@ weight: 1060
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 1060  | [**`table_version`**](/ext/e/table_version) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `table_version` |
+| 1060  | [**`table_version`**](/ext/e/table_version) | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `table_version` |
 {.ext-table .wide .expand}
 
 | **Related** | [`plpgsql`](/ext/e/plpgsql) [`data_historization`](/ext/e/data_historization) [`pgmemento`](/ext/e/pgmemento) [`table_log`](/ext/e/table_log) [`ddl_historization`](/ext/e/ddl_historization) [`periods`](/ext/e/periods) [`temporal_tables`](/ext/e/temporal_tables) [`emaj`](/ext/e/emaj) [`pgaudit`](/ext/e/pgaudit) [`pg_drop_events`](/ext/e/pg_drop_events) [`pgauditlogtofile`](/ext/e/pgauditlogtofile) |
@@ -43,7 +43,7 @@ weight: 1060
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#time) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `1.11.1` | {{< pgvers "18,17,16,15,14" >}} | `table_version` | `plpgsql` |
-| [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.11.1` | {{< pgvers "18,17,16,15,14" >}} | `table_version_$v` | - |
+| [**RPM**](/ext/rpm#time) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.11.1` | {{< pgvers "18,17,16,15,14" >}} | `table_version_$v` | - |
 | [**DEB**](/ext/deb#time) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.11.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-table-version` | - |
 {.ext-table .wide .expand}
 

@@ -1,7 +1,7 @@
 ---
 title: "pg_relusage"
 linkTitle: "pg_relusage"
-description: "Log all the queries that reference a particular column"
+description: "Log the relations actually used by each SQL statement"
 weight: 6850
 ---
 

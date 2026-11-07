@@ -20,7 +20,7 @@ weight: 7370
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`set_user`**](/ext/e/set_user) | `4.2.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`set_user`**](/ext/e/set_user) | `4.3.0` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -37,201 +37,281 @@ weight: 7370
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.2.0` | {{< pgvers "18,17,16,15,14" >}} | `set_user` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.2.0` | {{< pgvers "18,17,16,15,14" >}} | `set_user_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.2.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-set-user` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.3.0` | {{< pgvers "18,17,16,15,14" >}} | `set_user` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.3.0` | {{< pgvers "18,17,16,15,14" >}} | `set_user_$v` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `4.3.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-set-user` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PGDG 4.2.0 1 | AVAIL PGDG 4.1.0 1 | AVAIL PGDG 4.1.0 2 | AVAIL PGDG 4.1.0 3 | AVAIL PGDG 4.1.0 4 |
-| el8.aarch64 | AVAIL PGDG 4.2.0 1 | AVAIL PGDG 4.1.0 1 | AVAIL PGDG 4.1.0 2 | AVAIL PGDG 4.1.0 3 | AVAIL PGDG 4.1.0 4 |
-| el9.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 3 | AVAIL PGDG 4.2.0 4 | AVAIL PGDG 4.2.0 4 |
-| el9.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 3 | AVAIL PGDG 4.2.0 4 | AVAIL PGDG 4.2.0 5 |
-| el10.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| el10.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| d12.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| d12.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| d13.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| d13.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u22.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u22.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u24.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u24.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u26.x86_64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
-| u26.aarch64 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 | AVAIL PGDG 4.2.0 2 |
+| el8.x86_64 | AVAIL PGDG 4.3.0 2 | AVAIL PGDG 4.3.0 2 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 4 | AVAIL PGDG 4.3.0 5 |
+| el8.aarch64 | AVAIL PGDG 4.3.0 2 | AVAIL PGDG 4.3.0 2 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 4 | AVAIL PGDG 4.3.0 5 |
+| el9.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 4 | AVAIL PGDG 4.3.0 5 | AVAIL PGDG 4.3.0 5 |
+| el9.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 4 | AVAIL PGDG 4.3.0 5 | AVAIL PGDG 4.3.0 6 |
+| el10.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| el10.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| d12.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| d12.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| d13.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| d13.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u22.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u22.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u24.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u24.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u26.x86_64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+| u26.aarch64 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 | AVAIL PGDG 4.3.0 3 |
+@ el8.x86_64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.3.0 29.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/set_user_18-4.3.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel8.x86_64.rpm pgdg 4.2.0 26.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/set_user_18-4.2.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.3.0 29.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/set_user_18-4.3.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel8.aarch64.rpm pgdg 4.2.0 26.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/set_user_18-4.2.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel9.8.x86_64.rpm pgdg 4.3.0 29.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/set_user_18-4.3.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 set_user_18 set_user_18-4.2.0-3PGDG.rhel9.8.x86_64.rpm pgdg 4.2.0 26.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/set_user_18-4.2.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel9.x86_64.rpm pgdg 4.2.0 26.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/set_user_18-4.2.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel9.8.aarch64.rpm pgdg 4.3.0 28.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/set_user_18-4.3.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 set_user_18 set_user_18-4.2.0-3PGDG.rhel9.8.aarch64.rpm pgdg 4.2.0 26.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/set_user_18-4.2.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel9.aarch64.rpm pgdg 4.2.0 25.8KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/set_user_18-4.2.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel10.2.x86_64.rpm pgdg 4.3.0 29.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/set_user_18-4.3.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 set_user_18 set_user_18-4.2.0-3PGDG.rhel10.2.x86_64.rpm pgdg 4.2.0 26.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/set_user_18-4.2.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel10.x86_64.rpm pgdg 4.2.0 27.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/set_user_18-4.2.0-1PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 18 set_user_18 set_user_18-4.3.0-1PGDG.rhel10.2.aarch64.rpm pgdg 4.3.0 28.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/set_user_18-4.3.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 set_user_18 set_user_18-4.2.0-3PGDG.rhel10.2.aarch64.rpm pgdg 4.2.0 26.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/set_user_18-4.2.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 set_user_18 set_user_18-4.2.0-1PGDG.rhel10.aarch64.rpm pgdg 4.2.0 26.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/set_user_18-4.2.0-1PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg12+1_amd64.deb pgdg 4.3.0 39.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg12+2_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg12+2_amd64.deb
 @ d12.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg12+1_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg12+1_arm64.deb pgdg 4.3.0 38.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg12+2_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg12+2_arm64.deb
 @ d12.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg12+1_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg13+1_amd64.deb pgdg 4.3.0 39.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg13+2_amd64.deb pgdg 4.2.0 35.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg13+2_amd64.deb
 @ d13.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg13+1_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg13+1_arm64.deb pgdg 4.3.0 38.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg13+2_arm64.deb pgdg 4.2.0 34.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg13+2_arm64.deb
 @ d13.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg13+1_arm64.deb pgdg 4.2.0 34.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg22.04+1_amd64.deb pgdg 4.3.0 39.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg22.04+2_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg22.04+1_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg22.04+1_arm64.deb pgdg 4.3.0 38.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg22.04+2_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg22.04+1_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg24.04+1_amd64.deb pgdg 4.3.0 38.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg24.04+2_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg24.04+1_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg24.04+1_arm64.deb pgdg 4.3.0 37.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg24.04+2_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg24.04+1_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg26.04+1_amd64.deb pgdg 4.3.0 38.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg26.04+2_amd64.deb pgdg 4.2.0 34.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg26.04+1_amd64.deb pgdg 4.2.0 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.3.0-1.pgdg26.04+1_arm64.deb pgdg 4.3.0 37.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg26.04+2_arm64.deb pgdg 4.2.0 33.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 18 postgresql-18-set-user postgresql-18-set-user_4.2.0-1.pgdg26.04+1_arm64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-18-set-user_4.2.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.3.0 29.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/set_user_17-4.3.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 set_user_17 set_user_17-4.1.0-1PGDG.rhel8.x86_64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/set_user_17-4.1.0-1PGDG.rhel8.x86_64.rpm
+@ el8.aarch64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.3.0 29.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/set_user_17-4.3.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 set_user_17 set_user_17-4.1.0-1PGDG.rhel8.aarch64.rpm pgdg 4.1.0 26.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/set_user_17-4.1.0-1PGDG.rhel8.aarch64.rpm
+@ el9.x86_64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel9.8.x86_64.rpm pgdg 4.3.0 29.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/set_user_17-4.3.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 set_user_17 set_user_17-4.2.0-3PGDG.rhel9.8.x86_64.rpm pgdg 4.2.0 26.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/set_user_17-4.2.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 17 set_user_17 set_user_17-4.1.0-1PGDG.rhel9.x86_64.rpm pgdg 4.1.0 26.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/set_user_17-4.1.0-1PGDG.rhel9.x86_64.rpm
+@ el9.aarch64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel9.8.aarch64.rpm pgdg 4.3.0 28.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/set_user_17-4.3.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 set_user_17 set_user_17-4.2.0-3PGDG.rhel9.8.aarch64.rpm pgdg 4.2.0 26.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/set_user_17-4.2.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 17 set_user_17 set_user_17-4.1.0-1PGDG.rhel9.aarch64.rpm pgdg 4.1.0 25.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/set_user_17-4.1.0-1PGDG.rhel9.aarch64.rpm
+@ el10.x86_64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel10.2.x86_64.rpm pgdg 4.3.0 29.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/set_user_17-4.3.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 set_user_17 set_user_17-4.2.0-3PGDG.rhel10.2.x86_64.rpm pgdg 4.2.0 26.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/set_user_17-4.2.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 17 set_user_17 set_user_17-4.1.0-2PGDG.rhel10.x86_64.rpm pgdg 4.1.0 26.8KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/set_user_17-4.1.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 17 set_user_17 set_user_17-4.3.0-1PGDG.rhel10.2.aarch64.rpm pgdg 4.3.0 28.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/set_user_17-4.3.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 set_user_17 set_user_17-4.2.0-3PGDG.rhel10.2.aarch64.rpm pgdg 4.2.0 26.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/set_user_17-4.2.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 set_user_17 set_user_17-4.1.0-2PGDG.rhel10.aarch64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/set_user_17-4.1.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg12+1_amd64.deb pgdg 4.3.0 39.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg12+2_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg12+2_amd64.deb
 @ d12.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg12+1_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg12+1_arm64.deb pgdg 4.3.0 38.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg12+2_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg12+2_arm64.deb
 @ d12.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg12+1_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg13+1_amd64.deb pgdg 4.3.0 39.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg13+2_amd64.deb pgdg 4.2.0 35.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg13+2_amd64.deb
 @ d13.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg13+1_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg13+1_arm64.deb pgdg 4.3.0 38.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg13+2_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg13+2_arm64.deb
 @ d13.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg13+1_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg22.04+1_amd64.deb pgdg 4.3.0 43.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg22.04+2_amd64.deb pgdg 4.2.0 39.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg22.04+1_amd64.deb pgdg 4.2.0 39.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg22.04+1_arm64.deb pgdg 4.3.0 42.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg22.04+2_arm64.deb pgdg 4.2.0 38.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg22.04+1_arm64.deb pgdg 4.2.0 38.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg24.04+1_amd64.deb pgdg 4.3.0 38.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg24.04+2_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg24.04+1_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg24.04+1_arm64.deb pgdg 4.3.0 37.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg24.04+2_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg24.04+1_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg26.04+1_amd64.deb pgdg 4.3.0 38.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg26.04+2_amd64.deb pgdg 4.2.0 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg26.04+1_amd64.deb pgdg 4.2.0 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.3.0-1.pgdg26.04+1_arm64.deb pgdg 4.3.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg26.04+2_arm64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 17 postgresql-17-set-user postgresql-17-set-user_4.2.0-1.pgdg26.04+1_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-17-set-user_4.2.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.3.0 29.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/set_user_16-4.3.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 set_user_16 set_user_16-4.1.0-1PGDG.rhel8.x86_64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/set_user_16-4.1.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 16 set_user_16 set_user_16-4.0.1-2.rhel8.1.x86_64.rpm pgdg 4.0.1 26.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/set_user_16-4.0.1-2.rhel8.1.x86_64.rpm
+@ el8.aarch64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.3.0 29.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/set_user_16-4.3.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 set_user_16 set_user_16-4.1.0-1PGDG.rhel8.aarch64.rpm pgdg 4.1.0 26.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/set_user_16-4.1.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 16 set_user_16 set_user_16-4.0.1-2.rhel8.1.aarch64.rpm pgdg 4.0.1 25.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/set_user_16-4.0.1-2.rhel8.1.aarch64.rpm
+@ el9.x86_64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel9.8.x86_64.rpm pgdg 4.3.0 29.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/set_user_16-4.3.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 set_user_16 set_user_16-4.2.0-3PGDG.rhel9.8.x86_64.rpm pgdg 4.2.0 26.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/set_user_16-4.2.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 16 set_user_16 set_user_16-4.1.0-1PGDG.rhel9.x86_64.rpm pgdg 4.1.0 26.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/set_user_16-4.1.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 16 set_user_16 set_user_16-4.0.1-2.rhel9.1.x86_64.rpm pgdg 4.0.1 26.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/set_user_16-4.0.1-2.rhel9.1.x86_64.rpm
+@ el9.aarch64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel9.8.aarch64.rpm pgdg 4.3.0 28.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/set_user_16-4.3.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 set_user_16 set_user_16-4.2.0-3PGDG.rhel9.8.aarch64.rpm pgdg 4.2.0 26.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/set_user_16-4.2.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 16 set_user_16 set_user_16-4.1.0-1PGDG.rhel9.aarch64.rpm pgdg 4.1.0 25.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/set_user_16-4.1.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 16 set_user_16 set_user_16-4.0.1-2.rhel9.1.aarch64.rpm pgdg 4.0.1 25.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/set_user_16-4.0.1-2.rhel9.1.aarch64.rpm
+@ el10.x86_64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel10.2.x86_64.rpm pgdg 4.3.0 29.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/set_user_16-4.3.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 set_user_16 set_user_16-4.2.0-3PGDG.rhel10.2.x86_64.rpm pgdg 4.2.0 26.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/set_user_16-4.2.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 16 set_user_16 set_user_16-4.1.0-2PGDG.rhel10.x86_64.rpm pgdg 4.1.0 26.8KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/set_user_16-4.1.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 16 set_user_16 set_user_16-4.3.0-1PGDG.rhel10.2.aarch64.rpm pgdg 4.3.0 28.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/set_user_16-4.3.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 set_user_16 set_user_16-4.2.0-3PGDG.rhel10.2.aarch64.rpm pgdg 4.2.0 26.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/set_user_16-4.2.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 set_user_16 set_user_16-4.1.0-2PGDG.rhel10.aarch64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/set_user_16-4.1.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg12+1_amd64.deb pgdg 4.3.0 39.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg12+2_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg12+2_amd64.deb
 @ d12.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg12+1_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg12+1_arm64.deb pgdg 4.3.0 38.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg12+2_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg12+2_arm64.deb
 @ d12.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg12+1_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg13+1_amd64.deb pgdg 4.3.0 39.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg13+2_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg13+2_amd64.deb
 @ d13.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg13+1_amd64.deb pgdg 4.2.0 35.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg13+1_arm64.deb pgdg 4.3.0 38.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg13+2_arm64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg13+2_arm64.deb
 @ d13.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg13+1_arm64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg22.04+1_amd64.deb pgdg 4.3.0 42.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg22.04+2_amd64.deb pgdg 4.2.0 38.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg22.04+1_amd64.deb pgdg 4.2.0 38.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg22.04+1_arm64.deb pgdg 4.3.0 42.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg22.04+2_arm64.deb pgdg 4.2.0 38.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg22.04+1_arm64.deb pgdg 4.2.0 38.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg24.04+1_amd64.deb pgdg 4.3.0 38.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg24.04+2_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg24.04+1_amd64.deb pgdg 4.2.0 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg24.04+1_arm64.deb pgdg 4.3.0 37.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg24.04+2_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg24.04+1_arm64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg26.04+1_amd64.deb pgdg 4.3.0 38.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg26.04+2_amd64.deb pgdg 4.2.0 34.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg26.04+1_amd64.deb pgdg 4.2.0 34.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.3.0-1.pgdg26.04+1_arm64.deb pgdg 4.3.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg26.04+2_arm64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 16 postgresql-16-set-user postgresql-16-set-user_4.2.0-1.pgdg26.04+1_arm64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-16-set-user_4.2.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.3.0 29.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/set_user_15-4.3.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 set_user_15 set_user_15-4.1.0-1PGDG.rhel8.x86_64.rpm pgdg 4.1.0 26.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/set_user_15-4.1.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 15 set_user_15 set_user_15-4.0.1-2.rhel8.x86_64.rpm pgdg 4.0.1 26.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/set_user_15-4.0.1-2.rhel8.x86_64.rpm
 @ el8.x86_64 15 set_user_15 set_user_15-4.0.0-1.rhel8.x86_64.rpm pgdg 4.0.0 25.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/set_user_15-4.0.0-1.rhel8.x86_64.rpm
+@ el8.aarch64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.3.0 29.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/set_user_15-4.3.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 15 set_user_15 set_user_15-4.1.0-1PGDG.rhel8.aarch64.rpm pgdg 4.1.0 26.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/set_user_15-4.1.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 15 set_user_15 set_user_15-4.0.1-2.rhel8.aarch64.rpm pgdg 4.0.1 25.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/set_user_15-4.0.1-2.rhel8.aarch64.rpm
 @ el8.aarch64 15 set_user_15 set_user_15-4.0.0-1.rhel8.aarch64.rpm pgdg 4.0.0 25.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/set_user_15-4.0.0-1.rhel8.aarch64.rpm
+@ el9.x86_64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel9.8.x86_64.rpm pgdg 4.3.0 28.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/set_user_15-4.3.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 set_user_15 set_user_15-4.2.0-3PGDG.rhel9.8.x86_64.rpm pgdg 4.2.0 26.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/set_user_15-4.2.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 15 set_user_15 set_user_15-4.1.0-1PGDG.rhel9.x86_64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/set_user_15-4.1.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 15 set_user_15 set_user_15-4.0.1-2.rhel9.x86_64.rpm pgdg 4.0.1 26.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/set_user_15-4.0.1-2.rhel9.x86_64.rpm
 @ el9.x86_64 15 set_user_15 set_user_15-4.0.0-1.rhel9.x86_64.rpm pgdg 4.0.0 25.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/set_user_15-4.0.0-1.rhel9.x86_64.rpm
+@ el9.aarch64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel9.8.aarch64.rpm pgdg 4.3.0 28.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/set_user_15-4.3.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 set_user_15 set_user_15-4.2.0-3PGDG.rhel9.8.aarch64.rpm pgdg 4.2.0 26.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/set_user_15-4.2.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 15 set_user_15 set_user_15-4.1.0-1PGDG.rhel9.aarch64.rpm pgdg 4.1.0 25.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/set_user_15-4.1.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 15 set_user_15 set_user_15-4.0.1-2.rhel9.aarch64.rpm pgdg 4.0.1 25.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/set_user_15-4.0.1-2.rhel9.aarch64.rpm
 @ el9.aarch64 15 set_user_15 set_user_15-4.0.0-1.rhel9.aarch64.rpm pgdg 4.0.0 25.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/set_user_15-4.0.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel10.2.x86_64.rpm pgdg 4.3.0 29.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/set_user_15-4.3.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 set_user_15 set_user_15-4.2.0-3PGDG.rhel10.2.x86_64.rpm pgdg 4.2.0 26.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/set_user_15-4.2.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 15 set_user_15 set_user_15-4.1.0-2PGDG.rhel10.x86_64.rpm pgdg 4.1.0 26.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/set_user_15-4.1.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 15 set_user_15 set_user_15-4.3.0-1PGDG.rhel10.2.aarch64.rpm pgdg 4.3.0 28.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/set_user_15-4.3.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 set_user_15 set_user_15-4.2.0-3PGDG.rhel10.2.aarch64.rpm pgdg 4.2.0 26.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/set_user_15-4.2.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 set_user_15 set_user_15-4.1.0-2PGDG.rhel10.aarch64.rpm pgdg 4.1.0 26.3KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/set_user_15-4.1.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg12+1_amd64.deb pgdg 4.3.0 38.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg12+2_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg12+2_amd64.deb
 @ d12.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg12+1_amd64.deb pgdg 4.2.0 34.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg12+1_arm64.deb pgdg 4.3.0 38.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg12+2_arm64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg12+2_arm64.deb
 @ d12.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg12+1_arm64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg13+1_amd64.deb pgdg 4.3.0 39.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg13+2_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg13+2_amd64.deb
 @ d13.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg13+1_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg13+1_arm64.deb pgdg 4.3.0 38.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg13+2_arm64.deb pgdg 4.2.0 34.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg13+2_arm64.deb
 @ d13.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg13+1_arm64.deb pgdg 4.2.0 34.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg22.04+1_amd64.deb pgdg 4.3.0 42.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg22.04+2_amd64.deb pgdg 4.2.0 38.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg22.04+1_amd64.deb pgdg 4.2.0 38.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg22.04+1_arm64.deb pgdg 4.3.0 41.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg22.04+2_arm64.deb pgdg 4.2.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg22.04+1_arm64.deb pgdg 4.2.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg24.04+1_amd64.deb pgdg 4.3.0 38.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg24.04+2_amd64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg24.04+1_amd64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg24.04+1_arm64.deb pgdg 4.3.0 37.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg24.04+2_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg24.04+1_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg26.04+1_amd64.deb pgdg 4.3.0 38.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg26.04+2_amd64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg26.04+1_amd64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.3.0-1.pgdg26.04+1_arm64.deb pgdg 4.3.0 37.5KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg26.04+2_arm64.deb pgdg 4.2.0 33.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 15 postgresql-15-set-user postgresql-15-set-user_4.2.0-1.pgdg26.04+1_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-15-set-user_4.2.0-1.pgdg26.04+1_arm64.deb
+@ el8.x86_64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel8.10.x86_64.rpm pgdg 4.3.0 29.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/set_user_14-4.3.0-1PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 14 set_user_14 set_user_14-4.1.0-1PGDG.rhel8.x86_64.rpm pgdg 4.1.0 26.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/set_user_14-4.1.0-1PGDG.rhel8.x86_64.rpm
 @ el8.x86_64 14 set_user_14 set_user_14-4.0.1-2.rhel8.x86_64.rpm pgdg 4.0.1 26.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/set_user_14-4.0.1-2.rhel8.x86_64.rpm
 @ el8.x86_64 14 set_user_14 set_user_14-4.0.0-1.rhel8.x86_64.rpm pgdg 4.0.0 25.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/set_user_14-4.0.0-1.rhel8.x86_64.rpm
 @ el8.x86_64 14 set_user_14 set_user_14-3.0.0-1.rhel8.x86_64.rpm pgdg 3.0.0 25.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/set_user_14-3.0.0-1.rhel8.x86_64.rpm
+@ el8.aarch64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel8.10.aarch64.rpm pgdg 4.3.0 29.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/set_user_14-4.3.0-1PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 14 set_user_14 set_user_14-4.1.0-1PGDG.rhel8.aarch64.rpm pgdg 4.1.0 26.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/set_user_14-4.1.0-1PGDG.rhel8.aarch64.rpm
 @ el8.aarch64 14 set_user_14 set_user_14-4.0.1-2.rhel8.aarch64.rpm pgdg 4.0.1 25.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/set_user_14-4.0.1-2.rhel8.aarch64.rpm
 @ el8.aarch64 14 set_user_14 set_user_14-4.0.0-1.rhel8.aarch64.rpm pgdg 4.0.0 25.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/set_user_14-4.0.0-1.rhel8.aarch64.rpm
 @ el8.aarch64 14 set_user_14 set_user_14-3.0.0-1.rhel8.aarch64.rpm pgdg 3.0.0 25.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-aarch64/set_user_14-3.0.0-1.rhel8.aarch64.rpm
+@ el9.x86_64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel9.8.x86_64.rpm pgdg 4.3.0 29.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/set_user_14-4.3.0-1PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 set_user_14 set_user_14-4.2.0-3PGDG.rhel9.8.x86_64.rpm pgdg 4.2.0 26.6KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/set_user_14-4.2.0-3PGDG.rhel9.8.x86_64.rpm
 @ el9.x86_64 14 set_user_14 set_user_14-4.1.0-1PGDG.rhel9.x86_64.rpm pgdg 4.1.0 26.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/set_user_14-4.1.0-1PGDG.rhel9.x86_64.rpm
 @ el9.x86_64 14 set_user_14 set_user_14-4.0.1-2.rhel9.x86_64.rpm pgdg 4.0.1 26.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/set_user_14-4.0.1-2.rhel9.x86_64.rpm
 @ el9.x86_64 14 set_user_14 set_user_14-4.0.0-1.rhel9.x86_64.rpm pgdg 4.0.0 25.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/set_user_14-4.0.0-1.rhel9.x86_64.rpm
+@ el9.aarch64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel9.8.aarch64.rpm pgdg 4.3.0 28.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-4.3.0-1PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 set_user_14 set_user_14-4.2.0-3PGDG.rhel9.8.aarch64.rpm pgdg 4.2.0 26.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-4.2.0-3PGDG.rhel9.8.aarch64.rpm
 @ el9.aarch64 14 set_user_14 set_user_14-4.1.0-1PGDG.rhel9.aarch64.rpm pgdg 4.1.0 25.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-4.1.0-1PGDG.rhel9.aarch64.rpm
 @ el9.aarch64 14 set_user_14 set_user_14-4.0.1-2.rhel9.aarch64.rpm pgdg 4.0.1 25.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-4.0.1-2.rhel9.aarch64.rpm
 @ el9.aarch64 14 set_user_14 set_user_14-4.0.0-1.rhel9.aarch64.rpm pgdg 4.0.0 25.1KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-4.0.0-1.rhel9.aarch64.rpm
 @ el9.aarch64 14 set_user_14 set_user_14-3.0.0-1.rhel9.aarch64.rpm pgdg 3.0.0 25.0KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/set_user_14-3.0.0-1.rhel9.aarch64.rpm
+@ el10.x86_64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel10.2.x86_64.rpm pgdg 4.3.0 29.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/set_user_14-4.3.0-1PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 set_user_14 set_user_14-4.2.0-3PGDG.rhel10.2.x86_64.rpm pgdg 4.2.0 26.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/set_user_14-4.2.0-3PGDG.rhel10.2.x86_64.rpm
 @ el10.x86_64 14 set_user_14 set_user_14-4.1.0-2PGDG.rhel10.x86_64.rpm pgdg 4.1.0 26.7KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/set_user_14-4.1.0-2PGDG.rhel10.x86_64.rpm
+@ el10.aarch64 14 set_user_14 set_user_14-4.3.0-1PGDG.rhel10.2.aarch64.rpm pgdg 4.3.0 28.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/set_user_14-4.3.0-1PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 set_user_14 set_user_14-4.2.0-3PGDG.rhel10.2.aarch64.rpm pgdg 4.2.0 26.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/set_user_14-4.2.0-3PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 14 set_user_14 set_user_14-4.1.0-2PGDG.rhel10.aarch64.rpm pgdg 4.1.0 26.3KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/set_user_14-4.1.0-2PGDG.rhel10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg12+1_amd64.deb pgdg 4.3.0 38.9KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg12+1_amd64.deb
 @ d12.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg12+2_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg12+2_amd64.deb
 @ d12.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg12+1_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg12+1_amd64.deb
+@ d12.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg12+1_arm64.deb pgdg 4.3.0 38.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg12+1_arm64.deb
 @ d12.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg12+2_arm64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg12+2_arm64.deb
 @ d12.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg12+1_arm64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg12+1_arm64.deb
+@ d13.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg13+1_amd64.deb pgdg 4.3.0 39.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg13+1_amd64.deb
 @ d13.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg13+2_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg13+2_amd64.deb
 @ d13.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg13+1_amd64.deb pgdg 4.2.0 34.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg13+1_amd64.deb
+@ d13.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg13+1_arm64.deb pgdg 4.3.0 38.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg13+1_arm64.deb
 @ d13.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg13+2_arm64.deb pgdg 4.2.0 34.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg13+2_arm64.deb
 @ d13.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg13+1_arm64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg13+1_arm64.deb
+@ u22.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg22.04+1_amd64.deb pgdg 4.3.0 42.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg22.04+1_amd64.deb
 @ u22.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg22.04+2_amd64.deb pgdg 4.2.0 38.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg22.04+2_amd64.deb
 @ u22.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg22.04+1_amd64.deb pgdg 4.2.0 38.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg22.04+1_amd64.deb
+@ u22.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg22.04+1_arm64.deb pgdg 4.3.0 41.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg22.04+1_arm64.deb
 @ u22.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg22.04+2_arm64.deb pgdg 4.2.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg22.04+2_arm64.deb
 @ u22.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg22.04+1_arm64.deb pgdg 4.2.0 37.8KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg22.04+1_arm64.deb
+@ u24.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg24.04+1_amd64.deb pgdg 4.3.0 38.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg24.04+1_amd64.deb
 @ u24.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg24.04+2_amd64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg24.04+2_amd64.deb
 @ u24.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg24.04+1_amd64.deb pgdg 4.2.0 34.2KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg24.04+1_amd64.deb
+@ u24.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg24.04+1_arm64.deb pgdg 4.3.0 37.3KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg24.04+1_arm64.deb
 @ u24.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg24.04+2_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg24.04+2_arm64.deb
 @ u24.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg24.04+1_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg24.04+1_arm64.deb
+@ u26.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg26.04+1_amd64.deb pgdg 4.3.0 38.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg26.04+1_amd64.deb
 @ u26.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg26.04+2_amd64.deb pgdg 4.2.0 34.0KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg26.04+2_amd64.deb
 @ u26.x86_64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg26.04+1_amd64.deb pgdg 4.2.0 34.1KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg26.04+1_amd64.deb
+@ u26.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.3.0-1.pgdg26.04+1_arm64.deb pgdg 4.3.0 37.4KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.3.0-1.pgdg26.04+1_arm64.deb
 @ u26.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg26.04+2_arm64.deb pgdg 4.2.0 33.6KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg26.04+2_arm64.deb
 @ u26.aarch64 14 postgresql-14-set-user postgresql-14-set-user_4.2.0-1.pgdg26.04+1_arm64.deb pgdg 4.2.0 33.7KiB https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-set-user/postgresql-14-set-user_4.2.0-1.pgdg26.04+1_arm64.deb
 {{< /pgext_matrix >}}
@@ -289,12 +369,13 @@ shared_preload_libraries = 'set_user';
 CREATE EXTENSION set_user;
 ```
 
-
-
-
 ## Usage
 
-> [set_user: User switching with enhanced logging and control](https://github.com/pgaudit/set_user)
+Sources:
+
+- [README.md](https://github.com/pgaudit/set_user/blob/45fc481de6874c2afc5199d7efbd2e32c66d702e/README.md)
+- [set_user.control](https://github.com/pgaudit/set_user/blob/45fc481de6874c2afc5199d7efbd2e32c66d702e/set_user.control)
+- [CHANGELOG.md](https://github.com/pgaudit/set_user/blob/45fc481de6874c2afc5199d7efbd2e32c66d702e/CHANGELOG.md)
 
 `set_user` allows switching users and optional privilege escalation with enhanced audit logging. It provides an additional layer of control when unprivileged users must escalate to superuser or object owner roles for maintenance tasks.
 
@@ -304,7 +385,7 @@ CREATE EXTENSION set_user;
 
 ### Configuration
 
-Add to `postgresql.conf`:
+Add to `postgresql.conf`, preserving other preload entries, and restart PostgreSQL:
 
 ```ini
 shared_preload_libraries = 'set_user'
@@ -357,3 +438,9 @@ When escalating to a superuser role:
 - `ALTER SYSTEM` and `COPY PROGRAM` are blocked (if configured)
 - `log_statement` is forced to `all` for full audit trail
 - The `AUDIT` tag is appended to `log_line_prefix`
+
+### 4.3.0 Security and Compatibility
+
+Version 4.3.0 requires PostgreSQL 14 or newer. It fixes the RESET ALL backend crash, blocks DISCARD ALL and function SET-clause paths that could bypass reset-token checks, and compares tokens in constant time. Allowlist role names are now case-sensitive; quote mixed-case names correctly.
+
+A reset token is a best-effort safeguard, not a security boundary against a malicious superuser or another route to changing identity. Restrict EXECUTE grants and both role allowlists explicitly. Install matching files and replace preloaded processes before relying on the fixes.

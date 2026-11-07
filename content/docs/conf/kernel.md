@@ -54,7 +54,7 @@ This template uses single-node clusters to show the minimum viable configuration
 - `pg-oriole`: OrioleDB with PostgreSQL 16, 17, and 18 support. The current demonstration defaults to PG18.
 - `pg-mysql`: OpenHalo, compatible with PostgreSQL 14
 - `pg-mongo`: DocumentDB backend for PostgreSQL Mongo mode, default PostgreSQL 18
-- `pg-agens`: AgensGraph, compatible with PostgreSQL 17
+- `pg-agens`: AgensGraph 2.18, compatible with PostgreSQL 18
 - `pg-edge`: pgEdge, compatible with PostgreSQL 18
 
 **Notes**:

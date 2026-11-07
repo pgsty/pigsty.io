@@ -11,10 +11,10 @@ weight: 2980
     <div class="ext-card__title">https://codeberg.org/gregburd/mentat</div>
     <div class="ext-card__desc">https://codeberg.org/gregburd/mentat</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_mentat-1.18.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_mentat-1.19.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_mentat-1.18.0.tar.gz</div>
-    <div class="ext-card__desc">pg_mentat-1.18.0.tar.gz</div>
+    <div class="ext-card__title">pg_mentat-1.19.1.tar.gz</div>
+    <div class="ext-card__desc">pg_mentat-1.19.1.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2980
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_mentat`**](/ext/e/pg_mentat) | `1.18.0` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_mentat`**](/ext/e/pg_mentat) | `1.19.1` | <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,117 +38,117 @@ weight: 2980
 {.ext-table .ext-table--rel}
 
 
-> 1.18.0 repairs named stores; upgrading rebuilds old named-store layouts while retaining old schemas, and adds indexes that can block writes. Trusted-installation fix from 1.17.2 remains required. Upstream supports PG13-19; PGSTY packages support PG14-18.
+> Upgrade locks stores; check moved_idents().
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.18.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.18.0` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.18.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-mentat` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.19.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.19.1` | {{< pgvers "18,17,16,15,14" >}} | `pg_mentat_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.19.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-mentat` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
 | **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| el8.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| el9.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| el9.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| el10.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| el10.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| d12.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| d12.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| d13.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| d13.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u22.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u22.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u24.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u24.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u26.x86_64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-| u26.aarch64 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 | AVAIL PIGSTY 1.18.0 1 |
-@ el8.x86_64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el8.x86_64.rpm pigsty 1.18.0 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_18-1.18.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el8.aarch64.rpm pigsty 1.18.0 2.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_18-1.18.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el9.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_18-1.18.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el9.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_18-1.18.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el10.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_18-1.18.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_mentat_18 pg_mentat_18-1.18.0-1PGSTY.el10.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_18-1.18.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el8.x86_64.rpm pigsty 1.18.0 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_17-1.18.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el8.aarch64.rpm pigsty 1.18.0 2.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_17-1.18.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el9.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_17-1.18.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el9.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_17-1.18.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el10.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_17-1.18.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 17 pg_mentat_17 pg_mentat_17-1.18.0-1PGSTY.el10.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_17-1.18.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el8.x86_64.rpm pigsty 1.18.0 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_16-1.18.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el8.aarch64.rpm pigsty 1.18.0 2.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_16-1.18.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el9.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_16-1.18.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el9.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_16-1.18.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el10.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_16-1.18.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 16 pg_mentat_16 pg_mentat_16-1.18.0-1PGSTY.el10.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_16-1.18.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el8.x86_64.rpm pigsty 1.18.0 2.8MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_15-1.18.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el8.aarch64.rpm pigsty 1.18.0 2.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_15-1.18.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el9.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_15-1.18.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el9.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_15-1.18.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el10.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_15-1.18.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 15 pg_mentat_15 pg_mentat_15-1.18.0-1PGSTY.el10.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_15-1.18.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el8.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_14-1.18.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el8.aarch64.rpm pigsty 1.18.0 2.3MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_14-1.18.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el9.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_14-1.18.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el9.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_14-1.18.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el10.x86_64.rpm pigsty 1.18.0 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_14-1.18.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pg_mentat_14 pg_mentat_14-1.18.0-1PGSTY.el10.aarch64.rpm pigsty 1.18.0 2.5MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_14-1.18.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb pigsty 1.18.0 1.9MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb pigsty 1.18.0 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb pigsty 1.18.0 2.3MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.18.0-1PGSTY~resolute_arm64.deb
+| el8.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| el8.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| el9.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| el9.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| el10.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| el10.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| d12.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 | AVAIL PIGSTY 1.19.1 1 |
+@ el8.x86_64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el8.x86_64.rpm pigsty 1.19.1 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_18-1.19.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el8.aarch64.rpm pigsty 1.19.1 2.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_18-1.19.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el9.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_18-1.19.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el9.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_18-1.19.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el10.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_18-1.19.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_mentat_18 pg_mentat_18-1.19.1-1PGSTY.el10.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_18-1.19.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-pg-mentat postgresql-18-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-18-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el8.x86_64.rpm pigsty 1.19.1 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_17-1.19.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el8.aarch64.rpm pigsty 1.19.1 2.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_17-1.19.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el9.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_17-1.19.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el9.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_17-1.19.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el10.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_17-1.19.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 17 pg_mentat_17 pg_mentat_17-1.19.1-1PGSTY.el10.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_17-1.19.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-pg-mentat postgresql-17-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-17-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el8.x86_64.rpm pigsty 1.19.1 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_16-1.19.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el8.aarch64.rpm pigsty 1.19.1 2.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_16-1.19.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el9.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_16-1.19.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el9.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_16-1.19.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el10.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_16-1.19.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 16 pg_mentat_16 pg_mentat_16-1.19.1-1PGSTY.el10.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_16-1.19.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-pg-mentat postgresql-16-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-16-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el8.x86_64.rpm pigsty 1.19.1 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_15-1.19.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el8.aarch64.rpm pigsty 1.19.1 2.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_15-1.19.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el9.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_15-1.19.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el9.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_15-1.19.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el10.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_15-1.19.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 15 pg_mentat_15 pg_mentat_15-1.19.1-1PGSTY.el10.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_15-1.19.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-pg-mentat postgresql-15-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-15-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el8.x86_64.rpm pigsty 1.19.1 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_mentat_14-1.19.1-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el8.aarch64.rpm pigsty 1.19.1 2.4MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_mentat_14-1.19.1-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el9.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_mentat_14-1.19.1-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el9.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_mentat_14-1.19.1-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el10.x86_64.rpm pigsty 1.19.1 2.8MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_mentat_14-1.19.1-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 14 pg_mentat_14 pg_mentat_14-1.19.1-1PGSTY.el10.aarch64.rpm pigsty 1.19.1 2.6MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_mentat_14-1.19.1-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb pigsty 1.19.1 2.0MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~noble_amd64.deb
+@ u24.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~noble_arm64.deb
+@ u26.x86_64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb pigsty 1.19.1 2.6MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 14 postgresql-14-pg-mentat postgresql-14-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb pigsty 1.19.1 2.4MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-mentat/postgresql-14-pg-mentat_1.19.1-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -209,21 +209,21 @@ CREATE EXTENSION pg_mentat;
 
 Sources:
 
-- [v1.18.0 README](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/README.md)
-- [v1.18.0 extension control](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/pg_mentat.control)
-- [v1.18.0 changelog](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/CHANGELOG.md)
-- [v1.9.1 dump repair](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/sql/pg_mentat--1.9.0--1.9.1.sql)
-- [v1.18.0 SQL aliases](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/sql/07_function_aliases.sql)
-- [v1.18.0 history functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/time_travel.rs)
-- [v1.18.0 excision function](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/excision.rs)
-- [v1.18.0 transaction functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/transact.rs)
-- [v1.18.0 subscriptions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/subscriptions.rs)
-- [1.18.0 upgrade SQL](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/sql/pg_mentat--1.17.2--1.18.0.sql)
-- [1.18.0 named-store guide](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/docs/src/multi-tenancy.md)
-- [1.18.0 query functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/query.rs)
-- [1.18.0 pull functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.18.0/crates/pg/pg_mentat/src/functions/pull.rs)
+- [v1.19.1 README](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/README.md)
+- [v1.19.1 extension control](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/pg_mentat.control)
+- [v1.19.1 changelog](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/CHANGELOG.md)
+- [v1.9.1 dump repair](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/sql/pg_mentat--1.9.0--1.9.1.sql)
+- [v1.19.1 SQL aliases](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/sql/07_function_aliases.sql)
+- [v1.19.1 history functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/time_travel.rs)
+- [v1.19.1 excision function](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/excision.rs)
+- [v1.19.1 transaction functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/transact.rs)
+- [v1.19.1 subscriptions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/subscriptions.rs)
+- [1.18.0 upgrade SQL](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/sql/pg_mentat--1.17.2--1.18.0.sql)
+- [1.18.0 named-store guide](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/docs/src/multi-tenancy.md)
+- [1.18.0 query functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/query.rs)
+- [1.18.0 pull functions](https://api.pgxn.org/src/pg_mentat/pg_mentat-1.19.1/crates/pg/pg_mentat/src/functions/pull.rs)
 
-`pg_mentat` 1.18.0 implements a Datomic-compatible data model and Datalog query engine inside PostgreSQL. It stores immutable facts as typed datoms and exposes schema transactions, Datalog queries, pull expressions, time travel, transaction history, and permanent excision through SQL functions. Use it for applications that need this model; it is not a transparent replacement for relational tables or SQL.
+`pg_mentat` 1.19.1 implements a Datomic-compatible data model and Datalog query engine inside PostgreSQL. It stores immutable facts as typed datoms and exposes schema transactions, Datalog queries, pull expressions, time travel, transaction history, and permanent excision through SQL functions. Use it for applications that need this model; it is not a transparent replacement for relational tables or SQL.
 
 ### Install and Define a Schema
 
@@ -314,7 +314,7 @@ Version 1.6.2 fixes deeply nested EDN causing stack exhaustion, non-superuser qu
 
 ### Requirements and Caveats
 
-- Upstream v1.18.0 declares PostgreSQL 13-19 Cargo features and uses pgrx 0.19.3. Pigsty's 1.18.0 packages target PostgreSQL 14-18.
+- Upstream v1.19.1 declares PostgreSQL 13-19 Cargo features and uses pgrx 0.19.3. Pigsty's 1.18.0 packages target PostgreSQL 14-18.
 - The extension is not relocatable and does not require `shared_preload_libraries`.
 - The optional `mentatd` HTTP/Datomic-wire daemon is an upstream companion program and is not included in the Pigsty `pg_mentat` package. SQL use of the extension does not require it.
 - Datalog compilation, pull recursion, full-text attributes, subscriptions, and history can have very different cost profiles. Inspect generated SQL with the documented explain helper and benchmark representative data.
@@ -342,10 +342,10 @@ Aggregates now follow Datalog set semantics: summing 1, 1, 1, 3 yields 4 instead
 
 1.9.1 fixes an important backup defect: earlier versions did not register extension-member table data, so logical `pg_dump` backups omitted mentat data and restored empty stores. Take and verify a new logical backup immediately after upgrading; older backups are not repaired retroactively. Physical backups are unaffected by this defect.
 
-After installing the new files, update through the upgrade chain to 1.18.0. The upgrade builds indexes and can block writes; schedule a maintenance window:
+After installing the new files, update through the upgrade chain to 1.19.1. The upgrade builds indexes and can block writes; schedule a maintenance window:
 
 ```sql
-ALTER EXTENSION pg_mentat UPDATE TO '1.18.0';
+ALTER EXTENSION pg_mentat UPDATE TO '1.19.1';
 ```
 
 Deployed databases still need the SQL extension update and a verified new logical backup.
@@ -387,8 +387,16 @@ SELECT public.q(
 );
 ```
 
-Historical `pull` and query operations honor `asOf` and `since`; unknown option keys are rejected. Named stores still reject the documented vector, geometry and user transaction-function paths that would read the default store. New stores inherit the default store's grants; separate schemas alone do not establish tenant access isolation.
+Historical `pull` and query operations honor `asOf` and `since`; unknown option keys are rejected. In 1.18.0, named stores rejected the documented vector, geometry and user transaction-function paths that could read the default store; 1.19 adds store-aware user transaction functions as described below. New stores inherit the default store's grants; separate schemas alone do not establish tenant access isolation.
 
 Transaction reports now expose `datoms_asserted` and `datoms_retracted`. Reasserting an unchanged value counts as no change; replacing a single-valued attribute reports both a retraction and an assertion. Consumers of transaction reports should account for the corrected changed-datom semantics.
 
 The upgrade retains each old named-store schema as `mentat_<name>_pre118` and creates a new empty replacement, with warnings for skipped stores and dependent subscriptions/materialized views. Inspect these warnings and recreate affected subscriptions/views; do not assume old data was migrated into the replacement. The new `(store_id, tx)` indexes use ordinary CREATE INDEX and can block writes. Large installations may prebuild the exact documented indexes concurrently and verify validity before upgrading.
+
+### 1.19.1 Upgrade and Store Boundaries
+
+The direct 1.18.0-to-1.19.1 upgrade takes every needed lock before changing anything, releases them if a store is busy, and retries for up to 30 seconds. SQLSTATE `55P03` leaves the database unchanged; retry in a quiet window. Do not set `lock_timeout` for this update. Once acquired, locks can block store readers and writers until commit. The SQL update from 1.19.0 to 1.19.1 is empty.
+
+Library behavior changes apply when the new library loads, before the SQL update: `"datomic.tx"` now identifies the transaction itself, not a separate annotation entity. Review consumers of transaction reports. Named-store transaction functions now read their own store and cannot transact from inside a transaction function. Tenant roles also need grants on `mentat.current_<type>` tables for current-state RLS.
+
+`mentat.moved_idents(store)` detects idents moved by older releases. Review `mentat.repair_moved_idents(store, dry_run DEFAULT true)` in dry-run mode before any repair: it can merge entity histories, skips conflicts, and its write mode requires READ COMMITTED and blocks store writers. Upgrading does not automatically repair these older data changes. The historical 1.18.0 named-store replacement and logical-backup requirements above remain relevant when crossing those versions.

@@ -6,10 +6,10 @@ weight: 6460
 ---
 
 <div class="ext-cards">
-  <a class="ext-card ext-card--repo" href="https://github.com/markwkm/pg_proctab">
+  <a class="ext-card ext-card--repo" href="https://github.com/CrunchyData/pgnodemx">
     <div class="ext-card__kicker">Repository</div>
-    <div class="ext-card__title">markwkm/pg_proctab</div>
-    <div class="ext-card__desc">https://github.com/markwkm/pg_proctab</div>
+    <div class="ext-card__title">CrunchyData/pgnodemx</div>
+    <div class="ext-card__desc">https://github.com/CrunchyData/pgnodemx</div>
   </a>
   <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pgnodemx-2.0.1.tar.gz">
     <div class="ext-card__kicker">Source</div>
@@ -25,28 +25,28 @@ weight: 6460
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pgnodemx`**](/ext/e/pgnodemx) | `2.0.1` | <a class="ext-badge ext-badge--cate stat" href="/ext/cate/stat">STAT</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
 | 6450  | [**`pgnodemx`**](/ext/e/pgnodemx) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
-| 6460  | [**`pg_proctab`**](/ext/e/pg_proctab) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 6460  | [**`pg_proctab`**](/ext/e/pg_proctab) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table .wide .expand}
 
-| **Related** | [`system_stats`](/ext/e/system_stats) [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`pgmeminfo`](/ext/e/pgmeminfo) |
+| **Related** | [`pgnodemx`](/ext/e/pgnodemx) [`system_stats`](/ext/e/system_stats) [`pg_stat_kcache`](/ext/e/pg_stat_kcache) [`pgmeminfo`](/ext/e/pgmeminfo) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
 
-> Bundled with pgnodemx package/source 2.0.1 for PostgreSQL 14-18; this package ships pg_proctab as a compatibility stub backed by pgnodemx.
+> Compatibility stub; PGDG RPM incomplete.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgnodemx` | - |
+| [**EXT**](/ext/list#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgnodemx` | `pgnodemx` |
 | [**RPM**](/ext/rpm#stat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `pgnodemx_$v` | - |
 | [**DEB**](/ext/deb#stat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.0.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgnodemx` | - |
 {.ext-table .wide .expand}
@@ -123,59 +123,51 @@ apt install -y postgresql-14-pgnodemx   # PG 14
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pg_proctab;
+CREATE EXTENSION pg_proctab CASCADE;  -- requires: pgnodemx
 ```
-
-
-
 
 ## Usage
 
-> [pg_proctab: access OS process table from PostgreSQL](https://github.com/markwkm/pg_proctab)
+Sources:
 
-pg_proctab allows querying operating system process, CPU, memory, disk, and load statistics from within PostgreSQL via SQL functions.
+- [pgnodemx 2.0.1 documentation](https://github.com/pgnodemx/pgnodemx/blob/v2.0.1/README.md)
+- [Compatibility control file](https://github.com/pgnodemx/pgnodemx/blob/v2.0.1/pg_proctab.control)
+- [Compatibility SQL](https://github.com/pgnodemx/pgnodemx/blob/v2.0.1/pg_proctab--0.0.10-compat.sql)
 
-### Functions
+The `pg_proctab` shipped in `pgnodemx` provides five SQL wrappers for the legacy process-monitoring interface. It depends on `pgnodemx`; the package version is 2.0.1, while its SQL installation version is `0.0.10-compat`.
 
-**Process information** (`pg_proctab()`):
+### Enable
+
+Add `pgnodemx` to `shared_preload_libraries`, preserving other entries, then restart PostgreSQL:
+
+```ini
+shared_preload_libraries = 'pgnodemx'
+```
+
+Install both extensions in the same schema as a superuser:
 
 ```sql
--- All PostgreSQL process info
-SELECT pid, comm, state, utime, stime, vsize, rss, reads, writes
-FROM pg_proctab();
+CREATE EXTENSION pgnodemx;
+CREATE EXTENSION pg_proctab VERSION '0.0.10-compat';
+```
 
--- Join with pg_stat_activity for per-query resource usage
+The explicit version is required because the main control file has no default version. The audited PGDG RPM packages omit that main control file; use a package containing it before running this command. Querying the underlying OS metrics requires superuser privileges or membership in `pg_monitor`.
+
+### Query
+
+```sql
 SELECT a.pid, a.query, p.utime, p.stime, p.vsize, p.rss
 FROM pg_stat_activity a
 JOIN pg_proctab() p ON a.pid = p.pid;
-```
 
-Returns per-process: `pid`, `comm`, `fullcomm`, `state`, `ppid`, `utime`, `stime`, `priority`, `nice`, `num_threads`, `vsize`, `rss`, `processor`, `uid`, `username`, `rchar`, `wchar`, `reads`, `writes`, and more.
-
-**CPU time** (`pg_cputime()`):
-
-```sql
 SELECT "user", nice, system, idle, iowait FROM pg_cputime();
-```
-
-**Load average** (`pg_loadavg()`):
-
-```sql
 SELECT load1, load5, load15, last_pid FROM pg_loadavg();
-```
-
-**Memory usage** (`pg_memusage()`):
-
-```sql
 SELECT memused, memfree, memshared, membuffers, memcached,
        swapused, swapfree, swapcached
 FROM pg_memusage();
-```
-
-**Disk usage** (`pg_diskusage()`):
-
-```sql
 SELECT devname, reads_completed, writes_completed,
        sectors_read, sectors_written
 FROM pg_diskusage();
 ```
+
+These functions read Linux process and system statistics visible to the PostgreSQL server. Container namespaces and OS permissions affect what is visible. In this compatibility layer, `rss` is reported in KiB, memory totals in MiB, and `memshared` comes from `Shmem`.

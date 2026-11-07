@@ -15,7 +15,7 @@ Actual alias expansion is determined by `roles/node_id/vars/*.yml` in the source
 
 PostgreSQL package names differ between operating systems:
 
-- **EL systems** (RHEL/Rocky/Alma/...) use formats like `pgvector_18`, `postgis36_18`
+- **EL systems** (RHEL/Rocky/Alma/...) use formats like `pgvector_18`, `postgis37_18`
 - **Debian/Ubuntu systems** use formats like `postgresql-18-pgvector`, `postgresql-18-postgis-3`
 
 Without aliases, you need different naming rules for each system.
@@ -32,7 +32,7 @@ Pigsty converts it to the correct package names:
 pg_extensions: [ postgis, pgvector, timescaledb ]
 
 # Equivalent to actual package names on EL9 + PG18
-pg_extensions: [ postgis36_18, pgvector_18, timescaledb-tsl_18 ]
+pg_extensions: [ postgis37_18, pgvector_18, timescaledb-tsl_18 ]
 
 # Equivalent to actual package names on Ubuntu 24 + PG18
 pg_extensions: [ postgresql-18-postgis-3, postgresql-18-pgvector, postgresql-18-timescaledb-tsl ]
@@ -114,7 +114,7 @@ The Pigsty source directory [`roles/node_id/vars/`](https://github.com/pgsty/pig
 ```bash
 User config alias --> Detect OS -->  Find alias mapping table ---> Replace $v placeholder ---> Install actual packages
      ↓                 ↓                   ↓                                   ↓
-  postgis          el9.x86_64         postgis36_$v                   postgis36_18
+  postgis          el9.x86_64         postgis37_$v                   postgis37_18
   postgis          u24.x86_64         postgresql-$v-postgis-3         postgresql-18-postgis-3
 ```
 
@@ -142,6 +142,6 @@ For example, when `pg_version: 18`:
 
 ### Exact Package Names and Wildcards
 
-EL mappings use exact package names, such as `postgis` -> `postgis36_$v` and `pgvector` -> `pgvector_$v`. They do not append `*` automatically. Explicit wildcards may install additional subpackages; consult the platform's `package_map` for the expansion.
+EL mappings use exact package names, such as `postgis` -> `postgis37_$v` and `pgvector` -> `pgvector_$v`. They do not append `*` automatically. Explicit wildcards may install additional subpackages; consult the platform's `package_map` for the expansion.
 
 Alias expansion only maps names and substitutes version placeholders. It does not guarantee that a package exists for the selected PostgreSQL version, architecture, or repository. Category groups also vary by platform. Check the [**extension availability matrix**](/ext/os/) before use.

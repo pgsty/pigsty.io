@@ -28,7 +28,7 @@ The current source and reference pages list **376** public parameters across 10 
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
 | [**VIBE**](/docs/vibe/param)       |   1    |   18   | Code/Jupyter/Node.js/Claude/Codex configuration |
 | [**KAFKA**](/docs/kafka/param)     |   2    |   19   | Kafka deployment and removal-protection parameters |
-{.stretch-last}
+{.wide .expand}
 
 
 ------

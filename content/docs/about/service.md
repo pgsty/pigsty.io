@@ -49,8 +49,8 @@ Pigsty offers the [**Open Source Edition**](#pigsty-open-source-edition-oss) and
 <p><b>OS Support: Latest minor versions of three families</b><p>
 <ul>
 <li>EL 9.8 / 10.2</li>
-<li>Debian 12.15 / 13.6</li>
-<li>Ubuntu 22.04.5 / 24.04.4 / 26.04.0</li>
+<li>Debian 12.15 / 13.7</li>
+<li>Ubuntu 22.04.5 / 24.04.5 / 26.04.1</li>
 </ul>
 <p><b>Features: <a href="/docs/ref/module#core-modules">Core Modules</a></b></p>
 <p><b>SLA: No SLA commitment</b></p>
@@ -150,8 +150,8 @@ Pigsty offers the [**Open Source Edition**](#pigsty-open-source-edition-oss) and
 
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license. It includes all core features at no cost and provides no warranty. To report a defect, submit an [Issue](https://github.com/pgsty/pigsty/issues/) on GitHub.
 
-Pigsty Open Source supports seven validated OS baselines on both `x86_64` and `aarch64`. These are EL 9.8 / 10.2, Debian 12.15 / 13.6, and Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
-`v4.5.0` provides offline bundles for both architectures on each baseline. All fourteen artifacts are free to download, with GPG signatures for the source archive, offline bundles, and checksum file. See the [offline installation guide](/docs/setup/offline/) for downloads and OS baseline requirements.
+Pigsty Open Source currently supports seven online validation baselines on both `x86_64` and `aarch64`. These are EL 9.8 / 10.2, Debian 12.15 / 13.7, and Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
+`v4.5.0` provides fourteen offline bundles built against the release-time OS minor versions; see the [offline installation guide](/docs/setup/offline/) for the exact release baselines. The source archive, offline bundles, and checksum file have GPG signatures.
 
 The open-source edition gives junior development and operations engineers **70%+** of professional DBA capabilities. They can build highly available, high-performance PostgreSQL clusters without database experts. These clusters are secure, reliable, and easy to maintain.
 

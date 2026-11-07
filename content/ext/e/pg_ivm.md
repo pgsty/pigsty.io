@@ -38,16 +38,16 @@ weight: 2840
 {.ext-table .ext-table--rel}
 
 
-> Preload in every writing session; restore_immv(replace=true) needs superuser. PGDG 1.17 covers D12/D13/U22/U24/U26; PIGSTY covers EL.
+> Preload; restore_immv(replace=true): superuser.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `pg_ivm` | - |
-| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `pg_ivm_$v` | - |
-| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-ivm` | - |
+| [**EXT**](/ext/list#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `pg_ivm` | - |
+| [**RPM**](/ext/rpm#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `pg_ivm_$v` | - |
+| [**DEB**](/ext/deb#feat) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.17` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-ivm` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
@@ -631,10 +631,10 @@ pig build pkg pg_ivm         # build RPM / DEB packages
 
 ## Install
 
-You can install `pg_ivm` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) and [**PIGSTY**](/docs/repo/pgsql) repositories are added and enabled:
+You can install `pg_ivm` directly. First, make sure the [**PGDG**](/docs/repo/pgdg) repository is added and enabled:
 
 ```bash
-pig repo add pgsql -u          # Add repo and update cache
+pig repo add pgdg -u          # Add PGDG repo and update cache
 ```
 
 Install the extension using [**pig**](https://pig.pgsty.com) or `apt/yum/dnf`:

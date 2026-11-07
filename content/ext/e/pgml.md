@@ -1,7 +1,7 @@
 ---
 title: "pgml"
 linkTitle: "pgml"
-description: "Run AL/ML workloads with SQL interface"
+description: "Run AI/ML workloads with SQL interface"
 weight: 1940
 ---
 

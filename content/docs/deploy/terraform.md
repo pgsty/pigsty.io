@@ -202,8 +202,10 @@ The table lists common Alibaba Cloud [ECS Public OS Image](https://help.aliyun.c
 The recommended and validated versions are:
 
 - Rocky Linux 9.8 / 10.2.
-- Debian 12.15 / 13.6.
-- Ubuntu 22.04.5 / 24.04.4 / 26.04.0.
+- Debian 12.15 / 13.7.
+- Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
+
+> Note: Debian upstream is currently 13.7, but Alibaba Cloud has not published a Debian 13.7 public image yet, so the `d13` selector remains `debian_13_6_*`.
 
 | Distro | Code | x86_64 Image Prefix | aarch64 Image Prefix |
 |--------|------|---------------------|----------------------|
@@ -215,8 +217,8 @@ The recommended and validated versions are:
 | Debian 12.15 | `d12` | `debian_12_15_x64` | `debian_12_15_arm64` |
 | Debian 13.6 | `d13` | `debian_13_6_x64` | `debian_13_6_arm64` |
 | Ubuntu 22.04.5 LTS | `u22` | `ubuntu_22_04_x64_20G` | `ubuntu_22_04_arm64_20G` |
-| Ubuntu 24.04.4 LTS | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
-| Ubuntu 26.04.0 LTS | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
+| Ubuntu 24.04.5 LTS | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
+| Ubuntu 26.04.1 LTS | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
 | Anolis 8.10 | `an8` | `anolisos_8_10_x64` | `anolisos_8_10_arm64` |
 | Alibaba Cloud Linux 3 | `al3` | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
 {.full-width .wide .expand}

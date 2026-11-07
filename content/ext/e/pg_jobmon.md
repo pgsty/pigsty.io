@@ -30,7 +30,7 @@ weight: 7160
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 7160  | [**`pg_jobmon`**](/ext/e/pg_jobmon) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
+| 7160  | [**`pg_jobmon`**](/ext/e/pg_jobmon) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`dblink`](/ext/e/dblink) [`pg_cron`](/ext/e/pg_cron) [`pgagent`](/ext/e/pgagent) [`pg_dispatch`](/ext/e/pg_dispatch) [`pg_task`](/ext/e/pg_task) [`pg_dbms_job`](/ext/e/pg_dbms_job) [`pg_later`](/ext/e/pg_later) |

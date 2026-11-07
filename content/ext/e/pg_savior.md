@@ -1,7 +1,7 @@
 ---
 title: "pg_savior"
 linkTitle: "pg_savior"
-description: "Postgres extension to save OOPS mistakes"
+description: "Prevent accidental data loss and risky schema changes"
 weight: 5810
 ---
 
@@ -25,12 +25,12 @@ weight: 5810
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_savior`**](/ext/e/pg_savior) | `0.1.0` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_savior`**](/ext/e/pg_savior) | `0.1.0` | <a class="ext-badge ext-badge--cate admin" href="/ext/cate/admin">ADMIN</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
 |:-----:|:-------------------------------------------------------------------------|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|:----------|
-| 5810  | [**`pg_savior`**](/ext/e/pg_savior) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
+| 5810  | [**`pg_savior`**](/ext/e/pg_savior) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | - |
 {.ext-table .wide .expand}
 
 | **Related** | [`table_log`](/ext/e/table_log) [`safeupdate`](/ext/e/safeupdate) [`pg_drop_events`](/ext/e/pg_drop_events) [`pg_strict`](/ext/e/pg_strict) [`pgmemento`](/ext/e/pgmemento) [`pgaudit`](/ext/e/pgaudit) [`pg_cheat_funcs`](/ext/e/pg_cheat_funcs) [`pg_crash`](/ext/e/pg_crash) [`pg_dirtyread`](/ext/e/pg_dirtyread) [`block_copy_command`](/ext/e/block_copy_command) |
@@ -38,7 +38,7 @@ weight: 5810
 {.ext-table .ext-table--rel}
 
 
-> -tuplestore_donestoring , breaks on pg18 @ el
+> LOAD or preload required.
 
 
 ## Version
@@ -199,11 +199,12 @@ apt install -y postgresql-14-pg-savior   # PG 14
 ```
 
 
-**Create Extension**:
+**Preload**:
 
-```sql
-CREATE EXTENSION pg_savior;
+```bash
+shared_preload_libraries = 'pg_savior';
 ```
+
 
 
 

@@ -38,7 +38,7 @@ weight: 4210
 {.ext-table .ext-table--rel}
 
 
-> SQL-only despite module_pathname; no preload; META path is stale, control/Makefile select 1.1.0; PG19 RC.
+> SQL-only.
 
 
 ## Version
@@ -46,7 +46,7 @@ weight: 4210
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
 | [**EXT**](/ext/list#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgsql_tweaks` | - |
-| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgsql_tweaks_$v` | - |
+| [**RPM**](/ext/rpm#util) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `pgsql_tweaks_$v` | - |
 | [**DEB**](/ext/deb#util) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.1.0` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pgsql-tweaks` | - |
 {.ext-table .wide .expand}
 

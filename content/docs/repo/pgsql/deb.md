@@ -6,6 +6,61 @@ icon: fa-brands fa-ubuntu
 categories: [Reference]
 ---
 
+## 2026-11-05
+
+| Name                      | Old              | New              | Comment                                                                           |
+|:--------------------------|:-----------------|:-----------------|:----------------------------------------------------------------------------------|
+| address_standardizer      | -                | 3.7.0            | U24 ARM64 PG18 pilot only; standalone; SQL 3.7; includes data_us                  |
+| agensgraph-18             | 2.18.6.0         | 2.18.6.1         | PG18.6 kernel and contrib                                                         |
+| cat_tools                 | 0.3.0            | 0.4.0            | SQL-only                                                                          |
+| cloudberry                | 2.1.0            | 2.2.0            | Kernel and contrib                                                                |
+| cloudberry-backup         | 2.1.0            | 2.2.0            | Six backup/restore tools                                                          |
+| cloudberry-pxf            | 2.1.0            | 2.2.0            | For Cloudberry 2.2.0; includes pxf/pxf_fdw                                        |
+| containerd.io             | -                | 2.4.2-3          | Official DEB; Bullseye 2.3.4-2                                                    |
+| docker-buildx-plugin      | -                | 0.38.1           | Official DEB; Bullseye 0.37.0                                                     |
+| docker-ce                 | -                | 29.9.2           | Official DEB; Bullseye 29.8.0                                                     |
+| docker-ce-cli             | -                | 29.9.2           | Official DEB; Bullseye 29.8.0                                                     |
+| docker-ce-rootless-extras | -                | 29.9.2           | Official DEB; Bullseye 29.8.0                                                     |
+| docker-compose-plugin     | -                | 5.7.0            | Official DEB; Bullseye 5.5.1                                                      |
+| emaj                      | 5.0.0            | 5.0.1            | Fixes privilege escalation and parallel rollback                                  |
+| graphblas                 | 10.5.0           | 10.5.2           | Runtime/devel; ABI 10                                                             |
+| lagraph                   | 1.2.2            | 1.2.2            | Rebuilt with GraphBLAS 10.5.2                                                     |
+| nginx                     | -                | 1.31.8           | Official DEB; Bullseye 1.31.6                                                     |
+| nginx-module-acme         | -                | 1.31.8+0.4.1     | Official DEB; Bullseye 1.31.6+0.4.1                                               |
+| onesparse                 | 1.0.0-1PGSTY     | 1.0.0-2PGSTY     | PG18; GraphBLAS/LAGraph rebuild; SQL 0.1.0; preload required                      |
+| orioledb-16               | 1.10~beta19      | 1.10.1           | PG16.15 kernel; SQL 1.10                                                          |
+| orioledb-17               | 1.10~beta19      | 1.10.1           | PG17.11 kernel; SQL 1.10                                                          |
+| orioledb-18               | 1.10~beta19      | 1.10.1           | PG18.6 kernel; SQL 1.10                                                           |
+| pg_agent_gate             | 0.3.0            | 0.4.1            | PG18; fixes agent-role escape; preload required                                   |
+| pg_anon                   | 3.2.3            | 3.3.2            | Security update; drop/recreate required                                           |
+| pg_duckdb                 | 1.1.1            | 1.2.0            | DuckDB 2.0.0; conflicts with duckdb_fdw                                           |
+| pg_fts                    | 1.14.3           | 1.15.2           | PG17-18; fixes top-k and post-delete slowdown                                     |
+| pg_graphql                | 1.6.2            | 1.6.3            | Fixes quoted primary keys in nodeId                                               |
+| pg_improv                 | 0.12.1           | 0.12.2           | PG15-18; fixes idle sync worker                                                   |
+| pg_integrity_checksums    | 2.0.0            | 2.1.0            | Canonical byte order; recompute hash/catalog baselines when upgrading from 2.0.0  |
+| pg_lake                   | 3.5.9            | 3.5.10           | PG16-18; eight extensions, SQL 3.5; Brotli security fix                           |
+| pg_living_assertions      | 0.5.10           | 0.5.10           | SQL-only rebuild                                                                  |
+| pg_mentat                 | 1.18.0           | 1.19.0           | Concurrent-write/RLS fixes; upgrade takes locks                                   |
+| pg_mooncake               | 0.2.0            | 0.3.0-1PGSTY     | PGSTY fork; pg_duckdb 1.2.0 / DuckDB 2.0.0; no 0.2.0 upgrade script               |
+| pg_parquet                | 0.5.1-3PIGSTY    | 0.5.1-4PGSTY     | Fixes streaming COPY temporary-file leaks                                         |
+| pg_search                 | 0.26.3           | 0.26.4           | PG15-18; fixes partitioned-search/window queries; preload required                |
+| pg_tokenizer              | 0.1.1            | 1.0.0            | PGSTY fork; native tsvector; external Lindera 6 dictionaries                      |
+| pg_tre                    | 4.5.3            | 4.6.1            | PG17-18; fixes sparsemap bounds; faster matching                                  |
+| pgdog                     | 0.1.62           | 0.1.63           | PostgreSQL connection pooler                                                      |
+| pgmnemo                   | 0.20.0           | 0.21.0           | PG17-18; pg_dump includes corpus tables/sequences                                 |
+| polardb-17                | 17.11.1.0-1PGSTY | 17.11.1.0-2PGSTY | PG17.11 kernel/contrib; rebuilt with updated PolarStore SDK                       |
+| polarstore                | 1.2.42-2PGSTY    | 1.2.42-3PGSTY    | Rebuilt with zlog 1.2.20                                                          |
+| postgis                   | 3.7.0            | 3.7.0            | PGDG primary; U24 ARM64 PG18 pilot only                                           |
+| postgis_tiger_geocoder    | -                | 2025.2           | U24 ARM64 PG18 pilot only; standalone; supports PG16-18                           |
+| provsql                   | 1.13.0           | 1.13.1           | Fixes circuit sizes/cancellation; preload required                                |
+| redis                     | 7.2.16           | 7.2.17-1PGSTY    | Seven suites incl. Bullseye/Focal; fixes split-package conflicts; epoch 6         |
+| valkey                    | 9.1.2            | 9.1.3-1PGSTY     | Security update; seven suites incl. Bullseye/Focal; fixes split-package conflicts |
+| vchord                    | 1.1.1            | 1.2.0-2PGSTY     | PGSTY fork/rebuild; rerank vchordg/halfvec candidates for strict order            |
+| vchord_bm25               | 0.3.0            | 1.0.0            | PGSTY fork; native tsvector; no in-place upgrade from 0.3.x                       |
+| zlog                      | 1.2.18           | 1.2.20           | Rebuilds PolarStore and PolarDB                                                   |
+{.wide .expand}
+
+
 ## 2026-10-31
 
 | Name                    | Old    | New    | Comment                                                              |

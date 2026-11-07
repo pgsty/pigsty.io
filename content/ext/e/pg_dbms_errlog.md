@@ -33,19 +33,19 @@ weight: 9270
 | 9270  | [**`pg_dbms_errlog`**](/ext/e/pg_dbms_errlog) | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--yes">Yes</span> | <span class="ext-flag ext-flag--no">No</span> | <span class="ext-flag ext-flag--no">No</span> | `dbms_errlog` |
 {.ext-table .wide .expand}
 
-| **Related** | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) [`pg_dbms_job`](/ext/e/pg_dbms_job) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`pg_dbms_lock`](/ext/e/pg_dbms_lock) [`orafce`](/ext/e/orafce) [`pg_cron`](/ext/e/pg_cron) [`pgagent`](/ext/e/pgagent) [`pg_task`](/ext/e/pg_task) |
+| **Related** | [`pg_dbms_job`](/ext/e/pg_dbms_job) [`pg_dbms_metadata`](/ext/e/pg_dbms_metadata) [`pg_utl_smtp`](/ext/e/pg_utl_smtp) [`pg_dbms_lock`](/ext/e/pg_dbms_lock) [`orafce`](/ext/e/orafce) [`pg_cron`](/ext/e/pg_cron) [`pgagent`](/ext/e/pgagent) [`pg_task`](/ext/e/pg_task) |
 |:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 {.ext-table .ext-table--rel}
 
 
-> Requires pg_statement_rollback and shared_preload_libraries=pg_dbms_errlog; restart required.
+> Preload; manage savepoints.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `2.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_dbms_errlog` | `pg_statement_rollback` |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | `2.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_dbms_errlog` | - |
 | [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | `2.4` | {{< pgvers "18,17,16,15,14" >}} | `pg_dbms_errlog_$v` | `pg_statement_rollback_$v` |
 | [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `2.4` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pg-dbms-errlog` | `postgresql-$v-pg-statement-rollback` |
 {.ext-table .wide .expand}
@@ -252,14 +252,14 @@ apt install -y postgresql-14-pg-dbms-errlog   # PG 14
 **Preload**:
 
 ```bash
-shared_preload_libraries = 'pg_statement_rollback, pg_dbms_errlog';
+shared_preload_libraries = 'pg_dbms_errlog';
 ```
 
 
 **Create Extension**:
 
 ```sql
-CREATE EXTENSION pg_dbms_errlog CASCADE;  -- requires: pg_statement_rollback
+CREATE EXTENSION pg_dbms_errlog;
 ```
 
 ## Usage
