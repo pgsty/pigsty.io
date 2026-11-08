@@ -16,7 +16,7 @@ categories: [Reference]
 - Configuration: `ha/safe`
 - Nodes: 3 INFRA, etcd, and PostgreSQL nodes; optional delayed replica
 - Operating systems: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-- Architecture: `x86_64`; some security extensions do not have ARM64 packages
+- Architecture: `x86_64`, `aarch64`
 - Related configurations: [**`ha/trio`**](/docs/conf/trio/), [**`ha/full`**](/docs/conf/full/)
 
 Generate the configuration:
@@ -57,7 +57,7 @@ Generate the configuration:
 - Configure database clients with `sslmode=verify-full` and a trusted CA.
 - Confirm that the availability impact of strict synchronous mode meets application requirements.
 - Preload and configure `pgaudit`, `credcheck`, and other extensions as required.
-- Check extension package availability on ARM64.
+- Check package availability for any additional security extensions you select.
 - Test backup recovery, failover, and certificate verification.
 
 See [**Security Model**](/docs/concept/sec/level), [**Authentication**](/docs/concept/sec/auth), [**Encrypted Communication**](/docs/concept/sec/ca), and [**Data Security**](/docs/concept/sec/data) for the underlying mechanisms.

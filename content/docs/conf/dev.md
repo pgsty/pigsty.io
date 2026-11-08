@@ -1,13 +1,13 @@
 ---
 title: build/dev
 weight: 1060
-description: Pigsty three-node local build and development configuration
+description: Pigsty seven-node local build and development configuration
 icon: fa-solid fa-hammer
 categories: [Reference]
 ---
 
-The `build/dev` template defines a local environment with three nodes for Pigsty development.
-It tests repository builds and package downloads on EL9, Debian 12, and Ubuntu 24.
+The `build/dev` template defines a local environment with seven nodes for Pigsty development.
+It tests repository builds and package downloads on EL9/10, Debian 12/13, and Ubuntu 22/24/26.
 
 Use this template only for development and contribution work.
 
@@ -17,9 +17,9 @@ Use this template only for development and contribution work.
 ## Overview
 
 - Config Name: `build/dev`
-- Node Count: Three nodes (`el9`, `d12`, `u24`)
+- Node Count: Seven nodes (`el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`)
 - Description: Local build and development environment, default PostgreSQL 18, builds the `infra,node,pgsql` modules
-- OS Distro: `el9`, `d12`, `u24`
+- OS Distro: `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`build/oss`](/docs/conf/oss/)
 
@@ -53,7 +53,7 @@ It is not intended for ordinary production installation.
 - Local cache directory is `dist/${version}`
 - Builds `infra,node,pgsql` modules by default
 - Preloads PostgreSQL 18 full-category extension package groups
-- Covers both RPM and DEB build paths through three distro nodes
+- Covers both RPM and DEB build paths through seven distro nodes
 
 **Use Cases**:
 - Pigsty new version build validation

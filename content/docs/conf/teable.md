@@ -67,7 +67,8 @@ The `app/teable` template provides one-click deployment of the Teable open-sourc
 
 ```bash
 # Teable Web interface
-http://tea.pigsty:8890
+http://tea.pigsty
+http://<IP>:8890
 
 # Or via Nginx proxy
 https://tea.pigsty

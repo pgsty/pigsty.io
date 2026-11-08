@@ -27,7 +27,7 @@ Usage:
 ./configure -c ha/dual [-i <primary_ip>]
 ```
 
-After configuration, replace `10.10.10.11` with the standby node's actual IP address.
+After configuration, replace `10.10.10.11` with the primary node's actual IP address. `-i` replaces `10.10.10.10`, the admin/replica node.
 
 
 --------
@@ -56,7 +56,7 @@ The `ha/dual` template supplies **limited high availability with two nodes**.
 | Node B down | Primary switches to Node A | Auto |
 | Node A etcd down | Primary continues running (no DCS) | Manual |
 | Node A pgsql down | Primary continues running | Manual |
-| Node A complete failure | Primary degrades to standalone | Manual |
+| Node A complete failure | Primary demotes to read-only when its DCS lease expires and the failsafe peer is unreachable | Manual |
 
 **Use Cases**:
 - Budget-limited environments with only two servers

@@ -1,6 +1,5 @@
 ---
 title: app/silo
-draft: true
 weight: 875
 description: Standalone Silo Docker APP template providing single-node S3 object storage and a console.
 icon: fa-solid fa-box-archive
@@ -9,7 +8,7 @@ categories: [Reference]
 
 The `app/silo` template deploys a Silo Docker Compose application on one node, replacing the former `app/minio`. See the [**Silo application guide**](/docs/app/silo/) for usage.
 
-This page is a development draft. The YAML below requires the unpublished `app/silo/` files and cannot deploy the application on its own. Enable this page after the complete template is released.
+The matching [`app/silo/`](https://github.com/pgsty/pigsty/tree/main/app/silo) and [`conf/app/silo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/silo.yml) are available in the main repository. Use both from the same checkout.
 
 ## Overview
 

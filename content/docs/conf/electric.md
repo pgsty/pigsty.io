@@ -83,7 +83,7 @@ http://elec.pigsty
 
 **Notes**:
 - Give the Electric user `replication` permission.
-- Enable PostgreSQL logical replication.
+- Logical replication is enabled by default (`pg_logical_replication: true`); keep it enabled for Electric.
 - For production, use SSL connections. The template sets `sslmode=require`.
 - The container listens on `ELECTRIC_PORT=3000`; the host publishes `ELECTRIC_PUBLISH_PORT=8002`.
 - Storage defaults to `ELECTRIC_STORAGE=FAST_FILE`, with the cache volume mounted at `/var/lib/electric`.

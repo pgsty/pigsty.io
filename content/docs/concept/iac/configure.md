@@ -438,7 +438,7 @@ The script supports the following environment variables:
 
 ## Notes
 
-1. **Passwordless access**: Before you run `configure`, the current user must have passwordless sudo and passwordless SSH access to localhost. The `bootstrap` script can configure both.
+1. **Passwordless access**: Before you run `configure` on Linux, the current user must have passwordless sudo and passwordless SSH access to localhost. [`bootstrap`](/docs/setup/offline#bootstrap) checks sudo access and tries to repair passwordless SSH to localhost. Configure sudo access beforehand.
 
 2. **IP address selection**: Select an **internal IP** as the primary address. Do not select a public IP or `127.0.0.1`.
 

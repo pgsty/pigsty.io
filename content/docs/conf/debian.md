@@ -14,7 +14,7 @@ The `demo/debian` template supplies configuration for Debian and Ubuntu.
 ## Overview
 
 - Config Name: `demo/debian`
-- Node Count: Single node
+- Node Count: Four nodes (`10.10.10.10`–`10.10.10.13`, one pg-meta and three pg-test instances)
 - Description: Debian/Ubuntu optimized configuration template
 - OS Distro: `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
@@ -39,6 +39,8 @@ Source: [`pigsty/conf/demo/debian.yml`](https://github.com/pgsty/pigsty/blob/mai
 --------
 
 ## Explanation
+
+This template keeps the full parameter examples. Its explicit repository and node package lists override role defaults; consult the corresponding role and OS parameter files for current defaults.
 
 Use `demo/debian` for the following Debian and Ubuntu versions.
 

@@ -51,7 +51,7 @@ Data security is a primary reason to self-host Dify. Dify's Docker Compose templ
 
 Pigsty provides declarative Dify deployment and image mirrors for access in China. The template places PostgreSQL and pgvector under Pigsty management. It deploys Compose Redis, VictoriaMetrics/Grafana monitoring, and an Nginx reverse proxy. After public DNS, ports, and Certbot are configured, it can request a Let's Encrypt certificate. Files use `DIFY_DATA` (`/data/dify`) by default, with optional Silo/S3 object storage.
 
-The template places PostgreSQL/pgvector in an externally managed Pigsty database. API files and plugin data use `DIFY_DATA`, which defaults to `/data/dify`. Compose Redis data remains in `/opt/dify/volumes/redis/data`. Sandbox dependencies and Certbot data also use `/opt/dify/volumes/`. The Agent local sandbox also stores `/home/dify` and `/workspace` in separate named volumes. Backups must include these volumes as well as the database and host directories.
+The template places PostgreSQL/pgvector in an externally managed Pigsty database. API files and plugin data use `DIFY_DATA`, which defaults to `/data/dify`. Compose Redis data remains in `/data/dify/redis/data`. Sandbox dependencies and Certbot data also use `/opt/dify/volumes/`. The Agent local sandbox also stores `/home/dify` and `/workspace` in separate named volumes. Backups must include these volumes as well as the database and host directories.
 
 ------
 

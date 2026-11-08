@@ -10,7 +10,7 @@ Development sources use `conf/fork/mssql.yml`; v4.5.0 uses `conf/mssql.yml`, sel
 
 The `mssql` configuration template uses Babelfish instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility. The repository provides PG17- and PG18-compatible packages; the template defaults to `pg_version: 17`. See the [package lists](/docs/repo/pgsql/) for availability on each platform.
 
-`./configure -c mssql` ignores `-v`. To use PG18, explicitly change `pg_version` in the generated `pigsty.yml` and verify that the kernel packages and extensions are available for your platform. The development path `fork/mssql` does not match the old-name check, so `-v` overrides its version.
+`configure` accepts both `-c mssql` and `-c fork/mssql`; both preserve the template’s PG17 settings and ignore `-v`. To use PG18, update both the cluster and global `pg_version` values in the generated inventory and verify that the kernel packages and extensions are available for your platform.
 
 Since v4.2, Pigsty builds Babelfish directly and does not use the WiltonDB repository. Babelfish is available on all [supported Linux platforms](/docs/ref/linux).
 

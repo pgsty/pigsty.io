@@ -61,7 +61,8 @@ Use `app/maybe` to configure and deploy the Maybe finance management system.
 
 ```bash
 # Maybe Web interface
-http://maybe.pigsty:5002
+http://maybe.pigsty
+http://<IP>:5002
 
 # Or via Nginx proxy
 https://maybe.pigsty

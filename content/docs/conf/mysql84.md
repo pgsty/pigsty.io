@@ -6,7 +6,7 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-`demo/mysql` provides a four-node example for the native MySQL 8.4 LTS pilot module. The separate [`conf/fork/halo.yml`](/docs/conf/mysql/) template provides MySQL protocol compatibility through the OpenHalo PostgreSQL kernel.
+`demo/mysql` provides a four-node example for the native MySQL 8.4 LTS module. The separate [`conf/fork/halo.yml`](/docs/conf/mysql/) template provides MySQL protocol compatibility through the OpenHalo PostgreSQL kernel.
 
 In current development sources, `./configure -c mysql` and `./configure -c demo/mysql` select this template; OpenHalo uses `-c halo`.
 
@@ -19,8 +19,8 @@ In current development sources, `./configure -c mysql` and `./configure -c demo/
 - Node Count: 4
 - `my-meta`: Standalone MySQL 8.4 instance
 - `my-test`: Three-node, single-primary InnoDB Cluster with MySQL Router on every member
-- Module Status: MYSQL PILOT; not included in the stable module count
-- Platform Boundary: Declared supported x86_64 RPM/DEB platforms and EL9/EL10 aarch64. Oracle APT currently has no arm64 component. Thus, preflight rejects Debian/Ubuntu ARM.
+- Module: MYSQL, limited to native MySQL 8.4
+- Platform Boundary: EL8/9/10, Debian 12/13, and Ubuntu 22/24 on x86_64; EL9/EL10 on aarch64. Preflight rejects Ubuntu 26 and Debian/Ubuntu ARM.
 
 Replace every `CHANGE_ME` value in the template. Real deployment also requires explicit approval. Start with read-only preflight checks:
 

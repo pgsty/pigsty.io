@@ -19,7 +19,7 @@ This configuration is intended for developers and contributors only.
 - Node Count: Seven nodes (el9, el10, d12, d13, u22, u24, u26)
 - Description: Pigsty open-source edition offline package build environment
 - OS Distro: `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-- OS Arch: `x86_64`
+- OS Arch: `x86_64`, `aarch64`
 
 Usage:
 
@@ -51,7 +51,7 @@ The `build/oss` template is the build configuration for Pigsty open-source editi
 - Node packages (monitoring agents, tools, etc.)
 - Extra modules
 
-The template also sets VM defaults `vm_cpu: 2` and `vm_mem: 4096`, plus a matching `vm_image` and `nodename` on each node, to create build environments for each operating system.
+The `vm_cpu`, `vm_mem`, and `vm_image` values are descriptive inventory metadata. The Vagrant and Terraform templates do not consume them. Configure actual VM resources in the corresponding provider specification; `vagrant/spec/oss.rb` currently assigns 2 vCPUs and 2048 MiB RAM per node.
 
 **Supported Operating Systems**:
 - EL9 (Rocky/Alma/RHEL 9)
@@ -72,7 +72,7 @@ cp conf/build/oss.yml pigsty.yml
 ./infra.yml -t repo_build
 
 # 3. Package offline installation files
-make cache
+./cache.yml
 ```
 
 **Use Cases**:

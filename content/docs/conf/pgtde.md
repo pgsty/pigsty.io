@@ -58,7 +58,7 @@ alias. Pigsty links the private `/usr/pgtde-$v` prefix (currently
 - Scenarios requiring data-at-rest encryption
 - Enterprise environments with strict data security requirements
 
-**Usage**:
+**Usage** (pg_tde 2.x; [key management functions](https://docs.percona.com/pg-tde/functions.html)):
 
 ```sql
 CREATE EXTENSION pg_tde;
@@ -67,7 +67,8 @@ SELECT pg_tde_add_database_key_provider_file(
     'local-file',
     '/secure/path/pg_tde_keys'
 );
-SELECT pg_tde_set_principal_key('app-principal-key', 'local-file');
+SELECT pg_tde_create_key_using_database_key_provider('app-principal-key', 'local-file');
+SELECT pg_tde_set_key_using_database_key_provider('app-principal-key', 'local-file');
 
 -- Create encrypted table
 CREATE TABLE sensitive_data (

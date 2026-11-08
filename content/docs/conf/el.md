@@ -15,7 +15,7 @@ These include RHEL, Rocky Linux, Alma Linux, and Oracle Linux.
 ## Overview
 
 - Config Name: `demo/el`
-- Node Count: Single node
+- Node Count: Four nodes (`10.10.10.10`–`10.10.10.13`, one pg-meta and three pg-test instances)
 - Description: Enterprise Linux optimized configuration template
 - OS Distro: `el8`, `el9`, `el10`
 - OS Arch: `x86_64`, `aarch64`
@@ -40,6 +40,8 @@ Source: [`pigsty/conf/demo/el.yml`](https://github.com/pgsty/pigsty/blob/main/co
 --------
 
 ## Explanation
+
+This template keeps the full parameter examples. Its explicit repository and node package lists override role defaults; consult the corresponding role and OS parameter files for current defaults.
 
 Use `demo/el` for the following Enterprise Linux distributions.
 

@@ -20,7 +20,7 @@ For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. 
 - Config name: `pgedge`
 - Node count: Single node
 - Description: pgEdge (PG18) distributed kernel template
-- Supported OS: `d12`, `d13`, `u22`, `u24`, `u26` for PG18 packages. For EL/RPM platforms, check current PGSQL repository availability for `pgedge_18`.
+- Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`; PG18 packages are available for both RPM and DEB platforms.
 - Supported arch: `x86_64`, `aarch64`
 - Related templates: [`meta`](/docs/conf/meta/), [`pgsql`](/docs/conf/pgsql/)
 

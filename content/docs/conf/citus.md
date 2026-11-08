@@ -20,7 +20,7 @@ The cluster distributes data into shards and supports horizontal scaling.
 - Node Count: 13 nodes (1 infra + 1 coordinator×2 + 5 workers×2)
 - Description: Citus distributed PostgreSQL HA cluster
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-- OS Arch: `x86_64`
+- OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/), [`ha/trio`](/docs/conf/trio/)
 
 Usage:
@@ -88,7 +88,7 @@ pg_libs: 'citus, pg_cron, pg_stat_statements'
 **Security**:
 
 - `pg_dbsu_password` enabled for Citus inter-node communication
-- HBA rules require SSL authentication
+- `citus.node_conninfo` requires TLS with `sslmode=verify-full` for inter-node connections. The template adds SSL HBA rules, but default HBA rules still permit some non-TLS connections; this is not a global TLS-only policy.
 - Inter-node uses certificate verification: `sslmode=verify-full`
 
 
@@ -183,4 +183,4 @@ SELECT create_reference_table('tenants');
 - **Distribution Column**: Select this column for the workload, typically tenant_id or timestamp. This choice is critical for performance.
 - **Cross-shard Limits**: Foreign keys must include the distribution column. Some DDL operations also have restrictions.
 - **Network**: `pg_vip_interface` defaults to `auto`. For unusual network environments, explicitly select an interface.
-- **Architecture**: Citus extension does not support ARM64
+- **Architecture**: Citus packages are available for both `x86_64` and `aarch64` on the listed platforms

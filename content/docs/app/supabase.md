@@ -12,9 +12,9 @@ Pigsty can deploy Supabase on your physical, virtual, or cloud servers with a si
 
 This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase cloud or plain Docker Compose self-hosting.
 
-The installation commands below use the matching [application files](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [configuration template](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Kong and external PG18 by default.
+The installation commands below use the matching [application files](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [configuration template](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Envoy (`api-gw`) and external PG18 by default in the current source.
 
-The Envoy integration and migration scripts for Supabase `self-hosted/v0.8.4` remain a development preview without a complete public Pigsty release. The changes below are retained for upgrade planning; copying new YAML or SQL alone does not deploy that version.
+The current source tracks Supabase `self-hosted/v0.8.4` and includes its Envoy integration and migration scripts. Use the configuration, application directory, and SQL files from the same checkout. A released Pigsty archive may contain an earlier Supabase stack; copying only new YAML or SQL is not a complete upgrade.
 
 
 --------
@@ -120,7 +120,7 @@ The current template supports PostgreSQL 15-18, with 18 as the default. You can 
 Start with single-node deployment. Multi-node high availability is covered later.
 
 [Prepare](/docs/deploy/prepare) a fresh [Linux server](/docs/deploy/prepare), use the Pigsty [`supabase`](/docs/conf/supabase/) configuration template for [standard installation](/docs/setup/install),
-then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (Kong uses HTTP port `8000` by default; use the Nginx portal for HTTPS).
+then run [`docker.yml`](/docs/docker/playbook#dockeryml) and `app.yml` to start stateless Supabase containers (`api-gw` uses HTTP port `8000` by default; use the Nginx portal for HTTPS).
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
@@ -165,12 +165,12 @@ Logflare / Analytics uses `_analytics` in the separate `_supabase` database inst
 The Query Performance page in Supabase Studio accesses `pg_stat_statements` with a `public, extensions` search path.
 Pigsty keeps the `pg_stat_statements` extension objects in the `monitor` schema for compatibility with `pg_exporter` and existing monitoring dashboards. The template creates a compatibility view and functions in the `extensions` schema for Studio.
 
-The gateway service is named `kong`. The development integration of [`self-hosted/v0.8.4`](https://github.com/supabase/supabase/tree/189adda99d1b56da55fc5a6ee3f849354aaea92a/docker) changes the default to Envoy `1.39.6`, under service name `api-gw`, and retains Kong `3.9.3` as an option.
+The current gateway service is named `api-gw`. The integration of [`self-hosted/v0.8.4`](https://github.com/supabase/supabase/tree/189adda99d1b56da55fc5a6ee3f849354aaea92a/docker) uses Envoy `1.39.6` by default, and retains Kong `3.9.3` as an option.
 
 <details>
-<summary>Gateway selection in the development version</summary>
+<summary>Gateway selection</summary>
 
-Only after obtaining the matching development application files, use this combination to enable Kong:
+With the matching application files, use this combination to enable the optional Kong gateway:
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.kong.yml up -d

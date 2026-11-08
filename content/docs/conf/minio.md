@@ -76,6 +76,6 @@ mcli ls sss/
 
 **Notes**:
 - Each node requires 4 independent disks mounted at `/data1` - `/data4`
-- The VM example uses `vm_image: u24` and declares a `size: 64` data disk for each mount through `vm_disks`. For existing hosts, verify the actual mounts and capacity.
+- The `vm_image` and `vm_disks` fields are descriptive metadata, not inputs to Vagrant or Terraform. The `vagrant/spec/minio.rb` example allocates four 32 GiB data disks per node. Configure disks in the provider specification and verify the mounts on existing hosts.
 - We recommend at least 4 nodes for erasure coding redundancy in production.
 - VIP requires proper network interface configuration (`vip_interface`)

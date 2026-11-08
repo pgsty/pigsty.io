@@ -146,36 +146,54 @@ The output directory also contains MD5-format `checksums`. Prepare the source re
 
 ## Bootstrap
 
-Pigsty uses Ansible to run playbooks.
-The `bootstrap` script installs Ansible and prepares the required package repositories:
+The `bootstrap` script prepares package repositories and Ansible before you run Pigsty playbooks. Use it to install deployment dependencies after downloading or cloning the source, or to extract and enable a local repository for offline installation.
+
+### Options
+
+| Option | Description |
+|:-------|:------------|
+| `-h`, `--help` | Show usage and exit without running setup |
+| `-r <region>`, `--region <region>` | Mirror region: `default`, `china`, or `europe`. If omitted, a network probe selects `default` or `china`. The actual mirrors depend on the distribution |
+| `-p <path>`, `--path <path>`, `--pkg <path>` | Path to an existing offline package; development sources default to `/var/tmp/pkg.tgz` |
+| `-k`, `--keep` | Skip moving existing repository files into the backup directory. The script can still write or replace generated repository files; see below |
+{.full-width}
+
+Some older versions incorrectly listed `-y/--yes` in their help output. The current script accepts neither option and does not download offline packages automatically. Either option produces an `unrecognized option` error and exit status `1`. Download the package first, then specify its path with `-p`.
+
+Examples:
 
 ```bash
-./bootstrap       # Ensure ansible is correctly installed (if offline package exists, use offline installation and extract first)
+./bootstrap --help                                      # Show options
+./bootstrap -r china                                    # Use China mirrors
+./bootstrap -p /var/tmp/pkg.tgz                          # Use a downloaded offline package
+./bootstrap --region china --pkg /var/tmp/pkg.tgz --keep # Combine options
 ```
 
-Run `bootstrap` in these cases:
+### Execution Order
 
-- You downloaded or cloned the source manually and Ansible is absent.
-- You need to extract an offline package and install Ansible from it.
+On Linux, the script runs these steps in order:
 
-Development sources look for `/var/tmp/pkg.tgz` by default, falling back to the legacy `/tmp/pkg.tgz` only if the default path is absent. The `v4.5.0` release still defaults to `/tmp/pkg.tgz`. For use across versions, specify the path explicitly:
+1. Check the operating system, architecture, and package manager. The current user must be `root` or have passwordless sudo. The script checks this requirement and exits if it is unmet; it does not change sudo configuration.
+2. Check passwordless SSH from the current user to `127.0.0.1`. If needed, try to generate `~/.ssh/id_rsa` and add its public key to the local `~/.ssh/authorized_keys`. This does not distribute keys to remote nodes.
+3. Prepare the local repository. If `/www/pigsty/repo_complete` exists, reuse it without extracting another package, even when `-p` is supplied. Otherwise, extract the specified offline package into `/www` if it exists. If extraction fails or the completion marker is missing, remove the incomplete `/www/pigsty` directory and exit with an error.
+4. If the local repository is ready, configure a local file source pointing to `/www/pigsty`. Otherwise, configure upstream repositories for the selected region if the Internet probe succeeds, or keep existing sources if it fails. Then refresh package manager metadata.
+5. If `ansible-playbook` is already in `PATH`, skip installation. Otherwise, install Ansible and utilities such as `unzip`, `wget`, `sshpass`, and platform-specific dependencies from the available repositories, then check that Ansible is available. Existing Ansible does not skip the earlier SSH, repository preparation, or metadata refresh steps.
 
-```bash
-./bootstrap -p /var/tmp/pkg.tgz
-```
+Development sources fall back to `/tmp/pkg.tgz` only when the selected path is `/var/tmp/pkg.tgz`, that file is absent, and `/tmp/pkg.tgz` exists. The `v4.5.0` release still defaults to `/tmp/pkg.tgz`, so specify `-p /var/tmp/pkg.tgz` when working across versions. Even if an explicitly supplied package path does not exist, the script continues through repository selection and installation; a missing archive alone does not cause it to exit.
 
-If the package exists, the script extracts it and installs Ansible from the local repository.
-If the package is absent, the script attempts an online Ansible installation.
-If that installation fails, [install Ansible manually](/docs/setup/playbook/#install-ansible).
+The script does not install or start Nginx. It reads offline packages through a local file source at this stage. Run `./configure` and the appropriate deployment playbooks afterward.
 
-> [!WARNING] Bootstrap moves existing repository files
-> By default, `bootstrap` moves existing repository configurations into a backup directory.
-> This leaves only the required repositories enabled.
-> On EL, the backup directory is `/etc/yum.repos.d/backup`.
-> On Debian and Ubuntu, it is `/etc/apt/backup`.
+### Repository Changes
+
+> [!WARNING] Existing repositories and the limits of `--keep`
+> Before enabling a local repository or configuring upstream sources, the script moves existing repository files into a backup directory by default: `/etc/yum.repos.d/backup` on EL, or `/etc/apt/backup` on Debian and Ubuntu. It does not restore them automatically when it finishes.
 >
-> To keep existing repository configurations, use `-k|--keep`:
+> `-k/--keep` skips that bulk move, but the script still writes repository files. Local mode writes `pigsty-local.repo` or `pigsty-local.list`; upstream mode writes `/etc/yum.repos.d/el<version>.repo` or overwrites `/etc/apt/sources.list`. The legacy EL7 upstream setup still moves existing `.repo` files even with `-k`.
 >
 > ```bash
-> ./bootstrap -k # or --keep
+> ./bootstrap -k # Equivalent to --keep
 > ```
+
+### macOS
+
+macOS can serve only as an administration node. The script skips the Linux sudo, SSH, offline extraction, and repository setup steps. If Ansible is absent, it only suggests running `brew install ansible`; it does not run Homebrew automatically.

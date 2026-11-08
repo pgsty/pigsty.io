@@ -70,7 +70,7 @@ pg18-feat, pg18-lang, pg18-type, pg18-util, pg18-func, pg18-admin,
 pg18-stat, pg18-sec, pg18-fdw, pg18-sim, pg18-etl
 ```
 
-By default, the `meta` database enables `postgis`, `timescaledb`, and `vector`. Enable other extensions as needed.
+By default, the `meta` database enables `postgis`, `timescaledb`, `vector`, and `age`. Enable other extensions as needed.
 
 
 --------
@@ -90,7 +90,7 @@ The VIBE module provides an AI coding sandbox. The `vibe.yml` template explicitl
 **JupyterLab**: Interactive computing environment
 
 - Python/SQL/Markdown notebook support
-- Pre-configured Python venv with data science libraries
+- Python venv with `jupyterlab` and `ipykernel`; install additional data science libraries as needed
 - HTTPS access via Nginx reverse proxy
 - Explicit template params: `jupyter_enabled`, `jupyter_password`
 - Optional params: `jupyter_port`, `jupyter_data`, `jupyter_venv`

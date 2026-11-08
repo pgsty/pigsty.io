@@ -40,8 +40,7 @@ For deployment in stages, follow the [Customization Guide](/docs/setup/config/).
 
 ## Install Ansible
 
-The [Pigsty installation script](/docs/setup/install#install) installs Ansible and its dependencies.
-The offline [bootstrap procedure](/docs/setup/offline#bootstrap) can also install them.
+On Linux, use the [Pigsty installation script](/docs/setup/install#install) or run [`bootstrap`](/docs/setup/offline#bootstrap) to install Ansible and its dependencies from a local offline repository or upstream sources. If `ansible-playbook` is already in `PATH`, `bootstrap` skips installation. On macOS, install Ansible manually.
 
 To install Ansible manually, use the command for your operating system.
 The minimum supported Ansible version is `2.9`.
@@ -53,7 +52,7 @@ sudo apt install -y ansible python3-jmespath
 ```bash {tab="EL"}
 sudo dnf install -y ansible python3.12-jmespath python3-cryptography  # EL 8
 sudo dnf install -y ansible python3-jmespath                           # EL 9
-sudo dnf install -y ansible                                            # EL 10
+sudo dnf install -y ansible python3-jmespath                           # EL 10
 ```
 
 ```bash {tab="MacOS"}

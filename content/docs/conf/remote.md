@@ -20,6 +20,9 @@ categories: [Reference]
 
 ```bash
 ./configure -c demo/remote [-i <infra_ip>]
+# Configure the remote targets and credentials in pigsty.yml, then:
+./infra.yml
+./pgsql-monitor.yml -l infra
 ```
 
 

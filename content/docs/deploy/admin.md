@@ -98,7 +98,7 @@ If you do not have an SSH key pair, generate one:
 ssh-keygen -t rsa -b 2048 -N '' -f ~/.ssh/id_rsa -q
 ```
 
-The [`bootstrap` script](/docs/setup/offline#bootstrap) also generates a key pair if none exists.
+On Linux, if the current user cannot connect to localhost through passwordless SSH, [`bootstrap`](/docs/setup/offline#bootstrap) tries to repair access. It generates `~/.ssh/id_rsa` if that key is absent and adds its public key to the local `~/.ssh/authorized_keys`. Distribute the public key to remote nodes separately.
 
 ### Copy SSH Key
 

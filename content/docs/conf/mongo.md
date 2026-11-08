@@ -92,7 +92,7 @@ Use the standard PostgreSQL parameters, playbooks, dashboards, and administratio
 
 The template contains a commented `pg-mongo` example for three PostgreSQL/FerretDB nodes. Uncomment that block and the two additional etcd members when needed.
 
-In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`. HAProxy exposes all three backends through the floating endpoint `10.10.10.4:27017` (`mongo.pigsty`). Patroni continues to handle PostgreSQL failover. FerretDB remains stateless.
+In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`. HAProxy exposes all three backends through the floating endpoint `10.10.10.4:27017` (configure DNS for `mongo.pigsty` to point to `10.10.10.4`). Patroni continues to handle PostgreSQL failover. FerretDB remains stateless.
 
 
 --------
@@ -101,5 +101,5 @@ In HA mode, each FerretDB container binds `{{ inventory_hostname }}:27018`. HAPr
 
 - The template includes development-friendly HBA examples; tighten them for production.
 - Client-side MongoDB TLS is not enabled by default.
-- Monitor the backend with the standard PostgreSQL and Docker dashboards. There is no separate FERRET module or dedicated module dashboard.
+- Monitor the backend with the standard PostgreSQL dashboards; inspect FerretDB through Docker logs. There is no separate FERRET module or dedicated module dashboard.
 - Repeat an authenticated CRUD smoke test after upgrading FerretDB or DocumentDB.

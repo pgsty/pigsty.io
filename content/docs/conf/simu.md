@@ -42,17 +42,15 @@ Source: [`pigsty/conf/ha/simu.yml`](https://github.com/pgsty/pigsty/blob/main/co
 The `ha/simu` template provides a **large-scale production environment simulation**. Use it to test and validate complex scenarios.
 
 **Architecture**:
-- 2-node HA INFRA (monitoring/alerting/Nginx/DNS)
-- 5-node HA ETCD and MINIO (Silo, multi-disk)
-- 2-node Proxy (HAProxy + Keepalived VIP)
+- 3-node HA INFRA (`10.10.10.10`–`10.10.10.12`, monitoring/alerting/Nginx/DNS)
+- 5-node ETCD (`10.10.10.25`–`10.10.10.29`)
+- 4-node MINIO (Silo, four directories `/data{1...4}` per node, `10.10.10.21`–`10.10.10.24`)
+- 2-node Proxy (HAProxy + Keepalived VIP `10.10.10.20`, the target of `sss.pigsty`)
 - Multiple PostgreSQL clusters:
-  - pg-meta: 2-node HA
-  - pg-v14~v18: Single-node multi-version testing
-  - pg-pitr: Single-node PITR testing
-  - pg-test: 4-node HA
-  - pg-src/pg-dst: 3+2 node replication testing
-  - pg-citus: 10-node distributed cluster
-- Multiple Redis modes: primary-replica, sentinel, cluster
+  - pg-meta: 3-node HA, colocated with INFRA
+  - pg-src / pg-dst: 3 nodes each (`10.10.10.31`–`33` and `10.10.10.41`–`43`)
+  - pg-tmp / pg-etcd / pg-minio: 2-, 5-, and 4-node clusters sharing Proxy, ETCD, and MINIO hosts
+- Redis primary-replica clusters (redis-src, redis-dst) and sentinels (redis-meta)
 
 **Use Cases**:
 - Large-scale deployment testing and validation
@@ -61,5 +59,5 @@ The `ha/simu` template provides a **large-scale production environment simulatio
 - New feature preview and evaluation
 
 **Notes**:
-- Requires powerful host machine (64GB+ RAM recommended)
+- The Vagrant specification allocates 35 vCPUs and 94 GiB RAM across 20 VMs. Reserve additional memory for the host, or reduce VM sizes before starting.
 - Uses Vagrant virtual machines for simulation
