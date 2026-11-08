@@ -6,7 +6,9 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-`demo/mysql` provides a four-node example for the native MySQL 8.4 LTS pilot module. The separate [`conf/mysql.yml`](/docs/conf/mysql/) template provides MySQL protocol compatibility through the OpenHalo PostgreSQL kernel.
+`demo/mysql` provides a four-node example for the native MySQL 8.4 LTS pilot module. The separate [`conf/fork/halo.yml`](/docs/conf/mysql/) template provides MySQL protocol compatibility through the OpenHalo PostgreSQL kernel.
+
+In current development sources, `./configure -c mysql` and `./configure -c demo/mysql` select this template; OpenHalo uses `-c halo`.
 
 
 --------

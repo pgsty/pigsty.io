@@ -154,7 +154,10 @@ You can also edit `pigsty.yml` directly without the wizard.
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-Development versions move kernel templates into `conf/fork/`, so use `./configure -c fork/ivory` there. The commands above apply to the `v4.5.0` release package.
+The commands above retain the paths from the `v4.5.0` release package. Current development sources also accept short names:
+`./configure -c full` selects `conf/ha/full.yml`, while `-c ivory` and `-c fork/ivory` select `conf/fork/ivory.yml`.
+Bare names search `conf/ → ha/ → fork/ → app/ → demo/ → build/`, with every subdirectory under `conf/`.
+The first match wins; explicit directory paths do not fall back. See [template lookup rules](/docs/concept/iac/configure#configuration-templates).
 
 The output below is from the current `main` branch ({{< param version >}}).
 If you install a different version, the first line shows that version.
@@ -196,8 +199,8 @@ If you install a different version, the first line shows that version.
   {{< /field >}}
 
   {{< field name="-c | --conf" type="string" >}}
-  Select a [configuration template](/docs/conf/) relative to `conf/`.
-  Omit the `.yml` suffix.
+  Select a [configuration template](/docs/conf/) by relative path, such as `ha/full`.
+  Current development sources also accept the short name `full`, an optional `conf/` prefix, and the `.yml` suffix.
   {{< /field >}}
 
   {{< field name="-v | --version" type="integer" >}}

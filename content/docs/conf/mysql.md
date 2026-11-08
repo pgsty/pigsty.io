@@ -1,21 +1,24 @@
 ---
-title: mysql
+title: halo
+aliases: [/docs/conf/halo/]
 weight: 470
 description: OpenHalo kernel, provides MySQL protocol and syntax compatibility
 icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/mysql.yml`; v4.5.0 uses `conf/mysql.yml`, selected with `-c mysql`.
+Current development sources use `conf/fork/halo.yml`, selected with `-c halo` or `-c fork/halo`.
+The OpenHalo template is named `halo` to distinguish it from the native MySQL example, selected with `mysql` / `demo/mysql`.
+The v4.5.0 release package still uses `conf/mysql.yml` and `-c mysql`.
 
-The `mysql` configuration template uses the OpenHalo database kernel instead of native PostgreSQL. OpenHalo provides MySQL wire protocol and SQL syntax compatibility.
+The `halo` configuration template uses the OpenHalo database kernel instead of native PostgreSQL. OpenHalo provides MySQL wire protocol and SQL syntax compatibility.
 
 
 --------
 
 ## Overview
 
-- Config Name: `mysql`
+- Config Name: `halo` (explicit path: `fork/halo`)
 - Node Count: Single node
 - Description: OpenHalo MySQL-compatible kernel configuration
 - OS Distro: EL 8/9/10, Debian 12/13, Ubuntu 22/24/26
@@ -25,7 +28,7 @@ The `mysql` configuration template uses the OpenHalo database kernel instead of 
 Usage:
 
 ```bash
-./configure -c mysql [-i <primary_ip>]
+./configure -c halo [-i <primary_ip>]
 ```
 
 
@@ -33,16 +36,18 @@ Usage:
 
 ## Content
 
-Development source: `conf/fork/mysql.yml`; release source: [`v4.5.0: conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml).
+Development source: [`conf/fork/halo.yml`](https://github.com/pgsty/pigsty/blob/d3f3aaeeb34c10be967dd34880b67d68f34b26ff/conf/fork/halo.yml); release source: [`v4.5.0: conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml).
 
-{{< include file="yaml/mysql.yml" code=true lang="yaml" >}}
+{{< include file="yaml/fork/halo.yml" code=true lang="yaml" >}}
 
 
 --------
 
 ## Explanation
 
-The `mysql` template uses the OpenHalo kernel. You can connect to PostgreSQL with MySQL client tools.
+The `halo` template uses the OpenHalo kernel. You can connect to PostgreSQL with MySQL client tools.
+
+The template name is `halo`; its internal compatibility setting remains `pg_mode: mysql`.
 
 **Key Features**:
 - Uses MySQL protocol (port 3306), compatible with MySQL clients

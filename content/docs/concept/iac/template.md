@@ -79,7 +79,7 @@ Templates for various database management systems and kernels:
 | [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17/18) |
 | [**`polar.yml`**](/docs/conf/polar/)       | PolarDB PG kernel, Aurora/RAC style (17)                |
 | [**`ivory.yml`**](/docs/conf/ivory/)       | IvorySQL kernel, Oracle syntax compatible (18)          |
-| [**`mysql.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
+| [**`fork/halo.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
 | [**`pgtde.yml`**](/docs/conf/pgtde/)       | Percona PostgreSQL Server transparent encryption (18)   |
 | [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (16~18)                  |
 | [**`fork/agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (18)                   |
@@ -142,7 +142,7 @@ Pigsty also provides these demonstration templates:
 | **`redis.yml`**                        | Redis cluster example configuration                                      |
 | [**`minio.yml`**](/docs/conf/minio/)   | 4-node multi-drive Silo cluster example (source default)                  |
 | [**`kafka.yml`**](/docs/conf/kafka/)   | Kafka dynamic KRaft example with a single-node dev cluster and a three-node secure cluster |
-| [**`mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/mysql.yml` |
+| [**`demo/mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/fork/halo.yml` |
 | [**`demo.yml`**](/docs/conf/demo/)     | Configuration file for Pigsty [public demo site](https://demo.pigsty.io) |
 | [**`fat.yml`**](/docs/conf/fat/)       | Single-node config with local repo and full feature set                   |
 | [**`infra.yml`**](/docs/conf/infra/)   | Deploy only the infrastructure modules                                    |

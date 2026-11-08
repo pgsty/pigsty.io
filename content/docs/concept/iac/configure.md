@@ -57,7 +57,7 @@ The **`configure`** script makes these adjustments from your environment and inp
 ./configure -c meta               # Use default single-node template (default)
 ./configure -c rich               # Use feature-rich single-node template
 ./configure -c slim               # Use minimal template (PGSQL + ETCD only)
-./configure -c ha/full            # Use 4-node HA sandbox template
+./configure -c full               # Use 4-node HA sandbox template, same as ha/full
 ./configure -c ha/trio            # Use 3-node HA template
 ./configure -c supabase           # Use Supabase self-hosted template
 ./configure -c app/immich         # Use Immich photo-management template
@@ -94,7 +94,7 @@ The **`configure`** script makes these adjustments from your environment and inp
 
 ```bash
 ./configure
-    [-c|--conf <template>]      # Configuration template name (meta|rich|slim|ha/full|...)
+    [-c|--conf <template>]      # Configuration template name (meta|rich|slim|full|ha/full|...)
     [-i|--ip <ipaddr>]          # Specify primary IP address
     [-v|--version <pgver>]      # PostgreSQL major version (14|15|16|17|18|19)
     [-r|--region <region>]      # Upstream software repo region (default|china|europe)
@@ -111,7 +111,7 @@ The **`configure`** script makes these adjustments from your environment and inp
 
 | Argument                | Description                                                                                                |
 |:------------------------|:-----------------------------------------------------------------------------------------------------------|
-| `-c, --conf`            | Generate config from `conf/<template>.yml`, supports subdirectories like `ha/full`                         |
+| `-c, --conf`            | Select a template: probe bare names such as `full`, or select explicit paths such as `ha/full`                         |
 | `-i, --ip`              | Replace placeholder `10.10.10.10` in config template with specified IP                                     |
 | `-v, --version`         | Specify PostgreSQL major version (14-19); PG19 is Beta, so prefer the dedicated `pg19` template           |
 | `-r, --region`          | Set software repo mirror region: `default`, `china` (Chinese mirrors), `europe` (European)                 |
@@ -282,7 +282,27 @@ $ ./configure -g
 
 ## Configuration Templates
 
-The script reads templates from `conf/`. Set `-c` to a relative path without the `.yml` suffix, such as `ha/full` or `app/immich`.
+Current development sources read templates from `conf/` and accept bare names or explicit relative paths. Bare names select the first matching file in this order:
+
+```text
+conf/ → conf/ha/ → conf/fork/ → conf/app/ → conf/demo/ → conf/build/
+```
+
+Root templates take precedence; the search does not recurse into other directories. After optional prefixes and the suffix are removed,
+a name that still contains a directory, such as `ha/full`, selects only that path. A missing explicit path fails without falling back
+to another template with the same name. Leading `./`, the `conf/` prefix, and the `.yml` suffix are optional:
+
+```bash
+./configure -c full                 # Finds conf/ha/full.yml
+./configure -c ha/full              # Selects the same template explicitly
+./configure -c ./conf/ha/full.yml   # Full relative filename for the same template
+./configure -c halo                 # OpenHalo: conf/fork/halo.yml
+./configure -c mysql                # Native MySQL: conf/demo/mysql.yml
+```
+
+These short names and the `halo` name apply to current development sources. With older release packages, use the `configure` script
+and template layout shipped in that release; for example, v4.5.0 uses `conf/mysql.yml` for OpenHalo.
+Use an explicit directory path to select a particular template when names collide.
 
 ### Core Templates
 
@@ -334,13 +354,17 @@ The script reads templates from `conf/`. Set `-c` to a relative path without the
 |  `mssql`   | Babelfish: SQL Server-compatible PostgreSQL               |
 |  `polar`   | PolarDB: Alibaba Cloud open-source distributed PostgreSQL |
 | `ha/citus` | Citus: Distributed PostgreSQL HA cluster                  |
-|  `mysql`   | OpenHalo: MySQL protocol-compatible PostgreSQL            |
+|  `halo`    | OpenHalo: MySQL protocol-compatible PostgreSQL            |
 |  `pgtde`   | Percona PostgreSQL Server: transparent encryption         |
 |  `oriole`  | OrioleDB: Next-generation storage engine                  |
 |  `agens`   | AgensGraph: graph database kernel                         |
 |  `pgedge`  | pgEdge: distributed PostgreSQL kernel                     |
 |  `mongo`   | MongoDB-compatible stack template                         |
 {.wide .expand}
+
+Current development sources place these kernel templates and `pgsql` under `conf/fork/`, except for `ha/citus`.
+For example, `-c ivory` and `-c fork/ivory` both select `conf/fork/ivory.yml`.
+OpenHalo uses `halo` or `fork/halo`; its internal setting remains `pg_mode: mysql`.
 
 ### Demo and Build Templates
 

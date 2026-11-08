@@ -22,13 +22,14 @@ Pigsty supports OpenHalo deployment on all supported Linux platforms.
 
 ## Quick Start
 
-Use Pigsty's [**standard installation flow**](/docs/setup/install) with the [`mysql`](/docs/conf/mysql) template.
+Prepare a Pigsty working directory with the [**standard installation flow**](/docs/setup/install), then select the [`halo`](/docs/conf/mysql) template.
 
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml). Development sources moved it to `conf/fork/mysql.yml`; use `-c fork/mysql` with those sources.
+The configuration commands below apply to current development sources containing `conf/fork/halo.yml`; `-c halo` and `-c fork/halo` are equivalent.
+The [v4.5.0 release package](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml) still uses `-c mysql`.
+In current development sources, `-c mysql` selects the native MySQL example.
 
 ```bash
-curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
-./configure -c mysql    # Use MySQL (openHalo) template
+./configure -c halo     # Use the OpenHalo template
 ./deploy.yml            # Install (change passwords in pigsty.yml before production use)
 ```
 
@@ -81,7 +82,7 @@ Use the PostgreSQL usernames and passwords for MySQL access.
 
 OpenHalo listens on port `3306` for MySQL wire protocol clients.
 
-Pigsty's [`conf/mysql`](/docs/conf/mysql/) installs a MySQL client by default.
+The [`fork/halo`](/docs/conf/mysql/) template installs the OpenHalo server. Install a compatible MySQL client separately before using the command below.
 
 ```bash
 mysql -h 127.0.0.1 -u dbuser_dba
