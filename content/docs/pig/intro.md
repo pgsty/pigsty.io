@@ -10,9 +10,9 @@ categories: [Concept]
 
 PIG is a command-line tool for installing and managing PostgreSQL and its extensions. It maps extension names to RPM or DEB packages and uses `apt`, `dnf`, or `yum` to install them.
 
-The catalog contains [{{< param pig_catalog_count >}} extension entries](https://pigsty.io/ext/list/). PIG selects package names for your PostgreSQL major version, operating system, and CPU architecture. It also provides commands for source builds, local PostgreSQL operations, backups, and Pigsty administration.
+The catalog contains [{{< param pig_catalog_count >}} extension entries](/ext/list/). PIG selects package names for your PostgreSQL major version, operating system, and CPU architecture. It also provides commands for source builds, local PostgreSQL operations, backups, and Pigsty administration.
 
-## What you can do
+## What you can do {#what-you-can-do}
 
 | Task | Command | Reference |
 |:---|:---|:---|
@@ -27,7 +27,7 @@ The catalog contains [{{< param pig_catalog_count >}} extension entries](https:/
 
 Start with the [tutorial](/docs/pig/start/) to install PostgreSQL and enable your first extension.
 
-## How package installation works
+## How package installation works {#how-package-installation-works}
 
 For example, this command installs pgvector for PostgreSQL 18:
 
@@ -45,9 +45,9 @@ CREATE EXTENSION vector;
 
 Some extensions also need a setting in `shared_preload_libraries` and a PostgreSQL restart. Use `pig ext info NAME` to check these requirements. See [package and database operations](/docs/pig/ext/#package-layer-vs-database-layer) for updates and removal.
 
-PIG is needed only when you run its commands. PostgreSQL and installed extensions continue to work without it. You can also use the [Pigsty repositories](https://pigsty.io/docs/repo/pgsql/) directly with `apt` or `dnf`.
+PIG is needed only when you run its commands. PostgreSQL and installed extensions continue to work without it. You can also use the [Pigsty repositories](/docs/repo/pgsql/) directly with `apt` or `dnf`.
 
-## Linux compatibility
+## Linux compatibility {#linux-compatibility}
 
 The package repositories cover PostgreSQL **14–18** on these Linux releases. Each release has packages for **x86_64** and **aarch64**.
 
@@ -72,7 +72,7 @@ The {{< param pig_catalog_count >}} catalog entries include packaged SQL utiliti
 
 The macOS binary supports catalog queries and commands such as inventory editing. PostgreSQL package installation uses Linux package managers. See [Installation](/docs/pig/install/) for the binary downloads.
 
-## Choose a workflow
+## Choose a workflow {#choose-a-workflow}
 
 - **Use an existing host:** add repositories with `pig repo add pgsql -u`, then install the required packages.
 - **Configure all repositories on a new host:** use `pig repo set`. It backs up and replaces the existing repository definitions.

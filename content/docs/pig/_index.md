@@ -8,13 +8,11 @@ module: [PIG]
 sidebar_root_for: self
 ---
 
-Documentation version: **v{{< param pig_version >}}**. Read the [release notes](/docs/pig/release/#v1104).
-
-This release adds seven catalog entries, removes one retired record, and fixes target-version category aliases, bringing the embedded catalog to **{{< param pig_catalog_count >}} entries**.
+Documentation version: **v{{< param pig_version >}}**. This release adds seven catalog entries, removes one retired record, and fixes target-version category aliases, bringing the embedded catalog to **{{< param pig_catalog_count >}} entries**. Read the [release notes](/docs/pig/release/#v1104).
 
 PIG provides commands to find, install, and build PostgreSQL extension packages. It also manages PostgreSQL, Patroni, pgBackRest, and Pigsty workflows. Package installation uses the system's `apt`, `dnf`, or `yum`.
 
-## Start here
+## Start here {#start-here}
 
 | Your task | Page |
 |:---|:---|
@@ -23,7 +21,7 @@ PIG provides commands to find, install, and build PostgreSQL extension packages.
 | Download, install, update, or remove PIG | [Installation](/docs/pig/install/) |
 | Look up commands, options, and automation features | [Command reference](/docs/pig/cmd/) |
 
-## Install PostgreSQL and extensions
+## Install PostgreSQL and extensions {#install-postgresql-and-extensions}
 
 On a Linux host with root or `sudo` access, run:
 
@@ -35,7 +33,7 @@ sudo pig install -v 18 pg18 vector
 
 In mainland China, use `https://repo.pigsty.cc/pig` for the installer. These commands install PostgreSQL 18 and pgvector packages. Continue with [Getting started](/docs/pig/start/) to start a test instance and enable the extension with `CREATE EXTENSION vector`.
 
-## Command reference
+## Command reference {#command-reference}
 
 | Task | Command |
 |:---|:---|
@@ -55,13 +53,13 @@ In mainland China, use `https://repo.pigsty.cc/pig` for the installer. These com
 
 Run `pig help <command>` for command help. For automation, use `pig -o json --help` to inspect command capabilities, then select the relevant output and plan options.
 
-## Find more information
+## Find more information {#find-more-information}
 
 Press {{< kbd "Ctrl" "K" >}} ({{< kbd "⌘" "K" >}} on macOS) to search the site. Press {{< kbd "/" >}} for page actions. An AI assistant action sends the public page URL and a reading prompt to the selected service.
 
 - [Design Records](https://pig.pgsty.com/design/): implementation decisions, trade-offs, and proposals.
 - [Release notes](/docs/pig/release/): changes and download files for each version.
-- [Extension catalog](https://pigsty.io/ext/list/): extension descriptions and package information.
+- [Extension catalog](/ext/list/): extension descriptions and package information.
 - [GitHub Issues](https://github.com/pgsty/pig/issues): report a problem or request a feature.
 
 PIG is developed by [Vonng](https://vonng.com/en/) and released under [Apache 2.0](https://github.com/pgsty/pig/blob/main/LICENSE). [Pigsty](https://pigsty.io/) provides PostgreSQL deployment, monitoring, backups, and high availability.

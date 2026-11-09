@@ -86,6 +86,7 @@ PIG `v1.10.4` refreshes the embedded PostgreSQL extension catalog from **620 to 
 | `pg_lion_citext` | `0.3.0` | 16–18 | Case-insensitive citext operator class for lion indexes |
 | `pg_lion_vector` | `0.3.0` | 16–18 | Filtered nearest-neighbor indexes for pgvector vector and halfvec |
 | `opencc` | `0.1.0` | 14–18 | OpenCC conversion between Simplified Chinese, Traditional Chinese, regional variants and Japanese Shinjitai |
+{.wide .expand}
 
 Installability depends on the target PostgreSQL major, operating system, architecture, and configured repository.
 
@@ -122,7 +123,7 @@ Release artifacts: [v1.10.4](https://github.com/pgsty/pig/releases/tag/v1.10.4)
 
 ### Checksums
 
-```text
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.10.4"}
 4981a060779423ab4d6c5baaa8fe6c26adb972fc34b9515119b9e5d4723513ce  pig-1.10.4-1.aarch64.rpm
 d1624bbcec5d3f4715d223acca8311182ef1ee36542c16bcf82602674ee82b07  pig-1.10.4-1.x86_64.rpm
 9384759851af53f5cddc381007f78de9a226b43b914848291df86ec41096119e  pig-v1.10.4.darwin-amd64.tar.gz
@@ -630,7 +631,7 @@ Pig `v1.8.0` updates native controller workflows from `v1.7.0`. Go implementatio
 
 Artifacts: [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.8.0) · [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.8.0/checksums.txt)
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.8.0"}
 02fd2628810c1b00de730ece32b09dba1318be4c99a4ff1a0551740e32bf223b  pig-1.8.0-1.aarch64.rpm
 72ba72a00af52a84b08b1346f85b42668b52bc097e315774ff9f501ca23ece8b  pig-1.8.0-1.x86_64.rpm
 f023a5c9049dc532a057e932c73a8197683eaf4d97cb7a8f219492da1ad2a65f  pig-v1.8.0.darwin-amd64.tar.gz
@@ -673,7 +674,7 @@ Pig `v1.7.0` updates repository compatibility and the catalog from `v1.6.2`. It 
 
 Artifacts: [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.7.0) · [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.7.0/checksums.txt)
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.7.0"}
 e3a339fefdd2203825d15438b52f18e729547eb88dae014212a46006a9bd47d1  pig-1.7.0-1.aarch64.rpm
 34ce29d75ef9f669f3bf832cc812ae082abda7320ee2b2336ea61e701b9b67f8  pig-1.7.0-1.x86_64.rpm
 d26803c685ba29c01cb8e6dfe50c6c1b0f004173be82015618fa8cdf6a329ba7  pig-v1.7.0.darwin-amd64.tar.gz
@@ -717,7 +718,7 @@ Pig `v1.6.2` adds features and updates the catalog from `v1.6.1`. Packaged exten
 
 Artifacts: [GitHub Release](https://github.com/pgsty/pig/releases/tag/v1.6.2) · [checksums.txt](https://github.com/pgsty/pig/releases/download/v1.6.2/checksums.txt)
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.6.2"}
 6697a96bbf476e697a5c3da8b6c861719e4b7208e1e4fe927cf4b475ea1f162f  pig-1.6.2-1.aarch64.rpm
 ad0b311867bc6cd689dd73e9a96b84f1fe0f49f6c0f1184abf9eb3232a07a184  pig-1.6.2-1.x86_64.rpm
 bb167e04fceb6cebee5c8a2423279cefb4474f46301a5055c464ac98294dc9db  pig-v1.6.2.darwin-amd64.tar.gz
@@ -747,7 +748,7 @@ Pig `v1.6.1` is a maintenance release. It updates the bundled extension catalog 
 
 Artifacts: [Pigsty Mirror](https://repo.pigsty.io/pkg/pig/v1.6.1/) · [checksums.txt](https://repo.pigsty.io/pkg/pig/v1.6.1/checksums.txt)
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.6.1"}
 088e62bf7c64dbbe1d66cb54e6a6971e4d245e76ac0b9ab9de2280053b692e77  pig-1.6.1-1.aarch64.rpm
 11b81f43754bcd7691752025ff0a95aa39745883d1cc17183e81fd357f50f5d3  pig-1.6.1-1.x86_64.rpm
 f0512d26fd934a9ac7b0bf5aba22aba151991a4edcc8e995441f79f66fc6080a  pig-v1.6.1.darwin-amd64.tar.gz
@@ -793,7 +794,7 @@ Pig `v1.6.0` is a major release. `pig pt` becomes a transparent `patronictl` lau
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.6.0"}
 6899e8a3e1c0adfe8c0c177c0632b0a00821b304ed5998fcbdf28d02660c6768  pig-1.6.0-1.aarch64.rpm
 cabe593fe7f5c31cdbcd8d546ae4925b57f98f70c564452335568389f3f9737c  pig-1.6.0-1.x86_64.rpm
 1f46d4a0b4710eed06b2cf8e7e17ee04b8d65331697c5c65afd513cc28282231  pig-v1.6.0.darwin-amd64.tar.gz
@@ -825,7 +826,7 @@ Pig `v1.5.1` updates PG kernel forks to the latest package names.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.5.1"}
 bc83887d640ed299a967b4eda2ae6db621a985abfa022fccabf508f7ec7b98e3  pig-1.5.1-1.aarch64.rpm
 f0eab8e638d9e00a9172751446db869d0fe6ca7f382c7d540a931e0764014c0a  pig-1.5.1-1.x86_64.rpm
 b32d894dc444ef2b9ec00816d50d82b5834e64c35b3bb18f08b6286a7ca8e8e7  pig-v1.5.1.darwin-amd64.tar.gz
@@ -869,7 +870,7 @@ Pig `v1.5.0` updates PostgreSQL operations for daily DBA work. It adds local dat
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.5.0"}
 9f83b78ed2eccedd55a86c634f88364f1945c3cefa1b23efdd72a7cf2062e1df  pig-1.5.0-1.aarch64.rpm
 b792001498e9907d4659db46640f9c5164152b20689f90f93418f76fb4633e6e  pig-1.5.0-1.x86_64.rpm
 ae1081dfbff8564ecdf713c85e8025c91bfd38e6575ea9ac99a92f968ab8a29d  pig-v1.5.0.darwin-amd64.tar.gz
@@ -898,7 +899,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.5.0
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.4.2"}
 790afe4d6622cb041b06c622bc466cb1b2960a77487f368238027fb4a3a5ef93  pig-1.4.2-1.aarch64.rpm
 ef918166b38a5eb1d108a928718c9e2cb8c3590e5a1f72effee942faca9b4bea  pig-1.4.2-1.x86_64.rpm
 3e37ff22aed076cbdd453911dc89fcc9340b1a4faac62c0580094bc1eb2d6273  pig-v1.4.2.darwin-amd64.tar.gz
@@ -924,7 +925,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.4.2
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.4.1"}
 cbfbb04b9640dcf39fcd9ccfa49e500dd0e65b72c0326c0d166e6f43e52b6dc3  pig-1.4.1-1.aarch64.rpm
 c3325c7c68559b3149567eddd5963c4bc3bb4b39622740ca469f9d5d274e462b  pig-1.4.1-1.x86_64.rpm
 c82e8a5e010aed198748576a3740479ac73eaa4a05f50cd4afc82fbcc9075d4d  pig-v1.4.1.darwin-amd64.tar.gz
@@ -950,7 +951,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.4.1
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.4.0"}
 c8d2f46ea1b25f7d4665ee0994f0cb403a59f1464f80b3ecfa575ac283e5ecd0  pig-1.4.0-1.aarch64.rpm
 fb1fd2f4f1e71894779de7b11a42960c09261620dffa0b54ff7f84e60efbf976  pig-1.4.0-1.x86_64.rpm
 aa08045a31c26b9a6bfb770753817581c819022a6ed899e44f7b5a31f57f1733  pig-v1.4.0.darwin-amd64.tar.gz
@@ -972,7 +973,7 @@ Increases total available extensions to **504**.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.3.4"}
 dc78def9a1e5eb483ac5df4c87f4ac0ef2018bb12b4bedff650d8ba4d58a05fd  pig-1.3.4-1.aarch64.rpm
 998fcbdab1846c94c3155391d2100dad9b0fe338f48212022db38980bb11e696  pig-1.3.4-1.x86_64.rpm
 031048c561abbeeeaa73fa3ac919b9fb89479b61c8a759bee5db2efba2e8a1df  pig-v1.3.4.darwin-amd64.tar.gz
@@ -1026,7 +1027,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.4
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.3.3"}
 e74418061ea975fbc3e8a89b31f274d7dc3617d12b9d681e5c8ef03584392088  pig-1.3.3-1.aarch64.rpm
 8450e3e1076425fc8a10f24cc5fd833c3d2d880bab12baff5c10e59a31f62231  pig-1.3.3-1.x86_64.rpm
 952a0e94b9020fca5add91f8e9a398fbedfda5d2e5c8736e59ddaa2b7152c826  pig-v1.3.3.darwin-amd64.tar.gz
@@ -1053,7 +1054,7 @@ Routine maintenance release.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.3.2"}
 d760f47652ff3e2e4a61eb7b9a68ca68665b2b36c187c52f5eaf50d2f007d8f3  pig-1.3.2-1.aarch64.rpm
 c2e02e62497f4c2055a9b448ddb3a24c618fcd488580c28b2b9a0e7cedacef55  pig-1.3.2-1.x86_64.rpm
 b8d066ddefa4530946c74c30e7e4acdab6abf8da70a47dcfe2a77719b79e397f  pig-v1.3.2.darwin-amd64.tar.gz
@@ -1082,7 +1083,7 @@ This is a small maintenance release from `v1.3.0` to `v1.3.1`.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.3.1"}
 196e57c7dd46cdedd90ab75965a766f74aabc3bc23ddc8fb757473647bed7b8f  pig-1.3.1-1.aarch64.rpm
 e4bdd52ef635524d5aec95f6a5abd76bd49940584ecbb00bd309a4f9186292ac  pig-1.3.1-1.x86_64.rpm
 4f3f9479344c158e1c5edc3003471be6b595c01b7d86104bf676b34f8faadce5  pig-v1.3.1.darwin-amd64.tar.gz
@@ -1169,7 +1170,7 @@ It improves the reliability of the `pig build` pipeline and extends catalog and 
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.3.0"}
 196f32419886da095f303b1bcad2729b674abc03d412199e88a39390b2616534  pig-1.3.0-1.aarch64.rpm
 a2dcc930dd47a08e85285c1fb7925e1355a1e67d458a265a7ef6d9666bc8e7ec  pig-1.3.0-1.x86_64.rpm
 c7ebda6b9839408b12ffe1c8ea561f03e1793aae0732f9bbe2320a0d45160714  pig-v1.3.0.darwin-amd64.tar.gz
@@ -1229,7 +1230,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v1.3.0
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.2.0"}
 344b77385fa9c3d4fe5e1961340e68716251e38d1cb8308f5af45ce8a03cd206  pig-1.2.0-1.aarch64.rpm
 aa9cf1820a9045cc42f0d66689d5e8679cb71452042f3f01ddd4c3a518a2b757  pig-1.2.0-1.x86_64.rpm
 f26e4d9e9fa76c39f7c591c18a09287ca3388e016d121c196302ee9eafb5b678  pig-v1.2.0.darwin-amd64.tar.gz
@@ -1339,7 +1340,7 @@ Seven new extensions are added, bringing the total available extensions to 451.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.1.0"}
 95245dc035270df2b02cdd5d19afac57ccf4949a61b07b1b806fffde3a3b780e  pig-1.1.0-1.aarch64.rpm
 8b1a26f1b5dd002841a0b31904eea8ce94d1e6c4acde4704a78d9e121e1656f4  pig-1.1.0-1.x86_64.rpm
 dbd079510513f1cd0521b0871cc6fe3eed8f7fa26f66c04c682568c43e24c456  pig-v1.1.0.darwin-amd64.tar.gz
@@ -1404,7 +1405,7 @@ This release adds three command groups: `pig pg` for PostgreSQL, `pig pt` for Pa
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.0.0"}
 306637079e942bcac9ccbc089cd09a80051898f8db1630269bb1acd3fbdaa872  pig-1.0.0-1.aarch64.rpm
 d2b9440410f00efbca174d63b507c39d97fc55f402d8e9290ee054c1b1c6414c  pig-1.0.0-1.x86_64.rpm
 c8a169e48a8168ee03db508ca2edc22b56ecf6997bae924e9023796ab7ae4e62  pig-v1.0.0.darwin-amd64.tar.gz
@@ -1498,7 +1499,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.8.1
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.8.0"}
 e457832fb290e2f9975bf719966dc36e650bdcbf8505d319c9e0431f4c03bc9e  pig-0.8.0-1.aarch64.rpm
 c97b1bfdd7541f0f464cab0ecc273e65535c8dd2603c38d5cf8dccbf7e95b523  pig-0.8.0-1.x86_64.rpm
 d892f06d3d3b440671529f40e6cc7949686e0167e2a4758adc666b8a3d75254d  pig-v0.8.0.darwin-amd64.tar.gz
@@ -1535,7 +1536,7 @@ Uses the corrected Aliyun PGDG mirror repository.
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.5"}
 9de11ac1404fc4100074113f2a5d50e4ec42c353b6e122a0b29edc17e53feca6  pig-0.7.5-1.aarch64.rpm
 071d655580f1cc63b33d41a8fb49368556b7b5a276318f4bd772a6ab50e22b34  pig-0.7.5-1.x86_64.rpm
 befe0a8f786e5243669ed7219acde8156d13d9adb0a5c2fb88ccf0f614a51f9b  pig-v0.7.5.darwin-amd64.tar.gz
@@ -1560,7 +1561,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.5
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.4"}
 5769b0051f04dcda22dd92b30b8effc8ddfa40097308bded76ce2b38d012ce57  pig-0.7.4-1.aarch64.rpm
 d15c829fa2e3ce8dcd1adc063c107607b8e70f2cf747646aaa2fa257cdbf979c  pig-0.7.4-1.x86_64.rpm
 bb4c90e253a3d470e50316e633a41e90ed2d4a5c5a1fd3a8dbb68ee87d831d47  pig-v0.7.4.darwin-amd64.tar.gz
@@ -1588,7 +1589,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.4
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.3"}
 83e1b491b58793859caaccb0600a8ad7f7c0ea71dfcbc1dc348bf4666f7dc742  pig-0.7.3-1.aarch64.rpm
 00671775c22918b6e92c8f39972fa2e6e78536ba0ca1e23f9bb9752a2910a974  pig-0.7.3-1.x86_64.rpm
 d6ac6164a09a7b2aac210b898c8729df6cbcef6462207a896caf08b1511c9cdb  pig-v0.7.3.darwin-amd64.tar.gz
@@ -1615,7 +1616,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.3
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.2"}
 080dd93c33faf81e8f9d3b9d543b9949604b834ccd55331cce697df79049a9af  pig-0.7.2-1.aarch64.rpm
 b91056230d3a790ab0190b3680fc5dbc3eb1306b7a1c2416fb6ef421bf48dcf7  pig-0.7.2-1.x86_64.rpm
 9b294e58b8c3629066b905e25dda4f51eacc1eb4b6d5d87fab32d17fb13a9cb7  pig-v0.7.2.darwin-amd64.tar.gz
@@ -1643,7 +1644,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.2
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.1"}
 a696c9ec784e2fc248e5f3d87cc8aae4116e890f78c5997957d30593f2c85ca6  pig-0.7.1-1.aarch64.rpm
 f669538a99cd1dc592d3005b949628fcceb9e78114fc78862d7726b340ee194d  pig-0.7.1-1.x86_64.rpm
 e42bdaaf93b720c5b76b32b57362320e4b447109740c76089aefe030b7c8b836  pig-v0.7.1.darwin-amd64.tar.gz
@@ -1676,7 +1677,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.1
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.7.0"}
 ad60f9abcde954769e46eb23de61965e  pig_0.7.0-1_amd64.deb
 aa15d7088d561528e38b2778fe8f7cf9  pig_0.7.0-1_arm64.deb
 05549fe01008e04f8d5a59d4f2a5f0b8  pig-0.7.0-1.aarch64.rpm
@@ -1700,7 +1701,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.7.0
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.6.2"}
 01f5b7dc20644226c762dbb229768347  pig_0.6.2-1_amd64.deb
 ce4f00256adc12cbea91467b7f2241cd  pig_0.6.2-1_arm64.deb
 cefc36ae8f348aede533b30836fba720  pig-0.6.2-1.aarch64.rpm
@@ -1747,7 +1748,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.1
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.6.0"}
 1804766d235b9267701a08f95903bc3b  pig_0.6.0-1_amd64.deb
 35f4efa35c1eaecdd12aa680d29eadcb  pig_0.6.0-1_arm64.deb
 b523b54d9f2d7dcc5999bcc6bd046b1d  pig-0.6.0-1.aarch64.rpm
@@ -1774,7 +1775,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.6.0
 
 **Checksums**
 
-```text
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.5.0"}
 9ec6f3caf3edbe867caab5de0e0ccb33  pig_0.5.0-1_amd64.deb
 4fbb0a42cd8a88bce50b3c9d85745d77  pig_0.5.0-1_arm64.deb
 9cf8208396b068cab438f72c90d39efe  pig-0.5.0-1.aarch64.rpm
@@ -1805,7 +1806,7 @@ Release: https://github.com/pgsty/pig/releases/tag/v0.5.0
 
 **Checksums**
 
-```bash
+```checksums {base="https://github.com/pgsty/pig/releases/download/v0.4.2"}
 bbf83fa3e3ec9a4dca82eeed921ae90a  pig_0.4.2-1_amd64.deb
 e45753335faf80a70d4f2ef1d3100d72  pig_0.4.2-1_arm64.deb
 966d60bbc2025ba9cc53393011605f9f  pig-0.4.2-1.aarch64.rpm
