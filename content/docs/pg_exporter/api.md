@@ -26,12 +26,9 @@ The default listen port is `:9630`. The following table lists all endpoints:
 Health and routing endpoints return the cached state from background probes: `primary`, `replica`, `down`, `starting`, or `unknown`.
 They do not query the database for each HTTP request. In v1.5.0, each response reads one atomic state snapshot, so its HTTP status and body always describe the same state. The cached state can still lag behind the database. A successful PgBouncer probe maps to `primary`; it does not describe the role of its PostgreSQL backend.
 
+## Metrics Endpoint {#metrics-endpoint}
 
---------
-
-## Metrics Endpoint
-
-### GET /metrics
+### GET /metrics {#get-metrics}
 
 This endpoint returns all collected metrics in Prometheus format.
 
@@ -58,7 +55,7 @@ pg_in_recovery 0
 
 # HELP pg_exporter_build_info A metric with a constant '1' value labeled with version, revision, branch, goversion, builddate, goos, and goarch from which pg_exporter was built.
 # TYPE pg_exporter_build_info gauge
-pg_exporter_build_info{version="v1.5.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.3",goos="linux",goarch="amd64"} 1
+pg_exporter_build_info{version="v1.6.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.3",goos="linux",goarch="amd64"} 1
 
 # ... additional metrics
 ```
@@ -73,45 +70,56 @@ Metrics follow the Prometheus exposition format:
 <metric_name>{<label_name>="<label_value>",...} <value> <timestamp>
 ```
 
+Since v1.6.0, at most two metrics requests are admitted across collection, waiting, and response writing. Scrapes still run serially; one request can wait within its remaining budget, and further concurrent requests receive HTTP 503. The budget defaults to 30 seconds and is shortened by a valid, finite, positive `X-Prometheus-Scrape-Timeout-Seconds` header. A request canceled while waiting does not start SQL work.
+
+After request cancellation, the exporter does not start the next collector or database. A collector already started with a positive timeout keeps its shared predicate-and-query deadline and caches a successful refresh. A negative timeout disables that deadline, so the query cancels with the request. An interrupted scrape returns 503 if the connection still accepts a response. Driver and network blocking mean these deadlines are not hard wall-clock caps; configure `connect_timeout` in the DSN to bound connection handshakes.
+
+Interrupted rounds do not increment `pg_exporter_scrape_error_count` or `pg_exporter_server_scrape_error_count`, and log INFO `interrupted`; query error counters and fatal-query ERROR logs remain active. A real failure that overlaps request cancellation can therefore be omitted from those two round counters. Without request cancellation, connection/precheck failures and fatal query failures (including their own timeouts) still count as errors; non-fatal failures remain visible in query-level counters.
+
+Failed refreshes keep the existing failure TTL. In particular, a fatal collector with a negative timeout caches a fatal failure when canceled; later active scrapes can count that cached failure and report `pg_up 0` until a refresh succeeds. Keep positive timeouts on fatal collectors. See [Scrape Lifetime](https://exp.pgsty.com/design/scrape-lifetime/) for rationale.
+
 #### Self-Monitoring Metrics
 
-In addition to metrics from YAML collectors, `/metrics` returns the exporter's runtime metrics.
-Use `--disable-intro` to disable the `pg_exporter_*` metrics.
-The prefix follows `--namespace`. In pgBouncer mode, the prefix is `pgbouncer_`.
+Built-in metric prefixes default to `pg` for PostgreSQL and `pgbouncer` for PgBouncer. `--namespace` overrides that prefix without renaming metrics defined in YAML.
 
-| Metric | Labels | Description |
-|--------|--------|-------------|
-| `pg_up` | — | 1 when the target database is reachable, 0 otherwise |
-| `pg_version` | — | Server version in `server_version_num` format |
-| `pg_in_recovery` | — | 1 when in recovery mode (replica) |
-| `pg_exporter_build_info` | version, revision, ... | Constant 1 with build info in labels |
-| `pg_exporter_up` | — | Constant 1 while the exporter is alive |
-| `pg_exporter_uptime` | — | Seconds since the exporter started |
-| `pg_exporter_scrape_total_count` / `_error_count` | — | Cumulative scrape / failure counts |
-| `pg_exporter_scrape_duration` | — | Duration of the last scrape in seconds |
-| `pg_exporter_last_scrape_time` | — | Timestamp of the last scrape |
-| `pg_exporter_server_scrape_*` | datname | Per-database scrape duration and success/failure counters |
-| `pg_exporter_query_scrape_duration` | datname, query | Last execution duration per collector |
-| `pg_exporter_query_scrape_total_count` / `_error_count` | datname, query | Execution / failure counts per collector |
-| `pg_exporter_query_scrape_hit_count` / `_metric_count` | datname, query | Rows returned / metrics emitted per collector |
-| `pg_exporter_query_scrape_predicate_skip_count` | datname, query | Times skipped because a predicate returned false |
-| `pg_exporter_query_cache_ttl` | datname, query | Result cache TTL per collector |
+| Metric | Type | Labels | Meaning |
+|:---|:---|:---|:---|
+| `pg_up` | Gauge | — | Primary-target availability seen by scrapes; see interruption rules below |
+| `pg_version` | Gauge | — | Primary target version number |
+| `pg_in_recovery` | Gauge | — | `1` on standby, `0` on primary; use when `pg_up = 1` |
+| `pg_exporter_build_info` | Gauge | version, revision, branch, builddate, goversion, goos, goarch | Constant `1` with build metadata labels |
+| `pg_exporter_up` | Gauge | — | Constant `1` |
+| `pg_exporter_uptime` | Gauge | — | Seconds since exporter initialization |
+| `pg_exporter_scrape_total_count` | Counter | — | Scrape rounds |
+| `pg_exporter_scrape_error_count` | Counter | — | Rounds where the primary target had a connection or fatal collector error |
+| `pg_exporter_scrape_duration` | Gauge | — | Duration of the last complete scrape round, in seconds |
+| `pg_exporter_last_scrape_time` | Gauge | — | Unix timestamp when the last scrape round finished |
+| `pg_exporter_server_scrape_duration` | Gauge | datname | Duration of the database's last scrape round, in seconds |
+| `pg_exporter_server_scrape_total_seconds` | Gauge | datname | Cumulative scrape duration for the database, in seconds |
+| `pg_exporter_server_scrape_total_count` | Gauge | datname | Scrape rounds for the database |
+| `pg_exporter_server_scrape_error_count` | Gauge | datname | Connection or fatal collector errors for the database |
+| `pg_exporter_query_scrape_total_count` | Gauge | datname, query | Collector invocations, including cache hits and predicate skips |
+| `pg_exporter_query_scrape_error_count` | Gauge | datname, query | Collector invocation errors |
+| `pg_exporter_query_scrape_hit_count` | Gauge | datname, query | Result cache hits |
+| `pg_exporter_query_scrape_metric_count` | Gauge | datname, query | Samples in the collector's current result |
+| `pg_exporter_query_scrape_duration` | Gauge | datname, query | Duration of the last actual execution, in seconds; unchanged on cache hit |
+| `pg_exporter_query_scrape_predicate_skip_count` | Gauge | datname, query | Skips because a predicate returned `false`, `NULL`, or zero rows |
+| `pg_exporter_query_cache_ttl` | Gauge | datname, query | Remaining result cache lifetime, in seconds |
 {.full-width .wide .expand}
 
-Use `pg_exporter_query_scrape_duration` and `_error_count` to identify slow or failed collectors.
-These metrics provide a machine-readable equivalent of `/stat`.
+Configured constant labels are attached to these series as well. Per-database and per-collector cumulative counts are exposed as Gauges. Server replanning, including configuration reload, resets collector statistics; recreating a database connection object resets that database's statistics.
 
+`--disable-intro` suppresses all built-in metrics in this table, including `pg_up`. YAML metrics, Go/process metrics, and HTTP health endpoints remain available.
 
---------
+On interruption, `pg_up` preserves the primary target's previous availability state, or stays `1` if the current precheck already succeeded. If the first precheck is interrupted before succeeding, it remains `0` and recovers on a later successful scrape. Interrupted child databases follow the same per-database rule without incrementing primary-target error counters.
 
-## Health Checks
+## Health Checks {#health-checks}
 
 Health endpoints provide multiple ways to monitor PG Exporter and the target database state.
 
-### GET /up
+### GET /up {#get-up}
 
-This endpoint checks availability from the cached background probe state.
-It does not probe the database for each HTTP request.
+After initialization, HTTP health state is updated only by the once-per-second background probe. Slow scrapes do not hold the probe lock or overwrite newer probe results. HTTP health requests read the snapshot without running SQL. `pg_up` and `pg_in_recovery` remain scrape metrics: a fatal collector failure can set `pg_up` to `0` while `/up` still returns 200 if the database is reachable. Connection pool limits are three for the PostgreSQL main target, two for PgBouncer, and one per discovered database.
 
 #### Response Codes
 
@@ -131,7 +139,7 @@ HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8
 ```
 
-### GET /health
+### GET /health {#get-health}
 
 Alias of `/up` with identical behavior.
 
@@ -139,7 +147,7 @@ Alias of `/up` with identical behavior.
 curl http://localhost:9630/health
 ```
 
-### GET /liveness and GET /readiness
+### GET /liveness and GET /readiness {#get-liveness-and-get-readiness}
 
 These aliases use the same handler and behavior as `/up`. Use them for Kubernetes probes:
 
@@ -157,14 +165,11 @@ readinessProbe:
 Both endpoints return 503 when the target database is unreachable.
 To prevent a database failure from restarting the exporter Pod, use a TCP liveness probe on the listen port.
 
-
---------
-
-## Traffic Routing
+## Traffic Routing {#traffic-routing}
 
 Load balancers and proxies use these endpoints to route traffic by server role.
 
-### GET /primary
+### GET /primary {#get-primary}
 
 Check whether the server is a primary instance.
 
@@ -197,7 +202,7 @@ backend pg_primary
   server pg2 10.0.0.2:5432 check port 9630
 ```
 
-### GET /replica
+### GET /replica {#get-replica}
 
 Check whether the server is a replica instance.
 
@@ -231,7 +236,7 @@ backend pg_replicas
   server pg3 10.0.0.3:5432 check port 9630
 ```
 
-### GET /read
+### GET /read {#get-read}
 
 Check whether the server can handle read traffic. Both primaries and replicas may return success.
 
@@ -257,12 +262,9 @@ backend pg_read
   server pg3 10.0.0.3:5432 check port 9630
 ```
 
+## Operational Endpoints {#operational-endpoints}
 
---------
-
-## Operational Endpoints
-
-### GET /reload / POST /reload
+### GET /reload / POST /reload {#get-reload-post-reload}
 
 Reload configuration without restarting the exporter.
 
@@ -307,9 +309,9 @@ server reloaded
 > If the exporter is reachable outside localhost or a trusted private network, protect these endpoints.
 > Use `--web.config.file`, or restrict access through a reverse proxy or firewall.
 
-### GET /explain
+### GET /explain {#get-explain}
 
-Display planned collector execution details for all configured collectors.
+Display the collectors selected in the primary target's current plan. Predicates run during refresh and are not evaluated by this endpoint.
 
 #### Request
 
@@ -339,7 +341,7 @@ curl http://localhost:9630/explain
 ...
 ```
 
-### GET /stat
+### GET /stat {#get-stat}
 
 Show runtime statistics, including collector execution times and success/error counters.
 
@@ -361,12 +363,9 @@ pg_activity              12         0          1          0          8          
 
 Use this endpoint to identify slow or failed collectors.
 
+## Using with Load Balancers {#using-with-load-balancers}
 
---------
-
-## Using with Load Balancers
-
-### HAProxy Example
+### HAProxy Example {#haproxy-example}
 
 ```haproxy
 # Primary backend for write traffic
@@ -397,7 +396,7 @@ backend pg_read
   server pg3 10.0.0.3:5432 check port 9630 inter 3000 fall 2 rise 2
 ```
 
-### A Note on Nginx
+### A Note on Nginx {#a-note-on-nginx}
 
 Open-source Nginx does not support active HTTP health checks outside the traffic connection.
 The `health_check` directive requires NGINX Plus.

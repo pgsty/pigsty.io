@@ -14,7 +14,7 @@ It also controls caching and timeout. This page describes all collector settings
 Use one YAML file, such as the default `pg_exporter.yml`, or a directory of YAML files.
 The official default bundle combines 58 YAML files from [`config/`](https://github.com/pgsty/pg_exporter/tree/main/config) in lexicographic order: 57 collector files and one configuration reference. It defines 96 branches, 59 namespaces, and 460 distinct metric names, including disabled collectors and two unexpanded histogram definitions.
 
-## Configuration Loading
+## Configuration Loading {#configuration-loading}
 
 PG Exporter searches for configuration in the following order:
 
@@ -32,7 +32,7 @@ Directory mode details:
 - If only some files fail, the exporter logs their errors and loads the valid files. Directory loading is not all-or-nothing.
 - An empty individual YAML file is a valid empty configuration; reloading it clears the collectors. A reload that fails parsing preserves the previous plan and caches.
 
-## Collector Structure
+## Collector Structure {#collector-structure}
 
 Define each collector as a top-level YAML object with a unique name and the required properties:
 
@@ -85,9 +85,9 @@ Validation rules:
 - The SQL result must include every `LABEL` column. From `v1.4.1`, a missing label column fails the entire collector scrape. The collector does not emit an empty label or keep stale results. Other non-fatal collectors continue.
 - In one-line inline `metrics` definitions, enclose `description` values in double quotes to prevent YAML ambiguity.
 
-## Core Configuration Elements
+## Core Configuration Elements {#core-configuration-elements}
 
-### Collector Branch Name
+### Collector Branch Name {#collector-branch-name}
 
 The top-level key uniquely identifies a collector across the entire configuration:
 
@@ -96,7 +96,7 @@ pg_stat_database:  # Must be unique
   name: pg_db      # Actual metric namespace
 ```
 
-### Query Definition
+### Query Definition {#query-definition}
 
 The SQL query that retrieves metrics:
 
@@ -113,7 +113,7 @@ query: |
   WHERE datname NOT IN ('template0', 'template1')
 ```
 
-### Metric Types
+### Metric Types {#metric-types}
 
 Each column in the query result must be mapped to a metric type:
 
@@ -124,8 +124,9 @@ Each column in the query result must be mapped to a metric type:
 | `HISTOGRAM` | Snapshot histogram deriving `_bucket` / `_count` / `_sum` series | Transaction age distribution |
 | `LABEL`     | Use as a Prometheus label                                        | Database name                |
 | `DISCARD`   | Ignore this column                                               | Internal values              |
+{.full-width}
 
-### Histogram Columns (HISTOGRAM)
+### Histogram Columns (HISTOGRAM) {#histogram-columns}
 
 Version `v1.4.0` adds the `HISTOGRAM` column type.
 Each query result row is one observation. The exporter groups observations by label to produce a classic Prometheus histogram snapshot.
@@ -159,7 +160,7 @@ Usage notes:
 - The exporter applies `scale` before it assigns a bucket. As with scalar columns, `scale` does not apply to timestamps or booleans.
 - For a reference implementation, see the default [`pg_xact_age`](https://github.com/pgsty/pg_exporter/blob/main/config/0450-pg_xact_age.yml) collector.
 
-### Cache Control (TTL)
+### Cache Control (TTL) {#cache-control-ttl}
 
 The `ttl` parameter controls result caching:
 
@@ -179,7 +180,7 @@ Best practices:
 - TTL of 0 disables caching
 - Collector and predicate TTLs must be finite, nonnegative, and fit in Go `time.Duration`. v1.5.0 rejects NaN, infinities, and excessively large values.
 
-### Timeout Control
+### Timeout Control {#timeout-control}
 
 Prevent queries from running too long:
 
@@ -191,7 +192,17 @@ timeout: -1    # Disable timeout (not recommended)
 
 Omitting `timeout` or setting it to `0` selects the 100ms default; a finite negative value disables the query deadline. v1.5.0 rejects NaN, infinities, and positive timeouts that would overflow. The timeout covers the predicates and main query together.
 
-### Version Compatibility
+### Request Lifetime {#request-lifetime}
+
+Since v1.6.0, at most two metrics requests are admitted across collection, waiting, and response writing. Scrapes still run serially; one request can wait within its remaining budget, and further concurrent requests receive HTTP 503. The budget defaults to 30 seconds and is shortened by a valid, finite, positive `X-Prometheus-Scrape-Timeout-Seconds` header. A request canceled while waiting does not start SQL work.
+
+After request cancellation, the exporter does not start the next collector or database. A collector already started with a positive timeout keeps its shared predicate-and-query deadline and caches a successful refresh. A negative timeout disables that deadline, so the query cancels with the request. An interrupted scrape returns 503 if the connection still accepts a response. Driver and network blocking mean these deadlines are not hard wall-clock caps; configure `connect_timeout` in the DSN to bound connection handshakes.
+
+Interrupted rounds do not increment `pg_exporter_scrape_error_count` or `pg_exporter_server_scrape_error_count`, and log INFO `interrupted`; query error counters and fatal-query ERROR logs remain active. A real failure that overlaps request cancellation can therefore be omitted from those two round counters. Without request cancellation, connection/precheck failures and fatal query failures (including their own timeouts) still count as errors; non-fatal failures remain visible in query-level counters.
+
+Failed refreshes keep the existing failure TTL. In particular, a fatal collector with a negative timeout caches a fatal failure when canceled; later active scrapes can count that cached failure and report `pg_up 0` until a refresh succeeds. Keep positive timeouts on fatal collectors. See [Scrape Lifetime](https://exp.pgsty.com/design/scrape-lifetime/) for rationale.
+
+### Version Compatibility {#version-compatibility}
 
 Control which PostgreSQL versions can run this collector:
 
@@ -208,7 +219,7 @@ Version numbers follow PostgreSQL `server_version_num` rules:
 - `190000` = 19.0
 - `90600` = 9.6, relevant when using the legacy config bundle
 
-## Execution Model
+## Execution Model {#execution-model}
 
 Use the execution model to find why a metric is missing:
 
@@ -218,11 +229,11 @@ Use the execution model to find why a metric is missing:
 
 In v1.5.0, a successful precheck compares the username, schemas, and extensions. A change triggers replanning; adding or removing a schema or extension does not require a manual reload. Unchanged sets preserve plans and caches; replanning resets query caches and statistics.
 
-## Tag System
+## Tag System {#tag-system}
 
 Tags control when and where collectors execute:
 
-### Built-in Tags
+### Built-in Tags {#built-in-tags}
 
 | Tag                   | Description                         |
 |-----------------------|-------------------------------------|
@@ -230,8 +241,9 @@ Tags control when and where collectors execute:
 | `primary` / `master`  | Only on primary servers             |
 | `standby` / `replica` | Only on replica servers             |
 | `pgbouncer`           | Only for pgBouncer connections      |
+{.full-width}
 
-### Prefixed Tags
+### Prefixed Tags {#prefixed-tags}
 
 | Prefix       | Example                        | Description                 |
 |--------------|--------------------------------|-----------------------------|
@@ -240,8 +252,9 @@ Tags control when and where collectors execute:
 | `extension:` | `extension:pg_stat_statements` | Only if extension installed |
 | `schema:`    | `schema:public`                | Only if schema exists       |
 | `not:`       | `not:slow`                     | NOT when exporter has tag   |
+{.full-width}
 
-### Custom Tags
+### Custom Tags {#custom-tags}
 
 Pass custom tags to the exporter:
 
@@ -256,7 +269,7 @@ expensive_metrics:
   tags: [critical]  # Only runs with 'critical' tag
 ```
 
-## Predicate Queries
+## Predicate Queries {#predicate-queries}
 
 Run conditional checks before the main query:
 
@@ -272,9 +285,9 @@ predicate_queries:
 
 The main query only executes if all predicates return `true`.
 
-## Metric Definition
+## Metric Definition {#metric-definition}
 
-### Basic Definition
+### Basic Definition {#basic-definition}
 
 ```yaml
 metrics:
@@ -283,7 +296,7 @@ metrics:
       description: "Number of backends connected"
 ```
 
-### Advanced Options
+### Advanced Options {#advanced-options}
 
 ```yaml
 metrics:
@@ -295,7 +308,7 @@ metrics:
       description: "Checkpoint write time in seconds"
 ```
 
-## Collector Organization
+## Collector Organization {#collector-organization}
 
 PG Exporter ships with pre-organized collectors:
 
@@ -314,9 +327,9 @@ PG Exporter ships with pre-organized collectors:
 | 10xx+ | Extensions    | Extension-specific metrics      |
 {.full-width .wide .expand}
 
-## Real-World Examples
+## Real-World Examples {#real-world-examples}
 
-### Simple Gauge Collector
+### Simple Gauge Collector {#simple-gauge-collector}
 
 ```yaml
 pg_connections:
@@ -337,7 +350,7 @@ pg_connections:
     - idle_in_transaction: {usage: GAUGE, description: "Idle in transaction"}
 ```
 
-### Counter with Labels
+### Counter with Labels {#counter-with-labels}
 
 ```yaml
 pg_table_stats:
@@ -363,7 +376,7 @@ pg_table_stats:
     - n_dead_tup: {usage: GAUGE, description: "Dead tuples"}
 ```
 
-### Version-Specific Collector
+### Version-Specific Collector {#version-specific-collector}
 
 ```yaml
 pg_wal_stats:
@@ -388,7 +401,7 @@ pg_wal_stats:
     - wal_sync_time: {usage: COUNTER, scale: 0.001}
 ```
 
-### Extension-Dependent Collector
+### Extension-Dependent Collector {#extension-dependent-collector}
 
 ```yaml
 pg_stat_statements_metrics:
@@ -407,9 +420,9 @@ pg_stat_statements_metrics:
     - mean_time: {usage: GAUGE, scale: 0.001}
 ```
 
-## Custom Collectors
+## Custom Collectors {#custom-collectors}
 
-### Creating Your Own Metrics
+### Creating Your Own Metrics {#creating-your-own-metrics}
 
 1. Create a new YAML file in your config directory:
 
@@ -435,7 +448,7 @@ app_metrics:
 pg_exporter --explain --config=/etc/pg_exporter/
 ```
 
-### Conditional Metrics
+### Conditional Metrics {#conditional-metrics}
 
 Use predicate queries for conditional metrics:
 
@@ -466,9 +479,9 @@ partition_metrics:
     - total_size: {usage: GAUGE}
 ```
 
-## Performance Optimization
+## Performance Optimization {#performance-optimization}
 
-### Query Optimization Tips
+### Query Optimization Tips {#query-optimization-tips}
 
 1. **Use appropriate TTL values**:
     - Fast queries: 1-10 seconds
@@ -491,7 +504,7 @@ partition_metrics:
      skip: true  # Disable if not needed
    ```
 
-### Monitoring Collector Performance
+### Monitoring Collector Performance {#monitoring-collector-performance}
 
 Check collector execution statistics:
 
@@ -507,11 +520,12 @@ curl -s http://localhost:9630/metrics | grep -E 'pg_exporter_query_scrape_(durat
 
 When upgrading the exporter, merge and deploy the matching collector YAML. Replacing only the binary does not apply SQL, label, or state-code corrections. For instances managed by Pigsty, also verify that the deployed configuration contains these definitions. After a PostgreSQL major-version upgrade, check the newly selected collector branches.
 
+- **Exporter v1.5.0 → v1.6.0:** bundled SQL metric names, label keys, types, and units stay unchanged. Cross-database progress metrics now emit the numeric OID as `relname` for user relations in other databases while still resolving names for the current database and shared catalogs; dashboards retain `datname` and `pid`. Interrupted rounds no longer increment target error counters, and HTTP health is determined separately from scrape success.
 - **Exporter v1.4.1 → v1.5.0:** bundled SQL metric names, types, and units stay unchanged, but `pg_sub_*` adds `datname` and `pg_recv_state` corrects its state codes. Review joins/aggregations for subscriptions with the same name in different databases, and Grafana value mappings.
 - **PG18 → PG19:** existing metrics are not removed or renamed, but `pg_sub_sync_error_count` broadens to table plus sequence synchronization errors, and `pg_subrel_count` includes sequences. `pg_sub_has_worker` distinguishes a subscription row from a running apply worker; the presence of `pg_sub_id` alone is insufficient.
 - **Crossing PG17 / PG18:** some `pg_bgwriter_*` metrics need to move to `pg_checkpointer_*` or backend-filtered I/O metrics. From PG18 onward, `pg_wal_write`, `pg_wal_sync`, `pg_wal_write_time`, and `pg_wal_sync_time` need to move to `pg_io_*{object="wal"}`, with corresponding label aggregation changes. See the [metric-by-metric migration table](https://exp.pgsty.com/compatibility/#older-postgresql-metrics).
 
-See the [v1.5.0 release notes](/docs/pg_exporter/release/#v150-metric-compatibility) and [PG19 metric table](https://exp.pgsty.com/compatibility/#postgresql-19-metrics) for the full changes. PG19 support first shipped in v1.3.0, and acceptance evidence refers to 19 RC1; these notes do not establish runtime validation of every dashboard.
+See the [v1.6.0 release notes](/docs/pg_exporter/release/#v160-metric-compatibility) and [PG19 metric table](https://exp.pgsty.com/compatibility/#postgresql-19-metrics) for the full changes. PG19 support first shipped in v1.3.0, and acceptance evidence refers to 19 RC1; these notes do not establish runtime validation of every dashboard.
 
 Before and after deployment, inspect `/metrics`, `/explain`, `/stat`, `pg_exporter_query_scrape_error_count`, and the logs. Evaluate the actual dashboard, recording-rule, and alert expressions, checking returned series, labels, units, and state mappings. Use `promtool check rules` for syntax and `promtool test rules` for both normal and missing-series input. HTTP 200, `up == 1`, or `pg_up == 1` does not prove that every expected metric exists; an empty vector is not a healthy zero.
 
@@ -525,9 +539,9 @@ pg_wal_bytes{job="pg19"}
 
 `job="pg19"` is an example: replace it with the actual target selector and include any additional identity labels in matching. Monitor `up` and `pg_up` failures separately. Scope absence checks by version, primary/replica role, and expected objects; for example, a primary should not require `pg_recovery_state_*`. Do not mask missing input with an unconditional `or vector(0)`. Fleet-wide `absent(metric)` also misses one target's disappearance while other targets still emit data. See the [complete missing-metric rule](https://exp.pgsty.com/compatibility/#missing-metric-alerts).
 
-## Troubleshooting Configuration
+## Troubleshooting Configuration {#troubleshooting-configuration}
 
-### Validate Configuration
+### Validate Configuration {#validate-configuration}
 
 ```bash
 # Dry run - shows parsed configuration
@@ -537,7 +551,7 @@ pg_exporter --dry-run
 pg_exporter --explain
 ```
 
-### Common Issues
+### Common Issues {#common-issues}
 
 | Problem           | Solution                                             |
 |-------------------|------------------------------------------------------|
@@ -545,8 +559,9 @@ pg_exporter --explain
 | Slow scrapes      | Increase TTL, add timeout, disable expensive queries |
 | High memory usage | Reduce result set size, use LIMIT                    |
 | Permission errors | Verify query permissions for monitoring user         |
+{.full-width}
 
-### Debug Logging
+### Debug Logging {#debug-logging}
 
 Enable debug logging to troubleshoot:
 

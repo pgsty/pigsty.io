@@ -12,10 +12,7 @@ Follow these steps to install `pg_exporter`, connect to PostgreSQL, check metric
 You need a reachable PostgreSQL 10-19+ or pgBouncer 1.8+ instance and permission to create a user in it.
 For PostgreSQL 9.1-9.6, see [Compatibility](/docs/pg_exporter/install/#compatibility).
 
-
---------
-
-## Step 1: Install
+## Step 1: Install {#step-1-install}
 
 On Linux amd64, download the binary directly.
 For other platforms and RPM/DEB/Docker options, see the [Installation guide](/docs/pg_exporter/install/).
@@ -33,13 +30,10 @@ Confirm the installation:
 
 ```bash
 pg_exporter --version
-# pg_exporter v1.5.0 (built with go1.27.3 on linux/amd64)
+# pg_exporter v1.6.0 (built with go1.27.3 on linux/amd64)
 ```
 
-
---------
-
-## Step 2: Create a Monitoring User
+## Step 2: Create a Monitoring User {#step-2-create-a-monitoring-user}
 
 Create a dedicated monitoring user on the target PostgreSQL instance.
 Start with the built-in `pg_monitor` role in PostgreSQL 10+:
@@ -57,10 +51,7 @@ GRANT SELECT (oid) ON pg_catalog.pg_subscription TO monitor;
 
 For a local test with a superuser such as `postgres`, you can skip this step.
 
-
---------
-
-## Step 3: Run and Verify
+## Step 3: Run and Verify {#step-3-run-and-verify}
 
 Use `--dry-run` to check that the configuration parses correctly. Then start the exporter:
 
@@ -84,19 +75,16 @@ curl -s http://localhost:9630/metrics | grep -E '^pg_(up|version|in_recovery) '
 You should see the three core built-in metrics:
 
 ```prometheus
-pg_up 1              # 1 when the target is reachable, 0 otherwise
+pg_up 1              # 1 when the main target is reachable and has no fatal collector error
 pg_version 170000    # version in server_version_num format
 pg_in_recovery 0     # 1 on replicas, 0 on primaries
 ```
 
-`pg_up 1` shows that the connection and metric collection work.
-The `pg_exporter.yml` bundle defines 460 distinct metric names (`pg_db_*`, `pg_table_*`, `pg_wal_*`, and others), with applicable metrics selected by version, role, and database objects.
-If `pg_up` is `0`, restart with `pg_exporter --log.level=debug` and examine the connection error.
+`pg_up 1` indicates that the main target was reachable and had no fatal collector error during the last valid scrape.
+The `pg_exporter.yml` bundle defines 460 distinct metric names (`pg_db_*`, `pg_table_*`, `pg_wal_*`, and others), and outputs the metrics that apply to the server version, role, and database objects.
+If `pg_up` is `0`, run `pg_exporter --log.level=debug` to inspect connection and fatal query errors; an interrupted initial precheck can also leave `pg_up` at `0` temporarily. For the difference between HTTP health checks and scrape metrics, see the [API Reference](/docs/pg_exporter/api/).
 
-
---------
-
-## Step 4: Hook into Prometheus
+## Step 4: Hook into Prometheus {#step-4-hook-into-prometheus}
 
 Add a scrape target in `prometheus.yml`:
 
@@ -115,15 +103,12 @@ Do not set `scrape_interval` below the common collector TTLs.
 
 For Grafana, use the PostgreSQL dashboards from [Pigsty](https://pigsty.io), or view the [live demo](https://g.pgsty.com).
 
-
---------
-
-## Troubleshooting
+## Troubleshooting {#troubleshooting}
 
 | Symptom                     | What to do                                                                                                 |
 |-----------------------------|------------------------------------------------------------------------------------------------------------|
 | `pg_up 0`, connection fails | Run `pg_exporter --log.level=debug` and read the error; check URL, `pg_hba.conf`, and network reachability |
-| Some metrics are missing    | `curl localhost:9630/explain` to see each collector's planning verdict (version gates, tags, predicates)   |
+| Some metrics are missing    | `curl localhost:9630/explain` to see each collector's planning verdict (version gates, role, tags; predicates run during refresh, so also check query stats and logs) |
 | A collector keeps failing   | `curl localhost:9630/stat` for per-collector error counters and durations                                  |
 | Scrapes are slow            | Find the slow collector in `/stat`, raise its `ttl`, or set `skip: true`                                   |
 {.full-width}
@@ -132,10 +117,7 @@ For Grafana, use the PostgreSQL dashboards from [Pigsty](https://pigsty.io), or 
 In production, protect them with `--web.config.file` for TLS/auth, or keep them on a trusted network.
 See the [API Reference](/docs/pg_exporter/api/).
 
-
---------
-
-## Next Steps
+## Next Steps {#next-steps}
 
 - Monitor **pgBouncer**, enable **auto-discovery**, deploy with **systemd / Docker / Kubernetes**: [Deployment guide](/docs/pg_exporter/deploy/)
 - Understand and customize **collectors** (GAUGE/COUNTER/HISTOGRAM, TTL, tags, version gates): [Configuration reference](/docs/pg_exporter/config/)

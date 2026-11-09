@@ -1,5 +1,5 @@
 ---
-title: "PG Exporter 1.5.0 Documentation"
+title: "PG Exporter 1.6.0 Documentation"
 linkTitle: pg_exporter 
 weight: 8400
 icon: fas fa-magnifying-glass
@@ -12,10 +12,7 @@ Monitor PostgreSQL with **460 metric definitions**, **declarative configuration*
 
 [**Get Started**](/docs/pg_exporter/start) | [**GitHub**](https://github.com/pgsty/pg_exporter) | [**Live Demo**](https://g.pgsty.com)
 
-
---------
-
-## Features
+## Features {#features}
 
 | Feature                    | Description                                                                                                                                       |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -28,27 +25,22 @@ Monitor PostgreSQL with **460 metric definitions**, **declarative configuration*
 | **Snapshot Histograms**    | Use the `HISTOGRAM` column type to aggregate SQL snapshots into classic Prometheus histogram distributions                                                  |
 | **Extension Aware**        | Native support for pg_stat_statements, pg_wait_sampling, citus, and timescaledb                                                                   |
 | **Production Ready**       | Used in production on 12K+ cores for 6+ years                                                                           |
+{.full-width .wide .expand}
 
+## Version Info {#version-info}
 
---------
-
-## Version Info
-
-- Current stable release: [`v1.5.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0)
+- Current stable release: [`v1.6.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.0)
 - Default config support: PostgreSQL **10-19+**
-- Legacy config support: PostgreSQL **9.1-9.6** via the `legacy/` config bundle
+- Legacy config support: PostgreSQL **9.1-9.6** (uses the separately maintained `legacy/` bundle on `main`; see [Installation](/docs/pg_exporter/install/#compatibility))
 - pgBouncer support: **1.8-1.26+**
 
-The v1.5.0 default bundle contains **58 YAML files** (57 collector files and one configuration reference), **96 version/role branches**, and **59 metric namespaces**. The 460 metric names are deduplicated across branches, including disabled collectors and two unexpanded `HISTOGRAM` definitions. Actual time-series counts depend on versions, objects, labels, and histogram buckets.
+The v1.6.0 default bundle contains **58 YAML files** (57 collector files and one configuration reference), **96 version/role branches**, and **59 metric namespaces**. The 460 metric names are deduplicated across branches, including disabled collectors and two unexpanded `HISTOGRAM` definitions. Actual time-series counts depend on versions, objects, labels, and histogram buckets.
 
 See [Release Notes](/docs/pg_exporter/release) for the full history.
 
-Before upgrading, review the [v1.5.0 metric changes](/docs/pg_exporter/release/#v150-metric-compatibility) and [dashboard / alert migration checks](/docs/pg_exporter/config/#metric-compatibility). Retaining a metric name does not guarantee unchanged labels, state codes, or semantics; a PostgreSQL major-version upgrade also changes collector branch selection.
+Before upgrading, review the [v1.6.0 metric changes](/docs/pg_exporter/release/#v160-metric-compatibility) and [dashboard / alert migration checks](/docs/pg_exporter/config/#metric-compatibility). Retaining a metric name does not guarantee unchanged labels, state codes, or semantics; a PostgreSQL major-version upgrade also changes collector branch selection.
 
-
---------
-
-## Design Rationale
+## Design Rationale {#design-rationale}
 
 `pg_exporter` uses these principles for production deployments:
 
@@ -60,15 +52,12 @@ Before upgrading, review the [v1.5.0 metric changes](/docs/pg_exporter/release/#
 - Separate probes from traffic: health endpoints use cached background probes. Each request does not need a database query.
 - Protect management endpoints: `/reload`, `/explain`, and `/stat` expose runtime and configuration details. In production, protect them with `--web.config.file` or keep them internal.
 
-
---------
-
-## Installation
+## Installation {#installation}
 
 Select an [installation](/docs/pg_exporter/install/) method for your infrastructure:
 
 ```bash {tab="Docker"}
-docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:1.5.0
+docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:1.6.0
 ```
 
 ```bash {tab="YUM"}
@@ -111,10 +100,7 @@ cd pg_exporter
 make build
 ```
 
-
---------
-
-## Quick Start
+## Quick Start {#quick-start}
 
 Follow [Getting Started](/docs/pg_exporter/start) to start PG Exporter:
 
@@ -132,10 +118,7 @@ curl http://localhost:9630/metrics
 curl -X POST http://localhost:9630/reload
 ```
 
-
---------
-
-## Documentation
+## Documentation {#documentation}
 
 - [**Getting Started**](/docs/pg_exporter/start) - Quick start guide and basic concepts
 - [**Installation**](/docs/pg_exporter/install) - Installation instructions for all platforms
@@ -143,10 +126,7 @@ curl -X POST http://localhost:9630/reload
 - [**Deployment**](/docs/pg_exporter/deploy) - Production deployment best practices
 - [**Collectors**](https://github.com/pgsty/pg_exporter/tree/main/config) - Detailed documentation for all metric collectors
 
-
---------
-
-## Live Demo
+## Live Demo {#live-demo}
 
 Open the PG Exporter demo: **https://g.pgsty.com**
 
@@ -157,19 +137,13 @@ The demo monitors real PostgreSQL clusters with PG Exporter. It includes:
 - Extension-specific metrics and monitoring
 - Complete observability stack powered by [Pigsty](https://pigsty.io)
 
-
---------
-
-## Community & Support
+## Community & Support {#community-and-support}
 
 - [**GitHub**](https://github.com/pgsty/pg_exporter) - Source code, issues, and contributions
 - [**Discussions**](https://github.com/pgsty/pg_exporter/discussions) - Ask questions and share experiences
 - [**Pigsty**](https://pigsty.io) - Complete PostgreSQL Distro with PG Exporter
 
-
---------
-
-## License
+## License {#license}
 
 PG Exporter is open-source software licensed under the [Apache License 2.0](https://github.com/pgsty/pg_exporter/blob/main/LICENSE).
 

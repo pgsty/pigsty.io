@@ -9,41 +9,39 @@ category: [Tutorial]
 
 Install `pg_exporter` with Pigsty, YUM/APT repositories, GitHub release packages (RPM/DEB/Tarball), or Docker images. You can also build it from source.
 
+Repository installation uses the current package in the repository, which can lag the GitHub release. Use the versioned release artifacts below when you need `v1.6.0`.
 
-
-
-## Pigsty
+## Pigsty {#pigsty}
 
 Use [Pigsty](https://pigsty.io) for the simplest installation.
-Pigsty is a complete PostgreSQL distribution with monitoring based on `pg_exporter`, Prometheus, and Grafana.
-It configures the metrics and dashboard panels for you. You do not need to configure `pg_exporter` separately.
+Pigsty is a complete PostgreSQL distribution with monitoring based on `pg_exporter`, VictoriaMetrics (Prometheus-compatible metric scraping and querying), and Grafana.
+It configures the metrics, alert rules, and dashboard panels for you. You do not need to configure `pg_exporter` separately.
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 ```
 
-
-## Release
+## Release {#release}
 
 Download a `pg_exporter` package (`RPM`/`DEB`/Tarball) from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
 
-**v1.5.0 Release Files:**
+**v1.6.0 Release Files:**
 
 | Type                    | File                                                                                                                                           |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| DEB (amd64)             | [pg-exporter_1.5.0-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter_1.5.0-1_amd64.deb)                   |
-| DEB (arm64)             | [pg-exporter_1.5.0-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter_1.5.0-1_arm64.deb)                   |
-| DEB (ppc64le)           | [pg-exporter_1.5.0-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter_1.5.0-1_ppc64le.deb)               |
-| RPM (aarch64)           | [pg-exporter-1.5.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter-1.5.0-1.aarch64.rpm)               |
-| RPM (x86_64)            | [pg-exporter-1.5.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter-1.5.0-1.x86_64.rpm)                 |
-| RPM (ppc64le)           | [pg-exporter-1.5.0-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg-exporter-1.5.0-1.ppc64le.rpm)               |
-| Tarball (Linux amd64)   | [pg_exporter-1.5.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.linux-amd64.tar.gz)     |
-| Tarball (Linux arm64)   | [pg_exporter-1.5.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.linux-arm64.tar.gz)     |
-| Tarball (Linux ppc64le) | [pg_exporter-1.5.0.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.linux-ppc64le.tar.gz) |
-| Tarball (macOS amd64)   | [pg_exporter-1.5.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.darwin-amd64.tar.gz)   |
-| Tarball (macOS arm64)   | [pg_exporter-1.5.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.darwin-arm64.tar.gz)   |
-| Tarball (Windows amd64) | [pg_exporter-1.5.0.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.5.0/pg_exporter-1.5.0.windows-amd64.tar.gz) |
-{.wide .expand}
+| DEB (amd64)             | [pg-exporter_1.6.0-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_amd64.deb)                   |
+| DEB (arm64)             | [pg-exporter_1.6.0-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_arm64.deb)                   |
+| DEB (ppc64le)           | [pg-exporter_1.6.0-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_ppc64le.deb)               |
+| RPM (aarch64)           | [pg-exporter-1.6.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.aarch64.rpm)               |
+| RPM (x86_64)            | [pg-exporter-1.6.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.x86_64.rpm)                 |
+| RPM (ppc64le)           | [pg-exporter-1.6.0-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.ppc64le.rpm)               |
+| Tarball (Linux amd64)   | [pg_exporter-1.6.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-amd64.tar.gz)     |
+| Tarball (Linux arm64)   | [pg_exporter-1.6.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-arm64.tar.gz)     |
+| Tarball (Linux ppc64le) | [pg_exporter-1.6.0.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-ppc64le.tar.gz) |
+| Tarball (macOS amd64)   | [pg_exporter-1.6.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.darwin-amd64.tar.gz)   |
+| Tarball (macOS arm64)   | [pg_exporter-1.6.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.darwin-arm64.tar.gz)   |
+| Tarball (Windows amd64) | [pg_exporter-1.6.0.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.windows-amd64.tar.gz) |
+{.full-width .wide .expand}
 
 Install the package with your OS package manager (`rpm`/`dpkg`), or put the binary in your `$PATH`.
 Current tarballs also include `pg_exporter.yml`, `package/pg_exporter.default`, `package/pg_exporter.service`, and `LICENSE` for manual deployments.
@@ -56,13 +54,12 @@ Current tarballs also include `pg_exporter.yml`, `package/pg_exporter.default`, 
 The release page contains full SHA256 checksums in `checksums.txt`.
 The [release notes](/docs/pg_exporter/release/) also contain checksums for each version.
 
-
-## Repository
+## Repository {#repository}
 
 The [`pigsty-infra`](https://ext.pgsty.com/repo/infra) repository also contains the `pg_exporter` package.
 Add the repository to your system. Then install the package with your OS package manager:
 
-### YUM
+### YUM {#yum}
 
 For EL distributions such as RHEL, Rocky Linux, CentOS, AlmaLinux, and Oracle Linux:
 
@@ -80,7 +77,7 @@ sudo yum makecache;
 sudo yum install -y pg-exporter
 ```
 
-### APT
+### APT {#apt}
 
 For Debian, Ubuntu and compatible Linux Distributions:
 
@@ -93,8 +90,7 @@ sudo apt update;
 sudo apt install -y pg-exporter
 ```
 
-
-## Docker
+## Docker {#docker}
 
 Docker Hub provides prebuilt images for the `amd64` and `arm64` architectures: [pgsty/pg_exporter](https://hub.docker.com/r/pgsty/pg_exporter).
 
@@ -104,7 +100,7 @@ docker run -d \
   --name pg_exporter \
   -p 9630:9630 \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
-  pgsty/pg_exporter:1.5.0
+  pgsty/pg_exporter:1.6.0
 
 # With custom configuration
 docker run -d \
@@ -113,7 +109,7 @@ docker run -d \
   -v /path/to/pg_exporter.yml:/etc/pg_exporter.yml:ro \
   -e PG_EXPORTER_CONFIG="/etc/pg_exporter.yml" \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
-  pgsty/pg_exporter:1.5.0
+  pgsty/pg_exporter:1.6.0
 
 # With auto-discovery enabled
 docker run -d \
@@ -122,37 +118,37 @@ docker run -d \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
   -e PG_EXPORTER_AUTO_DISCOVERY="true" \
   -e PG_EXPORTER_EXCLUDE_DATABASE="template0,template1" \
-  pgsty/pg_exporter:1.5.0
+  pgsty/pg_exporter:1.6.0
 ```
 
-> [!WARNING] Warning
-> The current Docker image is built from `scratch`.
-> To connect to remote PostgreSQL with `sslmode=verify-ca` or `verify-full`, mount a CA certificate explicitly.
-> Use `sslrootcert` or a system CA bundle. Without this certificate, TLS verification can fail.
+> [!WARNING] Note
+> The image is built from `scratch` and includes the system CA bundle and license, but no shell. Publicly trusted certificates can use the bundled roots; when you use a private CA with `sslmode=verify-ca` or `verify-full`, mount the private CA and set `sslrootcert`.
 
-
-## Compatibility
+## Compatibility {#compatibility}
 
 The default configuration supports PostgreSQL 10-19+.
-For PostgreSQL versions that have reached EOL, use the bundled `legacy/` configuration package.
+For end-of-life PostgreSQL versions, use the [legacy configuration bundle maintained separately on `main`](https://github.com/pgsty/pg_exporter/tree/main/legacy). It is not included in binary tarballs or RPM/DEB packages; download it separately.
 
 | PostgreSQL Version | Support Status                  |
 |--------------------|---------------------------------|
 | 10 ~ 19+           | ✅ Full Support (default config) |
 | 9.1 ~ 9.6          | ⚠️ Use `legacy/pg_exporter.yml` |
 | 9.0 and earlier    | ❌ Unsupported                   |
+{.full-width}
 
 Legacy config example:
 
 ```bash
-make conf9
-PG_EXPORTER_CONFIG=legacy/pg_exporter.yml pg_exporter
+curl -fSL https://raw.githubusercontent.com/pgsty/pg_exporter/main/legacy/pg_exporter.yml -o pg_exporter-legacy.yml
+PG_EXPORTER_CONFIG=pg_exporter-legacy.yml pg_exporter
 ```
 
-pg_exporter supports pgBouncer 1.8+.
-Version `v1.8` is the first pgBouncer version with `SHOW` command support.
+For PostgreSQL 9.1, use `main` commit `282e19d` or later to avoid missing table-size metrics when tables have no TOAST relation (`OID 0`). This legacy maintenance fix is not part of the `v1.6.0` release artifacts, and the legacy copy inside the `v1.6.0` source tag does not include it.
+
+The built-in pgBouncer collectors support pgBouncer 1.8+; the `SHOW STATS` fields they read are available starting in 1.8.
 
 | pgBouncer Version | Support Status |
 |-------------------|----------------|
 | 1.8.x ~ 1.26+     | ✅ Full Support |
 | before 1.8.x      | ⚠️ No Metrics  |
+{.full-width}
