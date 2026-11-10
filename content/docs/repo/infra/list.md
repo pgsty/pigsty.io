@@ -195,7 +195,7 @@ AI agents, MCP toolboxes, coding IDEs, Python/Go/Node tools...
 
 | Name                                                       | Version   | License                                                                    | Comment                                                    |
 | :--------------------------------------------------------- | :-------- | :------------------------------------------------------------------------- | :--------------------------------------------------------- |
-| [`claude`](https://github.com/anthropics/claude-code)      | `2.1.318` | [Proprietary](https://www.anthropic.com/legal/terms)                       | Claude Code - Anthropic agentic coding                     |
+| [`claude-code`](https://github.com/anthropics/claude-code) | `2.1.322` | [Proprietary](https://www.anthropic.com/legal/terms)                       | Anthropic-signed apt/dnf packages; replaces obsolete `claude` |
 | [`opencode`](https://github.com/anomalyco/opencode)        | `1.19.5`  | [MIT](https://github.com/anomalyco/opencode/blob/main/LICENSE)             | Terminal AI coding assistant                               |
 | [`codex`](https://github.com/openai/codex)                 | `0.167.0` | [Apache-2.0](https://github.com/openai/codex/blob/main/LICENSE)            | OpenAI coding agent CLI                                    |
 | [`crush`](https://github.com/charmbracelet/crush)          | `0.100.0` | [FSL-1.1-MIT](https://github.com/charmbracelet/crush/blob/main/LICENSE.md) | Charm's terminal AI coding agent                           |

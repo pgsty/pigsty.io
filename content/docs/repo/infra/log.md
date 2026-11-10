@@ -6,6 +6,15 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-11-10
+
+Claude Code now uses Anthropic's signed native DEB/RPM packages. The new `claude-code` recipe downloads version `2.1.322` directly from the official apt/dnf latest repositories and pins all four package hashes to the official repository indexes; the old self-maintained `claude` nFPM recipe is archived as obsolete.
+
+| Name | Old | New | Comment |
+|---|---|---|---|
+| claude-code | 2.1.319 | 2.1.322 | Official native DEB/RPM; SHA256 pinned to the official apt/dnf indexes |
+{.wide .expand}
+
 ## 2026-11-06
 
 | Name                       | Old     | New     | Comment                    |
