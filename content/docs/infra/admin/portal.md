@@ -33,9 +33,8 @@ infra_portal:
 Pigsty generates Nginx configuration files only for services with a defined `domain`.
 
 - **`home`**: Special default server for homepage and built-in monitoring component reverse proxies
-- **Proxy services**: Specify upstream service address via `endpoint` for reverse proxy
+- **Reverse proxy**: `endpoint` selects an upstream. The default `endpoint.conf` forwards `Host $host`, `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Host $http_host`, and `X-Forwarded-Proto $scheme`, preserving the public hostname, nonstandard port, and protocol.
 - **Static services**: Specify local directory via `path` for static file serving
-
 
 ----------------
 
@@ -65,14 +64,14 @@ Pigsty generates Nginx configuration files only for services with a defined `dom
 | Parameter   | Description                           |
 |-------------|---------------------------------------|
 | `conf` | Select a template in `roles/infra/templates/nginx` |
-| `cache_dir` | Development sources can create the cache directory; other deployments must prepare it and its permissions manually |
+| `cache_dir` | Portal cache directory; when nonempty, the role creates it as `nginx:nginx` with mode `0750` |
 | `config` | Custom Nginx snippet in a generic template |
 | `index`     | Enable directory listing (for static) |
 | `log`       | Custom log file name                  |
 | `websocket` | Enable WebSocket support              |
 | `auth`      | Enable Basic Auth                     |
 | `realm`     | Basic Auth prompt message             |
-
+{.full-width}
 
 ----------------
 
@@ -287,9 +286,9 @@ infra_portal:
 
 ----------------
 
-## Development Maintenance Reference
+## Dedicated Site Templates
 
-The specialized development templates below maintain Pigsty's public sites and are not yet included in public sources. Ordinary portals can use the generic configuration above.
+Besides the generic `home.conf`, `path.conf`, and `endpoint.conf`, `roles/infra/templates/nginx/` includes dedicated templates for public repositories, mirror caches, and community sites. Ordinary portals can use the generic configuration above.
 
 <details>
 <summary>Specialized site templates and migration notes</summary>
@@ -303,7 +302,7 @@ The specialized development templates below maintain Pigsty's public sites and a
 | `pgweb.conf` | Chinese PostgreSQL community website using `endpoint`; optional static directories `admin_static`, `media_root`, and `files_root` |
 {.full-width}
 
-Development files reside in `roles/infra/templates/nginx/`. All redirect HTTP to HTTPS while retaining the ACME challenge path. Upstream domains, cache limits, and the CA path in `beta.conf` are template settings. Its default CA path is EL's `/etc/pki/tls/certs/ca-bundle.crt`; adapt the template before moving to Debian / Ubuntu. `pgweb.conf` serves the community website, not the PostgreSQL browser application of the same name.
+These templates reside in `roles/infra/templates/nginx/`, redirect HTTP to HTTPS by default, and retain ACME validation paths. `beta.conf` defines its upstream domain, cache limits, and CA path internally. Its default CA is EL's `/etc/pki/tls/certs/ca-bundle.crt`; adapt this before using Debian/Ubuntu. `pgweb.conf` serves the community website, not the PostgreSQL browser application with the same name.
 
 `repo.conf` includes a default server and the `127.0.0.1:9180/nginx` status endpoint. Do not also generate a `home.conf` default server on the same listening address. Set `nginx_exporter_scrape_uri: http://127.0.0.1:9180/nginx` for this template. If overriding `nginx_status_port`, update the scrape URL too.
 

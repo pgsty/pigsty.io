@@ -30,12 +30,15 @@ This page lists the default ports for Pigsty module components. Adjust them as n
 |  [**`INFRA`**](/docs/infra)    |          **`dnsmasq`**             |  `53`   | [**`dns_port`**](/docs/infra/param#dns_port)                                 | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2379`  | [**`etcd_port`**](/docs/etcd/param#etcd_port)                                | Enabled  |
 |   [**`ETCD`**](/docs/etcd)     |            **`etcd`**              | `2380`  | [**`etcd_peer_port`**](/docs/etcd/param#etcd_peer_port)                      | Enabled  |
+| [**`VAULT`**](/docs/vault) | **`openbao` API** | `8200` | [**`vault_port`**](/docs/vault/param#vault_port): HTTPS client API and optional VIP HAProxy | ⚠️ Optional |
+| [**`VAULT`**](/docs/vault) | **`openbao` Raft** | `8201` | `vault_port + 1`: internal Raft peer mTLS | ⚠️ Optional |
 |  [**`MINIO`**](/docs/minio)    |          **Silo S3 API**           | `9000`  | [**`minio_port`**](/docs/minio/param#minio_port)                             | Optional |
 |  [**`MINIO`**](/docs/minio)    |        **Silo admin port**         | `9001`  | [**`minio_admin_port`**](/docs/minio/param#minio_admin_port)                 | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **Redis / Valkey**           | `6379`  | [**`redis_instances`**](/docs/redis/param#redis_instances)                   | Optional |
 |  [**`REDIS`**](/docs/redis)    |       **`redis_exporter`**         | `9121`  | [**`redis_exporter_port`**](/docs/redis/param#redis_exporter_port)           | Optional |
 |   [**`VIBE`**](/docs/vibe)     |         **`code-server`**          | `8443`  | [**`code_port`**](/docs/vibe/param#code_port)                                | Optional |
 |   [**`VIBE`**](/docs/vibe)     |          **`jupyterlab`**          | `8888`  | [**`jupyter_port`**](/docs/vibe/param#jupyter_port)                          | Optional |
+| [**`JUICE`**](/docs/juice) | **`juicefs` metrics** | `9567` | [**`juice_instances`**](/docs/juice/param#juice_instances), port field | ⚠️ Optional |
 |  [**`KAFKA`**](/docs/kafka)    |            **`broker`**            | `9092`  | [**`kafka_port`**](/docs/kafka/param#kafka_port)                             | 🧪 PILOT  |
 |  [**`KAFKA`**](/docs/kafka)    |       **`KRaft controller`**       | `9093`  | [**`kafka_controller_port`**](/docs/kafka/param#kafka_controller_port)       | 🧪 PILOT  |
 |  [**`KAFKA`**](/docs/kafka)    |        **`kafka_exporter`**        | `9308`  | [**`kafka_exporter_port`**](/docs/kafka/param#kafka_exporter_port)           | 🧪 PILOT  |
@@ -73,14 +76,7 @@ If you use firewall [**`zone`**](/docs/node/param#node_firewall_mode) mode, expo
 
 Avoid direct public exposure of internal component ports. Examples include:
 
-- `etcd`: `2379/2380`.
-- `patroni`: `8008`.
-- Exporters: `9xxx`.
-- Object-storage S3/admin endpoints: `9000/9001`.
-- `redis`: `6379`.
-- `ferretdb`: `27017/27018`.
-- Kafka: `9092/9093`.
-- MySQL Group Replication: `33061`.
+Do not expose internal components directly to the Internet: `etcd` (`2379/2380`), OpenBao/Vault (`8200/8201`), `patroni` (`8008`), exporters (`9xxx`), object storage S3/admin ports (`9000/9001`), `redis` (`6379`), `ferretdb` (`27017/27018`), Kafka (`9092/9093`), and MySQL Group Replication (`33061`).
 
 ```yaml
 node_firewall_mode: zone

@@ -6,9 +6,7 @@ icon: fa-brands fa-windows
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/mssql.yml`; v4.5.0 uses `conf/mssql.yml`, selected with `-c mssql`.
-
-The `mssql` configuration template uses Babelfish instead of native PostgreSQL, providing Microsoft SQL Server wire protocol (TDS) and T-SQL syntax compatibility. The repository provides PG17- and PG18-compatible packages; the template defaults to `pg_version: 17`. See the [package lists](/docs/repo/pgsql/) for availability on each platform.
+The `mssql` template (`conf/fork/mssql.yml`, selected with `-c mssql` or `-c fork/mssql`) replaces native PostgreSQL with Babelfish, which provides the Microsoft SQL Server wire protocol (TDS) and T-SQL compatibility. The repository provides packages compatible with PG17 and PG18; the template defaults to `pg_version: 17`. See the [**package list**](/docs/repo/pgsql/) for platform availability.
 
 `configure` accepts both `-c mssql` and `-c fork/mssql`; both preserve the template’s PG17 settings and ignore `-v`. To use PG18, update both the cluster and global `pg_version` values in the generated inventory and verify that the kernel packages and extensions are available for your platform.
 
@@ -39,10 +37,9 @@ Usage:
 
 ## Content
 
-Development source: `conf/fork/mssql.yml`; release source: [`v4.5.0: conf/mssql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mssql.yml).
+Source: [`pigsty/conf/fork/mssql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/mssql.yml)
 
-{{< include file="yaml/mssql.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/mssql.yml" code=true lang="yaml" >}}
 
 --------
 

@@ -94,7 +94,7 @@ There are **84** extensions in **42** packages.
 | [`omni_worker`](/ext/e/omni_worker) | [`omnigres`](https://docs.omnigres.org/omni_worker/intro/) | `0.2.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Generalized worker pool |
 | [`omni_xml`](/ext/e/omni_xml) | [`omnigres`](https://docs.omnigres.org/omni_xml/overview/) | `0.1.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | XML toolkit |
 | [`omni_yaml`](/ext/e/omni_yaml) | [`omnigres`](https://docs.omnigres.org/omni_yaml/yaml/) | `0.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | YAML toolkit |
-| [`pg_mentat`](/ext/e/pg_mentat) | [`pg_mentat`](https://codeberg.org/gregburd/mentat) | `1.19.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Datomic-compatible data model and Datalog query engine inside PostgreSQL |
+| [`pg_mentat`](/ext/e/pg_mentat) | [`pg_mentat`](https://codeberg.org/gregburd/mentat) | `1.20.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Datomic-compatible data model and Datalog query engine inside PostgreSQL |
 | [`bloom`](/ext/e/bloom) | [`bloom`](https://www.postgresql.org/docs/current/bloom.html) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | bloom access method - signature file based index |
 {.ext-table .wide .expand}
 
@@ -1661,7 +1661,7 @@ There are **84** extensions in **42** packages.
 
 ## pg_mentat {#pg_mentat}
 
-[**`pg_mentat`**](/ext/e/pg_mentat) - `1.19.1` : Datomic-compatible data model and Datalog query engine inside PostgreSQL
+[**`pg_mentat`**](/ext/e/pg_mentat) - `1.20.0` : Datomic-compatible data model and Datalog query engine inside PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

@@ -6,6 +6,75 @@ icon: fa-solid fa-clipboard-list
 categories: [Reference]
 ---
 
+## 2026-11-12
+
+### Additional Updates: SILO, Console, and pig
+
+These three recipes add 12 packages (six DEB and six RPM) for `amd64` / `arm64`, with repository signatures and indexes updated:
+
+| Package | Previous | Current | Notes |
+|---|---|---|---|
+| [silo](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-11-12T00-00-00Z) | 20261109000000.0.0 | 20261112000000.0.0 | Official release, native packages, revision 1PGSTY |
+| [silo-console](https://github.com/pgsty/silo-console/releases/tag/v2.7.2) | 2.7.1 | 2.7.2 | Official native packages matching SILO 20261112 |
+| [pig](https://github.com/pgsty/pig/releases/tag/v1.11.0) | 1.10.4 | 1.11.0 | Repacked for both architectures, revision 1PGSTY; Pigsty 4.6.0 support and a 625-entry extension catalog |
+{.wide .expand}
+
+SILO executables and Go build metadata for both architectures match tag commit `44e848fed` and include Console 2.7.2. Package headers, executables, and version checks passed. Isolated APT/DNF clients verified GPG signatures and selected the expected versions: 115 APT entries and 156 YUM packages per architecture.
+
+### Regular Update Batch
+
+Updated 28 recipes, producing 120 packages (60 DEB and 60 RPM) for `amd64` / `arm64`. Both architecture indexes, `Release` / `repomd` signatures, and package checksums passed verification:
+
+| Package | Previous Repository Version | Imported Version | Notes |
+|---|---|---|---|
+| [agentsview](https://github.com/kenn-io/agentsview/releases/tag/v0.47.0) | 0.46.1 | 0.47.0 | Repacked for both architectures |
+| [alertmanager](https://github.com/prometheus/alertmanager/releases/tag/v0.35.0) | 0.34.1 | 0.35.0 | Repacked for both architectures |
+| [barn](https://github.com/pgsty/barn/releases/tag/v1.2.0) | 1.1.0 | 1.2.0 | Official native packages |
+| [claude-code](https://downloads.claude.ai/claude-code/apt/latest/dists/latest/main/binary-amd64/Packages) | 2.1.319 | 2.1.322 | New official claude-code package; old claude retained |
+| [code](https://update.code.visualstudio.com/api/update/linux-deb-x64/stable/latest) | 1.145.2 | 1.146.0 | Official native packages |
+| [codex](https://github.com/openai/codex/releases/tag/rust-v0.167.2) | 0.167.0 | 0.167.2 | Complete canonical runtime preserved, including bundled bwrap |
+| [dblab](https://github.com/danvergara/dblab/releases/tag/v0.55.2) | 0.55.1 | 0.55.2 | Repacked for both architectures |
+| [golang](https://go.dev/dl/?mode=json) | 1.27.3 | 1.27.4 | Repacked for both architectures |
+| [grafana](https://github.com/grafana/grafana/releases/tag/v13.3.1) | 13.3.0 | 13.3.1 | Official native packages |
+| [ivorysql](https://github.com/IvorySQL/IvorySQL/releases/tag/IvorySQL_5.6) | 5.4 | 5.6 | New native recipe; DEB ivorysql-5 / RPM ivorysql5; PostgreSQL 18.6 |
+| [mcli](https://github.com/pgsty/mc/releases/tag/RELEASE.2026-11-12T00-00-00Z) | 20261109000000.0.0 | 20261112000000.0.0 | Official native packages |
+| [nodejs](https://nodejs.org/dist/index.json) | 24.22.1 | 26.13.1 | Node 26 LTS; RPM epoch 2; npm prefix /usr/local |
+| [opencode](https://github.com/anomalyco/opencode/releases/tag/v1.19.5) | 1.19.5-1PGSTY | 1.19.5-2PGSTY | Package revision 1PGSTY → 2PGSTY; upstream version unchanged |
+| [pg-exporter](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.1) | 1.6.0 | 1.6.1 | Repacked for both architectures |
+| [pg-hardstorage](https://github.com/cybertec-postgresql/pg_hardstorage/releases/tag/v1.7.0) | 1.6.0 | 1.7.0 | Repacked for both architectures |
+| [pgext](https://github.com/pgsty/pgext/releases/tag/v1.7.1) | 1.6.0 | 1.7.1 | Official native packages |
+| [pi-coding-agent](https://github.com/earendil-works/pi/releases/tag/v1.5.2) | Not present | 1.5.2 | New package; complete upstream runtime |
+| [rainfrog](https://github.com/achristmascarl/rainfrog/releases/tag/v0.4.7) | 0.4.6 | 0.4.7 | Repacked for both architectures |
+| [rustfs](https://github.com/rustfs/rustfs/releases/tag/1.0.5) | 1.0.4 | 1.0.5 | Repacked for both architectures |
+| [sabiql](https://github.com/riii111/sabiql/releases/tag/v3.0.3) | 3.0.2 | 3.0.3 | Repacked for both architectures |
+| [sealos](https://github.com/labring/sealos/releases/tag/v5.1.1) | 5.0.1 | 5.1.1 | Official native packages; Sustainable Use License; RPM license metadata mismatch |
+| [silo](https://github.com/pgsty/silo/releases/tag/RELEASE.2026-11-09T00-00-00Z) | 20261026000000.0.0 | 20261109000000.0.0 | Official native packages |
+| [silo-console](https://github.com/pgsty/silo-console/releases/tag/v2.7.1) | 2.7.0 | 2.7.1 | Official native packages |
+| [sow](https://github.com/pgsty/sow/releases/tag/v0.7.1) | 0.7.0 | 0.7.1 | Repacked for both architectures |
+| [stalwart](https://github.com/stalwartlabs/stalwart/releases/tag/v1.1.0) | 1.0.3 | 1.1.0 | Repacked for both architectures |
+| [timescaledb-tools](https://github.com/timescale/timescaledb-tune/releases/tag/v0.19.1) | 0.19.0 | 0.19.1 | tune 0.19.1 + parallel-copy 0.13.2; Go 1.27.4 source builds |
+| [victoria-metrics](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.156.0) | 1.155.0 | 1.156.0 | Also produces victoria-metrics-cluster and vmutils |
+| [xray](https://github.com/XTLS/Xray-core/releases/tag/v26.11.9) | 26.10.31 | 26.11.9 | Repacked for both architectures |
+{.wide .expand}
+
+All 120 package headers and payload architectures passed checks. The 40 native source packages in `dist` match upstream SHA-256 hashes; locally repacked DEB/RPM executable payloads agree. Linux containers passed 82 CLI/configuration checks across both architectures, plus two VS Code version-manifest checks. Codex's full runtime matches upstream; Node retains RPM epoch 2 and npm settings; both Timescale tools include source and build provenance.
+
+Sealos 5.1.1 uses official native packages. Its [**source license**](https://github.com/labring/sealos/blob/v5.1.1/LICENSE.md) is the Sealos Sustainable Use License, while the RPM still declares Apache 2.0. Upstream bytes remain in `dist` and the discrepancy is recorded; the former Apache-2.0 local rebuild lock is retained as historical documentation.
+
+Repository checks found 115 APT entries and 153 RPMs per architecture. Four isolated APT/DNF clients verified the Pigsty key and selected all 30 package versions. All 60 DEBs preserve source bytes; 56 RPMs were signed or re-signed, and four retained valid Pigsty signatures. RPM main headers and payloads match build sources; original upstream packages remain in `dist`. No old packages were purged.
+
+`claude-code` is indexed and the old `claude` remains available. Upstream declares no replacement relationship; existing installations need a package-name migration.
+
+T3 Code and Orca desktop packages were downloaded/built and verified locally for amd64/arm64, totaling four DEBs and four RPMs. Import, signing, and publication remain pending.
+
+| Name | Previous | Current | Notes |
+|---|---|---|---|
+| t3code | — | 0.1.9 | T3 Code; official DEBs preserved; RPMs repackaged from the same payload as 1PGSTY |
+| orca-ide | — | 1.4.256 | Orca; all four official DEB/RPM packages preserved unchanged |
+{.wide .expand}
+
+Build aliases are `make t3-code` and `make orca`; package names are `t3code` and `orca-ide`. T3 Code core helpers require glibc 2.34, and its optional KDE screenshot helper requires 2.39. Both projects use MIT.
+
 ## 2026-11-10
 
 Claude Code now uses Anthropic's signed native DEB/RPM packages. The new `claude-code` recipe downloads version `2.1.322` directly from the official apt/dnf latest repositories and pins all four package hashes to the official repository indexes; the old self-maintained `claude` nFPM recipe is archived as obsolete.
@@ -14,6 +83,42 @@ Claude Code now uses Anthropic's signed native DEB/RPM packages. The new `claude
 |---|---|---|---|
 | claude-code | 2.1.319 | 2.1.322 | Official native DEB/RPM; SHA256 pinned to the official apt/dnf indexes |
 {.wide .expand}
+
+## 2026-11-09
+
+Consolidated the November 8 and 9 scans and rechecked PGEXT and SILO Console. Sixteen recipes produced 62 verified packages (31 DEB and 31 RPM), covering `amd64` / `arm64` except the noarch Grafana plugin bundle. Package/index signatures and checksums passed verification.
+
+| Name | Previous | Current | Notes |
+|---|---|---|---|
+| barn | 1.0.0 | 1.1.0 | Upstream native packages |
+| claude | 2.1.318 | 2.1.319 | Repacked for both architectures |
+| code | 1.145.1 | 1.145.2 | Upstream native packages |
+| code-server | 4.145.0 | 4.145.2 | Upstream native packages |
+| grafana-plugins | 13.2.3 | 13.3.0 | noarch; six plugins updated below |
+| grafana-victorialogs-ds | 0.33.1 | 0.34.0 | Repacked for both architectures |
+| mcli | 20261026000000.0.0 | 20261109000000.0.0 | Upstream native packages |
+| mtail | 3.4.19 | 3.4.20 | Repacked for both architectures |
+| pg-exporter | 1.5.0 | 1.6.0 | Repacked for both architectures |
+| pgext | — | 1.6.0 | New recipe; previous scan found 1.5.0 |
+| pgschema | 1.13.4 | 1.14.1 | Repacked for both architectures |
+| pgstream | 1.5.0 | 1.6.0 | Source build from pinned commit |
+| rclone | 1.75.2 | 1.76.0 | Repacked for both architectures |
+| seaweedfs | 4.52 | 4.53 | Package version: 4.53.0 |
+| silo-console | 2.6.0 | 2.7.0 | Upstream draft; local acceptance |
+| sow | 0.6.1 | 0.7.0 | Repacked for both architectures |
+| marcusolsson-dynamictext-panel | 6.3.0 | 6.3.1 | grafana-plugins |
+| marcusolsson-json-datasource | 1.4.3 | 1.4.4 | grafana-plugins |
+| volkovlabs-echarts-panel | 7.2.5 | 7.3.0 | grafana-plugins |
+| volkovlabs-form-panel | 6.3.5 | 6.3.6 | grafana-plugins |
+| volkovlabs-image-panel | 7.3.3 | 7.3.4 | grafana-plugins |
+| volkovlabs-table-panel | 3.6.8 | 3.6.9 | grafana-plugins |
+| nFPM | 2.43.1 | 2.48.0 | Build tool; three platforms cached |
+| Zig | 0.15.2 | 0.17.1 | Download only; Linux amd64/arm64 |
+{.wide .expand}
+
+[**PGEXT 1.6.0**](https://github.com/pgsty/pgext/releases/tag/v1.6.0) is released, superseding the previously scanned 1.5.0, with a new native `pgext` recipe. SILO Console 2.7.0 was still an upstream draft at verification time, with public latest at 2.6.0. Four draft artifacts were verified by SHA-256 and retained locally without changing native package bytes or publishing the draft.
+
+[**PGStream 1.6.0**](https://github.com/xataio/pgstream/releases/tag/v1.6.0) has no upstream binary artifacts. It was built from pinned commit `97d7ab464f0accf6cf1373b3c3f7b328debae4b9`, Go 1.27.3, and upstream `go.mod`/`go.sum`, with `BUILDINFO`. Six Grafana plugins were updated and the other eight retained unchanged. nFPM 2.48.0 was used for this batch; Zig 0.17.1 only updates the Linux download cache for both architectures.
 
 ## 2026-11-06
 

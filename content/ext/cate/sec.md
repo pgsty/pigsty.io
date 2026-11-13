@@ -36,7 +36,7 @@ There are **42** extensions in **42** packages.
 | [`credcheck`](/ext/e/credcheck) | [`credcheck`](https://github.com/HexaCluster/credcheck) | `6.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | credcheck - postgresql plain text credential checker |
 | [`pgcryptokey`](/ext/e/pgcryptokey) | [`pgcryptokey`](https://momjian.us/download/pgcryptokey/) | `0.85` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cryptographic key management |
 | [`pg_pwhash`](/ext/e/pg_pwhash) | [`pg_pwhash`](https://github.com/cybertec-postgresql/pg_pwhash) | `1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Advanced password hashing methods for PostgreSQL |
-| [`login_hook`](/ext/e/login_hook) | [`login_hook`](https://github.com/splendiddata/login_hook) | `1.8` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | login_hook - hook to execute login_hook.login() at login time |
+| [`login_hook`](/ext/e/login_hook) | [`login_hook`](https://github.com/splendiddata/login_hook) | `1.9` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | login_hook - hook to execute login_hook.login() at login time |
 | [`set_user`](/ext/e/set_user) | [`set_user`](https://github.com/pgaudit/set_user) | `4.3.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | similar to SET ROLE but with added logging |
 | [`pg_snakeoil`](/ext/e/pg_snakeoil) | [`pg_snakeoil`](https://github.com/credativ/pg_snakeoil) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | The PostgreSQL Antivirus |
 | [`pgextwlist`](/ext/e/pgextwlist) | [`pgextwlist`](https://github.com/dimitri/pgextwlist) | `1.20` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL Extension Whitelisting |
@@ -517,7 +517,7 @@ There are **42** extensions in **42** packages.
 
 ## login_hook {#login_hook}
 
-[**`login_hook`**](/ext/e/login_hook) - `1.8` : login_hook - hook to execute login_hook.login() at login time
+[**`login_hook`**](/ext/e/login_hook) - `1.9` : login_hook - hook to execute login_hook.login() at login time
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -526,7 +526,7 @@ There are **42** extensions in **42** packages.
 | **RPM** | `login_hook_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **DEB** | `postgresql-$v-login-hook` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | **License** | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 | | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
 {.ext-table .ext-table--cate .wide .expand}

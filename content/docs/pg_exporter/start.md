@@ -30,7 +30,7 @@ Confirm the installation:
 
 ```bash
 pg_exporter --version
-# pg_exporter v1.6.0 (built with go1.27.3 on linux/amd64)
+# pg_exporter v1.6.1 (built with go1.27.4 on linux/amd64)
 ```
 
 ## Step 2: Create a Monitoring User {#step-2-create-a-monitoring-user}

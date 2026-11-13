@@ -1,5 +1,5 @@
 ---
-title: "PG Exporter 1.6.0 Documentation"
+title: "PG Exporter 1.6.1 Documentation"
 linkTitle: pg_exporter 
 weight: 8400
 icon: fas fa-magnifying-glass
@@ -29,16 +29,16 @@ Monitor PostgreSQL with **460 metric definitions**, **declarative configuration*
 
 ## Version Info {#version-info}
 
-- Current stable release: [`v1.6.0`](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.0)
+- Current stable release: [`v1.6.1`](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.1)
 - Default config support: PostgreSQL **10-19+**
-- Legacy config support: PostgreSQL **9.1-9.6** (uses the separately maintained `legacy/` bundle on `main`; see [Installation](/docs/pg_exporter/install/#compatibility))
+- Legacy configuration support: PostgreSQL **9.1–9.6**, using the separately maintained `legacy/` configuration; see [Installation](/docs/pg_exporter/install/#compatibility)
 - pgBouncer support: **1.8-1.26+**
 
-The v1.6.0 default bundle contains **58 YAML files** (57 collector files and one configuration reference), **96 version/role branches**, and **59 metric namespaces**. The 460 metric names are deduplicated across branches, including disabled collectors and two unexpanded `HISTOGRAM` definitions. Actual time-series counts depend on versions, objects, labels, and histogram buckets.
+The v1.6.1 default bundle contains **58 YAML files** (57 collector files and one configuration reference), **96 version/role branches**, and **59 metric namespaces**. The 460 metric names are deduplicated across branches, including disabled collectors and two unexpanded `HISTOGRAM` definitions. Actual time-series counts depend on versions, objects, labels, and histogram buckets.
 
 See [Release Notes](/docs/pg_exporter/release) for the full history.
 
-Before upgrading, review the [v1.6.0 metric changes](/docs/pg_exporter/release/#v160-metric-compatibility) and [dashboard / alert migration checks](/docs/pg_exporter/config/#metric-compatibility). Retaining a metric name does not guarantee unchanged labels, state codes, or semantics; a PostgreSQL major-version upgrade also changes collector branch selection.
+Before upgrading, review [**v1.6.1 upgrade notes**](/docs/pg_exporter/release/#v161-metric-compatibility), [**v1.6.0 metric changes**](/docs/pg_exporter/release/#v160-metric-compatibility), and the [**dashboard/alert migration checklist**](/docs/pg_exporter/config/#metric-compatibility). Unchanged metric names do not guarantee unchanged labels, state encodings, or semantics. PostgreSQL major upgrades also select different collector branches.
 
 ## Design Rationale {#design-rationale}
 
@@ -57,7 +57,7 @@ Before upgrading, review the [v1.6.0 metric changes](/docs/pg_exporter/release/#
 Select an [installation](/docs/pg_exporter/install/) method for your infrastructure:
 
 ```bash {tab="Docker"}
-docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:1.6.0
+docker run -d --name pg_exporter -p 9630:9630 -e PG_EXPORTER_URL="postgres://user:pass@host:5432/postgres" pgsty/pg_exporter:1.6.1
 ```
 
 ```bash {tab="YUM"}

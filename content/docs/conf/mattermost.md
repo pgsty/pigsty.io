@@ -6,13 +6,7 @@ icon: fa-solid fa-comments
 categories: [Reference]
 ---
 
-The `app/mattermost` template deploys Mattermost with Pigsty-managed PostgreSQL, Nginx, and monitoring.
-By default, the application and database share one node.
-
-For application usage details, see **[Mattermost: Open-Source IM](/docs/app/mattermost/)**.
-
-
-The preview below retains fixes such as the Bleve path. New Calls port mappings and directory preparation scripts require matching application updates; see the [Mattermost application guide](/docs/app/mattermost/).
+The `app/mattermost` template deploys Mattermost and its database on the same node by default, using Pigsty for PostgreSQL, Nginx, and monitoring. See the [**Mattermost application guide**](/docs/app/mattermost/) for details.
 
 --------
 
@@ -41,13 +35,7 @@ Usage:
 
 Source: [`pigsty/conf/app/mattermost.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/mattermost.yml)
 
-<details>
-<summary>Development configuration preview: Calls requires matching Compose port mappings</summary>
-
 {{< include file="yaml/app/mattermost.yml" code=true lang="yaml" >}}
-
-</details>
-
 
 --------
 
@@ -59,11 +47,10 @@ The `app/mattermost` template defines three key groups:
 - `pg-mattermost`: dedicated PostgreSQL cluster, database, and application account
 - `infra` / `etcd`: shared Pigsty infrastructure dependencies
 
-**Key Features**:
 - Enables Docker runtime by default (`docker_enabled: true`) and prepares it through `./docker.yml`
 - Exposes `mm.pigsty` in the Nginx portal (`infra_portal.mattermost`) with WebSocket support
 - Includes a local Docker subnet HBA rule (`172.16.0.0/12`) allowing only the application account to access the `mattermost` database
-- `apps.mattermost.file` creates data directories owned by `2000:2000`; the development template also adds Calls mappings for `8443/TCP` and `8443/UDP`
+- `apps.mattermost.file` creates data directories owned by `2000:2000`; Compose publishes the Web port and Calls media ports (`CALLS_PORT`, default `8443/TCP` and `8443/UDP`).
 - Provides optional JuiceFS settings (commented) to mount `/data/mattermost` on PostgreSQL-backed storage
 
 **Notes**:

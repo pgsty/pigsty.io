@@ -8,7 +8,7 @@ categories: [Reference]
 
 [**Teable**](https://teable.io/) is a no-code database platform for team collaboration.
 
-Pigsty provides the `app/teable` template (`conf/app/teable.yml`). It uses **PostgreSQL + Silo + Docker**. Compose defines only the Teable application and does not include Redis. Provide Redis separately when the selected Teable version requires a cache.
+Pigsty provides the `app/teable` template (`conf/app/teable.yml`) with **PostgreSQL + Docker** and a dedicated authenticated Redis cache service (`teable-cache`) in Compose.
 
 ## Quick Start
 
@@ -16,8 +16,8 @@ Pigsty provides the `app/teable` template (`conf/app/teable.yml`). It uses **Pos
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./bootstrap
 ./configure -c app/teable
-vi pigsty.yml                 # update passwords, domain, and mail settings
-./deploy.yml                  # deploy infra, PostgreSQL, and Silo
+vi pigsty.yml                 # change database and REDIS_PASSWORD credentials, domain, and mail settings
+./deploy.yml                  # install infrastructure and PostgreSQL
 ./docker.yml
 ./app.yml
 ```
@@ -31,21 +31,19 @@ Default endpoints:
 
 The template writes the following into `/opt/teable/.env`:
 
-- `POSTGRES_HOST/POSTGRES_PORT/POSTGRES_DB/POSTGRES_USER/POSTGRES_PASSWORD`
+- `POSTGRES_HOST` / `POSTGRES_PORT` / `POSTGRES_DB` / `POSTGRES_USER` / `POSTGRES_PASSWORD`
 - `PRISMA_DATABASE_URL`
-- `PUBLIC_ORIGIN` (public URL)
+- `PUBLIC_ORIGIN` (public access URL)
 - `PUBLIC_DATABASE_PROXY`
 - `TEABLE_PORT` (default `8890`)
+- `TEABLE_DATA` (default `/data/teable`, for persistent application assets)
+- `REDIS_VERSION` (default `7-alpine`) and `REDIS_PASSWORD` (embedded Redis password; change before deployment)
 
-- `TEABLE_DATA` (default `/data/teable`, persists application assets)
+## Cache and Health Checks
 
-For external Redis, set `BACKEND_CACHE_PROVIDER=redis` and a complete `BACKEND_CACHE_REDIS_URI` in the application configuration, with a URI-encoded password. `.env` follows Compose interpolation rules and does not create a Redis service automatically.
+Compose starts a dedicated `teable-cache` (`redis:7-alpine`), enables authentication with `REDIS_PASSWORD`, persists AOF in the named volume `teable-cache`, and does not publish Redis to the host. It derives `BACKEND_CACHE_REDIS_URI` from `REDIS_PASSWORD` and `REDIS_PORT`, waits for Redis to pass its health check before starting Teable, and probes the Teable backend `/health` endpoint for readiness.
 
-## Development Cache Template
-
-The development template adds a dedicated Redis instance (`redis:7-alpine`) authenticated with `REDIS_PASSWORD`. It stores AOF data in the `teable-cache` volume and does not publish a Redis host port. Compose generates the cache URI and waits for Redis to become ready before starting Teable.
-
-This setup requires the matching Compose file; adding `REDIS_VERSION` or `REDIS_PASSWORD` alone does not enable it. For either deployment method, replace demo passwords before startup, back up PostgreSQL and `TEABLE_DATA`, and check the application's `/health` endpoint.
+To use external Redis, explicitly set the complete `BACKEND_CACHE_REDIS_URI`, with special characters in the password URI-encoded. When upgrading an old manually maintained `.env`, remove its hard-coded derived `BACKEND_CACHE_REDIS_URI` line so it does not override the new password or port settings. Back up both PostgreSQL and the `TEABLE_DATA` asset directory.
 
 ## Operations
 

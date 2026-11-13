@@ -210,6 +210,8 @@ Treat `pg-meta` as the RDS instance `pg-foo-1`, and `pg-test` as the RDS cluster
     bin/pgmon-add pg-bar  # Bring pg-bar cluster into monitoring
     ```
 
+   This script calls `pgsql-monitor.yml`, which deploys a separate `pg_exporter_<cls>-<seq>.service` on Infra nodes as `prometheus:prometheus`. Connection variables are in `/etc/default/pg_exporter_<cls>-<seq>` (`0600`), and collector configuration is in `/etc/pg_exporter/pg_exporter_<cls>-<seq>.yml`.
+
 4. To remove remote cluster monitoring targets, use `bin/pgmon-rm <clsname>`
 
     ```bash

@@ -125,6 +125,8 @@ pig pitr -d -- --delta
 
 Use PIG flags for the recovery target, data directory, config, stanza, and repository.
 Arguments that override these settings are rejected, including `--repoN-*` and `--recovery-option`.
+Corresponding `--reset-*` and `--no-*` forms are also rejected. Explicitly empty or whitespace-only `-D/--data`
+values fail before confirmation or service changes; only omission uses the default directory.
 Other restore options, such as `--delta`, `--tablespace-map`, `--link-map`, and `--link-all`, can be forwarded.
 
 ## Time format {#time-format}

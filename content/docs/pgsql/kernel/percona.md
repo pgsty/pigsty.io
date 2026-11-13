@@ -9,10 +9,7 @@ categories: [Concept]
 
 [Percona Postgres](https://www.percona.com/postgresql/software/postgresql-distribution) is a patched Postgres kernel with [`pg_tde`](https://docs.percona.com/pg-tde/index.html) (Transparent Data Encryption) extension.
 
-From v4.4.0, Pigsty installs Percona PostgreSQL under the private prefix `/usr/pgtde-$v`.
-Version v4.5.0 keeps this layout, with `/usr/pgtde-18` for PostgreSQL 18.
-The `pgtde` package alias installs both the kernel package and its contrib package.
-These packages include `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
+Since v4.4.0, Pigsty packages Percona PostgreSQL under `/usr/pgtde-$v` (`/usr/pgtde-18` for PostgreSQL 18). The current baseline is Percona Server for PostgreSQL `18.6.1` with `pg_tde 2.2.2`. The `pgtde` alias installs the kernel packages with `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit, and pg_stat_monitor.
 
 - [Performance Test for Percona Transparent Data Encryption (TDE)](https://andreas.scherbaum.la/post/2025-06-30_performance-test-for-percona-transparent-data-encryption-tde/)
 
@@ -21,17 +18,13 @@ These packages include `pg_tde`, PostGIS, pgvector, wal2json, pg_repack, pgaudit
 
 ## Quick Start
 
-Use Pigsty's [**standard installation process**](/docs/setup/install) with the [`pgtde`](/docs/conf/pgtde/) configuration template.
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgtde.yml). Development sources moved it to `conf/fork/pgtde.yml`; use `-c fork/pgtde` with those sources.
+Use Pigsty's [**standard installation**](/docs/setup/install) with [`fork/pgtde`](/docs/conf/pgtde/) ([`conf/fork/pgtde.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgtde.yml)); `-c pgtde` and `-c fork/pgtde` are equivalent:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
-./configure -c pgtde     # Use percona postgres kernel
+./configure -c fork/pgtde # use Percona PostgreSQL
 ./deploy.yml             # Deploy the Pigsty core chain with Percona PostgreSQL
 ```
-
-
 
 ------
 

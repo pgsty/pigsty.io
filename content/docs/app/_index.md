@@ -13,8 +13,7 @@ Pigsty applications have two categories:
 - **Software Templates**: Deployment resources under `~/pigsty/app/<name>`, mainly using Docker Compose. [Hermes](/docs/app/hermes/) provides a separate source installation guide.
 - **Data Applets**: PostgreSQL + Grafana analytics demos, mainly for learning and showcase use.
 
-
-Use matching versions of `app.yml`, `app/<name>/`, and `conf/`. Replacing only a configuration file does not enable development features; unreleased behavior is noted on each application page.
+Use `app.yml`, `app/<name>/`, and `conf/` from the same release to keep templates and initialization scripts compatible.
 
 ## Application Model
 
@@ -30,9 +29,9 @@ vi pigsty.yml                 # edit passwords, domains, IPs, and secrets
 ./app.yml                     # launch applications
 ```
 
-`app.yml` copies `app/<name>` templates to `/opt/<name>`, prepares directories from `apps.<name>.file`, writes `.env` from `apps.<name>.conf`, and runs the application's default Make target. Use `apps.<name>.args` to select other Make targets. Each application's Makefile and Compose definition control initialization.
+`app.yml` copies the `app/<name>` template to `/opt/<name>` (or `apps.<name>.dest`), prepares directories from `apps.<name>.file`, writes a `.env` file with mode `0600` from `apps.<name>.conf`, then runs the application's default `make` target. Use `apps.<name>.args` to select other Make targets. Application startup inherits `proxy_env` proxy variables; `--check` mode skips the actual `make` execution.
 
-`apps.<name>.conf` writes `.env` with mode `0600` and lowercase `true` / `false` for booleans. Values still pass through Compose dotenv parsing: inspect the resulting configuration when values contain `$`, quotes, or spaces. `${OTHER_VARIABLE}` is not a literal string immune to expansion. Connection strings can be evaluated with Ansible/Jinja first, but special characters in passwords still need URL encoding.
+Values in `apps.<name>.conf` are written deterministically to `.env` as **literals**: `null` becomes an empty value, booleans become lowercase `true` / `false`, and `$` is escaped as `$$`. Strings containing `$`, whitespace, quotes, `#`, `\`, or non-ASCII characters are enclosed in JSON double quotes. Passwords, hashes, and `${OTHER_VARIABLE}` in this configuration therefore **do not** undergo a second round of Docker Compose expansion. Evaluate dynamic connection strings through Ansible/Jinja first, with special characters in passwords still URL-encoded. Compose interpolation remains available only in unescaped lines edited directly in `.env`.
 
 ## Maintained Config Templates
 
@@ -47,17 +46,18 @@ The following app config templates are actively maintained (`conf/app/*.yml`, `c
 - `app/immich`
 - `app/jumpserver`
 - `app/registry`
+- `app/silo`
 - `app/insforge`
 - `app/hindsight`
+- `app/discourse`
 - `supabase`
 
 These templates use the `./configure -c ...` and `./app.yml` workflow. Check database, directory, and image requirements on the application page before deploying.
 
 ## Lightweight Compose Apps
 
-For apps like `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, [`pg_exporter`](/docs/app/pg-exporter/), and `wiki`, you can also use the per-app Compose templates directly. For object storage, see the [MINIO module](/docs/minio/); the standalone `app/silo` template is still a development draft.
-
-[FerretDB](/docs/app/ferretdb/) is provided as the Docker APP layer of [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it from the `mongo` configuration template with `docker.yml` and `app.yml`.
+For `bytebase`, `gitea`, `jupyter`, `kong`, `metabase`, `nocodb`, `pgadmin`, `pgweb`, `postgrest`, [`pg_exporter`](/docs/app/pg-exporter/), and `wiki`, you can also use the Compose templates directly. See the [**MINIO module**](/docs/minio/) for HA object storage across multiple nodes, or [`app/silo`](/docs/app/silo/) for object storage in a container on one node.
+[FerretDB](/docs/app/ferretdb/) supplies the Docker APP protocol layer for [PostgreSQL Mongo mode](/docs/conf/mongo/). Deploy it with the `mongo` (`fork/mongo`) template, `docker.yml`, and `app.yml`.
 
 ```bash
 cd ~/pigsty/app/<name>

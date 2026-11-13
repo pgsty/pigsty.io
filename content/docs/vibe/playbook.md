@@ -58,10 +58,10 @@ vibe
 
 Notes:
 
-- `jupyter_install` uses `uv pip`. It does not create a venv.
-- `nodejs_pkg` installs only the additional packages declared in `npm_packages`; the list is empty by default
-- `claude_install` installs Claude CLI with `claude_package`. The `claude_config` task writes the `~/.claude` configuration.
-- `codex_install` installs `@openai/codex` and does not manage Codex configuration
+- `jupyter_install` creates a venv with `uv venv` if `<jupyter_venv>/bin/python` is absent, then installs `jupyterlab` / `ipykernel` with `uv pip`
+- `nodejs_config` detects global npm configuration and sets `prefix=/usr/local` plus optional mirrors; `nodejs_pkg` installs only additional `npm_packages`, which defaults to empty
+- `claude_install` installs `claude_package` through the system package manager (default native package `claude`); `claude_config` merges `~/.claude/settings.json` and initializes `~/.claude.json`
+- `codex_install` installs native package `codex` without managing its configuration
 
 --------
 
@@ -74,22 +74,21 @@ Full deploy:
 ./vibe.yml -l <host>           # Apply after confirming the target
 ```
 
-Component-level:
+Deploy individual components. `jupyter_enabled` defaults to `false`; pass `-e jupyter_enabled=true` if the inventory does not enable it:
 
 ```bash
 ./vibe.yml -l <host> -t code
-./vibe.yml -l <host> -t jupyter
+./vibe.yml -l <host> -t jupyter -e jupyter_enabled=true
 ./vibe.yml -l <host> -t nodejs
 ./vibe.yml -l <host> -t claude
 ./vibe.yml -l <host> -t codex
 ```
 
-Config updates:
+Update configuration. Both `code_launch` and `jupyter_launch` restart their services when configuration, unit, or environment files change:
 
 ```bash
 ./vibe.yml -l <host> -t code_config,code_launch
-./vibe.yml -l <host> -t jupyter_config
-ssh <host> sudo systemctl restart jupyter
+./vibe.yml -l <host> -t jupyter_config,jupyter_launch -e jupyter_enabled=true
 ./vibe.yml -l <host> -t claude_config
 ```
 
@@ -103,21 +102,16 @@ Skip components for this run:
 ./vibe.yml -l <host> -e codex_enabled=false
 ```
 
-These switches control task execution. If a switch is `false`, the corresponding installation and configuration tasks are skipped. This does not stop, disable, or uninstall a previously deployed service or package. To stop and disable Code-Server, run `systemctl disable --now code-server` separately. For JupyterLab, run `systemctl disable --now jupyter`. VIBE currently has no dedicated removal playbook.
-
-Node.js is a runtime dependency of Claude Code and Codex CLI. The `nodejs` phase runs if either `claude_enabled` or `codex_enabled` is `true`, even with `nodejs_enabled=false`. It is skipped only when all three switches are `false`.
+These switches are independent task conditions. `false` skips the corresponding installation/configuration tasks; for example, `nodejs_enabled=false` skips Node.js even when `claude` or `codex` is enabled. It does not stop, disable, or uninstall previously deployed software. To retire Code-Server or JupyterLab, separately run `systemctl disable --now code-server` or `systemctl disable --now jupyter`. VIBE currently has no dedicated removal playbook.
 
 --------
 
 ## Deployment Order
 
 ```bash
-./deploy.yml --check          # Preview inventory-defined base components
-./deploy.yml                  # Deploy after review
-./juice.yml -l <host> --check # Optional shared-storage preview
-./juice.yml -l <host>
-./vibe.yml -l <host> --check  # VIBE preview
-./vibe.yml -l <host>
+./deploy.yml      # declared NODE, INFRA, ETCD, VAULT, MINIO, and PGSQL modules
+./juice.yml       # optional shared storage
+./vibe.yml        # VIBE
 ```
 
 --------

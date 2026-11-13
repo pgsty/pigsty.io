@@ -119,6 +119,7 @@ These options apply to all `pig pg` subcommands:
 Use `pig pg svc ...` to control the `postgres` systemd unit. Use the instance commands
 (`start`, `stop`, and so on) to operate on `-D` with `pg_ctl`, defaulting to `/pg/data`.
 An explicit empty or whitespace-only `-D` / `--data` is a parameter error; it does not select a default target.
+Relative `-D`, `--log-dir`, and `pg start --log` paths resolve against the caller's working directory before switching to the database OS user.
 
 When `-D` is explicitly supplied, `psql`, `ps`, `kill`, `vacuum`, `analyze`, `freeze`, and `repack`
 connect to that directory's instance, including database enumeration for `--all`. Before using its recorded
@@ -130,12 +131,10 @@ visible to the client; PIG does not add host or port arguments or bind the conne
 To explicitly target a TCP-only instance, use the native client with connection options.
 `pg clone` and `pg fork` retain their separate port options.
 
-Plans, confirmation retries, and verification commands for `promote`, `vacuum`, and `repack`
-preserve the selected data directory, PostgreSQL version, and operating-system user. This includes
-an explicit `-D /pg/data`; omitting `-D` continues to preserve native SQL connection defaults.
+Plans, confirmation retries, and verification commands for `init`, `kill`, `promote`, `vacuum`, and `repack` retain the selected data directory, PostgreSQL version,
+and operating-system user, including an explicit `-D /pg/data`; omitting `-D` continues to preserve native SQL connection defaults.
 `VACUUM FULL` plans report confirmation as required, matching execution.
-Generated maintenance commands put the database name after `--`, so a name such as `--all`
-cannot become an option when the command is copied and executed.
+Generated maintenance commands put the database name after `--`, so a name such as `--all` is not interpreted as an option when the command is copied and run.
 
 `PIG_NON_INTERACTIVE=1` and JSON/YAML output disable prompt stdin and use non-interactive sudo.
 Native passthrough retains its interaction contract; explicit data input such as `psql -f -`
@@ -269,6 +268,8 @@ instance's process state. Service rows cover `patroni`, `pgbouncer`, `vip-manage
 Structured output describes the selected instance, including its data directory, version,
 PID, port, and available control-file information.
 
+Text and structured modes use the same exit status. A stopped selected instance returns failure even when surrounding diagnostics print successfully.
+
 A missing process or a PID independently identified as a different executable is stale.
 `EPERM` alone never proves that PostgreSQL has stopped. If process identity cannot be established,
 the state remains unknown and cannot authorize forced initialization or PITR restore.
@@ -361,6 +362,10 @@ defaults and any `PGHOST`/`PGPORT` visible to it.
 
 For `-o json` or `-o yaml`, specify `-c` or `-f`; interactive psql uses text mode.
 
+Text mode preserves the caller's terminal input/output, including interactive prompts. `-f` enables `ON_ERROR_STOP=1`:
+SQL errors stop the script and return failure. This does not wrap the script in a transaction or undo committed statements.
+Relative script paths resolve against the caller's working directory before switching OS users; `-f -` still reads SQL from stdin.
+
 ### pg ps {#pg-ps}
 
 Show PostgreSQL current connections. Queries `pg_stat_activity` view.
@@ -413,6 +418,9 @@ pig pg kill --plan                # Preview connection termination plan
 `--query` matches query text without case sensitivity. A positive `--pid` selects that process
 and takes precedence over other filters. Without filters, the command selects other client sessions;
 `--all` also includes non-client backends.
+
+An explicit `--pid` must be a positive integer; `--pid 0` does not mean all sessions. `--watch` must be nonnegative.
+Invalid values are rejected before planning or execution.
 
 ### pg clone {#pg-clone}
 
@@ -640,6 +648,7 @@ Behavior notes:
 - Path validation resolves private directories as DBSU when the caller cannot traverse them; unresolved paths and source/destination aliases are refused.
 - Unmanaged fork removal checks an inaccessible target as the selected DBSU. The target must be a real directory; a symlink or failed check still prevents removal.
 - After copy, runtime and replication state is cleaned from the fork and `fork.json` is written. The new instance starts only when `-s|--start` is specified.
+- Both copied configuration files bind `data_directory`, `hba_file`, and `ident_file` to the fork, set its port, disable archiving, and clear external PID and recovery commands. The main configuration must bind the data directory before PostgreSQL selects `postgresql.auto.conf`; editing auto.conf alone cannot isolate an inherited source directory. Configuration writes reject symlinks rather than modifying their targets.
 - Managed forks must be managed by name. Unmanaged forks require `--dst-data` when starting, stopping, or removing.
 
 List forks:

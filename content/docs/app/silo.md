@@ -1,5 +1,6 @@
 ---
 title: "Silo: S3 Object Storage"
+aliases: [/docs/app/minio/]
 weight: 615
 description: Deploy standalone Silo object storage with Docker Compose, providing an S3 API and web console.
 module: [SOFTWARE]
@@ -8,7 +9,7 @@ categories: [Reference]
 
 [**Silo**](https://github.com/pgsty/silo) is S3-compatible object storage maintained by Pigsty. Since August 2026, `app/silo` replaces the former `app/minio` for single-node, application-specific storage. Use the [**MINIO module**](/docs/minio/) for shared backup repositories, bucket and user initialization, monitoring, TLS, or multi-node clusters.
 
-The matching [`app/silo/`](https://github.com/pgsty/pigsty/tree/main/app/silo) and [`conf/app/silo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/silo.yml) are available in the main repository. Use both from the same checkout.
+Use [`app/silo/`](https://github.com/pgsty/pigsty/tree/main/app/silo) and [`conf/app/silo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/silo.yml) from the same Pigsty release.
 
 ## Configuration Template
 

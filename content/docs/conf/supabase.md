@@ -1,5 +1,6 @@
 ---
 title: supabase
+aliases: [/docs/conf/supa/]
 weight: 805
 description: Self-host Supabase using Pigsty-managed PostgreSQL, an open-source Firebase alternative
 icon: fa-solid fa-bolt
@@ -15,14 +16,14 @@ For more details, see **[Supabase Self-Hosting Tutorial](/docs/app/supabase/)**
 
 ## Overview
 
-- Config Name: `supabase`
+- Config name: `supabase` (aliases: `supa`, `app/supa`)
 - Node Count: Single node
 - Description: Self-host Supabase using Pigsty-managed PostgreSQL
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - PostgreSQL: `15`, `16`, `17`, `18` (template default: `18`)
-- Supabase: use the matching application image set
-- API Gateway: Envoy (`api-gw`) in the current source; optional Kong override
+- Supabase: the application image set for `self-hosted/v0.8.4`
+- API gateway: Envoy (`api-gw`) by default, with an optional Kong override
 - Related: [`meta`](/docs/conf/meta/), [`rich`](/docs/conf/rich/)
 
 Usage:
@@ -36,16 +37,9 @@ Usage:
 
 ## Content
 
-Source: [`conf/supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), used with `app/supabase/` from the same version.
-
-<details>
-<summary>Current source configuration: Supabase self-hosted/v0.8.4</summary>
-
-This configuration requires the matching `app/supabase/` files, database baseline, and migration scripts from the same checkout. Released versions may use an older gateway; upgrade the application files together. See the [application guide](/docs/app/supabase/) for gateway and upgrade differences.
+Source: [`pigsty/conf/supabase.yml`](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml). Use it with `app/supabase/` from the same release. See the [**application guide**](/docs/app/supabase/) for gateway switching and upgrades.
 
 {{< include file="yaml/supabase.yml" code=true lang="yaml" >}}
-
-</details>
 
 --------
 
@@ -108,5 +102,5 @@ psql postgres://supabase_admin:DBUser.Supa@10.10.10.10:5432/postgres
 - **Must change JWT_SECRET**: Use a random string with at least 32 characters. Regenerate ANON_KEY and SERVICE_ROLE_KEY. The bundled sample tokens expire on 2031-11-07 UTC and are only for demonstrations.
 - Configure proper domain names (`SITE_URL`, `API_EXTERNAL_URL`)
 - Production environments should enable HTTPS (can use certbot for auto certificates)
-- Docker networks need PostgreSQL access. The current template uses `172.16.0.0/12` in Docker HBA rules (v4.5.0 used `172.17.0.0/16`); adjust it to the actual container network.
+- The Docker network must reach PostgreSQL. The template's Docker HBA range is `172.16.0.0/12`; adjust it to match the actual container network.
 - Check migration steps for the target version before upgrading. Do not replay the fresh-install baseline `files/supabase.sql` on an existing database.

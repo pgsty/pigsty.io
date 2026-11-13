@@ -139,7 +139,7 @@ Pigsty includes preconfigured VictoriaMetrics / Logs / Traces datasources: `vmet
 
 Grafana also serves as a general low-code visualization platform. Pigsty installs plugins such as ECharts and victoriametrics-datasource by default. Use these plugins to build monitoring dashboards or inspection reports.
 
-Grafana allows anonymous users to access it with the `Viewer` role by default. Set [`grafana_anon_enabled`](/docs/infra/param#grafana_anon_enabled) to `false`, render the configuration, and restart Grafana to require authentication.
+Grafana permits anonymous `Viewer` access by default. To require authentication, edit `/etc/grafana/grafana.ini` on each target node, set `enabled = false` under `[auth.anonymous]`, and restart `grafana-server`. See [**Manage Grafana Anonymous Access**](/docs/infra/admin/sop/#manage-grafana-anonymous-access).
 
 Grafana configuration parameters are at: [Configuration: INFRA - GRAFANA](/docs/infra/param#grafana).
 

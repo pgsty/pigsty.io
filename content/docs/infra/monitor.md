@@ -14,7 +14,7 @@ This document describes monitoring dashboards and alert rules for the INFRA modu
 
 ## Dashboards
 
-The current [`files/grafana/infra`](https://github.com/pgsty/pigsty/tree/main/files/grafana/infra) directory contains **11 dashboards**. The table also includes **Pigsty Home** from the root directory. See [Monitoring System](/docs/concept/monitor/) for overall dashboard and rule counts, and [Metrics](/docs/infra/metric/) for endpoints and labels.
+The current [`files/grafana/infra`](https://github.com/pgsty/pigsty/tree/main/files/grafana/infra) directory contains **12 dashboards**. The table also includes **Pigsty Home** from the root directory. See [Monitoring System](/docs/concept/monitor/) for overall dashboard and rule counts, and [Metrics](/docs/infra/metric/) for endpoints and labels.
 
 | Dashboard | Description |
 |:-----|:-----|
@@ -30,8 +30,8 @@ The current [`files/grafana/infra`](https://github.com/pgsty/pigsty/tree/main/fi
 | [VictoriaTraces Instance](https://demo.pigsty.io/d/vtraces-instance) | Trace storage and querying |
 | [Inventory CMDB](https://demo.pigsty.io/d/inventory-cmdb) | CMDB visualization |
 | [ETCD Overview](https://demo.pigsty.io/d/etcd-overview) | etcd cluster monitoring |
+| [Vault Overview](https://demo.pigsty.io/d/vault-overview) | Vault (OpenBao) secrets cluster monitoring |
 {.wide .expand}
-
 
 ----------------
 

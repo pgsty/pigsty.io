@@ -10,16 +10,15 @@ aliases: [/docs/infra/admin/playbook/]
 
 Pigsty provides three playbooks related to the INFRA module:
 
-- [`deploy.yml`](#deployyml): Deploy the NODE, INFRA, ETCD, MINIO, and PGSQL core modules on all nodes in one pass
+- [`deploy.yml`](#deployyml): deploy the six core modules INFRA, NODE, ETCD, VAULT, MINIO, and PGSQL across all nodes
 - [`infra.yml`](#infrayml): Initialize Pigsty infrastructure on infra nodes
 - [`infra-rm.yml`](#infra-rmyml): Remove infrastructure components from infra nodes
-
 
 ----------------
 
 ## `deploy.yml`
 
-Deploy NODE, INFRA, ETCD, MINIO, and PGSQL on all nodes in one pass. This resolves the circular dependency between INFRA and NODE.
+Deploy INFRA, NODE, ETCD, VAULT, MINIO, and PGSQL together across all nodes, resolving the INFRA/NODE circular dependency.
 
 The playbook interleaves subtasks from `infra.yml` and `node.yml`. It deploys core components in this order:
 
@@ -30,15 +29,17 @@ The playbook interleaves subtasks from `infra.yml` and `node.yml`. It deploys co
 5. **infra**: Initialize Nginx, DNS, VictoriaMetrics, Grafana, etc.
 6. **node-monitor**: Initialize node-exporter, vector
 7. **etcd**: Initialize etcd (required for PostgreSQL HA)
-8. **minio**: Initialize Silo (optional)
-9. **pgsql**: Initialize PostgreSQL clusters and configure PostgreSQL monitoring
+8. **vault**: initialize optional Vault (OpenBao secrets management, for consumers such as `pg_tde`)
+9. **minio**: initialize optional Silo
+10. **pgsql**: initialize PostgreSQL clusters and monitoring
 
-This playbook is equivalent to executing the following five playbooks sequentially:
+This is equivalent to running these six playbooks in sequence:
 
 ```bash
 ./infra.yml -l infra    # Deploy infrastructure on infra group
 ./node.yml              # Initialize all nodes
 ./etcd.yml              # Initialize etcd cluster
+./vault.yml -l vault    # initialize the optional Vault (OpenBao) cluster
 ./minio.yml             # Initialize MINIO (Silo) cluster (optional)
 ./pgsql.yml             # Initialize PostgreSQL clusters
 ```

@@ -6,18 +6,13 @@ icon: fa-brands fa-linux
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/pgsql.yml`; v4.5.0 uses `conf/pgsql.yml`, selected with `-c pgsql`.
-
-The `pgsql` configuration template uses the native PostgreSQL kernel. This is Pigsty's default database kernel, with stable support for PostgreSQL 14 to 18.
-
-The current `configure` command also accepts version 19. PG19 remains Beta. Use the dedicated [`pg19`](/docs/conf/pg19/) template for evaluation.
-
+The `pgsql` template (`conf/fork/pgsql.yml`, selected with `-c pgsql` or `-c fork/pgsql`) uses native PostgreSQL, Pigsty's default kernel, with stable support for PostgreSQL 14 through 18. `configure` also accepts version 19, but PG19 remains Beta; use the dedicated [`pg19`](/docs/conf/pg19/) template to evaluate it.
 
 --------
 
 ## Overview
 
-- Config Name: `pgsql`
+- Config name: `pgsql` (explicit path: `fork/pgsql`)
 - Node Count: Single node
 - Description: Native PostgreSQL kernel configuration template
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
@@ -41,10 +36,9 @@ To specify a non-default PostgreSQL version (e.g., 16):
 
 ## Content
 
-Development source: `conf/fork/pgsql.yml`; release source: [`v4.5.0: conf/pgsql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgsql.yml).
+Source: [`pigsty/conf/fork/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgsql.yml)
 
-{{< include file="yaml/pgsql.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/pgsql.yml" code=true lang="yaml" >}}
 
 --------
 

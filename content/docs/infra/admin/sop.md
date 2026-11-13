@@ -147,22 +147,20 @@ Common maintenance commands:
 
 ## Manage Grafana Anonymous Access
 
-Grafana allows anonymous users to access it with the `Viewer` role by default. On a version that supports [`grafana_anon_enabled`](/docs/infra/param#grafana_anon_enabled), set the following in `all.vars` or the `infra` group's variables:
+Grafana permits anonymous `Viewer` access by default. To require login, edit `/etc/grafana/grafana.ini` on each target Infra node and set `enabled = false` under `[auth.anonymous]`:
 
-```yaml
-grafana_anon_enabled: false
+```ini
+[auth.anonymous]
+enabled = false
 ```
 
-Then render the configuration and restart Grafana:
+Restart Grafana to apply the change:
 
 ```bash
-./infra.yml -l infra -t grafana_config,grafana_launch
+sudo systemctl restart grafana-server
 ```
 
-Running `grafana_config` alone does not apply the change immediately. Replace `-l infra` with `-l <infra-node>` to target a single node.
-The inventory setting persists across subsequent playbook runs. Direct edits to `/etc/grafana/grafana.ini` are overwritten by the template.
-This switch is independent of [`grafana_auth_proxy`](/docs/infra/param#grafana_auth_proxy) and only protects Grafana access.
-
+Rerunning `./infra.yml -t grafana_config` renders `/etc/grafana/grafana.ini` from the control node's `roles/infra/templates/grafana/grafana.ini.j2` and overwrites manual edits. To retain the change, update that local template or reapply it after the configuration task. This setting is independent of [`grafana_auth_proxy`](/docs/infra/param#grafana_auth_proxy) and controls only Grafana's own anonymous access.
 
 ----------------
 

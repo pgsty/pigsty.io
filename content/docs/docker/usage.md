@@ -14,10 +14,10 @@ Pigsty includes [**Docker**](https://www.docker.com/) support. Use it to deploy 
 
 Docker is an **optional module**. The [`docker_enabled`](/docs/docker/param#docker_enabled) parameter controls Docker installation. It is disabled by default.
 
-The `docker-ce` upstream repository belongs to the `infra` module. To include Docker packages in the offline repository, set `repo_extra_packages` to the `docker` package alias. This alias maps to `docker-ce` and `docker-compose-plugin`.
+Since `v4.6.0`, the official `docker-ce` repository belongs to the separate `docker` module instead of `infra`. Default `repo_packages` includes `docker-ce` and `docker-compose-plugin` through `extra-modules`. To cache Docker locally, explicitly add `docker` to `repo_modules` and use the `docker` alias in `repo_extra_packages`, which maps to both packages.
 
 ```yaml
-repo_modules: infra,node,pgsql     # <--- Keep infra module (Docker upstream belongs to infra)
+repo_modules: infra,node,pgsql,docker  # explicitly include the separate docker repository module
 repo_extra_packages:
   - pgsql-main
   - docker                         # <--- Download Docker (docker-ce + docker-compose-plugin)
@@ -48,7 +48,7 @@ To install Docker directly from the internet on selected nodes for a temporary n
 ./node.yml -e '{"node_repo_modules":"node,infra","node_packages":["docker-ce","docker-compose-plugin"]}' -t node_repo,node_pkg -l <select_group_ip>
 ```
 
-This command first enables the upstream software sources for the `node,infra` modules on the target nodes. Then it installs `docker-ce` and `docker-compose-plugin`. These package names are the same on EL and Debian.
+This enables the `node,docker` upstream modules on the target, then installs `docker-ce` and `docker-compose-plugin`, whose names are the same on EL and Debian.
 
 To download Docker packages automatically during Pigsty initialization, use the instructions below.
 
@@ -62,28 +62,27 @@ ansible <selector> -m package -b -a 'name=docker-ce,docker-compose-plugin state=
 
 ## Download
 
-To download Docker during Pigsty installation, make sure that [`repo_modules`](/docs/infra/param#repo_modules) includes `infra`. This module contains the Docker upstream repositories.
-
-Specify the Docker packages in [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages):
+To download Docker during Pigsty installation, ensure [`repo_modules`](/docs/infra/param#repo_modules) includes `docker` in the [**inventory**](/docs/setup/config/),
+then select Docker packages in [`repo_packages`](/docs/infra/param#repo_packages) or [`repo_extra_packages`](/docs/infra/param#repo_extra_packages).
 
 ```yaml
-repo_modules: infra,node,pgsql         # <--- Docker upstream repo belongs to infra
+repo_modules: infra,node,pgsql,docker  # Docker upstream uses its own docker module
 repo_packages:
   - node-bootstrap, infra-package, infra-addons, node-package1, node-package2, pgsql-common, docker
 repo_extra_packages:
   - pgsql-main
-  - docker  # <--- Can also be specified here
+  - docker  # Docker packages can also be selected here
 ```
 
 The default [`deploy.yml`](/docs/setup/playbook#deploy-playbook) process downloads the `docker` package alias to the local repository. This alias contains `docker-ce` and `docker-compose-plugin`. After the download, all nodes can get these packages from the local repository.
 
 If Pigsty installation and local repository initialization are complete, change the configuration first. Then run `./infra.yml -t repo_build` to download the packages again and rebuild the offline repository.
 
-Docker installation requires the Docker YUM/APT [repository](#repository). In the v4.x default `repo_upstream`, this repository belongs to the `infra` module. It is usually available without extra configuration.
+Docker installation needs its YUM/APT [repository](#repository). The default `repo_upstream` assigns it to `docker`, which must be explicitly enabled in `repo_modules` or `node_repo_modules`.
 
 ## Repository
 
-Docker downloads require upstream internet software repositories. The default `repo_upstream` defines these repositories under the `infra` module:
+Docker packages come from an Internet upstream repository defined in default `repo_upstream` under the `docker` module:
 
 ```yaml
 - { name: docker-ce ,description: 'Docker CE' ,module: infra  ,releases: [8,9,10] ,arch: [x86_64, aarch64] ,baseurl: { default: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'    ,china: 'https://mirrors.aliyun.com/docker-ce/linux/centos/$releasever/$basearch/stable'  ,europe: 'https://mirrors.xtom.de/docker-ce/linux/centos/$releasever/$basearch/stable' }}

@@ -464,6 +464,8 @@ pg_monitor_username: dbuser_monitor    # Monitor username
 pg_monitor_password: DBUser.Monitor    # Monitor password
 ```
 
+Remote `pg_exporter_<cls>-<seq>.service` instances on Infra nodes run as `prometheus:prometheus`, without requiring a `postgres` user there. Credentials are stored in `/etc/default/pg_exporter_<cls>-<seq>` (`0600`); collector configuration is rendered to `/etc/pg_exporter/pg_exporter_<cls>-<seq>.yml`, owned by `prometheus:infra` with mode `0644`.
+
 **Remote Database Setup**
 
 Remote PostgreSQL instances need a monitoring user:

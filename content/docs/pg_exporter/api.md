@@ -55,7 +55,7 @@ pg_in_recovery 0
 
 # HELP pg_exporter_build_info A metric with a constant '1' value labeled with version, revision, branch, goversion, builddate, goos, and goarch from which pg_exporter was built.
 # TYPE pg_exporter_build_info gauge
-pg_exporter_build_info{version="v1.6.0",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.3",goos="linux",goarch="amd64"} 1
+pg_exporter_build_info{version="v1.6.1",branch="main",revision="<git-sha>",builddate="<build-date>",goversion="go1.27.4",goos="linux",goarch="amd64"} 1
 
 # ... additional metrics
 ```
@@ -80,7 +80,7 @@ Failed refreshes keep the existing failure TTL. In particular, a fatal collector
 
 #### Self-Monitoring Metrics
 
-Built-in metric prefixes default to `pg` for PostgreSQL and `pgbouncer` for PgBouncer. `--namespace` overrides that prefix without renaming metrics defined in YAML.
+Built-in PostgreSQL metrics default to the `pg` prefix; PgBouncer uses `pgbouncer`. `--namespace` changes these prefixes, and invalid namespaces are rejected at startup. It does not rename metrics defined in YAML.
 
 | Metric | Type | Labels | Meaning |
 |:---|:---|:---|:---|
@@ -107,7 +107,7 @@ Built-in metric prefixes default to `pg` for PostgreSQL and `pgbouncer` for PgBo
 | `pg_exporter_query_cache_ttl` | Gauge | datname, query | Remaining result cache lifetime, in seconds |
 {.full-width .wide .expand}
 
-Configured constant labels are attached to these series as well. Per-database and per-collector cumulative counts are exposed as Gauges. Server replanning, including configuration reload, resets collector statistics; recreating a database connection object resets that database's statistics.
+These series also receive configured constant labels. On `pg_exporter_build_info`, build values for `version`, `revision`, `branch`, `builddate`, `goversion`, `goos`, and `goarch` take precedence over user labels. Invalid labels on built-in database/query samples cause a warning and that sample is skipped to avoid a panic. Cumulative database/collector counters are exposed as Gauges. Replanning a server resets collector statistics; configuration reload also triggers replanning. Recreating a database connection object resets that database's statistics.
 
 `--disable-intro` suppresses all built-in metrics in this table, including `pg_up`. YAML metrics, Go/process metrics, and HTTP health endpoints remain available.
 

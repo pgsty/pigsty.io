@@ -21,7 +21,7 @@ categories: [Reference]
 - [**Observability**](/img/pigsty/dashboard.jpg): [**Prometheus**](/docs/infra#victoria-observability-suite) and [**Grafana**](/docs/infra#grafana) provide a modular monitoring stack that can operate independently. See the [**Gallery**](https://github.com/pgsty/pigsty/wiki/Gallery) and [**Demo**](https://demo.pigsty.io).
 - [**Availability**](/img/pigsty/ha.png): Deliver stable, reliable, auto-routed, transaction-pooled, read-write separated high-performance database [**services**](/docs/pgsql/service#default-service), with flexible [**access**](/docs/pgsql/service#access-service) modes via HAProxy, Pgbouncer, and VIP.
 - [**Maintainability**](/img/pigsty/iac.jpg): [**Easy to use**](/docs/setup/install), [**Infrastructure as Code**](/docs/pgsql/config), [**Management SOPs**](/docs/pgsql/admin/), auto-tuning, local software repository, [**Vagrant**](/docs/deploy/vagrant) [**sandbox**](/docs/deploy/sandbox) and [**OpenTofu**](/docs/deploy/terraform) templates, zero-downtime [**migration**](/docs/pgsql/migration) solutions.
-- [**Composability**](/img/pigsty/sandbox.png): [**Modular**](/docs/concept/arch#modules) architecture design, reusable [**Infra**](/docs/infra), various optional [**modules**](/docs/ref/module/): [**Redis**](/docs/redis), [**Silo object storage**](/docs/minio), [**ETCD**](/docs/etcd), [**DuckDB**](/docs/pilot/duckdb/), [**Docker**](/docs/app/), [**Supabase**](https://github.com/pgsty/pigsty/tree/main/app/supabase).
+- [**Composable**](/img/pigsty/sandbox.png): a [**modular**](/docs/concept/arch#modules) architecture with reusable [**Infra**](/docs/infra) and optional [**modules**](/docs/ref/module/): [**Vault**](/docs/vault), [**Redis**](/docs/redis), [**Silo object storage**](/docs/minio), [**ETCD**](/docs/etcd), [**DuckDB**](/docs/pilot/duckdb/), [**Docker**](/docs/app/), and [**Supabase**](https://github.com/pgsty/pigsty/tree/main/app/supabase).
 
 ![Pigsty feature overview](/img/pigsty/banner.png)
 
@@ -34,7 +34,7 @@ Pigsty is a local, open-source alternative to PostgreSQL RDS:
 
 - [Battery-Included RDS](#battery-included-rds): From kernel to RDS distribution, providing production-grade PG database services for versions 14-18 on EL/Debian/Ubuntu.
 - [Rich Extensions](#rich-extensions): {{< param pgext_count >}} extensions provide distributed, time-series, geospatial, graph, vector, and multi-model capabilities.
-- [Flexible Modular Architecture](#flexible-modular-architecture): Compose Redis, Etcd, and Silo object-storage modules with PostgreSQL modes such as Mongo; monitor existing RDS, hosts, and databases independently.
+- [Flexible modular architecture](#flexible-modular-architecture): combine Vault, Redis, Etcd, Silo object storage, and PostgreSQL modes such as Mongo; independently monitor existing RDS instances, hosts, and databases.
 - [Stunning Observability](#stunning-observability): Monitor databases with the Prometheus/Grafana observability stack.
 - [Battle-Tested Reliability](#battle-tested-reliability): Self-healing high-availability architecture: automatic failover on hardware failure, seamless traffic switching. With auto-configured PITR as safety net for accidental data deletion!
 - [Easy to Use and Maintain](#easy-to-use-and-maintain): Declarative APIs, GitOps, Database/Infra-as-Code, and management SOPs simplify operations.
@@ -62,8 +62,8 @@ PostgreSQL integrates ecosystem tools and best practices:
 
 PostgreSQL provides the database kernel. A database service also needs operational tools, which Pigsty integrates. These include extension installation, connection pooling, load balancing, service access, high availability, failover, logs, metrics, and alerts. Pigsty also provides backups, recovery, PITR, access control, tuning, encryption, certificates, NTP, and DNS. Configuration management, CMDB, and management playbooks complete the service infrastructure.
 
-
-Pigsty supports PostgreSQL 14 ~ 18 and compatible forks on EL, Debian, Ubuntu, and [compatible distributions](/docs/ref/linux). It supports x86_64 and ARM64 without requiring containers. Alongside kernels and extensions, it supplies database infrastructure and runtime services. It includes automatic deployment for local sandboxes, production environments, and cloud IaaS.
+Pigsty provides stable support for PostgreSQL 14–18 and compatible forks, plus a PostgreSQL 19 Beta trial template. It runs on EL, Debian, Ubuntu, and [compatible Linux distributions](/docs/ref/linux), on both x86_64 and ARM64, without requiring containers.
+Besides database kernels and ready-to-use extensions, Pigsty provides the infrastructure and runtime needed for database services, along with automated deployment for local sandboxes, production servers, and cloud IaaS.
 
 Pigsty can initialize an environment from bare metal with one command. Developers and operations engineers can use it to manage production databases without dedicated database experts.
 
@@ -96,7 +96,8 @@ Using PostgreSQL in place of separate MySQL, Kafka, ElasticSearch, MongoDB, and 
 
 Pigsty components are independently deployable [**modules**](/docs/ref/module/). Combine them for your requirements. [**`INFRA`**](/docs/infra) provides monitoring; [**`NODE`**](/docs/node) configures and manages nodes. [**`PGSQL`**](/docs/pgsql) on multiple nodes forms a primary-replica HA cluster. [**`ETCD`**](/docs/etcd) provides its consensus and metadata storage.
 
-Optional modules extend the four [core modules](/docs/ref/module#core-modules). [**`MINIO`**](/docs/minio) deploys Silo for local object storage and centralized database backups. [**`REDIS`**](/docs/redis/) provides standalone primary-replica, sentinel, and native cluster modes. [**`DOCKER`**](/docs/docker) runs stateless applications.
+In addition to the four [core modules](/docs/ref/module#core-modules), Pigsty provides optional modules: [**`VAULT`**](/docs/vault) deploys highly available secrets storage and key management with OpenBao; [**`MINIO`**](/docs/minio) deploys Silo for local object storage and centralized database backups.
+[**`REDIS`**](/docs/redis/) supports standalone primary/replica, Sentinel, and native cluster deployments. [**`DOCKER`**](/docs/docker) runs stateless applications.
 
 Pigsty supports compatible PostgreSQL kernels and derivatives. [**`Babelfish`**](/docs/pgsql/kernel/babelfish) provides MS SQL Server compatibility; [**`IvorySQL`**](/docs/pgsql/kernel/ivorysql) provides Oracle compatibility. [**`OpenHaloDB`**](/docs/pgsql/kernel/openhalo) provides MySQL compatibility. [**`OrioleDB`**](/docs/pgsql/kernel/orioledb) targets high OLTP performance.
 
@@ -118,7 +119,7 @@ More professional/pilot modules will be continuously introduced to Pigsty, such 
 
 Pigsty [**monitoring**](/docs/pgsql/monitor) uses Grafana for visualization, VictoriaMetrics for metrics, and VictoriaLogs for log collection and queries. Alertmanager sends alerts, and Blackbox Exporter checks service availability. The INFRA module deploys this Grafana / Prometheus-compatible stack with one command.
 
-Pigsty automatically monitors every managed component: host nodes, HAProxy load balancers, PostgreSQL databases, PgBouncer connection pools, Etcd metadata stores, Redis-compatible caches, Silo object storage, and the monitoring infrastructure itself. Grafana dashboards and preset alert rules provide immediate operational visibility. The same stack can also monitor applications, existing database instances, and cloud RDS services.
+Every component managed by Pigsty is automatically monitored: hosts, HAProxy load balancers, PostgreSQL databases, Pgbouncer pools, ETCD metadata stores, Vault secrets management, Redis caches, Silo object storage, and the monitoring infrastructure itself. Grafana dashboards and predefined alert rules provide detailed visibility. You can also reuse the stack to monitor your applications, existing databases, or RDS instances.
 
 Monitoring supports failure analysis, slow query optimization, capacity assessment, and resource planning. More than three thousand metric types describe the system. Pigsty processes, aggregates, and presents them in dashboards. Views range from global summaries to CRUD details for tables, indexes, and functions. Navigate between levels and objects to examine current state and history and estimate future trends.
 

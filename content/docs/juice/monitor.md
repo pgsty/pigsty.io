@@ -25,10 +25,13 @@ Grafana Dashboard
 If [`INFRA`](/docs/infra) is deployed, `juice_register` writes scrape targets to:
 
 ```text
-/infra/targets/juice/<hostname>.yml
+/infra/targets/juice/<ip>.yml
 ```
 
-The current source includes the [Node JuiceFS](https://demo.pigsty.io/d/node-juice) dashboard (UID: `node-juice`). It shows capacity, cache, object-storage, metadata-transaction, and client-resource metrics for JuiceFS mounts on a node.
+This file is rewritten from the full node configuration and contains only `state: create` instances. It is deleted if none remain. `juice_clean` updates or removes it during instance cleanup; [`node-rm.yml`](/docs/node/playbook#node-rmyml) also deletes it when decommissioning the node.
+
+The source includes the [**Node JuiceFS**](https://demo.pigsty.io/d/node-juice) dashboard (UID: `node-juice`),
+which shows capacity, cache, object storage, metadata transactions, and client resource metrics for JuiceFS mounts on a single node.
 
 --------
 
@@ -89,3 +92,11 @@ Object storage P99 latency:
 ```promql
 histogram_quantile(0.99, rate(juicefs_object_request_durations_histogram_seconds_bucket[5m]))
 ```
+
+--------
+
+## Alerts
+
+JuiceFS currently has no dedicated alert rules. The general `AgentDown` alert covers instance availability: the `agent_up` recording rule includes `job="juice"` targets, and a scrape failure lasting 1 minute triggers a `CRIT` alert. See [**INFRA Monitoring**](/docs/infra/monitor/).
+
+A scrape failure does not necessarily indicate a failed mount. If another process occupies the metrics port, JuiceFS logs `listen on ... failed` and continues mounting; the filesystem works without metrics. Check `journalctl -u juicefs-<name>`.

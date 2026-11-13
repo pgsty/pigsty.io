@@ -20,37 +20,18 @@ Deploy Babelfish in `mssql` mode to add these features to PostgreSQL:
 - T-SQL compatibility
 - Unified integration with Pigsty capabilities (HA, backup, monitoring, IaC)
 
-Pigsty provides **PostgreSQL 17/18**-compatible Babelfish packages. The template defaults to `pg_version: 17`. See the [package lists](/docs/repo/pgsql/) for version and platform availability.
+Pigsty provides Babelfish packages compatible with **PostgreSQL 17/18**. The current PG18 baseline is Babelfish `6.2.0` on PostgreSQL `18.6`; the default `conf/fork/mssql.yml` template selects `pg_version: 17`. See the [**package list**](/docs/repo/pgsql/) for platform availability.
 
-`./configure -c mssql` ignores `-v`. To select PG18, explicitly adjust the generated configuration and check packages. In development sources, `-v` overrides the version for `fork/mssql`; see the [MSSQL template](/docs/conf/mssql/).
-
-
---------
-
-## Current Behavior
-
-The current behavior differs from older `Babelfish/PG15` documentation as follows:
-
-- Supported kernel majors are **PG17/18**; the template defaults to **PG17** (`pg_version: 17`)
-- Default package group: `babelfish + pgsql-common + sqlcmd`
-- Mainstream platform coverage:
-  - OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
-  - Arch: `x86_64`, `aarch64`
-- `mssql` template no longer requires an extra `mssql` repo module (defaults to `node,infra,pgsql`)
-
-> Older docs may still contain deprecated naming. Pigsty now consistently uses `Babelfish` and `babelfish` aliases.
-
+`./configure` explicitly excludes `fork/mssql` and shorthand `-c mssql` from `-v` major-version overrides. To use PG18, generate `pigsty.yml`, manually set `pg_version: 18`, and verify target-platform packages. See the [**MSSQL template**](/docs/conf/mssql/).
 
 --------
 
 ## Quick Start
 
-Use the built-in Pigsty template:
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mssql.yml). Development sources moved it to `conf/fork/mssql.yml`; use `-c fork/mssql` with those sources.
+Use Pigsty's [`fork/mssql`](/docs/conf/mssql/) template ([`conf/fork/mssql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/mssql.yml)); `-c mssql` and `-c fork/mssql` are equivalent:
 
 ```bash
-./configure -c mssql
+./configure -c fork/mssql
 ./deploy.yml
 ```
 

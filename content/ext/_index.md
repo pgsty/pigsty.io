@@ -3,7 +3,7 @@ title: PG Extension Catalog
 linkTitle: PG Extension Catalog
 icon: fas fa-puzzle-piece
 description: >
-  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 626 PG ecosystem extensions for out-of-the-box use.
+  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 625 PG ecosystem extensions for out-of-the-box use.
 weight: 100
 outputs:
   - HTML
@@ -15,7 +15,7 @@ cascade:
 
 Pigsty provides the following three pieces of infrastructure to help users harness the collaborative superpowers of the PostgreSQL extension ecosystem:
 
-- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**626 packaged extensions**](/ext/list)
+- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**625 packaged extensions**](/ext/list)
 - [**Extension Repository**](/docs/repo/pgsql): Get pre-built RPM/DEB binary packages, available on [**16 Linux systems**](/ext/os)
 - [**Package Manager**](https://pig.pgsty.com): Use the [`pig`](https://pig.pgsty.com) CLI tool to abstract away OS and architecture differences
 
@@ -34,7 +34,7 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 ## Key Features
 
-- **Quantity**: Unparalleled extension count: **626 packaged extensions**, the most in the PG extension ecosystem
+- **Quantity**: Unparalleled extension count: **625 packaged extensions**, the most in the PG extension ecosystem
 - **Quality**: Native Linux RPM/DEB packages, fully compatible with PGDG packaging standards
 - **Ease of Use**: Provides the [**`pig`**](https://pig.pgsty.com) package manager, abstracting away OS and architecture differences for out-of-the-box use
 - **Compatibility**: Extensions are fully compatible with PGDG packaging standards, seamlessly usable with PGDG repositories
@@ -48,8 +48,8 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 | **Type** | **All** | **PGDG** | **PIGSTY** | **CONTRIB** | | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
 |:------:|:------:|:------:|:------:|:------:|:---:|:------:|:------:|:------:|:------:|:------:|
-| **ALL** | 626 | 148 | 448 | 71 | | 617 | 604 | 586 | 552 | 525 |
-| **EL** | 624 | 145 | 408 | 71 | | 615 | 602 | 584 | 551 | 525 |
+| **ALL** | 625 | 147 | 448 | 71 | | 616 | 603 | 585 | 552 | 525 |
+| **EL** | 624 | 144 | 409 | 71 | | 615 | 602 | 584 | 551 | 525 |
 | **Debian** | 618 | 114 | 433 | 71 | | 610 | 596 | 579 | 547 | 523 |
 {.ext-table .wide .expand}
 

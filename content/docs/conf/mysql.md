@@ -7,12 +7,9 @@ icon: fa-solid fa-database
 categories: [Reference]
 ---
 
-Current development sources use `conf/fork/halo.yml`, selected with `-c halo` or `-c fork/halo`.
-The OpenHalo template is named `halo` to distinguish it from the native MySQL example, selected with `mysql` / `demo/mysql`.
-The v4.5.0 release package still uses `conf/mysql.yml` and `-c mysql`.
+The `halo` template (`conf/fork/halo.yml`, selected with `-c halo` or `-c fork/halo`) replaces native PostgreSQL with OpenHalo, which provides MySQL wire protocol and SQL syntax compatibility.
 
-The `halo` configuration template uses the OpenHalo database kernel instead of native PostgreSQL. OpenHalo provides MySQL wire protocol and SQL syntax compatibility.
-
+In Pigsty `v4.6.0`, `-c mysql` (or `-c demo/mysql`) selects the native MySQL 8.4 example [`conf/demo/mysql.yml`](/docs/conf/mysql84/). Use `-c halo` for OpenHalo.
 
 --------
 
@@ -23,7 +20,7 @@ The `halo` configuration template uses the OpenHalo database kernel instead of n
 - Description: OpenHalo MySQL-compatible kernel configuration
 - OS Distro: EL 8/9/10, Debian 12/13, Ubuntu 22/24/26
 - OS Arch: `x86_64`, `aarch64`
-- Related: [`meta`](/docs/conf/meta/)
+- Related templates: [`meta`](/docs/conf/meta/), [`demo/mysql`](/docs/conf/mysql84/)
 
 Usage:
 
@@ -36,7 +33,7 @@ Usage:
 
 ## Content
 
-Development source: [`conf/fork/halo.yml`](https://github.com/pgsty/pigsty/blob/d3f3aaeeb34c10be967dd34880b67d68f34b26ff/conf/fork/halo.yml); release source: [`v4.5.0: conf/mysql.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml).
+Source: [`pigsty/conf/fork/halo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/halo.yml)
 
 {{< include file="yaml/fork/halo.yml" code=true lang="yaml" >}}
 

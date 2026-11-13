@@ -8,7 +8,7 @@ categories: [Task]
 aliases: [/docs/pgsql/tutorial/instance/]
 ---
 
-Pigsty v4.5.0 provides two local shell utilities:
+Pigsty v4.6.0 provides two local shell utilities:
 
 - [`pg-fork`](#pg-fork) copies a PostgreSQL data directory and gives the copy a separate port.
 - [`pg-pitr`](#pg-pitr) invokes pgBackRest to restore a **stopped** data directory to a selected target.
@@ -75,10 +75,7 @@ It does not abort.
 A cold copy is safe only after you independently confirm that the source instance has fully stopped.
 A `postmaster.pid` warning alone does not prove the process state.
 
-On the same filesystem, the script recognizes XFS with reflink enabled, Btrfs, Bcachefs, and OCFS2 as fast CoW modes.
-Other filesystems or cross-filesystem destinations still use `cp --reflink=auto`, but may require a full copy.
-The help text describes ZFS support more broadly than the detector.
-The v4.5.0 implementation does not classify ZFS as a confirmed fast-CoW mode.
+On the same filesystem, the script recognizes reflink-enabled XFS, Btrfs, Bcachefs, and OCFS2 as fast CoW modes. Other filesystems or cross-filesystem targets still use `cp --reflink=auto`, which may fall back to a full copy. The help text describes ZFS more broadly than current detection; the implementation does not mark ZFS as a confirmed fast CoW mode.
 
 ### Clone Configuration
 

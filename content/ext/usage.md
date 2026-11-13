@@ -12,7 +12,7 @@ Pigsty provides three pieces of infrastructure to help users harness the collabo
 - [**Extension Repository**](/docs/repo/pgsql): Get pre-built RPM/DEB binary packages, available on [**16 Linux system and architecture combinations**](/ext/os)
 - [**Package Manager**](/docs/pig): Use the [`pig`](/docs/pig) CLI tool to abstract away OS and architecture differences for one-click extension installation
 
-The full [**PGEXT.CLOUD directory**](https://pgext.cloud/) lists **2,622 extensions**, including these **600 packaged extensions**. Package availability depends on the operating system, architecture, and PostgreSQL version.
+The full [**PGEXT.CLOUD directory**](https://pgext.cloud/) lists **2,740 extensions**, including **{{< param pgext_count >}} packaged extensions**. Package availability depends on the operating system, architecture, and PostgreSQL version.
 
 --------
 

@@ -18,7 +18,6 @@ Pigsty maintains a self-signed Certificate Authority (CA) on the admin node by d
 The `ca` stage of `infra.yml` creates or reuses the CA **locally on the admin node running Ansible**. It does not create the CA on a remote Infra node. The default layout is:
 
 ```text
-files/pki/
 ├── ca/                       # CA key, certificate, and OpenSSL CA state
 │   ├── ca.key
 │   └── ca.crt
@@ -31,10 +30,11 @@ files/pki/
 ├── mongo/
 ├── mysql/
 ├── nginx/
-└── pgsql/
+├── pgsql/
+└── vault/                    # VAULT (OpenBao) certificates (0700)
 ```
 
-The core defaults match the v4.5.0 roles:
+Core parameter defaults:
 
 | Parameter               | Default     | Meaning                                           |
 |:------------------------|:------------|:--------------------------------------------------|
@@ -155,7 +155,9 @@ openssl x509 -in files/pki/misc/myservice.crt -noout -subject -issuer -dates -ex
 openssl verify -CAfile files/pki/ca/ca.crt files/pki/misc/myservice.crt
 ```
 
-For PostgreSQL client certificates, `cn` must match the database role expected by HBA/cert authentication. Install the certificate, key, and root certificate on the client. Set the private key permissions to `0600`. With `sslmode=verify-full`, the connection hostname must appear in the server certificate SAN.
+A PostgreSQL client certificate's `cn` must match the database role expected by HBA/cert authentication. Install its private key with mode `0600`. With `sslmode=verify-full`, the destination hostname or IP must appear in the server certificate's SANs.
+
+On first issuance, PostgreSQL server certificates (`files/pki/pgsql/<cls>-<seq>.crt`) include `localhost`, `<pg_cluster>`, `<pg_cluster>-<pg_seq>`, `<pg_cluster><pg_dns_suffix>`, instance IP, cluster VIP (`pg_vip_address`), and node VIP (`vip_address`). Nginx self-signed certificates (`files/pki/nginx/pigsty.crt`) include `i.pigsty`, `localhost`, all `domain` / `domains` values in `infra_portal`, all `infra` node IPs, and node `vip_address` when `vip_enabled`. Existing same-name `.crt` files on the control node skip reissuance. After changing domains or VIPs, remove the corresponding old files, such as `files/pki/nginx/pigsty.{key,crt}` or `files/pki/pgsql/<cls>-<seq>.{key,crt}`, then rerun `./infra.yml -l infra -t nginx_cert,nginx_reload` or `./pgsql.yml -l <cls> -t pg_cert` and reload the service.
 
 --------
 
@@ -196,9 +198,9 @@ Infra Nginx normally exposes the public CA certificate at `http://<infra_ip>/ca.
 
 ## Nginx and Let's Encrypt
 
-Each `infra_portal` entry can name a `certbot` certificate. Pigsty's `/etc/nginx/sign-cert` uses Certbot webroot mode. It groups `domain` and `domains` entries that share a certificate name. Then `/etc/nginx/link-cert` links the resulting certificate into Nginx.
+Each `infra_portal` entry can specify a `certbot` certificate name. `/etc/nginx/sign-cert` uses Certbot `webroot`, combines `domain` and `domains` for each certificate name, then calls `/etc/nginx/link-cert` and validates with `nginx -t`.
 
-`sign-cert` uses `--expand` for existing certificates. Check the certificate domain set separately when removing aliases. `link-cert` selects a Certbot certificate based only on whether its private-key file exists; it does not validate expiration or hostnames. Check the actual certificate SANs and validity after deployment.
+For existing certificates, `sign-cert` uses `--renew-with-new-domains` to match the configured domain set exactly. `link-cert` requires nonempty `fullchain.pem` / `privkey.pem`, a nonexpired certificate (`openssl x509 -checkend 0`), and a match for the portal's primary `domain` (`openssl x509 -checkhost`). Any failure falls back to `/etc/nginx/conf.d/cert/pigsty.{crt,key}`. After deployment, still inspect the full SAN list and validity period.
 
 Prerequisites:
 
@@ -231,7 +233,7 @@ dig +short example.com
 ```
 
 > [!WARNING] Verify issuance separately
-> In v4.5.0, the `nginx_certbot` task has `ignore_errors: true`. A playbook that continues or reports overall success does not prove certificate issuance. Inspect Certbot state, certificate files, Nginx configuration, and a real TLS handshake.
+> `nginx_certbot` uses `ignore_errors: true`. A continuing or successful playbook does not prove certificate issuance. Check Certbot state, certificate files, Nginx configuration, and an actual TLS handshake.
 
 ```bash
 certbot certificates
@@ -247,7 +249,7 @@ systemctl list-timers --all | grep -i certbot
 certbot renew --dry-run
 ```
 
-Replacing certificate files does not make Nginx load them automatically. Check that the renewal hook runs `nginx -t && systemctl reload nginx.service` after successful issuance. If missing, add this step to the existing Certbot renewal task.
+Updating certificate files alone does not reload them into Nginx. During `nginx_config`, Pigsty writes `/etc/letsencrypt/renewal-hooks/deploy/10-reload-nginx` from `roles/infra/templates/nginx/certbot-deploy-hook`. After successful renewal, it runs `/etc/nginx/link-cert`, `nginx -t`, and `systemctl reload nginx.service`. With an external renewal mechanism, ensure it uses this hook directory or performs the same three steps.
 
 --------
 

@@ -1,15 +1,13 @@
 ---
 title: demo/minio
 weight: 1040
-description: Four-node x four-drive HA S3 object-storage cluster demo; current source defaults to Silo.
+description: A four-node, four-drive-per-node HA S3 object storage example, using Silo by default.
 icon: fa-solid fa-box-archive
 categories: [Reference]
 aliases: [/docs/conf/rustfs/]
 ---
 
-`demo/minio` demonstrates a highly available S3 object-storage cluster. The cluster has four nodes and four drives per node, for a total of 16 drives.
-
-The template retains MINIO module names for compatibility and explicitly sets `minio_type: silo`. The current v4.5.0 source accepts only this value. The deployment and removal roles both default to `silo`. Before removal, verify this value, the exact target, the cluster identity, and the data paths.
+The `demo/minio` template deploys a four-node HA S3 object storage cluster with four drives per node, for sixteen drives in total. It retains the MINIO module's compatibility naming and explicitly sets `minio_type: silo`. Pigsty `v4.6.0` accepts only this value, and both deployment and removal roles default to `silo`. Before removal, verify this value along with the exact targets, cluster identity, and data drive paths.
 
 For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 
@@ -20,7 +18,7 @@ For more tutorials, see the **[MINIO](/docs/minio/)** module documentation.
 
 - Config Name: `demo/minio`
 - Node Count: Four nodes
-- Description: High-availability multi-node multi-drive S3 object-storage demo (currently defaults to Silo)
+- Description: HA S3 object storage with multiple nodes and drives (Silo by default)
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
 - OS Arch: `x86_64`, `aarch64`
 - Related: [`meta`](/docs/conf/meta/)

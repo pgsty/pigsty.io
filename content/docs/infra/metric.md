@@ -46,7 +46,7 @@ Blackbox Exporter's own metrics belong to `job=infra`. ICMP `probe_*` metrics pr
 | Metric | Source Expression | Meaning |
 |:---|:---|:---|
 | `infra_up` | `up{job="infra"}` | Whether an infrastructure scrape endpoint is reachable |
-| `agent_up` | `up{job!~"infra\|node\|etcd\|minio\|pgsql\|redis\|mysql"}` | Reachability of targets outside the excluded jobs |
+| `agent_up` | `up{job!~"infra\|node\|etcd\|vault\|minio\|pgsql\|redis\|mysql"}` | Reachability of scrape targets other than the listed jobs |
 {.full-width}
 
 `infra_up` and `agent_up` are recording rules, absent from components' raw `/metrics` output. The exclusion list above defines the scope of `agent_up`: it does not exclude jobs such as `kafka`, `ping`, or `pgrds`, and does not cover exporters already in `node` or `pgsql`. `up=1` indicates only successful scraping. Assess functional service health with `nginx_up`, probe results, or component metrics.
@@ -55,7 +55,7 @@ The `InfraDown` and `AgentDown` alerts fire when their respective metrics stay b
 
 ## Shared Liveness Recording Rules
 
-In addition to module rules, [`roles/infra/templates/victoria/agent.yml`](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/victoria/agent.yml) generates **14 shared liveness rules**, deployed to `/infra/rules/agent.yml`. The table retains template expressions; configuration variables render the ports. All derive from collector-generated `up` and indicate scrape success, not necessarily successful database queries, quorum, or application requests.
+In addition to module rules, [`roles/infra/templates/victoria/agent.yml`](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/victoria/agent.yml) generates **15 shared liveness rules**, deployed to `/infra/rules/agent.yml`. The table retains template expressions; configuration variables render the ports. All derive from collector-generated `up` and indicate scrape success, not necessarily successful database queries, quorum, or application requests.
 
 | Recorded Metric | Template Expression |
 |:---|:---|
@@ -65,6 +65,7 @@ In addition to module rules, [`roles/infra/templates/victoria/agent.yml`](https:
 | `docker_up` | `up{instance=~".*:{{ docker_exporter_port\|default('9323') }}"}` |
 | `vector_up` | `up{instance=~".*:{{ vector_port\|default('9598') }}"}` |
 | `etcd_up` | `up{job="etcd"}` |
+| `vault_up` | `up{job="vault"}` |
 | `minio_up` | `up{job="minio"}` |
 | `pg_exporter_agent_up` | `up{instance=~".*:{{ pg_exporter_port\|default('9630') }}"}` |
 | `pgbouncer_exporter_agent_up` | `up{instance=~".*:{{ pgbouncer_exporter_port\|default('9631') }}"}` |

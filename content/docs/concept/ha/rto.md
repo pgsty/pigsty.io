@@ -61,25 +61,24 @@ Select one of four RTO presets for the network conditions.
 | **Configuration**       |                 `pg_rto: fast`                 |                `pg_rto: norm`                |               `pg_rto: safe`                |                 `pg_rto: wide`                 |
 {.full-width .wide .expand}
 
-
 > [!IMPORTANT] fast: Same Rack/Switch
 > - Use for stable networks below 1ms latency, such as one rack or switch.
-> - Average RTO: **14s**; worst case: **29s**. TTL is 20s; check interval is 5s.
+> - Mean passive/active RTO: **23s** / **24s**, worst case **29s**; TTL 20s, detection interval 5s, restart wait 15s
 > - This needs the best network quality. Jitter can trigger failover, so **false failover risk is higher**.
 
 > [!TIP] norm: Same Datacenter (Default)
 > - **Default mode** for normal same-datacenter networks, 1–5ms latency, and reasonable packet loss.
-> - Average RTO: **21s**; worst case: **43s**. TTL is 30s, allowing some network variation.
+> - Mean passive/active RTO: **34s** / **35s**, worst case **41s**; TTL 30s, restart wait 25s, providing a reasonable fault-tolerance window
 > - This balances recovery speed and stability for most production environments.
 
 > [!NOTE] safe: Same Region, Cross-Datacenter
 > - Use for same-region or same-area datacenters with 10–50ms latency and occasional jitter.
-> - Average RTO: **43s**; worst case: **91s**. TTL is 60s.
-> - The 60s primary restart wait allows more local recovery time and **reduces false failover risk**.
+> - Mean passive/active RTO: **66s** / **61s**, worst case **78s** (active worst case 73s); TTL 60s, with a longer fault-tolerance window
+> - The 45s primary restart wait allows more local recovery time and **reduces false failover risk**.
 
 > [!CAUTION] wide: Cross-Region/Continent
 > - Use across regions or continents with 100–200ms latency and possible public-network packet loss.
-> - Average RTO: **92s**; worst case: **207s**. TTL is 120s.
+> - Mean passive/active RTO: **127s** / **122s**, worst case **150s** (active worst case 145s); TTL 120s, restart wait 95s, with a wide fault-tolerance window
 > - Slower recovery provides a very low false failover rate for geographic disaster recovery.
 
 --------

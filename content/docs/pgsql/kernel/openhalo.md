@@ -22,17 +22,12 @@ Pigsty supports OpenHalo deployment on all supported Linux platforms.
 
 ## Quick Start
 
-Prepare a Pigsty working directory with the [**standard installation flow**](/docs/setup/install), then select the [`halo`](/docs/conf/mysql) template.
-
-The configuration commands below apply to current development sources containing `conf/fork/halo.yml`; `-c halo` and `-c fork/halo` are equivalent.
-The [v4.5.0 release package](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mysql.yml) still uses `-c mysql`.
-In current development sources, `-c mysql` selects the native MySQL example.
+Prepare the workspace through Pigsty's [**standard installation**](/docs/setup/install), then select [`fork/halo`](/docs/conf/mysql/) ([`conf/fork/halo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/halo.yml)). `-c halo` and `-c fork/halo` are equivalent; `-c mysql` selects the native MySQL pilot `conf/demo/mysql.yml`:
 
 ```bash
-./configure -c halo     # Use the OpenHalo template
+./configure -c fork/halo # use the OpenHalo template
 ./deploy.yml            # Install (change passwords in pigsty.yml before production use)
 ```
-
 
 ------
 
@@ -60,13 +55,7 @@ pg-meta:
     pg_packages: [ openhalo, pgsql-common ]
 ```
 
-The OpenHalo extension `aux_mysql` provides functions and types for MySQL compatibility.
-Enable it in the `postgres` database for full compatibility behavior.
-
-- aux_mysql 1.5: MySQL Supplementary Extension
-- `/usr/halo-14/share/postgresql/extension/aux_mysql.control`
-- `$libdir/mysm`, `mysm.so`
-
+OpenHalo's `aux_mysql` extension supplies MySQL compatibility functions and types. Enable it for the `postgres` database in `pg_databases`. At runtime, `aux_mysql` uses `PGDATA` to locate data-directory resources. With `pg_mode: mysql`, Pigsty injects `Environment="PGDATA={{ pg_data }}"` into `patroni.service` (default `/pg/data`). Preserve this variable when starting manually or using custom systemd units.
 
 ------
 

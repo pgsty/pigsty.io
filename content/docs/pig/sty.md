@@ -100,7 +100,8 @@ PIG selects a source as follows:
 
 - `--path` accepts a local archive or an HTTP(S) URL. URL credentials are rejected, and a bad
   explicit source is a hard error rather than an online fallback.
-- An automatically discovered `/tmp/pkg.tgz` must be a regular, non-group/world-writable file
+- Auto-discovery checks `/var/tmp/pkg.tgz` first and uses `/tmp/pkg.tgz` only when the preferred file is absent. An unreadable or unsafe preferred file
+  does not trigger fallback. The archive must be a regular file, not writable by group or others, and owned by root or the user initiating
   owned by root or the invoking sudo user. Unsafe candidates are ignored with a warning.
 - A complete `/www/pigsty` repository takes precedence over a selected package. If both exist,
   the existing repository is reused and the package is left untouched with a warning.
@@ -158,8 +159,7 @@ YAML command output.
 
 ### Template and output paths {#template-and-output-paths}
 
-Ordered short-name lookup is available in the current development source. Older PIG binaries
-may require the exact template mode supported by that release, such as `ha/full`.
+PIG `v1.11.0` adds the ordered shorthand lookup below. `v1.10.x` and earlier require the full relative template name, such as `ha/full`.
 
 Template names are relative to `<PIGSTY_HOME>/conf`. Bare names search for a `.yml` file in this order:
 
@@ -187,14 +187,18 @@ The command applies these changes to the template:
 |-------|-----------------|
 | `--ip A,B,...` | Replaces `10.10.10.10` through `10.10.10.19` with up to ten distinct addresses, in order. Replacements are simultaneous; other VIPs remain unchanged. |
 | no `--ip` | Detects local interfaces. Interactive mode asks when selection is ambiguous; `--non-interactive` or closed stdin fails with guidance to pass `--ip`. |
-| `--domain NAME` | Replaces only the exact `i.pigsty` token, not names such as `cli.pigsty` or `i.pigsty.cc`; NAME must be a valid DNS domain. |
+| `--domain NAME` | Replaces only the exact `i.pigsty` token, not names such as `cli.pigsty` or `i.pigsty.io`; NAME must be a valid DNS domain. |
 | small controller | When detected CPU count is below four, rewrites `node_tune: oltp` and `pg_conf: oltp.yml` to their `tiny` profiles. |
-| `--region REGION` | Updates `all.vars.region` for non-default regions. `china` also activates template-provided Docker and pip mirrors, using values already present in the template. |
+| `--region REGION` | Write the selected region to `all.vars.region`, including `default`; `china` also enables existing Docker and pip mirror values in the template. |
 | `--proxy` | Reads `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, and `NO_PROXY`, each falling back to its lowercase spelling. Missing HTTP/HTTPS values fall back to ALL_PROXY. Writes non-empty values to `all.vars.proxy_env` and supplies a default no-proxy list when needed. |
 | `--version MAJOR` | Updates generic templates for PostgreSQL 14-18, or explicit 19 beta, and selects the matching locale. Version-pinned `fork/mssql`, `fork/polar`, legacy root `mssql`/`polar`, and root `pgNN` modes keep their template version and report a warning. |
 | `--generate` | Generates one 24-character value per known credential identifier and consistently replaces its active values and documented placeholders. |
 
 An IP mapping that creates a duplicate key fails. PIG warns if a supplied address has no matching placeholder in the template.
+
+Explicit `--region` or `--mirror` takes precedence; otherwise the region is detected. The selected value overwrites the template region in either direction:
+even a `china` template receives `default` when that is detected. The reported region matches the value written.
+If the template omits region and the selected value is `default`, retain the implicit default.
 
 For PostgreSQL 19 beta, Pig also enables the `beta` repository after `pgsql` when the template
 contains the expected repository list. Modes below `conf/build/` intentionally bypass IP mapping

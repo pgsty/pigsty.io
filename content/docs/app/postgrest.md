@@ -9,24 +9,17 @@ categories: [Reference]
 
 [PostgREST](https://postgrest.org/) exposes PostgreSQL schemas directly as REST APIs.
 
-Pigsty provides the `app/postgrest` template as a Pigsty CMDB API example using the read-only `dbuser_view` role. It publishes port `8884` on all host interfaces by default. Restrict it to loopback as shown below before starting.
+Pigsty's `app/postgrest` template exposes a sample Pigsty CMDB API through the read-only `dbuser_view` user. Compose binds `POSTGREST_SERVER_PORT` (default `8884`) to host loopback `127.0.0.1` only.
 
 ## Quick Start
 
 ```bash
 cd ~/pigsty/app/postgrest
-vi .env         # check DB_URI / DB_SCHEMA / JWT
-vi docker-compose.yml
+vi .env         # check POSTGREST_DB_URI / DB_SCHEMA / JWT_SECRET / SERVER_PORT
+make up
 ```
 
-Replace the `postgrest` service's port mapping with:
-
-```yaml
-ports:
-  - "127.0.0.1:${POSTGREST_SERVER_PORT}:${POSTGREST_SERVER_PORT}"
-```
-
-Then run `make up`. After this change:
+Default endpoint:
 
 - Direct endpoint: `http://127.0.0.1:8884`
 - For remote access, use an SSH tunnel or an authenticated Nginx portal at `http://api.pigsty`
@@ -35,12 +28,13 @@ Then run `make up`. After this change:
 
 Common `.env` parameters:
 
+- `POSTGREST_SERVER_PORT`: service listening port and loopback mapping port, default `8884`
 - `POSTGREST_DB_URI`: database connection string
 - `POSTGREST_DB_SCHEMA`: exposed schema (default `pigsty`)
 - `POSTGREST_DB_ANON_ROLE`: anonymous role
 - `POSTGREST_JWT_SECRET`: JWT secret
 
-Set `POSTGREST_JWT_SECRET` to a random value of at least 32 characters. A JWT secret alone does not disable anonymous access: `POSTGREST_DB_ANON_ROLE` still determines database privileges for unauthenticated requests. Start with `make up` to apply Compose settings; `make run` is a separate `docker run` command and does not use the port mapping above.
+Set `POSTGREST_JWT_SECRET` to a random value of at least 32 characters. Setting a JWT secret alone does not disable anonymous access; `POSTGREST_DB_ANON_ROLE` still determines permissions for unauthenticated requests. `make run` is an alias for `make up` and uses the same Compose loopback binding.
 
 ## Swagger UI (Optional)
 

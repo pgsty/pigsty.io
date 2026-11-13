@@ -409,10 +409,7 @@ Software repository modules to add to the node. Use the same format as [`repo_mo
 
 When Pigsty manages nodes, it filters entries in [`repo_upstream`](/docs/infra/param#repo_upstream) based on this parameter value. Only entries whose `module` field matches this parameter value will be added to the node's software sources.
 
-
-
-
-
+Since `v4.6.0`, Docker CE and EL Nginx upstream repositories use separate `docker` and `nginx` modules. Nodes installing directly from upstream instead of `local` should select `node,docker` or `node,nginx` as needed.
 
 ### `node_repo_remove`
 
@@ -1414,12 +1411,7 @@ Command line arguments for node metrics collector. Default value:
 
 `--no-collector.softnet --no-collector.nvme --collector.tcpstat --collector.processes`
 
-This option enables/disables some metrics collectors. Please adjust according to your needs.
-
-
-
-
-
+This option enables or disables collectors; adjust as needed. Regardless of its value, node_exporter deployment creates `/var/lib/node_exporter/textfile` with mode `0755` and appends `--collector.textfile.directory=/var/lib/node_exporter/textfile` to the actual launch command so local scripts can publish custom `.prom` files.
 
 ------------------------------
 

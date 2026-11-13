@@ -6,16 +6,13 @@ icon: fa-solid fa-lock
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/pgtde.yml`; v4.5.0 uses `conf/pgtde.yml`, selected with `-c pgtde`.
-
-The `pgtde` configuration template uses the Percona PostgreSQL database kernel. This kernel provides Transparent Data Encryption (TDE).
-
+The `pgtde` template (`conf/fork/pgtde.yml`, selected with `-c pgtde` or `-c fork/pgtde`) uses Percona PostgreSQL to provide Transparent Data Encryption (TDE).
 
 --------
 
 ## Overview
 
-- Config Name: `pgtde`
+- Config name: `pgtde` (explicit path: `fork/pgtde`)
 - Node Count: Single node
 - Description: Percona PostgreSQL transparent data encryption configuration
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
@@ -33,10 +30,9 @@ Usage:
 
 ## Content
 
-Development source: `conf/fork/pgtde.yml`; release source: [`v4.5.0: conf/pgtde.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgtde.yml).
+Source: [`pigsty/conf/fork/pgtde.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgtde.yml)
 
-{{< include file="yaml/pgtde.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/pgtde.yml" code=true lang="yaml" >}}
 
 --------
 

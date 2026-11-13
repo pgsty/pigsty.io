@@ -43,7 +43,7 @@ all:
       vars: { pg_cluster: pg-test }
 
   vars:
-    version: v4.5.0
+    version: v4.6.0
     admin_ip: 10.10.10.10
     region: default
     pg_version: 18
@@ -129,7 +129,7 @@ tofu apply
 
 See the [OpenTofu guide](/docs/deploy/terraform/) for details.
 
-These steps use OpenTofu directly. Before using `make` or `./ssh`, check whether the helper scripts invoke `tofu` or `terraform`. See [OpenTofu Quick Start](/docs/deploy/terraform/#quick-start).
+The example uses OpenTofu directly. The repository's `Makefile`, `./ssh`, and `./check` also default to `IAC_CLI=tofu`; set `IAC_CLI=terraform` for Terraform. See [**OpenTofu Quick Start**](/docs/deploy/terraform/#quick-start).
 
 ## Other Specs
 

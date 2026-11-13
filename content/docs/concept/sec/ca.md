@@ -70,22 +70,29 @@ psql "host=pg-meta dbname=postgres user=dbuser_dba sslmode=verify-full sslrootce
 
 The local CA issues certificates for these components under one trust chain:
 
-| Component | Certificate Identity (CN) | Deployment Path | Encryption State |
-|:---|:---|:---|:---|
-| [**PostgreSQL**](/docs/concept/arch/pgsql#postgresql) | `<cluster>-<sequence>` | `/pg/cert/server.{crt,key}` | Server-side SSL enabled by default; HBA determines whether it is mandatory |
-| [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) | Reuses the PostgreSQL certificate | `/pg/cert/` | TLS disabled by default ([`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode)) |
-| [**Patroni**](/docs/concept/arch/pgsql#patroni) | Reuses the PostgreSQL certificate | `/pg/cert/` | API HTTPS disabled by default ([`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled)) |
-| [**etcd**](/docs/concept/arch/pgsql#etcd) | `<instance-name>` | `/etc/etcd/server.{crt,key}` | TLS for client and peer traffic |
-| [**Silo**](/docs/concept/model/minio) | `<node-name>` | `~minio/.minio/certs/` | Silo HTTPS is enabled by default ([`minio_https`](/docs/minio/param#minio_https)) |
-| [**Kafka**](/docs/kafka/) | `<cluster>-<sequence>` | `/etc/kafka/pki/kafka.pem` | SASL_SSL/SSL with `kafka_security: scram`; defaults to `plaintext` |
-| [**MySQL**](/docs/mysql/) | `<instance-name>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport enforced; clients and group replication verify the certificate chain |
-| [**Nginx**](/docs/concept/arch/infra#nginx) | `pigsty`, with portal domains in SAN | `/etc/nginx/conf.d/cert/` | HTTPS enabled by default ([`nginx_sslmode`](/docs/infra/param#nginx_sslmode)) |
-| [**INFRA node**](/docs/concept/arch/node#infra-node) | `<node-name>` | `/etc/pki/infra.{crt,key}` | Available to infrastructure components |
+| Component | Certificate Identity (CN) | Deployment Path | Encryption |
+|:------------------------------------------------------|:--------------------|:------------------------------------|:-------------------------------------------------------------------------------|
+| [**PostgreSQL**](/docs/concept/arch/pgsql#postgresql) | `<cluster>-<seq>` | `/pg/cert/server.{crt,key}` | Server SSL enabled by default; HBA determines whether it is required |
+| [**PgBouncer**](/docs/concept/arch/pgsql#pgbouncer) | Reuses PostgreSQL certificate | `/pg/cert/` | TLS disabled by default ([`pgbouncer_sslmode`](/docs/pgsql/param#pgbouncer_sslmode)) |
+| [**Patroni**](/docs/concept/arch/pgsql#patroni) | Reuses PostgreSQL certificate | `/pg/cert/` | API HTTPS disabled by default ([`patroni_ssl_enabled`](/docs/pgsql/param#patroni_ssl_enabled)) |
+| [**Etcd**](/docs/concept/arch/pgsql#etcd) | `<instance>` | `/etc/etcd/server.{crt,key}` | TLS for client and peer traffic |
+| [**VAULT (OpenBao)**](/docs/vault/) | `<instance>` | `/etc/openbao/tls/server.{crt,key}` | TLS 1.3 required; HTTPS client API and mTLS Raft peer traffic |
+| [**Silo**](/docs/concept/model/minio) | `<node>` | `~minio/.minio/certs/` | HTTPS enabled by default ([`minio_https`](/docs/minio/param#minio_https)) |
+| [**Kafka**](/docs/kafka/) | `<cluster>-<seq>` | `/etc/kafka/pki/kafka.pem` | SASL_SSL/SSL with `kafka_security: scram`; default `plaintext` |
+| [**MySQL**](/docs/mysql/) | `<instance>` | `/etc/mysql/pki/server.{crt,key}` | Secure transport required; client and group replication verify certificate chains |
+| [**Nginx**](/docs/concept/arch/infra#nginx) | `pigsty`, with portal domains and node IP/VIP SANs | `/etc/nginx/conf.d/cert/` | HTTPS enabled by default ([`nginx_sslmode`](/docs/infra/param#nginx_sslmode)) |
+| [**INFRA Nodes**](/docs/concept/arch/node#infra-node) | `<node-IP>` | `/etc/pki/infra.{crt,key}` | Used by infrastructure components |
 {.full-width .wide .expand}
+
+Key server certificate **SANs (Subject Alternative Names)** automatically cover common endpoints for `verify-full` hostname verification:
+
+- **PostgreSQL**: `localhost`, `<pg_cluster>`, `<pg_cluster>-<pg_seq>`, `<pg_cluster><pg_dns_suffix>` when the suffix is nonempty, `127.0.0.1`, instance IP, and enabled cluster [`pg_vip_address`](/docs/pgsql/param#pg_vip_address) / node [`vip_address`](/docs/node/param#vip_address).
+- **VAULT (OpenBao)**: certificates under `/etc/openbao/tls/` (`ca.crt`, `server.crt`, `server.key`) include `localhost`, `<vault_instance>`, [`vault_domain`](/docs/vault/param#vault_domain), `127.0.0.1`, instance IP, and optional node VIP.
+- **Nginx self-signed**: `i.pigsty`, all domains declared in `infra_portal`, `localhost`, all `infra` node IPs, and enabled node Layer 2 VIPs.
 
 These defaults distinguish available TLS from enabled TLS:
 
-- **Enabled at deployment:** PostgreSQL accepts SSL connections. etcd uses TLS for clients and peers.
+- **Enabled at deployment**: PostgreSQL accepts SSL connections, etcd uses TLS for client/peer traffic, and VAULT (OpenBao) requires TLS 1.3 for its API and Raft peers.
 - **Encrypted by default:** Object storage backup traffic through MINIO and Nginx web traffic use HTTPS.
 - **Available but disabled:** Patroni API and PgBouncer TLS is disabled, with certificates already installed. Enable the corresponding parameters. [**`ha/safe`**](/docs/conf/safe) enables both.
 
@@ -128,10 +135,9 @@ Also set `ca_create: false`. Deployment then stops if the private key is missing
 
 ## Key Protection and Rotation
 
-- The CA private key exists only on the administration node. It and `pigsty.yml` are among the deployment's highest-trust assets. Keep an offline backup. See [**Trust Boundaries**](/docs/concept/sec/level#trust-boundaries).
+- The CA private key resides only on the admin node. Together with `pigsty.yml`, it has the highest trust level in the deployment; see [**Trust Boundaries**](/docs/concept/sec/level#trust-boundaries). Keep an offline backup. With VAULT enabled, control-node `files/pki/vault/` (`0700`) also holds `unseal.key`, root initialization credentials in `init.json`, snapshots under `backup/`, and server private keys. Protect and back up it together with `files/pki/ca/` at the same trust level.
 - If the CA key is compromised, establish a new trust root and reissue every component and client certificate. Plan a period of trust in both CAs to avoid interrupting all connections together.
-- Component certificate sources reside at `files/pki/<component>/` on the administration node. Node files are deployment copies. Deleting only a node copy restores the same certificate. To rotate, update or remove the source, rerun the relevant playbook, and reload or roll the component as required.
-
+- Certificate sources reside under `files/pki/<component>/` on the admin node; copies on service nodes are deployment artifacts. Deleting only a node copy recopies the original certificate rather than reissuing it. For rotation or SAN changes, update/remove the admin-node source, rerun the appropriate playbook, and reload or roll services as required.
 
 ---------------
 

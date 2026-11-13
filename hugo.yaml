@@ -63,7 +63,7 @@ menus:
         mono: true
   - identifier: docs-docs
     parent: docs
-    name: Pigsty v4.5
+    name: Pigsty v4.6
     url: /docs/
     weight: 10
     params:
@@ -231,7 +231,7 @@ menus:
     params:
       icon: fa-brands fa-docker
       pigsty_group: Modules
-      pigsty_column: 2
+      pigsty_column: 1
   - identifier: docs-docs-juice
     parent: docs
     name: JUICE
@@ -268,6 +268,15 @@ menus:
       icon: fas fa-fish
       pigsty_group: Modules
       pigsty_column: 2
+  - identifier: docs-docs-vault
+    parent: docs
+    name: VAULT
+    url: /docs/vault/
+    weight: 235
+    params:
+      icon: fas fa-vault
+      pigsty_group: Modules
+      pigsty_column: 2
   - identifier: docs-docs-pilot
     parent: docs
     name: PILOT
@@ -301,7 +310,7 @@ menus:
       icon: fas fa-puzzle-piece
       pigsty_group: Extensions
       pigsty_column: 1
-      description: Browse 620 packaged PostgreSQL extensions
+      description: Browse 625 packaged PostgreSQL extensions
   - identifier: ext-ext-rpm
     parent: ext
     name: RPM Packages
@@ -655,21 +664,21 @@ cascade:
 #=======================================#
 params:
   # metadata
-  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, 620 packaged PG extensions, and 12 kernels and solutions'
-  version: v4.5.0           # Current source/docs baseline, {{< param version >}} in content
-  version_short: v4.5       # Short form (major.minor) of the current source/docs baseline
-  stable_version: v4.5.0    # Current public stable release; use for install and Git tag examples
-  stable_version_short: v4.5
-  pg_version: '18.6'        # Latest PostgreSQL minor release, {{< param pg_version >}} in content
-  pig_version: 1.10.4        # Latest PIG release, {{< param pig_version >}} in PIG docs
-  pigsty_version: 4.5.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
-  pig_catalog_count: 626    # Records in the PIG bundled catalog
-  pgext_count: 620          # PGEXT packaged extensions as of 2026-10-28; matches data/pgext/extension.yaml
+  description: 'Pigsty is a free and open-source PostgreSQL distribution, a local-first RDS with battery-included monitoring, HA, PITR, IaC, 625 packaged PG extensions, and 12 kernels and solutions'
+  version: v4.6.0           # Current source/docs baseline, {{< param version >}} in content
+  version_short: v4.6       # Short form (major.minor) of the current source/docs baseline
+  stable_version: v4.6.0    # Current public stable release; use for install and Git tag examples
+  stable_version_short: v4.6
+  pg_version: '18.7'        # Latest PostgreSQL minor release, {{< param pg_version >}} in content
+  pig_version: 1.11.0        # Latest PIG release, {{< param pig_version >}} in PIG docs
+  pigsty_version: 4.6.0     # Pigsty version embedded in PIG, {{< param pigsty_version >}} in PIG docs
+  pig_catalog_count: 625    # Records in the PIG bundled catalog
+  pgext_count: 625          # PGEXT packaged extensions as of 2026-11-13; matches data/pgext/extension.yaml
   pg_kernel_count: 12      # Homepage variants and solutions; excludes vanilla PG, includes Supabase, Citus, DocumentDB
-  # Verified 2026-10-28 against pgsty/pigsty e7a77472: files/grafana/*.json (recursive), files/victoria/rules/*.yml.
-  dashboard_count: 67
-  recording_rule_count: 759
-  alert_rule_count: 92
+  # Verified 2026-11-13 against pgsty/pigsty v4.6.0 (d71d9de8): files/grafana/*.json (recursive), files/victoria/rules/*.yml.
+  dashboard_count: 68
+  recording_rule_count: 775
+  alert_rule_count: 79
   pgext_url: https://pgext.cloud  # PG extension catalog site; link prefix for the landing-page extension index and metric cards
   copyright:
     authors: Ruohang Feng

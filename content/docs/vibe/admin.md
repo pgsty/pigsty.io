@@ -78,6 +78,12 @@ Save the new token in the inventory. Then preview and apply the change:
 ssh <host> sudo systemctl restart jupyter
 ```
 
+Or update through Ansible and restart automatically. Add `-e jupyter_enabled=true` if the inventory does not enable it:
+
+```bash
+./vibe.yml -l <host> -e jupyter_enabled=true -e jupyter_password='NewToken' -t jupyter_config,jupyter_launch
+```
+
 --------
 
 ## Code-Server Extensions
@@ -104,13 +110,13 @@ Redeploy:
 
 ## JupyterLab Environment
 
-VIBE does not create the venv automatically. Make sure that `jupyter_venv` exists:
+If `jupyter_venv` (default `/data/venv`) is absent, `jupyter_install` creates it with `uv venv` and installs `jupyterlab` and `ipykernel`. To initialize manually:
 
 ```bash
 uv venv /data/venv
 ```
 
-Install/upgrade JupyterLab:
+Install or update JupyterLab manually:
 
 ```bash
 uv pip install --python /data/venv/bin/python jupyterlab ipykernel
@@ -120,8 +126,7 @@ systemctl restart jupyter
 Install extensions (in venv):
 
 ```bash
-source /data/venv/bin/activate
-pip install jupyterlab-git
+uv pip install --python /data/venv/bin/python jupyterlab-git
 systemctl restart jupyter
 ```
 
@@ -129,17 +134,17 @@ systemctl restart jupyter
 
 ## Claude Code
 
-The `claude_install` subtask installs Claude CLI. The `claude_config` subtask writes its configuration files.
+`claude_install` installs a native system package from `pigsty-infra` (default `claude_package: claude`); `claude_config` manages configuration files.
 
 ```bash
 which claude
 claude --version
 ```
 
-Config files:
+Configuration files under `~<node_user>/`:
 
-- `~/.claude.json`
-- `~/.claude/settings.json`
+- `~/.claude.json`: initialized with `force: false`, preserving existing user state
+- `~/.claude/settings.json`: merges `env` without destroying existing custom configuration
 
 Update config:
 
@@ -147,21 +152,22 @@ Update config:
 ./vibe.yml -l <host> -t claude_config
 ```
 
-Reinstall/install Claude CLI:
+Reinstall or upgrade Claude CLI:
 
 ```bash
 ./vibe.yml -l <host> -t claude_install
-# or install manually
-npm install -g @anthropic-ai/claude-code
+# Or upgrade with the system package manager (EL / Debian)
+yum install -y claude      # EL
+apt install -y claude      # Debian/Ubuntu
 ```
 
-Override `claude_package` if you need a different npm package.
+The repository also provides the official package name `claude-code`; select it with `claude_package: claude-code` if needed.
 
 --------
 
 ## Codex CLI
 
-VIBE installs `@openai/codex` through `codex_install`. It does not manage the Codex configuration:
+`codex_install` installs the native `codex` package from `pigsty-infra`. VIBE does not manage Codex configuration:
 
 ```bash
 which codex

@@ -10,12 +10,12 @@ categories: [Reference]
 
 ## Quick Start
 
-These commands use the `mongo` template from v4.5.0. Development sources moved it to `conf/fork/mongo.yml`; use `-c fork/mongo` with those sources.
+These commands use the `mongo` template (`conf/fork/mongo.yml`, also selectable explicitly with `-c fork/mongo`):
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty
 ./bootstrap
-./configure -c mongo          # released package; development sources use fork/mongo
+./configure -c mongo
 ./deploy.yml
 ./docker.yml -l pg-meta
 ./app.yml -l pg-meta

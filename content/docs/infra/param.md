@@ -153,11 +153,10 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 | [`grafana_clean`](#grafana_clean)                   |   `bool`   | `G/A` | Clean Grafana data during init?                 |
 | [`grafana_admin_username`](#grafana_admin_username) | `username` |  `G`  | Grafana admin username, default `admin`         |
 | [`grafana_admin_password`](#grafana_admin_password) | `password` |  `G`  | Grafana admin password, default `pigsty`        |
-| [`grafana_anon_enabled`](#grafana_anon_enabled)           |   `bool`   | `G/I` | Allow anonymous Viewer access, default `true`   |
 | [`grafana_auth_proxy`](#grafana_auth_proxy)         |   `bool`   |  `G`  | Enable Grafana auth proxy?                      |
 | [`grafana_pgurl`](#grafana_pgurl)                   |   `url`    |  `G`  | External PostgreSQL URL for Grafana persistence |
 | [`grafana_view_password`](#grafana_view_password)   | `password` |  `G`  | Grafana metadb PG datasource password           |
-
+{.full-width}
 
 ------------------------------
 
@@ -166,7 +165,7 @@ The INFRA module deploys Pigsty infrastructure. This includes the local software
 This section defines Pigsty deployment metadata: version string, admin node IP address, repository mirror [`region`](#region), default language, and HTTP(S) proxy for downloading packages.
 
 ```yaml
-version: v4.5.0                   # pigsty version string
+version: v4.6.0                   # pigsty version string
 admin_ip: 10.10.10.10             # admin node ip address
 region: default                   # upstream mirror region: default,china,europe
 language: en                      # default language: en or zh
@@ -177,23 +176,15 @@ proxy_env:                        # global proxy env when downloading packages
   # all_proxy:   # set your proxy here: e.g http://user:pass@proxy.xxx.com
 ```
 
-
-
-
 ### `version`
 
 name: `version`, type: `string`, level: `G`
 
-Pigsty version string. The current source default is `v4.5.0`.
+Pigsty version string. The current source default is `v4.6.0`.
 
 Pigsty uses this version string internally for feature control and content rendering. Do not modify this parameter arbitrarily.
 
-Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.5.0`.
-
-
-
-
-
+Pigsty uses semantic versioning, and the version string typically starts with the character `v`, e.g., `v4.6.0`.
 
 ### `admin_ip`
 
@@ -409,7 +400,7 @@ Each record has a key and a value dictionary. The key, `name`, identifies the co
 - `endpoint`: Upstream server address for a reverse proxy. Usually, use it as an alternative to `path`.
   - `${admin_ip}` can be used as a placeholder in the configuration and will be dynamically replaced with [`admin_ip`](#admin_ip) during deployment
   - Default reverse proxy servers use [endpoint.conf](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/nginx/endpoint.conf) as the configuration template
-  - Reverse proxy servers can also configure `websocket` and `schema` parameters
+  - Reverse proxy servers can also configure `websocket` and `scheme` parameters
 - `path`: Local directory for a file server. Usually, use it as an alternative to `endpoint`.
   - Local web servers use [path.conf](https://github.com/pgsty/pigsty/blob/main/roles/infra/templates/nginx/path.conf) as the configuration template
   - Local web servers can also configure the `index` parameter to enable file index pages
@@ -419,7 +410,7 @@ Each record has a key and a value dictionary. The key, `name`, identifies the co
 - `key`: Certificate key file path; if configured, will override the default certificate key path
 - `websocket`: Whether to enable WebSocket support
   - Only reverse proxies can use this parameter. If enabled, it permits upstream WebSocket connections.
-- `schema`: Protocol used by the upstream server; if configured, will override the default protocol
+- `scheme`: Protocol used by the upstream server; if configured, will override the default protocol
   - Default is http; if configured as https, it will force HTTPS connections to the upstream server
 - `index`: Whether to enable file index pages
   - Only local file servers can use this parameter. If enabled, autoindex generates directory index pages.
@@ -429,18 +420,15 @@ Each record has a key and a value dictionary. The key, `name`, identifies the co
   - Local web servers use the default Access log
 - `conf`: Nginx template filename
   - Specifies a configuration template in [roles/infra/templates/nginx](https://github.com/pgsty/pigsty/tree/main/roles/infra/templates/nginx) or [templates/nginx](https://github.com/pgsty/pigsty/tree/main/templates/nginx).
-  - Takes precedence over automatic selection by `home` / `path` / `endpoint`. Development sources also have specialized site templates such as `repo.conf`, `beta.conf`, `demo.conf`, `pgext.conf`, and `pgweb.conf`; see [Development Maintenance Reference](/docs/infra/admin/portal#development-maintenance-reference).
+  - Takes precedence over automatic `home` / `path` / `endpoint` selection. Dedicated templates include `repo.conf`, `beta.conf`, `demo.conf`, `pgext.conf`, and `pgweb.conf`; see [**Dedicated Site Templates**](/docs/infra/admin/portal#dedicated-site-templates).
   - If this parameter is not specified, the default configuration template will be used
-- `cache_dir`: Portal cache directory. When nonempty, the role creates it with owner `nginx:nginx` and mode `0750`. Directory management was added to development sources on 2026-09-01 and is absent from the `v4.5.0` release.
-- `domains`: Additional domain list included in Certbot's domain set. Development sources since 2026-09-01 also include it in SANs when issuing new self-signed certificates. Whether the template listens for these aliases still depends on its `server_name`.
+- `cache_dir`: portal cache directory; when nonempty, the role creates it with owner `nginx:nginx` and mode `0750`
+- `domains`: additional domains, included in the Certbot domain set and self-signed certificate SANs. Whether a template serves these aliases still depends on its `server_name`.
 - `config`: Nginx configuration code block
   - Configuration text directly injected into the Nginx Server configuration block
 - `enforce_https`: Redirect HTTP to HTTPS
   - Global configuration can be specified via nginx_sslmode: enforce
   - This setting does not affect the default home server. For compatibility, that server always listens on both ports 80 and 443.
-
-
-
 
 ### `infra_data`
 
@@ -597,19 +585,18 @@ During the build stage, `infra` is automatically added to the effective module l
 Modules are comma-separated. Available module lists can be found in the `repo_upstream` definitions; common modules include:
 
 - `local`: Local Pigsty repository
-- `infra`: Infrastructure packages (Nginx, Docker, etc.)
+- `infra`: Infrastructure packages
 - `node`: OS base packages
 - `pgsql`: PostgreSQL-related packages
 - `extra`: Extra PostgreSQL extensions
+- `nginx`: Nginx upstream packages
 - `docker`: Docker-related
 - `redis`: Redis-related
 - `mongo`: MongoDB-related
 - `mysql`: MySQL-related
 - etc...
 
-
-
-
+Since `v4.6.0`, Docker and EL Nginx repositories have separate `docker` and `nginx` modules instead of belonging to `infra`. Add them explicitly to the module list for offline caching or installation.
 
 ### `repo_upstream`
 
@@ -820,11 +807,7 @@ name: `nginx_exporter_port`, type: `port`, level: `G`
 
 nginx_exporter listen port, default value is `9113`.
 
-nginx_exporter is used to collect Nginx operational metrics for VictoriaMetrics to scrape and monitor.
-
-
-
-
+nginx_exporter collects Nginx metrics for VictoriaMetrics. `/etc/default/nginx_exporter` uses `nginx_exporter_scrape_uri`, default `http://127.0.0.1:80/nginx`, for `stub_status`. Dedicated templates without `home.conf`, such as `repo.conf`, expose local status on `nginx_status_port` (default `9180`). Override the host/group variable with `nginx_exporter_scrape_uri: http://127.0.0.1:9180/nginx` in that case.
 
 ### `nginx_sslmode`
 
@@ -1341,20 +1324,16 @@ This parameter defines the standard path for all exporters to expose monitoring 
 
 Grafana provides the monitoring system frontend. It also supports data analysis, visualization, low-code data application development, and application prototyping.
 
-
 ```yaml
 grafana_enabled: true             # enable Grafana?
 grafana_port: 3000                # Grafana listen port
 grafana_clean: false              # clean data during init?
 grafana_admin_username: admin     # admin username
 grafana_admin_password: pigsty    # admin password
-grafana_anon_enabled: true        # allow anonymous Viewer access?
 grafana_auth_proxy: false         # enable auth proxy?
 grafana_pgurl: ''                 # external PostgreSQL URL
 grafana_view_password: DBUser.Viewer  # PG datasource password
 ```
-
-
 
 ### `grafana_enabled`
 
@@ -1407,37 +1386,6 @@ Grafana admin password, default is `pigsty`.
 
 > **IMPORTANT: Change this password before production deployment.**
 
-
-
-
-### `grafana_anon_enabled`
-
-name: `grafana_anon_enabled`, type: `bool`, level: `G/I`
-
-Controls anonymous access to Grafana. The default is `true`: anonymous users access the `Pigsty` organization with the `Viewer` role.
-
-This parameter is new in the development version. It is not available in v4.5.0 or earlier.
-
-Set it to `false` to require authentication through Grafana login or a configured authentication proxy before accessing dashboards and data sources.
-Set it in `all.vars`, the `infra` group, or an individual infrastructure host:
-
-```yaml
-grafana_anon_enabled: false
-```
-
-After changing the inventory, render the configuration and restart Grafana:
-
-```bash
-./infra.yml -l infra -t grafana_config,grafana_launch
-```
-
-Replace `-l infra` with `-l <infra-node>` to apply the change to one node. The `grafana_config` tag only writes configuration files; Grafana must restart for the change to take effect.
-
-This switch is independent of [`grafana_auth_proxy`](#grafana_auth_proxy). To require proxy authentication for every visitor, disable anonymous access as well.
-[`grafana_view_password`](#grafana_view_password) is a PostgreSQL datasource password and does not control visitor login.
-This parameter only controls Grafana. Other infrastructure endpoints still require their own firewall or portal access controls.
-
-
 ### `grafana_auth_proxy`
 
 name: `grafana_auth_proxy`, type: `bool`, level: `G`
@@ -1446,9 +1394,7 @@ Specifies whether to enable the Grafana authentication proxy. The default is `fa
 
 If enabled, Grafana trusts user identity information from the Nginx reverse proxy. This supports single sign-on (SSO).
 
-This is typically used for integration with external identity authentication systems. To require authentication for every visitor, also set [`grafana_anon_enabled`](#grafana_anon_enabled) to `false`.
-
-
+This is typically used to integrate an external authentication system.
 
 ### `grafana_pgurl`
 
@@ -1470,4 +1416,4 @@ name: `grafana_view_password`, type: `password`, level: `G`
 
 Read-only user password used by Grafana metadb PG data source, default is `DBUser.Viewer`.
 
-This password is used for Grafana to connect to the PostgreSQL CMDB data source to query metadata in read-only mode. It is not a visitor login password; [`grafana_anon_enabled`](#grafana_anon_enabled) controls anonymous access.
+This password lets Grafana query PostgreSQL CMDB metadata through a read-only data source. It is not a Grafana visitor login password.

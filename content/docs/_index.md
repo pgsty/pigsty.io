@@ -1,5 +1,5 @@
 ---
-title: Pigsty Docs v4.5
+title: Pigsty Docs v4.6
 linkTitle: Docs
 icon: fa-solid fa-book
 sidebar_root_for: self
@@ -35,7 +35,7 @@ Press {{< kbd "⌘" "K" >}} on macOS, or {{< kbd "Ctrl" "K" >}}, to open local s
 
 ## Version Scope
 
-The installation entry point uses the public stable release **{{< param stable_version >}}**. Content marked as development-only is not included in that release, and some changes are not yet in the public repository. See [Release Notes](/docs/about/release/#development-branch-changes-after-release) for scope.
+The current documentation and quick installation entry point target the public stable release **{{< param stable_version >}}**. See the [**release notes**](/docs/about/release/#v460) for features, upgrade guidance, and verification information.
 
 ## Getting Started
 
@@ -77,8 +77,7 @@ cd ~/pigsty      # enter source dir
 
 Next, explore the [**Web UI**](/docs/setup/webui). Access [**PostgreSQL services**](/docs/pgsql/service/) on port `5432` and Grafana dashboards on port `3000`. The Grafana username and password are `admin` and `pigsty`.
 
-You can also wrap PostgreSQL [**kernel**](/docs/pgsql/kernel/) flavors as RDS services: [**Citus**](/docs/pgsql/kernel/citus), [**WiltonDB**](/docs/pgsql/kernel/babelfish), [**IvorySQL**](/docs/pgsql/kernel/ivorysql), [**OpenHalo**](/docs/pgsql/kernel/openhalo), [**Percona**](/docs/pgsql/kernel/percona), [**OrioleDB**](/docs/pgsql/kernel/orioledb), [**PolarDB**](/docs/pgsql/kernel/polardb), and [**Supabase**](/docs/pgsql/kernel/supabase).
-
+You can also run various [**PostgreSQL kernels and solutions**](/docs/pgsql/kernel/) as RDS services: [**Supabase**](/docs/pgsql/kernel/supabase), [**Citus**](/docs/pgsql/kernel/citus), [**WiltonDB**](/docs/pgsql/kernel/babelfish), [**IvorySQL**](/docs/pgsql/kernel/ivorysql), [**OpenHalo**](/docs/pgsql/kernel/openhalo), [**DocumentDB**](/docs/pgsql/kernel/documentdb), [**OrioleDB**](/docs/pgsql/kernel/orioledb), [**pgEdge**](/docs/pgsql/kernel/pgedge), [**Percona**](/docs/pgsql/kernel/percona), [**PolarDB**](/docs/pgsql/kernel/polardb), [**AgensGraph**](/docs/pgsql/kernel/agensgraph), and [**Cloudberry**](/docs/pgsql/kernel/cloudberry).
 
 ## Modules
 
@@ -129,13 +128,15 @@ AI coding sandbox: Code-Server, JupyterLab, Claude Code, and Codex CLI.
 Apache Kafka 4.x dynamic KRaft message queue clusters with security and monitoring included.
 {{< /card >}}
 {{< card title="MYSQL" link="/docs/mysql/" icon="fa-solid fa-fish" badge="OPTIONAL" >}}
-Native MySQL 8.4 LTS as a standalone instance or a three-node InnoDB Cluster.
+Native MySQL 8.4 LTS, standalone or as a three-node InnoDB Cluster, with TLS, backups, and monitoring.
+{{< /card >}}
+{{< card title="VAULT" link="/docs/vault/" icon="fa-solid fa-vault" badge="Optional" >}}
+An OpenBao secrets management cluster with centralized KMS, auto-unseal, TLS, and snapshot backups.
 {{< /card >}}
 {{< card title="PILOT" link="/docs/pilot/" icon="fa-solid fa-flask-vial" badge="PILOT" >}}
-Experimental module family: Kubernetes, DuckDB, TigerBeetle, and more for early adopters.
+Pilot modules: Kubernetes, DuckDB, TigerBeetle, and more to explore.
 {{< /card >}}
 {{< /cards >}}
-
 
 ## Reference
 
@@ -148,7 +149,7 @@ Detailed reference lists: operating systems, file hierarchy, ports, metrics, and
 [Linux Support](/docs/ref/linux) [Modules](/docs/ref/module) [File Hierarchy](/docs/ref/fhs) [Ports](/docs/ref/port) [Comparison](/docs/about/compare) [Cost Reference](/docs/about/compare/cost) [SOP](/docs/sop/)
 {{< /card >}}
 {{< card title="Packaged Extensions" link="/ext/" icon="fa-solid fa-puzzle-piece" >}}
-A catalog of {{< param pgext_count >}} packaged PostgreSQL ecosystem extensions: metadata, docs, downloads, and support matrix.
+{{< param pgext_count >}} packaged PostgreSQL extensions: metadata, documentation, downloads, and support matrices.
 
 [Extension List](/ext/list) [OS Support](/ext/os) [Software Repo](/docs/repo/)
 {{< /card >}}

@@ -13,6 +13,11 @@ categories: [Reference]
 
 ## Recent News
 
+- **2026-11-13**: **Pigsty v4.6.0 released! 625 extensions, VAULT secrets management, and a redesigned native MySQL 8.4 HA module**
+  - Release blog: [**Pigsty v4.6**](/blog/pigsty/v4.6)
+  - Release notes: [**v4.6.0**](/docs/about/release#v460)
+  - Highlights: OpenBao-based VAULT module, redesigned native MySQL 8.4 HA, PostgreSQL 18.7, PIG v1.11.0, PG Exporter v1.6.1, and 625 packaged extensions.
+
 - **2026-08-15**: **Pigsty v4.5.0 officially released: Kafka, MySQL, Valkey, Silo, and 575 extensions**
   - Release Blog: [Pigsty v4.5 Release Article](/blog/pigsty/v4.5)
   - Release Notes: [v4.5.0](/docs/about/release#v450)

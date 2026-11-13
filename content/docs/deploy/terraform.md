@@ -10,8 +10,7 @@ categories: [Tutorial]
 [OpenTofu](https://opentofu.org/) is an open-source infrastructure-as-code tool.
 It creates public cloud virtual machines from configuration files.
 
-The examples below use `tofu` directly. Before using Makefile targets or `./ssh`, check whether they invoke `tofu` or `terraform`; `IAC_CLI` cannot switch scripts that do not support it. The source supplies `.tf` templates compatible with both tools for Alibaba Cloud, global AWS, AWS China, Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode.
-The `aliyun-s3.tf` template also creates a private OSS bucket and dedicated RAM read/write credentials for S3 and pgBackRest.
+The examples use `tofu` directly. `Makefile`, `./ssh`, and `./check` also default to `IAC_CLI=tofu`, with `IAC_CLI=terraform` available. Compatible `.tf` templates cover Alibaba Cloud, AWS global/China, Azure, GCP, Tencent Cloud, Hetzner, Vultr, DigitalOcean, and Linode. `aliyun-s3.tf` also creates a private OSS bucket and dedicated RAM read/write credentials for S3/pgBackRest.
 
 ## Quick Start
 
@@ -60,15 +59,9 @@ Global cloud templates usually supply an executable `ssh_command` output:
 tofu output -raw ssh_command
 ```
 
-The repository's `./ssh` script supports legacy templates whose outputs contain only IP addresses.
-These templates use the root password `PigstyDemo4`.
-The script treats each infrastructure-as-code output as an IP address and writes it to `~/.ssh/pigsty_config`.
-It then distributes keys with `sshpass`.
+`./ssh` is a compatibility helper for legacy templates whose outputs are all IP addresses and whose root password is `PigstyDemo4`. It checks for `IAC_CLI` and `jq`, reads `$IAC_CLI output -json`, writes outputs as IPs to `~/.ssh/pigsty_config`, then distributes keys with `sshpass`. Use it only with compatible templates such as `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`, not modern templates exposing `ssh_command`, private IPs, or access keys.
 
-Compatible templates include `aliyun.tf`, `aliyun-full.tf`, `aliyun-oss.tf`, and `aliyun-pro.tf`.
-Do not use this script with modern templates that output `ssh_command`, private IP addresses, or access keys.
-
-If your `./ssh` still invokes Terraform, install Terraform. With OpenTofu alone, configure SSH from `tofu output`. For a compatible template, run:
+`./ssh` defaults to `tofu`; use `IAC_CLI=terraform ./ssh` for Terraform. For compatible templates:
 
 ```bash
 ./ssh       # Write SSH config and distribute keys
@@ -92,9 +85,7 @@ tofu destroy
 
 ## Terraform Compatibility and Migration
 
-OpenTofu supports the existing names `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate` for compatibility.
-The repository keeps these names.
-If your Makefile supports `IAC_CLI`, select Terraform as shown below; otherwise, run `terraform plan` directly:
+Names remain `terraform/`, `.tf`, `terraform.tfvars`, `.terraform.lock.hcl`, and `terraform.tfstate`, which OpenTofu officially supports. `Makefile`, `./ssh`, and `./check` all accept `IAC_CLI=terraform`:
 
 ```bash
 make IAC_CLI=terraform plan
@@ -130,8 +121,8 @@ The [`terraform/spec/` directory](https://github.com/pgsty/pigsty/tree/main/terr
 | [`gcp.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/gcp.tf) | GCP | Single node, Debian 12/13, AMD/ARM |
 | [`qcloud.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/qcloud.tf) | Tencent Cloud | Tencent Cloud single-node environment |
 | [`hetzner.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/hetzner.tf) | Hetzner | Single node, Debian 12/13, AMD/ARM |
-| [`vultr.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/vultr.tf) | Vultr | Single node, Debian 12/13, currently AMD only |
-| [`digitalocean.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/digitalocean.tf) | DigitalOcean | Single node, Debian 12/13, currently AMD only |
+| [`vultr.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/vultr.tf) | Vultr | Single node, Debian 12/13, AMD only, using a vultr_vpc private network |
+| [`digitalocean.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/digitalocean.tf) | DigitalOcean | Single node, Debian 13 (d13) only, AMD only |
 | [`linode.tf`](https://github.com/pgsty/pigsty/blob/main/terraform/spec/linode.tf) | Linode | Single node, Debian 12/13, currently AMD only |
 {.full-width .wide .expand}
 
@@ -145,11 +136,7 @@ tofu init && tofu apply
 
 ## Variable Configuration
 
-Available variables depend on the template.
-Alibaba Cloud supports the full distribution matrix and defaults to `u26`.
-Global AWS, Azure, GCP, Tencent Cloud, and Hetzner support Debian 12/13 with AMD or ARM selection.
-Their defaults are generally `d12` and `amd64`.
-Vultr, DigitalOcean, and Linode currently offer only AMD instance choices.
+Template variables differ. Alibaba Cloud supports the full distribution matrix and defaults to `u26`. AWS global, Azure, GCP, Tencent Cloud, and Hetzner support Debian 12/13 with AMD/ARM, defaulting to `d12`/`amd64`. Vultr and Linode support Debian 12/13, default `d12`, with AMD instances only. DigitalOcean has retired Debian 12 images and supports only `d13` (Debian 13) on AMD.
 
 ### Architecture and Distribution
 
@@ -164,7 +151,7 @@ variable "architecture" {
 variable "distro" {
   description = "Distribution code (the exact set depends on the template)"
   type        = string
-  default     = "d12"       # Global-cloud templates usually default to Debian 12; Alibaba Cloud defaults to u26
+  default     = "d12"       # most global clouds default to d12; DigitalOcean only d13; Alibaba Cloud defaults to u26
 }
 ```
 
@@ -201,26 +188,22 @@ export ALICLOUD_REGION="cn-shanghai"
 The table lists common Alibaba Cloud [ECS Public OS Image](https://help.aliyun.com/zh/ecs/user-guide/public-mirroring-overview) prefixes.
 The recommended and validated versions are:
 
-- Rocky Linux 9.8 / 10.2.
-- Debian 12.15 / 13.7.
-- Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
+Verified baselines are Rocky Linux 9.8 / 10.2, Debian 12.15 / 13.7, and Ubuntu 22.04.5 / 24.04.5 / 26.04.1. Alibaba Cloud public images now match, such as `debian_13_7_x64_20G_alibase_20261019.vhd` and its `arm64` counterpart.
 
-> Note: Debian upstream is currently 13.7, but Alibaba Cloud has not published a Debian 13.7 public image yet, so the `d13` selector remains `debian_13_6_*`.
-
-| Distro | Code | x86_64 Image Prefix | aarch64 Image Prefix |
-|--------|------|---------------------|----------------------|
-| CentOS 7.9 | `el7` | `centos_7_9_x64` | - |
-| Rocky 8.10 | `el8` | `rockylinux_8_10_x64` | `rockylinux_8_10_arm64` |
-| Rocky 9.8 | `el9` | `rockylinux_9_8_x64` | `rockylinux_9_8_arm64` |
-| Rocky 10.2 | `el10` | `rockylinux_10_2_x64` | `rockylinux_10_2_arm64` |
-| Debian 11.11 | `d11` | `debian_11_11_x64` | - |
-| Debian 12.15 | `d12` | `debian_12_15_x64` | `debian_12_15_arm64` |
-| Debian 13.6 | `d13` | `debian_13_6_x64` | `debian_13_6_arm64` |
-| Ubuntu 22.04.5 LTS | `u22` | `ubuntu_22_04_x64_20G` | `ubuntu_22_04_arm64_20G` |
-| Ubuntu 24.04.5 LTS | `u24` | `ubuntu_24_04_x64_20G` | `ubuntu_24_04_arm64_20G` |
-| Ubuntu 26.04.1 LTS | `u26` | `ubuntu_26_04_x64_20G` | `ubuntu_26_04_arm64_20G` |
-| Anolis 8.10 | `an8` | `anolisos_8_10_x64` | `anolisos_8_10_arm64` |
-| Alibaba Cloud Linux 3 | `al3` | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
+| Distribution | Code | x86_64 Image Prefix | aarch64 Image Prefix |
+|-----------------------|--------|-----------------------------------|-------------------------------------|
+| CentOS 7.9            | `el7`  | `centos_7_9_x64`                  | -                                   |
+| Rocky 8.10            | `el8`  | `rockylinux_8_10_x64`             | `rockylinux_8_10_arm64`             |
+| Rocky 9.8             | `el9`  | `rockylinux_9_8_x64`              | `rockylinux_9_8_arm64`              |
+| Rocky 10.2            | `el10` | `rockylinux_10_2_x64`             | `rockylinux_10_2_arm64`             |
+| Debian 11.11          | `d11`  | `debian_11_11_x64`                | -                                   |
+| Debian 12.15          | `d12`  | `debian_12_15_x64`                | `debian_12_15_arm64`                |
+| Debian 13.7           | `d13`  | `debian_13_7_x64`                 | `debian_13_7_arm64`                 |
+| Ubuntu 22.04.5 LTS    | `u22`  | `ubuntu_22_04_x64_20G`            | `ubuntu_22_04_arm64_20G`            |
+| Ubuntu 24.04.5 LTS    | `u24`  | `ubuntu_24_04_x64_20G`            | `ubuntu_24_04_arm64_20G`            |
+| Ubuntu 26.04.1 LTS    | `u26`  | `ubuntu_26_04_x64_20G`            | `ubuntu_26_04_arm64_20G`            |
+| Anolis 8.10           | `an8`  | `anolisos_8_10_x64`               | `anolisos_8_10_arm64`               |
+| Alibaba Cloud Linux 3 | `al3`  | `aliyun_3_x64_20G_alibase_[0-9]+` | `aliyun_3_arm64_20G_alibase_[0-9]+` |
 {.full-width .wide .expand}
 
 ### OSS Storage Configuration
@@ -306,27 +289,27 @@ To use another public key, edit the path in the selected template.
 
 ## Shortcut Commands
 
-The Makefile shortcuts use OpenTofu by default.
-To use Terraform, explicitly set `IAC_CLI=terraform`.
+Pigsty's Makefile shortcuts and template validator default to OpenTofu (`IAC_CLI ?= tofu`). Set `IAC_CLI=terraform` explicitly for Terraform.
 
 ```bash
 cd ~/pigsty/terraform
 
-make init       # tofu init
-make validate   # tofu validate
-make plan       # tofu plan
-make u          # interactive tofu apply + legacy ./ssh (compatible templates only)
-make d          # interactive tofu destroy
-make apply      # interactive tofu apply
-make destroy    # interactive tofu destroy
-make out        # tofu output
-make ssh        # Run ssh script to configure SSH access
-make r          # Reset terraform.tf to repository state
+make init          # tofu init
+make validate      # tofu validate
+make plan          # tofu plan
+make up            # interactive tofu apply, then legacy ./ssh; alias make u, compatible templates only
+make up-auto       # tofu apply -auto-approve, then legacy ./ssh; compatible templates only
+make apply         # interactive tofu apply
+make apply-auto    # tofu apply -auto-approve
+make destroy       # interactive tofu destroy; alias make d
+make destroy-auto  # tofu destroy -auto-approve
+make out           # tofu output
+make ssh           # configure SSH access through ./ssh
+make reset         # restore terraform.tf from version control; alias make r
+./check validate   # validate terraform.tf and all spec/*.tf in isolated temporary directories; same as ./check
 ```
 
-For modern templates with `ssh_command`, private-IP, or other non-IP outputs, run `tofu apply` directly.
-Do not use `make u`: it runs the legacy `./ssh` script after deployment.
-Automatic confirmation is available only through `up-auto`, `apply-auto`, and `destroy-auto`.
+For modern templates with `ssh_command`, private IPs, or other non-IP outputs, such as `vultr.tf` using `vultr_vpc`, run `tofu apply` or `make apply` directly. Do not use `make up` / `make u`, which subsequently call legacy `./ssh`. Only explicitly named `up-auto`, `apply-auto`, and `destroy-auto` skip interactive confirmation.
 
 ## Notes
 

@@ -96,7 +96,7 @@ For example, ElasticSearch was developed on the Lucene search library, while the
 
 [![img](/img/pigsty/ecosystem.jpg)](/docs/pgsql/ext)
 
-> Pigsty currently packages 575 [**extensions**](/ext/list/) for supported platforms. There are many more projects in the broader PostgreSQL extension ecosystem.
+> Pigsty provides [**625**](/ext/list/) available extensions, with over 1,000 more in the wider ecosystem.
 
 ------
 
@@ -235,6 +235,8 @@ Our aim is to integrate the strengths within the PostgreSQL ecosystem, creating 
 - [**PostgresML**](https://github.com/pgsty/pigsty/tree/master/app/pgml): Facilitates classic machine learning algorithms, calling, deploying, and training AI models with SQL.
 
 [![img](/img/pigsty/desc.png)](https://pigsty.io)
+
+> The 625 [**extensions supported by Pigsty**](/ext/list)
 
 Developers, your choices will shape the future of the database world. I hope my work helps you better utilize the world’s most advanced open-source database kernel: **PostgreSQL**.
 

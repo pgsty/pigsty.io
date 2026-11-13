@@ -154,39 +154,36 @@ You can also edit `pigsty.yml` directly without the wizard.
 ./configure -c ha/full -s    # Use 4-node sandbox template, skip IP replacement/detection
 ```
 
-The commands above retain the paths from the `v4.5.0` release package. Current development sources also accept short names:
+`./configure -c` accepts relative paths and template shorthands.
 `./configure -c full` selects `conf/ha/full.yml`, while `-c ivory` and `-c fork/ivory` select `conf/fork/ivory.yml`.
-Bare names search `conf/ → ha/ → fork/ → app/ → demo/ → build/`, with every subdirectory under `conf/`.
+Bare names are searched in `conf/ → ha/ → fork/ → app/ → demo/ → build/` order, with all subdirectories under `conf/`.
 The first match wins; explicit directory paths do not fall back. See [template lookup rules](/docs/concept/iac/configure#configuration-templates).
 
-The output below is from the current `main` branch ({{< param version >}}).
-If you install a different version, the first line shows that version.
+The following output is from `v4.6.0` (`{{< param version >}}`); other releases show their own version on the first line.
+{{< eg num="1" id="configure-output" caption="Example configure output" >}}
 
-{{< eg num="1" id="configure-output" caption="Configuration output from the current main branch" >}}
-
-> [!DETAILS]- Configuration output
-> ```console {title="configure output" copy="command" collapse=12 label="configure Example Output"}
+> [!DETAILS]- Example configure output
+> ```console {title="configure output" copy="command" collapse=12 label="Example configure output"}
 > vagrant@meta:~/pigsty$ ./configure
->
-> configure pigsty v4.5.0 begin
-> [ OK ] region  = default
+> configure pigsty v4.6.0 begin
+> [ OK ] region = china
 > [ OK ] kernel  = Linux
 > [ OK ] machine = x86_64
-> [ OK ] package = rpm,dnf
-> [ OK ] vendor  = rocky (Rocky Linux)
-> [ OK ] version = 9 (9.6)
+> [ OK ] package = deb,apt
+> [ OK ] vendor  = ubuntu (Ubuntu)
+> [ OK ] version = 22 (22.04)
 > [ OK ] sudo = vagrant ok
 > [ OK ] ssh = vagrant@127.0.0.1 ok
 > [WARN] Multiple IP address candidates found:
->     (1) 192.168.121.24	inet 192.168.121.24/24 brd 192.168.121.255 scope global dynamic noprefixroute eth0
->     (2) 10.10.10.12	    inet 10.10.10.12/24 brd 10.10.10.255 scope global noprefixroute eth1
-> [ IN ] INPUT primary_ip address (of current meta node, e.g 10.10.10.10):
-> => 10.10.10.12    # <------- INPUT YOUR PRIMARY IPV4 ADDRESS HERE!
-> [ OK ] primary_ip = 10.10.10.12 (from input)
-> [ OK ] admin = vagrant@10.10.10.12 ok
-> [ OK ] mode = meta (el9)
+>     (1) 192.168.121.38	    inet 192.168.121.38/24 metric 100 brd 192.168.121.255 scope global dynamic eth0
+>     (2) 10.10.10.10	    inet 10.10.10.10/24 brd 10.10.10.255 scope global eth1
+> [ OK ] primary_ip = 10.10.10.10 (from demo)
+> [ OK ] admin = vagrant@10.10.10.10 ok
+> [ OK ] mode = meta (ubuntu22.04)
 > [ OK ] locale  = C.UTF-8
-> [ OK ] configure pigsty done
+> [ OK ] ansible = ready
+> [ OK ] pigsty configured
+> [WARN] don't forget to check it and change passwords!
 > proceed with ./deploy.yml
 > ```
 
@@ -199,8 +196,7 @@ If you install a different version, the first line shows that version.
   {{< /field >}}
 
   {{< field name="-c | --conf" type="string" >}}
-  Select a [configuration template](/docs/conf/) by relative path, such as `ha/full`.
-  Current development sources also accept the short name `full`, an optional `conf/` prefix, and the `.yml` suffix.
+  Select a [**configuration template**](/docs/conf/) by relative path such as `ha/full`, shorthand `full`, or a name with the `conf/` prefix and `.yml` suffix.
   {{< /field >}}
 
   {{< field name="-v | --version" type="integer" >}}

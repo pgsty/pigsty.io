@@ -9,7 +9,7 @@ category: [Tutorial]
 
 Install `pg_exporter` with Pigsty, YUM/APT repositories, GitHub release packages (RPM/DEB/Tarball), or Docker images. You can also build it from source.
 
-Repository installation uses the current package in the repository, which can lag the GitHub release. Use the versioned release artifacts below when you need `v1.6.0`.
+Repository installation uses the current package in the repository, which can lag the GitHub release. Use the versioned release artifacts below when you need `v1.6.1`.
 
 ## Pigsty {#pigsty}
 
@@ -25,22 +25,22 @@ curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
 
 Download a `pg_exporter` package (`RPM`/`DEB`/Tarball) from the [Latest GitHub Release Page](https://github.com/pgsty/pg_exporter/releases/latest):
 
-**v1.6.0 Release Files:**
+**v1.6.1 Release Files:**
 
 | Type                    | File                                                                                                                                           |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| DEB (amd64)             | [pg-exporter_1.6.0-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_amd64.deb)                   |
-| DEB (arm64)             | [pg-exporter_1.6.0-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_arm64.deb)                   |
-| DEB (ppc64le)           | [pg-exporter_1.6.0-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter_1.6.0-1_ppc64le.deb)               |
-| RPM (aarch64)           | [pg-exporter-1.6.0-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.aarch64.rpm)               |
-| RPM (x86_64)            | [pg-exporter-1.6.0-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.x86_64.rpm)                 |
-| RPM (ppc64le)           | [pg-exporter-1.6.0-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg-exporter-1.6.0-1.ppc64le.rpm)               |
-| Tarball (Linux amd64)   | [pg_exporter-1.6.0.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-amd64.tar.gz)     |
-| Tarball (Linux arm64)   | [pg_exporter-1.6.0.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-arm64.tar.gz)     |
-| Tarball (Linux ppc64le) | [pg_exporter-1.6.0.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.linux-ppc64le.tar.gz) |
-| Tarball (macOS amd64)   | [pg_exporter-1.6.0.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.darwin-amd64.tar.gz)   |
-| Tarball (macOS arm64)   | [pg_exporter-1.6.0.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.darwin-arm64.tar.gz)   |
-| Tarball (Windows amd64) | [pg_exporter-1.6.0.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.0/pg_exporter-1.6.0.windows-amd64.tar.gz) |
+| DEB (amd64)             | [pg-exporter_1.6.1-1_amd64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter_1.6.1-1_amd64.deb)                     |
+| DEB (arm64)             | [pg-exporter_1.6.1-1_arm64.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter_1.6.1-1_arm64.deb)                     |
+| DEB (ppc64le)           | [pg-exporter_1.6.1-1_ppc64le.deb](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter_1.6.1-1_ppc64le.deb)                 |
+| RPM (aarch64)           | [pg-exporter-1.6.1-1.aarch64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter-1.6.1-1.aarch64.rpm)                 |
+| RPM (x86_64)            | [pg-exporter-1.6.1-1.x86_64.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter-1.6.1-1.x86_64.rpm)                   |
+| RPM (ppc64le)           | [pg-exporter-1.6.1-1.ppc64le.rpm](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg-exporter-1.6.1-1.ppc64le.rpm)                 |
+| Tarball (Linux amd64)   | [pg_exporter-1.6.1.linux-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.linux-amd64.tar.gz)       |
+| Tarball (Linux arm64)   | [pg_exporter-1.6.1.linux-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.linux-arm64.tar.gz)       |
+| Tarball (Linux ppc64le) | [pg_exporter-1.6.1.linux-ppc64le.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.linux-ppc64le.tar.gz)   |
+| Tarball (macOS amd64)   | [pg_exporter-1.6.1.darwin-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.darwin-amd64.tar.gz)     |
+| Tarball (macOS arm64)   | [pg_exporter-1.6.1.darwin-arm64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.darwin-arm64.tar.gz)     |
+| Tarball (Windows amd64) | [pg_exporter-1.6.1.windows-amd64.tar.gz](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/pg_exporter-1.6.1.windows-amd64.tar.gz)   |
 {.full-width .wide .expand}
 
 Install the package with your OS package manager (`rpm`/`dpkg`), or put the binary in your `$PATH`.
@@ -100,7 +100,7 @@ docker run -d \
   --name pg_exporter \
   -p 9630:9630 \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
-  pgsty/pg_exporter:1.6.0
+  pgsty/pg_exporter:1.6.1
 
 # With custom configuration
 docker run -d \
@@ -109,7 +109,7 @@ docker run -d \
   -v /path/to/pg_exporter.yml:/etc/pg_exporter.yml:ro \
   -e PG_EXPORTER_CONFIG="/etc/pg_exporter.yml" \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
-  pgsty/pg_exporter:1.6.0
+  pgsty/pg_exporter:1.6.1
 
 # With auto-discovery enabled
 docker run -d \
@@ -118,7 +118,7 @@ docker run -d \
   -e PG_EXPORTER_URL="postgres://user:password@host:5432/postgres" \
   -e PG_EXPORTER_AUTO_DISCOVERY="true" \
   -e PG_EXPORTER_EXCLUDE_DATABASE="template0,template1" \
-  pgsty/pg_exporter:1.6.0
+  pgsty/pg_exporter:1.6.1
 ```
 
 > [!WARNING] Note
@@ -139,11 +139,11 @@ For end-of-life PostgreSQL versions, use the [legacy configuration bundle mainta
 Legacy config example:
 
 ```bash
-curl -fSL https://raw.githubusercontent.com/pgsty/pg_exporter/main/legacy/pg_exporter.yml -o pg_exporter-legacy.yml
+curl -fSL https://raw.githubusercontent.com/pgsty/pg_exporter/v1.6.1/legacy/pg_exporter.yml -o pg_exporter-legacy.yml
 PG_EXPORTER_CONFIG=pg_exporter-legacy.yml pg_exporter
 ```
 
-For PostgreSQL 9.1, use `main` commit `282e19d` or later to avoid missing table-size metrics when tables have no TOAST relation (`OID 0`). This legacy maintenance fix is not part of the `v1.6.0` release artifacts, and the legacy copy inside the `v1.6.0` source tag does not include it.
+For PostgreSQL 9.1, use configuration from the `v1.6.1` tag or main at `282e19d` or later. This fixes OID 0 errors on tables without TOAST relations that caused all table-size metrics to disappear. Legacy configuration is still not bundled in binary archives or RPM/DEB packages and must be downloaded separately.
 
 The built-in pgBouncer collectors support pgBouncer 1.8+; the `SHOW STATS` fields they read are available starting in 1.8.
 

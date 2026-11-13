@@ -6,10 +6,7 @@ icon: fa-solid fa-project-diagram
 categories: [Reference]
 ---
 
-Current development sources use `conf/fork/agens.yml` and default to AgensGraph 2.18 / PG18. The v4.5.0 release still uses `conf/agens.yml` (`-c agens`) and defaults to PG17. Explicitly set `pg_version: 18` for a new PG18 cluster with that release.
-
-The `fork/agens` template replaces the standard PostgreSQL kernel with AgensGraph.
-It supports property graphs and Cypher queries.
+The `fork/agens` template (`conf/fork/agens.yml`, selected with `-c agens` or `-c fork/agens`) replaces native PostgreSQL with AgensGraph 2.18 (PG18), which provides a property graph model and Cypher queries.
 
 For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgraph/)**
 
@@ -28,18 +25,16 @@ For the full guide, see: **[AgensGraph kernel guide](/docs/pgsql/kernel/agensgra
 Enable with:
 
 ```bash
-./configure -c fork/agens [-i <primary_ip>]
+./configure -c agens [-i <primary_ip>]
 ```
-
 
 --------
 
 ## Template Content
 
-The embedded YAML below matches the development source: `conf/fork/agens.yml`; previous release source: [`v4.5.0: conf/agens.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml).
+Source: [`pigsty/conf/fork/agens.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/agens.yml)
 
-{{< include file="yaml/agens.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/agens.yml" code=true lang="yaml" >}}
 
 --------
 
@@ -63,7 +58,8 @@ It installs the `agensgraph` kernel package instead of standard PostgreSQL.
 
 **Caveats**:
 
-- The current development template sets `pg_version: 18`, resolving the `agensgraph` alias to `agensgraph-18`.
+**Notes**:
+- The template defaults to `pg_version: 18`; the `agensgraph` package alias resolves to `agensgraph-18`.
 - This default applies to new deployments. Existing PG17 clusters require a major upgrade and cannot reuse their data directory directly.
 - The default topology has one node for validation. For production, plan and extend it for high availability.
 - Follow the official AgensGraph documentation for graph schemas and Cypher semantics.

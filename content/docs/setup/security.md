@@ -40,7 +40,7 @@ See the [Default Credentials Checklist](/docs/concept/sec/compliance#default-cre
 ## Grafana Access Control
 
 Changing the admin password does not disable anonymous access. By default, anonymous users can still access Grafana with the `Viewer` role.
-To require login before viewing monitoring data, set [`grafana_anon_enabled`](/docs/infra/param#grafana_anon_enabled) to `false`, then render the configuration and restart Grafana as described in [Administration](/docs/infra/admin/sop/#manage-grafana-anonymous-access).
+To require login for monitoring, follow [**Manage Grafana Anonymous Access**](/docs/infra/admin/sop/#manage-grafana-anonymous-access): update `[auth.anonymous]` in `/etc/grafana/grafana.ini` and restart `grafana-server`. Rerunning `grafana_config` overwrites this file from the template.
 
 Setting `auth: true` on the Nginx home server does not enable Basic Auth for `/ui/`; this path uses Grafana's own authentication.
 The Grafana switch also does not protect VictoriaMetrics, VictoriaLogs, or other endpoints. Restrict access to them separately.
@@ -71,10 +71,11 @@ Do not automatically trust office networks, container networks, or other tenant 
 
 These files and directories contain sensitive information:
 
-| File or directory | Contents |
-|:------------------|:---------|
+| File or Directory | Sensitive Content |
+|:---|:---|
 | `pigsty.yml` | System and application credentials, node definitions, and service configuration |
 | `files/pki/ca/ca.key` | Local CA private key |
+| `files/pki/vault/` | OpenBao initialization material, unseal keys, and recovery snapshots when VAULT is enabled |
 | Administration account SSH private key | Access credentials for managed nodes |
 | `files/pki/misc/*.key` | Client-certificate private keys |
 | `/pg/tmp/pg-user-*.sql` | SQL files with plaintext passwords from user creation |

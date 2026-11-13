@@ -12,15 +12,15 @@ There are **36** extensions in **26** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/main/pg_search) | `0.26.5` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
+| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/main/pg_search) | `0.26.6` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
 | [`pgroonga`](/ext/e/pgroonga) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Use Groonga as index, fast full text search platform for all languages! |
 | [`pgroonga_database`](/ext/e/pgroonga_database) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Recovery helper for removing a damaged PGroonga internal database |
 | [`pg_bigm`](/ext/e/pg_bigm) | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | create 2-gram (bigram) index for faster full text search. |
 | [`vgram`](/ext/e/vgram) | [`vgram`](https://github.com/akorotkov/vgram) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Variable-length gram GIN indexes and statistics for LIKE/ILIKE search |
 | [`zhparser`](/ext/e/zhparser) | [`zhparser`](https://github.com/amutu/zhparser) | `2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | a parser for full-text search of Chinese |
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | `0.0.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Generate BM25 sparse vector inside PostgreSQL |
-| [`vchord_bm25`](/ext/e/vchord_bm25) | [`vchord_bm25`](https://vchord.pgsty.com/docs/bm25/) | `1.0.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A postgresql extension for bm25 ranking algorithm |
-| [`pg_tokenizer`](/ext/e/pg_tokenizer) | [`pg_tokenizer`](https://vchord.pgsty.com/docs/tokenizer) | `1.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Tokenizers for full-text search |
+| [`vchord_bm25`](/ext/e/vchord_bm25) | [`vchord_bm25`](https://vchord.pgsty.com/docs/bm25/) | `1.1.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A postgresql extension for bm25 ranking algorithm |
+| [`pg_tokenizer`](/ext/e/pg_tokenizer) | [`pg_tokenizer`](https://vchord.pgsty.com/docs/tokenizer) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Tokenizers for full-text search |
 | [`biscuit`](/ext/e/biscuit) | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | `3.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_textsearch`](/ext/e/pg_textsearch) | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | `1.5.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 ranking |
 | [`pg_pinyin`](/ext/e/pg_pinyin) | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | `0.0.8` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Pinyin romanization and search helpers for PostgreSQL |
@@ -55,7 +55,7 @@ There are **36** extensions in **26** packages.
 
 ## pg_search {#pg_search}
 
-[**`pg_search`**](/ext/e/pg_search) - `0.26.5` : Full text search for PostgreSQL using BM25
+[**`pg_search`**](/ext/e/pg_search) - `0.26.6` : Full text search for PostgreSQL using BM25
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -188,7 +188,7 @@ There are **36** extensions in **26** packages.
 
 ## vchord_bm25 {#vchord_bm25}
 
-[**`vchord_bm25`**](/ext/e/vchord_bm25) - `1.0.0` : A postgresql extension for bm25 ranking algorithm
+[**`vchord_bm25`**](/ext/e/vchord_bm25) - `1.1.0` : A postgresql extension for bm25 ranking algorithm
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -207,7 +207,7 @@ There are **36** extensions in **26** packages.
 
 ## pg_tokenizer {#pg_tokenizer}
 
-[**`pg_tokenizer`**](/ext/e/pg_tokenizer) - `1.0.0` : Tokenizers for full-text search
+[**`pg_tokenizer`**](/ext/e/pg_tokenizer) - `1.1.0` : Tokenizers for full-text search
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

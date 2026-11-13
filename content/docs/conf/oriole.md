@@ -6,16 +6,13 @@ icon: fa-solid fa-feather
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/oriole.yml`; v4.5.0 uses `conf/oriole.yml`, selected with `-c oriole`.
-
-The `oriole` configuration template uses the OrioleDB storage engine instead of PostgreSQL's default Heap storage. It stores older row versions in UNDO logs, reducing bloat in primary storage.
-
+The `oriole` template (`conf/fork/oriole.yml`, selected with `-c oriole` or `-c fork/oriole`) replaces PostgreSQL's default heap storage with OrioleDB. It stores old versions in UNDO logs to reduce bloat in primary storage.
 
 --------
 
 ## Overview
 
-- Config Name: `oriole`
+- Config name: `oriole` (explicit path: `fork/oriole`)
 - Node Count: Single node
 - Description: OrioleDB storage engine configuration
 - PostgreSQL Major: `16`, `17`, or `18`
@@ -39,10 +36,9 @@ Usage:
 
 ## Content
 
-Development source: `conf/fork/oriole.yml`; release source: [`v4.5.0: conf/oriole.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/oriole.yml).
+Source: [`pigsty/conf/fork/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/oriole.yml)
 
-{{< include file="yaml/oriole.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/oriole.yml" code=true lang="yaml" >}}
 
 --------
 

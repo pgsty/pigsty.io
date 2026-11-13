@@ -37,9 +37,9 @@ The VIBE module has **18** parameters in these groups:
 | [`nodejs_registry`](#nodejs_registry) | `url` | `C` | `''` | npm registry mirror |
 | [`npm_packages`](#npm_packages) | `string[]` | `C` | `[]` | Additional global npm packages |
 | [`claude_enabled`](#claude_enabled) | `bool` | `C` | `true` | Install and configure Claude Code |
-| [`claude_package`](#claude_package) | `string` | `C` | `@anthropic-ai/claude-code` | Claude Code npm package |
+| [`claude_package`](#claude_package) | `string` | `C` | `claude` | Claude Code system package name |
 | [`claude_env`](#claude_env) | `dict` | `C` | `{}` | Claude env vars |
-| [`codex_enabled`](#codex_enabled) | `bool` | `C` | `true` | Install Codex CLI |
+| [`codex_enabled`](#codex_enabled) | `bool` | `C` | `true` | Install the Codex CLI package |
 {.full-width .wide .expand}
 
 --------
@@ -68,7 +68,7 @@ nodejs_registry: ''
 npm_packages: []
 
 claude_enabled: true
-claude_package: '@anthropic-ai/claude-code'
+claude_package: claude
 claude_env: {}
 
 codex_enabled: true
@@ -130,7 +130,7 @@ Access token, default `Vibe.Coding`, written to `c.IdentityProvider.token`.
 
 ### `jupyter_venv`
 
-Python venv path for JupyterLab. The default is `/data/venv`. You must create it first, usually through the `NODE` module.
+Python venv for JupyterLab, default `/data/venv`. If `<jupyter_venv>/bin/python` is absent, `jupyter_install` creates it with `uv venv`; if `<jupyter_venv>/bin/jupyter` is absent, it installs `jupyterlab` and `ipykernel`.
 
 --------
 
@@ -138,7 +138,7 @@ Python venv path for JupyterLab. The default is `/data/venv`. You must create it
 
 ### `nodejs_enabled`
 
-Enable the standalone Node.js installation task, default `true`.
+Enable independent Node.js installation/configuration, default `true`. This is separate from `claude_enabled` / `codex_enabled`. When enabled, `nodejs_config` also sets the global npm prefix to `/usr/local`.
 
 ### `nodejs_registry`
 
@@ -147,7 +147,7 @@ npm registry mirror. If this value is empty and `region=china`, the default is `
 ### `npm_packages`
 
 Additional global npm packages, tagged `nodejs_pkg`; empty by default.
-Claude Code and Codex CLI are installed by their own dedicated tasks and do not need to be added here.
+Claude Code and Codex CLI are installed by their own native-package tasks and need not appear in this list.
 
 --------
 
@@ -155,25 +155,25 @@ Claude Code and Codex CLI are installed by their own dedicated tasks and do not 
 
 ### `claude_enabled`
 
-Enable Claude Code installation and configuration. The default is `true`. The `claude_install` task installs the CLI. The `claude_config` task writes its configuration.
+Enable Claude Code installation/configuration, default `true`. `claude_install` installs the native package; `claude_config` merges `~/.claude/settings.json` nondestructively and initializes `~/.claude.json` with `force: false`.
 
 ### `claude_package`
 
-The npm package used for Claude Code; defaults to `@anthropic-ai/claude-code`.
+Native `pigsty-infra` package for Claude Code, default `claude`. The repository also provides the official `claude-code` name, which can be selected as an override.
 
 ### `claude_env`
 
-Extra env vars merged into default OpenTelemetry config.
+Additional environment variables merged nondestructively into `env` in `~/.claude/settings.json`. They override managed defaults while preserving other existing custom keys.
 
-Default env vars include:
+Default variables include the following; `<admin_ip>` falls back to `127.0.0.1`, with `vmetrics_port: 8428` and `vlogs_port: 9428`:
 
 - `CLAUDE_CODE_ENABLE_TELEMETRY=1`
 - `OTEL_METRICS_EXPORTER=otlp`
 - `OTEL_LOGS_EXPORTER=otlp`
 - `OTEL_EXPORTER_OTLP_METRICS_PROTOCOL=http/protobuf`
 - `OTEL_EXPORTER_OTLP_LOGS_PROTOCOL=http/protobuf`
-- `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://127.0.0.1:8428/opentelemetry/v1/metrics`
-- `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=http://127.0.0.1:9428/insert/opentelemetry/v1/logs`
+- `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://<admin_ip>:<vmetrics_port>/opentelemetry/v1/metrics`
+- `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=http://<admin_ip>:<vlogs_port>/insert/opentelemetry/v1/logs`
 - `OTEL_RESOURCE_ATTRIBUTES=ip=<inventory_hostname>,job=claude`
 
 --------
@@ -182,6 +182,5 @@ Default env vars include:
 
 ### `codex_enabled`
 
-Specifies whether to install Codex CLI. The default is `true`. If enabled, `codex_install` runs `npm install -g @openai/codex`.
-
-VIBE installs only Codex CLI. It does not manage the Codex configuration or configure OpenTelemetry for Codex.
+Install Codex CLI, default `true`. `codex_install` uses the system package manager to install native package `codex` from `pigsty-infra`.
+VIBE installs the CLI only; it does not manage Codex settings or configure its OpenTelemetry.

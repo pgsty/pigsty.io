@@ -44,7 +44,7 @@ repository
 
 ## Repository Abstraction
 
-[`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects a repository name. [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) contains a dictionary of candidate definitions. Pigsty v4.5.0 renders **only the selected `pgbackrest_repo[pgbackrest_method]` entry** as `repo1`. Listing `local` and `minio` does not activate both repositories.
+[`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects a repository name. [`pgbackrest_repo`](/docs/pgsql/param/#pgbackrest_repo) contains a dictionary of candidate definitions. Pigsty v4 renders **only the selected `pgbackrest_repo[pgbackrest_method]` entry** as `repo1`. Listing `local` and `minio` does not activate both repositories.
 
 ```yaml
 pgbackrest_method: local          # local, minio, or a custom key below

@@ -6,11 +6,7 @@ icon: fa-solid fa-bolt-lightning
 categories: [Reference]
 ---
 
-The `app/electric` template deploys the Electric SQL synchronization service.
-Electric synchronizes data from PostgreSQL to clients in real time.
-
-
-The preview below includes unreleased application-template updates. See the [Electric application guide](/docs/app/electric/) for port, metrics, and cache requirements.
+The `app/electric` template deploys Electric SQL for real-time synchronization from PostgreSQL to clients. See the [**Electric application guide**](/docs/app/electric/) for port, metrics, and cache settings.
 
 --------
 
@@ -36,21 +32,11 @@ Usage:
 
 Source: [`pigsty/conf/app/electric.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/electric.yml)
 
-<details>
-<summary>Development configuration preview: requires matching Electric Compose changes</summary>
-
-This configuration separates listening and published ports and sets persistent storage parameters. Update Compose together with it.
-
 {{< include file="yaml/app/electric.yml" code=true lang="yaml" >}}
-
-</details>
-
 
 --------
 
-## Development Configuration Explained
-
-The following describes the preview above and its matching Compose file.
+## Configuration Details
 
 **What is Electric**:
 - PostgreSQL to client real-time data sync service

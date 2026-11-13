@@ -13,7 +13,7 @@ There are **18** extensions in **18** packages.
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
 | [`vector`](/ext/e/vector) | [`pgvector`](https://github.com/pgvector/pgvector) | `0.8.7` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | vector data type and ivfflat and hnsw access methods |
-| [`vchord`](/ext/e/vchord) | [`vchord`](https://vchord.pgsty.com/docs/vchord/) | `1.2.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector database plugin for Postgres, written in Rust |
+| [`vchord`](/ext/e/vchord) | [`vchord`](https://vchord.pgsty.com/docs/vchord/) | `1.3.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Vector database plugin for Postgres, written in Rust |
 | [`vectorscale`](/ext/e/vectorscale) | [`pgvectorscale`](https://github.com/timescale/pgvectorscale) | `0.9.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Advanced indexing for vector data with DiskANN |
 | [`vectorize`](/ext/e/vectorize) | [`pg_vectorize`](https://github.com/ChuckHend/pg_vectorize) | `0.27.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | The simplest way to do vector search on Postgres |
 | [`pg_similarity`](/ext/e/pg_similarity) | [`pg_similarity`](https://github.com/eulerto/pg_similarity) | `1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | support similarity queries |
@@ -56,7 +56,7 @@ There are **18** extensions in **18** packages.
 
 ## vchord {#vchord}
 
-[**`vchord`**](/ext/e/vchord) - `1.2.0` : Vector database plugin for Postgres, written in Rust
+[**`vchord`**](/ext/e/vchord) - `1.3.0` : Vector database plugin for Postgres, written in Rust
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

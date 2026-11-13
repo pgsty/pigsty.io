@@ -8,12 +8,11 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/metric]
 ---
 
-`mysqld_exporter` supplies raw `mysql_` metrics. vmalert derives `mysql:ins:*` and `mysql:cls:*` metrics for dashboards and alerts. This page defines those metrics.
-
+MYSQL metrics come from `mysqld_exporter` (`mysql_` raw metrics), `node_exporter` backup textfiles (`/var/lib/node_exporter/textfile/mysql.prom`), and vmalert recording rules (`mysql:ins:*` / `mysql:cls:*`). Dashboards and alerts primarily use recording rules; this page is their complete dictionary.
 
 --------
 
-[`files/victoria/rules/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/mysql.yml) provides **68 module recording rules**, all listed here. `mysql_exporter_up = up{job="mysql"}` additionally comes from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). These recorded metrics do not appear at the raw `mysqld_exporter` endpoint. `mysql_up` is the exporter's database connection probe result.
+[`files/victoria/rules/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/mysql.yml) provides **70 module recording rules**, all listed here. `mysql_exporter_up = up{job="mysql"}` additionally comes from Infra's [**shared liveness recording rules**](/docs/infra/metric#shared-liveness-recording-rules). These recorded metrics do not appear at the raw `mysqld_exporter` endpoint. `mysql_up` is the exporter's database connection probe result.
 
 ## Common Labels
 
@@ -144,6 +143,18 @@ Replication pipeline (certification and apply):
 
 --------
 
+## Backups
+
+`mysql-backup` writes `/var/lib/node_exporter/textfile/mysql.prom`, then metrics are joined to instances and clusters by `ip`. Since backups follow the runtime primary, freshness is evaluated at cluster level, for example `time() - mysql:cls:backup_time`:
+
+| Metric | Meaning |
+|:---|:---|
+| `mysql:ins:backup_time` | Unix timestamp in seconds of this node's latest successful local full physical backup |
+| `mysql:cls:backup_time` | Unix timestamp in seconds of the latest successful local full physical backup across all cluster members |
+{.full-width}
+
+--------
+
 ## Raw Metric Families
 
 For data not covered by derived metrics, query raw exporter families:
@@ -159,6 +170,7 @@ For data not covered by derived metrics, query raw exporter families:
 | `mysql_perf_schema_transactions_*` / `mysql_perf_schema_conflicts_detected_total` | MGR certification, applier queues, and conflicts |
 | `mysql_binlog_*` | Binlog file count and size |
 | `mysql_info_schema_processlist_*` | Session distribution by state |
+| `mysql_backup_last_success_timestamp_seconds` / `mysql_backup_size_bytes` | Latest successful physical backup timestamp and size in bytes (`node_exporter` textfile) |
 {.full-width}
 
 Browse the complete list with the `mysql_` prefix in VictoriaMetrics vmui (`/select/vmui`).

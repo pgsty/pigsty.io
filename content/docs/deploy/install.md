@@ -123,7 +123,7 @@ You can also edit `pigsty.yml` directly without the wizard:
 > [!DETAILS]- Example configure output
 > ```bash
 > vagrant@meta:~/pigsty$ ./configure
-> configure pigsty v4.5.0 begin
+> configure pigsty v4.6.0 begin
 > [ OK ] region = china
 > [ OK ] kernel  = Linux
 > [ OK ] machine = x86_64

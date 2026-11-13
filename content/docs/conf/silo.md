@@ -8,8 +8,6 @@ categories: [Reference]
 
 The `app/silo` template deploys a Silo Docker Compose application on one node, replacing the former `app/minio`. See the [**Silo application guide**](/docs/app/silo/) for usage.
 
-The matching [`app/silo/`](https://github.com/pgsty/pigsty/tree/main/app/silo) and [`conf/app/silo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/silo.yml) are available in the main repository. Use both from the same checkout.
-
 ## Overview
 
 - Config Name: `app/silo`
@@ -29,7 +27,7 @@ vi pigsty.yml              # update passwords, domains, and data directories
 
 ## Content
 
-Development source: `conf/app/silo.yml`.
+Source: [`pigsty/conf/app/silo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/silo.yml)
 
 {{< include file="yaml/app/silo.yml" code=true lang="yaml" >}}
 

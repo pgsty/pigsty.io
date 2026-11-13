@@ -39,6 +39,6 @@ Source: [`pigsty/conf/demo/remote.yml`](https://github.com/pgsty/pigsty/blob/mai
 
 ## Explanation
 
-Each `pg_exporters` entry uses a unique local listen port. It declares the remote instance's `pg_cluster`, `pg_seq`, `pg_host`, and optional connection settings. The template demonstrates complete URLs, split credentials, database allowlists, and auto-discovery.
+Each `pg_exporters` entry uses a unique local listening port and specifies the remote instance's `pg_cluster`, `pg_seq`, `pg_host`, and optional connection settings. The template shows complete URLs, separate credentials, database allowlists, and automatic discovery. On INFRA nodes, `pgsql-monitor.yml` renders a separate `pg_exporter_<ins>.service` for each entry, running as the `prometheus` system user. Its connection environment file `/etc/default/pg_exporter_<ins>` has mode `0600`.
 
 All hostnames and credentials are placeholders. Keep only the entries you need. Use a monitoring account with the minimum required privileges. Never commit real RDS passwords.

@@ -247,16 +247,19 @@ For region `china`, the script automatically enables:
 
 With `-g`, the script generates a random 24-character string for each of these passwords:
 
-|    Password Parameter     | Description                          |
-|:-------------------------:|:-------------------------------------|
-| `grafana_admin_password`  | Grafana admin password               |
-|    `pg_admin_password`    | PostgreSQL admin password            |
-|   `pg_monitor_password`   | PostgreSQL monitor user password     |
-| `pg_replication_password` | PostgreSQL replication user password |
-|    `patroni_password`     | Patroni API password                 |
-| `haproxy_admin_password`  | HAProxy admin password               |
-|    `minio_secret_key`     | Silo Root Secret                     |
-|   `etcd_root_password`    | ETCD Root password                   |
+| Password Parameter | Description |
+|:-------------------------:|:-------------------------|
+| `grafana_admin_password` | Grafana administrator password |
+| `pg_admin_password` | PostgreSQL administrator password |
+| `pg_monitor_password` | PostgreSQL monitoring password |
+| `pg_replication_password` | PostgreSQL replication password |
+| `patroni_password` | Patroni API password |
+| `haproxy_admin_password` | HAProxy administrator password |
+|    `minio_secret_key`     | Silo Root Secret         |
+| `etcd_root_password` | ETCD root password |
+| `mysql_root_password` | MySQL root administrator password |
+| `mysql_monitor_password` | MySQL monitoring password |
+| `mysql_cluster_password` | MySQL InnoDB Cluster management and backup password |
 
 It also replaces the following placeholder passwords:
 
@@ -282,7 +285,7 @@ $ ./configure -g
 
 ## Configuration Templates
 
-Current development sources read templates from `conf/` and accept bare names or explicit relative paths. Bare names select the first matching file in this order:
+`configure` reads templates from `conf/` and accepts bare names or explicit relative paths. Bare names use the following search order, with the first match selected:
 
 ```text
 conf/ → conf/ha/ → conf/fork/ → conf/app/ → conf/demo/ → conf/build/
@@ -297,12 +300,10 @@ to another template with the same name. Leading `./`, the `conf/` prefix, and th
 ./configure -c ha/full              # Selects the same template explicitly
 ./configure -c ./conf/ha/full.yml   # Full relative filename for the same template
 ./configure -c halo                 # OpenHalo: conf/fork/halo.yml
-./configure -c mysql                # Native MySQL: conf/demo/mysql.yml
+./configure -c mysql                # native MySQL 8.4: conf/demo/mysql.yml
 ```
 
-These short names and the `halo` name apply to current development sources. With older release packages, use the `configure` script
-and template layout shipped in that release; for example, v4.5.0 uses `conf/mysql.yml` for OpenHalo.
-Use an explicit directory path to select a particular template when names collide.
+Distinguish `-c halo` (OpenHalo, a MySQL-compatible PostgreSQL kernel in `conf/fork/halo.yml`) from `-c mysql` (native MySQL 8.4 in `conf/demo/mysql.yml`). Use an explicit directory path to resolve duplicate template names.
 
 ### Core Templates
 
@@ -344,6 +345,8 @@ Use an explicit directory path to select a particular template when names collid
 |  `app/registry`  | Docker Registry configuration                   |
 |  `app/immich`    | Immich photo and video management               |
 | `app/jumpserver` | JumpServer bastion host                          |
+| `app/discourse` | Discourse community forum |
+| `app/silo` | Standalone Silo object storage application |
 {.wide .expand}
 
 ### Special Kernel Templates
@@ -362,7 +365,7 @@ Use an explicit directory path to select a particular template when names collid
 |  `mongo`   | MongoDB-compatible stack template                         |
 {.wide .expand}
 
-Current development sources place these kernel templates and `pgsql` under `conf/fork/`, except for `ha/citus`.
+These kernel templates, including `pgsql`, reside under `conf/fork/`, except for `ha/citus`.
 For example, `-c ivory` and `-c fork/ivory` both select `conf/fork/ivory.yml`.
 OpenHalo uses `halo` or `fork/halo`; its internal setting remains `pg_mode: mysql`.
 
@@ -378,16 +381,15 @@ OpenHalo uses `halo` or `fork/halo`; its internal setting remains `pg_mode: mysq
 |  `demo/demo`   | Multi-module demo environment                     |
 | `demo/kernel`  | Ten-node database-kernel matrix                   |
 | `demo/redis`   | Redis replica, Sentinel, and native Cluster demo  |
-| `demo/minio`   | Multi-node, multi-drive Silo demo (source default) |
+| `demo/minio` | Silo cluster with multiple nodes and drives |
 | `demo/kafka`   | Kafka KRaft development and secure-cluster demo    |
 | `demo/mysql`   | Native MySQL 8.4 pilot demo                        |
 | `demo/remote`  | Remote PostgreSQL/RDS monitoring example          |
 |  `demo/saas`   | Legacy single-node SaaS component bundle          |
 |  `demo/wool`   | Small cloud-instance example for China            |
 |  `build/oss`   | Cross-distribution open-source package build env  |
-|  `build/dev`   | Three-node development and build environment      |
+| `build/dev` | Seven-node development and build environment |
 {.full-width .wide .expand}
-
 
 -----------------
 
@@ -395,7 +397,7 @@ OpenHalo uses `halo` or `fork/halo`; its internal setting remains `pg_mode: mysq
 
 ```bash
 $ ./configure
-configure pigsty v4.5.0 begin
+configure pigsty v4.6.0 begin
 [ OK ] region = china
 [ OK ] kernel  = Linux
 [ OK ] machine = x86_64
@@ -416,7 +418,6 @@ configure pigsty v4.5.0 begin
 [WARN] don't forget to check it and change passwords!
 proceed with ./deploy.yml
 ```
-
 
 -----------------
 

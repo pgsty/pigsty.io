@@ -8,8 +8,7 @@ module: [MINIO]
 categories: [Concept]
 ---
 
-
-MINIO is the compatibility module name for object storage. Pigsty v4.5.0 deploys Silo with [`minio_type: silo`](/docs/minio/param#minio_type). It groups object storage **instances** into a **cluster**.
+MINIO is Pigsty's compatibility module name for object storage. Pigsty v4.6.0 deploys Silo through [`minio_type: silo`](/docs/minio/param#minio_type), organizing storage **instances** into **clusters**.
 
 Each cluster is an **autonomous** S3-compatible object store with at least one instance. It exposes services through the S3 API port.
 

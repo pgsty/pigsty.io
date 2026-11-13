@@ -39,6 +39,9 @@ categories: [Reference]
 
 PIG-owned results support structured output. Raw-content commands such as `inventory show` and passthrough commands such as `pt list` retain their native output. See the command reference for details.
 
+`-ojson`, `-o=json`, `-o json`, and `--output=json` select the same format, including when argument validation fails.
+Flags after the native forwarding boundary `--` belong to the downstream command and no longer select PIG's output format.
+
 Structured results keep diagnostics and wrapped-tool chatter on stderr. JSON/YAML output and
 `PIG_NON_INTERACTIVE=1` disable prompt input in PIG-owned command adapters and use `sudo -n`;
 they do not supply destructive-operation confirmation. Pass `--yes` where required.
@@ -112,7 +115,7 @@ pig build ext citus              # build package
 
 ## pig install {#pig-install}
 
-Install packages through the system's native package manager and translate PostgreSQL kernel, extension, and common aliases into package names. Use `-n/--no-translation` when you need to pass raw system package names directly.
+Install packages with the native system package manager, translating PostgreSQL kernel, extension, and Pigsty component-group aliases such as `node` and `infra` (including `kes` and `openbao`). Use `-n/--no-translation` to pass system package names directly.
 
 ```bash
 pig install pg_duckdb            # install extension and translate package name

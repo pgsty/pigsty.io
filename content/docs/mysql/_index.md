@@ -12,9 +12,8 @@ aliases: [/docs/pilot/mysql]
 
 > [!NOTE] Current status: Pilot module
 > MYSQL is a supplementary pilot module for a simple, low-cost MySQL cluster. Its scope is smaller than PGSQL.
-> Deployment, convergence, HA failover, daily backups, monitoring, and alerts have systematic tests.
-> Destructive complete-outage recovery and physical restore remain manual. Follow the [Administration](/docs/mysql/admin) procedures.
-
+> Core capabilities have been systematically tested: deployment convergence, HA failover, recovery after a complete three-node outage, replacement at the same address, daily backups, and monitoring/alerts.
+> Destructive procedures such as physical backup copy-back remain manual operations. See the runbooks under [Administration](/docs/mysql/admin).
 
 --------
 
@@ -24,15 +23,14 @@ The MYSQL module currently provides:
 
 - Fixed native MySQL 8.4 LTS server, client, Shell, Router, and matching XtraBackup packages.
 - Standalone or three-node single-primary InnoDB Cluster, created and reconciled through MySQL Shell AdminAPI.
-- Router on each HA member, with topology-aware read/write `6446` and read-only `6447` endpoints.
+- Flexible HA access: MySQL Router on every HA member (RW `6446`, RO `6447`), with optional reuse of the `NODE` Layer 2 VIP (`<vip>:6446/6447`, automatically added to certificate SANs)
 - TLS with leaf certificates from the shared Pigsty CA. Non-TLS connections are rejected.
 - Additive `mysql_databases` and `mysql_users` declarations that never delete data implicitly.
 - `mysql_parameters` overrides, including `max_connections`, with rolling restarts after configuration changes.
-- Daily full physical XtraBackup backup and prepare, retention, concurrency locks, and atomic completion.
-- mysqld_exporter metrics, 68 recording rules, 27 alerts, five Grafana dashboards, and VictoriaLogs error logs.
+- Daily full physical backups: XtraBackup with preparation, an initial baseline backup on first deployment, retention, a concurrency lock, atomic commit, and freshness metrics
+- Complete observability: `mysqld_exporter` and backup metrics, 70 recording rules, 8 actionable alerts, 5 Grafana dashboards, and error logs in VictoriaLogs
 - Default `sql_require_primary_key`, blocking tables without primary keys that would break MGR replication and recovery.
-- Convergent repair of dropped members and AdminAPI drift by rerunning `mysql.yml`. Safeguards restrict destructive paths.
-
+- Convergent operations: rerun `mysql.yml` to recover offline members, a complete three-node outage (all members reachable, selecting the highest GTID), or a replacement machine at the same IP (stale registration cleanup and Clone rebuild), with safeguards for dangerous operations
 
 --------
 
@@ -106,11 +104,10 @@ Preflight rejects Debian/Ubuntu ARM64 because Oracle APT has no MySQL 8.4 `arm64
 MYSQL provides a fixed platform. Before adoption, accept these **scope limits**:
 
 - **One or three nodes only:** No in-place 1→3 or 3→5 expansion and no persistent two-node operation. Use logical migration for capacity changes and [same-address replacement](/docs/mysql/admin#replace-a-failed-member) for hardware refresh.
-- **Fixed versions, ports, directories, and charset:** No parameters change them. Memory sizing comes from node specifications. Override individual keys through [`mysql_parameters`](/docs/mysql/param#mysql_parameters).
-- **Daily local full backups:** No incremental chains, continuous binlog archives, or PITR. Physical restore is manual; follow the [procedure](/docs/mysql/admin#restore-from-physical-backup).
-- **Manual complete-outage recovery:** This avoids split-brain from automated guesses. Playbook failures print recovery instructions.
-- **No VIP, DNS, or HAProxy access layer:** Connect through any member's Router, preferably with a multi-host DSN.
-
+- **Fixed versions, ports, and character set**: these are not exposed as parameters. Data defaults to `/data/mysql`, configurable with [`mysql_data`](/docs/mysql/param#mysql_data). Memory settings are derived from node resources and PostgreSQL colocation; override key settings with [`mysql_parameters`](/docs/mysql/param#mysql_parameters).
+- **Daily local full backups**: no incremental chains, continuous binlog archiving, or PITR. Physical copy-back recovery is manual; see the [runbook](/docs/mysql/admin#restore-from-physical-backup).
+- **Automatic complete-outage recovery requires all three members to be reachable**: it always uses `force: false`. If fewer than three hosts are reachable, repair them or follow [Complete Outage Recovery](/docs/mysql/admin#recover-from-a-complete-outage). The role never forces majority recovery automatically.
+- **Local Router with an optional L2 VIP**: clients can use any member's Router, a multi-address DSN, or the [`NODE`](/docs/node) Layer 2 VIP (`<vip>:6446/6447`). No DNS / HAProxy access layer is included.
 
 --------
 
@@ -118,15 +115,14 @@ MYSQL provides a fixed platform. Before adoption, accept these **scope limits**:
 
 | Page | Content |
 |:---|:---|
-| [Configuration](/docs/mysql/config) | Topology planning, identity, databases, users, parameter overrides, backup settings |
-| [Parameters](/docs/mysql/param) | The 11 public parameters and fixed platform conventions |
-| [Administration](/docs/mysql/admin) | Status checks, client access, config changes, failure handling, and three recovery runbooks |
+| [Configuration](/docs/mysql/config) | Topology, identity, data directory, application databases/users, parameter overrides, and backups |
+| [Parameters](/docs/mysql/param) | 16 public parameters (13 deployment + 3 removal) and fixed platform conventions |
+| [Administration](/docs/mysql/admin) | Status, shortcuts, client access, configuration changes, automatic recovery, and physical restore runbooks |
 | [Playbook](/docs/mysql/playbook) | `mysql.yml` and `mysql-rm.yml` usage, tags, and guardrails |
 | [Monitoring](/docs/mysql/monitor) | Dashboards, recording rules, alert rules, log queries |
 | [Metrics](/docs/mysql/metric) | Label model and the derived-metric dictionary |
 | [FAQ](/docs/mysql/faq) | Platform limits, primary-key policy, recovery, troubleshooting |
 {.full-width}
-
 
 --------
 

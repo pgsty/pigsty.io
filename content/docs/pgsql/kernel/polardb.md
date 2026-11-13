@@ -30,12 +30,10 @@ Pigsty does not download these packages to the local software repository during 
 
 ## Installation
 
-Use the built-in Pigsty template:
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/polar.yml). Development sources moved it to `conf/fork/polar.yml`; use `-c fork/polar` with those sources.
+Use Pigsty's [`fork/polar`](/docs/conf/polar/) template ([`conf/fork/polar.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/polar.yml)); `-c polar` and `-c fork/polar` are equivalent. `configure` explicitly ignores `-v` overrides for this template and keeps `pg_version: 17`:
 
 ```bash
-./configure -c polar
+./configure -c fork/polar
 ./deploy.yml
 ```
 
@@ -85,9 +83,7 @@ The default installation directory for the `polar` kernel is now `/usr/polar-17`
 PolarDB PG still requires the `replicator` replication user to be `SUPERUSER`.
 Native PostgreSQL does not have this requirement.
 
-
-
-
+PolarDB can leave the backup-end record in the active WAL segment. With `pg_mode: polar`, Pigsty sets `archive-timeout=600` in `[global:backup]` and `[global:check]` of `/etc/pgbackrest/pgbackrest.conf`, exceeding the default 300-second `archive_timeout`. This prevents `pgbackrest backup` or `pgbackrest check` from reporting failure while waiting for a WAL switch under low write load.
 
 --------
 

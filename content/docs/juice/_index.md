@@ -55,7 +55,7 @@ flowchart LR
 - **PostgreSQL metadata**: Metadata stored in PostgreSQL for easy management and backup
 - **Multi-instance**: One node can mount multiple independent filesystem instances
 - **Multiple data backends**: PostgreSQL, Silo/MinIO, S3, and more. Metadata and file data remain separate roles.
-- **Monitoring integration**: Each instance exposes Prometheus / Victoria-format metrics port
+- **Monitoring integration**: Each instance exposes a Prometheus / Victoria-format metrics port
 - **Simple config**: Describe instances with the [**`juice_instances`**](/docs/juice/param#juice_instances) dict
 
 --------
@@ -78,3 +78,5 @@ Deploy:
 ```bash
 ./juice.yml -l <host>
 ```
+
+The control node requires `ansible-core >= 2.16`. The playbook skips hosts where `juice_instances` is undefined, `null`, or an empty dict, and hosts without a matching instance when `-e fsname=<name>` is set. Instance names are JuiceFS volume names: 3–63 lowercase letters, digits, or hyphens, with no leading or trailing hyphen. See [**Configuration Validation**](/docs/juice/config#configuration-validation).

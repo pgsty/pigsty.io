@@ -1,15 +1,13 @@
 ---
 title: Administration
 weight: 5013
-description: Status checks, client access, configuration changes, failure handling, and the three recovery runbooks for MySQL clusters.
+description: MySQL status checks, shortcuts, client access, configuration changes, automatic recovery, member replacement, physical restore, and outage recovery.
 icon: fa-solid fa-wrench
 module: [MYSQL]
 categories: [Reference]
-aliases: [/docs/pilot/mysql/admin]
 ---
 
-**Declare state in the inventory and apply it with the playbook.** Most dropped members or AdminAPI drift recover after `./mysql.yml -l <cluster>`. Member replacement, physical restore, and complete-outage recovery require the manual procedures below.
-
+This page covers daily MYSQL operations. **Declare state in the inventory and converge it with playbooks.** Rerunning `./mysql.yml -l <cluster>` recovers an offline member, a complete outage with all three hosts reachable, or a dead member replaced at the same IP. Physical backup copy-back and incomplete outages with fewer than three reachable hosts require the manual procedures below.
 
 --------
 
@@ -17,37 +15,40 @@ aliases: [/docs/pilot/mysql/admin]
 
 | Operation | Command |
 |:---|:---|
-| Deploy / converge a cluster | `./mysql.yml -l <cluster>` |
+| Deploy / converge / recover a cluster | `./mysql.yml -l <cluster>` |
 | Preflight without changes | `./mysql.yml -l <cluster> --check` |
-| Local root session | `mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf` |
-| Inspect MGR topology | `SELECT MEMBER_HOST,MEMBER_STATE,MEMBER_ROLE FROM performance_schema.replication_group_members;` |
-| AdminAPI status | `dba.getCluster().status()` in `mysqlsh` |
-| Trigger a backup | `systemctl start mysql-backup` (in HA, only the primary runs it) |
-| Retire a secondary | `./mysql-rm.yml -l <IP> -e mysql_safeguard=false -e mysql_rm_confirm=<instance>` |
-| Retire a whole cluster | `./mysql-rm.yml -l <cluster> -e mysql_safeguard=false -e mysql_rm_confirm=<cluster>` |
+| Local root client shortcut | `my` (equivalent to `sudo mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf`) |
+| AdminAPI cluster status (HA) | `mysh` (prints `dba.getCluster().status()` by default) |
+| Inspect MGR topology | `my -e "SELECT MEMBER_HOST,MEMBER_STATE,MEMBER_ROLE FROM performance_schema.replication_group_members;"` |
+| Trigger a backup | `sudo systemctl start mysql-backup` (only the writable primary executes it in HA) |
+| Remove and destroy one member | `./mysql-rm.yml -l <IP> -e mysql_safeguard=false` (automatically switches primary first if needed) |
+| Stop a cluster while retaining data | `./mysql-rm.yml -l <cluster> -e mysql_safeguard=false -e mysql_rm_data=false` |
+| Destroy the entire cluster | `./mysql-rm.yml -l <cluster> -e mysql_safeguard=false` (always retains the backup directory) |
 {.full-width}
-
 
 --------
 
-## Status Checks
+## Status Checks and Shortcuts
 
-Run these commands as root on a cluster member. Only root can read `/etc/mysql/pigsty/` credentials. Examples use EL service names. Debian/Ubuntu uses `mysql`, not `mysqld`.
+Installation deploys `/etc/profile.d/mysql.sh`, which provides `my` for all topologies and `mysh` on HA nodes. Credentials are stored under `/etc/mysql/pigsty/` and readable only by root. Examples use EL; on Debian/Ubuntu the MySQL service unit is `mysql`, not `mysqld`.
 
 On any member, confirm services and topology:
 
 ```bash
 systemctl status mysqld mysqlrouter mysqld_exporter mysql-backup.timer
 
-mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -e "
+my -e "
   SELECT MEMBER_HOST, MEMBER_STATE, MEMBER_ROLE, MEMBER_VERSION
   FROM performance_schema.replication_group_members ORDER BY MEMBER_HOST;"
 ```
 
-A healthy three-node cluster has three `ONLINE` rows and exactly one `PRIMARY`. For AdminAPI status:
+A healthy three-node cluster shows three `ONLINE` rows and exactly one `PRIMARY`. Use `mysh` for the AdminAPI view, or call `mysqlsh --no-defaults` manually:
 
 ```bash
-mysqlsh --js -e '
+mysh
+
+# Equivalent manual command: always pass --no-defaults when invoking mysqlsh directly
+sudo mysqlsh --no-defaults --js -e '
 shell.options.useWizards=false;
 var pw = os.loadTextFile("/etc/mysql/pigsty/cluster-password").replace(/[\r\n]+$/, "");
 shell.connect({user:"dbuser_cluster", password:pw, host:"127.0.0.1", port:3306,
@@ -62,20 +63,20 @@ Use [MySQL Overview](https://demo.pigsty.io/ui/d/mysql-overview) or `mysql:cls:h
 
 ## Client Access
 
-HA clients connect through any member's Router, which follows failovers automatically:
+Connect to an HA cluster through any member's Router or the node Layer 2 VIP. Router follows primary changes automatically:
 
 ```bash
-# Read-write endpoint (current primary)
-mysql -h <any-member> -P 6446 -u app -pDBUser.App --ssl-mode=VERIFY_CA --ssl-ca=/etc/pki/ca.crt app
+# Read/write endpoint: any member IP or NODE VIP routes to the current primary
+mysql -h <member-or-VIP> -P 6446 -u app -pDBUser.App --ssl-mode=VERIFY_CA --ssl-ca=/etc/pki/ca.crt app
 
 # Read-only endpoint (round-robin over secondaries)
-mysql -h <any-member> -P 6447 -u app -pDBUser.App --ssl-mode=VERIFY_CA --ssl-ca=/etc/pki/ca.crt app
+mysql -h <member-or-VIP> -P 6447 -u app -pDBUser.App --ssl-mode=VERIFY_CA --ssl-ca=/etc/pki/ca.crt app
 ```
 
 Guidance:
 
 - The server requires TLS and rejects plaintext. Client `PREFERRED` negotiates encryption automatically. Prefer explicit `VERIFY_CA` with the Pigsty CA; JDBC uses `sslMode=VERIFY_CA`.
-- There is no VIP/DNS layer. Use a **multi-host DSN**, such as `jdbc:mysql://10.10.10.11:6446,10.10.10.12:6446,10.10.10.13:6446/app`, to avoid one Router failure point. Alternatively, list all members in the application load balancer.
+- **Layer 2 VIP or multi-address DSN**: if the group's [`NODE`](/docs/node) module enables a VIP (`vip_enabled: true`, `vip_address`, `vip_vrid`), it floats among surviving nodes and is automatically added to TLS leaf certificate SANs. Clients can use `<vip>:6446` (RW) and `<vip>:6447` (RO). Without a VIP, configure a **multi-address DSN**, such as JDBC `jdbc:mysql://10.10.10.11:6446,10.10.10.12:6446,10.10.10.13:6446/app`;
 - Standalone instances have no Router. Connect directly to `3306`.
 - A partitioned or quorum-lost member makes its Router reject read/write and read-only connections. This prevents stale Router reads.
 
@@ -89,12 +90,11 @@ Measured write interruptions are approximately 3–4 seconds for graceful primar
 Edit `mysql_databases` / `mysql_users` in the inventory, then converge:
 
 ```bash
-./mysql.yml -l my-test                      # full converge
-./mysql.yml -l my-test -t mysql_provision   # business objects only (faster)
+./mysql.yml -l my-test                      # full convergence; all members must be reachable
+./mysql.yml -l my-test -t mysql_provision   # converge databases/users only; mysql_db or mysql_user can also run separately
 ```
 
-In HA, changes run on the current primary and replicate to other members. Declarations are additive. Nothing is dropped or revoked implicitly. Perform removals manually, then update inventory.
-
+HA object changes run only on the current primary and propagate through replication. During a single-node failure, `-t mysql_provision` / `-t mysql_db` / `-t mysql_user` can target surviving members with `-l`, provided the current `PRIMARY` is included. Declarations are additive: they do not drop databases/users or revoke grants. Perform those operations manually and update the inventory afterward.
 
 --------
 
@@ -127,95 +127,81 @@ Standalone instances restart in place.
 
 ## Switchover
 
-The module does not orchestrate planned switchovers; use AdminAPI when you need one:
+Perform a planned switchover from any HA member with `mysh`:
 
 ```bash
-mysqlsh --js -e '
-shell.options.useWizards=false;
-var pw = os.loadTextFile("/etc/mysql/pigsty/cluster-password").replace(/[\r\n]+$/, "");
-shell.connect({user:"dbuser_cluster", password:pw, host:"127.0.0.1", port:3306,
-  "ssl-mode":"VERIFY_CA", "ssl-ca":"/etc/pki/ca.crt"});
-dba.getCluster().setPrimaryInstance("10.10.10.12:3306");   // the new primary
-'
+mysh 'dba.getCluster().setPrimaryInstance("10.10.10.12:3306")'
 ```
 
-Routers follow the switchover automatically. Rerun `./mysql.yml -l <cluster>` to verify convergence. Primary placement is runtime state, so the playbook does not move it back.
-
+Router follows the switch automatically. Rerun `./mysql.yml -l <cluster>` afterward to confirm convergence. Runtime primary placement is not declared state, so the playbook will not switch back to member 1.
 
 --------
 
 ## Member Failures and Self-Healing
 
-**No action is needed for ordinary failover.** After a primary crash, MGR elects a replacement in approximately 20 seconds. Routers follow it. Systemd restarts the failed member, which rejoins automatically. Intervene for these cases:
+**Routine failover needs no manual intervention**: MGR elects a new primary within roughly 20 seconds after a primary crash, and Router reroutes traffic. systemd restarts the failed member, which rejoins automatically. For persistent failures:
 
 | Symptom | Action |
 |:---|:---|
-| A member stays `OFFLINE` (process up, GR stopped) | Rerun `./mysql.yml -l <cluster>` — it rejoins the member |
+| A member remains `OFFLINE` while its process runs but GR is stopped | Rerun `./mysql.yml -l <cluster>` for an incremental rejoin |
 | A member repeatedly fails to join, logging `peers not configured` | Same: the converge pins `group_replication_group_seeds` back to the declared list |
-| A member has not returned after a network partition heals | Wait ~1 minute for auto-rejoin; rerun the playbook if it still has not rejoined |
-| All members `OFFLINE` | Complete outage — see [Recover from a Complete Outage](#recover-from-a-complete-outage) |
-| Hardware is unrecoverable | See [Replace a Failed Member](#replace-a-failed-member) |
+| A member does not return after a network partition | Wait about 1 minute for reconnection, then rerun `./mysql.yml -l <cluster>` if needed |
+| All three members are `OFFLINE` but hosts are reachable | Rerun `./mysql.yml -l <cluster>`; the highest-GTID member runs `rebootClusterFromCompleteOutage` automatically |
+| All members are `OFFLINE` and some hosts are lost | Follow [Complete Outage Recovery](#recover-from-a-complete-outage) to restore quorum manually |
+| A damaged host is replaced | Prepare a fresh machine at the same IP, run `./node.yml`, then `./mysql.yml -l <cluster>`; see [Replace a Failed Member](#replace-a-failed-member) |
 {.full-width}
 
-Matching alerts: `MySQLClusterMemberOffline` (WARN), `MySQLClusterNoPrimary` / `MySQLClusterQuorumLost` (CRIT).
-
+Matching alerts: `MySQLClusterDegraded` (WARN), `MySQLClusterDown`（CRIT）、`MySQLDown` (CRIT).
 
 --------
 
 ## Replace a Failed Member
 
-**Replacement hardware must reuse the failed member's service address.** Keep inventory unchanged. For failed `my-test-3` (`10.10.10.13`), use three steps:
+Replacement requires **reusing the failed machine's service address**, with the inventory unchanged. Assume `my-test-3` (`10.10.10.13`) needs replacement:
 
 ```bash
-# 1. Remove the failed member. If the machine is still reachable, use the retirement playbook:
-./mysql-rm.yml -l 10.10.10.13 -e mysql_safeguard=false -e mysql_rm_confirm=my-test-3
+# Case A: the old host is permanently unreachable; prepare a fresh machine at the same IP
+./node.yml  -l 10.10.10.13          # 1. manage the new node: repositories, shared CA, and monitoring agents
+./mysql.yml -l my-test --check      # 2. preflight the entire cluster
+./mysql.yml -l my-test              # 3. rescan stale registration, then Clone and rejoin automatically
 
-# 1b. If the machine is truly dead (unreachable over SSH), the playbook cannot run on it;
-#     force-remove it from any healthy member via AdminAPI instead:
-mysqlsh --js -e '
-shell.options.useWizards=false;
-var pw = os.loadTextFile("/etc/mysql/pigsty/cluster-password").replace(/[\r\n]+$/, "");
-shell.connect({user:"dbuser_cluster", password:pw, host:"127.0.0.1", port:3306,
-  "ssl-mode":"VERIFY_CA", "ssl-ca":"/etc/pki/ca.crt"});
-dba.getCluster("my-test").removeInstance("10.10.10.13:3306", {force: true});'
-
-# 2. Provision a fresh machine at the same address (reinstall the OS), then manage it
-./node.yml -l 10.10.10.13
-
-# 3. Reconverge the complete cluster: the new member is cloned and joined automatically
-./mysql.yml -l my-test --check
-./mysql.yml -l my-test
+# Case B: the old host is reachable and scheduled for rebuild; a PRIMARY target switches primary first
+./mysql-rm.yml -l 10.10.10.13 -e mysql_safeguard=false   # 1. leave gracefully and clear local data/configuration
+./mysql.yml    -l my-test                                # 2. initialize and Clone back into the cluster
 ```
 
 Notes:
 
-- Step 1 removes the address from cluster metadata. Only an absent address qualifies for fresh clone. Retirement requires a **reachable** ONLINE SECONDARY or detached member. For dead hardware, use force removal in 1b.
-- Replacement hardware must be **fully clean**, with an empty datadir and no Router keyring. OS reinstallation guarantees this. Preflight or Router bootstrap rejects partial cleanup.
-- Clone copies the full dataset; time depends on size. One primary and one secondary keep the cluster available.
-- Address changes during replacement and long-term two-node operation are unsupported.
-
+- **No manual `removeInstance` is needed for replacement**: if the new host reuses the same IP and has an empty data directory, a full-cluster `mysql.yml` run detects the fresh instance, calls `cluster.rescan({removeInstances})` to remove the old UUID registration, and rebuilds it through MySQL Clone;
+- If the old host is permanently lost and will not yet be replaced, remove only its metadata from a survivor with `mysh 'dba.getCluster().removeInstance("10.10.10.13:3306", {force: true})'`;
+- The new host must be **fresh**, with empty `mysql_data` and no leftover Router state. Clone time scales with data size; the cluster remains available with one primary and one replica;
+- Changing the member IP during replacement and long-term two-node operation are unsupported.
 
 --------
 
-## Retire and Resurrect a Cluster
+## Stop with Data Retained or Destroy a Cluster
 
-Retire a whole cluster (stop services, deregister monitoring, keep all data):
-
-```bash
-./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
-```
-
-Retirement writes `/var/lib/mysql/.pigsty-mysql-retired` on every member. This **blocks ordinary `mysql.yml` reruns** and accidental revival. To restore service deliberately:
+`mysql-rm.yml` destroys data and managed configuration by default (`mysql_rm_data: true`). It also supports stopping an entire cluster while retaining data (`-e mysql_rm_data=false`):
 
 ```bash
-ansible my-test -b -a 'rm -f /var/lib/mysql/.pigsty-mysql-retired'
+# 1. Stop the entire cluster and deregister monitoring; retain /data/mysql and managed configuration
+./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_data=false
+
+# Restart and automatically recover all three nodes; no manual lock-file removal or rebootCluster required
 ./mysql.yml -l my-test
+
+# 2. Destroy the entire cluster: remove /data/mysql and managed configuration, retain /data/backups/mysql
+./mysql-rm.yml -l my-test -e mysql_safeguard=false
+
+# To uninstall packages as well:
+./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_pkg=true
 ```
 
-Two commands suffice for standalone instances. **HA needs another step.** Reruns start services, but all three Group Replication members remain OFFLINE. No member self-bootstraps, to prevent split-brain. The playbook reports complete outage. Follow steps 3–4 of [complete-outage recovery](#recover-from-a-complete-outage) to restore quorum.
+Notes:
 
-Playbooks never destroy datadirs, backups, or packages. Decide on destruction manually after verifying backups.
-
+- This version no longer writes `.pigsty-mysql-retired` or requires `mysql_rm_confirm`;
+- `-e mysql_rm_data=false` is supported only when stopping the entire cluster, including a standalone cluster; single-member removal requires `mysql_rm_data=true`;
+- `mysql-rm.yml` **never deletes `mysql_backup_dir` (`/data/backups/mysql`)**. Administrators must remove old physical backups manually after confirming they are no longer needed.
 
 --------
 
@@ -223,11 +209,11 @@ Playbooks never destroy datadirs, backups, or packages. Decide on destruction ma
 
 ```bash
 systemctl list-timers mysql-backup.timer          # next scheduled run
-systemctl start mysql-backup                      # run now (in HA the primary executes, secondaries skip)
+sudo systemctl start mysql-backup                 # trigger manually; only the writable HA primary runs it, replicas skip
 journalctl -u mysql-backup --since today          # backup logs
 ```
 
-Backup layout, on the **current primary's** local disk:
+Backup directory layout on the **current primary's** local disk, retaining the latest `mysql_backup_retention: 3` copies by default:
 
 ```text
 /data/backups/mysql/<cluster>/
@@ -235,7 +221,7 @@ Backup layout, on the **current primary's** local disk:
 │   ├── backup.ok              # commit marker: present only for fully successful backups
 │   ├── backup.log             # XtraBackup output
 │   └── ...                    # InnoDB data files
-├── ...                        # last N kept per retention
+├── ...                        # retain the latest N backups according to mysql_backup_retention (default 3)
 └── latest -> 20260729T053900Z # atomic pointer to the newest backup
 ```
 
@@ -245,48 +231,46 @@ Check backup freshness on **all HA members** because backups follow the primary:
 ansible my-test -b -a 'ls -l /data/backups/mysql/my-test/latest'
 ```
 
-> [!WARNING] Backup alerting gap
-> This version has no backup-freshness metric or backup alerts. Failures appear only in `mysql-backup` logs.
-> Query them through VictoriaLogs or the Instance dashboard's Router / Backup Logs panel. In important environments, add external log checks and regularly rehearse restoration.
+Backup monitoring and troubleshooting:
 
+- After a successful backup, the script atomically updates `/var/lib/node_exporter/textfile/mysql.prom` with `mysql_backup_last_success_timestamp_seconds` and `mysql_backup_size_bytes`. VictoriaMetrics derives `mysql:ins:backup_time` and `mysql:cls:backup_time`; no successful cluster backup for 30 hours triggers `MySQLBackupStale` (`WARN`);
+- On failure, previously committed backups and the `latest` symlink remain intact. Detailed XtraBackup logs for the failed run are retained in `/var/lib/pigsty/mysql-backup/<UTC-timestamp>.log`.
 
 --------
 
 ## Restore from Physical Backup
 
-This procedure restores standalone data to the latest backup. **It is destructive:** later writes are lost. Check the `latest` timestamp first. For HA, restore one primary node, then clone it to the other members.
+The following runbook restores a standalone instance to its latest backup. **This is destructive**: writes after the backup are lost. Confirm that the `latest` timestamp is acceptable. If `mysql_data` is customized, replace `/data/mysql` below with the actual path. For a full HA rebuild, restore one member first and Clone the remaining empty nodes from it.
 
 ```bash
 # 0. Verify the backup is committed: backup.ok must exist
 BK=/data/backups/mysql/my-meta/latest
-sudo test -f $BK/backup.ok && sudo cat $BK/backup.ok
+sudo test -f "$BK/backup.ok" && sudo cat "$BK/backup.ok"
 
-# 1. Stop the server; keep the wreckage for forensics until verified
-sudo systemctl stop mysqld
-sudo mv /var/lib/mysql /var/lib/mysql.destroyed
+# 1. Stop the backup timer, any running backup, and MySQL; preserve existing data (use mysql on Debian/Ubuntu)
+sudo systemctl stop mysql-backup.timer mysql-backup.service mysqld
+sudo mv /data/mysql /data/mysql.destroyed
 
-# 2. Copy the backup back (already prepared — no --prepare step needed)
-sudo mkdir -p /var/lib/mysql && sudo chown mysql:mysql /var/lib/mysql && sudo chmod 750 /var/lib/mysql
-sudo xtrabackup --copy-back --target-dir=$BK
-sudo rm -f /var/lib/mysql/backup.ok /var/lib/mysql/backup.log   # bookkeeping files carried over by copy-back
+# 2. Copy back the prepared backup; no --prepare is needed, but always pass --no-defaults and --datadir
+sudo install -d -m 0750 -o mysql -g mysql /data/mysql
+sudo xtrabackup --no-defaults --copy-back --target-dir="$BK" --datadir=/data/mysql
+sudo rm -f /data/mysql/backup.ok /data/mysql/backup.log   # bookkeeping files carried over by copy-back
 
-# 3. Recreate runtime directories the backup does not contain
-sudo mkdir -p /var/lib/mysql/binlog /var/lib/mysql/tmp
-sudo chown -R mysql:mysql /var/lib/mysql
-sudo chmod 750 /var/lib/mysql/binlog /var/lib/mysql/tmp
+# 3. Recreate runtime subdirectories not included in the backup
+sudo install -d -m 0750 -o mysql -g mysql /data/mysql/binlog /data/mysql/tmp
 
 # 4. Recreate the Pigsty ownership marker (set cluster/instance/topology for your instance)
 echo '{"version": 1, "cluster": "my-meta", "instance": "my-meta-1", "topology": "standalone"}' | \
-  sudo tee /var/lib/mysql/.pigsty-mysql-initialized > /dev/null
-sudo chown mysql:mysql /var/lib/mysql/.pigsty-mysql-initialized
-sudo chmod 600 /var/lib/mysql/.pigsty-mysql-initialized
+  sudo tee /data/mysql/.pigsty-mysql-initialized > /dev/null
+sudo chmod 0600 /data/mysql/.pigsty-mysql-initialized
+sudo chown -R mysql:mysql /data/mysql
 
-# 5. Restore SELinux context on EL, then start
-sudo restorecon -RF /var/lib/mysql 2>/dev/null || true
-sudo systemctl start mysqld
+# 5. Restore SELinux contexts on EL, then start MySQL and the backup timer
+sudo restorecon -RF /data/mysql 2>/dev/null || true
+sudo systemctl start mysqld mysql-backup.timer
 
 # 6. Verify data and GTID position; confirm the playbook still converges
-sudo mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -e 'SELECT @@gtid_executed; SHOW DATABASES;'
+my -e 'SELECT @@gtid_executed; SHOW DATABASES;'
 ./mysql.yml -l my-meta        # expect a green run (changed=0 or routine items only)
 ```
 
@@ -297,37 +281,44 @@ The step-4 marker proves datadir ownership. Missing or mismatched contents cause
 
 ## Recover from a Complete Outage
 
-If all three members are `OFFLINE`, MGR **does not rebuild quorum automatically**, preventing split-brain. This can follow power loss or cascading failure. `mysql.yml` stops with instructions. Use this procedure:
+When all three members are `OFFLINE`, for example after a power outage or stopping with data retained, use the appropriate path:
+
+### All Three Hosts Reachable: Automatic Recovery
+
+When SSH and `mysqld` are reachable on all three members, run the playbook against the complete cluster:
 
 ```bash
-# 1. Confirm mysqld is running everywhere (systemd usually restarted it) and GR is OFFLINE
-ansible my-test -b -a "mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -NBe \
-  \"SELECT COALESCE((SELECT MEMBER_STATE FROM performance_schema.replication_group_members \
-  WHERE MEMBER_ID=@@server_uuid),'OFFLINE')\""
+./mysql.yml -l my-test
+```
 
-# 2. Find the most advanced member: compare GTID sets, pick the superset (ties: any)
-ansible my-test -b -a "mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -NBe 'SELECT @@gtid_executed'"
+The playbook compares `@@gtid_executed` sets, selects the most advanced member, runs `dba.rebootClusterFromCompleteOutage("my-test")` with `force: false`, and incrementally rejoins remaining `OFFLINE` members.
 
-# 3. Reboot the cluster from that member via AdminAPI (replace 10.10.10.12 accordingly)
-mysqlsh --js -e '
+### Some Hosts Lost: Manual Forced Recovery
+
+If some hosts cannot start because of hardware failure, the playbook refuses automatic rebuilding to prevent split brain: an unreachable host may contain newer transactions. After accepting possible loss of unsynchronized transactions, select the most advanced surviving GTID set and rebuild manually:
+
+```bash
+# 1. Compare executed GTID sets on all survivors and select the most advanced, assumed here to be 10.10.10.12
+ansible 10.10.10.11,10.10.10.12 -b -a "mysql --defaults-extra-file=/etc/mysql/pigsty/root.cnf -NBe 'SELECT @@gtid_executed'"
+
+# 2. Rebuild quorum on that member with mysqlsh --no-defaults
+sudo mysqlsh --no-defaults --js -e '
 shell.options.useWizards=false;
 var pw = os.loadTextFile("/etc/mysql/pigsty/cluster-password").replace(/[\r\n]+$/, "");
 shell.connect({user:"dbuser_cluster", password:pw, host:"10.10.10.12", port:3306,
   "ssl-mode":"VERIFY_CA", "ssl-ca":"/etc/pki/ca.crt"});
-var c = dba.rebootClusterFromCompleteOutage("my-test");
+var c = dba.rebootClusterFromCompleteOutage("my-test", {force: true});
 print(c.status().defaultReplicaSet.status);'
 
-# 4. Rerun the playbook: members still OFFLINE are rejoined automatically
+# 3. Replace lost hosts at their original IPs, then run the full-cluster playbook to Clone back to three replicas
+./node.yml  -l 10.10.10.13
 ./mysql.yml -l my-test
 ```
 
 Notes:
 
-- Step 3 usually restores all reachable members. Step 4 rejoins remaining members without manual per-node work.
-- If only a minority survives, complete reboot to restore writes, then [replace failed members](#replace-a-failed-member).
-- `super_read_only` prevents writes until step 3 finishes. Members usually allow reads. Previously expelled members can remain in `offline_mode` and reject ordinary connections.
+- The cluster remains `super_read_only` and cannot accept writes until rebuilding completes;
 - Default `sql_require_primary_key=ON` prevents tables without primary keys from blocking recovery.
-
 
 --------
 

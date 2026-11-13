@@ -6,9 +6,7 @@ icon: fa-solid fa-comment-dots
 categories: [Reference]
 ---
 
-The `app/discourse` template provides a single-node Discourse forum. Pigsty manages PostgreSQL, while Redis runs inside the application container. Pigsty Nginx serves Discourse through a Unix socket.
-
-This template was added after v4.5.0. Use the matching `app/discourse/` directory and `files/discourse.sql` from the same checkout; the YAML alone is not sufficient.
+The `app/discourse` template provides a single-node Discourse forum configuration: Pigsty manages PostgreSQL, Redis runs inside the application container, and Pigsty Nginx serves the application through a Unix socket. Use the matching `app/discourse/` and `files/discourse.sql` from the same release.
 
 See the **[Discourse application README](https://github.com/pgsty/pigsty/tree/main/app/discourse#readme)** for more details.
 
@@ -46,14 +44,14 @@ Source: [`pigsty/conf/app/discourse.yml`](https://github.com/pgsty/pigsty/blob/m
 
 The template builds the Discourse image locally with the official classic Launcher and runs it with Docker Compose, using PostgreSQL managed by Pigsty.
 
-- `apps.discourse.dest` is `/data/app/discourse`; managed files and persistent data under `shared/` live in this directory.
-- `DISCOURSE_DOCKER_REF` pins the Launcher commit, while `DISCOURSE_VERSION` follows the upstream `tests-passed` channel by default.
-- The `pg-discourse` cluster uses PostgreSQL 18 and installs `pgvector`. The `discourse` database enables `hstore`, `pg_trgm`, `unaccent`, and `vector`, and applies the `discourse.sql` baseline.
-- The `discourse` user has `dbrole_admin` revoked. Neither the user nor the database uses PgBouncer.
-- The application HBA rule allows the `discourse` user to reach the `discourse` database from Docker networks in `172.16.0.0/12`.
-- The `ask.pigsty` Nginx portal forwards to `unix:/data/app/discourse/shared/nginx.http.sock`, enables WebSocket, and sets `client_max_body_size 10m`.
-- Embedded Redis has a `REDIS_MAX_MEMORY: 512mb` limit.
-- A full PostgreSQL backup runs daily at 01:00.
+- `apps.discourse.dest` is `/data/app/discourse`; management files and persistent data under `shared/` share this directory
+- `DISCOURSE_DOCKER_REF` (`0ba1841d589e77df3bc923774abca2720a320ec2`) and `DISCOURSE_VERSION` (`f00f07d62728d646642cd2185cc077ad84a60fa8`) both pin verified commit SHAs for reproducible builds
+- The dedicated `pg-discourse` cluster uses PostgreSQL 18 and installs `pgvector`; the `discourse` database enables `hstore`, `pg_trgm`, `unaccent`, and `vector`, and applies the `discourse.sql` baseline
+- The `discourse` user has no `dbrole_admin` membership; neither the user nor the database uses PgBouncer
+- HBA permits the `discourse` user to access only the `discourse` database from the `172.16.0.0/12` Docker subnet
+- The `ask.pigsty` Nginx portal forwards to `unix:/data/app/discourse/shared/nginx.http.sock`, enables WebSocket, and sets `client_max_body_size 10m`
+- Embedded Redis has a memory limit of `REDIS_MAX_MEMORY: 512mb`
+- Run a full backup daily at 01:00
 
 Access the forum at `http://ask.pigsty`. The template adds this name to the local hosts file through `node_etc_hosts`; other clients need DNS or hosts entries pointing to the Nginx host.
 

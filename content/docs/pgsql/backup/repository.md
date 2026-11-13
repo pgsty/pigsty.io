@@ -6,13 +6,11 @@ icon: fa-solid fa-box-archive
 categories: [Task]
 ---
 
-Two parameters select the backup location.
 [**`pgbackrest_repo`**](/docs/pgsql/param/#pgbackrest_repo) defines candidate repositories.
 [**`pgbackrest_method`**](/docs/pgsql/param/#pgbackrest_method) selects one repository.
-Pigsty [**converts repository keys**](/docs/pgsql/backup/mechanism/#how-configuration-is-rendered) to pgBackRest `repo1-*` options, so you can use any supported [**pgBackRest repository option**](/docs/pgbackrest/configuration) directly.
-Pigsty v4.5.0 writes only the entry selected by `pgbackrest_method` as `repo1`.
-Multiple candidate keys do not enable multi-repository backup.
-
+Repository keys are rendered into pgBackRest `repo1-*` options according to [**fixed rules**](/docs/pgsql/backup/mechanism/#how-configuration-is-rendered),
+so [**any supported pgBackRest repository option**](/docs/pgbackrest/configuration) can be declared directly.
+The current template renders only the entry selected by `pgbackrest_method` as `repo1`; multiple candidate entries do not enable simultaneous multi-repository backups.
 
 --------
 

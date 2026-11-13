@@ -81,8 +81,7 @@ This failure protects data. Do not delete `meta.properties` or the manifest, and
 
 Each member stores `/etc/kafka/manifest.yml`; `scram` members also store `/etc/kafka/secrets.yml`. Every run retrieves these from any member copy. Administration nodes keep no Kafka state, so replacing one or losing its checkout does not prevent management. Formatted storage without any manifest copy blocks execution until you restore a copy on one member. A formatted `scram` cluster also blocks execution if no member retains secrets. Certificates cached in `files/pki/kafka/` are signed again by the Pigsty CA if missing.
 
-An existing manifest with all Kafka data disks empty blocks execution. This prevents accidental reuse of a lost cluster's identity. For an intended rebuild, first run `kafka-rm.yml`, then follow an explicit rebuild procedure.
-
+If a commissioned Manifest exists while all Kafka data disks are empty, the role fails closed to avoid reviving a vanished cluster with its old identity. An uncommissioned Manifest left by interrupted initial bootstrap before formatting is discarded and rebuilt automatically. To rebuild a commissioned cluster deliberately, run `kafka-rm.yml` first and follow an explicit rebuild procedure.
 
 --------
 
@@ -141,8 +140,7 @@ ls -l /infra/targets/kafka/
 grep 9308 /infra/targets/kafka/*.yml
 ```
 
-Full runs refresh target files for current exporter placement. Do not run on one node only to register labels. If placement changes, ordinary playbooks do not stop the old `kafka_exporter` service. Remove it manually or with `kafka-rm.yml`.
-
+A full run refreshes every target file for the current placement and also stops, disables, and removes stale `kafka_exporter` services and units on nodes no longer selected. Do not run the registration tag on just one node.
 
 --------
 
@@ -227,4 +225,4 @@ The payload verified on 2026-07-16 contained Kafka 4.3.1, `kafka_exporter` 1.9.0
 
 `kafka.yml` never performs cleanup. `kafka-rm.yml` owns deletion. The playbook requires an explicit, nonempty `-l/--limit`; a bare run fails. Selecting a whole cluster with `-l` performs teardown. A strict subset performs retirement. Default `kafka_rm_data=true` permanently deletes data, KRaft metadata, node-local `/etc/kafka` recovery state, and monitoring targets. `kafka_rm_data=false` retains data and recovery state; `kafka_safeguard=true` blocks all deletion.
 
-Removal commands execute immediately without an additional confirmation string. Before running, verify the exact `-l` target, recoverable backups or explicit rebuild intent, and business decommissioning. Retirement tolerates broker unregistration failure. After execution, inspect quorum, registrations, and replica health. See [Playbook: `kafka-rm.yml`](/docs/kafka/playbook#kafka-rmyml).
+This playbook has no extra gate such as a confirmation string; the command performs deletion directly. Before running it, verify the exact `-l` targets, recoverable backups or explicit rebuild intent, and that application traffic has stopped. Retirement removes the KRaft Voter before stopping services and aborts immediately on failure. Broker deregistration after stopping tolerates only the already-unregistered case. After execution, check Quorum, Broker registration, and replica health. See [Playbooks: `kafka-rm.yml`](/docs/kafka/playbook#kafka-rmyml) for full semantics.

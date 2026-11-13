@@ -23,7 +23,7 @@ There are **51** extensions in **49** packages.
 | [`pglinter`](/ext/e/pglinter) | [`pglinter`](https://github.com/pmpetit/pglinter) | `2.0.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | PostgreSQL Linting and Analysis Extension |
 | [`prioritize`](/ext/e/prioritize) | [`pg_prioritize`](https://github.com/schmiddy/pg_prioritize) | `1.0.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | get and set the priority of PostgreSQL backends |
 | [`pg_checksums`](/ext/e/pg_checksums) | [`pg_checksums`](https://github.com/credativ/pg_checksums) | `1.4` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Enable/disable checksums offline and verify them online or offline |
-| [`pg_integrity_checksums`](/ext/e/pg_integrity_checksums) | [`pg_integrity_checksums`](https://github.com/VictorNagibator/pg_integrity_checksums) | `2.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Physical and logical checksums for PostgreSQL pages, rows, tables, indexes and databases. |
+| [`pg_integrity_checksums`](/ext/e/pg_integrity_checksums) | [`pg_integrity_checksums`](https://github.com/VictorNagibator/pg_integrity_checksums) | `2.2.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Physical and logical checksums for PostgreSQL pages, rows, tables, indexes and databases. |
 | [`pg_readonly`](/ext/e/pg_readonly) | [`pg_readonly`](https://github.com/pierreforstmann/pg_readonly) | `1.0.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | cluster database read only |
 | [`pgdd`](/ext/e/pgdd) | [`pgdd`](https://github.com/rustprooflabs/pgdd) | `0.6.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Introspect pg data dictionary via standard SQL |
 | [`pg_permissions`](/ext/e/pg_permissions) | [`pg_permissions`](https://github.com/cybertec-postgresql/pg_permissions) | `1.4.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | view object permissions and compare them with the desired state |
@@ -279,7 +279,7 @@ There are **51** extensions in **49** packages.
 
 ## pg_integrity_checksums {#pg_integrity_checksums}
 
-[**`pg_integrity_checksums`**](/ext/e/pg_integrity_checksums) - `2.1.0` : Physical and logical checksums for PostgreSQL pages, rows, tables, indexes and databases.
+[**`pg_integrity_checksums`**](/ext/e/pg_integrity_checksums) - `2.2.0` : Physical and logical checksums for PostgreSQL pages, rows, tables, indexes and databases.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|

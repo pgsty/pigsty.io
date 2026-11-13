@@ -118,8 +118,7 @@ Inspect controller replication state:
   describe --replication
 ```
 
-Stop other changes if no leader exists, a member persistently lags, or voters differ from expectations. Preserve logs, the manifest, and `meta.properties` before analysis. Remove dead voters through [shrink](#shrink-cluster) or [replacement](#replace-failed-node). Never rewrite quorum state manually.
-
+If there is no Leader, a member remains behind, or the Voter set differs from expectations, stop other changes and preserve logs, the Manifest, and `meta.properties` for investigation. The `pigsty-kafka-health` gate parses `describe --replication` directly and checks each official Voter for `Lag == 0` and recent fetch/catch-up times within the threshold; Observers awaiting promotion are excluded. Remove dead Voters through [Scale In](#shrink-cluster) or [Replace a Failed Node](#replace-failed-node). Do not manually rewrite quorum state.
 
 --------
 
@@ -249,10 +248,10 @@ After editing `pigsty.yml`, run against complete clusters:
 
 Live health and the static fingerprint determine the execution path:
 
-- **Unhealthy or stopped:** Start only stopped controllers. Restore quorum and wait for catch-up, then start brokers. If static settings also changed, roll still-online members afterward.
+- Unhealthy or stopped cluster: start only stopped Controllers, restore and catch up the Quorum, then start Brokers. Pending Controller Observer promotions also resume after recovery. If static changes exist, members that were already running then enter strict rolling restart.
 - **Controller join pending:** Join each node as an observer, wait for catch-up, then promote with `add-controller`. Process one node at a time.
 - **Healthy with new pure brokers:** Format, start, and verify registration one node at a time.
-- **Healthy with static changes:** Restart one node at a time. Before and after each restart, check controller majority, voter catch-up, offline partitions, under-min-ISR, and ISR catch-up.
+- Healthy cluster with static changes: roll one node at a time, checking Controller zero lag and recent catch-up, Quorum, Offline Partitions, Under Min ISR, and ISR catch-up before and after each restart. Single-node development clusters and two-Controller clusters whose declared Controllers are both active official Voters receive a topology-based majority-loss exemption with a warning.
 - **No static changes:** Do not restart Kafka.
 
 Do not bypass the full state machine with `-t kafka_config`. `kafka_provision` applies topics, users, ACLs, and quotas. The role determines whether static changes require restarts.
@@ -297,7 +296,7 @@ Apply the new static default with a safe full-cluster rolling restart. Do not by
 ./kafka-rm.yml -l 10.10.10.13     # retire one member: remove voter entry, unregister broker, clean the host
 ```
 
-Retirement first deregisters monitoring targets and stops services. For voters, it runs `remove-controller`, strictly serializing multiple removals. Next, `kafka-cluster.sh unregister` removes broker registration. Finally, it cleans local configuration and data according to `kafka_rm_data`. Broker unregistration tolerates failure so the procedure can resume or handle unreachable nodes. Remove the inventory entry from `pigsty.yml` only after checking live quorum, broker registrations, replica health, and target local state.
+The sequence is: use a survivor to run `remove-controller` before stopping services if the target is a KRaft Voter (strictly serial for multiple members; abort without stopping services or deleting disks if Quorum is unreadable or removal fails) → deregister monitoring targets → stop services → use a survivor to run `kafka-cluster.sh unregister` for the Broker (only an already-unregistered result is tolerated; other errors abort) → clean local configuration and data, subject to `kafka_rm_data`. If dead and live members both need retirement, retire dead members first. Remove the inventory entry from `pigsty.yml` only after checking the live Quorum, Broker registration, replica health, and target node state.
 
 Before retirement, confirm that remaining controllers form a majority and have an odd count. Remaining brokers must support the highest topic RF. If the target still holds replicas, the role warns. Those partitions remain under-replicated until explicit reassignment or replacement with the same `kafka_seq`. Such a replacement inherits assignments and resynchronizes automatically. **For planned shrink, drain replicas through reassignment before retirement.**
 

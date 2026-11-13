@@ -51,8 +51,7 @@ make save    # Save image to /tmp/docker/nocodb.tgz
 make load    # Load image from /tmp/docker/nocodb.tgz
 ```
 
-
-`make run` uses a separate `docker run` command with a connection string and secret hardcoded in the Makefile. Use `make up` above to read the Compose configuration.
+`make run` is an alias for `make up` and uses the same `.env` and Docker Compose settings.
 
 ## Connect to PostgreSQL
 

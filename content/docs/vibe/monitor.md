@@ -13,7 +13,7 @@ VIBE monitoring mainly uses Claude Code OpenTelemetry data. Code-Server and Jupy
 
 ## Claude Code Observability
 
-VIBE writes default OpenTelemetry env vars into `~/.claude/settings.json`:
+VIBE merges default OpenTelemetry variables into `~/.claude/settings.json` without destroying existing settings. Metrics/logs go to control-plane `admin_ip` on `vmetrics_port: 8428` and `vlogs_port: 9428`, falling back to `127.0.0.1` if `admin_ip` is undefined:
 
 ```json
 {
@@ -23,14 +23,14 @@ VIBE writes default OpenTelemetry env vars into `~/.claude/settings.json`:
     "OTEL_LOGS_EXPORTER": "otlp",
     "OTEL_EXPORTER_OTLP_METRICS_PROTOCOL": "http/protobuf",
     "OTEL_EXPORTER_OTLP_LOGS_PROTOCOL": "http/protobuf",
-    "OTEL_EXPORTER_OTLP_METRICS_ENDPOINT": "http://127.0.0.1:8428/opentelemetry/v1/metrics",
-    "OTEL_EXPORTER_OTLP_LOGS_ENDPOINT": "http://127.0.0.1:9428/insert/opentelemetry/v1/logs",
+    "OTEL_EXPORTER_OTLP_METRICS_ENDPOINT": "http://<admin_ip>:8428/opentelemetry/v1/metrics",
+    "OTEL_EXPORTER_OTLP_LOGS_ENDPOINT": "http://<admin_ip>:9428/insert/opentelemetry/v1/logs",
     "OTEL_RESOURCE_ATTRIBUTES": "ip=<host>,job=claude"
   }
 }
 ```
 
-VIBE merges `claude_env` with the default settings. Use it to specify API keys or custom endpoints.
+`claude_env` merges with these defaults and existing user settings, and can supply API keys or replace model endpoints.
 
 --------
 
@@ -63,9 +63,9 @@ ss -tlnp | grep 8888
 
 ## Claude Logs Query
 
-Via VictoriaLogs:
+Query VictoriaLogs on the control plane (`<admin_ip>`):
 
 ```bash
-curl -G 'http://127.0.0.1:9428/select/logsql/query' \
+curl -G 'http://<admin_ip>:9428/select/logsql/query' \
   --data-urlencode 'query=job:claude'
 ```

@@ -2,10 +2,10 @@
 title: Self-Hosting Supabase on PostgreSQL
 linkTitle: "Self-Hosting Supabase"
 date: 2024-11-25
-lastmod: 2026-08-14
+lastmod: 2026-11-13T00:00:00+08:00
 author: |
   [Ruohang Feng](https://vonng.com) ([@Vonng](https://vonng.com/en/))
-summary: Deploy PostgreSQL, Silo, and the stateless Supabase services on your own Linux server with the Pigsty v4.5 supabase template.
+summary: Deploy PostgreSQL, Silo, and the stateless Supabase services on your own Linux server with the Pigsty v4.6 supabase template.
 tags: [Database, Supabase]
 ---
 
@@ -13,10 +13,9 @@ Supabase is an open-source PostgreSQL-based BaaS. It provides authentication, Re
 
 Self-hosting can make sense when you need control over data and infrastructure, isolated or compliant operation, or freedom to choose PostgreSQL versions and extensions. The [official Supabase self-hosting guide](https://supabase.com/docs/guides/self-hosting) recommends Docker and states that self-hosters are responsible for servers, security hardening, database maintenance, high availability, backups, and monitoring. Pigsty is an independent community integration and is not currently listed among the community projects on that page.
 
-Pigsty v4.5's `supabase` template moves stateful components under Pigsty management: the PGSQL module manages PostgreSQL, while the MINIO module's current Silo implementation provides object storage. Auth, Storage, Realtime, Studio, and the other stateless services run through Docker Compose. The template supports PostgreSQL 15-18 (18 by default) and can use the {{< param pgext_count >}} PostgreSQL extensions in the current Pigsty catalog.
+Pigsty v4.6's `supabase` template moves stateful components under Pigsty management: the PGSQL module manages PostgreSQL, while the MINIO module's current Silo implementation provides object storage. Auth, Storage, Realtime, Studio, and the other stateless services run through Docker Compose. The template supports PostgreSQL 15-18 (18 by default) and can use the {{< param pgext_count >}} PostgreSQL extensions in the current Pigsty catalog.
 
-> This article was originally published on 25 November 2024 and revalidated against the current Pigsty v4.5 source on 14 August 2026. The continuously maintained [Enterprise Self-Hosted Supabase](/docs/app/supabase/) reference is the single source of truth for deployment parameters and procedures.
-
+> Originally published on 2024-11-25. Commands and facts were checked against the current Pigsty v4.6 source on 2026-11-13. The continuously updated [Supabase self-hosting guide](/docs/app/supabase/) is the single maintained reference for deployment parameters and procedures.
 
 ------
 
@@ -90,6 +89,6 @@ The complete configuration example, Alibaba Cloud OSS fields, and SMTP parameter
 
 ## Why Pigsty
 
-Supabase currently promises more than 50 preconfigured extensions and changes the exact list as the platform evolves. Pigsty v4.5 catalogs {{< param pgext_count >}} extensions and packages Supabase dependencies including `pg_graphql`, `pg_jsonschema`, `wrappers`, `index_advisor`, `pg_net`, `supabase_vault`, `pgjwt`, `pgsodium`, `supautils`, and `plan_filter`.
+Supabase currently promises more than 50 preconfigured extensions and changes the exact list as the platform evolves. Pigsty v4.6 catalogs {{< param pgext_count >}} extensions and packages Supabase dependencies including `pg_graphql`, `pg_jsonschema`, `wrappers`, `index_advisor`, `pg_net`, `supabase_vault`, `pgjwt`, `pgsodium`, `supautils`, and `plan_filter`.
 
 Self-hosting does not mean “zero operations.” It returns control over versions, extensions, data, backups, and availability policy to the operator. It also makes that operator responsible for server maintenance, security updates, secret management, capacity planning, backup validation, and failure drills. Before starting, read the [Supabase reference](/docs/app/supabase/), [security guide](/docs/setup/security/), and [backup documentation](/docs/pgsql/backup/).

@@ -1,7 +1,7 @@
 ---
 title: "Enterprise Self-Hosted Supabase"
 weight: 555
-description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and access to 600 packaged PostgreSQL extensions.
+description: Self-host enterprise-grade Supabase with Pigsty, featuring monitoring, high availability, PITR, IaC, and access to 625 packaged PostgreSQL extensions.
 module: [SOFTWARE]
 categories: [Reference]
 ---
@@ -12,10 +12,9 @@ Pigsty can deploy Supabase on your physical, virtual, or cloud servers with a si
 
 This tutorial requires basic Linux knowledge. Otherwise, consider using Supabase cloud or plain Docker Compose self-hosting.
 
-The installation commands below use the matching [application files](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [configuration template](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Envoy (`api-gw`) and external PG18 by default in the current source.
+The commands below use the matching [**application files**](https://github.com/pgsty/pigsty/tree/main/app/supabase) and [**configuration template**](https://github.com/pgsty/pigsty/blob/main/conf/supabase.yml), with Envoy (`api-gw`) and external PG18 by default.
 
-The current source tracks Supabase `self-hosted/v0.8.4` and includes its Envoy integration and migration scripts. Use the configuration, application directory, and SQL files from the same checkout. A released Pigsty archive may contain an earlier Supabase stack; copying only new YAML or SQL is not a complete upgrade.
-
+The template follows Supabase `self-hosted/v0.8.4` and includes Envoy integration and migration scripts. Use the configuration template, application directory, and SQL files from the same Pigsty release for deployment or upgrades. Copying only new YAML or SQL is insufficient for a cross-version upgrade.
 
 --------
 
@@ -90,7 +89,7 @@ Costs can rise quickly when data, compute, or availability requirements exceed a
 
 Self-hosting gives users control and helps avoid vendor lock-in. Supabase aims to provide an open-source Firebase alternative without vendor lock-in, but enterprise self-hosting still requires work. Supabase develops and maintains PostgreSQL extensions. It acquired the Oriole team in 2024 and offers [**OrioleDB**](/docs/pgsql/kernel/orioledb) as an optional Public Alpha. OrioleDB is not the production default or a confirmed replacement for native PostgreSQL. Some Supabase extensions and patched kernels are absent from the official PGDG repository.
 
-Missing packages create a dependency on the supabase/postgres Docker image for self-hosting. Pigsty provides these packages for other deployment methods. The 10 missing Supabase extensions are available as RPM/DEB packages for the `supabase` template matrix. This covers EL 8/9, Debian 12, and Ubuntu 22.04/24.04/26.04 on x86_64 and aarch64. See [supported Linux distributions](/docs/ref/linux).
+Missing packages create a dependency on the supabase/postgres Docker image for self-hosting. Pigsty provides these packages for other deployment methods. The 10 missing Supabase extensions are available as RPM/DEB packages for the `supabase` template matrix. This covers EL 8/9/10, Debian 12/13, and Ubuntu 22.04/24.04/26.04 on x86_64 and aarch64. See [supported Linux distributions](/docs/ref/linux).
 
 | Extension | Description |
 |---|---|
@@ -195,10 +194,10 @@ Next, we'll discuss advanced topics for improving Supabase security, availabilit
 
 ## Upgrading Existing Deployments
 
-For maintenance within the same version, keep matching application configuration. The following preparation notes apply to the development `0.8.4` integration. Obtain a complete, validated Pigsty application version, including `app/supabase/`, `conf/supabase.yml`, and related SQL, before scheduling downtime and migration. The public application template does not yet include these development changes.
+Keep matching application configuration for maintenance within a release. Before upgrading an existing deployment, prepare the complete `app/supabase/`, `conf/supabase.yml`, and related SQL from the same release, then schedule downtime and migration:
 
 <details>
-<summary>0.8.4 development migration: security update, one-way Storage migrations, and Edge Functions</summary>
+<summary>0.8.4 upgrade notes: security updates, one-way Storage migration, and Edge Functions</summary>
 
 `self-hosted/v0.8.4` is a security update. It fixes Storage signed resumable (TUS) upload URLs that bypass RLS, a multipart-upload denial of service, and replayable presigned URLs. It also fixes forged Realtime broadcasts and cross-tenant channel access, and includes security fixes for Envoy, imgproxy, and Edge Runtime.
 
@@ -219,7 +218,7 @@ The service names are unchanged. Update the files, then recreate the stack with 
 </details>
 
 <details>
-<summary>0.8.2 development migration: gateway, JWT settings, and grants</summary>
+<summary>0.8.2 upgrade notes: gateway, JWT settings, and authorization</summary>
 
 Back up PostgreSQL, object storage, and application volumes, and review local customizations before upgrading. The old gateway service was named `kong`; the new service is `api-gw`. **Before replacing the old Compose files**, run `docker compose down` in the old application directory, without `-v`. This stops the old gateway and releases its ports while preserving volumes and external data. Running only `up -d` with the new files can leave the old `kong` container behind and cause port or container-name conflicts.
 
@@ -227,7 +226,7 @@ Back up PostgreSQL, object storage, and application volumes, and review local cu
 
 First review custom SQL functions that depend on `current_setting('app.settings.jwt_secret')`. If they still need a signing key, migrate them to a restricted Vault secret as described in the [upstream migration guidance](https://github.com/supabase/supabase/pull/45003). Allow only the function owner to read it, and avoid exposing the decrypted key through a public RPC.
 
-After preparing matching files, handling dependencies, and taking backups, the development version uses `files/supabase-0.8.2.sql` for the narrow upgrade below. The SQL is retained here for review; it does not upgrade the application by itself:
+After preparing matching files, dependencies, and backups, use `files/supabase-0.8.2.sql` for the narrow migration below. The SQL remains here for review; it does not upgrade the application on its own:
 
 ```sql
 \set ON_ERROR_STOP on

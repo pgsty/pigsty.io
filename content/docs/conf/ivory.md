@@ -6,10 +6,7 @@ icon: fa-solid fa-gem
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/ivory.yml`; v4.5.0 uses `conf/ivory.yml`, selected with `-c ivory`.
-
-The `ivory` template replaces the standard PostgreSQL kernel with Highgo's IvorySQL.
-IvorySQL supports Oracle syntax and PL/SQL.
+The `ivory` template (`conf/fork/ivory.yml`, selected with `-c ivory` or `-c fork/ivory`) replaces native PostgreSQL with HighGo's IvorySQL, which provides Oracle syntax and PL/SQL compatibility.
 
 For the complete tutorial, see: **[IvorySQL (Oracle Compatible) Kernel Guide](/docs/pgsql/kernel/ivorysql/)**
 
@@ -18,7 +15,7 @@ For the complete tutorial, see: **[IvorySQL (Oracle Compatible) Kernel Guide](/d
 
 ## Overview
 
-- Config Name: `ivory`
+- Config name: `ivory` (explicit path: `fork/ivory`)
 - Node Count: Single node
 - Description: Uses IvorySQL Oracle-compatible kernel
 - OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
@@ -36,10 +33,9 @@ Usage:
 
 ## Content
 
-Development source: `conf/fork/ivory.yml`; release source: [`v4.5.0: conf/ivory.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/ivory.yml).
+Source: [`pigsty/conf/fork/ivory.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/ivory.yml)
 
-{{< include file="yaml/ivory.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/ivory.yml" code=true lang="yaml" >}}
 
 --------
 

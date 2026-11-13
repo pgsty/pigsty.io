@@ -13,17 +13,16 @@ Pigsty's `app/kong` template stores configuration in PostgreSQL. For a new empty
 
 ## Quick Start
 
-The Admin API is published on all host interfaces by default. Before startup, change its port mapping in `docker-compose.yml` to `"127.0.0.1:${KONG_ADMIN_PORT}:${KONG_ADMIN_PORT}"`, retaining the two proxy port mappings.
+By default, the template binds the Admin API to the host loopback address (`127.0.0.1:${KONG_ADMIN_PORT}:${KONG_ADMIN_PORT}`) and publishes only the HTTP/HTTPS proxy ports externally:
 
 ```bash
 cd ~/pigsty/app/kong
 vi .env         # check KONG_PG_* and port settings
-vi docker-compose.yml # restrict the Admin API host binding
 make bootstrap  # only when initializing a new empty database
 make up
 ```
 
-Ports after the change above:
+Default ports:
 
 - Proxy HTTP: `8000`
 - Proxy HTTPS: `8443`

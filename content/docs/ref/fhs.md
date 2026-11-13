@@ -19,13 +19,18 @@ The default Pigsty home directory is `~/pigsty`. It has this file structure:
 - app/   {open=false}
   - Application template resources
 - bin/   {open=false}
-  - Management and operations scripts
+  - Administration scripts such as `node-add`, `pgsql-add`, `vault-add`, and `vault-rm`
 - conf/
-  - pgsql.yml
-  - mssql.yml
-  - Other kernel variant templates
+  - meta.yml
+  - … · Other single-node templates
+  - fork/   {open=false}
+    - Kernel fork templates such as pgsql, mssql, and ivory
   - ha/   {open=false}
     - High-availability topology templates
+  - app/   {open=false}
+    - Application templates
+  - demo/   {open=false}
+    - Demonstration templates
   - build/   {open=false}
     - Multi-platform build inventories
 - files/
@@ -50,10 +55,11 @@ The default Pigsty home directory is `~/pigsty`. It has this file structure:
 - configure
 - ansible.cfg
 - pigsty.yml
-- *.yml
+- deploy.yml / infra.yml / node.yml / etcd.yml / vault.yml / minio.yml / pgsql.yml / …
+- *-rm.yml · Module removal playbooks, such as `pgsql-rm.yml`, `vault-rm.yml`, and `mysql-rm.yml`
 ```
 
-Kernel templates reside at the root of `conf/`; development sources move them into `conf/fork/`. Select the actual path in your source tree. See [Configuration Templates](/docs/conf/).
+Kernel fork templates reside under `conf/fork/`. See [**Configuration Templates**](/docs/conf/) for the full list.
 
 `/infra` is a runtime symlink to `/data/infra`. This directory contains observability data and generated configuration:
 
@@ -79,22 +85,25 @@ Pigsty's [**self-signed CA**](/docs/concept/sec/ca) is located in `files/pki/` u
 
 **You must keep the CA key file secure**: `files/pki/ca/ca.key`. The `ca` role generates this key when you run `deploy.yml` or `infra.yml`.
 
-
-
-```bash
-# pigsty/files/pki                           # (local_user) 0755
-#  ^-----@ca                                 # (local_user) 0700
-#         ^-----@ca.key                      # 0600, CRITICAL: keep secret
-#         ^-----@ca.crt                      # 0644, CRITICAL: trust anchor
-#  ^-----@csr                                # (local_user) 0755, CSRs
-#  ^-----@misc                               # (local_user) 0755, misc/issued certs
-#  ^-----@etcd                               # (local_user) 0755, ETCD certs
-#  ^-----@minio                              # (local_user) 0755, MinIO certs
-#  ^-----@nginx                              # (local_user) 0755, Nginx SSL certs
-#  ^-----@infra                              # (local_user) 0755, infra client certs
-#  ^-----@pgsql                              # (local_user) 0755, PostgreSQL certs
-#  ^-----@kafka                              # (local_user) 0755, Kafka server certs
-#  ^-----@mysql                              # (local_user) 0755, MySQL server certs
+```filetree {title="pigsty/files/pki · (local_user) 0755"}
+- ca · (local_user) 0700/
+  - ca.key · 0600, keep secret
+  - ca.crt · 0644, trusted by all nodes
+- vault · (local_user) 0700, OpenBao unseal key, initialization credentials, backups, and server certificates/
+  - unseal.key · 0600, 32-byte static unseal key, keep secret
+  - init.json · 0600, initial root token and recovery material
+  - backup.token · 0600, snapshot-only backup token
+  - backup/ · 0700, snapshots collected on the control node
+  - <vault_instance>.{key,crt} · 0600/0644, OpenBao server certificates
+- csr · (local_user) 0755, certificate signing requests/   {open=false}
+- misc · (local_user) 0755, miscellaneous and issued certificates/   {open=false}
+- etcd · (local_user) 0755, etcd server certificates/   {open=false}
+- minio · (local_user) 0755, minio server certificates/   {open=false}
+- nginx · (local_user) 0755, Nginx SSL certificates/   {open=false}
+- infra · (local_user) 0755, infra client certificates/   {open=false}
+- pgsql · (local_user) 0755, pgsql server certificates/   {open=false}
+- kafka · (local_user) 0755, Kafka server certificates/   {open=false}
+- mysql · (local_user) 0755, MySQL server certificates/   {open=false}
 ```
 
 Pigsty installs these certificate files on managed nodes:
@@ -130,49 +139,54 @@ rsync -avz ./ meta-2:~/pigsty
 The `infra` role creates `infra_data` (default: `/data/infra`) and creates a symlink `/infra -> /data/infra`.
 The permissions for `/data/infra` are `root:infra 0771`. Subdirectories default to `*:infra 0750`, unless overridden:
 
-```bash
-# /infra -> /data/infra
-# /data/infra                              # root:infra 0771
-#  ^-----@pgadmin                          # 5050:5050 0700
-#  ^-----@alertmgr                         # prometheus:infra 0700
-#  ^-----@conf                             # root:infra 0750
-#            ^-----patronictl.yml          # root:admin 0640
-#  ^-----@tmp                              # root:infra 0750
-#  ^-----@hosts                            # dnsmasq:dnsmasq 0755 (DNS records)
-#            ^-----default                 # root:root 0644
-#  ^-----@datasources                      # root:infra 0750
-#            ^-----*.json                  # 0600 (generated by register)
-#  ^-----@dashboards                       # root:infra 0750
-#  ^-----@metrics                          # victoria:infra 0750
-#  ^-----@logs                             # victoria:infra 0750
-#  ^-----@traces                           # victoria:infra 0750
-#  ^-----@bin                              # victoria:infra 0750
-#            ^-----check|new|reload|status # root:infra 0755
-#  ^-----@rules                            # victoria:infra 0750
-#            ^-----agent.yml               # victoria:infra 0644
-#            ^-----infra.yml               # victoria:infra 0644
-#            ^-----node.yml                # victoria:infra 0644
-#            ^-----pgsql.yml               # victoria:infra 0644
-#            ^-----redis.yml               # victoria:infra 0644
-#            ^-----etcd.yml                # victoria:infra 0644
-#            ^-----minio.yml               # victoria:infra 0644
-#            ^-----kafka.yml               # victoria:infra 0644
-#            ^-----mysql.yml               # victoria:infra 0644
-#  ^-----@targets                          # victoria:infra 0750
-#            ^-----@infra                  # infra targets (files 0640)
-#            ^-----@node                   # node targets (files 0640)
-#            ^-----@ping                   # ping targets (files 0640)
-#            ^-----@etcd                   # etcd targets (files 0640)
-#            ^-----@pgsql                  # pgsql targets (files 0640)
-#            ^-----@pgrds                  # pgrds targets (files 0640)
-#            ^-----@redis                  # redis targets (files 0640)
-#            ^-----@minio                  # minio targets (files 0640)
-#            ^-----@juice                  # juicefs targets (files 0640)
-#            ^-----@mysql                  # mysql targets (files 0640)
-#            ^-----@kafka                  # kafka targets (files 0640)
-#            ^-----@docker                 # docker targets (files 0640)
-#            ^-----@patroni                # patroni SSL targets (files 0640)
-#  ^-----prometheus.yml                    # victoria:infra 0644
+```filetree {title="/infra → /data/infra · root:infra 0771"}
+- pgadmin · 5050:5050 0700/
+  - servers.json · 5050:5050 0600, pgAdmin server list
+  - pgpass · 5050:5050 0600, pgAdmin connection passwords
+- alertmgr · prometheus:infra 0700/   {open=false}
+- conf · root:infra 0750/
+  - patronictl.yml · root:admin 0640
+- tmp · root:infra 0750/   {open=false}
+- hosts · dnsmasq:dnsmasq 0755, DNS records/
+  - default · root:root 0644
+- datasources · root:infra 0750/
+  - *.json · 0600, generated by register
+- dashboards · root:infra 0750/   {open=false}
+- metrics · victoria:infra 0750/   {open=false}
+- logs · victoria:infra 0750/   {open=false}
+- traces · victoria:infra 0750/   {open=false}
+- bin · victoria:infra 0750/
+  - check · root:infra 0755
+  - new · root:infra 0755
+  - reload · root:infra 0755
+  - status · root:infra 0755
+- rules · victoria:infra 0750/
+  - agent.yml · victoria:infra 0644
+  - infra.yml · victoria:infra 0644
+  - node.yml · victoria:infra 0644
+  - pgsql.yml · victoria:infra 0644
+  - redis.yml · victoria:infra 0644
+  - etcd.yml · victoria:infra 0644
+  - vault.yml · victoria:infra 0644
+  - minio.yml · victoria:infra 0644
+  - kafka.yml · victoria:infra 0644
+  - mysql.yml · victoria:infra 0644
+- targets · victoria:infra 0750/
+  - infra · infra component targets, files 0640/   {open=false}
+  - node · node targets, files 0640/   {open=false}
+  - ping · ping targets, files 0640/   {open=false}
+  - etcd · etcd targets, files 0640/   {open=false}
+  - vault · OpenBao targets, files 0640/   {open=false}
+  - pgsql · pgsql targets, files 0640/   {open=false}
+  - pgrds · pgrds targets, files 0640/   {open=false}
+  - redis · redis targets, files 0640/   {open=false}
+  - minio · minio targets, files 0640/   {open=false}
+  - juice · JuiceFS targets, files 0640/   {open=false}
+  - mysql · MySQL targets, files 0640/   {open=false}
+  - kafka · Kafka targets, files 0640/   {open=false}
+  - docker · Docker targets, files 0640/   {open=false}
+  - patroni · Patroni SSL targets, files 0640/   {open=false}
+- prometheus.yml · victoria:infra 0644
 ```
 
 This structure is created by: `roles/infra/tasks/dir.yml`, `roles/infra/tasks/victoria.yml`, `roles/infra/tasks/register.yml`, `roles/infra/tasks/dns.yml`, and `roles/infra/tasks/env.yml`.
@@ -180,26 +194,32 @@ This structure is created by: `roles/infra/tasks/dir.yml`, `roles/infra/tasks/vi
 
 ----------------
 
-The development Certbot integration also writes `/etc/letsencrypt/renewal-hooks/deploy/10-reload-nginx` to reload Nginx after certificate renewal.
+Remote PostgreSQL / RDS exporters deployed on INFRA through `pgsql-monitor.yml` (`roles/pg_exporters`) also create `/etc/pg_exporter/` (`prometheus:infra 0755`) with per-unit `<unit>.yml` files (`0644`). Only remote monitoring uses this directory; local exporters on PGSQL nodes use `/etc/pg_exporter.yml` directly.
+
+Certbot integration also writes `/etc/letsencrypt/renewal-hooks/deploy/10-reload-nginx` (`0755`) to reload Nginx after renewal.
 
 ## NODE FHS
 
 [`node_data`](/docs/node/param#node_data) specifies the node data directory. The default is `/data`, with owner `root:root` and mode `0755`.
 
-Most core components place their default data directories here. Some pilot modules use their own fixed paths. Native MySQL 8.4 currently uses `/var/lib/mysql`.
+Default module data and backup directories are organized under `/data`:
 
-```bash
-/data                                 # root:root 0755
-#  ^-----@postgres                    # postgres:postgres 0700 (default pg_fs_main)
-#  ^-----@backups                     # postgres:postgres 0700 (default pg_fs_backup)
-#  ^-----@redis                       # redis:redis 0700 (shared by multiple instances)
-#  ^-----@minio                       # minio:minio 0750 (single-node single-disk mode)
-#  ^-----@etcd                        # etcd:etcd 0700 (etcd_data)
-#  ^-----@infra                       # root:infra 0771 (infra module data directory)
-#  ^-----@docker                      # root:root 0755 (Docker data directory)
-#  ^-----@kafka                       # kafka:kafka 0700 (kafka_data)
-#  ^-----@...                         # Other component data directories
+```filetree {title="/data · root:root 0755"}
+- postgres · postgres:postgres 0700, default pg_fs_main/   {open=false}
+- backups · postgres:postgres 0700, default pg_fs_backup; MySQL backups default to /data/backups/mysql/   {open=false}
+- vault · openbao:openbao 0700, default vault_data; raft/ 0700 and backup/ root:root 0700/   {open=false}
+- redis · redis:redis 0700, shared by multiple instances/   {open=false}
+- minio · minio:minio 0750, single-node single-drive mode/   {open=false}
+- etcd · etcd:etcd 0700, etcd_data/   {open=false}
+- infra · root:infra 0771, infrastructure data/   {open=false}
+- docker · root:root 0755, Docker data/   {open=false}
+- kafka · kafka:kafka 0700, kafka_data/   {open=false}
+- mysql · mysql:mysql 0750, default mysql_data for native MySQL 8.4/   {open=false}
+- juice · root:root 0755, default juice_cache/   {open=false}
+- … · Other component data directories/   {open=false}
 ```
+
+`node_monitor` also creates `/var/lib/node_exporter/textfile` (`root:root 0755`) for the node_exporter Textfile Collector. Modules publish local task/backup metrics there, such as VAULT's `vault.prom` and MYSQL's `mysql.prom`.
 
 ### Chrony and tuned
 
@@ -229,42 +249,50 @@ The main template is [`roles/infra/templates/victoria/prometheus.yml`](https://g
 
 Pigsty copies `files/victoria/bin/*` to `/infra/bin/` and `files/victoria/rules/*` to `/infra/rules/`. Each module registers FileSD targets under `/infra/targets/*`.
 
-```bash
-# /infra
-#  ^-----prometheus.yml              # Victoria main config (Prometheus-compatible) 0644
-#  ^-----@bin                        # Utility scripts (check/new/reload/status) 0755
-#  ^-----@rules                      # Recording and alerting rules (*.yml 0644)
-#            ^-----agent.yml         # Agent pre-aggregation rules
-#            ^-----infra.yml         # infra rules and alerts
-#            ^-----etcd.yml          # etcd rules and alerts
-#            ^-----node.yml          # node rules and alerts
-#            ^-----pgsql.yml         # pgsql rules and alerts
-#            ^-----redis.yml         # redis rules and alerts
-#            ^-----minio.yml         # minio rules and alerts
-#            ^-----kafka.yml         # kafka rules and alerts
-#            ^-----mysql.yml         # mysql rules and alerts
-#  ^-----@targets                    # FileSD targets (*.yml 0640)
-#            ^-----@infra            # infra static targets
-#            ^-----@node             # node static targets
-#            ^-----@pgsql            # pgsql static targets
-#            ^-----@pgrds            # pgsql remote RDS targets
-#            ^-----@redis            # redis static targets
-#            ^-----@minio            # minio static targets
-#            ^-----@mysql            # mysql static targets
-#            ^-----@etcd             # etcd static targets
-#            ^-----@ping             # ping static targets
-#            ^-----@kafka            # kafka static targets
-#            ^-----@juice            # juicefs static targets
-#            ^-----@docker           # docker static targets
-#            ^-----@patroni          # patroni static targets (when SSL enabled)
-# /etc/default/vmetrics              # vmetrics startup args (victoria:infra 0644)
-# /etc/default/vlogs                 # vlogs startup args (victoria:infra 0644)
-# /etc/default/vtraces               # vtraces startup args (victoria:infra 0644)
-# /etc/default/vmalert               # vmalert startup args (victoria:infra 0644)
-# /etc/alertmanager.yml              # alertmanager main config (prometheus:infra 0644)
-# /etc/default/alertmanager          # alertmanager env (prometheus:infra 0640)
-# /etc/blackbox.yml                  # blackbox main config (prometheus:infra 0644)
-# /etc/default/blackbox_exporter     # blackbox env (prometheus:infra 0644)
+```filetree {title="Victoria and Monitoring File Layout"}
+- infra/
+  - prometheus.yml · Victoria main configuration, Prometheus-compatible, 0644
+  - bin · Utility scripts, 0755/
+    - check
+    - new
+    - reload
+    - status
+  - rules · Recording and alert rules, *.yml 0644/
+    - agent.yml · Agent aggregation rules
+    - infra.yml · infra recording rules and alerts
+    - etcd.yml · etcd recording rules and alerts
+    - vault.yml · OpenBao recording rules and alerts
+    - node.yml · node recording rules and alerts
+    - pgsql.yml · pgsql recording rules and alerts
+    - redis.yml · redis recording rules and alerts
+    - minio.yml · minio recording rules and alerts
+    - kafka.yml · Kafka recording rules and alerts
+    - mysql.yml · MySQL recording rules and alerts
+  - targets · FileSD discovery targets, *.yml 0640/
+    - infra · Static infra targets/   {open=false}
+    - node · Static node targets/   {open=false}
+    - pgsql · Static pgsql targets/   {open=false}
+    - pgrds · Remote PostgreSQL/RDS targets/   {open=false}
+    - redis · Static redis targets/   {open=false}
+    - minio · Static minio targets/   {open=false}
+    - mysql · Static MySQL targets/   {open=false}
+    - etcd · Static etcd targets/   {open=false}
+    - vault · Static OpenBao targets/   {open=false}
+    - ping · Static ping targets/   {open=false}
+    - kafka · Static Kafka targets/   {open=false}
+    - juice · Static JuiceFS targets/   {open=false}
+    - docker · Static Docker targets/   {open=false}
+    - patroni · Static Patroni targets when SSL is enabled/   {open=false}
+- etc/
+  - default/
+    - vmetrics · victoria:infra 0644
+    - vlogs · victoria:infra 0644
+    - vtraces · victoria:infra 0644
+    - vmalert · victoria:infra 0644
+    - alertmanager · prometheus:infra 0640
+    - blackbox_exporter · prometheus:infra 0644
+  - alertmanager.yml · prometheus:infra 0644
+  - blackbox.yml · prometheus:infra 0644
 ```
 
 Pigsty stores generated INFRA units in `/etc/systemd/system/`. These include `vmetrics`, `vlogs`, `vtraces`, `vmalert`, `alertmanager`, `blackbox_exporter`, `nginx_exporter`, and `dnsmasq`. Distribution package unit directories are not write targets for these roles.
@@ -320,7 +348,10 @@ The following parameters and internal variables are related to PostgreSQL direct
         - { path: "{{ pg_cluster_dir }}/data"   ,mode: "0700" }
         - { path: "{{ pg_cluster_dir }}/spool"  ,mode: "0700" }
         - { path: "{{ pg_backup_dir }}/backup"  ,mode: "0700" }
-        - { path: "/var/run/postgresql"         ,owner: root, group: root, mode: "0755" }
+        - { path: "/var/run/postgresql"         ,mode: "0755" }
+        - { path: "/etc/patroni"                ,mode: "0700" }
+        - { path: "/etc/pgbackrest"             ,mode: "0750" }
+        - { path: "/etc/pgbouncer"              ,mode: "0750" }
 
     - name: link pgsql directories
       file: src={{ item.src }} dest={{ item.dest }} state=link
@@ -329,6 +360,7 @@ The following parameters and internal variables are related to PostgreSQL direct
         - { src: "{{ pg_cluster_dir }}"       ,dest: "/pg" }
 ```
 
+`/etc/pgbackrest` and `/etc/pgbouncer` are owned by `{{ pg_dbsu }}:postgres` with mode `0750`; `/etc/pgbackrest/pgbackrest.conf` uses `0640`. The local exporter writes configuration directly to `/etc/pg_exporter.yml`, without creating an `/etc/pg_exporter` subdirectory on PG nodes.
 
 **Data File Structure**
 
@@ -463,3 +495,33 @@ For a Redis instance named `redis-test-1-6379`, the related resources are as fol
 ```
 
 Pigsty stores generated Redis/Valkey instance and exporter units in `/etc/systemd/system/`. Instance units use `Type=notify`. Packages can provide units in distribution directories. The roles do not write to those directories.
+
+----------------
+
+## Vault FHS
+
+VAULT runs OpenBao as `openbao.service`. Its node and admin-node layout is:
+
+```filetree {title="OpenBao (VAULT) File Layout"}
+- etc/
+  - openbao · root:openbao 0750/
+    - openbao.hcl · root:openbao 0640, OpenBao service configuration
+    - unseal.key · root:openbao 0640, static auto-unseal key copy
+    - backup.token · root:root 0600, daily snapshot token
+    - tls · root:openbao 0750/
+      - ca.crt · root:openbao 0640
+      - server.crt · root:openbao 0640
+      - server.key · root:openbao 0640
+  - profile.d/
+    - bao.sh · root:root 0644, CLI environment (BAO_ADDR / BAO_CACERT)
+  - systemd/system/
+    - openbao.service · root:root 0644, Pigsty-rendered unit
+- data/vault · openbao:openbao 0700, default vault_data/
+  - raft · openbao:openbao 0700, embedded Raft storage/   {open=false}
+  - backup · root:root 0700, daily vault-*.snap snapshots (0600) and .backup.lock/   {open=false}
+- var/log/openbao · openbao:openbao 0750, audit.log (0600)/   {open=false}
+- var/lib/node_exporter/textfile/
+  - vault.prom · Snapshot timestamp and size metrics
+- infra/targets/vault/
+  - <cluster>-<seq>.yml · victoria:infra 0640, FileSD target
+```

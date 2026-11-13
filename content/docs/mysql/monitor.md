@@ -8,14 +8,13 @@ categories: [Reference]
 aliases: [/docs/pilot/mysql/monitor]
 ---
 
-MYSQL sends mysqld_exporter metrics to VictoriaMetrics and Journald/Vector error logs to VictoriaLogs. Grafana supplies five dashboards. vmalert loads 68 recording rules and 27 alerts.
-
+MYSQL uses Pigsty's observability stack: `mysqld_exporter` and `node_exporter` textfiles feed VictoriaMetrics, Journald/Vector send error logs to VictoriaLogs, Grafana provides 5 dashboards, and vmalert loads **70 recording rules** and **8 actionable alerts**.
 
 --------
 
 ## Collection Architecture
 
-Each node runs `mysqld_exporter` on `9104` with least-privilege `dbuser_monitor@'127.0.0.1'`. Deployment creates a discovery file on the INFRA node:
+Each MySQL node runs `mysqld_exporter` on `9104`, collecting server and MGR metrics with the least-privilege `dbuser_monitor@'127.0.0.1'` account. `mysql-backup` also writes the local physical backup timestamp and size to `/var/lib/node_exporter/textfile/mysql.prom`; `node_exporter` reports these, and rules join them to cluster metrics by `ip`. Deployment creates file-discovery targets on Infra nodes:
 
 ```text
 /infra/targets/mysql/<instance>.yml     # e.g. my-test-1.yml
@@ -66,34 +65,21 @@ Group Replication panels apply only to `innodb_cluster`. No data is expected for
 
 ## Alert Rules
 
-The 27 rules use `severity` CRIT, WARN, or INFO. Use these alerts for paging:
+[`files/victoria/rules/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/files/victoria/rules/mysql.yml) provides **8 focused, actionable alerts**. Diagnostic signals such as slow queries, temporary tables, buffer pool hit rate, and redo utilization remain on Grafana dashboards rather than generating noisy alerts:
 
-### Availability and Cluster State
+| Alert | Severity | Duration | Expression and Response |
+|:---|:---:|:---:|:---|
+| `MySQLDown` | `CRIT` | `1m` | `mysql:ins:exporter_up == 1 and on (...) mysql:ins:up < 1`: exporter is up but cannot connect to `mysqld` |
+| `MySQLExporterDown` | `WARN` | `2m` | `mysql:ins:exporter_up < 1`: cannot scrape `mysqld_exporter` |
+| `MySQLClusterDown` | `CRIT` | `1m` | `mysql:cls:health{topology="innodb_cluster"} < 1`: no majority or no unique online primary; rerun `mysql.yml` after all hosts are reachable |
+| `MySQLClusterDegraded` | `WARN` | `5m` | `mysql:cls:health{topology="innodb_cluster"} == 1`: writable but a member is offline; rerun `mysql.yml` or replace at the same address |
+| `MySQLReplicationLag` | `WARN` | `10m` | `mysql:ins:gr_certifier_queue > 1000 or mysql:ins:gr_applier_queue > 1000`: MGR certification/apply backlog exceeds 1000 transactions |
+| `MySQLConnUsageHigh` | `WARN` | `5m` | `mysql:ins:connection_usage > 0.80`: connections exceed 80% of `max_connections` |
+| `MySQLHistoryListLarge` | `WARN` | `15m` | `mysql:ins:history_list_length > 1000000`: long transactions block undo purge, with over one million history entries |
+| `MySQLBackupStale` | `WARN` | `5m` | `time() - mysql:cls:backup_time > 30 * 3600`: no successful local full backup across the cluster for 30 hours, or the first backup failed |
+{.full-width .wide .expand}
 
-| Alert | Severity | Condition |
-|:---|:---:|:---|
-| `MySQLInstanceDown` | CRIT | Connection probe failing for 1m |
-| `MySQLClusterNoPrimary` | CRIT | No ONLINE primary for 1m |
-| `MySQLClusterQuorumLost` | CRIT | ONLINE members below majority for 1m |
-| `MySQLClusterMultiplePrimary` | CRIT | More than one primary for 30s (split-brain signal) |
-| `MySQLSecondaryWritable` | CRIT | A secondary writable for 2m (divergence risk) |
-| `MySQLClusterMemberOffline` | WARN | A declared member out of the group for 5m |
-| `MySQLPrimaryReadOnly` | WARN | Primary read-only for 5m |
-| `MySQLExporterDown` | WARN | Scrape failing for 2m |
-{.full-width}
-
-### Capacity and Performance
-
-Other alerts cover:
-
-- Connections: `MySQLConnectionsHigh` WARN at 80%, `MySQLConnectionsCritical` CRIT at 95%.
-- Replication queues: `MySQLGRQueueHigh` WARN and `MySQLGRQueueCritical` CRIT.
-- Flow control: `MySQLGRFlowControlHigh`.
-- InnoDB: `MySQLBufferPoolWaits`, `MySQLInnoDBLogWaits`, `MySQLRedoCapacityHigh`, `MySQLDeadlocksHigh`, and `MySQLHistoryListLarge`.
-- INFO hints: slow queries, disk temporary tables, full joins, buffer-pool hit ratio, and recent restarts.
-
-Tests showed approximately 20-second primary crash failovers produced pending alerts without false pages. Complete outages fired `ClusterNoPrimary` and `QuorumLost` within two minutes.
-
+Observed behavior: automatic primary failover (about 20 seconds) briefly enters pending without firing a false alarm. A real complete outage or offline member triggers `MySQLClusterDown` or `MySQLClusterDegraded` after its duration window.
 
 --------
 

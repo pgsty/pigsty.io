@@ -176,7 +176,7 @@ Broker totals have no topic dimension. Their JMX series count therefore does not
 | `kafka_network_request_total_time_seconds` | Gauge | `request`, `version`, `quantile` | Total API time at P50/P95/P99 |
 | `kafka_network_request_queue_size` | Gauge | — | Number of requests waiting for a request handler |
 | `kafka_network_response_queue_size` | Gauge | — | Number of responses waiting for a network processor |
-| `kafka_server_request_handler_idle_ratio` | Gauge | — | Average request-handler idle ratio |
+| `kafka_server_request_handler_idle_ratio` | Gauge | - | Request Handler idle ratio over the last minute (OneMinuteRate) |
 | `kafka_network_processor_idle_ratio` | Gauge | — | Average network-processor idle ratio |
 {.full-width .wide .expand}
 

@@ -8,9 +8,6 @@ categories: [Reference]
 aliases: [/docs/pilot/kafka]
 ---
 
-> [!NOTE] Source Version Scope
-> This page follows the current development source snapshot. `kafka_jmx_exporter_enabled` was added on 2026-09-01. The released `v4.5.0` tag does not include it: JMX is always enabled there, and the persistent public parameter count remains 15. The 16 parameters and JMX-disable procedure described here apply to sources containing that change.
-
 [Kafka](https://kafka.apache.org/) is a distributed event-streaming platform. Pigsty's [`KAFKA`](/docs/kafka) module installs **Apache Kafka 4.1+ dynamic KRaft** clusters on managed nodes from RPM/DEB packages. It manages security, resources, lifecycle, and observability.
 
 > [!NOTE] Current status: Beta module

@@ -187,10 +187,11 @@ Use these aliases to select a PostgreSQL package group:
 |:---|:---|
 | `pg18` | Server, client, contrib modules, and procedural languages |
 | `pg18-server` | Server and contrib modules |
+| `pg18-contrib` | Separate contrib package on EL; no mapping on Debian/Ubuntu |
 | `pg18-client` | Client tools |
 | `pg18-devel` | Development files |
 | `pg18-basic` | pg_repack, wal2json, and pgvector |
-| `pgsql-common` | patroni, pgbouncer, pgbackrest, pg-exporter, pgbackrest-exporter, vip-manager, and python3-etcd |
+| `pgsql-common` | patroni, pgbouncer, pgbackrest, pg-exporter, pgbackrest-exporter, vip-manager, plus patroni-etcd (EL) or python3-etcd (Debian/Ubuntu) |
 {.full-width}
 
 Replace `18` with the required major version. You can also use `pgsql` with `-v 18`.
@@ -231,13 +232,17 @@ Successful installation only makes the extension files available on the host. Fo
 
 ## ext rm {#ext-rm}
 
-Remove one or more PostgreSQL extensions.
+Select OS packages to remove by extension name or explicit package-group alias.
 
 ```bash
 pig ext rm pg_duckdb             # remove pg_duckdb
 pig ext rm pg_duckdb -v 18       # remove PG 18 package
 pig ext rm pgvector -y           # auto-confirm removal
 pig ext rm pgvector --plan       # preview remove plan without executing
+pig ext rm plpython3u -v 18      # remove a standalone language package
+pig ext rm pg18-contrib --plan   # preview removing the entire contrib package (EL only)
+pig ext rm pg18-server --plan    # preview explicit server package-group removal
+pig ext rm orioledb-server -v 18 --plan  # preview OrioleDB kernel removal
 ```
 
 | Option | Description |
@@ -248,6 +253,33 @@ pig ext rm pgvector --plan       # preview remove plan without executing
 {.full-width}
 
 This removes an OS package, not database objects. Drop or migrate dependent extensions in every affected database before removing the shared files.
+
+Server, shared contrib, and supported alternative kernel packages are protected from removal through extension names.
+Names such as `pg_trgm`, `earthdistance`, `tablefunc`, and `plpgsql` cannot remove their supplying server or contrib package.
+To remove an entire package group, explicitly select its alias:
+
+| Selection | Removal Rule |
+|:---|:---|
+| `pg18-server`, `pgsql-server -v 18` | Explicit server group allowed; includes libraries and contrib on EL |
+| `pg18`, `pg18-mini`, `pg18-core`, `pg18-full`, `pg18-main`, `postgresql -v 18` | Selected PostgreSQL package group allowed |
+| `pg18-contrib`, `pgsql-contrib -v 18` | Allowed on EL; rejected on Debian/Ubuntu, which have no separate contrib mapping |
+| `plpython3u`, `pltcl`, `pltclu`, `plperl`, `plperlu` | Standalone language packages allowed, including trusted/untrusted variants sharing a package |
+| `spock`, `snowflake`, `lolor`, `orioledb`, `pg_tde` | Extension-name selection of a kernel package is rejected |
+| `pgedge -v 18`, `orioledb-server -v 18`, `ivorysql -v 18`, `babelfish -v 18`, `openhalo -v 18` | Explicit kernel package groups allowed |
+{.full-width}
+
+Numbered aliases use their own major version: `pg18-server -v 17` still selects PostgreSQL 18.
+Existing fixed-version aliases `pgtde`, `percona-core`, and `percona-main` select PG 18.
+`orioledb` retains its extension meaning; use `orioledb-server` to remove the kernel explicitly.
+Category aliases and extension package shorthands never authorize kernel removal.
+
+Each input is checked before package deduplication. Any violation rejects the entire request before sudo or the package manager is invoked.
+Adding `pg18-server` to a request containing `pg_trgm` does not authorize the latter. Argument order and `--yes` do not affect the decision.
+Execution returns error code `100102` and exit status `2`. A blocked `--plan` also exits `2`, includes failed preconditions,
+and contains no removal action; structured stdout remains a single plan object.
+
+Allowed plans list OS packages and the catalog extensions they supply, including other extensions in the same package,
+but do not simulate additional dependency removals by APT/DNF. See the [design record](https://pig.pgsty.com/design/protected-package-removal/).
 
 ## ext update {#ext-update}
 
@@ -312,6 +344,9 @@ pig ext link /usr/polar-17       # link from a selected PolarDB path
 pig ext link null                # remove current PostgreSQL link
 pig ext link none                # null / none / nil / nop / no all remove the link
 ```
+
+Relative installation paths resolve against the caller's working directory. Empty paths, system roots such as `/usr/`, and paths containing shell
+expansion characters or newlines are rejected before links or profiles are changed.
 
 This command creates the `/usr/pgsql` symlink and writes `/etc/profile.d/pgsql.sh`. Load the profile in your current shell:
 

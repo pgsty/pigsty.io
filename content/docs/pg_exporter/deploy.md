@@ -78,7 +78,7 @@ The exporter checks these sources in order, skipping empty command-line and envi
 
 Once `PG_EXPORTER_URL_FILE` is selected, an unreadable, empty, or whitespace-only file prevents startup; it does not fall back to the local default.
 
-v1.5.0 validates URL syntax, percent escapes, and query parameter names. Names cannot be empty or contain whitespace or `=`, and URLs cannot contain an unescaped `#`. Invalid input stops startup with a fixed diagnostic that omits the raw connection string, preventing password disclosure or silently discarded TLS settings. Valid URL passwords in user information and `password=` parameters are redacted in logs.
+v1.5.0 validates URLs, percent escapes, and query parameter names strictly. Names cannot be empty or contain whitespace or `=`, and URLs cannot contain unescaped `#`. Invalid input stops startup with fixed diagnostics that omit the original connection string, preventing password disclosure or silent loss of TLS settings. Logs redact userinfo passwords and `password=` / `sslpassword=` values in valid URLs. Hostless URLs such as `postgresql://?host=/var/run/postgresql` retain `//` during normalization.
 
 If the URL omits `sslmode`, the exporter appends `sslmode=disable`.
 At startup, it also clears libpq service-file environment variables, such as `PGSERVICE` / `PGSERVICEFILE`, and logs this action.
@@ -151,6 +151,7 @@ After=network.target
 EnvironmentFile=-/etc/default/pg_exporter
 User=prometheus
 ExecStart=/usr/bin/pg_exporter $PG_EXPORTER_OPTS
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=on-failure
 
 [Install]
@@ -181,10 +182,12 @@ The file uses the `noreplace` package option. Upgrades do not overwrite your cha
 Common operations:
 
 ```bash
+sudo systemctl daemon-reload               # refresh systemd after upgrading the unit
 sudo systemctl enable --now pg_exporter    # start and enable at boot
 sudo systemctl status pg_exporter          # check status
+sudo systemctl reload pg_exporter          # reload collector configuration through SIGHUP without restarting
 journalctl -u pg_exporter -f               # follow logs
-curl -X POST localhost:9630/reload         # hot-reload collector config (no restart)
+curl -X POST localhost:9630/reload         # reload collector configuration over HTTP
 ```
 
 ## Docker Deployment {#docker-deployment}
@@ -195,7 +198,7 @@ docker run -d \
   --restart unless-stopped \
   -p 9630:9630 \
   -e PG_EXPORTER_URL="postgres://monitor:S3cret@host:5432/postgres" \
-  pgsty/pg_exporter:1.6.0
+  pgsty/pg_exporter:1.6.1
 ```
 
 Docker Compose:
@@ -203,7 +206,7 @@ Docker Compose:
 ```yaml
 services:
   pg_exporter:
-    image: pgsty/pg_exporter:1.6.0
+    image: pgsty/pg_exporter:1.6.1
     container_name: pg_exporter
     restart: unless-stopped
     ports:
@@ -237,7 +240,7 @@ spec:
     spec:
       containers:
       - name: pg-exporter
-        image: pgsty/pg_exporter:1.6.0
+        image: pgsty/pg_exporter:1.6.1
         ports:
         - containerPort: 9630
         env:
@@ -288,7 +291,7 @@ Behavior:
 - Cluster-level collectors (`tags: [cluster]`) run once on the primary connection
 - Database-level collectors run on every discovered database, with metrics distinguished by the `datname` label
 - Newly created or dropped databases are added or removed during subsequent prechecks
-- v1.5.0 uses `lib/pq` to resolve the actual database identity. Replacing the database name removes conflicting `dbname` / `database` query parameters and preserves special characters, preventing discovered connections from scraping the same database
+- v1.5.0 uses `lib/pq` to resolve the actual database identity. When replacing a database name, it removes conflicting `dbname` / `database` query parameters, and v1.6.1 also removes conflicting `service=`. It preserves special characters to prevent discovered connections from converging on the same database. Removing or replacing child targets waits for active collection before closing old pools.
 - Database scrapes remain sequential. Allow enough scrape timeout for prechecks and queries across all databases; in v1.6.0, a canceled request does not start subsequent databases or collectors
 - The PostgreSQL main connection pool uses up to three connections, and each discovered database uses one connection. The PgBouncer connection pool uses up to two connections to separate serial scrapes from the independent health probe
 

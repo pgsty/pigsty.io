@@ -38,17 +38,14 @@ Design the multi-master topology for your workload consistency requirements and 
 
 ## Installation
 
-Use the built-in Pigsty template:
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgedge.yml). Development sources moved it to `conf/fork/pgedge.yml`; use `-c fork/pgedge` with those sources.
+Use Pigsty's [`fork/pgedge`](/docs/conf/pgedge/) template ([`conf/fork/pgedge.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgedge.yml)); `-c pgedge` and `-c fork/pgedge` are equivalent:
 
 ```bash
-./configure -c pgedge
+./configure -c fork/pgedge
 ./deploy.yml
 ```
 
-The template installs `spock`, `snowflake`, and `lolor` in the `meta` database.
-After deployment, verify the kernel and extensions:
+The template installs `spock`, `snowflake`, and `lolor` in `meta`. The current PG18 package is `pgedge-18` `18.6-3PGSTY`, including `Spock 5.0.13`. Verify versions and extensions after deployment:
 
 ```bash
 psql -d meta -c "SELECT version();"
@@ -62,7 +59,7 @@ psql -d meta -c "SELECT extname, extversion FROM pg_extension WHERE extname IN (
 
 ## Configuration
 
-Key parameters in the `pgedge` template (matching `conf/pgedge.yml`):
+Key parameters in the `fork/pgedge` template (matching `conf/fork/fork/pgedge.yml`):
 
 ```yaml
 pg_mode: pgedge

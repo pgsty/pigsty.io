@@ -10,8 +10,7 @@ aliases: [/docs/pilot/mysql/faq]
 
 ## How mature is the MYSQL module?
 
-This pilot targets simple, low-cost MySQL clusters. Deployment/convergence, HA failover, daily backups, and monitoring/alerts have systematic tests, including fault injection and complete-outage exercises. Destructive recovery remains manual, with [procedures](/docs/mysql/admin). It has no PITR, VIP/DNS access layer, or automatic scaling; its scope is smaller than PGSQL. Before production, validate your requirements and rehearse recovery.
-
+This pilot module targets simple, affordable MySQL clusters. Deployment convergence, HA failover, complete three-node outage recovery, replacement at the same address, daily physical backups, and monitoring/alerts have been systematically tested. Physical backup copy-back remains manual, with a [runbook](/docs/mysql/admin#restore-from-physical-backup). It does not aim for PGSQL-level completeness: there is no PITR, DNS/HAProxy access layer, or online topology scaling. Local Router and the `NODE` Layer 2 VIP are supported. Validate the module against your requirements and rehearse recovery before production use.
 
 ## Why is MySQL fixed at 8.4? Can I pick a version?
 
@@ -49,8 +48,7 @@ Oracle APT provides no MySQL 8.4 `arm64` packages. On ARM, including Apple Silic
 
 For HA, use any member's Router on `6446` for read/write or `6447` for read-only. Routers follow failover. Standalone clients use `3306`. The server requires TLS through `require_secure_transport=ON`; plaintext fails with `ERROR 3159`. Default `PREFERRED` negotiates TLS, while explicit `DISABLED` fails. Prefer `VERIFY_CA` with `/etc/pki/ca.crt`.
 
-Each node has its own Router, without a shared VIP. List every member's `6446` in a multi-host DSN to tolerate node failure.
-
+Router runs locally on every node. For a single floating endpoint, enable the group's [`NODE`](/docs/node) Layer 2 VIP (`vip_enabled: true`, `vip_address`, `vip_vrid`). The VIP is included in TLS leaf certificate SANs and exposes `<vip>:6446/6447`. Without a VIP, configure a multi-address DSN with all three members' `6446` endpoints to tolerate a node failure.
 
 ## The primary moved. Will it move back automatically?
 
@@ -64,18 +62,15 @@ Usually no action is needed. Systemd restarts `mysqld`, which rejoins automatica
 
 ## All three nodes are down. How do I recover?
 
-Complete outage requires manual recovery to prevent split-brain. Run `dba.rebootClusterFromCompleteOutage()` on the most advanced member, then rerun the playbook for the others. See [complete-outage recovery](/docs/mysql/admin#recover-from-a-complete-outage). The `mysql.yml` failure message prints the same instructions.
-
+Once networking and `mysqld` are reachable on all three hosts, run `./mysql.yml -l <cluster>`. The playbook compares GTID sets, runs `dba.rebootClusterFromCompleteOutage()` with `force: false` on the most advanced member, and rejoins the others. If a complete outage also involves lost hosts, leaving fewer than three reachable members, automatic recovery is refused to prevent split brain. Follow [Complete Outage Recovery](/docs/mysql/admin#recover-from-a-complete-outage) on the most advanced survivor.
 
 ## Where are backups stored? Can I restore to a point in time?
 
-**Daily full physical backups** reside at `/data/backups/mysql/<cluster>/` on the **current primary**. After failover, new backups use the new primary; compare all members for the latest. There are no incremental chains, binlog archives, or **PITR**. Standalone can recover only to its latest backup, losing up to one day of writes. HA mainly depends on three synchronized replicas, with backups for final recovery and full rebuilds. See [Physical Restore](/docs/mysql/admin#restore-from-physical-backup), and synchronize backup directories yourself for off-site protection.
-
+Backups are **daily full physical backups** on the **current primary**, under `mysql_backup_dir/<cluster>/` (default `/data/backups/mysql/<cluster>/`), retaining the latest `mysql_backup_retention: 3` copies. After failover, new backups follow the new primary, so inspect all members. There are no incrementals or binlog archives, hence **no PITR**. A standalone instance restores to its latest backup, potentially losing a day's writes. HA relies primarily on three-copy synchronous replication; backups provide fallback and full-cluster rebuilds. See [Restore Physical Backup](/docs/mysql/admin#restore-from-physical-backup). Replicate backup directories offsite separately.
 
 ## Will I be alerted if backups fail?
 
-Not yet. Backup-freshness metrics and alerts are a known gap. VictoriaLogs receives `unit:mysql-backup` logs, also visible in the Instance dashboard Router / Backup Logs panel. Add external log checks for important environments and rehearse restoration regularly.
-
+Yes. `mysql-backup` writes the latest successful backup timestamp and size to `/var/lib/node_exporter/textfile/mysql.prom`, using `0` if the first backup fails. VictoriaMetrics derives `mysql:cls:backup_time`; no successful backup across the cluster for 30 hours triggers `MySQLBackupStale` (`WARN`). Detailed failed-run XtraBackup logs are under `/var/lib/pigsty/mysql-backup/`, and service logs are available in VictoriaLogs as `unit:mysql-backup`.
 
 ## Why are some `mysql_parameters` keys rejected?
 
@@ -93,21 +88,17 @@ Configuration changes roll secondaries first, without client interruption, then 
 - `mysql_root_password`: Implicit resets fail to prevent silent misconfiguration. Run `ALTER USER 'root'@'localhost' ...` manually, then update inventory and rerun.
 - `mysql_cluster_password`: HA metadata and Router keyrings bind it. Ordinary reruns reject rotation, and no automated HA procedure exists. Standalone rotation works normally. If necessary in HA, use AdminAPI, synchronize member credential files, then update inventory.
 
+## Does `mysql-rm.yml` Delete Data? How Can I Stop and Restart with Data Retained?
 
-## How do I resurrect a retired cluster? What if the marker is deleted by mistake?
+`mysql-rm.yml` defaults to `mysql_rm_data: true`. With `-e mysql_safeguard=false`, it deletes `mysql_data` (default `/data/mysql`) and managed configuration, but **always retains `mysql_backup_dir` (`/data/backups/mysql`)**. To stop temporarily with data intact, select the entire cluster and add `-e mysql_rm_data=false`; see [Stop with Data Retained or Destroy a Cluster](/docs/mysql/admin#stop-with-data-retained-or-destroy-a-cluster). This version no longer writes `.pigsty-mysql-retired`. Rerun `./mysql.yml -l <cluster>` to restart in place and recover quorum automatically.
 
-`mysql-rm.yml` retains all data and writes a retirement marker. Remove `/var/lib/mysql/.pigsty-mysql-retired` on each member and rerun `mysql.yml` to revive it ([details](/docs/mysql/admin#retire-and-resurrect-a-cluster)). This suffices for standalone. HA also needs [quorum rebuilding](/docs/mysql/admin#recover-from-a-complete-outage). The retirement marker prevents accidental revival. Separate `.pigsty-mysql-initialized` ownership checks still prevent assigning data to another cluster.
+## How Does the OpenHalo Template Relate to This Module?
 
+[`conf/fork/halo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/halo.yml) is the **OpenHalo** template: MySQL wire protocol compatibility on PostgreSQL (`pg_mode: mysql`), unrelated to native MYSQL. This module uses [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml). Use native MYSQL for the MySQL 8.4 ecosystem and InnoDB Cluster; evaluate OpenHalo when selected MySQL protocol applications need to run on PGSQL infrastructure.
 
-## Why doesn't `conf/mysql.yml` match this module?
+## Why Does the Playbook Refuse Complete-Outage Recovery?
 
-In development sources, that template is at `conf/fork/halo.yml`. It is **OpenHalo**, a PostgreSQL kernel with MySQL wire compatibility (`pg_mode: mysql`). It is unrelated to native MYSQL, whose template is [`conf/demo/mysql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/mysql.yml). Use this module for native MySQL ecosystem compatibility. Consider OpenHalo for MySQL-protocol applications on PostgreSQL infrastructure.
-
-
-## The playbook fails with `no ONLINE member holds the cluster`?
-
-This means no reachable ONLINE member carries the cluster. Follow the printed [complete-outage instructions](/docs/mysql/admin#recover-from-a-complete-outage). If members are ONLINE, check coordinator seq-1 connectivity to every member's port 3306. Reconciliation runs there. Also verify TLS trust and `/etc/pki/ca.crt`.
-
+If there are no `ONLINE` members and **some declared hosts are unreachable**, the playbook cannot determine whether they contain newer GTID transactions, so it refuses automatic `rebootClusterFromCompleteOutage`. Restore connectivity and rerun `./mysql.yml -l <cluster>` when possible; with all three reachable, it selects the highest GTID automatically. If a host is permanently lost, follow [Complete Outage Recovery](/docs/mysql/admin#recover-from-a-complete-outage) to force rebuilding manually on the most advanced survivor.
 
 ## Monitoring shows no data / blank dashboards?
 

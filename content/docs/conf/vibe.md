@@ -45,14 +45,13 @@ The `vibe` template provides an **AI coding sandbox for the web**. Use your brow
 **Core Components**:
 
 | Component       | Description                             | Access Method             |
-|-----------------|----------------------------------------|---------------------------|
-| **Code-Server** | Web version of VS Code, full-featured code editor | `http://<ip>/code`    |
-| **JupyterLab**  | Interactive data science notebook, Python/SQL | `http://<ip>/jupyter` |
+|-----------------|-----------------------------------------|----------------------------|
+| **Code-Server** | Web version of VS Code, full-featured code editor | `http://<ip>/code/`    |
+| **JupyterLab**  | Interactive data science notebook, Python/SQL | `http://<ip>/jupyter/` |
 | **Claude Code** | AI coding runtime and observability entrypoint (`claude_env` customizable) | Terminal / Dashboard |
 | **Codex CLI**   | OpenAI agentic coding CLI; VIBE installs it but does not manage its configuration | Terminal |
 | **JuiceFS**     | PostgreSQL-based distributed filesystem | Mount point `/fs`        |
 | **PostgreSQL 18** | Feature-rich database with `pg18-main` + categorized extension package groups | Port `5432` |
-{.wide .expand}
 
 **Node tools explicitly installed by this template** (`node_packages`):
 
@@ -97,15 +96,14 @@ The VIBE module provides an AI coding sandbox. The `vibe.yml` template explicitl
 
 **Claude Code**: AI coding assistant runtime
 
-- Uses module default behavior to bootstrap Claude runtime
+- Install through Pigsty's native `infra` repository package (`claude`) and configure the Claude runtime environment
 - Supports endpoint/API key overrides through `claude_env`
 - Provides `claude-code` dashboard for usage monitoring
 
 **Codex CLI**: AI coding assistant
 
-- Controlled by `codex_enabled`, which defaults to `true`
-- VIBE installs only `@openai/codex`. It does not write the Codex configuration or connect Codex to the Claude Code dashboard.
-
+- Controlled by `codex_enabled`, enabled by default, and installed through the native `infra` repository package (`codex`). It is independent of Node.js; `npm_packages` defaults to empty and can install other global npm tools as needed.
+- VIBE installs the CLI only; it does not write Codex configuration or connect it to the Claude Code dashboard
 
 --------
 
@@ -133,11 +131,11 @@ This template uses **JuiceFS** as a distributed filesystem. It stores **both met
 juice_instances:
   jfs:
     path  : /fs
+    owner : '{{ node_user | default("root") }}'
     meta  : postgres://dbuser_meta:DBUser.Meta@10.10.10.10:5432/meta
     data  : --storage postgres --bucket 10.10.10.10:5432/meta --access-key dbuser_meta --secret-key DBUser.Meta
     port  : 9567
 ```
-
 
 --------
 

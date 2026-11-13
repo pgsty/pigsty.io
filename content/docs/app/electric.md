@@ -27,26 +27,27 @@ Default endpoints:
 - `http://<IP>:8002`
 - `http://elec.pigsty` (default domain in the template)
 
-The template enables and publishes metrics port `8003` by default. Configure regular scraping. If metrics are not needed, remove `ELECTRIC_PROMETHEUS_PORT` from `pigsty.yml` and the application `.env`, and remove its Compose port mapping before startup. An enabled reporter that is not scraped may keep accumulating metrics.
+The Prometheus endpoint is disabled by default and its port is not published. Enable `ELECTRIC_PROMETHEUS_PORT` only when regular scraping is configured: an enabled reporter that is never scraped retains metrics and can eventually exhaust memory.
 
 ## Key Settings
 
 `conf/app/electric.yml` writes `apps.electric.conf` into `/opt/electric/.env`. Common parameters:
 
-- `DATABASE_URL`: PostgreSQL connection string used by Electric (replication privileges required)
-- `ELECTRIC_PORT`: container listening port and published host port, both defaulting to `8002`
-- `ELECTRIC_PROMETHEUS_PORT`: metrics port, enabled by default at `8003`
-- `ELECTRIC_INSECURE`: can be `true` for development. Disable it in production and configure proper secrets.
+- `DATABASE_URL`: PostgreSQL connection string for Electric; requires `REPLICATION` privileges
+- `ELECTRIC_PORT`: port inside the container, default `3000`
+- `ELECTRIC_PUBLISH_PORT`: published host port, default `8002`
+- `ELECTRIC_PERSISTENT_STATE`: defaults to `FILE` to retain synchronization state across container recreation
+- `ELECTRIC_STORAGE`: defaults to `FAST_FILE`; Electric 1.7.12+ accepts `MEMORY` or `FAST_FILE`, and the old `FILE` value prevents startup
+- `ELECTRIC_STORAGE_DIR`: absolute persistence path inside the container, default `/var/lib/electric`
+- `ELECTRIC_INSECURE`: defaults to `true` for development; set it to `false` and configure `ELECTRIC_SECRET` before exposing a production deployment
 
-The template uses the unpinned `electricsql/electric` image. Pin a version or digest compatible with the configuration before deploying.
+The template follows the unpinned upstream `electricsql/electric` image (the verified snapshot uses sync-service `1.7.12`). Pin an image version or digest for controlled production upgrades.
 
-## Cache and Version Differences
+## Cache and Persistence
 
-Compose does not define a persistent cache volume. To preserve the shape cache across container recreation, configure both storage settings and a volume mount; a directory in `.env` alone is insufficient.
+Compose mounts the named volume `electric-data` at `ELECTRIC_STORAGE_DIR` (default `/var/lib/electric`). It retains shape handles and logs when a container is recreated at the same version and the PostgreSQL timeline is unchanged.
 
-The development template adds an `electric-data` volume, sets the container port to `3000` and the host port to `ELECTRIC_PUBLISH_PORT=8002`, and disables metrics by default. These changes require the matching Compose file. Its Electric 1.7.12 configuration uses `ELECTRIC_PERSISTENT_STATE=FILE`, `ELECTRIC_STORAGE=FAST_FILE`, and `ELECTRIC_STORAGE_DIR=/var/lib/electric`; this version does not accept the old `ELECTRIC_STORAGE=FILE`.
-
-PostgreSQL holds the authoritative business data; a cache volume cannot replace database backups. After cache loss or a PostgreSQL timeline change, clients must still handle `409` / `must-refetch` and resynchronize.
+PostgreSQL holds the authoritative application data; the Electric cache volume does not replace database backups. Losing the volume or changing PostgreSQL instance identity or timeline invalidates cached shapes. Clients must handle `409` / `must-refetch`, discard their local cache, and synchronize again.
 
 ## Operations
 

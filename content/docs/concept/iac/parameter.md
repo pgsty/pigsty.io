@@ -14,22 +14,26 @@ Use **inventory** parameters to customize infrastructure settings and database c
 
 ## Parameter List
 
-The current source and reference pages list **376** public parameters across 10 official modules. See [**Reference - Parameter List**](/docs/ref/param) for the complete list. The native MySQL 8.4 pilot module has 13 additional public parameters. They are listed separately and excluded from this total.
+The `files/cmdb.sql` defaults define **399 public configuration parameters** across 12 Pigsty modules. See [**Parameter Reference**](/docs/ref/param) for the complete list.
 
 | Module                             | Groups | Params | Description                              |
 |:-----------------------------------|:------:|:------:|:-----------------------------------------|
-| [**PGSQL**](/docs/pgsql/param)     |   9    |  124   | PostgreSQL high-availability cluster configuration |
-| [**INFRA**](/docs/infra/param)     |   10   |   74   | Software repositories and Victoria observability infrastructure |
-| [**NODE**](/docs/node/param)       |   11   |   74   | Node initialization, system tuning, and operations baseline |
+| [**PGSQL**](/docs/pgsql/param) | 10 | 125 | PostgreSQL HA clusters, backups, and PITR |
+| [**INFRA**](/docs/infra/param)     |   10   |   73   | Software repositories and Victoria observability infrastructure |
+| [**NODE**](/docs/node/param)       |   11   |   73   | Node initialization, system tuning, and operations baseline |
 | [**ETCD**](/docs/etcd/param)       |   2    |   13   | ETCD cluster and removal protection parameters |
+| [**VAULT**](/docs/vault/param) | 2 | 8 | OpenBao secrets clusters and removal safeguards |
 | [**MINIO**](/docs/minio/param)     |   2    |   22   | Silo deployment, observability, and removal parameters                    |
 | [**REDIS**](/docs/redis/param)     |   2    |   22   | Redis/Valkey deployment and removal parameters |
 | [**DOCKER**](/docs/docker/param)   |   1    |    8   | Docker engine parameters                 |
 | [**JUICE**](/docs/juice/param)     |   1    |    2   | JuiceFS instance and cache parameters    |
-| [**VIBE**](/docs/vibe/param)       |   1    |   18   | Code/Jupyter/Node.js/Claude/Codex configuration |
+| [**VIBE**](/docs/vibe/param)       |   6    |   68   | Code/Jupyter/Node.js/Claude/Codex configuration |
 | [**KAFKA**](/docs/kafka/param)     |   2    |   19   | Kafka deployment and removal-protection parameters |
+| [**MYSQL**](/docs/mysql/param) | 6 | 16 | Native MySQL 8.4 deployment, backups, monitoring, and removal |
+| **Total** | **55** | **399** | Default parameter records in `files/cmdb.sql` |
 {.wide .expand}
 
+> `cmdb.sql` combines `INFRA_ID` and `INFRA_PACKAGE` into one group, giving INFRA 9 groups; documentation splits them into 10 for navigation. NODE also has the platform-derived `node_tuned_profile_dir` in `defaults/main.yml`, so the [**NODE parameter page**](/docs/node/param) lists 74 entries.
 
 ------
 
@@ -88,8 +92,13 @@ Identity parameters identify entities. They **have no defaults** and **must be s
 | [**`PGSQL`**](/docs/pgsql/param#pg_id)      | `pg_cluster`, `pg_seq`, `pg_role`, ...           |
 | [**`NODE`**](/docs/node/param#node_id)      | `nodename`, `node_cluster`                       |
 | [**`ETCD`**](/docs/etcd/param#etcd)         | `etcd_cluster`, `etcd_seq`                       |
+| [**`VAULT`**](/docs/vault/param#vault)    | `vault_cluster`, `vault_seq`                     |
 | [**`MINIO`**](/docs/minio/param#minio)      | `minio_cluster`, `minio_seq`                     |
 | [**`REDIS`**](/docs/redis/param/)           | `redis_cluster`, `redis_node`, `redis_instances` |
+| [**`KAFKA`**](/docs/kafka/param/)         | `kafka_cluster`, `kafka_seq`                     |
+| [**`MYSQL`**](/docs/mysql/param/)         | `mysql_cluster`, `mysql_seq`                     |
 | [**`INFRA`**](/docs/infra/param#infra_id)   | `infra_seq`                                      |
 
-[**`etcd_cluster`**](/docs/etcd/param#etcd_cluster) is an exception. It defaults to `etcd`. Set [**`minio_cluster`**](/docs/minio/param#minio_cluster) explicitly in each object storage cluster's variables. It no longer has a default. Do not set it in `all.vars`: this marks every host as a MINIO module member.
+Exceptions are [**`etcd_cluster`**](/docs/etcd/param#etcd_cluster) and [**`vault_cluster`**](/docs/vault/param#vault_cluster), which run on fixed groups and default to `etcd` and `vault`. Instance sequences `etcd_seq` and `vault_seq` still require explicit values.
+Object storage [**`minio_cluster`**](/docs/minio/param#minio_cluster) no longer has a default; define it in each object storage cluster's variables.
+Do not set it in `all.vars`, which would mark every host as a MINIO member.

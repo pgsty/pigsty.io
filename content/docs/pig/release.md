@@ -7,10 +7,11 @@ module: [PIG]
 categories: [Reference]
 ---
 
-Changes for [v1.10.4](#v1104) and earlier versions are listed below.
+Changes for [v1.11.0](#v1110) and earlier versions are listed below.
 
 |     Version     |    Date    | Summary                                                            |                           GitHub                           |
 |:---------------:|:----------:|--------------------------------------------------------------------|:----------------------------------------------------------:|
+| [v1.11.0](#v1110) | 2026-11-12 | Pigsty 4.6.0, sty conf shorthand lookup, stronger operational safeguards, 625 catalog entries | [v1.11.0](https://github.com/pgsty/pig/releases/tag/v1.11.0) |
 | [v1.10.4](#v1104) | 2026-11-06 | Seven new catalog entries, refreshed package metadata, target-version alias fixes, and 626 entries. | [v1.10.4](https://github.com/pgsty/pig/releases/tag/v1.10.4) |
 | [v1.10.3](#v1103) | 2026-10-29 | Four new extensions, metadata refresh, 620 catalog entries | [v1.10.3](https://github.com/pgsty/pig/releases/tag/v1.10.3) |
 | [v1.10.2](#v1102) | 2026-10-24 | pg_nanotime, extension and package updates, 616 catalog entries | [v1.10.2](https://github.com/pgsty/pig/releases/tag/v1.10.2) |
@@ -68,6 +69,53 @@ Changes for [v1.10.4](#v1104) and earlier versions are listed below.
 | [v0.0.1](#v001) | 2024-12-23 | Genesis Release                                                    | [v0.0.1](https://github.com/pgsty/pig/releases/tag/v0.0.1) |
 {.wide .expand}
 
+--------
+
+## v1.11.0
+
+PIG `v1.11.0` embeds Pigsty `v4.6.0`, adds ordered template shorthand lookup to `pig sty conf`, strengthens package and operational safeguards across `ext`, `repo`, `do`, `pg`, `pb`, `pitr`, `sty`, and `inventory`, and updates the embedded PostgreSQL extension catalog to **625 entries**.
+
+### Command and Package Safeguards
+
+- **Protected package removal:** [`pig ext rm`](/docs/pig/ext/#ext-rm) prevents accidental removal of PostgreSQL server, shared contrib, and supported alternative kernels through extension names or category aliases (error `100102`, exit `2`). Standalone procedural-language packages remain removable by extension name. Removing server/kernel groups requires explicit aliases such as `pg18-server`, `pg18-contrib` (EL only), or `orioledb-server`. See the [protected-removal design](https://pig.pgsty.com/design/protected-package-removal/).
+- **APT Release-level trust:** [`pig repo add`](/docs/pig/repo/#trust-and-configuration-ownership) and `repo set` reconcile `trusted` and `signed-by` by APT URI/suite before writing files, preserve signature verification enabled by `sty boot` when appending modules, and reject explicit conflicts early.
+- **Pigsty removal safeguards:** [`pig do pgsql-rm`](/docs/pig/do/#postgresql-operations) defaults to `pg_rm_pkg=false`, using `pg_rm_pkg=true` only with `--uninstall`. `pig do pgmon-rm` consistently removes `/infra/targets/pgrds/<cluster>.yml` on `infra` hosts, matching `pgmon-add`. See the [operational CLI safety contract](https://pig.pgsty.com/design/ops-cli-safety/).
+- **PostgreSQL and recovery commands:** text `pig pg status` matches structured exit codes and no longer depends on external `test` when already running as the target DBSU. `pig pg psql -f` enables `ON_ERROR_STOP=1` and resolves caller-relative paths before switching users; internal database enumeration uses `psql -X`. `pig pg fork` pins independent `data_directory`, `hba_file`, `ident_file`, `port`, and archive/recovery overrides in both `postgresql.conf` and `postgresql.auto.conf` and retains `--force` in retry prompts. `pig pg vacuum` / `pig pg freeze` require `--table` with `--schema`. `pig pg kill` / `pig pg tune` reject invalid PID, polling, and floating-point bounds. `pig pb restore` / `pig pitr` retain compound incremental/differential labels, reject forwarded `--reset-*` / `--no-*` overrides and empty `-D`, and hide raw option values in diagnostics.
+- **Structured output and configuration fidelity:** early argument errors support `-ojson` without crossing `--`; atomic rewrites preserve original modes instead of falling back to `0644`; legacy wrapper downloads suppress progress on stdout. Bounded diagnostics retain both ends, while configuration and SQL are read in full. `pig inventory cmdb dump` preserves signed/unsigned 64-bit integers and float types and recognizes multi-host PostgreSQL URIs and `sslpassword`. `pig pt status` returns structured JSON on Patroni parse errors. `pig sty grafana` rejects unsafe dashboard path components and redacts malformed endpoint URLs.
+- **Catalog loading and installation paths:** `pig ext` honors configured catalog sources and validates PostgreSQL installation paths before installation.
+
+### Pigsty 4.6.0 Bootstrap and Configuration
+
+- [`pig sty conf`](/docs/pig/sty/#sty-conf) resolves bare names in Pigsty's fixed order: `conf/`, `conf/ha/`, `conf/fork/`, `conf/app/`, `conf/demo/`, `conf/build/`. Shorthands such as `full`, `trio`, and `oss` retain the selected template's version pinning and preflight rules.
+- `pig sty conf` can write an explicit or detected `default` region over a template's `china`, keeping file output and structured results consistent.
+- [`pig sty boot`](/docs/pig/sty/#sty-boot) and `pig repo boot` look for `/var/tmp/pkg.tgz` first, falling back to `/tmp/pkg.tgz` only when the preferred path is absent. Unsafe or unreadable automatically selected archives are rejected before creating destination directories.
+
+### Extension Catalog and Package Aliases
+
+- Add `kes` and `openbao` to the `infra` group on EL and Debian/Ubuntu.
+- Update nine embedded entries: `login_hook` (`1.8` → `1.9`), `pg_curl` (`2.4.6` → `2.5.0`), `pg_improv` (`0.12.2` → `0.14.0`), `pg_integrity_checksums` (`2.1.0` → `2.2.0`), `pg_mentat` (`1.19.1` → `1.20.0`), `pg_search` (`0.26.5` → `0.26.6`), `pg_tokenizer` (`1.0.0` → `1.1.0`), `vchord` (`1.2.0` → `1.3.0`), and `vchord_bm25` (`1.0.0` → `1.1.0`).
+- Remove the retired `documentdb_distributed` record, clean stale `require_by` references from `citus`, `documentdb`, and `documentdb_core`, and restore `columnar` to `available`.
+
+### Catalog Counts and Build Versions
+
+The embedded catalog has **625 records**, all **625 available**, with **0 retained removed records**. Including PostgreSQL contrib modules, these map to **518 distinct package names** and **457 non-contrib package families**. See [Catalog Counts](/docs/pig/ext/#catalog-count).
+
+PIG `v1.11.0` is built with Go `1.27.4`, embeds Pigsty `4.6.0`, and defaults to `cargo-pgrx 0.19.3`. See [Installation](/docs/pig/install/) for upgrades.
+
+Release artifacts: [v1.11.0](https://github.com/pgsty/pig/releases/tag/v1.11.0)
+
+### Checksums
+
+```checksums {base="https://github.com/pgsty/pig/releases/download/v1.11.0"}
+c3c24b64dce312a13fe1b3bcb15d38101095dfd2569ed88186838a33291abcac  pig-1.11.0-1.aarch64.rpm
+2c0d05aba718957f4654cb135771610f042b6f71b7902a792b598744632736b9  pig-1.11.0-1.x86_64.rpm
+d9c0b9b3bde4e5e53d64a0df177dcda48575eed0310178adaff11f6d33a76cd9  pig-v1.11.0.darwin-amd64.tar.gz
+474788f79563e99e7443e619bb7e594f598284c9a81f22d53f33bacf03c5da27  pig-v1.11.0.darwin-arm64.tar.gz
+8f21efdd33d5a063eb7e12d2908912682af4dd94e336d82124ab9eb57808974c  pig-v1.11.0.linux-amd64.tar.gz
+4c2699618fb50d6bb5d2c0807e407442c69c9873a4d33dc3193bbab9c039bdcd  pig-v1.11.0.linux-arm64.tar.gz
+4bf90bbd4bc179391b5d88f2d51cb2d08b165212305434f59d12dcab0dc7ea5a  pig_1.11.0-1_amd64.deb
+ba4fb6cd9927712fe6ac7af237a7f96076febd972cb99c121ebf620a08664979  pig_1.11.0-1_arm64.deb
+```
 
 --------
 

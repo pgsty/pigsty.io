@@ -28,6 +28,7 @@ This extensive use of PostgreSQL features required strong engineering and DBA sk
 Pigsty started as an internal PostgreSQL monitoring system, with a smaller scope than today. We evaluated open-source, commercial, and cloud tools, including datadog and pgwatch. None met our observability requirements. I built a Grafana and Prometheus solution that became the Pigsty prototype. This monitoring system helped resolve many management problems.
 
 Developers then requested the same monitoring on local machines. We wrote Ansible provisioning playbooks to make deployment repeatable. Later versions used Vagrant and Terraform for Infrastructure as Code. Users could create local DevBox machines or production servers with PostgreSQL and monitoring deployed automatically.
+The new release lets users use Vagrant and OpenTofu (with Terraform compatibility) to provision local development VMs or production servers as infrastructure as code, automatically deploying PostgreSQL and monitoring.
 
 We then redesigned production PostgreSQL architecture around Patroni and pgBackRest. They provided [**high availability**](/docs/concept/ha) and [**point-in-time recovery**](/docs/concept/pitr). We developed a zero-downtime [**migration**](/docs/pgsql/migration) method with logical replication and blue-green deployment. We used it to upgrade two hundred production database clusters to the latest major version. These capabilities became part of Pigsty.
 
@@ -44,7 +45,9 @@ We added each operational solution to Pigsty. It grew from a monitoring system i
 
 In 2022, the Pigsty project received seed funding from Miracle Plus, initiated by Dr. Qi Lu, allowing me to work on this full-time.
 
-During full-time development, GitHub stars grew from a few hundred to 5,213 as of 2026-07-11. Pigsty appeared on the HN front page, and adoption accelerated. In November 2025, it won the **Magneto Award** at the PostgreSQL Ecosystem Conference. In 2026, its PGEXT.CLOUD subproject was selected for a PGCon.Dev 2026 talk. Pigsty became the first Chinese open-source project represented at this core PostgreSQL ecosystem conference.
+Pigsty has grown steadily as an open-source project. During the years of full-time work, its GitHub star count grew from a few hundred to 5,925 as of 2026-11-10; reaching the Hacker News front page helped accelerate that growth.
+In November 2025, Pigsty received the **Magneto Award** at the PostgreSQL Ecosystem Conference. In 2026, its PGEXT.CLOUD subproject was selected for a talk at PGCon.Dev 2026.
+Pigsty became the first Chinese open-source project to present at this core PostgreSQL ecosystem conference.
 
 Pigsty initially supported only CentOS 7. It now supports EL, Debian, and Ubuntu across 16 operating system platforms, with PostgreSQL major versions 14-18. We integrate {{< param pgext_count >}} PostgreSQL extensions. I personally maintain more than half (360+), with ready-to-use RPM/DEB packages. These packages and Pigsty itself are our contributions back to the open-source PostgreSQL ecosystem.
 

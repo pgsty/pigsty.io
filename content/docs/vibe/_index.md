@@ -44,12 +44,9 @@ Notes:
 
 ```bash
 ./configure -c vibe
-./deploy.yml --check          # preview NODE, INFRA, ETCD, MINIO, and PGSQL targets
-./deploy.yml                  # deploy after confirming the target set
-./juice.yml -l <host> --check # optional shared storage preview
-./juice.yml -l <host>         # deploy shared storage after review
-./vibe.yml -l <host> --check  # preview VIBE changes
-./vibe.yml -l <host>          # deploy VIBE after review
+./deploy.yml        # deploy declared NODE, INFRA, ETCD, VAULT, MINIO, and PGSQL modules
+./juice.yml         # optional shared storage
+./vibe.yml          # deploy VIBE
 ```
 
 Default entry points (via `infra_portal.home`):

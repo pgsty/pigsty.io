@@ -6,6 +6,31 @@ icon: fa-brands fa-redhat
 categories: [Reference]
 ---
 
+## 2026-11-10
+
+| Name                   | Old          | New          | Comment                                         |
+| :--------------------- | :----------- | :----------- | :---------------------------------------------- |
+| documentdb             | 1.0-1PGSTY   | 1.0-2PGSTY   | PG15-18; PostGIS 3.7                            |
+| login_hook             | 1.8          | 1.9          | PG14-17 PGDG; PG18 Pigsty                       |
+| mobilitydb             | 1.3.1-1PGSTY | 1.3.1-2PGSTY | PG14-18; PostGIS 3.7                            |
+| orioledb-16            | 1.10.1       | 1.10.3       | PG16.15 kernel; SQL 1.10                        |
+| orioledb-17            | 1.10.1       | 1.10.3       | PG17.11 kernel; SQL 1.10                        |
+| orioledb-18            | 1.10.1       | 1.10.3       | PG18.6 kernel; SQL 1.10                         |
+| pg_clickhouse          | 0.11.0       | 0.11.1       | PG14-18; SQL 0.11                               |
+| pg_curl                | 2.4.6        | 2.5.0        | PG14-18; SQL 2.5                                |
+| pg_improv              | 0.12.2       | 0.14.0       | PG15-18; pgrx 0.19.3                            |
+| pg_integrity_checksums | 2.1.0        | 2.2.0        | PG14-18; SQL 2.2                                |
+| pg_mentat              | 1.19.1       | 1.20.0       | PG14-18                                         |
+| pg_search              | 0.26.5       | 0.26.6       | PG15-18; preload; known MPP JoinScan crash risk |
+| pg_tokenizer           | 1.0.0        | 1.1.0        | PG14-18; native tsvector                        |
+| pg_tre                 | 4.6.1        | 4.6.2        | PG17-18                                         |
+| pghydro                | 6.6-1PIGSTY  | 6.6-2PGSTY   | PG14-18; PostGIS 3.7; noarch                    |
+| q3c                    | 2.0.5        | 2.0.6        | PGDG packages                                   |
+| repmgr                 | 5.5.0        | 5.5.1        | PGDG packages                                   |
+| vchord                 | 1.2.0-2PGSTY | 1.3.0-1PGSTY | PG14-18                                         |
+| vchord_bm25            | 1.0.0        | 1.1.0        | PG14-18; native tsvector                        |
+{.wide .expand}
+
 ## 2026-11-05
 
 | Name                      | Old              | New                         | Comment                                                                          |

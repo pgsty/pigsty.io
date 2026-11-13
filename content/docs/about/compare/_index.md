@@ -47,7 +47,7 @@ Aliyun RDS and AWS RDS are closed-source cloud database services. You can only r
 
 ### Key Extensions
 
-This PostgreSQL 16 extension-support snapshot uses information available on 2024-02-28. It includes `pg_analytics`, which was later archived and removed from the catalog. These versions and projects do not describe current Pigsty v4.5.0 or cloud-provider support. For current Pigsty support, use the [**extension catalog**](/ext/list/). Check each provider's documentation for its current service capabilities.
+This PostgreSQL 16 extension-support snapshot uses information available on 2024-02-28. It includes `pg_analytics`, which was later archived and removed from the catalog. These versions and projects do not describe current Pigsty v4.6.0 or cloud-provider support. For current Pigsty support, use the [**extension catalog**](/ext/list/). Check each provider's documentation for its current service capabilities.
 
 - [**Pigsty Extension List**](/ext/list/)
 - [**AWS RDS Extension List**](https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-extensions.html):
@@ -190,7 +190,7 @@ This PostgreSQL 16 extension-support snapshot uses information available on 2024
 
 ### Observability
 
-Pigsty provides nearly 3000 monitoring metrics and 50+ dashboards. These cover databases, hosts, connection pools, load balancers, and other components.
+Pigsty provides nearly 3,000 monitoring metrics and {{< param dashboard_count >}} dashboards covering databases, hosts, connection pools, load balancers, and more for comprehensive observability.
 
 ![Pigsty monitoring dashboard](/img/pigsty/dashboard.jpg)
 
@@ -222,7 +222,7 @@ The following projects provide more basic PostgreSQL monitoring capabilities:
 | Change Method          | Idempotent Playbooks based on Ansible Playbook                         | Console click operations                                                                                                               | Console click operations       |
 | Parameter Tuning          | Auto-adapts to node specs, Four preset templates: OLTP, OLAP, TINY, CRIT           |                                                                                                                       |               |
 | Infra as Code | Natively supported                                             | Can use Terraform                                                                                                         | Can use Terraform |
-| Customizable Parameters        | [Pigsty Parameters](/docs/ref/param) 283 parameters |                                                                                                                       |               |
+| Configuration Parameters | 399 [Pigsty Parameters](/docs/ref/param/) | | |
 | Service & Support         | Commercial subscription support available                                       | After-sales ticket support                                                                                                              | After-sales ticket support      |
 | Air-gapped Deployment        | Offline installation supported                                          | N/A                                                                                                                   | N/A           |
 | Database Migration         | Playbooks for zero-downtime migration from existing v10+ PG instances to Pigsty managed instances via logical replication          | Cloud migration assistance [Aliyun RDS Data Sync](https://help.aliyun.com/document_detail/322179.html?spm=a2c4g.11186623.0.0.5fb374c9OOi4Dm) |               |

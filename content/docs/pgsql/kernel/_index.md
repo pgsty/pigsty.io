@@ -38,7 +38,7 @@ For their MPP initialization and scale-out operations, upstream tools remain the
 
 ## Versions
 
-Configuration templates mainly select a PostgreSQL major version and kernel package aliases; the target platform's repository determines patch versions. The table retains existing example version outputs, not a complete list of versions available in current repositories. Extension tables on individual kernel pages are configuration references; installed packages determine actual availability.
+Templates mainly select a PostgreSQL major version and kernel package aliases; repositories on the target platform determine patch versions. The table summarizes current delivered baselines: native PGDG PostgreSQL 18 is `18.7`, while forks build on branches such as `18.6`, `17.10`, or `14.18`. Extension tables on kernel pages are configuration references; installed packages determine actual versions and availability.
 
 Check the target instance's version and available extensions:
 
@@ -51,15 +51,15 @@ FROM pg_available_extensions ORDER BY name;
 
 | Kernel | Debian / Ubuntu | EL |
 |:-------|:----------------|:---|
-| [**PostgreSQL / Citus**](/docs/pgsql/kernel/citus) | Native PostgreSQL; use the instance's `SELECT version()` | Native PostgreSQL; use the instance's `SELECT version()` |
-| [**IvorySQL**](/docs/pgsql/kernel/ivorysql) | `PostgreSQL 18.4 (IvorySQL 5.4) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit` | `PostgreSQL 18.4 (IvorySQL 5.4) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 9.5.0, 64-bit` |
-| [**Babelfish**](/docs/pgsql/kernel/babelfish) | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `Babelfish 17.7 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**PostgreSQL / Citus**](/docs/pgsql/kernel/citus) | Native PostgreSQL, PG18 baseline `18.7`; verify with `SELECT version()` | Native PostgreSQL, PG18 baseline `18.7`; verify with `SELECT version()` |
+| [**IvorySQL**](/docs/pgsql/kernel/ivorysql) | `IvorySQL 5.6`, based on `PostgreSQL 18.6` | `IvorySQL 5.6`, based on `PostgreSQL 18.6` |
+| [**Babelfish**](/docs/pgsql/kernel/babelfish) | `Babelfish 6.2.0`, supports PG17 / `PostgreSQL 18.6` | `Babelfish 6.2.0`, supports PG17 / `PostgreSQL 18.6` |
 | [**PolarDB**](/docs/pgsql/kernel/polardb) | `PostgreSQL 17.10 (PolarDB 17.10.1.0 build accf02e2) on x86_64-linux-gnu` | `PostgreSQL 17.10 (PolarDB 17.10.1.0 build accf02e2) on x86_64-linux-gnu` |
-| [**Percona**](/docs/pgsql/kernel/percona) | `PostgreSQL 18.4 - Percona Server for PostgreSQL 18.4.1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 - Percona Server for PostgreSQL 18.4.1 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20250617 (Red Hat 14.3.1-2), 64-bit` |
-| [**OrioleDB**](/docs/pgsql/kernel/orioledb) | `OrioleDB 18.4 (OrioleDB 1.8-beta16) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `OrioleDB 18.4 (OrioleDB 1.8-beta16) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**Percona**](/docs/pgsql/kernel/percona) | `Percona Server for PostgreSQL 18.6.1`, based on `PostgreSQL 18.6`, with `pg_tde 2.2.2` | `Percona Server for PostgreSQL 18.6.1`, based on `PostgreSQL 18.6`, with `pg_tde 2.2.2` |
+| [**OrioleDB**](/docs/pgsql/kernel/orioledb) | `OrioleDB 1.10.3`, based on `PostgreSQL 18.6` | `OrioleDB 1.10.3`, based on `PostgreSQL 18.6` |
 | [**OpenHalo**](/docs/pgsql/kernel/openhalo) | `openHalo 14.18 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `openHalo 14.18 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
-| [**DocumentDB**](/docs/pgsql/kernel/documentdb) | Native PostgreSQL; use the instance's `SELECT version()` | Native PostgreSQL; use the instance's `SELECT version()` |
-| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `PostgreSQL 18.6 (AgensGraph 2.18.6.0)` (Debian 13) | `AgensGraph 2.18 / PG18`; verify the installed package with `SELECT version()` |
-| [**pgEdge**](/docs/pgsql/kernel/pgedge) | `PostgreSQL 18.4 (pgEdge 5.0.10) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit` | `PostgreSQL 18.4 (pgEdge 5.0.10) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4), 64-bit` |
+| [**DocumentDB**](/docs/pgsql/kernel/documentdb) | Native PostgreSQL, PG18 baseline `18.7`; verify with `SELECT version()` | Native PostgreSQL, PG18 baseline `18.7`; verify with `SELECT version()` |
+| [**AgensGraph**](/docs/pgsql/kernel/agensgraph) | `AgensGraph 2.18.6.1`, based on `PostgreSQL 18.6` | `AgensGraph 2.18.6.1`, based on `PostgreSQL 18.6` |
+| [**pgEdge**](/docs/pgsql/kernel/pgedge) | `pgEdge 18.6-3PGSTY`, based on `PostgreSQL 18.6`, with `Spock 5.0.13` | `pgEdge 18.6-3PGSTY`, based on `PostgreSQL 18.6`, with `Spock 5.0.13` |
 | [**Cloudberry**](/docs/pgsql/kernel/cloudberry) |  | `PostgreSQL 14.4 (Apache Cloudberry 2.0.0-incubating build 1) on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11), 64-bit` |
 {.full-width .wide .expand}

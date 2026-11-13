@@ -9,11 +9,11 @@ categories: [Reference]
 
 ## PGWeb Client
 
-[PGWeb](https://github.com/sosedoff/pgweb) is a browser-based PostgreSQL client. Pigsty includes a small Docker Compose template in `app/pgweb`. It publishes container port `8081` on host port `8886`.
+[PGWeb](https://github.com/sosedoff/pgweb) is a browser-based PostgreSQL client. Pigsty provides a small Docker Compose template under `app/pgweb`. By default, `PGWEB_PORT=8886` in `.env` maps container port `8081` to host port `8886`.
 
 ```bash
 cd ~/pigsty/app/pgweb
-vi docker-compose.yml      # port mappings are defined in Compose
+vi .env                    # adjust PGWEB_PORT if needed (default 8886)
 make up                    # docker compose up -d
 ```
 
@@ -48,6 +48,4 @@ make save       # save the image to /tmp/docker/pgweb.tgz
 make load       # load it from /tmp/docker/pgweb.tgz
 ```
 
-The template currently uses the unpinned `sosedoff/pgweb` image. Pin an image digest or version in `app/pgweb/docker-compose.yml` when reproducible production deployment matters.
-
-`make run` is a separate `docker run` command with fixed ports and does not use Compose changes. The development template adds `PGWEB_PORT` and routes `make run` through Compose; use the matching files for that behavior.
+The template uses an unpinned `sosedoff/pgweb` image. For reproducible production deployments, pin a version or digest in `app/pgweb/docker-compose.yml`. `make run` is an alias for `make up` and follows the same `.env` and Compose configuration.

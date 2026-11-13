@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL
 weight: 2101
-description: Vanilla PostgreSQL with access to Pigsty’s catalog of 600 packaged extensions
+description: Vanilla PostgreSQL with access to Pigsty’s catalog of 625 packaged extensions
 icon: fa-solid fa-database
 module: [PGSQL]
 categories: [Concept]
@@ -9,20 +9,16 @@ categories: [Concept]
 
 [PostgreSQL](https://www.postgresql.org/) is a widely used open-source database.
 
-Pigsty installs PostgreSQL 18 by default.
-It supports PostgreSQL 14 ~ 18 and provides {{< param pgext_count >}} PG extensions.
-
+PostgreSQL 18 is the default, with current release baseline `18.7`. PostgreSQL 14–18 are supported with {{< param pgext_count >}} PG extensions.
 
 ------
 
 ## Quick Start
 
-[**Install**](/docs/setup/install) Pigsty using the [`pgsql`](/docs/conf/pgsql/) configuration template.
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgsql.yml). Development sources moved it to `conf/fork/pgsql.yml`; use `-c fork/pgsql` with those sources.
+[**Install**](/docs/setup/install) Pigsty with [`fork/pgsql`](/docs/conf/pgsql/) ([`conf/fork/pgsql.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgsql.yml)); `-c pgsql` and `-c fork/pgsql` are equivalent:
 
 ```bash
-./configure -c pgsql     # Use postgres kernel
+./configure -c fork/pgsql # use the native PostgreSQL kernel template
 ./deploy.yml             # Deploy the Pigsty core chain with native PostgreSQL
 ```
 
@@ -33,8 +29,7 @@ Examples include:
 - [`rich`](https://github.com/pgsty/pigsty/blob/main/conf/rich.yml) : postgres with all extensions installed
 - [`slim`](https://github.com/pgsty/pigsty/blob/main/conf/slim.yml) : postgres only, no monitoring infrastructure
 - [`ha/full`](https://github.com/pgsty/pigsty/blob/main/conf/ha/full.yml) : 4-node sandbox for HA demonstration
-- [`pgsql`](/docs/conf/pgsql/) : minimal postgres kernel configuration example
-
+- [`fork/pgsql`](/docs/conf/pgsql/) : minimal postgres kernel configuration example
 
 ------
 

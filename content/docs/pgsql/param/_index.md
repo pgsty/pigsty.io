@@ -128,7 +128,7 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pg_max_conn`](#pg_max_conn)                       |   `int`    | `C`   | postgres max connections, `auto` will use recommended value          |
 | [`pg_shared_buffer_ratio`](#pg_shared_buffer_ratio) |  `float`   | `C`   | postgres shared buffer memory ratio, 0.25 by default, 0.1~0.4        |
 | [`pg_rto`](#pg_rto)                                 |   `enum`   | `C`   | RTO mode: `fast`, `norm`, `safe`, or `wide`; default `norm`          |
-| [`pg_rto_plan`](#pg_rto_plan)                       |   `dict`   | `G`   | RTO presets for Patroni HA and HAProxy health-check timeouts         |
+| [`pg_rto_plan`](#pg_rto_plan) | `dict` | `G/C` | RTO presets for Patroni HA and HAProxy health-check timeouts |
 | [`pg_rpo`](#pg_rpo)                                 |   `int`    | `C`   | sampled lag threshold for Patroni failover candidates; default `1MiB` |
 | [`pg_libs`](#pg_libs)                               |  `string`  | `C`   | preloaded libraries, `pg_stat_statements,auto_explain` by default    |
 | [`pg_delay`](#pg_delay)                             | `interval` | `I`   | WAL replay apply delay for standby cluster, for delayed replica      |
@@ -171,6 +171,8 @@ You can upgrade a standard PGSQL cluster to a distributed database cluster in pl
 | [`pgbackrest_method`](#pgbackrest_method)           | `enum` | `C`   | pgbackrest repo method: local,minio,etc...                |
 | [`pgbackrest_init_backup`](#pgbackrest_init_backup) | `bool` | `C`   | perform full backup after init? `true` by default         |
 | [`pgbackrest_repo`](#pgbackrest_repo)               | `dict` | `G/C` | pgbackrest repo definition                                |
+| [`pg_pitr`](#pg_pitr) | `dict` | `C/A` | PITR target, source repository, and recovery options |
+{.full-width}
 
 --------
 
@@ -1039,7 +1041,7 @@ pg_extensions:
 ```
 
 `pg_package_map` aliases hide package-name differences between distributions.
-These examples use extension aliases and category groups from the current v4.5 EL9 map.
+These examples use extension aliases and category groups from the current EL9 map.
 Availability can differ by platform and PostgreSQL major version:
 
 ```bash
@@ -1073,7 +1075,6 @@ The internal variable [`pg_data`](#pg_data) always refers to the `/pg/data` syml
 Do not override it in the inventory.
 To change the physical data directory location, set [`pg_fs_main`](#pg_fs_main).
 
-
 ```yaml
 pg_fs_main: /data/postgres        # postgres main data directory, `/data/postgres` by default
 pg_fs_backup: /data/backups       # postgres backup data directory, `/data/backups` by default
@@ -1088,10 +1089,10 @@ pg_namespace: /pg                 # top level key namespace in etcd, used by pat
 patroni_port: 8008                # patroni listen port, 8008 by default
 patroni_log_dir: /pg/log/patroni  # patroni log dir, `/pg/log/patroni` by default
 patroni_ssl_enabled: false        # secure patroni RestAPI communications with SSL?
-patroni_watchdog_mode: off        # patroni watchdog mode: automatic,required,off. off by default
+patroni_watchdog_mode: 'off'      # patroni watchdog mode: automatic,required,off. off by default
 patroni_username: postgres        # patroni restapi username, `postgres` by default
 patroni_password: Patroni.API     # patroni restapi password, `Patroni.API` by default
-pg_etcd_password: ''              # etcd password for this pg cluster, '' to use pg_cluster
+pg_etcd_password: ''              # etcd password for this pg cluster, '' uses pg_cluster (or pg_shard for citus), no whitespace
 pg_primary_db: postgres           # primary database name, used by citus,etc... ,postgres by default
 pg_parameters: {}                 # extra parameters in postgresql.auto.conf
 pg_files: []                      # extra files to be copied to postgres data directory (e.g. license)
@@ -1099,8 +1100,13 @@ pg_conf: oltp.yml                 # config template: oltp,olap,crit,tiny. `oltp.
 pg_max_conn: auto                 # postgres max connections, `auto` will use recommended value
 pg_shared_buffer_ratio: 0.25      # postgres shared buffers ratio, 0.25 by default, 0.1~0.4
 pg_io_method: worker              # io method for postgres, auto,sync,worker,io_uring, worker by default
-pg_rto: norm                      # shared RTO mode: fast,norm,safe,wide
-pg_rpo: 1048576                   # sampled failover-candidate lag threshold in bytes, `1MiB` by default
+pg_rto: norm                      # shared rto mode for patroni & haproxy: fast,norm,safe,wide
+pg_rto_plan:  # [ttl, loop, retry, start, margin, inter, fastinter, downinter, rise, fall]
+  fast: [ 20  ,5  ,5  ,15 ,5  ,'1s' ,'500ms'  ,'1s' ,3 ,3 ]  # rto < 30s
+  norm: [ 30  ,5  ,10 ,25 ,5  ,'2s' ,'1s'     ,'2s' ,3 ,3 ]  # rto < 45s
+  safe: [ 60  ,10 ,20 ,45 ,10 ,'3s' ,'1500ms' ,'3s' ,3 ,3 ]  # rto < 90s
+  wide: [ 120 ,20 ,30 ,95 ,15 ,'4s' ,'2s'     ,'4s' ,3 ,3 ]  # rto < 150s
+pg_rpo: 1048576                   # recovery point objective in bytes, `1MiB` at most by default
 pg_libs: 'pg_stat_statements, auto_explain'  # preloaded libraries, `pg_stat_statements,auto_explain` by default
 pg_delay: 0                       # replication apply delay for standby cluster leader
 pg_checksum: true                 # enable data checksum for postgres cluster?
@@ -1112,8 +1118,6 @@ pg_lc_ctype: C                    # database character type, `C` by default
 #pgsodium_key: ""                 # pgsodium key, 64 hex digit, default to sha256(pg_cluster)
 #pgsodium_getkey_script: ""       # pgsodium getkey script path, pgsodium_getkey by default
 ```
-
-
 
 ### `pg_data`
 
@@ -1552,7 +1556,7 @@ pg_rto: safe   # recommended for cross-datacenter deployments
 
 ### `pg_rto_plan`
 
-Parameter Name: `pg_rto_plan`, Type: `dict`, Level: `G`
+Parameter Name: `pg_rto_plan`, Type: `dict`, Level: `G/C`
 
 Dictionary of RTO presets defining Patroni HA and HAProxy health-check timeouts. The defaults contain four modes:
 
@@ -1763,13 +1767,12 @@ Parameter Name: `pg_etcd_password`, Type: `password`, Level: `C`
 
 The password used by this PostgreSQL cluster in etcd, default is empty string `''`.
 
-With an empty string, Pigsty uses [`pg_cluster`](#pg_cluster) as the password.
-For Citus clusters, it uses [`pg_shard`](#pg_shard).
+An empty string uses [`pg_cluster`](#pg_cluster) as the password. Citus uses [`pg_shard`](#pg_shard) as the etcd username, role prefix, and default password.
 
-This password is used for authentication when Patroni connects to etcd and when vip-manager accesses etcd.
+Patroni and vip-manager use this password to authenticate to etcd. Playbook validation is strict:
 
-
-
+- `pg_etcd_password` cannot be `null`, and the effective password **must not contain whitespace**, including spaces, tabs, or newlines;
+- The cluster identifier [`pg_cluster`](#pg_cluster), or [`pg_shard`](#pg_shard) for Citus, **must not be `root`**, to avoid overwriting the etcd root administrator.
 
 ### `pgsodium_key`
 
@@ -2122,7 +2125,6 @@ This section defines variables for [pgBackRest](https://pgbackrest.org/), which 
 
 Check [PGSQL Backup & PITR](/docs/pgsql/backup) for detailed information.
 
-
 ```yaml
 pgbackrest_enabled: true          # enable pgBackRest on pgsql host?
 pgbackrest_log_dir: /pg/log/pgbackrest # pgbackrest log dir, default is `/pg/log/pgbackrest`
@@ -2152,9 +2154,8 @@ pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/conf
     cipher_pass: pgBackRest       # AES encryption password, default is 'pgBackRest'
     retention_full_type: time     # retain full backup by time on minio repo
     retention_full: 14            # keep full backups from the past 14 days
+#pg_pitr: {}                      # define a PITR task; undefined by default
 ```
-
-
 
 ### `pgbackrest_enabled`
 
@@ -2218,10 +2219,8 @@ Parameter Name: `pgbackrest_repo`, Type: `dict`, Level: `G/C`
 
 pgBackRest repository documentation: https://pgbackrest.org/configuration.html#section-repository
 
-The default dictionary contains `local` and `minio` candidates.
-`pgbackrest_method` selects one.
-The v4.5.0 template renders only the selected entry as `repo1`.
-Listing both keys does not configure backups to two repositories:
+Defaults include `local` and `minio` as candidate repositories. `pgbackrest_method` selects one,
+and the current template renders only that entry as pgBackRest `repo1`; declaring both does not enable simultaneous backups to both.
 
 ```yaml
 pgbackrest_repo:                  # pgbackrest repo: https://pgbackrest.org/configuration.html#section-repository
@@ -2257,9 +2256,36 @@ An incremental backup then copies changed blocks, rather than complete changed f
 This substantially reduces backup size and duration, especially for large databases.
 Enable it for object storage repositories when possible.
 
+### `pg_pitr`
 
+Parameter: `pg_pitr`, Type: `dict`, Level: `C/A`
 
+Configuration dict for a PITR task, undefined (`NULL`) by default. [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) reads it to render `/pg/conf/pitr.conf`.
 
+Common fields:
+
+```yaml
+pg_pitr:                          # define a PITR task
+  cluster: pg-meta                # source stanza; defaults to current pg_cluster
+  type: time                      # target type: default, time, xid, name, lsn, immediate
+  time: "2026-08-13 10:00:00+08"  # target time, mutually exclusive with name / xid / lsn
+  # name: "restore_point_name"    # named restore point
+  # xid: "100000"                 # target transaction ID
+  # lsn: "0/3000000"              # target LSN
+  set: latest                     # starting backup set, default latest
+  timeline: latest                # target timeline: latest or a positive integer
+  exclusive: false                # exclude the target itself, default false
+  action: pause                   # action at target: pause, promote, shutdown
+  archive: true                   # retain archiving after recovery, default true
+  db_include: []                  # restore only these databases
+  db_exclude: []                  # exclude these databases
+  link_map: {}                    # tablespace symlink remapping
+  process: 4                      # restore workers, defaults to node CPU count
+  repo: {}                        # source override; defaults to pgbackrest_repo[pgbackrest_method]
+  backup: false                   # move old PGDATA to <pg_data>-backup first, overwriting that directory
+```
+
+See [**Restore Operations**](/docs/pgsql/backup/restore/) and the [**Manual PITR Tutorial**](/docs/pgsql/tutorial/pitr/) for the staged workflow and precautions.
 
 ------------------------------
 
@@ -2499,9 +2525,7 @@ VIP address in `<ipv4>/<mask>` format is required if VIP is enabled.
 
 Default value: `127.0.0.1/24`. This value consists of two parts: `ipv4` and `mask`, separated by `/`.
 
-
-
-
+With [`pg_vip_enabled`](#pg_vip_enabled), initial issuance of `/pg/cert/server.crt` includes the mask-free `pg_vip_address` in SANs, plus node `vip_address` when `vip_enabled` is set. Clients can then use `sslmode=verify-full` through the VIP. If the address changes after initialization, remove `files/pki/pgsql/<cls>-<seq>.{key,crt}` on the control node, rerun `./pgsql.yml -l <cls> -t pg_cert`, and reload PostgreSQL. See [**Configure PG VIP**](/docs/pgsql/tutorial/pg-vip/#tls-certificates-and-san).
 
 ### `pg_vip_interface`
 
@@ -2539,11 +2563,9 @@ By default, the PostgreSQL cluster name is registered as a DNS domain in `dnsmas
 Set this parameter to add a domain suffix.
 The cluster DNS name becomes `{{ pg_cluster }}{{ pg_dns_suffix }}`.
 
-For example, if you set `pg_dns_suffix` to `.db.vip.company.tld`, the `pg-test` cluster DNS name will be `pg-test.db.vip.company.tld`.
+For example, `pg_dns_suffix: .db.vip.company.tld` gives `pg-test` the cluster DNS name `pg-test.db.vip.company.tld`.
 
-
-
-
+When `pg_dns_suffix` is nonempty, initial issuance of `/pg/cert/server.crt` adds the full cluster domain to SANs, inserting a leading `.` if needed. If the suffix changes after initialization, remove `files/pki/pgsql/<cls>-<seq>.{key,crt}` on the control node, rerun `./pgsql.yml -l <cls> -t pg_cert`, and reload PostgreSQL.
 
 ### `pg_dns_target`
 

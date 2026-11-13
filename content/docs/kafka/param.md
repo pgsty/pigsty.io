@@ -8,9 +8,6 @@ categories: [Reference]
 aliases: [/docs/pilot/kafka/param]
 ---
 
-> [!NOTE] Source Version Scope
-> This page follows the current development source snapshot. `kafka_jmx_exporter_enabled` was added on 2026-09-01. The released `v4.5.0` tag does not include it: JMX is always enabled there, and the persistent public parameter count remains 15. The 16 parameters and JMX-disable procedure described here apply to sources containing that change.
-
 KAFKA exposes 16 persistent parameters. The role derives topology, listeners, security, storage subdirectories, replication safety, and exporter placement consistently. Additional persistent variables cannot override these derived settings.
 
 
@@ -208,7 +205,7 @@ JMX HTTP port, default `9404`. It listens and registers as `job=kafka` only when
 
 ### `kafka_exporter_port`
 
-Protocol `kafka_exporter` HTTP port, default `9308`. The role starts and registers exporters on the first two broker-capable nodes by `kafka_seq`. A single broker runs one. Full runs refresh discovery targets for current placement. Ordinary playbooks do not stop stale exporter services on previously selected nodes.
+HTTP port for the protocol-level `kafka_exporter`, default `9308`. The role configures, starts, and registers it only on the first two Broker-capable nodes ordered by `kafka_seq`; a single-Broker cluster runs one. Every full run refreshes target files for the current placement and stops, disables, and removes stale `kafka_exporter` services and units on unselected nodes.
 
 Exporter protocol version, TLS/SCRAM settings, and placement are internal conventions. No additional public toggle or options parameters exist.
 

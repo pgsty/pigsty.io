@@ -68,19 +68,15 @@ If a port is in use, change its mapping in [`.env`](#config) before launch.
 
 Pigsty supplies the `pgsty/pigsty` image on [Docker Hub](https://hub.docker.com/r/pgsty/pigsty).
 
-| Image          | Pull   | Size  | Contents                            |
-|:---------------|:-------|:------|:------------------------------------|
-| `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13 + systemd + SSH + pig + Ansible |
+| Image | Download Size | Extracted Size | Contents |
+|:---------------|:-------|:------|:-------------------------------------------------|
+| `pgsty/pigsty` | ~500MB | 1.3GB | Debian 13.7 + systemd + SSH + pig 1.11.0 + Ansible |
 
-The image supports `amd64` (`x86_64`) and `arm64`.
-The ARM architecture includes Apple Silicon and AWS Graviton.
-Image tags follow Pigsty versions.
-The `latest` and `{{< param stable_version >}}` tags point to the current release.
-Select a version tag for repeatable deployment.
+- Supports both **amd64** (x86_64) and **arm64** (Apple Silicon, AWS Graviton)
+- Tags follow Pigsty versions; the default is `v4.6.0` (`{{< param version >}}`). Confirm that the remote tag exists before pulling or deploying.
+- The image includes a generated `docker` configuration; run `./deploy.yml` directly to deploy **PostgreSQL 18.7** by default
 
-The image uses Debian 13 (Trixie).
-It includes systemd, SSH, the [pig command-line tool](/docs/pig/), Ansible, and initialized Pigsty source.
-The Docker configuration template prepares it for `./deploy.yml`.
+Images use **Debian 13.7 (Trixie)**, preinstall [**`pig`**](/docs/pig/) `v1.11.0` and Ansible, and initialize the Pigsty source tree.
 
 ## Launch
 
@@ -115,7 +111,7 @@ make launch          # Start container + generate config + deploy
 Set the image version and port mappings in [`.env`](https://github.com/pgsty/pigsty/blob/main/docker/.env):
 
 ```bash
-PIGSTY_VERSION=v4.5.0         # Current main source default; verify the remote tag before pulling
+PIGSTY_VERSION=v4.6.0         # image tag; confirm remote availability before pulling
 PIGSTY_SSH_PORT=2222          # SSH port
 PIGSTY_HTTP_PORT=8080         # Nginx HTTP port
 PIGSTY_HTTPS_PORT=8443        # Nginx HTTPS port
@@ -125,8 +121,8 @@ PIGSTY_PG_PORT=5432           # PostgreSQL port
 The port variables map host ports to container ports:
 
 | Env Var             | Default  | Container | Description       |
-|:--------------------|:---------|:----------|:------------------|
-| `PIGSTY_VERSION`    | `v4.5.0`    | -         | Current `main` source default; verify the remote tag separately |
+|:--------------------|:---------|:-----|:-------------------------|
+| `PIGSTY_VERSION` | `v4.6.0` | - | Pigsty image tag; verify remote availability |
 | `PIGSTY_SSH_PORT`   | `2222`   | 22        | SSH access port   |
 | `PIGSTY_HTTP_PORT`  | `8080`   | 80        | Nginx HTTP port   |
 | `PIGSTY_HTTPS_PORT` | `8443`   | 443       | Nginx HTTPS port  |
@@ -178,10 +174,13 @@ make pass         # View passwords in config
 Use these commands to build images:
 
 ```bash
-make build        # Build image locally
-make buildnc      # Build without cache
-make push         # Build and push multi-arch image
+make source       # archive the current Git checkout as pigsty.tgz
+make build        # build locally; depends on make source
+make buildnc      # build without cache; depends on make source
+make push         # build and push multi-architecture images; depends on make source
 ```
+
+Before invoking `docker build` directly, run `make source` to create the required `pigsty.tgz` source archive under `docker/`.
 
 ### Image Management
 
@@ -234,7 +233,7 @@ make purge        # Remove container and directly delete ./data in the current d
 
 ## How It Works
 
-The image uses Debian 13 (Trixie) with systemd as the initialization system.
+The image uses Debian 13.7 (Trixie) with systemd as the initialization system.
 Manage services inside the container with `systemctl`, as on native Linux.
 
 The container has these properties:
@@ -243,18 +242,25 @@ The container has these properties:
 - SSH permits root access with the password `pigsty`.
 - The `--privileged` option supplies the access required by systemd.
 - The `/data` volume keeps data outside the container.
-- The image includes pig, Ansible, and initialized Pigsty source.
+- **Preinstalled software**: `pig` `v1.11.0` and Ansible, with initialized Pigsty `v4.6.0` sources and PostgreSQL 18.7 as the deployment default
 
 The image build runs these initialization steps:
 
 ```dockerfile
-# Install pig CLI
+# Install a pinned pig CLI version
 RUN echo "deb [trusted=yes] https://repo.pigsty.io/apt/infra/ generic main" \
     > /etc/apt/sources.list.d/pigsty.list \
-    && apt-get update && apt-get install -y pig
+    && apt-get update \
+    && apt-get install -y --no-install-recommends "pig=${PIG_VERSION}-*" \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Initialize Pigsty source and install Ansible
-RUN pig sty init -v ${PIGSTY_VERSION} \
+# Import the local source archive produced by make source
+ADD pigsty.tgz /root/
+WORKDIR /root/pigsty
+
+# Verify the source version, install Ansible, and generate the container inventory
+RUN test "$(sed -n 's/^PIGSTY_VERSION=//p' bootstrap)" = "${PIGSTY_VERSION%%-*}" \
     && pig sty boot \
     && pig sty conf -c docker --ip 127.0.0.1
 ```

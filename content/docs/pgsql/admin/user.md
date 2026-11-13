@@ -235,16 +235,9 @@ Direct calls to `pg-drop-role` protect only the fixed default names: `postgres`,
 The script does not recognize renamed system accounts automatically.
 
 > [!WARNING] Dependency-aware, not transactional
-> If `REASSIGN OWNED` fails in a database, `pg-drop-role` skips `DROP OWNED` in that database.
-> However, the procedure across databases is not one transaction.
-> A failure partway through can leave the role `NOLOGIN`, transfer only some ownership, or leave dependencies.
-> The v4.5 Ansible task also uses `ignore_errors`.
-> Thus, a successful playbook result does not prove complete deletion.
-> Afterward, verify role absence, successor ownership, application migration, and the audit log.
+> `pg-drop-role` skips `DROP OWNED` in a database if `REASSIGN OWNED` fails there, but the cross-database workflow is not one transaction. Failure can leave `NOLOGIN`, partly transferred objects, or dependencies. The Ansible deletion task also uses `ignore_errors`, so playbook status is not sufficient verification. Confirm that the role is gone, ownership is correct, applications have switched, and audit logs are reviewed.
 
-In v4.5, `pgsql-user.yml` reloads Pgbouncer.
-However, it does not reliably remove a deleted role from `/etc/pgbouncer/userlist.txt`.
-Check every cluster instance after deletion:
+The current `pgsql-user.yml` reloads PgBouncer but does not reliably remove deleted roles from `/etc/pgbouncer/userlist.txt`. After deletion, check every cluster instance:
 
 ```bash
 sudo -iu postgres psql -AXtwc "SELECT 1 FROM pg_roles WHERE rolname = 'dbuser_old';"
@@ -454,7 +447,7 @@ VIBE or another module may have generated an administration connection string in
 If so, generate that module's files again.
 
 > [!WARNING] Check for duplicate Infra .pgpass entries
-> In v4.5, `env_pgpass` adds the new line with `lineinfile`; it does not remove older lines by username. Because libpq uses the first matching line, inspect every target Infra node after the refresh and remove obsolete entries through controlled editing without printing secrets:
+> The current `env_pgpass` uses `lineinfile` to add entries and does not remove old passwords by username. libpq uses the first matching entry. After refresh, ensure each system user has only one matching entry on every target Infra node, and remove old entries through controlled editing without printing passwords to terminals or logs:
 >
 > ```bash
 > awk -F: '$4=="dbuser_dba" || $4=="dbuser_monitor" || $4=="replicator" {print NR, $4}' ~/.pgpass

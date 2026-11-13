@@ -82,14 +82,16 @@ After rotating database credentials, first regenerate the Infra files:
 ./infra.yml -l infra -t env_pgadmin
 ```
 
-The generated server definitions use `PassFile: /pgpass`, which is [resolved relative to the user storage directory](https://www.pgadmin.org/docs/pgadmin4/latest/import_export_servers.html) in pgAdmin Server mode. `make pass` copies the password file to the hardcoded `/var/lib/pgadmin/storage/admin_pigsty.cc/pgpass`. After changing the login email, adjust the Makefile user and storage directory. If the password filename changes, also update `PassFile`. Verify database connections after copying.
+Generated server definitions use `PassFile: "/.pgpass"`, which pgAdmin Server mode [resolves relative to the user's storage directory](https://www.pgadmin.org/docs/pgadmin4/latest/import_export_servers.html). `make pass` uses the container's current `PGADMIN_DEFAULT_EMAIL` (replacing `@` with `_`) to locate `/var/lib/pgadmin/storage/<email_dir>/.pgpass`, writes passwords from the latest host source file, and sets mode `0600`. The host requires `jq`.
 
-`make up`, `make start`, and `make restart` do not refresh the password file automatically. If a host file has been replaced, also inspect its mounted contents inside the container to avoid stale credentials.
+The container's built-in password file initialization runs only when the configuration database is first created. Pigsty's `make up`, `make start`, and `make restart` automatically call `make pass` to refresh `.pgpass` without changing existing server definitions. After rotating database credentials, regenerate the Infra files and refresh passwords only:
 
-The server list can be imported during initialization. The example sets `PGADMIN_REPLACE_SERVERS_ON_STARTUP` to the string `'False'`, but this option does not control manual Makefile imports.
+```bash
+./infra.yml -l infra -t env_pgadmin
+./app.yml -l app -e app=pgadmin -t app_launch -e app_args=pass
+```
 
-> [!WARNING] Manual imports replace the server list
-> `make list`, `make conf`, and `make reload` all import with `--replace`, targeting the hardcoded `admin@pigsty.cc` user. Export server definitions you need to retain and check the target email first. These commands are not non-destructive append operations.
+Initial setup imports the server list automatically. The template defaults to `PGADMIN_REPLACE_SERVERS_ON_STARTUP=False` to retain servers added through the Web UI. `make list`, `make conf`, and `make reload` also use the current `PGADMIN_DEFAULT_EMAIL`. They add `--replace` to replace all of that user's server definitions only when `PGADMIN_REPLACE_SERVERS_ON_STARTUP` is exactly the capitalized string `'True'`. The upstream image does not recognize lowercase `true`; in `apps.pgadmin.conf`, use the quoted string `'True'`, not the YAML boolean `true`.
 
 `pgpass` contains only the `pg_admin_username` / `pg_admin_password` used when generating the file, with wildcards for host, port, and database. Add appropriate entries when clusters use different administrator credentials. Restrict access to the files, backups, and application host. If pgAdmin should not hold DBA credentials, generate connection definitions for a dedicated least-privilege role instead.
 
@@ -137,19 +139,18 @@ See [CA and Certificates](/docs/infra/admin/cert/) for prerequisites and renewal
 From `/opt/pgadmin`:
 
 ```bash
-make up       # docker compose up -d
+make up       # start the container and refresh .pgpass
 make view     # show access endpoints
 make log      # follow container logs
 make info     # docker inspect
-make conf     # replace server list and copy pgpass; check the target user first
-make pass     # copy pgpass; check the user and path first
+make list     # import servers for the current user; add --replace only when set exactly to True
+make pass     # refresh only the current user's .pgpass
+make conf     # run make list, then make pass
 make stop     # stop the container
-make restart  # restart the container
+make restart  # restart the container and refresh .pgpass
 ```
 
-Compose does not declare a persistent volume for `/var/lib/pgadmin`, so the template does not guarantee that the configuration database, user files, and UI settings survive container recreation. Back up this directory before cleanup or upgrades. For persistence, explicitly configure a volume and restore existing state; attaching an empty volume does not migrate state from the old container.
-
-The development template adds a `pgadmin-data` volume, password refresh, and optional imports without replacement. Migration requires checking Compose, the Makefile, server definitions, and password files together; copying a new `.env` alone is insufficient.
+Compose mounts the named volume `pgadmin-data` at `/var/lib/pgadmin` to retain the pgAdmin configuration database, user storage, and UI settings across container recreation. Back up this volume before cleanup or upgrades.
 
 ![pgAdmin](/img/docs/app/pgadmin.jpeg)
 

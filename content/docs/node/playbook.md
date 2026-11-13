@@ -70,7 +70,7 @@ profile        : remove /etc/profile.d/node.sh
 
 `node-rm.yml` removes Pigsty management and stops NODE services. It does not remove the operating system or perform a full uninstall:
 
-- It deregisters Node, Docker, Ping, VIP, and other monitoring targets, plus the HAProxy administration portal.
+- Deregisters Node, Docker, JuiceFS, Ping, VIP, and other targets, including `/infra/targets/juice/<ip>.yml`, plus the HAProxy admin endpoint;
 - It stops and disables HAProxy, Node Exporter, Vector, and Keepalived/Exporter when enabled.
 - It removes HAProxy configuration and NODE Vector configuration, and deletes `vector_data` (default: `/data/vector`).
 - It does not uninstall packages, remove the admin user, delete `node_data`, stop Docker, or delete Docker data.

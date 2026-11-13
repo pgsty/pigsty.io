@@ -24,10 +24,8 @@ Pigsty resolves many PostgreSQL operational issues. Enterprise service quality a
 - Migrate other databases to PostgreSQL, or migrate and transform legacy instances.
 - Build observability systems, data dashboards, and visualization applications with Victoria/Grafana.
 - Move off the cloud to open-source RDS for PostgreSQL alternatives. Use solutions that are cloud-neutral and avoid vendor lock-in.
-- Get professional support for Redis/ETCD/Silo and extensions such as TimescaleDB/Citus.
-- Develop customized products and OEM branding with explicit commercial authorization.
+- Get professional support for Redis / ETCD / Vault / Silo or extensions such as TimescaleDB / Citus.
 - Sell Pigsty as SaaS/PaaS/DBaaS, or provide technical services, consulting, and cloud services based on this distribution.
-
 
 --------
 
@@ -151,7 +149,7 @@ Pigsty offers the [**Open Source Edition**](#pigsty-open-source-edition-oss) and
 Pigsty Open Source Edition uses the [**Apache-2.0**](/docs/about/license) license. It includes all core features at no cost and provides no warranty. To report a defect, submit an [Issue](https://github.com/pgsty/pigsty/issues/) on GitHub.
 
 Pigsty Open Source currently supports seven online validation baselines on both `x86_64` and `aarch64`. These are EL 9.8 / 10.2, Debian 12.15 / 13.7, and Ubuntu 22.04.5 / 24.04.5 / 26.04.1.
-`v4.5.0` provides fourteen offline bundles built against the release-time OS minor versions; see the [offline installation guide](/docs/setup/offline/) for the exact release baselines. The source archive, offline bundles, and checksum file have GPG signatures.
+`{{< param stable_version >}}` publishes offline packages on GitHub for seven platforms and two architectures, totaling **14 artifacts**. Each archive targets the OS minor version used at release time; see [**offline installation**](/docs/setup/offline/) for the exact baselines. Source archives, offline packages, and checksum files all have GPG signatures.
 
 The open-source edition gives junior development and operations engineers **70%+** of professional DBA capabilities. They can build highly available, high-performance PostgreSQL clusters without database experts. These clusters are secure, reliable, and easy to maintain.
 
@@ -260,15 +258,16 @@ Professional and Enterprise Editions add the following features to the open-sour
 - **Extension Support Capability**: Install {{< param pgext_count >}} available PG extensions for PG 14-18 on mainstream operating systems.
 - **Complete Functional Modules**: Provides all functional modules:
     - [**Supabase**](/docs/pgsql/kernel/supabase): Reliably self-host production-grade open-source Firebase
+    - [**Vault**](/docs/vault): highly available secrets storage and key management with OpenBao
     - [**Silo**](/docs/minio): Enterprise PB-level object storage planning and self-hosting
+    - [**Kafka**](/docs/kafka): highly available Kafka deployment and monitoring
+    - [**MySQL**](/docs/mysql): MySQL 8.4 standalone and three-node InnoDB Cluster deployment and monitoring
     - [**DuckDB**](/docs/pilot/duckdb): Provides comprehensive DuckDB support, and PostgreSQL + DuckDB OLAP extension plugin support
-    - [**Kafka**](/docs/kafka): Provides high-availability Kafka cluster deployment and monitoring
     - Kubernetes, VictoriaMetrics & VictoriaLogs
 - **Domestic Operating System Support**: Provides domestic innovation OS support options (**Enterprise Edition subscription only**)
 - **Domestic ARM Architecture Support**: Provides domestic ARM64 architecture support options (**Enterprise Edition subscription only**)
 - **China Mainland Mirror Repository**: Install without a VPN. Use domestic YUM/APT mirrors and a DockerHub access proxy.
 - **Chinese Interface Support**: Monitoring system Chinese interface support (Beta)
-
 
 **Payment Model**
 

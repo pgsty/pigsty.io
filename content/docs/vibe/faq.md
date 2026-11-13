@@ -21,14 +21,14 @@ apt-cache policy   # Debian/Ubuntu, read-only inspection
 ./infra.yml -l infra -t repo --check
 ```
 
-### JupyterLab installation failed
+### JupyterLab Is Missing or Installation Fails
 
-`jupyter_venv` must exist:
+1. `jupyter_enabled` defaults to `false`; only `conf/vibe.yml` explicitly enables it. For `-t jupyter`, enable it in inventory or pass `-e jupyter_enabled=true`.
+2. Confirm that [`NODE`](/docs/node) installed `uv`. `jupyter_install` uses `uv venv` to create `jupyter_venv` and install `jupyterlab` / `ipykernel`.
 
 ```bash
-uv venv /data/venv
-./vibe.yml -l <host> -t jupyter --check
-./vibe.yml -l <host> -t jupyter
+which uv
+./vibe.yml -l <host> -t jupyter -e jupyter_enabled=true
 ```
 
 --------
@@ -71,10 +71,10 @@ First, save the new password in the inventory. This keeps it out of shell histor
 
 First, save a high-entropy random token in the inventory. The current template allows any Origin and disables XSRF checks. Never use an example token or expose TCP/8888 directly:
 
+`jupyter_launch` automatically restarts `jupyter` when configuration changes. Add `-e jupyter_enabled=true` if the inventory does not enable it:
+
 ```bash
-./vibe.yml -l <host> -t jupyter_config --check
-./vibe.yml -l <host> -t jupyter_config
-ssh <host> sudo systemctl restart jupyter
+./vibe.yml -l <host> -e jupyter_enabled=true -e jupyter_password='NewToken' -t jupyter_config,jupyter_launch
 ```
 
 --------
@@ -83,49 +83,52 @@ ssh <host> sudo systemctl restart jupyter
 
 ### CLI not found
 
-First check whether `claude_install` completed:
+Claude Code uses a native `pigsty-infra` package, named `claude` by default. Check repository availability and `claude_install`:
 
 ```bash
 which claude
-npm list -g --depth=0 | grep '@anthropic-ai/claude-code'
+rpm -q claude || dpkg -l claude
 ./vibe.yml -l <host> -t claude_install
 ```
 
-If `claude_enabled` is disabled, install manually:
+If `claude_enabled` is disabled, install manually through the system package manager:
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+yum install -y claude      # EL
+apt install -y claude      # Debian/Ubuntu
 ```
 
-Use `claude_package` to select a different npm package.
+To use the new official package name, set `claude_package: claude-code`.
 
 ### Codex CLI not found
 
+Codex CLI also uses the native `pigsty-infra` package `codex`:
+
 ```bash
 which codex
-npm list -g --depth=0 | grep '@openai/codex'
+rpm -q codex || dpkg -l codex
 ./vibe.yml -l <host> -t codex_install
 ```
 
-Confirm that `codex_enabled: true`. VIBE installs only Codex CLI. It does not generate the Codex configuration.
+Ensure `codex_enabled: true` and that the node has the `pigsty-infra` repository. VIBE installs Codex CLI but does not generate its configuration.
 
 ### API key not set
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-xxx
-# or set in claude_env
+# Or add to claude_env and run ./vibe.yml -l <host> -t claude_config
 ```
 
 ### Telemetry not showing
 
-Check local VictoriaMetrics/VictoriaLogs:
+Check VictoriaMetrics / VictoriaLogs reachability on the control plane (`<admin_ip>`, or `127.0.0.1` for a single-node deployment):
 
 ```bash
-curl http://127.0.0.1:8428/api/v1/status/buildinfo
-curl http://127.0.0.1:9428/select/logsql/stats_query
+curl http://<admin_ip>:8428/api/v1/status/buildinfo
+curl http://<admin_ip>:9428/select/logsql/stats_query
 ```
 
-Ensure OTEL endpoints in `~/.claude/settings.json` are correct.
+Verify that the OTEL endpoints in `~/.claude/settings.json` are reachable: `http://<admin_ip>:8428/opentelemetry/v1/metrics` and `http://<admin_ip>:9428/insert/opentelemetry/v1/logs`.
 
 --------
 

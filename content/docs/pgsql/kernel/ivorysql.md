@@ -15,11 +15,10 @@ categories: [Concept]
 
 ## Overview
 
-The Pigsty PGSQL repository provides IvorySQL 5.4 packages compatible with PostgreSQL 18.4.
+The Pigsty PGSQL repository provides IvorySQL 5.6 packages compatible with PostgreSQL 18.6.
 Packages cover the currently supported EL, Debian, and Ubuntu platforms on both architectures.
 Online installation uses Pigsty's `pgsql` repository.
 The Professional Edition also provides offline delivery for these platforms.
-
 
 ![IvorySQL](/img/pigsty/ivory.jpg)
 
@@ -36,15 +35,12 @@ For example, EL uses `ivorysql5`, and Debian/Ubuntu uses `ivorysql-5`.
 
 ## Installation
 
-Install with Pigsty's built-in `ivory` configuration template:
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/ivory.yml). Development sources moved it to `conf/fork/ivory.yml`; use `-c fork/ivory` with those sources.
+Install with Pigsty's [`fork/ivory`](/docs/conf/ivory/) template ([`conf/fork/ivory.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/ivory.yml)); `-c ivory` and `-c fork/ivory` are equivalent:
 
 ```bash
-./configure -c ivory
+./configure -c fork/ivory
 ./deploy.yml
 ```
-
 
 --------
 
@@ -63,8 +59,7 @@ pg_libs: 'liboracle_parser, pg_stat_statements, auto_explain'
 pg_extensions: [ ]                # do not install any vanilla postgresql extensions
 ```
 
-> For Oracle compatibility mode, dynamically load the `liboracle_parser` extension plugin.
-
+> Oracle compatibility mode dynamically loads `liboracle_parser`. With `pg_mode: ivory`, Pigsty also injects `archive-header-check=n` and `pg-version-force=18` (matching `pg_version`) into `/etc/pgbackrest/pgbackrest.conf` and PITR recovery configuration to accommodate IvorySQL control-file and WAL-header identifiers.
 
 --------
 

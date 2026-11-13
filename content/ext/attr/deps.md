@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**136** extensions depend on other extensions, **80** extensions are depended upon by others.
+**135** extensions depend on other extensions, **79** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **136** extensions require other extensions to be installed first:
+The following **135** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -136,7 +136,6 @@ The following **136** extensions require other extensions to be installed first:
 | [`pgcryptokey`](/ext/e/pgcryptokey) | [`pgcrypto`](/ext/e/pgcrypto) | cryptographic key management |
 | [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) | [`dblink`](/ext/e/dblink) | Extension for querying PgBouncer stats from normal SQL views & running pgbouncer commands from normal SQL functions |
 | [`documentdb`](/ext/e/documentdb) | [`documentdb_core`](/ext/e/documentdb_core) [`pg_cron`](/ext/e/pg_cron) [`postgis`](/ext/e/postgis) [`tsm_system_rows`](/ext/e/tsm_system_rows) [`vector`](/ext/e/vector) | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_distributed`](/ext/e/documentdb_distributed) | [`citus`](/ext/e/citus) [`documentdb_core`](/ext/e/documentdb_core) [`documentdb`](/ext/e/documentdb) | Multi-Node API surface for DocumentDB |
 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | [`documentdb`](/ext/e/documentdb) | DocumentDB Extended RUM index access method |
 | [`ora_btree_gin`](/ext/e/ora_btree_gin) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for indexing oracle datatypes in GIN |
 | [`ora_btree_gist`](/ext/e/ora_btree_gist) | [`ivorysql_ora`](/ext/e/ivorysql_ora) | Support for oracle indexing common datatypes in GiST |
@@ -153,7 +152,7 @@ The following **136** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **80** extensions are depended upon by other extensions:
+The following **79** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -169,7 +168,6 @@ The following **80** extensions are depended upon by other extensions:
 | [`qdgc`](/ext/e/qdgc) | [`qdgc_postgis`](/ext/e/qdgc_postgis) | Encode, decode, navigate, and fill Extended Quarter Degree Grid Cell codes in pure SQL. |
 | [`vector`](/ext/e/vector) | [`documentdb`](/ext/e/documentdb) [`pg_lion_vector`](/ext/e/pg_lion_vector) [`pg_search`](/ext/e/pg_search) [`pgmnemo`](/ext/e/pgmnemo) [`vchord`](/ext/e/vchord) [`vectorize`](/ext/e/vectorize) [`vectorscale`](/ext/e/vectorscale) | vector data type and ivfflat and hnsw access methods |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`postgis_tiger_geocoder`](/ext/e/postgis_tiger_geocoder) | determine similarities and distance between strings |
-| [`citus`](/ext/e/citus) | [`documentdb_distributed`](/ext/e/documentdb_distributed) | Distributed PostgreSQL as an extension |
 | [`pg_duckdb`](/ext/e/pg_duckdb) | [`pg_mooncake`](/ext/e/pg_mooncake) | DuckDB Embedded in Postgres |
 | [`pg_partman`](/ext/e/pg_partman) | [`timeseries`](/ext/e/timeseries) | Extension to manage partitioned tables by time or ID |
 | [`pg_extension_base`](/ext/e/pg_extension_base) | [`pg_extension_updater`](/ext/e/pg_extension_updater) [`pg_lake_engine`](/ext/e/pg_lake_engine) | Extension development kit by Snowflake |
@@ -231,8 +229,8 @@ The following **80** extensions are depended upon by other extensions:
 | [`dblink`](/ext/e/dblink) | [`emaj`](/ext/e/emaj) [`mimeo`](/ext/e/mimeo) [`omni_schema`](/ext/e/omni_schema) [`omni_test`](/ext/e/omni_test) [`omni_vfs`](/ext/e/omni_vfs) [`pg_jobmon`](/ext/e/pg_jobmon) [`pg_profile`](/ext/e/pg_profile) [`pgbouncer_fdw`](/ext/e/pgbouncer_fdw) [`pgelog`](/ext/e/pgelog) | connect to other PostgreSQL databases from within a database |
 | [`file_fdw`](/ext/e/file_fdw) | [`pg_sqlog`](/ext/e/pg_sqlog) | foreign-data wrapper for flat file access |
 | [`postgres_fdw`](/ext/e/postgres_fdw) | [`omni_schema`](/ext/e/omni_schema) | foreign-data wrapper for remote PostgreSQL servers |
-| [`documentdb`](/ext/e/documentdb) | [`documentdb_distributed`](/ext/e/documentdb_distributed) [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | API surface for DocumentDB for PostgreSQL |
-| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) [`documentdb_distributed`](/ext/e/documentdb_distributed) | Core API surface for DocumentDB on PostgreSQL |
+| [`documentdb`](/ext/e/documentdb) | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | API surface for DocumentDB for PostgreSQL |
+| [`documentdb_core`](/ext/e/documentdb_core) | [`documentdb`](/ext/e/documentdb) | Core API surface for DocumentDB on PostgreSQL |
 | [`ivorysql_ora`](/ext/e/ivorysql_ora) | [`ora_btree_gin`](/ext/e/ora_btree_gin) [`ora_btree_gist`](/ext/e/ora_btree_gist) | Oracle Compatible extension on Postgres Database |
 | [`babelfishpg_common`](/ext/e/babelfishpg_common) | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | SQL Server Transact SQL Datatype Support |
 | [`babelfishpg_tsql`](/ext/e/babelfishpg_tsql) | [`babelfishpg_tds`](/ext/e/babelfishpg_tds) | SQL Server Transact SQL compatibility |

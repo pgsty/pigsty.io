@@ -10,7 +10,7 @@ categories: [Concept]
 [OrioleDB](https://orioledb.com/) is a PostgreSQL storage engine extension.
 It supports data storage in S3. Its MVCC uses UNDO logs to hold older row versions, reducing bloat in primary storage, and 64-bit transaction IDs avoid traditional XID wraparound. See the [upstream design](https://github.com/orioledb/orioledb) for implementation details.
 
-Pigsty ships OrioleDB as a patched PostgreSQL kernel plus the [OrioleDB extension](https://github.com/orioledb/orioledb).
+Pigsty supports OrioleDB for PostgreSQL 16, 17, and 18. The current PG18 package baseline is OrioleDB `1.10.3`, based on PostgreSQL `18.6`.
 
 You can run OrioleDB as an RDS with Pigsty.
 Current packages support PostgreSQL 16, 17, and 18 on supported Linux platforms.
@@ -23,13 +23,11 @@ The current Pigsty package line is OrioleDB 1.8 beta16.
 
 ## Quick Start
 
-Follow Pigsty's [**standard installation**](/docs/setup/install) process using the [`oriole`](/docs/conf/oriole/) configuration template.
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/oriole.yml). Development sources moved it to `conf/fork/oriole.yml`; use `-c fork/oriole` with those sources.
+Follow Pigsty's [**standard installation**](/docs/setup/install) with [`fork/oriole`](/docs/conf/oriole/) ([`conf/fork/oriole.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/oriole.yml)); `-c oriole` and `-c fork/oriole` are equivalent:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
-./configure -c oriole    # Use OrioleDB configuration template
+./configure -c fork/oriole # use the OrioleDB template
 ./deploy.yml             # Install Pigsty with OrioleDB
 ```
 

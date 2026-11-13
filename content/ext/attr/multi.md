@@ -5,7 +5,7 @@ description: "PostgreSQL packages containing multiple extensions"
 weight: 40
 ---
 
-The following **29** packages contain multiple extensions, totaling **137** extensions.
+The following **29** packages contain multiple extensions, totaling **136** extensions.
 
 When installing these packages, you will get all extensions in the package. The lead extension is shown in bold.
 
@@ -332,13 +332,12 @@ Package [`pgnodemx`](/ext/e/pgnodemx) contains **2** extensions:
 
 ## documentdb
 
-Package [`documentdb`](/ext/e/documentdb) contains **4** extensions:
+Package [`documentdb`](/ext/e/documentdb) contains **3** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
 | 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.0` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
 | 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.0` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
-| 9020 | [`documentdb_distributed`](/ext/e/documentdb_distributed) | `1.0` | `--sLd--` | - | Multi-Node API surface for DocumentDB |
 | 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.0` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
 {.ext-table .wide .expand}
 

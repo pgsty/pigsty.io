@@ -7,9 +7,9 @@ module: [SOFTWARE]
 categories: [Reference]
 ---
 
-[JupyterLab](https://jupyter.org/) is an interactive notebook, terminal, and data-analysis environment. Pigsty v4.5.0 has two distinct deployment paths:
+[JupyterLab](https://jupyter.org/) provides interactive notebooks, terminals, and data analysis. Pigsty `v4.6.0` offers two deployment options:
 
-- The [`VIBE`](/docs/vibe/) module, managed by Ansible and systemd, for the complete v4.5.0 development sandbox.
+- The [`VIBE`](/docs/vibe/) module, managed by Ansible and systemd, for a complete Web development sandbox.
 - The lightweight standalone `app/jupyter` Docker Compose template documented here.
 
 `app/jupyter` is not a default `apps` inventory entry. Prepare its data directory separately. `app.yml -e app=jupyter` does not handle directory ownership.
@@ -36,7 +36,7 @@ Generate a strong token with `openssl rand -hex 32`. The default port is `8888`;
 
 ## Current Template
 
-The v4.5.0 `.env` defaults are:
+The `.env` defaults are:
 
 ```bash
 JUPYTER_IMAGE=quay.io/jupyter/minimal-notebook:latest

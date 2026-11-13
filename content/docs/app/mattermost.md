@@ -40,32 +40,26 @@ Default template settings include:
 
 - Bleve directory inside the container: set `MM_BLEVESETTINGS_INDEXDIR` to `/mattermost/bleve-indexes`, not a host path
 
-Running `app/mattermost` directly stores data under `./volumes` by default. With the configuration template, `app.yml` creates `/data/mattermost/*` from `apps.mattermost.file` with UID/GID `2000:2000`. `make up` prepares only the default `./volumes`; verify custom paths and permissions yourself.
+When run directly, `app/mattermost` stores data under `./volumes`. With the configuration template, `app.yml` creates `/data/mattermost/*` from `apps.mattermost.file` with UID/GID `2000:2000`. `make up` first calls `prepare.sh` to resolve the active Compose bind mounts, create directories, and fix ownership.
 
-## Calls and Version Differences
+## Calls Media Ports
 
-Compose does not publish the Calls media port. For calls, retain the Web mapping and add these entries to the `mattermost` service's `ports`:
+Compose publishes both Calls media mappings through `CALLS_PORT` (default `8443`): `${CALLS_PORT}:8443/tcp` and `${CALLS_PORT}:8443/udp`.
 
-```yaml
-  - "8443:8443/tcp"
-  - "8443:8443/udp"
-```
-
-Public Calls traffic requires both TCP and UDP media ports, or a TURN configuration. The generic `node_firewall_public_port` parameter opens only TCP and does not cover UDP calls by itself.
-
-The development template adds `CALLS_PORT`, a script that prepares the actual mount directories, and `make health`. Use the matching application files for these features.
+For public Calls traffic, allow both TCP and UDP media ports in the firewall and cloud security groups, or configure TURN. The general `node_firewall_public_port` parameter opens TCP only and cannot by itself permit UDP call traffic.
 
 ## Operations
 
 ```bash
 cd /opt/mattermost
 make up
+make health
 make restart
 make log
 make stop
 ```
 
-The 11.10.1 image contains neither a shell nor `curl`. Check status with `docker compose exec -T mattermost /mattermost/bin/mmctl system status --local`. Before upgrading, back up PostgreSQL, configuration, data, plugins, and Bleve directories. To roll back, restore matching data backups; do not point an old image directly at data upgraded by a newer version.
+The 11.10.1 image has neither a shell nor `curl`. `make health` checks readiness with `docker compose exec -T mattermost /mattermost/bin/mmctl system status --local`. Before upgrading, back up PostgreSQL and the configuration, data, plugins, and Bleve directories. Rollback requires matching data backups; do not point an older image at an upgraded database.
 
 ## References
 

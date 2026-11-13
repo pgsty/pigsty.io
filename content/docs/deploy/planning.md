@@ -74,7 +74,7 @@ These single-node variants are available:
 - **Infra-only** ([`infra`](/docs/conf/infra)) installs only [INFRA](/docs/infra/) to monitor other instances.
   It does not install database services.
 - **Alternative kernels** replace the standard PostgreSQL kernel with a derivative.
-  Templates include [`pgsql`](/docs/conf/pgsql/), [`mssql`](/docs/conf/mssql/), [`polar`](/docs/conf/polar/), [`ivory`](/docs/conf/ivory/), and [`mysql`](/docs/conf/mysql/).
+  Templates include [`pgsql`](/docs/conf/pgsql/), [`mssql`](/docs/conf/mssql/), [`polar`](/docs/conf/polar/), [`ivory`](/docs/conf/ivory/), and [`halo`](/docs/conf/mysql/).
   Other templates include [`pgtde`](/docs/conf/pgtde/), [`oriole`](/docs/conf/oriole/), [`agens`](/docs/conf/agens/), and [`pgedge`](/docs/conf/pgedge/).
 
 ## Two-Node Setup

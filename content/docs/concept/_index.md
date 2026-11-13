@@ -42,7 +42,7 @@ Pigsty provides:
 
 - **Monitoring and Diagnostics**
 
-  VictoriaMetrics and Grafana provide [**monitoring practices**](/docs/concept/monitor) through 67 dashboards, 773 recording rules, and 92 alert rules covering databases, hosts, and infrastructure. See [Monitoring Scale and Counting Method](/docs/concept/monitor#monitoring-scale-and-counting-method) for definitions.
+  VictoriaMetrics and Grafana provide [**monitoring practices**](/docs/concept/monitor) through 68 dashboards, 790 recording rules, and 79 alert rules covering databases, hosts, and infrastructure. See [Monitoring Scale and Counting Method](/docs/concept/monitor#monitoring-scale-and-counting-method) for definitions.
 
 - **Declarative Configuration Management**
 
@@ -50,7 +50,7 @@ Pigsty provides:
 
 - **Modular Architecture Design**
 
-  The modular [**architecture**](/docs/concept/arch) supports different deployments. Combine the core PostgreSQL module with optional Redis, MINIO (Silo), and Etcd modules. Pigsty also supports PG-compatible kernels and operating modes.
+  Its modular [**architecture**](/docs/concept/arch) supports different combinations for different needs. Alongside PostgreSQL, optional modules include VAULT (OpenBao), Redis, MINIO (Silo), and Etcd, with multiple PostgreSQL-compatible kernels and deployment modes.
 
 - [**Solid Security Best Practices**](/docs/concept/sec/)
 
@@ -58,8 +58,7 @@ Pigsty provides:
 
 - **Simple and Easy Deployment**
 
-  Prepackaged dependencies support one-step installation without Internet access. Local sandboxes can run on VMs with 1 core and 2GB RAM, with the same functions as production environments. Use Vagrant for local sandboxes or Terraform for cloud deployments.
-
+  Dependencies are packaged in advance for installation without Internet access. A local sandbox can run in a 1-core, 2 GB VM with the same functional model as production. Vagrant provides local sandboxes, while OpenTofu (Terraform-compatible) templates provision cloud resources.
 
 ----------------
 
@@ -67,7 +66,7 @@ Pigsty provides:
 
 Pigsty is not a complete PaaS (Platform as a Service) system.
 
-- **Supply your own hardware resources.** Pigsty runs on physical servers, VMs, or cloud instances that you provide. It does not create or manage them. Terraform templates help prepare cloud resources.
+- **Pigsty does not provide hardware resources.** It runs on your bare-metal servers, VMs, or cloud instances without creating or managing them itself, although Terraform-compatible OpenTofu templates simplify cloud provisioning.
 
 - **Pigsty runs on the operating system.** It does not require Kubernetes or Docker, but can coexist with them. Its Docker module runs stateless applications.
 

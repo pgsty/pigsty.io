@@ -120,11 +120,13 @@ Validation follows Pigsty's configuration rules, including requirements for `adm
 
 `pg_users[].roles` accepts role names and objects containing `name`, optional
 `state` (`grant`, `revoke`, `absent`), and nullable boolean `admin`, `set`, and `inherit`.
-Editing, serialization, and CMDB YAML export preserve strings that look like YAML 1.1 scalars,
-including `"1:30"`, `"010"`, dates, and timestamps supplied as strings. Necessary quotes prevent
-downstream YAML consumers from changing their types. Existing unquoted or explicitly tagged timestamps
+Editing, serialization, and CMDB YAML export preserve strings that resemble YAML 1.1 scalars, including `"1:30"`, `"010"`, `"="`, `"<<"`, `"1e1"`, and dates or timestamps supplied as strings.
+Required quoting prevents downstream YAML consumers from changing their types. Existing unquoted or explicitly tagged timestamps
 retain their source bytes and use the opaque `unknown` scalar kind; quote them when a string is intended.
 `show` and explicit CMDB exports retain their raw-data contract.
+
+CMDB YAML export writes integers such as `pg_version: 18` as integers and uses YAML 1.1-compatible floating-point exponents.
+Signed and unsigned 64-bit integers retain exact values. Data that cannot round-trip produces an error rather than silently changing declarations.
 
 ## inv check {#inv-check}
 

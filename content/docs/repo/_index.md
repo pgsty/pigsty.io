@@ -15,7 +15,6 @@ The Pigsty repository provides additional PostgreSQL extension packages for main
 | **PGDG** Repo  |           [PGDG Official Repo Mirror](/docs/repo/pgdg/), PG Kernel           |  [pgdg.md](/docs/repo/pgdg/)  |
 |  **GPG** Key   |          [GPG Public Key](/docs/repo/gpg/), signature verification           |   [gpg.md](/docs/repo/gpg/)   |
 
-
 ---------
 
 ## Compatibility Overview
@@ -31,12 +30,11 @@ The Pigsty repository provides additional PostgreSQL extension packages for main
 | Ubuntu 24.04 | u24  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 | Ubuntu 26.04 | u26  | **18**, **17**, **16**, **15**, **14** | **18**, **17**, **16**, **15**, **14** |
 
-
 ---------
 
 ## Repository Modules in Pigsty
 
-`repo_modules` and `node_repo_modules` select repositories by the `module` field in `roles/node_id/vars/<os>.<arch>.yml`. Development versions use `nginx` and `docker` for the corresponding upstream repositories. In the `v4.5.0` release, Docker and Nginx on EL still belong to `infra`.
+Pigsty selects repositories for `repo_modules` and `node_repo_modules` using the `module` field in `roles/node_id/vars/<os>.<arch>.yml`. Since `v4.6.0`, the official Nginx and Docker repositories have separate `nginx` and `docker` modules and are no longer bundled into `infra`.
 
 Add these modules explicitly when needed, for example `node_repo_modules: node,infra,pgsql,nginx,docker`. The local offline repository uses `local`. See [REPO](/docs/infra/param/#repo) and [node_repo_modules](/docs/node/param/#node_repo_modules) for the full parameters.
 
@@ -55,7 +53,6 @@ pig repo add all -u                         # add linux, pgdg, pigsty repo and u
 curl https://repo.pigsty.cc/pig | bash      # download from mirror site
 pig repo add -u                             # add linux, pgdg, pigsty repo and update cache
 ```
-
 
 ---------
 
@@ -112,7 +109,6 @@ sudo yum makecache;
 
 Pigsty signs all RPM / DEB packages in its repository with the [GPG key](/docs/repo/gpg/) identified by `B9BD8B20`.
 
-
 ---------
 
 ## Repository Components
@@ -127,7 +123,6 @@ The [**INFRA**](/docs/repo/infra/) repository contains packages that are indepen
 | Debian |  `deb`  |   ✓    |    ✓    |
 
 The [**PGSQL**](/docs/repo/pgsql/) repository contains packages for specific PostgreSQL major versions. These packages often also depend on the Linux distribution major version. They include extensions and some kernel forks.
-
 
 ---------
 
@@ -155,7 +150,6 @@ The [**PGSQL**](/docs/repo/pgsql/) repository contains packages for specific Pos
 |  `u26.x86_64`  | Ubuntu |  26   | 26.04.1 | Ubuntu 26.04 x86  | **18** **17** **16** **15** **14** |    OK    |
 | `u26.aarch64`  | Ubuntu |  26   | 26.04.1 | Ubuntu 26.04 ARM  | **18** **17** **16** **15** **14** |    OK    |
 {.wide .expand}
-
 
 ---------
 

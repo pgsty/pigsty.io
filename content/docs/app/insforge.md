@@ -229,7 +229,7 @@ This notifies PostgREST to reload its schema.
 
 `insforge_pg_utils` is a required PostgreSQL utility library. It lets `project_admin` manage RLS policies on managed tables and manage extensions; application migrations do not replace it. Copy the complete `app/insforge/pgutils/` directory to every database node, install it before PostgreSQL initialization, and preload it through `pg_libs`. It exposes no SQL objects, so no `CREATE EXTENSION` is needed.
 
-`pgutils/install.sh` downloads and verifies pinned official source, applies the PG16–18 compatibility patch, and builds it with PGXS. For PG18 on Debian/Ubuntu, use `postgresql-server-dev-18` and `/usr/lib/postgresql/18/bin/pg_config`. On EL/RPM, use `postgresql18-devel`, `gcc`, `make`, `curl`, `patch`, and `/usr/pgsql-18/bin/pg_config`. The script does not change configuration or restart a cluster; plan preload configuration and restart separately for an existing deployment.
+`pgutils/install.sh` downloads and verifies pinned official sources, applies PG16–18 compatibility patches, then builds and installs through PGXS with `with_llvm=no`. The host does not need clang or LLVM bitcode tools. PG18 on Debian/Ubuntu uses `postgresql-server-dev-18` and `/usr/lib/postgresql/18/bin/pg_config`; EL/RPM uses `postgresql18-devel`, `gcc`, `make`, `curl`, `patch`, and `/usr/pgsql-18/bin/pg_config`. The script neither changes configuration nor restarts the cluster; schedule preload configuration and a restart separately for existing deployments.
 
 `cron.use_background_workers: true` runs scheduled jobs as background workers without adding a loopback `trust` rule. Reserve enough `max_worker_processes` slots for cron, replication, and other extensions.
 

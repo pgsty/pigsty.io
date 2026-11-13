@@ -19,20 +19,16 @@ Ansible knowledge helps you manage Pigsty, but the single-node procedure does no
 
 ## Deploy Playbook
 
-The `deploy.yml` playbook applies the core deployment configuration.
-It includes the CA, software repository, NODE, INFRA, ETCD, PGSQL, and MINIO when the inventory enables them.
-Optional modules such as Redis, Kafka, and native MySQL require their own playbooks.
-Defining these optional modules in the inventory does not add them to `deploy.yml`.
+Pigsty's **`deploy.yml`** deploys six core-chain modules together: CA/repositories and INFRA, NODE, ETCD, plus configured VAULT, MINIO, and PGSQL. Optional Redis, Docker, Kafka, and native MySQL still require their own playbooks even when declared in inventory.
 
-The table shows the module deployment targets:
-
-| Playbook    | Command       | Group      | `infra` | `[nodes]` | `etcd` | `minio` | `[pgsql]` |
-|-------------|---------------|------------|:-------:|:---------:|:------:|:-------:|:---------:|
-| `infra.yml` | `./infra.yml` | `-l infra` |    ✓    |     ✓     |        |         |           |
-| `node.yml`  | `./node.yml`  |            |         |     ✓     |   ✓    |    ✓    |     ✓     |
-| `etcd.yml`  | `./etcd.yml`  | `-l etcd`  |         |           |   ✓    |         |           |
-| `minio.yml` | `./minio.yml` | `-l minio` |         |           |        |    ✓    |           |
-| `pgsql.yml` | `./pgsql.yml` |            |         |           |        |         |     ✓     |
+| Playbook | Command | Group | `infra` | `[nodes]` | `etcd` | `vault` | `minio` | `[pgsql]` |
+|-------------|---------------|------------|:-------:|:---------:|:------:|:-------:|:-------:|:---------:|
+| `infra.yml` | `./infra.yml` | `-l infra` |    ✓    |     ✓     |        |         |         |           |
+| `node.yml`  | `./node.yml`  |            |         |     ✓     |        |         |         |           |
+| `etcd.yml`  | `./etcd.yml`  | `-l etcd`  |         |           |   ✓    |         |         |           |
+| `vault.yml` | `./vault.yml` | `-l vault` |         |           |        |    ✓    |         |           |
+| `minio.yml` | `./minio.yml` | `-l minio` |         |           |        |         |    ✓    |           |
+| `pgsql.yml` | `./pgsql.yml` |            |         |           |        |         |         |     ✓     |
 {.full-width .wide .expand}
 
 You can apply the core configuration in one run with `deploy.yml`.
@@ -215,6 +211,8 @@ You can add your own playbooks or change their tasks for your deployment require
 |  [**REDIS**](/docs/redis/playbook/)  | [**`redis-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/redis-rm.yml)               | Remove Redis cluster/node/instance                  |
 |   [**ETCD**](/docs/etcd/playbook/)   | [**`etcd.yml`**](https://github.com/pgsty/pigsty/blob/main/etcd.yml)                       | Initialize ETCD cluster or add new member           |
 |   [**ETCD**](/docs/etcd/playbook/)   | [**`etcd-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/etcd-rm.yml)                 | Remove ETCD cluster/data or shrink member           |
+| [**VAULT**](/docs/vault/playbook/) | [**`vault.yml`**](https://github.com/pgsty/pigsty/blob/main/vault.yml) | Initialize OpenBao / Vault secrets clusters |
+| [**VAULT**](/docs/vault/playbook/) | [**`vault-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/vault-rm.yml) | Remove OpenBao / Vault clusters and optional data |
 |  [**MINIO**](/docs/minio/playbook/)  | [**`minio.yml`**](https://github.com/pgsty/pigsty/blob/main/minio.yml)                     | Initialize a Silo object-storage cluster |
 |  [**MINIO**](/docs/minio/playbook/)  | [**`minio-rm.yml`**](https://github.com/pgsty/pigsty/blob/main/minio-rm.yml)               | Remove Silo, its configuration, and optional data |
 | [**DOCKER**](/docs/docker/playbook/) | [**`docker.yml`**](https://github.com/pgsty/pigsty/blob/main/docker.yml)                   | Install Docker on nodes                             |

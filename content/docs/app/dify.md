@@ -88,7 +88,7 @@ You can also use the locally resolved placeholder domain `dify.pigsty`, or follo
 
 ## Configuration
 
-When you run `./configure -c app/dify`, Pigsty generates a configuration file from the [`conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml) template and the current environment. The snapshot below matches the v4.5.0 source template:
+When you run `./configure -c app/dify`, Pigsty generates the configuration from [`conf/app/dify.yml`](https://github.com/pgsty/pigsty/blob/main/conf/app/dify.yml) and the current environment. The complete template follows:
 
 {{< include file="/docs/conf/yaml/app/dify.yml" code=true lang="yaml" >}}
 

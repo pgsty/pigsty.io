@@ -11,18 +11,18 @@ categories: [Reference]
 
 ## China PostgreSQL Ecosystem Projects
 
-Sorted by the GitHub repository API’s `stargazers_count` in descending order. Last updated: 2026-10-28 (Beijing time).
+Sorted by the GitHub repository API's `stargazers_count` in descending order. Last updated on 2026-11-13 (Beijing time).
 
 | Project                                                                                                 |                                      Star                                       | Author                   |     Type     | Summary                                               |
 |---------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------:|--------------------------|:------------:|-------------------------------------------------------|
-| [`pgsty/pigsty`](https://github.com/pgsty/pigsty)                                                       |             [**5870**](https://github.com/pgsty/pigsty/stargazers)              | Ruohang Feng @ **PGSTY** | Distribution | Out-of-the-box PostgreSQL distribution                |
-| [`polardb/PolarDB-for-PostgreSQL`](https://github.com/polardb/PolarDB-for-PostgreSQL)                   |    [**3208**](https://github.com/polardb/PolarDB-for-PostgreSQL/stargazers)     | Alibaba Cloud            |    Kernel    | Open-source PolarDB for PostgreSQL kernel             |
-| [`tensorchord/pgvecto.rs`](https://github.com/tensorchord/pgvecto.rs)                                   |        [**2191**](https://github.com/tensorchord/pgvecto.rs/stargazers)         | TensorChord              |  Extension   | Vector search extension written in Rust               |
-| [`supervc-stack/VectorChord`](https://github.com/supervc-stack/VectorChord)                                 |        [**1831**](https://github.com/supervc-stack/VectorChord/stargazers)        | TensorChord              |  Extension   | Next-generation vector search extension               |
+| [`pgsty/pigsty`](https://github.com/pgsty/pigsty) | [**5936**](https://github.com/pgsty/pigsty/stargazers) | Ruohang Feng @ **PGSTY** | Distribution | PostgreSQL distribution that works out of the box |
+| [`polardb/PolarDB-for-PostgreSQL`](https://github.com/polardb/PolarDB-for-PostgreSQL) | [**3208**](https://github.com/polardb/PolarDB-for-PostgreSQL/stargazers) | Alibaba Cloud | Kernel | Open-source PolarDB for PostgreSQL kernel |
+| [`tensorchord/pgvecto.rs`](https://github.com/tensorchord/pgvecto.rs)                                   |        [**2190**](https://github.com/tensorchord/pgvecto.rs/stargazers)         | TensorChord              |  Extension   | Vector search extension written in Rust               |
+| [`supervc-stack/VectorChord`](https://github.com/supervc-stack/VectorChord) | [**1841**](https://github.com/supervc-stack/VectorChord/stargazers) | TensorChord | Extension | Next-generation vector search extension |
 | [`Tencent/TBase`](https://github.com/Tencent/TBase)                                                     |             [**1444**](https://github.com/Tencent/TBase/stargazers)             | Tencent Cloud            |    Kernel    | Tencent distributed HTAP database kernel              |
-| [`apache/cloudberry`](https://github.com/apache/cloudberry)                                             |           [**1436**](https://github.com/apache/cloudberry/stargazers)           | HashData                 |    Kernel    | Open-source MPP data warehouse kernel                 |
-| [`pgplex/pgschema`](https://github.com/pgplex/pgschema)                                                 |           [**1072**](https://github.com/pgplex/pgschema/stargazers)             | Chen Tianzhou            |     Tool     | Declarative Postgres schema migration CLI             |
-| [`IvorySQL/IvorySQL`](https://github.com/IvorySQL/IvorySQL)                                             |           [**1071**](https://github.com/IvorySQL/IvorySQL/stargazers)           | HighGo                   |    Kernel    | Oracle-compatible PostgreSQL fork                     |
+| [`apache/cloudberry`](https://github.com/apache/cloudberry) | [**1444**](https://github.com/apache/cloudberry/stargazers) | HashData | Kernel | Open-source MPP data warehouse kernel |
+| [`pgplex/pgschema`](https://github.com/pgplex/pgschema) | [**1084**](https://github.com/pgplex/pgschema/stargazers) | Tianzhou Chen | Tool | Declarative PostgreSQL schema migration CLI |
+| [`IvorySQL/IvorySQL`](https://github.com/IvorySQL/IvorySQL) | [**1077**](https://github.com/IvorySQL/IvorySQL/stargazers) | HighGo | Kernel | Oracle-compatible PostgreSQL fork |
 | [`amutu/zhparser`](https://github.com/amutu/zhparser)                                                   |             [**872**](https://github.com/amutu/zhparser/stargazers)             | Jov                      |  Extension   | Chinese full-text parser based on SCWS                |
 | [`opengauss-mirror/openGauss-server`](https://github.com/opengauss-mirror/openGauss-server)             |   [**795**](https://github.com/opengauss-mirror/openGauss-server/stargazers)    | Huawei                   |    Kernel    | Early PostgreSQL 9.2 kernel fork                      |
 | [`jaiminpan/pg_jieba`](https://github.com/jaiminpan/pg_jieba)                                           |           [**426**](https://github.com/jaiminpan/pg_jieba/stargazers)           | Pan Jiamin               |  Extension   | Chinese full-text search extension based on Jieba     |
@@ -31,7 +31,7 @@ Sorted by the GitHub repository API’s `stargazers_count` in descending order. 
 | [`supervc-stack/VectorChord-bm25`](https://github.com/supervc-stack/VectorChord-bm25)                       |      [**380**](https://github.com/supervc-stack/VectorChord-bm25/stargazers)      | TensorChord              |  Extension   | Native BM25 ranking index for PostgreSQL              |
 | [`pgsty/pg_exporter`](https://github.com/pgsty/pg_exporter)                                             |           [**366**](https://github.com/pgsty/pg_exporter/stargazers)            | Ruohang Feng @ **PGSTY** |     Tool     | Metrics exporter for PostgreSQL and Pgbouncer         |
 | [`ChenHuajun/pg_roaringbitmap`](https://github.com/ChenHuajun/pg_roaringbitmap)                         |      [**291**](https://github.com/ChenHuajun/pg_roaringbitmap/stargazers)       | Chen Huajun @ Suning     |  Extension   | PostgreSQL RoaringBitmap bitmap extension             |
-| [`pgsty/pig`](https://github.com/pgsty/pig)                                                             |               [**205**](https://github.com/pgsty/pig/stargazers)                | Ruohang Feng @ **PGSTY** |     Tool     | PostgreSQL extension package manager                  |
+| [`pgsty/pig`](https://github.com/pgsty/pig) | [**205**](https://github.com/pgsty/pig/stargazers) | Ruohang Feng @ **PGSTY** | Tool | PostgreSQL extension package manager |
 | [`wublabdubdub/PDU-PostgreSQLDataUnloader`](https://github.com/wublabdubdub/PDU-PostgreSQLDataUnloader) | [**122**](https://github.com/wublabdubdub/PDU-PostgreSQLDataUnloader/stargazers) | Zhang Chen               |     Tool     | PostgreSQL database rescue and unloading tool         |
 | [`tensorchord/pg_bestmatch.rs`](https://github.com/tensorchord/pg_bestmatch.rs)                         |       [**100**](https://github.com/tensorchord/pg_bestmatch.rs/stargazers)      | TensorChord              |  Extension   | BM25 sparse-vector generation in PostgreSQL           |
 | [`supervc-stack/pg_tokenizer.rs`](https://github.com/supervc-stack/pg_tokenizer.rs)                         |       [**46**](https://github.com/supervc-stack/pg_tokenizer.rs/stargazers)       | TensorChord              |  Extension   | Full-text search tokenizer extension                  |
@@ -79,7 +79,7 @@ grid: { left: 320, right: 72, top: 20, bottom: 26 }
 xAxis:
   type: value
   max: 6000
-  name: GitHub Stars
+  name: GitHub Star
   nameLocation: middle
   nameGap: 24
   axisLabel: { formatter: $fn:fnum }
@@ -131,7 +131,7 @@ series:
       position: right
       formatter: $fn:labfmt
       fontWeight: 600
-    data: [5870, 3208, 2191, 1831, 1444, 1436, 1072, 1071, 872, 795, 426, 418, 415, 380, 366, 291, 205, 122, 100, 46, 41, 37]
+    data: [5936, 3208, 2190, 1841, 1444, 1444, 1084, 1077, 873, 794, 427, 418, 415, 381, 366, 291, 205, 123, 99, 46, 41, 37]
 media:
   - query: { maxWidth: 600 }
     option:
@@ -154,26 +154,24 @@ media:
         - label: { fontSize: 12 }
 ```
 
-
-
 ## PostgreSQL Distribution Impact Metrics
 
-Projects appear in descending order of GitHub stars. Commercial products that do not publish stars appear last. Last updated: 2026-10-28 (Beijing time).
+Sorted by GitHub stars in descending order, with commercial products without public star counts listed last. Last updated on 2026-11-13 (Beijing time).
 
 | Project                                                                                                   |                                     Star                                     | Vendor        | Type         | License     | Summary                                                                |
 |-----------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------:|---------------|--------------|-------------|------------------------------------------------------------------------|
-| [CloudNativePG](https://github.com/cloudnative-pg/cloudnative-pg)                                         |   [**9496**](https://github.com/cloudnative-pg/cloudnative-pg/stargazers)    | EDB           | K8S Native   | Apache-2.0  | Mainstream PG Operator without Patroni dependency                      |
-| [Pigsty](https://github.com/pgsty/pigsty)                                                                 |            [**5870**](https://github.com/pgsty/pigsty/stargazers)            | **PGSTY**     | Linux Native | Apache-2.0  | Ansible-driven integrated PostgreSQL distribution                      |
-| [Zalando Postgres Operator](https://github.com/zalando/postgres-operator)                                 |     [**5266**](https://github.com/zalando/postgres-operator/stargazers)      | Zalando       | K8S Native   | MIT         | Long-standing Patroni/Spilo architecture operator                      |
-| [PGO](https://github.com/CrunchyData/postgres-operator)                                                   |   [**4456**](https://github.com/CrunchyData/postgres-operator/stargazers)    | Crunchy Data  | K8S Native   | Apache-2.0  | Production-grade operator with backup and monitoring                   |
-| [Autobase](https://github.com/autobase-tech/autobase)                                                     |       [**4426**](https://github.com/autobase-tech/autobase/stargazers)       | Autobase.tech | Linux Native | MIT         | Automated deployment for Patroni/etcd/Consul                           |
-| [KubeBlocks](https://github.com/apecloud/kubeblocks)                                                      |        [**3156**](https://github.com/apecloud/kubeblocks/stargazers)         | ApeCloud      | K8S Native   | AGPL-3.0    | Unified multi-database operator platform                               |
-| [StackGres](https://github.com/ongres/stackgres)                                                          |          [**1443**](https://github.com/ongres/stackgres/stargazers)          | OnGres        | K8S Native   | AGPL-3.0    | Integrated PG operator with CRD/CLI/Web UI                             |
+| [CloudNativePG](https://github.com/cloudnative-pg/cloudnative-pg) | [**9584**](https://github.com/cloudnative-pg/cloudnative-pg/stargazers) | EDB | K8S Native | Apache-2.0 | Popular PG operator without a Patroni dependency. |
+| [Pigsty](https://github.com/pgsty/pigsty) | [**5936**](https://github.com/pgsty/pigsty/stargazers) | **PGSTY** | Linux Native | Apache-2.0 | Ansible-driven integrated PG distribution. |
+| [Zalando Postgres Operator](https://github.com/zalando/postgres-operator) | [**5273**](https://github.com/zalando/postgres-operator/stargazers) | Zalando | K8S Native | MIT | Established PG operator based on Patroni/Spilo. |
+| [PGO](https://github.com/CrunchyData/postgres-operator) | [**4457**](https://github.com/CrunchyData/postgres-operator/stargazers) | Crunchy Data | K8S Native | Apache-2.0 | Production operator with integrated backups and monitoring. |
+| [Autobase](https://github.com/autobase-tech/autobase) | [**4435**](https://github.com/autobase-tech/autobase/stargazers) | Autobase.tech | Linux Native | MIT | Automated deployment with Patroni/etcd/Consul. |
+| [KubeBlocks](https://github.com/apecloud/kubeblocks) | [**3167**](https://github.com/apecloud/kubeblocks/stargazers) | ApeCloud | K8S Native | AGPL-3.0 | Unified operator platform for multiple databases. |
+| [StackGres](https://github.com/ongres/stackgres) | [**1446**](https://github.com/ongres/stackgres/stargazers) | OnGres | K8S Native | AGPL-3.0 | Integrated PG operator with CRDs, CLI, and web UI. |
 | [Kubegres](https://github.com/reactive-tech/kubegres)                                                     |       [**1349**](https://github.com/reactive-tech/kubegres/stargazers)       | Reactive Tech | K8S Native   | Apache-2.0  | Minimal operator built on native streaming replication                 |
 | [Tembo (former Operator)](https://github.com/tembo/tembo)                                                          |            [**1266**](https://github.com/tembo/tembo/stargazers)             | Tembo         | Historical   | Unspecified | Current default branch contains only a README, with no Operator code                                   |
-| [pgEdge (Spock)](https://github.com/pgEdge/spock)                                                                       |            [**759**](https://github.com/pgEdge/spock/stargazers)             | pgEdge        | Linux Native | PostgreSQL  | Distributed PG distribution focused on Spock multi-master replication  |
+| [pgEdge (Spock)](https://github.com/pgEdge/spock) | [**766**](https://github.com/pgEdge/spock/stargazers) | pgEdge | Linux Native | PostgreSQL | Distributed PG with Spock multi-master replication. |
 | [KubeDB (CLI)](https://github.com/kubedb/cli)                                                                   |             [**732**](https://github.com/kubedb/cli/stargazers)              | AppsCode      | K8S Native   | [AppsCode Community 1.0.0](https://github.com/kubedb/cli/blob/master/LICENSE.md)     | Multi-database operator with kubectl plugin                            |
-| [Percona Operator for PostgreSQL](https://github.com/percona/percona-postgresql-operator)                 | [**386**](https://github.com/percona/percona-postgresql-operator/stargazers) | Percona       | K8S Native   | Apache-2.0  | PostgreSQL operator in Percona ecosystem                               |
+| [Percona Operator for PostgreSQL](https://github.com/percona/percona-postgresql-operator) | [**388**](https://github.com/percona/percona-postgresql-operator/stargazers) | Percona | K8S Native | Apache-2.0 | PG operator in the Percona ecosystem. |
 | [EDB TPA](https://github.com/EnterpriseDB/tpa)                                                            |           [**88**](https://github.com/EnterpriseDB/tpa/stargazers)           | EDB           | Linux Native | GPL-3.0     | EDB official Ansible delivery toolkit                                  |
 | [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution)           |                                      -                                       | Percona       | Linux Native | Multi       | Integrated PostgreSQL distribution bundle                              |
 | [ClusterControl](https://www.severalnines.com/product/clustercontrol)                                     |                                      -                                       | Severalnines  | Linux Native | Commercial  | Multi-database deploy, monitoring, backup, and failover platform       |
@@ -190,7 +188,7 @@ The [official Star History chart](https://www.star-history.com/) below was fetch
 
 ![Star History of PostgreSQL distributions and high-availability projects (2026-10-28)](/img/pigsty/star-history-20261028.svg)
 
-The table compares star growth from the 2026-07-01 baseline through 2026-10-28 (Beijing time). Both snapshots use exact GitHub repository `stargazers_count` totals.
+The table below compares star growth from 2026-07-01 to 2026-11-13 (Beijing time). Both sets of values are exact snapshots of each repository's `stargazers_count`.
 
 {{< star_history >}}
 

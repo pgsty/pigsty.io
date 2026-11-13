@@ -123,7 +123,7 @@ Parameter: `minio_type`, Type: `enum`, Level: `G/C`
 
 Reserved object-storage backend selector. The default and only currently accepted value is `silo`. Silo retains the MinIO S3/Admin APIs, `MINIO_*` environment variables, and disk format.
 
-`minio` and `rustfs` are no longer valid values and fail during role identity validation. Before you upgrade a legacy MinIO cluster to v4.5, independently validate backups, MinIO-to-Silo data compatibility, and rollback. This parameter does not migrate data.
+`minio` and `rustfs` are no longer valid values and fail during role identity validation. Before you upgrade a legacy MinIO cluster to v4.5+, independently validate backups, MinIO-to-Silo data compatibility, and rollback. This parameter does not migrate data.
 
 Both the deployment and removal roles default `minio_type` to `silo`. A `minio-rm.yml` run still requires `minio_cluster` and `minio_seq`. It still uses `minio_safeguard` and the data/package cleanup switches. The engine default does not bypass these removal guards.
 

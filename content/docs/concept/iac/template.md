@@ -23,7 +23,7 @@ Select a template, then change it to meet your requirements.
 
 The optional [**`configure`**](https://github.com/pgsty/pigsty/blob/main/configure) wizard generates an [**inventory**](/docs/setup/config/) from your environment and input, with suitable defaults.
 
-Use `./configure -c <conf>` to select a template. `<conf>` is relative to `conf`; the `.yml` suffix is optional. Development sources move kernel templates to `conf/fork/`, selected with `-c fork/<name>`. Use the actual path in your source tree.
+Use `./configure -c <conf>`, where `<conf>` is a path relative to `conf/` without `.yml`, or a bare name searched in order: `conf/` → `ha/` → `fork/` → `app/` → `demo/` → `build/`:
 
 ```bash
 ./configure                     # Default to meta.yml configuration template
@@ -31,17 +31,19 @@ Use `./configure -c <conf>` to select a template. `<conf>` is relative to `conf`
 ./configure -c rich             # Use feature-rich template with all extensions and Silo
 ./configure -c slim             # Use minimal single-node template
 
-# Use different database kernels
+# Select different database kernels and compatibility stacks
 ./configure -c pgsql            # Native PostgreSQL kernel, basic features (14~18)
 ./configure -c pg19             # PostgreSQL 19 Beta trial template
 ./configure -c mssql            # Babelfish kernel, SQL Server protocol compatible (17/18)
 ./configure -c polar            # PolarDB PG kernel, Aurora/RAC style (17)
 ./configure -c ivory            # IvorySQL kernel, Oracle syntax compatible (18)
-./configure -c mysql            # OpenHalo kernel, MySQL compatible (14)
+./configure -c halo             # OpenHalo, MySQL protocol compatibility (14); equivalent to fork/halo
 ./configure -c pgtde            # Percona PostgreSQL Server transparent encryption (18)
 ./configure -c oriole           # OrioleDB kernel, OLTP enhanced (16~18)
-./configure -c fork/agens       # AgensGraph graph database kernel (18)
+./configure -c agens            # AgensGraph graph database (18); equivalent to fork/agens
 ./configure -c pgedge           # pgEdge distributed database kernel (15~18, default 18)
+./configure -c mongo            # FerretDB / MongoDB protocol stack; equivalent to fork/mongo
+./configure -c mysql            # native MySQL 8.4 deployment; equivalent to demo/mysql
 ./configure -c ha/citus         # Citus distributed HA PostgreSQL (14~18)
 ./configure -c supabase         # Supabase self-hosted configuration (15~18)
 
@@ -72,19 +74,20 @@ Use these templates to install Pigsty on one server:
 
 Templates for various database management systems and kernels:
 
-| Template                                   | Description                                             |
-|--------------------------------------------|---------------------------------------------------------|
-| [**`pgsql.yml`**](/docs/conf/pgsql/)       | Native PostgreSQL kernel, basic features (14~18)        |
-| [**`pg19.yml`**](/docs/conf/pg19/)         | PostgreSQL 19 Beta trial template                       |
-| [**`mssql.yml`**](/docs/conf/mssql/)       | Babelfish kernel, SQL Server protocol compatible (17/18) |
-| [**`polar.yml`**](/docs/conf/polar/)       | PolarDB PG kernel, Aurora/RAC style (17)                |
-| [**`ivory.yml`**](/docs/conf/ivory/)       | IvorySQL kernel, Oracle syntax compatible (18)          |
-| [**`fork/halo.yml`**](/docs/conf/mysql/)       | OpenHalo kernel, MySQL compatible (14)                  |
-| [**`pgtde.yml`**](/docs/conf/pgtde/)       | Percona PostgreSQL Server transparent encryption (18)   |
-| [**`oriole.yml`**](/docs/conf/oriole/)     | OrioleDB kernel, OLTP enhanced (16~18)                  |
-| [**`fork/agens.yml`**](/docs/conf/agens/)       | AgensGraph graph database kernel (18)                   |
-| [**`pgedge.yml`**](/docs/conf/pgedge/)     | pgEdge distributed database kernel (15~18, default 18)  |
-| [**`supabase.yml`**](/docs/conf/supabase/) | Supabase self-hosted configuration (15~18)              |
+| Template | Description |
+|----------------------------------------------|---------------------------------------|
+| [**`fork/pgsql.yml`**](/docs/conf/pgsql/) | Native PostgreSQL with core functionality (14–18) |
+| [**`pg19.yml`**](/docs/conf/pg19/) | Dedicated PostgreSQL 19 Beta evaluation template |
+| [**`fork/mssql.yml`**](/docs/conf/mssql/) | Babelfish, SQL Server protocol compatibility (17/18) |
+| [**`fork/polar.yml`**](/docs/conf/polar/) | PolarDB PG, Aurora/RAC-style architecture (17) |
+| [**`fork/ivory.yml`**](/docs/conf/ivory/) | IvorySQL, Oracle syntax compatibility (18) |
+| [**`fork/halo.yml`**](/docs/conf/mysql/) | OpenHalo, MySQL protocol compatibility (14) |
+| [**`fork/pgtde.yml`**](/docs/conf/pgtde/) | Percona PostgreSQL Server with transparent encryption (18) |
+| [**`fork/oriole.yml`**](/docs/conf/oriole/) | OrioleDB, enhanced OLTP (16–18) |
+| [**`fork/agens.yml`**](/docs/conf/agens/) | AgensGraph graph database (18) |
+| [**`fork/pgedge.yml`**](/docs/conf/pgedge/) | pgEdge distributed database (15–18, default 18) |
+| [**`fork/mongo.yml`**](/docs/conf/mongo/) | FerretDB / MongoDB compatibility example |
+| [**`supabase.yml`**](/docs/conf/supabase/) | Self-hosted Supabase (15–18) |
 {.wide .expand}
 
 You can add more nodes later or use [HA templates](#ha-templates) to plan your cluster from the start.
@@ -98,14 +101,14 @@ Use these templates for a deployment with multiple nodes and high availability:
 
 | Template                           | Description                                              |
 |------------------------------------|----------------------------------------------------------|
-| [**`dual.yml`**](/docs/conf/dual/) | 2-node semi-HA deployment                                |
-| [**`trio.yml`**](/docs/conf/trio/) | 3-node standard HA deployment                            |
-| [**`full.yml`**](/docs/conf/full/) | 4-node standard deployment                               |
-| [**`safe.yml`**](/docs/conf/safe/) | 4-node security-enhanced deployment with delayed replica |
-| [**`octo.yml`**](/docs/conf/octo/) | Compact 8-node HA simulation                             |
-| [**`simu.yml`**](/docs/conf/simu/) | 20-node production environment simulation                |
+| [**`ha/dual.yml`**](/docs/conf/dual/) | Two-node semi-HA deployment |
+| [**`ha/trio.yml`**](/docs/conf/trio/) | Three-node standard HA |
+| [**`ha/full.yml`**](/docs/conf/full/) | Four-node standard deployment |
+| [**`ha/safe.yml`**](/docs/conf/safe/) | Three-node security-focused deployment with an offline query replica |
+| [**`ha/octo.yml`**](/docs/conf/octo/) | Eight-node compact HA simulation |
+| [**`ha/simu.yml`**](/docs/conf/simu/) | Twenty-node production simulation |
 | [**`ha/citus.yml`**](/docs/conf/citus/) | Citus distributed HA PostgreSQL (14~18)             |
-
+{.full-width}
 
 ------
 
@@ -113,20 +116,24 @@ Use these templates for a deployment with multiple nodes and high availability:
 
 Use these templates to run applications with Docker:
 
-| Template                                       | Description                   |
-|------------------------------------------------|-------------------------------|
-| [**`supabase.yml`**](/docs/conf/supabase/)     | Start single-node Supabase    |
-| [**`odoo.yml`**](/docs/conf/odoo/)             | Start Odoo ERP system         |
-| [**`dify.yml`**](/docs/conf/dify/)             | Start Dify AI workflow system |
-| [**`electric.yml`**](/docs/conf/electric/)     | Start Electric sync engine    |
-| [**`insforge.yml`**](/docs/conf/insforge/)     | Start Insforge backend platform |
-| [**`hindsight.yml`**](/docs/conf/hindsight/)   | Start Hindsight application   |
-| [**`mattermost.yml`**](/docs/conf/mattermost/) | Start Mattermost collaboration platform |
-| [**`teable.yml`**](/docs/conf/teable/)         | Start Teable spreadsheet database |
-| [**`maybe.yml`**](/docs/conf/maybe/)           | Start Maybe finance app       |
-| [**`registry.yml`**](/docs/conf/registry/)     | Start Docker Registry         |
+| Template | Description |
+|----------------------------------------------------|---------------------|
+| [**`supabase.yml`**](/docs/conf/supabase/) | Single-node Supabase |
+| [**`app/supa.yml`**](/docs/conf/supabase/) | Minimal Supabase application stack |
+| [**`app/odoo.yml`**](/docs/conf/odoo/) | Odoo ERP |
+| [**`app/dify.yml`**](/docs/conf/dify/) | Dify AI workflows |
+| [**`app/electric.yml`**](/docs/conf/electric/) | Electric synchronization engine |
+| [**`app/insforge.yml`**](/docs/conf/insforge/) | Insforge backend platform |
+| [**`app/hindsight.yml`**](/docs/conf/hindsight/) | Hindsight application |
+| [**`app/mattermost.yml`**](/docs/conf/mattermost/) | Mattermost collaboration |
+| [**`app/teable.yml`**](/docs/conf/teable/) | Teable spreadsheet database |
+| [**`app/maybe.yml`**](/docs/conf/maybe/) | Maybe finance application |
+| [**`app/registry.yml`**](/docs/conf/registry/) | Docker Registry |
+| [**`app/immich.yml`**](/docs/conf/immich/) | Immich photo management |
+| [**`app/jumpserver.yml`**](/docs/conf/jumpserver/) | JumpServer bastion host |
+| [**`app/discourse.yml`**](/docs/conf/discourse/) | Discourse community forum |
+| [**`app/silo.yml`**](/docs/conf/silo/) | Standalone Silo object storage |
 {.wide .expand}
-
 
 ------
 
@@ -134,31 +141,34 @@ Use these templates to run applications with Docker:
 
 Pigsty also provides these demonstration templates:
 
-| Template                               | Description                                                              |
-|----------------------------------------|--------------------------------------------------------------------------|
-| [**`el.yml`**](/docs/conf/el/)         | Full-parameter config file for EL 8/9 systems                            |
-| [**`debian.yml`**](/docs/conf/debian/) | Full-parameter config file for Debian/Ubuntu systems                     |
-| **`remote.yml`**                       | Example config for monitoring remote PostgreSQL clusters or RDS          |
-| **`redis.yml`**                        | Redis cluster example configuration                                      |
-| [**`minio.yml`**](/docs/conf/minio/)   | 4-node multi-drive Silo cluster example (source default)                  |
-| [**`kafka.yml`**](/docs/conf/kafka/)   | Kafka dynamic KRaft example with a single-node dev cluster and a three-node secure cluster |
-| [**`demo/mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single-node/three-node pilot example; distinct from OpenHalo `conf/fork/halo.yml` |
-| [**`demo.yml`**](/docs/conf/demo/)     | Configuration file for Pigsty [public demo site](https://demo.pigsty.io) |
-| [**`fat.yml`**](/docs/conf/fat/)       | Single-node config with local repo and full feature set                   |
-| [**`infra.yml`**](/docs/conf/infra/)   | Deploy only the infrastructure modules                                    |
-| [**`vibe.yml`**](/docs/conf/vibe/)     | Vibe Coding / AI application development template                         |
-| [**`mongo.yml`**](/docs/conf/mongo/)   | FerretDB / MongoDB-compatible example                                     |
-| [**`docker.yml`**](/docs/conf/docker/) | Docker application host template                                          |
+| Template | Description |
+|----------------------------------------------|---------------------------------------------------------|
+| [**`demo/bare.yml`**](/docs/conf/bare/) | Minimal single-node starting configuration |
+| [**`demo/el.yml`**](/docs/conf/el/) | Full-parameter configuration for EL9/10 |
+| [**`demo/debian.yml`**](/docs/conf/debian/) | Full-parameter configuration for Debian/Ubuntu |
+| [**`demo/remote.yml`**](/docs/conf/remote/) | Monitor remote PostgreSQL or RDS |
+| [**`demo/redis.yml`**](/docs/conf/redis/) | Redis cluster example |
+| [**`demo/minio.yml`**](/docs/conf/minio/) | Four-node Silo cluster with multiple drives |
+| [**`demo/kafka.yml`**](/docs/conf/kafka/) | Kafka dynamic KRaft: single-node development and three-node secured clusters |
+| [**`demo/mysql.yml`**](/docs/conf/mysql84/) | Native MySQL 8.4 single/three-node pilot, distinct from OpenHalo `fork/halo.yml` |
+| [**`demo/kernel.yml`**](/docs/conf/kernel/) | Ten-node kernel matrix |
+| [**`demo/saas.yml`**](/docs/conf/saas/) | Feature-rich single node with all extensions |
+| [**`demo/wool.yml`**](/docs/conf/wool/) | Low-cost Alibaba Cloud ECS example |
+| [**`demo/demo.yml`**](/docs/conf/demo/) | Pigsty [public demo](https://demo.pigsty.io) configuration |
+| [**`fat.yml`**](/docs/conf/fat/) | Full-featured single node with a local repository |
+| [**`infra.yml`**](/docs/conf/infra/) | Infrastructure only |
+| [**`vibe.yml`**](/docs/conf/vibe/) | Vibe Coding / AI application development |
+| [**`docker.yml`**](/docs/conf/docker/) | Docker application host |
 {.wide .expand}
-
 
 ------
 
 ### Build Templates
 
-Use these templates for development and testing:
+These templates support package builds and cross-distribution testing:
 
 | Template          | Description                                                            |
-|-------------------|------------------------------------------------------------------------|
-| **`build/oss.yml`** | Open source build config for EL 9/10, Debian 12/13, Ubuntu 22.04/24.04/26.04 |
-| **`build/dev.yml`** | Development and testing build config                                  |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| [**`build/oss.yml`**](/docs/conf/oss/)   | Open source build config for EL 9/10, Debian 12/13, Ubuntu 22.04/24.04/26.04 |
+| [**`build/dev.yml`**](/docs/conf/dev/) | Seven-node local cross-distribution development, test, and build environment |
+{.full-width}

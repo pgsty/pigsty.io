@@ -1,7 +1,7 @@
 ---
 title: "Module: PGSQL"
 weight: 1000
-description: Declare, deploy, expose, observe, back up, and manage PostgreSQL clusters with Pigsty v4.5.
+description: Declare, deploy, expose, observe, back up, and manage PostgreSQL clusters with Pigsty v4.6.
 icon: fab fa-postgresql
 module: [PGSQL]
 categories: [Reference]
@@ -14,10 +14,9 @@ Patroni and etcd manage high availability.
 pgBackRest provides backup and PITR.
 HAProxy, VIP, DNS, PgBouncer, and the observability stack expose and monitor database services.
 
-This page follows the Pigsty v4.5.0 source layout.
+This page follows the Pigsty v4.6.0 source layout.
 For exact defaults, use the [parameter reference](/docs/pgsql/param/).
 Keeping defaults in one reference prevents conflicting or outdated copies.
-
 
 ----------------
 
@@ -87,7 +86,7 @@ They cover fleets, clusters, instances, databases, tables, queries, sessions, tr
 
 ## Parameter Groups
 
-The [PGSQL parameter reference](/docs/pgsql/param/) is the single documentation source for v4.5.0 defaults and semantics:
+The [PGSQL parameter reference](/docs/pgsql/param/) is the single documentation source for v4.6.0 defaults and semantics:
 
 - `PG_ID`: cluster and instance identity.
 - `PG_BUSINESS`: users, databases, services, and other business objects.

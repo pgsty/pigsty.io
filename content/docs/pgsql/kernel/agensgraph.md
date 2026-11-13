@@ -19,9 +19,9 @@ Pigsty integrates AgensGraph through `pg_mode: agens` while preserving most of t
 
 - Kernel package alias: `agensgraph`, resolved to `agensgraph-18` by the PG18 template
 - Mode identifier: `pg_mode: agens`
-- Validated version in this guide: `AgensGraph 2.18.6.0` (`agensgraph-18`, Debian 13 packages for amd64 / arm64)
-- Example version string: `PostgreSQL 18.6 (AgensGraph 2.18.6.0)`; actual patch versions depend on the installed package and `SELECT version()`
-- Current development template: `fork/agens`
+- Current package baseline: `AgensGraph 2.18.6.1`, based on `PostgreSQL 18.6` (`agensgraph-18`)
+- Example version string: `PostgreSQL 18.6 (AgensGraph 2.18.6.1)`; actual patch versions depend on the installed package and `SELECT version()`
+- Template: [`fork/agens`](https://github.com/pgsty/pigsty/blob/main/conf/fork/agens.yml); `-c agens` and `-c fork/agens` are equivalent
 - Typical use cases: graph relationship analysis, path queries, knowledge graphs, and risk/association analysis layered onto relational data
 
 AgensGraph uses the PostgreSQL wire protocol.
@@ -33,9 +33,7 @@ AgensGraph adds graph models, Cypher syntax, and graph objects such as vertices 
 
 ## Installation
 
-Use the built-in Pigsty template:
-
-The commands below use the [current development template](https://github.com/pgsty/pigsty/blob/main/conf/fork/agens.yml), which defaults to AgensGraph 2.18 / PostgreSQL 18. The released [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/agens.yml) still uses `-c agens` and defaults to PG17. For a new PG18 deployment with that release, explicitly set `pg_version: 18`.
+Use Pigsty's [`fork/agens`](/docs/conf/agens/) template ([`conf/fork/agens.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/agens.yml)), which defaults to AgensGraph 2.18 / PostgreSQL 18:
 
 ```bash
 ./configure -c fork/agens
@@ -69,11 +67,8 @@ all:
         pg_packages: [ agensgraph, pgsql-common ]
 ```
 
-AgensGraph does not require a special preload stack, unlike pgEdge or Babelfish.
-Most standard Pigsty procedures for HA, backup, monitoring, access control, and IaC remain applicable.
+AgensGraph does not require an extra set of proprietary preload libraries like pgEdge or Babelfish, so standard Pigsty HA, backup, monitoring, access control, and IaC workflows remain applicable. With `pg_mode: agens`, Pigsty injects `pg-version-force=18` (matching `pg_version`) into `/etc/pgbackrest/pgbackrest.conf` and temporary PITR configuration. It also sets `checksum-page=n` in `pgbackrest.conf`: AgensGraph stores plain-text graph metadata in `base/<oid>/AG_VERSION`, not standard PostgreSQL pages, so page checksums would fail the backup.
 If graph traversal and complex path queries dominate the workload, examine `work_mem`, `shared_buffers`, and planner cost settings.
-Do not assume that the default OLTP settings are suitable.
-
 
 --------
 
@@ -123,13 +118,13 @@ Graph analysis uses AgensGraph's mixed Cypher and SQL syntax. Apache AGE's `cyph
 
 ## Notes
 
-- The current development template targets new AgensGraph 2.18 / PG18 deployments. PG18 cannot start a PG17 data directory. For existing clusters, follow the [upstream upgrade guide](https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/upgrade-to-2.18.html) to evaluate `pg_upgrade` or dump and reload, and verify query compatibility.
+- `fork/agens` targets AgensGraph 2.18 / PG18. PG18 cannot directly use a PG17 data directory. For existing clusters, evaluate `pg_upgrade` or logical export/import using the [**upstream upgrade guide**](https://tech.skaiworldwide.com/docs/en/agensgraph/latest/release_notes/upgrade-to-2.18.html), and verify query compatibility.
+- If upgrading from a configuration without `checksum-page=n` and previous backups reported `AG_VERSION` checksum errors or warnings, run a fresh full backup (`pg-backup full`) after updating configuration.
 - The default `fork/agens` template uses one node for quick validation. Production deployments should use an HA topology.
 - Third-party PostgreSQL extensions may be incompatible with AgensGraph. Verify compatibility first.
 - Graph objects and relational objects can coexist in one database. For production, clear database or naming conventions usually help you distinguish them.
 - Tune memory and cost parameters for the size of your graph model. Check that the defaults are suitable before you use them.
 - For compatibility or semantic issues with the AgensGraph kernel, consult the official manual and upstream issues first.
-
 
 --------
 

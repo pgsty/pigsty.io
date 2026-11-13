@@ -7,7 +7,6 @@ weight: 5420
 
 Check the GPG signature to verify the integrity of packages downloaded from the Pigsty repository. This document explains how to import the package signing key.
 
-
 ---------
 
 ## Summary
@@ -24,7 +23,6 @@ sub   rsa4096 2024-07-16 [E]
 ```
 
 You can find the public GPG key at: https://repo.pigsty.io/key or https://repo.pigsty.cc/key
-
 
 ---------
 
@@ -52,21 +50,20 @@ sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL https://repo.pigsty.cc/key | sudo gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg
 ```
 
-
 ---------
 
 ## GitHub Release Asset Verification
 
-The source archive, offline bundles, and `checksums` on the [`v4.5.0` GitHub release page](https://github.com/pgsty/pigsty/releases/tag/v4.5.0) each have a matching `.asc` signature. Download the target file, its `.asc` file, and `KEYS` from the same tag, then verify:
+Source archives, offline packages, and `checksums` downloaded from the [**v4.6.0 GitHub release**](https://github.com/pgsty/pigsty/releases/tag/v4.6.0) have matching `.asc` signatures. Download the target file, its `.asc` signature, and the tag's `KEYS` file, then verify:
 
 ```bash
-curl -fsSLO https://raw.githubusercontent.com/pgsty/pigsty/v4.5.0/KEYS
+curl -fsSLO https://raw.githubusercontent.com/pgsty/pigsty/v4.6.0/KEYS
 gpg --import KEYS
 gpg --fingerprint B9BD8B20
-gpg --verify pigsty-v4.5.0.tgz.asc pigsty-v4.5.0.tgz
+gpg --verify pigsty-v4.6.0.tgz.asc pigsty-v4.6.0.tgz
 ```
 
-The full fingerprint must match `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` above. Verify offline bundles with `gpg --verify <package>.asc <package>` in the same way. See [offline packages](/docs/setup/offline/#offline-packages) for the SHA-256 list.
+The full fingerprint must match `9592A7BC7A682E7333376E09E7935D8DB9BD8B20` above. Verify offline packages with `gpg --verify <package>.asc <package>`, and check their SHA-256 digests against the release assets or `checksums` file. See [**offline installation**](/docs/setup/offline/#offline-packages).
 
 ---------
 
@@ -129,13 +126,11 @@ UWEnnC1xBSasNebw4fSE8AJg9JMCRw+3GAetlotOeW9q7PN6yrXD9rGuV/QquQNd
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-
 ---------
 
 ## Usage
 
 To distribute your own repository with your own GPG key, follow this tutorial.
-
 
 ### Install GPG
 
@@ -151,7 +146,6 @@ sudo apt install gnupg2 pinentry-curses
 sudo dnf install gnupg2 pinentry-curses
 ```
 
-
 ### Generate GPG Key
 
 To generate a GPG key, run:
@@ -160,7 +154,6 @@ To generate a GPG key, run:
 gpg --full-generate-key
 ```
 
-
 ### Import GPG Key
 
 If you have a GPG private key, import it with:
@@ -168,7 +161,6 @@ If you have a GPG private key, import it with:
 ```bash
 gpg --import mykey.sec.as
 ```
-
 
 ### List GPG Key
 
@@ -192,7 +184,6 @@ uid           [ unknown] Ruohang Feng (Pigsty) <rh@vonng.com>
 ssb   rsa4096 2024-07-16 [E]
 ```
 
-
 ### Sign RPM Packages
 
 To sign RPM packages with a specific GPG key, specify the key in `~/.rpmmacros`:
@@ -207,7 +198,6 @@ To sign RPM packages with a specific GPG key, specify the key in `~/.rpmmacros`:
 ```bash
 rpm --addsign yourpackage.rpm
 ```
-
 
 ### Sign DEB Packages
 

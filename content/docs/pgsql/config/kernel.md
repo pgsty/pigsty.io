@@ -9,9 +9,7 @@ categories: [Reference]
 
 > Choosing a "kernel" in Pigsty means determining the PostgreSQL major version, mode/distribution, packages to install, and tuning templates to load.
 
-The Pigsty v4.5 source supports PostgreSQL 14-18 and uses 18 by default.
-Use the following configuration settings to select a kernel.
-
+Pigsty v4.6 supports PostgreSQL 14–18 and defaults to PostgreSQL 18, with release baseline `18.7`. The sections below show how to select these through configuration.
 
 ----------------
 

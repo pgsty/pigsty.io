@@ -74,5 +74,4 @@ The `ha/full` template shows how the Pigsty components work together.
 
 **Notes**:
 - Use this template for demonstrations and testing. For production, see [`ha/trio`](/docs/conf/trio/) or [`ha/safe`](/docs/conf/safe/).
-- Object-storage backups through MINIO are enabled by default, with Silo as the backend.
-  If you do not need them, comment out the related configuration.
+- MINIO object storage backups are enabled by default with Silo as the backend; comment out the related settings if not needed

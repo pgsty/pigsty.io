@@ -70,3 +70,22 @@ To refresh the VIP configuration and restart the VIP-Manager, use the following 
 ```bash
 ./pgsql.yml -t pg_vip
 ```
+
+------
+
+## TLS Certificates and SAN
+
+During initial issuance of `/pg/cert/server.crt`, if `pg_vip_enabled` / `pg_vip_address` or node `vip_enabled` / `vip_address` is configured, Pigsty adds the mask-free VIP to the server certificate's Subject Alternative Name (SAN), allowing secure VIP connections with `sslmode=verify-full`.
+
+Certificate tasks skip reissuance when `files/pki/pgsql/<cls>-<seq>.crt` already exists on the admin node. If you add or change `pg_vip_address` **after initialization**, remove the cluster's old instance certificate files there, reissue and distribute certificates, then reload PostgreSQL:
+
+```bash
+# On the admin node, remove old server certificates; replace pg-test-* with the actual instance prefix
+rm -f files/pki/pgsql/pg-test-*.{key,crt} files/pki/csr/pg-test-*.csr
+
+# Reissue/distribute certificates and refresh VIP configuration
+./pgsql.yml -l pg-test -t pg_cert,pg_vip
+
+# Reload PostgreSQL to activate the new server certificate
+ansible pg-test -b -m shell -a 'su - postgres -c "pg_ctl -D /pg/data reload"'
+```

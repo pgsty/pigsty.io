@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **136** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **135** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -129,7 +129,6 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`passwordcheck`](/ext/e/passwordcheck) | `$libdir/passwordcheck` | checks user passwords and reject weak password |
 | [`documentdb`](/ext/e/documentdb) | `pg_cron,pg_documentdb_core,pg_documentdb` | API surface for DocumentDB for PostgreSQL |
 | [`documentdb_core`](/ext/e/documentdb_core) | `pg_documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
-| [`documentdb_distributed`](/ext/e/documentdb_distributed) | `pg_documentdb,pg_documentdb_core` | Multi-Node API surface for DocumentDB |
 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `pg_documentdb_extended_rum` | DocumentDB Extended RUM index access method |
 | [`pgtt`](/ext/e/pgtt) | `pgtt` | Extension to add Global Temporary Tables feature to PostgreSQL |
 | [`pg_statement_rollback`](/ext/e/pg_statement_rollback) | `pg_statement_rollback` | Server side rollback at statement level for PostgreSQL like Oracle or DB2 |

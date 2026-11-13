@@ -6,9 +6,7 @@ icon: fa-solid fa-network-wired
 categories: [Reference]
 ---
 
-Development sources use `conf/fork/pgedge.yml`; v4.5.0 uses `conf/pgedge.yml`, selected with `-c pgedge`.
-
-The `pgedge` configuration template uses the pgEdge kernel instead of native PostgreSQL. The kernel provides distributed, multi-master capabilities for edge deployments.
+The `pgedge` template (`conf/fork/pgedge.yml`, selected with `-c pgedge` or `-c fork/pgedge`) replaces native PostgreSQL with pgEdge, which provides distributed and multi-master replication for edge deployments.
 
 For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. For kernel differences and version references, see the [PGSQL kernel overview](/docs/pgsql/kernel/).
 
@@ -17,7 +15,7 @@ For the full guide, see: **[pgEdge kernel guide](/docs/pgsql/kernel/pgedge/)**. 
 
 ## Overview
 
-- Config name: `pgedge`
+- Config name: `pgedge` (explicit path: `fork/pgedge`)
 - Node count: Single node
 - Description: pgEdge (PG18) distributed kernel template
 - Supported OS: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`; PG18 packages are available for both RPM and DEB platforms.
@@ -35,10 +33,9 @@ Enable with:
 
 ## Template Content
 
-Development source: `conf/fork/pgedge.yml`; release source: [`v4.5.0: conf/pgedge.yml`](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/pgedge.yml).
+Source: [`pigsty/conf/fork/pgedge.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/pgedge.yml)
 
-{{< include file="yaml/pgedge.yml" code=true lang="yaml" >}}
-
+{{< include file="yaml/fork/pgedge.yml" code=true lang="yaml" >}}
 
 --------
 

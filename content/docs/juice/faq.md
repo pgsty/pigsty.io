@@ -25,6 +25,15 @@ juice_instances:
     port: 9568
 ```
 
+`state: absent` entries are exempt from port/path conflict checks, but their `unit` must remain unique across all instances on the node. To replace an instance, mark the old one `absent` and give the replacement a new name while reusing the port.
+
+--------
+
+## What Are the Instance Name Restrictions?
+
+An instance name (the `juice_instances` key) is the JuiceFS volume name: 3–63 lowercase letters, digits, or hyphens, with no leading or trailing hyphen.
+`jfs` and `pg-fs` are valid; `fs`, `pg_fs`, and `JFS` are not. `state: absent` entries are exempt, so invalid legacy names can still be cleaned up.
+
 --------
 
 ## Why does changing `data` not take effect?
@@ -44,17 +53,24 @@ Only `juicefs format --no-update` uses `data`. This setting does not change the 
 
 --------
 
+## What Happens If I Run `juice.yml` Without `-l`?
+
+Hosts where `juice_instances` is undefined, `null`, or empty are skipped, as are hosts with no matching instance for `-e fsname=<name>`. No packages, cache directories, or target files are created on these hosts. Hosts with defined instances run normally.
+Using `-l` to make the scope explicit is still recommended.
+
+--------
+
 ## How to remove an instance?
 
-1. Set instance `state` to `absent`
+1. Stop applications using the mount point and set the instance `state` to `absent`. With the default `unit`, `path` and `meta` can be omitted.
 2. Run:
 
 ```bash
-./juice.yml -l <host> -t juice_clean,juice_register
+./juice.yml -l <host> -t juice_clean
 ```
 
-Removal does not delete PostgreSQL metadata or object storage data.
-`juice_register` updates the target file. If you run only `juice_clean`, a stale monitoring scrape endpoint remains.
+`juice_clean` stops the service and requires a successful normal unmount. It does not use `umount -l`; a busy mount causes an immediate failure that preserves the unit and environment files for troubleshooting. On success, it removes configuration and updates or deletes the node's target file. Metadata, file data (PostgreSQL `jfs_blob` or object storage), local cache, and the mount point directory remain.
+In v4.5.0 and earlier, `-t juice_clean` does not execute cleanup tasks. Use a full run without tags: `./juice.yml -l <host> -e fsname=<name>`.
 
 --------
 
@@ -74,6 +90,14 @@ Depends on `data`:
 - Use the same `meta` and instance name on all nodes
 - Only one node needs to format the filesystem. Other nodes skip this operation.
 - Ensure `port` does not conflict on each node
+- Keep `owner` / `group` / `mode` identical across nodes to avoid overwriting each other's settings
+
+--------
+
+## Which Directory Do `owner` / `group` / `mode` Affect?
+
+They affect the JuiceFS filesystem root, not the local directory underneath the mount. The playbook sets them only after mount readiness. They are stored in metadata and shared by all clients mounting that filesystem.
+A newly formatted filesystem root is `root:root 0777`; the playbook applies the configured values (default `root:root 0755`). A `--read-only` client cannot modify these attributes. If actual values differ from the configuration, `juice_dir` fails; make the configuration match the actual values.
 
 --------
 
@@ -96,3 +120,5 @@ After you update `mount` in the instance, refresh the configuration. Then restar
 ./juice.yml -l <host> -t juice_config,juice_launch
 systemctl restart juicefs-<name>
 ```
+
+The playbook never automatically restarts a running instance. Restarting unmounts and remounts the filesystem, interrupting open files and container bind mounts.

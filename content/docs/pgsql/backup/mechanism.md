@@ -194,6 +194,11 @@ pgbackrest_repo:
 `pgsql-pitr.yml` generates a separate temporary configuration at `/pg/conf/pitr.conf`.
 PostgreSQL recovery output goes to `/pg/tmp/recovery.log`.
 
+For specific PostgreSQL forks, templates inject compatibility options by `pg_mode` when rendering `pgbackrest.conf` and `pitr.conf`:
+
+- **`ivory` (IvorySQL)**: add `archive-header-check=n` and `pg-version-force=<pg_version>` to both configurations.
+- **`agens` (AgensGraph)**: add `pg-version-force=<pg_version>` to both, and `checksum-page=n` to `pgbackrest.conf` to skip page checksums on the nonstandard `AG_VERSION` file.
+- **`polar` (PolarDB)**: add `archive-timeout=600` to `[global:backup]` and `[global:check]` in `pgbackrest.conf`, avoiding archive waits that time out before the active WAL segment switches.
 
 --------
 

@@ -65,7 +65,8 @@ Choose a backup frequency that meets the measured RTO within the available backu
 
 ## Pigsty Presets
 
-Pigsty provides two candidate repository definitions. [`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects **one** for the generated `repo1` configuration.
+Pigsty provides two **candidate repository** definitions. [`pgbackrest_method`](/docs/pgsql/param/#pgbackrest_method) selects **one**, and Pigsty v4 templates render only that entry as `repo1`.
+Keeping both `local` and `minio` does not enable dual-repository backups. A real pgBackRest multi-repository setup requires explicit additional configuration and separate validation.
 
 **Standard policy: local repository and daily full backup.** This policy is simple and restores through local I/O. Use it for development or environments with separate protection against host loss:
 

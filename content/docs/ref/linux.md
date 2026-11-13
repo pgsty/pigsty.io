@@ -138,9 +138,8 @@ For cloud deployment, consider these OS image prefixes in [OpenTofu](/docs/deplo
 | Ubuntu 24.04.5 | `ubuntu_24_04_x64_20G`    |
 | Ubuntu 26.04.1 | `ubuntu_26_04_x64_20G`    |
 | Debian 12.15   | `debian_12_15_x64`        |
-| Debian 13.6    | `debian_13_6_x64`         |
+| Debian 13.7    | `debian_13_7_x64`         |
 {.full-width}
-
 
 | **aarch64**    | Aliyun Image Prefix         |
 |:---------------|:----------------------------|
@@ -151,7 +150,7 @@ For cloud deployment, consider these OS image prefixes in [OpenTofu](/docs/deplo
 | Ubuntu 24.04.5 | `ubuntu_24_04_arm64_20G`    |
 | Ubuntu 26.04.1 | `ubuntu_26_04_arm64_20G`    |
 | Debian 12.15   | `debian_12_15_arm64`        |
-| Debian 13.6    | `debian_13_6_arm64`         |
+| Debian 13.7    | `debian_13_7_arm64`         |
 {.full-width}
 
-> Note: Debian upstream is currently 13.7, but Alibaba Cloud has not published a Debian 13.7 public image yet, so the OpenTofu Aliyun prefix remains `debian_13_6_*`.
+> Alibaba Cloud's public image selector matches the latest baseline build by prefix. For example, Debian 13.7 matches `debian_13_7_x64_20G_alibase_20261019.vhd` and `debian_13_7_arm64_20G_alibase_20261019.vhd`.

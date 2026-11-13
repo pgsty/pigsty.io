@@ -15,6 +15,7 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`INFRA`**](/docs/infra/playbook)   | 3  | `deploy.yml` `infra.yml` `infra-rm.yml`                                                                                         |
 | [**`NODE`**](/docs/node/playbook)     | 2  | `node.yml` `node-rm.yml`                                                                                                        |
 | [**`ETCD`**](/docs/etcd/playbook)     | 2  | `etcd.yml` `etcd-rm.yml`                                                                                                        |
+| [**`VAULT`**](/docs/vault/playbook)   | 2  | `vault.yml` `vault-rm.yml`                                                                                                      |
 | [**`PGSQL`**](/docs/pgsql/playbook)   | 7  | `pgsql.yml` `pgsql-rm.yml` <br> `pgsql-user.yml` `pgsql-db.yml` <br> `pgsql-monitor.yml` `pgsql-migration.yml` `pgsql-pitr.yml` |
 | [**`REDIS`**](/docs/redis/playbook)   | 2  | `redis.yml` `redis-rm.yml`                                                                                                      |
 | [**`MINIO`**](/docs/minio/playbook)   | 2  | `minio.yml` `minio-rm.yml`                                                                                                      |
@@ -22,40 +23,42 @@ This page summarizes Pigsty v4.x playbook entries and usage guidance by module. 
 | [**`JUICE`**](/docs/juice/playbook)   | 1  | `juice.yml`                                                                                                                     |
 | [**`VIBE`**](/docs/vibe/playbook)     | 1  | `vibe.yml`                                                                                                                      |
 | [**`KAFKA`**](/docs/kafka/playbook)   | 2  | `kafka.yml` `kafka-rm.yml`                                                                                                      |
-| [**`MYSQL` (pilot)**](/docs/mysql/) | 2 | `mysql.yml` `mysql-rm.yml`                                                                                                   |
+| [**`MYSQL`**](/docs/mysql/playbook)   | 2  | `mysql.yml` `mysql-rm.yml`                                                                                                      |
 {.full-width .wide .expand}
 
 --------
 
 ## Playbook Matrix
 
-| Playbook                                                                   |  Module  | Purpose |
-|:---------------------------------------------------------------------|:--------:|:---------------------------------------------|
-| [**`deploy.yml`**](/docs/infra/playbook#deployyml)                   | `INFRA`  | One-pass deployment for the core chain (Infra/Node/Etcd/PGSQL, enabling MINIO by config) |
-| [**`infra.yml`**](/docs/infra/playbook#infrayml)                     | `INFRA`  | Initialize infrastructure nodes |
-| [**`infra-rm.yml`**](/docs/infra/playbook#infra-rmyml)               | `INFRA`  | Remove infrastructure components |
-| [**`node.yml`**](/docs/node/playbook#nodeyml)                        |  `NODE`  | Node onboarding and baseline convergence |
-| [**`node-rm.yml`**](/docs/node/playbook#node-rmyml)                  |  `NODE`  | Node offboarding |
-| [**`etcd.yml`**](/docs/etcd/playbook#etcdyml)                        |  `ETCD`  | ETCD install/scale-out |
-| [**`etcd-rm.yml`**](/docs/etcd/playbook#etcd-rmyml)                  |  `ETCD`  | ETCD remove/scale-in |
-| [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml)                     | `PGSQL`  | Initialize PostgreSQL cluster or add instance |
-| [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml)               | `PGSQL`  | Remove PostgreSQL cluster/instance |
-| [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml)           | `PGSQL`  | Add business users |
-| [**`pgsql-db.yml`**](/docs/pgsql/playbook#pgsql-dbyml)               | `PGSQL`  | Add business databases |
-| [**`pgsql-monitor.yml`**](/docs/pgsql/playbook#pgsql-monitoryml)     | `PGSQL`  | Register remote PostgreSQL for monitoring |
-| [**`pgsql-migration.yml`**](/docs/pgsql/playbook#pgsql-migrationyml) | `PGSQL`  | Generate migration runbook and scripts |
-| [**`pgsql-pitr.yml`**](/docs/pgsql/playbook#pgsql-pitryml)           | `PGSQL`  | Point-in-time recovery (PITR) |
-| [**`redis.yml`**](/docs/redis/playbook#redisyml)                     | `REDIS`  | Deploy Redis |
-| [**`redis-rm.yml`**](/docs/redis/playbook#redis-rmyml)               | `REDIS`  | Remove Redis |
-| [**`minio.yml`**](/docs/minio/playbook#minioyml)                     | `MINIO`  | Deploy Silo |
-| [**`minio-rm.yml`**](/docs/minio/playbook#minio-rmyml)               | `MINIO`  | Remove Silo, its configuration, and optional data |
-| [**`docker.yml`**](/docs/docker/playbook#dockeryml)                  | `DOCKER` | Deploy Docker engine |
-| [**`juice.yml`**](/docs/juice/playbook#juiceyml)                     | `JUICE`  | Deploy/remove JuiceFS instances |
-| [**`vibe.yml`**](/docs/vibe/playbook#vibeyml)                        |  `VIBE`  | Deploy VIBE dev environment |
-| [**`kafka.yml`**](/docs/kafka/playbook#kafkayml)                     | `KAFKA`  | Create or converge a complete dynamic KRaft cluster |
-| [**`kafka-rm.yml`**](/docs/kafka/playbook#kafka-rmyml)               | `KAFKA`  | Remove a Kafka cluster, or safely retire a single member |
-| [**`mysql.yml`**](/docs/mysql/)                                | `MYSQL`  | Converge a native MySQL 8.4 single node or three-node InnoDB Cluster (pilot) |
-| [**`mysql-rm.yml`**](/docs/mysql/)                             | `MYSQL`  | Stop or retire a native MySQL instance or cluster while preserving local state (pilot) |
+| Playbook | Module | Purpose |
+|:---------------------------------------------------------------------|:--------:|:------------------------------------------------------------|
+| [**`deploy.yml`**](/docs/infra/playbook#deployyml) | `INFRA` | Deploy the core chain: infra → node → etcd → vault → minio → pgsql |
+| [**`infra.yml`**](/docs/infra/playbook#infrayml) | `INFRA` | Initialize infrastructure nodes |
+| [**`infra-rm.yml`**](/docs/infra/playbook#infra-rmyml) | `INFRA` | Remove infrastructure components |
+| [**`node.yml`**](/docs/node/playbook#nodeyml) | `NODE` | Manage nodes and baseline configuration |
+| [**`node-rm.yml`**](/docs/node/playbook#node-rmyml) | `NODE` | Decommission nodes |
+| [**`etcd.yml`**](/docs/etcd/playbook#etcdyml) | `ETCD` | Install or expand ETCD |
+| [**`etcd-rm.yml`**](/docs/etcd/playbook#etcd-rmyml) | `ETCD` | Remove or shrink ETCD |
+| [**`vault.yml`**](/docs/vault/playbook#vaultyml) | `VAULT` | Initialize or converge OpenBao secrets clusters |
+| [**`vault-rm.yml`**](/docs/vault/playbook#vault-rmyml) | `VAULT` | Remove OpenBao clusters or retire members |
+| [**`pgsql.yml`**](/docs/pgsql/playbook#pgsqlyml) | `PGSQL` | Initialize PostgreSQL clusters or add instances |
+| [**`pgsql-rm.yml`**](/docs/pgsql/playbook#pgsql-rmyml) | `PGSQL` | Remove PostgreSQL clusters/instances |
+| [**`pgsql-user.yml`**](/docs/pgsql/playbook#pgsql-useryml) | `PGSQL` | Add application users |
+| [**`pgsql-db.yml`**](/docs/pgsql/playbook#pgsql-dbyml) | `PGSQL` | Add application databases |
+| [**`pgsql-monitor.yml`**](/docs/pgsql/playbook#pgsql-monitoryml) | `PGSQL` | Monitor remote PostgreSQL |
+| [**`pgsql-migration.yml`**](/docs/pgsql/playbook#pgsql-migrationyml) | `PGSQL` | Generate migration runbooks/scripts |
+| [**`pgsql-pitr.yml`**](/docs/pgsql/playbook#pgsql-pitryml) | `PGSQL` | Point-in-time recovery |
+| [**`redis.yml`**](/docs/redis/playbook#redisyml) | `REDIS` | Deploy Redis |
+| [**`redis-rm.yml`**](/docs/redis/playbook#redis-rmyml) | `REDIS` | Remove Redis |
+| [**`minio.yml`**](/docs/minio/playbook#minioyml) | `MINIO` | Deploy Silo |
+| [**`minio-rm.yml`**](/docs/minio/playbook#minio-rmyml) | `MINIO` | Remove Silo, configuration, and optional data |
+| [**`docker.yml`**](/docs/docker/playbook#dockeryml) | `DOCKER` | Deploy Docker |
+| [**`juice.yml`**](/docs/juice/playbook#juiceyml) | `JUICE` | Deploy/remove JuiceFS instances |
+| [**`vibe.yml`**](/docs/vibe/playbook#vibeyml) | `VIBE` | Deploy the VIBE development environment |
+| [**`kafka.yml`**](/docs/kafka/playbook#kafkayml) | `KAFKA` | Create/converge complete dynamic KRaft clusters |
+| [**`kafka-rm.yml`**](/docs/kafka/playbook#kafka-rmyml) | `KAFKA` | Remove Kafka clusters or safely retire members |
+| [**`mysql.yml`**](/docs/mysql/playbook) | `MYSQL` | Converge native MySQL 8.4 standalone or three-node InnoDB Cluster |
+| [**`mysql-rm.yml`**](/docs/mysql/playbook) | `MYSQL` | Remove clusters/members; delete data/configuration by default, retain backups |
 {.full-width .wide .expand}
 
 --------
@@ -80,28 +83,27 @@ The following playbooks are cross-module helpers.
 
 Several modules provide deletion safeguards through `*_safeguard` parameters:
 
-- **PGSQL**: [**`pg_safeguard`**](/docs/pgsql/param#pg_safeguard)
-- **ETCD**: [**`etcd_safeguard`**](/docs/etcd/param#etcd_safeguard)
-- **MINIO**: [**`minio_safeguard`**](/docs/minio/param#minio_safeguard)
-- **REDIS**: [**`redis_safeguard`**](/docs/redis/param#redis_safeguard)
-- **KAFKA**: [**`kafka_safeguard`**](/docs/kafka/param#kafka_safeguard)
-- **MYSQL (pilot)**: [`mysql_safeguard`](/docs/mysql/) and an exact-match `mysql_rm_confirm` jointly protect native MySQL retirement
+- **PGSQL**: [**`pg_safeguard`**](/docs/pgsql/param#pg_safeguard) protects PostgreSQL clusters, default `false`
+- **ETCD**: [**`etcd_safeguard`**](/docs/etcd/param#etcd_safeguard) protects Etcd clusters, default `false`
+- **VAULT**: [**`vault_safeguard`**](/docs/vault/param#vault_safeguard) protects OpenBao secrets clusters, **default `true`**
+- **MINIO**: [**`minio_safeguard`**](/docs/minio/param#minio_safeguard) protects Silo clusters, default `false`
+- **REDIS**: [**`redis_safeguard`**](/docs/redis/param#redis_safeguard) protects Redis instances, default `false`
+- **KAFKA**: [**`kafka_safeguard`**](/docs/kafka/param#kafka_safeguard) blocks Kafka removal, default `false`
+- **MYSQL**: [**`mysql_safeguard`**](/docs/mysql/param#mysql_safeguard) protects native MySQL instances/clusters, **default `true`**
 
-The PGSQL, ETCD, MINIO, REDIS, and KAFKA role defaults are explicitly `false`. Set their safeguards to `true` for initialized production clusters.
+PGSQL, ETCD, MINIO, REDIS, and KAFKA default to `false`; explicitly enable their safeguards on initialized production clusters. **VAULT and MYSQL default to `true`** to prevent accidental destruction of encryption keys or MySQL data. `mysql-rm.yml` also defaults to `mysql_rm_data: true`, removing `/data/mysql`, configuration, and Router state while retaining `mysql_backup_dir`. Only full-cluster or standalone removal supports `-e mysql_rm_data=false` to stop with data retained.
 
-Native MySQL uses `mysql_safeguard: true` by default. After you disable it, you must still set `mysql_rm_confirm` to exactly match the target instance or cluster.
-
-If the safeguard is `true`, the corresponding `*-rm.yml` playbook aborts immediately. To override it, use the command line:
+When a safeguard is `true`, its `*-rm.yml` aborts immediately. After verifying risk and backups, override it explicitly on the command line:
 
 ```bash
 ./pgsql-rm.yml -l pg-test -e pg_safeguard=false
 ./etcd-rm.yml  -l etcd -e etcd_safeguard=false
+./vault-rm.yml -l vault -e vault_safeguard=false
 ./minio-rm.yml -l minio -e minio_type=silo -e minio_safeguard=false
 ./redis-rm.yml -l redis-test -e redis_safeguard=false
 ./kafka-rm.yml -l kf-main -e kafka_safeguard=false
-./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
+./mysql-rm.yml -l my-test -e mysql_safeguard=false
 ```
-
 
 ### Limiting Execution Scope
 
@@ -168,6 +170,18 @@ bin/etcd-add <ip>                # add etcd member (wrapper)
 bin/etcd-rm <ip>                 # remove etcd member (wrapper)
 ```
 
+### VAULT Module
+
+```bash
+./vault.yml -l vault                           # initialize or converge an OpenBao secrets cluster
+./vault-rm.yml -l vault -e vault_safeguard=false   # remove cluster after collecting a final snapshot on the control node
+./vault-rm.yml -l <ip> -e vault_safeguard=false    # safely remove one member
+bin/vault-add                                  # initialize or converge cluster (wrapper)
+bin/vault-add <ip>                             # add member and refresh cluster configuration (wrapper)
+bin/vault-rm                                   # remove entire cluster (wrapper)
+bin/vault-rm <ip>                              # retire one member (wrapper)
+```
+
 ### PGSQL Module
 
 ```bash
@@ -220,15 +234,14 @@ bin/pgmon-add <cls>              # monitor remote cluster (wrapper)
 
 For ordinary convergence, `-l` must include every declared member of the selected Kafka cluster. Only `kafka-rm.yml` accepts a single member for retirement.
 
-### MYSQL Pilot Module
+### MYSQL Module
 
 ```bash
-./mysql.yml -l <cls> --check
-./mysql.yml -l <cls>             # accepts only a complete 1- or 3-member cluster scope
-./mysql-rm.yml -l <instance> --check \
-  -e mysql_safeguard=false -e mysql_rm_confirm=<instance>
-./mysql-rm.yml -l <cls> \
-  -e mysql_safeguard=false -e mysql_rm_confirm=<cls>
+./mysql.yml -l <cls> --check     # read-only preflight
+./mysql.yml -l <cls>             # create/converge a complete 1- or 3-member cluster
+./mysql-rm.yml -l <cls> -e mysql_safeguard=false                      # remove cluster, data, and configuration by default
+./mysql-rm.yml -l <cls> -e mysql_safeguard=false -e mysql_rm_data=false  # stop the whole cluster with data retained
+./mysql-rm.yml -l <ip> -e mysql_safeguard=false                       # safely remove one HA member through a survivor
 ```
 
-`mysql-rm.yml` stops the service, writes a retirement marker, and deregisters monitoring. It preserves data directories, backups, configuration, certificates, packages, and InnoDB Cluster metadata.
+`mysql-rm.yml` requires explicit `-l` and `-e mysql_safeguard=false`. Default `mysql_rm_data=true` destroys `/data/mysql`, configuration, and Router state, but always retains physical backups under `mysql_backup_dir` (default `/data/backups/mysql`). A single-member target that is primary is switched away first. Single-member removal does not support `-e mysql_rm_data=false`.

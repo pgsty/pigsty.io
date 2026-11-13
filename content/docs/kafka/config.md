@@ -144,7 +144,7 @@ Each `scram` member also stores `/etc/kafka/secrets.yml`. Every run retrieves th
 Live cluster state is authoritative for runtime facts:
 
 - Manifest conflicts with live identity or security profile block ordinary playbooks.
-- An old manifest with all data disks empty cannot revive the old cluster.
+- Refuse to revive an old cluster if a commissioned Manifest exists but every data disk is empty. An uncommissioned Manifest left by an initial bootstrap failure before formatting is automatically discarded and regenerated.
 - Formatted storage without any member manifest blocks execution. Restore a manifest copy on any member first.
 - A formatted `scram` cluster without secret material on any member also blocks execution.
 

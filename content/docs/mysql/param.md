@@ -1,15 +1,13 @@
 ---
 title: Parameters
 weight: 5012
-description: "The MYSQL module's 13 public parameters: 11 deployment parameters, 2 protected-removal parameters, and fixed platform conventions."
+description: "The MYSQL module's 16 public parameters: 13 for deployment, 3 for protected removal, and fixed platform conventions."
 icon: fa-solid fa-sliders
 module: [MYSQL]
 categories: [Reference]
-aliases: [/docs/pilot/mysql/param]
 ---
 
-Deployment exposes 11 parameters; removal adds two protected-operation parameters. Versions, ports, directories, charset, TLS paths, and schedules are fixed. Memory sizing follows node specifications. Use [`mysql_parameters`](#mysql_parameters) to change server behavior.
-
+The MYSQL deployment role exposes **13 parameters**; the removal role adds **3 protected operational parameters**, for **16 total**. Versions, ports, character set, TLS paths, and timer schedules are fixed by the role. Memory defaults follow node resources and PostgreSQL colocation. Use [`mysql_parameters`](#mysql_parameters) to adjust server behavior.
 
 --------
 
@@ -25,8 +23,10 @@ Deployment exposes 11 parameters; removal adds two protected-operation parameter
 | [`mysql_databases`](#mysql_databases) | Cluster | `[]` | Additive database declarations |
 | [`mysql_users`](#mysql_users) | Cluster | `[]` | Additive user and grant declarations |
 | [`mysql_parameters`](#mysql_parameters) | Cluster/Instance | `{}` | `[mysqld]` option overrides |
+| [`mysql_data`](#mysql_data) | Cluster/Instance | `/data/mysql` | MySQL data directory, including `binlog/` and `tmp/` |
 | [`mysql_backup_enabled`](#mysql_backup_enabled) | Cluster | `true` | Daily full-backup timer |
-| [`mysql_backup_repo`](#mysql_backup_repo) | Cluster | see below | Local backup path and retention |
+| [`mysql_backup_dir`](#mysql_backup_dir) | Cluster | `/data/backups/mysql` | Local physical backup root |
+| [`mysql_backup_retention`](#mysql_backup_retention) | Cluster | `3` | Number of local full backups to retain |
 | [`mysql_exporter_enabled`](#mysql_exporter_enabled) | Cluster | `true` | Exporter and monitoring target |
 {.full-width .wide .expand}
 
@@ -34,12 +34,12 @@ The removal parameters are used by `mysql-rm.yml`:
 
 | Parameter | Level | Default | Description |
 |:---|:---:|:---|:---|
-| [`mysql_safeguard`](#mysql_safeguard) | Global/Cluster/CLI | `true` | Refuse removal by default |
-| [`mysql_rm_confirm`](#mysql_rm_confirm) | CLI | `''` | Must exactly match the instance or cluster name |
-{.full-width}
+| [`mysql_safeguard`](#mysql_safeguard) | Global/Cluster/CLI | `true` | Deletion protection; refuses removal by default |
+| [`mysql_rm_data`](#mysql_rm_data) | Global/Cluster/CLI | `true` | Remove data and managed configuration; always retain backups |
+| [`mysql_rm_pkg`](#mysql_rm_pkg) | Global/Cluster/CLI | `false` | Also uninstall MySQL / Router / XtraBackup / Exporter packages |
+{.full-width .wide .expand}
 
-Earlier parameters are no longer supported: `mysql_role`, `mysql_services`, `mysql_packages`, `mysql_data`, `mysql_port`, `mysql_replication_*`, and `mysql_*_username`. Do not use them.
-
+Old variables such as `mysql_backup_repo` (explicitly rejected by preflight), `mysql_rm_confirm`, `mysql_role`, `mysql_services`, `mysql_packages`, `mysql_port`, `mysql_replication_*`, and `mysql_*_username` are not part of the current public interface. Do not use them.
 
 --------
 
@@ -53,18 +53,17 @@ Required cluster identity, matching the member inventory group. Preflight enforc
 mysql_cluster: my-test
 ```
 
-This determines instance names (`my-test-1`), MGR group UUID, backup directory (`<repo>/my-test/`), and monitoring `cls`.
+Used for instance names (`my-test-1`), the AdminAPI cluster name, backup subdirectories (`<mysql_backup_dir>/my-test/`), and the monitoring `cls` label. AdminAPI generates the MGR Group UUID when creating the cluster, which then manages it internally.
 
 ### `mysql_seq`
 
-Required sequence: `1` for standalone, consecutive `1, 2, 3` for HA. It also sets `server_id`:
+Required instance sequence. Use `1` for standalone, or contiguous `1`, `2`, `3` for three nodes:
 
 ```yaml
 10.10.10.11: { mysql_seq: 1 }
 ```
 
-`mysql_seq=1` marks the bootstrap coordinator only. Runtime PRIMARY is elected; reruns preserve its placement.
-
+`mysql_seq=1` identifies only the initial bootstrap coordinator. MGR elects the runtime primary, and rerunning the playbook does not move it back. `mysql_seq` is not `server_id`, which is derived from the member's IPv4 address as an unsigned 32-bit integer.
 
 --------
 
@@ -84,13 +83,13 @@ Set it at initial launch. Later mismatches between live and declared values fail
 
 ### `mysql_monitor_password`
 
-Exporter password for `dbuser_monitor@'127.0.0.1'`. This read-only, loopback account has a three-connection limit:
-
-The default is `DBUser.Monitor`:
+Password for `dbuser_monitor@'127.0.0.1'`, used by `mysqld_exporter` with read-only privileges, loopback access only, and a maximum of 3 connections. Default: `DBUser.Monitor`:
 
 ```yaml
 mysql_monitor_password: DBUser.Monitor
 ```
+
+This password is rendered into Go INI `/etc/mysqld_exporter.cnf`, with `$` escaped as `$$`. **INI interpolation syntax of the form `%(...)s`**, such as `%(host)s`, is forbidden and rejected by preflight.
 
 ### `mysql_cluster_password`
 
@@ -163,7 +162,21 @@ AdminAPI replication settings written through `SET PERSIST` control runtime beha
 
 --------
 
-## Backup
+## Storage and Backup Parameters
+
+### `mysql_data`
+
+MySQL data directory, default `/data/mysql`, with `binlog/` and `tmp/` subdirectories:
+
+```yaml
+mysql_data: /data/mysql
+```
+
+Constraints and platform behavior:
+
+- Must be a multilevel absolute path, neither equal to nor nested with `mysql_backup_dir`, and outside reserved paths such as `/etc`, `/usr`, `/var`, or `/tmp`. The sole exception is managing legacy `/var/lib/mysql` in place;
+- If `/var/lib/mysql` contains initialized system databases while `mysql_data` points elsewhere, preflight refuses to start an empty database alongside existing data;
+- Debian/Ubuntu nodes maintain local AppArmor rules in `/etc/apparmor.d/local/usr.sbin.mysqld`; EL nodes automatically run `restorecon -RF`.
 
 ### `mysql_backup_enabled`
 
@@ -173,21 +186,27 @@ Control the daily `mysql-backup.timer`, which adds up to 30 minutes of random de
 mysql_backup_enabled: true
 ```
 
-`false` stops the timer but retains script and configuration. If backup was never enabled, the repository directory is absent and manual execution exits immediately.
+When enabled, if `<mysql_backup_dir>/<mysql_cluster>/latest/backup.ok` is absent, the `mysql_backup` phase creates an initial baseline on the current writable primary. Setting this to `false` disables the timer and removes `/var/lib/node_exporter/textfile/mysql.prom`, while retaining existing backups and scripts.
 
-### `mysql_backup_repo`
+### `mysql_backup_dir`
 
-The local backup repository — `local` is the only supported method:
+Root directory for local full physical backups, default `/data/backups/mysql`:
 
 ```yaml
-mysql_backup_repo:
-  local:
-    path: /data/backups/mysql     # absolute path; must not overlap the datadir
-    retention: 7                  # keep the last N committed fulls (1-9999)
+mysql_backup_dir: /data/backups/mysql
 ```
 
-Layout and restore procedure: [Administration](/docs/mysql/admin#manage-backups).
+Must be a multilevel absolute path outside reserved system locations and must not overlap `mysql_data`. Backups reside under `<mysql_backup_dir>/<mysql_cluster>/`; even destructive `mysql-rm.yml` runs **never delete** this directory. The old structured `mysql_backup_repo` parameter is deprecated and rejected by preflight.
 
+### `mysql_backup_retention`
+
+Number of committed full physical backups to retain locally (`1..9999`), default `3`:
+
+```yaml
+mysql_backup_retention: 3
+```
+
+After a new backup completes `--prepare` and atomically updates `latest`, the script removes backups beyond the retention count. See [Administration](/docs/mysql/admin#manage-backups) for layout and recovery.
 
 --------
 
@@ -210,16 +229,30 @@ mysql_exporter_enabled: true
 
 ### `mysql_safeguard`
 
-Removal safety switch, default `true`. Explicitly set `false` for `mysql-rm.yml`; otherwise, removal stops:
+Deletion safeguard, default `true`, like [`VAULT`](/docs/vault/param#vault_safeguard)'s `vault_safeguard`. Explicitly pass `-e mysql_safeguard=false` to `mysql-rm.yml`; otherwise preflight refuses removal:
 
 ```bash
-./mysql-rm.yml -l my-test -e mysql_safeguard=false -e mysql_rm_confirm=my-test
+./mysql-rm.yml -l my-test -e mysql_safeguard=false
 ```
 
-### `mysql_rm_confirm`
+### `mysql_rm_data`
 
-Confirmation string, empty by default. For one member, exactly match its instance name, such as `my-test-3`. For full-cluster or standalone removal, exactly match `mysql_cluster`. Both confirmation and `mysql_safeguard=false` are required.
+Whether removal destroys data and managed configuration, default `true`:
 
+```yaml
+mysql_rm_data: true
+```
+
+- `true` (default): after stopping services and deregistering monitoring, delete `mysql_data`, `/etc/mysql/pigsty`, `/etc/mysql/pki`, `pigsty.cnf`, Router configuration/keyring, exporter configuration, systemd overrides and backup units, `/var/lib/pigsty/mysql-backup`, `/var/lib/node_exporter/textfile/mysql.prom`, and `/etc/profile.d/mysql.sh`, but **always retain `mysql_backup_dir`**;
+- `false`: supported **only for the entire cluster** (`-l <cluster> -e mysql_safeguard=false -e mysql_rm_data=false`). Stop services and deregister monitoring while retaining all data and configuration. Rerun `./mysql.yml -l <cluster>` to restart and recover in place. Single-member removal requires `mysql_rm_data=true`.
+
+### `mysql_rm_pkg`
+
+Whether to also uninstall MySQL Server/Client/Shell/Router, Percona XtraBackup, and `mysqld_exporter`, default `false`:
+
+```yaml
+mysql_rm_pkg: false
+```
 
 --------
 
@@ -230,15 +263,15 @@ These settings are fixed or derived. They are **not inventory parameters**:
 | Item | Value |
 |:---|:---|
 | Versions | MySQL Server/Client/Shell/Router 8.4 LTS, Percona XtraBackup 8.4 |
-| Ports | `3306` (classic), `33060` (X Protocol; loopback-only on standalone), `33061` (MGR), `6446/6447` (Router RW/RO), `9104` (exporter); the exporter service and MySQL target registration both use fixed port `9104`. `mysql_exporter_port` has been removed from INFRA reference variables and is not a public MYSQL parameter |
-| Data directory | `/var/lib/mysql` (binlogs under `binlog/`, 7-day expiry) |
-| Config file | EL: `/etc/my.cnf.d/pigsty.cnf`; Debian/Ubuntu: `/etc/mysql/mysql.conf.d/pigsty.cnf` |
-| Service units | MySQL: `mysqld` on EL, `mysql` on Debian/Ubuntu; Router: `mysqlrouter`; Exporter: `mysqld_exporter` |
-| Secrets and scripts | `/etc/mysql/pigsty/` (root-owned: directory `0700`, files `0600`) |
-| Logs | Error log at `/var/log/mysql/error.log`, mirrored to Journald; slow log at `/var/log/mysql/slow.log` (1s threshold) |
-| TLS | Enforced (`require_secure_transport=ON`); CA at `/etc/pki/ca.crt`, leaf certs under `/etc/mysql/pki/` |
+| Ports and VIP | `3306` (Classic), `33060` (X Protocol, loopback only for standalone), `33061` (MGR), `6446/6447` (Router RW/RO, also on `<vip>:6446/6447` with a `NODE` Layer 2 VIP), `9104` (Exporter) |
+| Derived identity | `server_id` is the member IPv4 as an unsigned 32-bit integer, or the first 32 bits of SHA-1 for non-IPv4 names; AdminAPI generates the MGR Group UUID |
+| Configuration | EL: `/etc/my.cnf.d/pigsty.cnf`; Debian/Ubuntu: `/etc/mysql/mysql.conf.d/pigsty.cnf`, with automatic local AppArmor rules |
+| Service units | MySQL: `mysqld` on EL, `mysql` on Debian/Ubuntu; Router: `mysqlrouter`; Exporter: `mysqld_exporter`; backups: `mysql-backup.{service,timer}` |
+| Credentials and shortcuts | `/etc/mysql/pigsty/`, root-owned with directory `0700` and files `0600`; `/etc/profile.d/mysql.sh` provides `my` and `mysh` |
+| Logs and backup state | Errors: `/var/log/mysql/error.log`, also mirrored to Journald; slow queries: `/var/log/mysql/slow.log`, threshold 1s; failed backup logs: `/var/lib/pigsty/mysql-backup/`; backup metrics: `/var/lib/node_exporter/textfile/mysql.prom` |
+| TLS | Required (`require_secure_transport=ON`); CA `/etc/pki/ca.crt`, leaf certificates `/etc/mysql/pki/`, automatically including node address and optional `NODE` VIP SANs |
 | Charset | `utf8mb4` / `utf8mb4_0900_ai_ci` |
-| Memory | Buffer pool = max(25% of node memory, 256MB); redo = clamp(50% of buffer pool, 128MB, 4GB) |
+| Memory and connections | Buffer pool: 50% of memory when dedicated, 25% with PG (`pg_cluster` defined), reserving at least 1 GiB for the system with a 256 MiB lower bound; redo: `clamp(buffer pool × 50%, 128 MiB, 4 GiB)`; `max_connections`: `1000` |
 | Replication | GTID enforced, `sql_require_primary_key=ON`, single-primary MGR, `BEFORE_ON_PRIMARY_FAILOVER` consistency |
-| Datadir markers | `.pigsty-mysql-initialized` (ownership check) and `.pigsty-mysql-retired` (retirement guard) |
+| Data ownership marker | `<mysql_data>/.pigsty-mysql-initialized` records `version`, `cluster`, `instance`, and `topology` for ownership validation |
 {.full-width .wide .expand}

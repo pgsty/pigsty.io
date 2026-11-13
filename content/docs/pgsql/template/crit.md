@@ -56,8 +56,7 @@ synchronous_mode: true
 synchronous_mode_strict: true
 ```
 
-`synchronous_mode_strict` prevents Patroni from switching to asynchronous replication when no synchronous replica is available.
-The primary then blocks writes that require synchronous acknowledgment.
+`synchronous_mode_strict` prevents Patroni from falling back to asynchronous replication when no synchronous replica exists, so writes requiring synchronous acknowledgment block. During initial `pg_init`, the playbook temporarily injects `PGOPTIONS='-c synchronous_commit=local'` into the `/pg/bin/pg-init` session to avoid blocking before replicas start. Normal application sessions follow the strict synchronous policy after initialization.
 
 The mode targets preservation of acknowledged transactions when:
 

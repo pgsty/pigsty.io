@@ -48,9 +48,9 @@ all:
 - Code-Server default open directory
 - JupyterLab `root_dir`
 - Claude Code working dir
-- Render the `AGENTS.md` context file and create a `CLAUDE.md` symlink to it
+- Render the `AGENTS.md` context file, removing any legacy symlink first, and create a `CLAUDE.md` symlink pointing to it
 
-The `vibe_dir` task creates the directory and context files. The `node_user` owns them.
+`vibe_dir` creates directories and writes context files owned by `node_user`, falling back to `root` if undefined.
 
 ```yaml
 vibe_data: /fs
@@ -93,15 +93,14 @@ jupyter_venv: /data/venv
 
 Notes:
 
-- Service listens on `0.0.0.0:<jupyter_port>` (default 8888), base path `/jupyter/`
-- Config file: `jupyter_data/jupyter_config.py` (default `/data/jupyter/jupyter_config.py`)
+- Listen on `0.0.0.0:<jupyter_port>` (default 8888), with base path `/jupyter/`
+- Configuration: `jupyter_data/jupyter_config.py`, default `/data/jupyter/jupyter_config.py`
 - Login token: `c.IdentityProvider.token`
-- The v4.5 template also sets `allow_origin = '*'`, `disable_check_xsrf = True`, and `trust_xheaders = True`. These settings relax security checks for a development sandbox behind a reverse proxy.
-- **The module does not create the venv automatically.** First, create it with `node_uv_env` in the `NODE` module.
+- If `<jupyter_venv>/bin/python` is absent, `jupyter_install` creates the environment with `uv venv`; if `<jupyter_venv>/bin/jupyter` is absent, it installs `jupyterlab` and `ipykernel`. It can also reuse `/data/venv` provisioned by `NODE`.
 
 Use a high-entropy random token. Restrict TCP/8888 to trusted networks or the reverse proxy. `infra_portal.home` does not enable Basic Auth by default. For a second authentication layer, configure `nginx_users` and set `auth: true` on the portal. If you tighten the Jupyter settings, validate WebSockets, origin handling, and login before rollout.
 
-Create venv example:
+Example of manually creating or reusing a venv:
 
 ```bash
 uv venv /data/venv
@@ -119,31 +118,33 @@ npm_packages: []
 
 Notes:
 
+- `nodejs` is an independent runtime controlled only by `nodejs_enabled`, separate from `claude` / `codex`
+- `nodejs_config` detects the global npm configuration (`npm config get globalconfig`, falling back to `/etc/npmrc`) and sets `prefix=/usr/local`
 - When `nodejs_registry` is empty and `region=china`, default registry is `https://registry.npmmirror.com`
-- `npm_packages` installs additional global npm packages and is empty by default
-- Claude Code and Codex CLI are installed by their own dedicated tasks
+- `npm_packages` installs additional global packages through `npm install -g` and defaults to empty
+- Claude Code and Codex CLI use native `pigsty-infra` packages and do not depend on npm
 
 --------
 
 ## Claude Code
 
-The `claude` task installs the CLI (`claude_install`) and writes its configuration (`claude_config`).
+The `claude` subtask installs the native package (`claude_install`) and writes configuration (`claude_config`).
 
 ```yaml
 claude_enabled: true
-claude_package: '@anthropic-ai/claude-code'
+claude_package: claude
 claude_env:
   ANTHROPIC_API_KEY: sk-ant-xxx
 ```
 
-When Claude or Codex is enabled, VIBE ensures that the Node.js runtime is installed. Override `claude_package` to use a different Claude npm package.
+`claude_install` uses APT/YUM to install `claude_package` from `pigsty-infra`, defaulting to `claude`. The repository also provides `claude-code`; override with `claude_package: claude-code` if needed.
 
-Generated files:
+Managed files under `~<node_user>/`, mode `0600`:
 
-- `~/.claude.json`
-- `~/.claude/settings.json`
+- `~/.claude.json`: initial state to skip first-run setup and permission confirmation, written with `force: false` so existing user state is preserved
+- `~/.claude/settings.json`: read existing settings and merge with `combine`, preserving custom top-level fields and `env` keys while refreshing managed OpenTelemetry defaults and applying `claude_env` overrides; keys with `null` values are removed
 
-VIBE merges `claude_env` with the default OpenTelemetry environment variables. These settings send telemetry to VictoriaMetrics / VictoriaLogs.
+OpenTelemetry defaults point to `vmetrics_port` (`8428`) and `vlogs_port` (`9428`) on control-plane `admin_ip`, falling back to `127.0.0.1` when undefined. Non-admin nodes can therefore report directly to central VictoriaMetrics / VictoriaLogs.
 
 --------
 
@@ -153,7 +154,7 @@ VIBE merges `claude_env` with the default OpenTelemetry environment variables. T
 codex_enabled: true
 ```
 
-The `codex` task runs `npm install -g @openai/codex`. VIBE installs only Codex CLI. It does not write the Codex configuration or connect Codex to VIBE's Claude Code observability.
+The `codex` subtask installs the native `codex` package from `pigsty-infra` through the system package manager. VIBE installs only the CLI, without writing Codex settings or connecting it to Claude Code observability.
 
 --------
 

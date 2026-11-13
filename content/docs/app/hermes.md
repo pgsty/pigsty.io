@@ -8,7 +8,7 @@ categories: [Reference]
 
 [`app/hermes`](https://github.com/pgsty/pigsty/tree/main/app/hermes) provides a source installation guide for [**Hermes Agent**](https://github.com/NousResearch/hermes-agent). It uses a separate Python virtual environment and external model APIs on an existing Pigsty Linux host. The directory contains no Compose file or `conf/app/hermes.yml`; `app.yml` is not required.
 
-The development guide pins [**v2026.9.24**](https://github.com/NousResearch/hermes-agent/tree/f97608f178d1ffeca59860195ab7da295f7c8e5f) (Python package version `0.21.5`), which requires Python `>=3.11,<3.14`. The guide in the public Pigsty repository still shows the earlier `0.8.0` example. Use the following steps for the newer release.
+The installation guide pins [**v2026.9.24**](https://github.com/NousResearch/hermes-agent/tree/f97608f178d1ffeca59860195ab7da295f7c8e5f) (Python package version `0.21.5`) and requires Python `>=3.11,<3.14`.
 
 ## Installation
 

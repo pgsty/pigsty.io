@@ -7,9 +7,7 @@ categories: [Task]
 aliases: [/docs/pgsql/tutorial/example/]
 ---
 
-This tutorial performs a PostgreSQL PITR drill in Pigsty v4.5.0's four-node sandbox.
-It runs [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) in the sequence `down → pitr → up`.
-Separate validation steps precede data overwrite, timeline promotion, and HA reconstruction.
+This tutorial rehearses PostgreSQL PITR in a four-node Pigsty v4.6.0 sandbox. It uses the [`pgsql-pitr.yml`](/docs/pgsql/backup/restore/) stages `down → pitr → up`, with verification points before overwriting data, promoting a timeline, and rebuilding HA. For `ivory` (IvorySQL) and `agens` (AgensGraph), the generated `/pg/conf/pitr.conf` also receives `pg_mode`-specific compatibility options such as `pg-version-force` and `archive-header-check=n`.
 
 For one current node, use [`pig pitr`](/docs/pig/pitr/).
 For direct pgBackRest control, see the low-level [`pg-pitr` utility](/docs/pgsql/tutorial/pg-fork/#pg-pitr).

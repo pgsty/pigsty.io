@@ -43,8 +43,6 @@ Both targets use `job=kafka`. JMX has a `role` label; protocol targets do not.
 
 ### Disabling JMX
 
-This feature requires development sources containing the JMX toggle added on 2026-09-01. The `v4.5.0` release tag always enables JMX.
-
 [`kafka_jmx_exporter_enabled`](/docs/kafka/param#kafka_jmx_exporter_enabled) defaults to `true`. After disabling it, run the full `kafka.yml` playbook to remove the Java Agent through a rolling restart and update monitoring targets. `-t register` refreshes target files only.
 
 An instance without JMX has no JVM, KRaft, broker-internal, or instance-liveness metrics, and the corresponding alerts lose their data. If all members disable JMX, Kafka Overview / Kafka Instance can no longer discover the cluster, and `KafkaDown` cannot detect it. Protocol exporters continue running, so topic, partition, and consumer-group monitoring remains available.

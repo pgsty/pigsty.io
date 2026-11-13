@@ -28,13 +28,11 @@ Use the [**`mongo`**](/docs/conf/mongo/) configuration template to deploy the co
 
 ## Quick Start
 
-Use Pigsty's [**standard installation flow**](/docs/setup/install) with the [`mongo`](/docs/conf/mongo/) configuration template:
-
-The commands below use the [v4.5.0 template](https://github.com/pgsty/pigsty/blob/v4.5.0/conf/mongo.yml). Development sources moved it to `conf/fork/mongo.yml`; use `-c fork/mongo` with those sources.
+Follow Pigsty's [**standard installation**](/docs/setup/install) with the [`fork/mongo`](/docs/conf/mongo/) template ([`conf/fork/mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/mongo.yml)); `-c mongo` and `-c fork/mongo` are equivalent:
 
 ```bash
 curl -fsSL https://repo.pigsty.io/get | bash; cd ~/pigsty;
-./configure -c mongo    # Use the Mongo (DocumentDB + FerretDB) configuration template
+./configure -c fork/mongo # use the Mongo (DocumentDB + FerretDB) template
 ./deploy.yml            # Install; change passwords in pigsty.yml first for production
 ./docker.yml -l pg-meta # Install Docker on the pg-meta node
 ./app.yml -l pg-meta    # Deploy the FerretDB Docker APP
@@ -52,7 +50,7 @@ mongosh 'mongodb://mongod:DBUser.Mongo@127.0.0.1:27017/'
 
 ## Configuration
 
-Source: [`pigsty/conf/mongo.yml`](/docs/conf/mongo/). See the [**Mongo configuration template**](/docs/conf/mongo/) documentation for the complete template.
+Source: [`pigsty/conf/fork/mongo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/fork/mongo.yml). See the [**Mongo configuration template**](https://github.com/pgsty/pigsty/blob/main/conf/fork/mongo.yml) documentation for the complete template.
 
 The key PostgreSQL settings are the `documentdb` extension and its preload libraries, plus the backend superuser used by FerretDB:
 

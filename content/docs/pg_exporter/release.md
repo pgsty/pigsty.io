@@ -6,10 +6,11 @@ module: [PG_EXPORTER]
 category: [Reference]
 ---
 
-The latest stable version of `pg_exporter` is [v1.6.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.0)
+The latest stable `pg_exporter` release is [v1.6.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.1).
 
 |     Version     |    Date    | Summary                                                    |                               GitHub                               |
 |:---------------:|:----------:|------------------------------------------------------------|:------------------------------------------------------------------:|
+| [v1.6.1](#v161) | 2026-11-11 | Table statistics fixes, duplicate scalar isolation, connection fixes, systemd reload, Go 1.27.4 | [v1.6.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.1) |
 | [v1.6.0](#v160) | 2026-11-09 | Decoupled health probe, bounded scrapes, progress label and container CA fixes | [v1.6.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.0) |
 | [v1.5.0](#v150) | 2026-10-23 | Connection safety, discovery, health and replication fixes; Go 1.27.3 | [v1.5.0](https://github.com/pgsty/pg_exporter/releases/tag/v1.5.0) |
 | [v1.4.1](#v141) | 2026-07-29 | Subscription count and label validation fixes; RPM rename  | [v1.4.1](https://github.com/pgsty/pg_exporter/releases/tag/v1.4.1) |
@@ -46,6 +47,60 @@ The latest stable version of `pg_exporter` is [v1.6.0](https://github.com/pgsty/
 | [v0.0.2](#v002) | 2019-12-09 | Early testing release                                      | [v0.0.2](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.2) |
 | [v0.0.1](#v001) | 2019-12-06 | Initial release with PgBouncer mode                        | [v0.0.1](https://github.com/pgsty/pg_exporter/releases/tag/v0.0.1) |
 {.full-width .wide .expand}
+
+## v1.6.1 {#v161}
+
+Released on 2026-11-11.
+
+PG Exporter v1.6.1 is a maintenance release that corrects table statistics, isolates collector errors that could break a whole scrape, and fixes connection edge cases. The build toolchain moves to **Go 1.27.4**, while the PostgreSQL driver remains **lib/pq 1.12.3**. Built-in SQL metric names, label keys, types, buckets, CLI flags, and HTTP routes are unchanged.
+
+### Fixes and Improvements {#v161-changes}
+
+- **Isolate duplicate scalar rows:** if a `GAUGE` or `COUNTER` query returns multiple rows with the same labels, mark that collector as failed and discard its output before Prometheus gathers it. Other collectors continue after nonfatal failures; `fatal: true` retains its semantics. Histogram-only collectors still merge same-label observations into one snapshot distribution. Cross-collector metric conflicts still require configuration fixes.
+- **Correct partitioned and unindexed table statistics:** all four `pg_table` version branches emit `age = 0` for `relfrozenxid = 0`, including partitioned parents, instead of `2147483647`. `tbl_scan`, `tup_read`, and `n_tup_mod` individually coalesce nulls before addition, so missing index counts no longer suppress valid sequential-scan statistics. Null live/dead/modified row estimates become zero rather than NaN.
+- **Avoid temporary-table size failures:** `pg_table_size` excludes `pg_temp*` and `pg_toast*`, avoiding reads of other sessions' temporary tables and separate TOAST accounting. The source tag also fixes OID 0 errors in PostgreSQL 9.1 legacy configuration for tables without TOAST, preventing loss of the entire table-size metric set. Download legacy configuration separately.
+- **Correct activity durations and TimescaleDB identifiers:** `pg_activity` clamps negative durations to zero when state, transaction, or session timestamps exceed the query time reference. Disabled-by-default `pg_tsdb_hypertable` correctly quotes schema/table names containing uppercase or special characters. HELP text is aligned for transaction/session start, index build stages, checkpoint counts, and table main-fork sizes.
+- **Fix connection URLs and log redaction:** hostless URLs such as `postgresql://?host=/var/run/postgresql` retain `//` during normalization so lib/pq recognizes them. Auto-discovery removes conflicting `service=` when selecting a child database. Logs also redact `sslpassword=`.
+- **Improve connection-pool cleanup:** after removing or replacing child targets, auto-discovery waits for active collection before closing old pools. Closing clears pool references and safely handles uninitialized or already-closed pools. Reload still reuses existing pools and clears collection plans rather than recreating all child connections.
+- **Strengthen validation and built-in metric handling:** configuration rejects nonfinite `scale` / `default`, and startup rejects invalid `--namespace`. Invalid built-in labels, such as non-UTF-8 database names, produce warnings and skip samples instead of panicking. Constant user labels cannot override reserved build fields such as `version` and `revision`.
+- **Fix diagnostics and direct-call edge cases:** HTML explain pages display predicate cache TTL correctly. Direct collector calls execute queries for cold caches or zero TTL even without a server scrape timestamp. Explicit `Server.Plan(...)` preserves same-name versioned queries by branch key.
+- **Update builds and service management:** packaged systemd units add `ExecReload` for `systemctl reload pg_exporter`. Standalone Docker builds accept version, branch, revision, and build-date arguments; `make docker-build` supplies them. Ordinary builds without arguments retain `HEAD` / `unknown` revision/date values. The toolchain moves to Go 1.27.4 with routine dependency updates.
+
+### Upgrade Notes {#v161-metric-compatibility}
+
+1. **Upgrade the binary and merge collector YAML.** Packages preserve locally modified `/etc/pg_exporter.yml` and `/etc/default/pg_exporter`. Deploy the new SQL to obtain table statistics, activity duration, and TimescaleDB fixes. Default configuration still has 58 YAML files, 96 branches, 59 namespaces, and 460 deduplicated metric definitions.
+2. **Review custom collectors.** Scalar queries need one row per label set; `scale` and `default` must be finite. Histogram-only queries can still return multiple observations per label set. Partitioned-parent freeze age is now zero, and unindexed table totals or previously NaN row estimates may change.
+3. **Update service units and restart after upgrading the binary.** Run `sudo systemctl daemon-reload` after installing the new unit, then `sudo systemctl restart pg_exporter` for a new binary or process arguments. Later YAML-only changes can use `sudo systemctl reload pg_exporter` or `POST /reload`.
+4. **Download legacy YAML separately for PostgreSQL 9.1–9.6.** Use [configuration from v1.6.1](https://github.com/pgsty/pg_exporter/blob/v1.6.1/legacy/pg_exporter.yml) or main at `282e19d` or later. Binary archives and RPM/DEB packages still bundle only PostgreSQL 10+ defaults.
+
+When upgrading from v1.5.0 or earlier, also review [v1.6.0](#v160) health probes, scrape budgets, and cross-database progress labels, plus [v1.5.0](#v150) subscription labels, receiver states, and PostgreSQL 10–13 privileges. See the full [metric compatibility matrix](https://exp.pgsty.com/compatibility/#exporter-161-metrics).
+
+### Verification Scope {#v161-verification-scope}
+
+The `v1.6.1` tag points to `d0dead1`. [CI](https://github.com/pgsty/pg_exporter/actions/runs/43008634536) and [Release](https://github.com/pgsty/pg_exporter/actions/runs/43009095607) workflows passed module/generated-config checks, the full race suite, Go 1.21 HTTP mux compatibility, `go vet`, six-target cross-compilation, container checks, and package/checksum checks. Regressions cover duplicate scalar isolation, direct cold-cache/zero-TTL collection, namespaces/build labels, hostless URLs, `service=` removal, `sslpassword` redaction, predicate HTML rendering, finite configuration values, and SQL invariants.
+
+Release acceptance covers 12 public artifacts and checksums, amd64/arm64 Docker images, ARM64 DEB installation on Debian 12, ARM64 RPM installation on Rocky Linux 9, and real non-superuser scrapes against **PostgreSQL 10–18 and 19 RC1** primaries, **PostgreSQL 18 and 19 RC1** streaming replicas, **PgBouncer 1.26.1**, and **PostgreSQL 9.1–9.6** with separate legacy configuration. Scenarios include discovery/database removal, HTTP/SIGHUP reload, `pg_stat_statements`, unindexed/partitioned/temporary tables, and active transactions. Legacy acceptance does not imply backporting modern `pg_temp*` filtering or `COALESCE` fixes. Windows, Linux ppc64le, and Intel macOS were covered only by builds/checksums; package container checks do not prove real systemd startup. PostgreSQL 19 evidence is limited to RC1, not all later builds or production workloads. Experimental `snort` is not included in v1.6.1.
+
+### SHA-256 Checksums {#v161-checksums}
+
+[SHA256 checksums](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/checksums.txt)
+
+```checksums {base="https://github.com/pgsty/pg_exporter/releases/download/v1.6.1"}
+d0612ad9294497830892a59d302e7f92510ffd7baca4347b7f0b2438efc90277  pg-exporter-1.6.1-1.aarch64.rpm
+73fe4587efebeb444bf1b80730352bc07e22fcd88b0ac17acb6fb745ec26b9b5  pg-exporter-1.6.1-1.ppc64le.rpm
+c20c8a802466776f60b7e95103013bb4d461ac7dab76e3d139c3c9158d3f2c82  pg-exporter-1.6.1-1.x86_64.rpm
+0d6fe86ac43c707accfe10bf90af7b3c61e64242b7d916afff15fe3694a8e5fc  pg-exporter_1.6.1-1_amd64.deb
+a055f9a724c4c5eb3ac436756448c4ad76024d1d7db5087d72f4369daaeb2ab4  pg-exporter_1.6.1-1_arm64.deb
+f8500d010e05bd220c1e0978f27f6b053663ec7d0bdeab2bb85088d87c388d4c  pg-exporter_1.6.1-1_ppc64le.deb
+496c42f329fc265e952c964afaef29ebc7d2d4640180872a735a84eebb962774  pg_exporter-1.6.1.darwin-amd64.tar.gz
+9ace0b48115497f2b3d7d9e1660e13e6a778472c66c8ec5ff679faa2fa61c662  pg_exporter-1.6.1.darwin-arm64.tar.gz
+e8fdf64c352081720a53420a2c7ea095654078d5fab5f6213786bb6476791fdf  pg_exporter-1.6.1.linux-amd64.tar.gz
+91da5400ae31d42925af721c7d5f8eb0befcbb104d8a14ae5f08707abb5e333b  pg_exporter-1.6.1.linux-arm64.tar.gz
+769e9e56f91787f21478301f9fab1cb7c2791c74f8c355d8e9fbdf818964a5fb  pg_exporter-1.6.1.linux-ppc64le.tar.gz
+0e118a9815138a6dc0fed95d934aea0ad84dd4a58139371c2d16e47f85681066  pg_exporter-1.6.1.windows-amd64.tar.gz
+```
+
+[GitHub release](https://github.com/pgsty/pg_exporter/releases/tag/v1.6.1) · [SHA256 checksums](https://github.com/pgsty/pg_exporter/releases/download/v1.6.1/checksums.txt) · [Full changes](https://github.com/pgsty/pg_exporter/compare/v1.6.0...v1.6.1) · [Collector documentation](https://exp.pgsty.com/collectors/)
 
 ## v1.6.0 {#v160}
 

@@ -12,7 +12,7 @@ categories: [Reference]
 
 ## Which backend does the MINIO module deploy by default?
 
-In v4.5.0, the current source deploys only Silo. The only valid `minio_type` value is `silo`. MINIO remains the module name for compatibility. This name does not indicate that the MinIO server is running.
+Since Pigsty v4.5, including v4.6.0, the MINIO module deploys only Silo. The sole valid `minio_type` is `silo`. MINIO is a compatibility module name and does not mean the MinIO server is running.
 
 - Explicitly set `minio_type: silo` for new clusters.
 - Both `minio_type: minio` and `minio_type: rustfs` fail during identity validation.
@@ -30,8 +30,7 @@ Source-only distribution ended publication of all new prebuilt community binarie
 
 Pigsty therefore previously maintained its own [MinIO fork](https://github.com/pgsty/minio) and packages. MinIO [**CVE-2025-62506**](https://nvd.nist.gov/vuln/detail/CVE-2025-62506) affects releases before `RELEASE.2025-10-15T17-29-55Z`. That release fixes the vulnerability. Both Pigsty's later MinIO fork and the current Silo code include the fix.
 
-The Pigsty Infra repository still provides MinIO/RustFS RPM and DEB packages and their build scripts. However, the v4.5 MINIO module does not support those backends. The current role accepts only Silo. Deploy and maintain other services separately.
-
+The Pigsty Infra repository still provides RPM/DEB packages and build scripts for MinIO/RustFS, but package availability does not imply support as a backend in the current MINIO module. Since v4.5, the role accepts only Silo; other services require separate deployment and maintenance.
 
 ----------------
 
