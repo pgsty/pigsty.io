@@ -1,0 +1,209 @@
+# demo/demo
+
+> Pigsty public demo configuration with SSL certificates, public domains, and all PG18 extension package groups
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+The `demo/demo` template is the configuration for Pigsty's public demo. It shows how to expose websites, configure SSL certificates, install all PostgreSQL 18 extension package groups, and combine examples from multiple modules.
+
+Use this template as a reference for a public service on a cloud server.
+
+
+--------
+
+## Overview
+
+- Config Name: `demo/demo`
+- Node Count: Single node
+- Description: Pigsty public demo site configuration
+- OS Distro: `el8`, `el9`, `el10`, `d12`, `d13`, `u22`, `u24`, `u26`
+- OS Arch: `x86_64`
+- Related: [`meta`](/docs/conf/meta/), [`rich`](/docs/conf/rich/)
+
+Usage:
+
+```bash
+./configure -c demo/demo [-i <primary_ip>]
+```
+
+
+--------
+
+## Key Features
+
+This template enhances the `meta` template with:
+
+- SSL certificate and custom domain configuration (e.g., `pigsty.io`)
+- Cache and install all PostgreSQL 18 extensions through the 16 global category package groups, including `pg18-olap`
+- Enables Docker with image acceleration
+- Deploys Silo object storage
+- Define application databases and users (`meta` enables `vector`, `postgis`, and `timescaledb` by default)
+- Include Redis primary/replica examples and a single-node Kafka 4.x cluster
+- Retain VictoriaMetrics data for `15d` with a `10GiB` disk limit
+
+--------
+
+## Content
+
+Source: [`pigsty/conf/demo/demo.yml`](https://github.com/pgsty/pigsty/blob/main/conf/demo/demo.yml)
+
+```yaml
+---
+#==============================================================#
+# File      :   demo.yml
+# Desc      :   Pigsty Public Demo Configuration
+# Ctime     :   2020-05-22
+# Mtime     :   2025-12-12
+# Docs      :   https://pigsty.io/docs/conf/demo
+# License   :   Apache-2.0 @ https://pigsty.io/docs/about/license/
+# Copyright :   2018-2026  Ruohang Feng / Vonng (rh@vonng.com)
+#==============================================================#
+
+
+all:
+  children:
+
+    # infra cluster for proxy, monitor, alert, etc..
+    infra:
+      hosts: { 10.10.10.10: { infra_seq: 1 } }
+      vars:
+        nodename: pigsty.cc       # overwrite the default hostname
+        node_id_from_pg: false    # do not use the pg identity as hostname
+        docker_enabled: true      # enable docker on this node
+        docker_registry_mirrors: ["https://mirror.ccs.tencentyun.com", "https://docker.1ms.run"]
+        # ./pgsql-monitor.yml -l infra     # monitor 'external' PostgreSQL instance
+        pg_exporters:             # treat local postgres as RDS for demonstration purpose
+          20001: { pg_cluster: pg-foo, pg_seq: 1, pg_host: 10.10.10.10 }
+          #20002: { pg_cluster: pg-bar, pg_seq: 1, pg_host: 10.10.10.11 , pg_port: 5432 }
+          #20003: { pg_cluster: pg-bar, pg_seq: 2, pg_host: 10.10.10.12 , pg_exporter_url: 'postgres://dbuser_monitor:DBUser.Monitor@10.10.10.12:5432/postgres?sslmode=disable' }
+          #20004: { pg_cluster: pg-bar, pg_seq: 3, pg_host: 10.10.10.13 , pg_monitor_username: dbuser_monitor, pg_monitor_password: DBUser.Monitor }
+
+    # etcd cluster for ha postgres
+    etcd: { hosts: { 10.10.10.10: { etcd_seq: 1 } }, vars: { etcd_cluster: etcd } }
+
+    # minio cluster, s3 compatible object storage
+    minio: { hosts: { 10.10.10.10: { minio_seq: 1 } }, vars: { minio_cluster: minio } }
+
+    # postgres example cluster: pg-meta
+    pg-meta:
+      hosts: { 10.10.10.10: { pg_seq: 1, pg_role: primary } }
+      vars:
+        pg_cluster: pg-meta
+        pg_users:
+          - {name: dbuser_meta       ,password: DBUser.Meta       ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: pigsty admin user }
+          - {name: dbuser_view       ,password: DBUser.Viewer     ,pgbouncer: true ,roles: [dbrole_readonly] ,comment: read-only viewer for meta database }
+          - {name: dbuser_grafana    ,password: DBUser.Grafana    ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for grafana database    }
+          - {name: dbuser_bytebase   ,password: DBUser.Bytebase   ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for bytebase database   }
+          - {name: dbuser_kong       ,password: DBUser.Kong       ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for kong api gateway    }
+          - {name: dbuser_gitea      ,password: DBUser.Gitea      ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for gitea service       }
+          - {name: dbuser_wiki       ,password: DBUser.Wiki       ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for wiki.js service     }
+          - {name: dbuser_noco       ,password: DBUser.Noco       ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for nocodb service      }
+          - {name: dbuser_odoo       ,password: DBUser.Odoo       ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for odoo service ,createdb: true } #,superuser: true}
+          - {name: dbuser_mattermost ,password: DBUser.MatterMost ,pgbouncer: true ,roles: [dbrole_admin]    ,comment: admin user for mattermost ,createdb: true }
+        pg_databases:
+          - {name: meta ,baseline: cmdb.sql ,comment: pigsty meta database ,schemas: [pigsty] ,extensions: [{name: vector},{name: postgis},{name: timescaledb}]}
+          - {name: grafana  ,owner: dbuser_grafana  ,revokeconn: true ,comment: grafana primary database  }
+          - {name: bytebase ,owner: dbuser_bytebase ,revokeconn: true ,comment: bytebase primary database }
+          - {name: kong     ,owner: dbuser_kong     ,revokeconn: true ,comment: kong api gateway database }
+          - {name: gitea    ,owner: dbuser_gitea    ,revokeconn: true ,comment: gitea meta database }
+          - {name: wiki     ,owner: dbuser_wiki     ,revokeconn: true ,comment: wiki meta database  }
+          - {name: noco     ,owner: dbuser_noco     ,revokeconn: true ,comment: nocodb database     }
+          #- {name: odoo     ,owner: dbuser_odoo     ,revokeconn: true ,comment: odoo main database  }
+          - {name: mattermost ,owner: dbuser_mattermost ,revokeconn: true ,comment: mattermost main database }
+        pg_hba_rules:
+          - {user: dbuser_view , db: all ,addr: infra ,auth: pwd ,title: 'allow grafana dashboard access cmdb from infra nodes'}
+        pg_libs: 'timescaledb,pg_stat_statements, auto_explain'  # add timescaledb to shared_preload_libraries
+
+    redis-ms: # redis classic primary & replica
+      hosts: { 10.10.10.10: { redis_node: 1 , redis_instances: { 6379: { }, 6380: { replica_of: '10.10.10.10 6379' }, 6381: { replica_of: '10.10.10.10 6379' } } } }
+      vars: { redis_cluster: redis-ms ,redis_password: 'redis.ms' ,redis_max_memory: 64MB }
+
+    # Kafka 4.x dynamic KRaft: combined broker/controller on the demo node
+    kf-main:
+      hosts: { 10.10.10.10: { kafka_seq: 1 } }
+      vars:
+        kafka_cluster: kf-main
+
+
+  vars:                               # global variables
+    version: v4.6.0                   # pigsty version string
+    admin_ip: 10.10.10.10             # admin node ip address
+    region: china                     # upstream mirror region: default|china|europe
+
+    infra_portal:                     # infra services exposed via portal
+      home         : { domain: i.pigsty }     # default domain name
+      cc           : { domain: pigsty.cc      ,path:     "/www/pigsty.cc"   ,cert: /etc/cert/pigsty.cc.crt ,key: /etc/cert/pigsty.cc.key }
+      minio        : { domain: m.pigsty.cc    ,endpoint: "${admin_ip}:9001" ,scheme: https ,websocket: true }
+      postgrest    : { domain: api.pigsty.cc  ,endpoint: "127.0.0.1:8884"   }
+      pgadmin      : { domain: adm.pigsty.cc  ,endpoint: "127.0.0.1:8885"   }
+      pgweb        : { domain: cli.pigsty.cc  ,endpoint: "127.0.0.1:8886"   }
+      bytebase     : { domain: ddl.pigsty.cc  ,endpoint: "127.0.0.1:8887"   }
+      jupyter      : { domain: lab.pigsty.cc  ,endpoint: "127.0.0.1:8888", websocket: true }
+      gitea        : { domain: git.pigsty.cc  ,endpoint: "127.0.0.1:8889" }
+      wiki         : { domain: wiki.pigsty.cc ,endpoint: "127.0.0.1:9002" }
+      noco         : { domain: noco.pigsty.cc ,endpoint: "127.0.0.1:9003" }
+      supa         : { domain: supa.pigsty.cc ,endpoint: "10.10.10.10:8000" ,websocket: true }
+      dify         : { domain: dify.pigsty.cc ,endpoint: "10.10.10.10:5001" ,websocket: true }
+      odoo         : { domain: odoo.pigsty.cc ,endpoint: "127.0.0.1:8069"   ,websocket: true }
+      mm           : { domain: mm.pigsty.cc   ,endpoint: "10.10.10.10:8065" ,websocket: true }
+    # scp -r ~/pgsty/cc/cert/*       pj:/etc/cert/       # copy https certs
+    # scp -r ~/dev/pigsty.cc/public  pj:/www/pigsty.cc   # copy pigsty.cc website
+
+
+    node_etc_hosts: [ "${admin_ip} i.pigsty sss.pigsty" ]
+    node_timezone: Asia/Hong_Kong
+    node_ntp_servers:
+      - pool cn.pool.ntp.org iburst
+      - pool ${admin_ip} iburst       # assume non-admin nodes does not have internet access
+    pgbackrest_enabled: false         # do not take backups since this is disposable demo env
+    # keep 15 days of metrics on the demo server
+    vmetrics_options: >-
+      -retentionPeriod=15d
+      -retention.maxDiskSpaceUsageBytes=10GiB
+
+    # install all postgresql18 extensions
+    pg_version: 18                    # default postgres version
+    repo_extra_packages: [ pg18-core ,pg18-time ,pg18-gis ,pg18-rag ,pg18-fts ,pg18-olap ,pg18-feat ,pg18-lang ,pg18-type ,pg18-util ,pg18-func ,pg18-admin ,pg18-stat ,pg18-sec ,pg18-fdw ,pg18-sim ,pg18-etl ,kafka-stack ,java-runtime]
+    pg_extensions: [pg18-time ,pg18-gis ,pg18-rag ,pg18-fts ,pg18-olap ,pg18-feat ,pg18-lang ,pg18-type ,pg18-util ,pg18-func ,pg18-admin ,pg18-stat ,pg18-sec ,pg18-fdw ,pg18-sim ,pg18-etl]
+
+    #----------------------------------------------#
+    # PASSWORD : https://pigsty.io/docs/setup/security/
+    #----------------------------------------------#
+    grafana_admin_password: pigsty
+    grafana_view_password: DBUser.Viewer
+    pg_admin_password: DBUser.DBA
+    pg_monitor_password: DBUser.Monitor
+    pg_replication_password: DBUser.Replicator
+    patroni_password: Patroni.API
+    haproxy_admin_password: pigsty
+    minio_secret_key: S3User.MinIO
+    etcd_root_password: Etcd.Root
+...
+```
+
+
+--------
+
+## Explanation
+
+`demo/demo` is Pigsty's **public demo configuration**, which illustrates the component settings. It disables pgBackRest by default (`pgbackrest_enabled: false`); add a backup policy before using it in production.
+
+**Key Features**:
+- HTTPS certificate and custom domain configuration
+- Enable all PostgreSQL 18 extension package groups, including `pg18-olap`, in the global `pg_extensions`
+- Demonstrate Silo, Redis, Kafka, and remote monitoring through `pg_exporters`
+- Configure Docker image mirrors and a `10GiB` VictoriaMetrics storage quota
+
+**Use Cases**:
+- Setting up public demo sites
+- Scenarios requiring complete feature demonstration
+- Learning Pigsty advanced configuration
+
+**Notes**:
+- Prepare the SSL certificate files.
+- Configure DNS resolution.
+- Some extensions are not available on ARM64 architecture
