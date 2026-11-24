@@ -1,0 +1,15 @@
+# PostgreSQL Outlook for 2024
+
+> PostgreSQL core team member Jonathan Katzs outlook for PostgreSQL in 2024, reviewing the progress made over the past few years.
+
+---
+
+LLMS index: [llms.txt](/llms.txt)
+
+---
+
+> Author: **Jonathan Katz** (PostgreSQL Core Team) | Original: [PostgreSQL 2024](https://jkatz05.com/post/postgres/postgresql-2024/)
+
+[![featured](/img/hero/pg/pg-in-2024.jpg)](https://vonng.com/cn/pg/pg-in-2024/)
+
+PostgreSQL core team member Jonathan Katz's outlook for PostgreSQL in 2024, reviewing the progress made over the past few years. [**Read more**](https://vonng.com/cn/pg/pg-in-2024/)
