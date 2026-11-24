@@ -8,21 +8,17 @@ This is the website repo for http://pigsty.io
 - https://github.com/pgsty/pigsty.io (English)
 - https://github.com/pgsty/pigsty.cc (Chinese)
 
-Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.5.1**](https://github.com/pgsty/oink/releases/tag/v1.5.1)
+Powered by [**Hugo**](https://gohugo.io/) and [**OINK 1.6.0**](https://github.com/pgsty/oink/releases/tag/v1.6.0)
 
 
 ---------------
 
 ## Build
 
-Install Git, Go 1.27.3, and Hugo Extended v0.168.0, matching CI.
-Use the [Hugo v0.168.0 release](https://github.com/gohugoio/hugo/releases/tag/v0.168.0)
-and the [Go 1.27.3 release](https://go.dev/dl/#go1.27.3).
-
-Run the local preview or production build:
+Install Git, Hugo, and the Go version declared in `go.mod`. Run the production preview or build:
 
 ```bash
-hugo serve
+make serve
 hugo build --minify
 ```
 
@@ -38,7 +34,7 @@ dark, and system mode share `td-color-theme` across pages.
 
 | Site customization | Ownership |
 | --- | --- |
-| Docs / Extensions dropdowns | `navbar-group-items.html` preserves the original groups and columns through `params.pigsty_groups`, `pigsty_group`, and `pigsty_column`. Its ungrouped fallback follows OINK v1.5.1. `_pigsty-navbar.scss` styles only these panels. |
+| Docs / Extensions dropdowns | `navbar-group-items.html` preserves the original groups and columns through `params.pigsty_groups`, `pigsty_group`, and `pigsty_column`. `assets/css/project/navbar.css` styles these panels. |
 | Language link | Native `params.ui.alt_site` points to the independent Chinese site. It does not imply per-page translation mapping. |
 | Homepage | Custom content, extension canvas, and player remain local. Images and components follow OINK's theme state and events. |
 | Extension catalog | Domain-specific tables, badges, and shortcodes remain local. General content and shell styling belong to OINK. |
