@@ -11,10 +11,10 @@ weight: 2564
     <div class="ext-card__title">main/pg_lake_engine</div>
     <div class="ext-card__desc">https://github.com/Snowflake-Labs/pg_lake/tree/main/pg_lake_engine</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.6.0.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_lake-3.7.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_lake-3.6.0.tar.gz</div>
-    <div class="ext-card__desc">pg_lake-3.6.0.tar.gz</div>
+    <div class="ext-card__title">pg_lake-3.7.0.tar.gz</div>
+    <div class="ext-card__desc">pg_lake-3.7.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2564
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_lake`**](/ext/e/pg_lake) | `3.6` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_lake`**](/ext/e/pg_lake) | `3.7` | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -53,30 +53,30 @@ weight: 2564
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6` | {{< pgvers "18,17,16" >}} | `pg_lake` | `pg_extension_base`, `pg_map` |
-| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6.0` | {{< pgvers "18,17,16" >}} | `pg_lake_$v` | - |
-| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.6.0` | {{< pgvers "18,17,16" >}} | `postgresql-$v-pg-lake` | - |
+| [**EXT**](/ext/list#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.7` | {{< pgvers "19,18,17,16" >}} | `pg_lake` | `pg_extension_base`, `pg_map` |
+| [**RPM**](/ext/rpm#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.7.0` | {{< pgvers "19,18,17,16" >}} | `pg_lake_$v` | - |
+| [**DEB**](/ext/deb#olap) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `3.7.0` | {{< pgvers "19,18,17,16" >}} | `postgresql-$v-pg-lake` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
 | el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 | el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | AVAIL PIGSTY 3.6.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | AVAIL PIGSTY 3.7.0 1 | N/A PIGSTY - 0 |
 {{< /pgext_matrix >}}
 
 ## Build
@@ -103,18 +103,21 @@ pig install pg_lake;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y pg_lake -v 19  # PG 19
 pig ext install -y pg_lake -v 18  # PG 18
 pig ext install -y pg_lake -v 17  # PG 17
 pig ext install -y pg_lake -v 16  # PG 16
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y pg_lake_19       # PG 19
 dnf install -y pg_lake_18       # PG 18
 dnf install -y pg_lake_17       # PG 17
 dnf install -y pg_lake_16       # PG 16
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-19-pg-lake   # PG 19
 apt install -y postgresql-18-pg-lake   # PG 18
 apt install -y postgresql-17-pg-lake   # PG 17
 apt install -y postgresql-16-pg-lake   # PG 16
@@ -137,6 +140,15 @@ CREATE EXTENSION pg_lake_engine CASCADE;  -- requires: pg_extension_base, pg_map
 ## Usage
 
 Sources:
+
+- [3.7.0 pg_lake_engine.control](https://github.com/Snowflake-Labs/pg_lake/blob/v3.7.0/pg_lake_engine/pg_lake_engine.control)
+- [3.7.0 v3.7.0](https://github.com/Snowflake-Labs/pg_lake/releases/tag/v3.7.0)
+
+- [Upstream source](https://github.com/Snowflake-Labs/pg_lake/releases/tag/v3.6.2)
+
+- [Current upstream](https://github.com/Snowflake-Labs/pg_lake/releases/tag/v3.6.1)
+- [Current upstream](https://github.com/Snowflake-Labs/pg_lake/blob/v3.6.1/docs/table-options.md)
+- [Current upstream](https://github.com/Snowflake-Labs/pg_lake/blob/v3.6.1/docs/iceberg-catalogs.md)
 
 - [Official pg_lake architecture overview](https://github.com/Snowflake-Labs/pg_lake/blob/v3.6.0/README.md#architecture)
 - [Version 3.6 control file](https://github.com/Snowflake-Labs/pg_lake/blob/v3.6.0/pg_lake_engine/pg_lake_engine.control)
@@ -190,3 +202,15 @@ Use `to_postgres()` only when an expression cannot or should not be pushed down;
 ### Upstream 3.6.0
 
 Upstream 3.6.0 adds PostgreSQL 19 support and uses DuckDB 1.5.6. Deploy matching libraries and `pgduck_server`, keep `pg_extension_base` preloaded, restart loaded processes and apply the supplied SQL updates to version 3.6. The engine migration adds internal UUID pushdown wrappers. They are planner/deparser plumbing, not a general-purpose application API.
+
+### Upstream 3.6.1 runtime update
+
+Deploy the matching 3.6.1 `pgduck_server` with the extension libraries. This patch backports a Brotli decoder security correction and reduces the query server's S3 uploader maximum file size to 50 GB. SQL remains 3.6; an unchanged SQL version does not prove the patched query server is installed. The C COPY-query export interface is internal integration work, not a new SQL function in this component.
+
+### Upstream 3.6.2
+
+The 3.6.2 patch corrects byte-by-byte CSV-value transmission in pgduck_server. Deploy the matching query-server binary with the extension libraries and reconnect/restart processes holding old code. The component SQL version remains 3.6; an unchanged extversion does not prove the query-server fix is installed. Package availability remains a separate catalog fact.
+
+### Upstream 3.7.0
+
+The current reviewed release is 3.7.0 and this component's control version is 3.7. Earlier version sections describe historical behavior and package examples. Upgrade the complete family with matching libraries and `pgduck_server`, restart processes holding old code, and apply the supplied extension updates to SQL version 3.7. This does not establish package availability.

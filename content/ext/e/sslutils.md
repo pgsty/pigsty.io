@@ -11,10 +11,10 @@ weight: 7410
     <div class="ext-card__title">EnterpriseDB/sslutils</div>
     <div class="ext-card__desc">https://github.com/EnterpriseDB/sslutils</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/sslutils-1.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/sslutils-1.4.2.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">sslutils-1.4.1.tar.gz</div>
-    <div class="ext-card__desc">sslutils-1.4.1.tar.gz</div>
+    <div class="ext-card__title">sslutils-1.4.2.tar.gz</div>
+    <div class="ext-card__desc">sslutils-1.4.2.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7410
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`sslutils`**](/ext/e/sslutils) | `1.4.1` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`sslutils`**](/ext/e/sslutils) | `1.4.2` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -42,152 +42,185 @@ weight: 7410
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `sslutils` | - |
-| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `sslutils_$v` | - |
-| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.1` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-sslutils` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "19,18,17,16,15" >}} | `sslutils` | - |
+| [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "19,18,17,16,15" >}} | `sslutils_$v` | - |
+| [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `1.4.2` | {{< pgvers "19,18,17,16,15" >}} | `postgresql-$v-sslutils` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 |
-| el8.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| el9.x86_64 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 |
-| el9.aarch64 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 2 | AVAIL PIGSTY 1.4.1 2 |
-| el10.x86_64 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 |
-| el10.aarch64 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 | AVAIL PIGSTY 1.4.1 3 |
-| d12.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d12.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d13.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| d13.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u22.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u22.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u24.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u24.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u26.x86_64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-| u26.aarch64 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 | AVAIL PIGSTY 1.4.1 1 |
-@ el8.x86_64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el8.x86_64.rpm pigsty 1.4.1 53.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_18-1.4.1-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el8.aarch64.rpm pigsty 1.4.1 52.3KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_18-1.4.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el9.x86_64.rpm pigsty 1.4.1 55.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_18-1.4.1-1PGSTY.el9.x86_64.rpm
-@ el9.x86_64 18 sslutils_18 sslutils_18-1.4-4PGDG.rhel9.8.x86_64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/sslutils_18-1.4-4PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 18 sslutils_18 sslutils_18-1.4-2PGDG.rhel9.x86_64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/sslutils_18-1.4-2PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_18-1.4.1-1PGSTY.el9.aarch64.rpm
-@ el9.aarch64 18 sslutils_18 sslutils_18-1.4-4PGDG.rhel9.8.aarch64.rpm pgdg 1.4 23.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/sslutils_18-1.4-4PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 18 sslutils_18 sslutils_18-1.4-2PGDG.rhel9.aarch64.rpm pgdg 1.4 23.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/sslutils_18-1.4-2PGDG.rhel9.aarch64.rpm
-@ el10.x86_64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el10.x86_64.rpm pigsty 1.4.1 56.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_18-1.4.1-1PGSTY.el10.x86_64.rpm
-@ el10.x86_64 18 sslutils_18 sslutils_18-1.4-4PGDG.rhel10.2.x86_64.rpm pgdg 1.4 25.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/sslutils_18-1.4-4PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 18 sslutils_18 sslutils_18-1.4-2PGDG.rhel10.x86_64.rpm pgdg 1.4 25.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/sslutils_18-1.4-2PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.1-1PGSTY.el10.aarch64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_18-1.4.1-1PGSTY.el10.aarch64.rpm
+| el8.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 4 | AVAIL PIGSTY 1.4.2 4 | AVAIL PIGSTY 1.4.2 4 |
+| el8.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 4 | AVAIL PIGSTY 1.4.2 4 | AVAIL PIGSTY 1.4.2 3 |
+| el9.x86_64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el9.aarch64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el10.x86_64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 3 |
+| el10.aarch64 | AVAIL PIGSTY 1.4.2 3 | AVAIL PIGSTY 1.4.2 7 | AVAIL PIGSTY 1.4.2 7 | AVAIL PIGSTY 1.4.2 7 | AVAIL PIGSTY 1.4.2 7 |
+| d12.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d12.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d13.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| d13.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u22.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u22.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u24.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u24.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u26.x86_64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+| u26.aarch64 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 | AVAIL PIGSTY 1.4.2 1 |
+@ el9.x86_64 19 sslutils_19 sslutils_19-1.4.2-1PGSTY.el9.x86_64.rpm pigsty 1.4.2 57.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_19-1.4.2-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 19 sslutils_19 sslutils_19-1.4.2-1PGDG.rhel9.9.x86_64.rpm pgdg 1.4.2 30.3KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-9-x86_64/sslutils_19-1.4.2-1PGDG.rhel9.9.x86_64.rpm
+@ el9.x86_64 19 sslutils_19 sslutils_19-1.4.1-4PGDG.rhel9.9.x86_64.rpm pgdg 1.4.1 27.7KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-9-x86_64/sslutils_19-1.4.1-4PGDG.rhel9.9.x86_64.rpm
+@ el9.aarch64 19 sslutils_19 sslutils_19-1.4.2-1PGSTY.el9.aarch64.rpm pigsty 1.4.2 55.9KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_19-1.4.2-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 19 sslutils_19 sslutils_19-1.4.2-1PGDG.rhel9.9.aarch64.rpm pgdg 1.4.2 29.1KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-9-aarch64/sslutils_19-1.4.2-1PGDG.rhel9.9.aarch64.rpm
+@ el9.aarch64 19 sslutils_19 sslutils_19-1.4.1-4PGDG.rhel9.9.aarch64.rpm pgdg 1.4.1 26.3KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-9-aarch64/sslutils_19-1.4.1-4PGDG.rhel9.9.aarch64.rpm
+@ el10.x86_64 19 sslutils_19 sslutils_19-1.4.2-1PGSTY.el10.x86_64.rpm pigsty 1.4.2 58.3KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_19-1.4.2-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 19 sslutils_19 sslutils_19-1.4.2-1PGDG.rhel10.3.x86_64.rpm pgdg 1.4.2 31.5KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-10-x86_64/sslutils_19-1.4.2-1PGDG.rhel10.3.x86_64.rpm
+@ el10.x86_64 19 sslutils_19 sslutils_19-1.4.1-4PGDG.rhel10.3.x86_64.rpm pgdg 1.4.1 29.0KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-10-x86_64/sslutils_19-1.4.1-4PGDG.rhel10.3.x86_64.rpm
+@ el10.aarch64 19 sslutils_19 sslutils_19-1.4.2-1PGSTY.el10.aarch64.rpm pigsty 1.4.2 57.0KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_19-1.4.2-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 19 sslutils_19 sslutils_19-1.4.2-1PGDG.rhel10.3.aarch64.rpm pgdg 1.4.2 30.0KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-10-aarch64/sslutils_19-1.4.2-1PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 19 sslutils_19 sslutils_19-1.4.1-4PGDG.rhel10.3.aarch64.rpm pgdg 1.4.1 27.3KiB https://download.postgresql.org/pub/repos/yum/19/redhat/rhel-10-aarch64/sslutils_19-1.4.1-4PGDG.rhel10.3.aarch64.rpm
+@ d12.x86_64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb pigsty 1.4.2 45.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb pigsty 1.4.2 43.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~trixie_amd64.deb pigsty 1.4.2 45.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~trixie_arm64.deb pigsty 1.4.2 44.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~jammy_amd64.deb pigsty 1.4.2 49.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~jammy_arm64.deb pigsty 1.4.2 47.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~noble_amd64.deb pigsty 1.4.2 48.1KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~noble_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~resolute_amd64.deb pigsty 1.4.2 48.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 19 postgresql-19-sslutils postgresql-19-sslutils_1.4.2-1PGSTY~resolute_arm64.deb pigsty 1.4.2 46.9KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-19-sslutils_1.4.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el8.x86_64.rpm pigsty 1.4.2 55.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_18-1.4.2-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.4.2 30.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/sslutils_18-1.4.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.x86_64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.1 28.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-x86_64/sslutils_18-1.4.1-4PGDG.rhel8.10.x86_64.rpm
+@ el8.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el8.aarch64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_18-1.4.2-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.4.2 29.6KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/sslutils_18-1.4.2-1PGDG.rhel8.10.aarch64.rpm
+@ el8.aarch64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel8.10.aarch64.rpm pgdg 1.4.1 26.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-8-aarch64/sslutils_18-1.4.1-4PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el9.x86_64.rpm pigsty 1.4.2 57.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_18-1.4.2-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel9.9.x86_64.rpm pgdg 1.4.2 30.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/sslutils_18-1.4.2-1PGDG.rhel9.9.x86_64.rpm
+@ el9.x86_64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel9.9.x86_64.rpm pgdg 1.4.1 27.7KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-x86_64/sslutils_18-1.4.1-4PGDG.rhel9.9.x86_64.rpm
+@ el9.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el9.aarch64.rpm pigsty 1.4.2 55.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_18-1.4.2-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel9.9.aarch64.rpm pgdg 1.4.2 29.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/sslutils_18-1.4.2-1PGDG.rhel9.9.aarch64.rpm
+@ el9.aarch64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel9.9.aarch64.rpm pgdg 1.4.1 26.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-9-aarch64/sslutils_18-1.4.1-4PGDG.rhel9.9.aarch64.rpm
+@ el10.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el10.x86_64.rpm pigsty 1.4.2 58.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_18-1.4.2-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel10.3.x86_64.rpm pgdg 1.4.2 31.5KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/sslutils_18-1.4.2-1PGDG.rhel10.3.x86_64.rpm
+@ el10.x86_64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel10.3.x86_64.rpm pgdg 1.4.1 29.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-x86_64/sslutils_18-1.4.1-4PGDG.rhel10.3.x86_64.rpm
+@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGSTY.el10.aarch64.rpm pigsty 1.4.2 56.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_18-1.4.2-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel10.3.aarch64.rpm pgdg 1.4.2 29.9KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4.2-1PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 30.0KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel10.3.aarch64.rpm pgdg 1.4.1 27.3KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4.1-4PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 18 sslutils_18 sslutils_18-1.4.1-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 27.2KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4.1-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 sslutils_18 sslutils_18-1.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4 24.1KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 18 sslutils_18 sslutils_18-1.4-2PGDG.rhel10.aarch64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/18/redhat/rhel-10-aarch64/sslutils_18-1.4-2PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb pigsty 1.4.1 43.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~trixie_amd64.deb pigsty 1.4.1 43.4KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~trixie_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~jammy_amd64.deb pigsty 1.4.1 46.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~jammy_arm64.deb pigsty 1.4.1 45.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~noble_amd64.deb pigsty 1.4.1 45.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~noble_arm64.deb pigsty 1.4.1 44.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~resolute_amd64.deb pigsty 1.4.1 45.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.1-1PGSTY~resolute_arm64.deb pigsty 1.4.1 44.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-18-sslutils_1.4.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el8.x86_64.rpm pigsty 1.4.1 53.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_17-1.4.1-1PGSTY.el8.x86_64.rpm
+@ d12.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb pigsty 1.4.2 45.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb pigsty 1.4.2 43.7KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~trixie_amd64.deb pigsty 1.4.2 45.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~trixie_arm64.deb pigsty 1.4.2 44.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~jammy_amd64.deb pigsty 1.4.2 49.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~jammy_arm64.deb pigsty 1.4.2 47.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~noble_amd64.deb pigsty 1.4.2 48.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~noble_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~resolute_amd64.deb pigsty 1.4.2 48.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-sslutils postgresql-18-sslutils_1.4.2-1PGSTY~resolute_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-18-sslutils_1.4.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el8.x86_64.rpm pigsty 1.4.2 55.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_17-1.4.2-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.4.2 30.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/sslutils_17-1.4.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.x86_64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.1 28.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/sslutils_17-1.4.1-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 17 sslutils_17 sslutils_17-1.4-1PGDG.rhel8.x86_64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/sslutils_17-1.4-1PGDG.rhel8.x86_64.rpm
-@ el8.aarch64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el8.aarch64.rpm pigsty 1.4.1 52.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_17-1.4.1-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el8.aarch64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_17-1.4.2-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.4.2 29.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/sslutils_17-1.4.2-1PGDG.rhel8.10.aarch64.rpm
+@ el8.aarch64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel8.10.aarch64.rpm pgdg 1.4.1 26.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/sslutils_17-1.4.1-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 17 sslutils_17 sslutils_17-1.4-1PGDG.rhel8.aarch64.rpm pgdg 1.4 23.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-aarch64/sslutils_17-1.4-1PGDG.rhel8.aarch64.rpm
-@ el9.x86_64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el9.x86_64.rpm pigsty 1.4.1 55.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_17-1.4.1-1PGSTY.el9.x86_64.rpm
-@ el9.x86_64 17 sslutils_17 sslutils_17-1.4-4PGDG.rhel9.8.x86_64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/sslutils_17-1.4-4PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 17 sslutils_17 sslutils_17-1.4-1PGDG.rhel9.x86_64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/sslutils_17-1.4-1PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_17-1.4.1-1PGSTY.el9.aarch64.rpm
-@ el9.aarch64 17 sslutils_17 sslutils_17-1.4-4PGDG.rhel9.8.aarch64.rpm pgdg 1.4 23.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/sslutils_17-1.4-4PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 17 sslutils_17 sslutils_17-1.4-1PGDG.rhel9.aarch64.rpm pgdg 1.4 23.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/sslutils_17-1.4-1PGDG.rhel9.aarch64.rpm
-@ el10.x86_64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el10.x86_64.rpm pigsty 1.4.1 56.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_17-1.4.1-1PGSTY.el10.x86_64.rpm
-@ el10.x86_64 17 sslutils_17 sslutils_17-1.4-4PGDG.rhel10.2.x86_64.rpm pgdg 1.4 25.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/sslutils_17-1.4-4PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 17 sslutils_17 sslutils_17-1.4-2PGDG.rhel10.x86_64.rpm pgdg 1.4 25.6KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/sslutils_17-1.4-2PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.1-1PGSTY.el10.aarch64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_17-1.4.1-1PGSTY.el10.aarch64.rpm
+@ el9.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el9.x86_64.rpm pigsty 1.4.2 57.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_17-1.4.2-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel9.9.x86_64.rpm pgdg 1.4.2 30.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/sslutils_17-1.4.2-1PGDG.rhel9.9.x86_64.rpm
+@ el9.x86_64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel9.9.x86_64.rpm pgdg 1.4.1 27.7KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-x86_64/sslutils_17-1.4.1-4PGDG.rhel9.9.x86_64.rpm
+@ el9.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el9.aarch64.rpm pigsty 1.4.2 55.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_17-1.4.2-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel9.9.aarch64.rpm pgdg 1.4.2 29.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/sslutils_17-1.4.2-1PGDG.rhel9.9.aarch64.rpm
+@ el9.aarch64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel9.9.aarch64.rpm pgdg 1.4.1 26.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-9-aarch64/sslutils_17-1.4.1-4PGDG.rhel9.9.aarch64.rpm
+@ el10.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el10.x86_64.rpm pigsty 1.4.2 58.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_17-1.4.2-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel10.3.x86_64.rpm pgdg 1.4.2 31.5KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/sslutils_17-1.4.2-1PGDG.rhel10.3.x86_64.rpm
+@ el10.x86_64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel10.3.x86_64.rpm pgdg 1.4.1 29.0KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-x86_64/sslutils_17-1.4.1-4PGDG.rhel10.3.x86_64.rpm
+@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGSTY.el10.aarch64.rpm pigsty 1.4.2 56.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_17-1.4.2-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel10.3.aarch64.rpm pgdg 1.4.2 29.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4.2-1PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 29.9KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel10.3.aarch64.rpm pgdg 1.4.1 27.2KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4.1-4PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 17 sslutils_17 sslutils_17-1.4.1-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 27.3KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4.1-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 sslutils_17 sslutils_17-1.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4 24.1KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 17 sslutils_17 sslutils_17-1.4-2PGDG.rhel10.aarch64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-10-aarch64/sslutils_17-1.4-2PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb pigsty 1.4.1 43.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb pigsty 1.4.1 41.4KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~trixie_amd64.deb pigsty 1.4.1 43.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~trixie_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~jammy_amd64.deb pigsty 1.4.1 49.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~jammy_arm64.deb pigsty 1.4.1 48.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~noble_amd64.deb pigsty 1.4.1 45.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~noble_arm64.deb pigsty 1.4.1 44.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~resolute_amd64.deb pigsty 1.4.1 45.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.1-1PGSTY~resolute_arm64.deb pigsty 1.4.1 44.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-17-sslutils_1.4.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el8.x86_64.rpm pigsty 1.4.1 53.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_16-1.4.1-1PGSTY.el8.x86_64.rpm
+@ d12.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb pigsty 1.4.2 45.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb pigsty 1.4.2 43.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~trixie_amd64.deb pigsty 1.4.2 45.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~trixie_arm64.deb pigsty 1.4.2 44.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~jammy_amd64.deb pigsty 1.4.2 51.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~jammy_arm64.deb pigsty 1.4.2 50.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~noble_amd64.deb pigsty 1.4.2 47.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~noble_arm64.deb pigsty 1.4.2 46.4KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~resolute_amd64.deb pigsty 1.4.2 48.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 17 postgresql-17-sslutils postgresql-17-sslutils_1.4.2-1PGSTY~resolute_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-17-sslutils_1.4.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el8.x86_64.rpm pigsty 1.4.2 55.1KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_16-1.4.2-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.4.2 30.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/sslutils_16-1.4.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.x86_64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.1 28.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/sslutils_16-1.4.1-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 16 sslutils_16 sslutils_16-1.4-1PGDG.rhel8.x86_64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-x86_64/sslutils_16-1.4-1PGDG.rhel8.x86_64.rpm
-@ el8.aarch64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el8.aarch64.rpm pigsty 1.4.1 52.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_16-1.4.1-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el8.aarch64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_16-1.4.2-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.4.2 29.6KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/sslutils_16-1.4.2-1PGDG.rhel8.10.aarch64.rpm
+@ el8.aarch64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel8.10.aarch64.rpm pgdg 1.4.1 26.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/sslutils_16-1.4.1-4PGDG.rhel8.10.aarch64.rpm
 @ el8.aarch64 16 sslutils_16 sslutils_16-1.4-1PGDG.rhel8.aarch64.rpm pgdg 1.4 23.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-8-aarch64/sslutils_16-1.4-1PGDG.rhel8.aarch64.rpm
-@ el9.x86_64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el9.x86_64.rpm pigsty 1.4.1 55.1KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_16-1.4.1-1PGSTY.el9.x86_64.rpm
-@ el9.x86_64 16 sslutils_16 sslutils_16-1.4-4PGDG.rhel9.8.x86_64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/sslutils_16-1.4-4PGDG.rhel9.8.x86_64.rpm
-@ el9.x86_64 16 sslutils_16 sslutils_16-1.4-1PGDG.rhel9.x86_64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/sslutils_16-1.4-1PGDG.rhel9.x86_64.rpm
-@ el9.aarch64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_16-1.4.1-1PGSTY.el9.aarch64.rpm
-@ el9.aarch64 16 sslutils_16 sslutils_16-1.4-4PGDG.rhel9.8.aarch64.rpm pgdg 1.4 23.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/sslutils_16-1.4-4PGDG.rhel9.8.aarch64.rpm
-@ el9.aarch64 16 sslutils_16 sslutils_16-1.4-1PGDG.rhel9.aarch64.rpm pgdg 1.4 23.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/sslutils_16-1.4-1PGDG.rhel9.aarch64.rpm
-@ el10.x86_64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el10.x86_64.rpm pigsty 1.4.1 56.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_16-1.4.1-1PGSTY.el10.x86_64.rpm
-@ el10.x86_64 16 sslutils_16 sslutils_16-1.4-4PGDG.rhel10.2.x86_64.rpm pgdg 1.4 25.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/sslutils_16-1.4-4PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 16 sslutils_16 sslutils_16-1.4-2PGDG.rhel10.x86_64.rpm pgdg 1.4 25.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/sslutils_16-1.4-2PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.1-1PGSTY.el10.aarch64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_16-1.4.1-1PGSTY.el10.aarch64.rpm
+@ el9.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el9.x86_64.rpm pigsty 1.4.2 57.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_16-1.4.2-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel9.9.x86_64.rpm pgdg 1.4.2 30.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/sslutils_16-1.4.2-1PGDG.rhel9.9.x86_64.rpm
+@ el9.x86_64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel9.9.x86_64.rpm pgdg 1.4.1 27.7KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-x86_64/sslutils_16-1.4.1-4PGDG.rhel9.9.x86_64.rpm
+@ el9.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el9.aarch64.rpm pigsty 1.4.2 55.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_16-1.4.2-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel9.9.aarch64.rpm pgdg 1.4.2 29.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/sslutils_16-1.4.2-1PGDG.rhel9.9.aarch64.rpm
+@ el9.aarch64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel9.9.aarch64.rpm pgdg 1.4.1 26.3KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-9-aarch64/sslutils_16-1.4.1-4PGDG.rhel9.9.aarch64.rpm
+@ el10.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el10.x86_64.rpm pigsty 1.4.2 58.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_16-1.4.2-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel10.3.x86_64.rpm pgdg 1.4.2 31.5KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/sslutils_16-1.4.2-1PGDG.rhel10.3.x86_64.rpm
+@ el10.x86_64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel10.3.x86_64.rpm pgdg 1.4.1 29.0KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-x86_64/sslutils_16-1.4.1-4PGDG.rhel10.3.x86_64.rpm
+@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGSTY.el10.aarch64.rpm pigsty 1.4.2 56.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_16-1.4.2-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel10.3.aarch64.rpm pgdg 1.4.2 29.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4.2-1PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 29.9KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel10.3.aarch64.rpm pgdg 1.4.1 27.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4.1-4PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 16 sslutils_16 sslutils_16-1.4.1-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 27.2KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4.1-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 sslutils_16 sslutils_16-1.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4 24.1KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 16 sslutils_16 sslutils_16-1.4-2PGDG.rhel10.aarch64.rpm pgdg 1.4 24.4KiB https://download.postgresql.org/pub/repos/yum/16/redhat/rhel-10-aarch64/sslutils_16-1.4-2PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb pigsty 1.4.1 43.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~trixie_amd64.deb pigsty 1.4.1 43.3KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~trixie_arm64.deb pigsty 1.4.1 41.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~jammy_amd64.deb pigsty 1.4.1 49.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~jammy_arm64.deb pigsty 1.4.1 48.1KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~noble_amd64.deb pigsty 1.4.1 45.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~noble_arm64.deb pigsty 1.4.1 44.6KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~resolute_amd64.deb pigsty 1.4.1 45.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.1-1PGSTY~resolute_arm64.deb pigsty 1.4.1 44.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-16-sslutils_1.4.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el8.x86_64.rpm pigsty 1.4.1 53.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_15-1.4.1-1PGSTY.el8.x86_64.rpm
+@ d12.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb pigsty 1.4.2 45.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb pigsty 1.4.2 43.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~trixie_amd64.deb pigsty 1.4.2 45.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~trixie_arm64.deb pigsty 1.4.2 44.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~jammy_amd64.deb pigsty 1.4.2 51.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~jammy_arm64.deb pigsty 1.4.2 50.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~noble_amd64.deb pigsty 1.4.2 47.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~noble_arm64.deb pigsty 1.4.2 46.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~resolute_amd64.deb pigsty 1.4.2 48.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 16 postgresql-16-sslutils postgresql-16-sslutils_1.4.2-1PGSTY~resolute_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-16-sslutils_1.4.2-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el8.x86_64.rpm pigsty 1.4.2 55.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_15-1.4.2-1PGSTY.el8.x86_64.rpm
+@ el8.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel8.10.x86_64.rpm pgdg 1.4.2 30.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/sslutils_15-1.4.2-1PGDG.rhel8.10.x86_64.rpm
+@ el8.x86_64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel8.10.x86_64.rpm pgdg 1.4.1 28.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/sslutils_15-1.4.1-4PGDG.rhel8.10.x86_64.rpm
 @ el8.x86_64 15 sslutils_15 sslutils_15-1.3-4.rhel8.x86_64.rpm pgdg 1.3 49.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-x86_64/sslutils_15-1.3-4.rhel8.x86_64.rpm
-@ el8.aarch64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el8.aarch64.rpm pigsty 1.4.1 52.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_15-1.4.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el9.x86_64.rpm pigsty 1.4.1 55.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_15-1.4.1-1PGSTY.el9.x86_64.rpm
-@ el9.x86_64 15 sslutils_15 sslutils_15-1.4-4PGDG.rhel9.8.x86_64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/sslutils_15-1.4-4PGDG.rhel9.8.x86_64.rpm
-@ el9.aarch64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_15-1.4.1-1PGSTY.el9.aarch64.rpm
-@ el9.aarch64 15 sslutils_15 sslutils_15-1.4-4PGDG.rhel9.8.aarch64.rpm pgdg 1.4 23.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/sslutils_15-1.4-4PGDG.rhel9.8.aarch64.rpm
-@ el10.x86_64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el10.x86_64.rpm pigsty 1.4.1 56.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_15-1.4.1-1PGSTY.el10.x86_64.rpm
-@ el10.x86_64 15 sslutils_15 sslutils_15-1.4-4PGDG.rhel10.2.x86_64.rpm pgdg 1.4 25.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/sslutils_15-1.4-4PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 15 sslutils_15 sslutils_15-1.4-2PGDG.rhel10.x86_64.rpm pgdg 1.4 25.7KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/sslutils_15-1.4-2PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.1-1PGSTY.el10.aarch64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_15-1.4.1-1PGSTY.el10.aarch64.rpm
+@ el8.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el8.aarch64.rpm pigsty 1.4.2 54.1KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_15-1.4.2-1PGSTY.el8.aarch64.rpm
+@ el8.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel8.10.aarch64.rpm pgdg 1.4.2 29.6KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/sslutils_15-1.4.2-1PGDG.rhel8.10.aarch64.rpm
+@ el8.aarch64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel8.10.aarch64.rpm pgdg 1.4.1 26.9KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-8-aarch64/sslutils_15-1.4.1-4PGDG.rhel8.10.aarch64.rpm
+@ el9.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el9.x86_64.rpm pigsty 1.4.2 57.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_15-1.4.2-1PGSTY.el9.x86_64.rpm
+@ el9.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel9.9.x86_64.rpm pgdg 1.4.2 30.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/sslutils_15-1.4.2-1PGDG.rhel9.9.x86_64.rpm
+@ el9.x86_64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel9.9.x86_64.rpm pgdg 1.4.1 27.8KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-x86_64/sslutils_15-1.4.1-4PGDG.rhel9.9.x86_64.rpm
+@ el9.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el9.aarch64.rpm pigsty 1.4.2 55.7KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_15-1.4.2-1PGSTY.el9.aarch64.rpm
+@ el9.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel9.9.aarch64.rpm pgdg 1.4.2 29.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/sslutils_15-1.4.2-1PGDG.rhel9.9.aarch64.rpm
+@ el9.aarch64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel9.9.aarch64.rpm pgdg 1.4.1 26.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-9-aarch64/sslutils_15-1.4.1-4PGDG.rhel9.9.aarch64.rpm
+@ el10.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el10.x86_64.rpm pigsty 1.4.2 58.1KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_15-1.4.2-1PGSTY.el10.x86_64.rpm
+@ el10.x86_64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel10.3.x86_64.rpm pgdg 1.4.2 31.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/sslutils_15-1.4.2-1PGDG.rhel10.3.x86_64.rpm
+@ el10.x86_64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel10.3.x86_64.rpm pgdg 1.4.1 29.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-x86_64/sslutils_15-1.4.1-4PGDG.rhel10.3.x86_64.rpm
+@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGSTY.el10.aarch64.rpm pigsty 1.4.2 56.6KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_15-1.4.2-1PGSTY.el10.aarch64.rpm
+@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel10.3.aarch64.rpm pgdg 1.4.2 30.0KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4.2-1PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.2-1PGDG.rhel10.2.aarch64.rpm pgdg 1.4.2 30.1KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4.2-1PGDG.rhel10.2.aarch64.rpm
+@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel10.3.aarch64.rpm pgdg 1.4.1 27.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4.1-4PGDG.rhel10.3.aarch64.rpm
+@ el10.aarch64 15 sslutils_15 sslutils_15-1.4.1-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4.1 27.4KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4.1-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 sslutils_15 sslutils_15-1.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4 24.2KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4-4PGDG.rhel10.2.aarch64.rpm
 @ el10.aarch64 15 sslutils_15 sslutils_15-1.4-2PGDG.rhel10.aarch64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/15/redhat/rhel-10-aarch64/sslutils_15-1.4-2PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb pigsty 1.4.1 43.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb pigsty 1.4.1 44.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~trixie_amd64.deb pigsty 1.4.1 43.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~trixie_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~jammy_amd64.deb pigsty 1.4.1 49.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~jammy_arm64.deb pigsty 1.4.1 48.0KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~noble_amd64.deb pigsty 1.4.1 45.9KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~noble_arm64.deb pigsty 1.4.1 44.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~resolute_amd64.deb pigsty 1.4.1 45.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.1-1PGSTY~resolute_arm64.deb pigsty 1.4.1 44.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-15-sslutils_1.4.1-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el8.x86_64.rpm pigsty 1.4.1 53.2KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/sslutils_14-1.4.1-1PGSTY.el8.x86_64.rpm
-@ el8.x86_64 14 sslutils_14 sslutils_14-1.3-4.rhel8.x86_64.rpm pgdg 1.3 48.9KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-8-x86_64/sslutils_14-1.3-4.rhel8.x86_64.rpm
-@ el8.aarch64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el8.aarch64.rpm pigsty 1.4.1 52.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/sslutils_14-1.4.1-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el9.x86_64.rpm pigsty 1.4.1 55.2KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/sslutils_14-1.4.1-1PGSTY.el9.x86_64.rpm
-@ el9.x86_64 14 sslutils_14 sslutils_14-1.4-4PGDG.rhel9.8.x86_64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-x86_64/sslutils_14-1.4-4PGDG.rhel9.8.x86_64.rpm
-@ el9.aarch64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el9.aarch64.rpm pigsty 1.4.1 54.0KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/sslutils_14-1.4.1-1PGSTY.el9.aarch64.rpm
-@ el9.aarch64 14 sslutils_14 sslutils_14-1.4-4PGDG.rhel9.8.aarch64.rpm pgdg 1.4 23.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-9-aarch64/sslutils_14-1.4-4PGDG.rhel9.8.aarch64.rpm
-@ el10.x86_64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el10.x86_64.rpm pigsty 1.4.1 56.4KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/sslutils_14-1.4.1-1PGSTY.el10.x86_64.rpm
-@ el10.x86_64 14 sslutils_14 sslutils_14-1.4-4PGDG.rhel10.2.x86_64.rpm pgdg 1.4 25.4KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/sslutils_14-1.4-4PGDG.rhel10.2.x86_64.rpm
-@ el10.x86_64 14 sslutils_14 sslutils_14-1.4-2PGDG.rhel10.x86_64.rpm pgdg 1.4 25.8KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-x86_64/sslutils_14-1.4-2PGDG.rhel10.x86_64.rpm
-@ el10.aarch64 14 sslutils_14 sslutils_14-1.4.1-1PGSTY.el10.aarch64.rpm pigsty 1.4.1 54.9KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/sslutils_14-1.4.1-1PGSTY.el10.aarch64.rpm
-@ el10.aarch64 14 sslutils_14 sslutils_14-1.4-4PGDG.rhel10.2.aarch64.rpm pgdg 1.4 24.2KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/sslutils_14-1.4-4PGDG.rhel10.2.aarch64.rpm
-@ el10.aarch64 14 sslutils_14 sslutils_14-1.4-2PGDG.rhel10.aarch64.rpm pgdg 1.4 24.5KiB https://download.postgresql.org/pub/repos/yum/14/redhat/rhel-10-aarch64/sslutils_14-1.4-2PGDG.rhel10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb pigsty 1.4.1 43.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb pigsty 1.4.1 41.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~trixie_amd64.deb pigsty 1.4.1 43.2KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~trixie_arm64.deb pigsty 1.4.1 41.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~jammy_amd64.deb pigsty 1.4.1 49.5KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~jammy_arm64.deb pigsty 1.4.1 48.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~noble_amd64.deb pigsty 1.4.1 45.8KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~noble_arm64.deb pigsty 1.4.1 44.3KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~resolute_amd64.deb pigsty 1.4.1 45.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-sslutils postgresql-14-sslutils_1.4.1-1PGSTY~resolute_arm64.deb pigsty 1.4.1 44.2KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-14-sslutils_1.4.1-1PGSTY~resolute_arm64.deb
+@ d12.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb pigsty 1.4.2 45.3KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb pigsty 1.4.2 43.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~trixie_amd64.deb pigsty 1.4.2 45.6KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~trixie_arm64.deb pigsty 1.4.2 44.0KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~jammy_amd64.deb pigsty 1.4.2 51.9KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~jammy_arm64.deb pigsty 1.4.2 50.3KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~noble_amd64.deb pigsty 1.4.2 48.0KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~noble_amd64.deb
+@ u24.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~noble_arm64.deb pigsty 1.4.2 46.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~noble_arm64.deb
+@ u26.x86_64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~resolute_amd64.deb pigsty 1.4.2 48.1KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 15 postgresql-15-sslutils postgresql-15-sslutils_1.4.2-1PGSTY~resolute_arm64.deb pigsty 1.4.2 46.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/s/sslutils/postgresql-15-sslutils_1.4.2-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -214,27 +247,27 @@ pig install sslutils;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y sslutils -v 19  # PG 19
 pig ext install -y sslutils -v 18  # PG 18
 pig ext install -y sslutils -v 17  # PG 17
 pig ext install -y sslutils -v 16  # PG 16
 pig ext install -y sslutils -v 15  # PG 15
-pig ext install -y sslutils -v 14  # PG 14
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y sslutils_19       # PG 19
 dnf install -y sslutils_18       # PG 18
 dnf install -y sslutils_17       # PG 17
 dnf install -y sslutils_16       # PG 16
 dnf install -y sslutils_15       # PG 15
-dnf install -y sslutils_14       # PG 14
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-19-sslutils   # PG 19
 apt install -y postgresql-18-sslutils   # PG 18
 apt install -y postgresql-17-sslutils   # PG 17
 apt install -y postgresql-16-sslutils   # PG 16
 apt install -y postgresql-15-sslutils   # PG 15
-apt install -y postgresql-14-sslutils   # PG 14
 ```
 
 
@@ -248,10 +281,12 @@ CREATE EXTENSION sslutils;
 
 Sources:
 
-- [1.4.1 README](https://github.com/EnterpriseDB/sslutils/blob/v1.4.1/README.sslutils)
-- [1.4.1 SQL API](https://github.com/EnterpriseDB/sslutils/blob/v1.4.1/sslutils--1.4.1.sql)
-- [1.4.1 control file](https://github.com/EnterpriseDB/sslutils/blob/v1.4.1/sslutils.control)
-- [File-access checks](https://github.com/EnterpriseDB/sslutils/blob/v1.4.1/sslutils.c)
+- [1.4.2 README](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/README.sslutils)
+- [1.4.2 SQL API](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/sslutils--1.4.2.sql)
+- [1.4.2 control file](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/sslutils.control)
+- [File-access checks](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/sslutils.c)
+- [1.4.1 to 1.4.2 upgrade](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/sslutils--1.4.1--1.4.2.sql)
+- [PEM agent grants](https://github.com/EnterpriseDB/sslutils/blob/v1.4.2/sslutils-pemagent.sql.in)
 
 `sslutils` provides SSL certificate-generation and revocation helpers for Postgres Enterprise Manager and other controlled administration workflows. Some functions read or modify files on the database server.
 
@@ -281,12 +316,34 @@ For self-signed generation, the certificate-path argument to the signing functio
 
 ### Protect Keys and Server Files
 
-Certificate-inspection functions require membership in `pg_read_server_files` on PostgreSQL 11 and later; revocation checks both that role and `pg_write_server_files`. These roles provide broad server-file access, so grant them only to trusted administrators and restrict function execution as needed.
+In 1.4.2, all seven `openssl_*` functions use `SECURITY DEFINER` with a fixed `search_path` of `pg_catalog, pg_temp`. Their owner, `sslutils_owner`, is a cluster-wide `INHERIT`, `NOLOGIN` role. It holds `pg_read_server_files` and `pg_write_server_files` on PostgreSQL 11 and later, but must have no members, administrative attributes or other role memberships. Installation rejects an unsafe existing owner role.
+
+`PUBLIC` has no execution privilege. Installation or upgrade grants `EXECUTE` to `pem_agent` if that role already exists; existing explicit function grants remain. For an agent created later, a superuser runs the installed `sslutils-pemagent.sql` in the extension's schema. An agent using a non-public schema also needs `USAGE` on that schema, without `CREATE`. Callers need the relevant function privileges, not direct server-file role membership; never grant them membership in `sslutils_owner`.
+
+Grant access only to callers trusted to inspect certificates and use CA keys within the permitted paths. Confinement to the data directory does not separate agents or CAs from each other.
 
 Private keys returned as SQL text can enter query results, logs, shell history or application traces. Protect their handling and storage. This extension does not provide SSL session-inspection getters or automatically configure PostgreSQL's TLS settings.
 
-### File-Access Changes in 1.4.1
+### Upgrade and Existing Grants
 
-Certificate inspection and CA signing paths are checked against the server data directory; place the input files there and use server-relative paths where suitable. Revocation requires `sslutils.revoke_certificate_crl_paths`, a comma-separated allowlist of CRL output path prefixes configured in postgresql.conf and activated by reload. The revocation check compares lexical string prefixes without resolving canonical directory containment; configure narrow prefixes and protect the output location.
+Upgrade an existing installation as a superuser:
+
+```sql
+ALTER EXTENSION sslutils UPDATE TO '1.4.2';
+```
+
+After migrating callers, remove obsolete broad file-role grants from agents:
+
+```sql
+REVOKE pg_read_server_files, pg_write_server_files FROM pem_agent;
+```
+
+Review direct and inherited grants to individual logins too, including `pg_execute_server_program` and superuser privileges. An extension upgrade within one database does not revoke these cluster-wide grants automatically. The shared `sslutils_owner` role also survives extension removal; remove it only after uninstalling from all databases and revoking its file-role memberships.
+
+### File-Access Boundaries
+
+Certificate inspection and CA signing paths must resolve within the server data directory. Revocation additionally requires `sslutils.revoke_certificate_crl_paths`, a comma-separated allowlist of CRL output directories configured by a superuser in postgresql.conf and activated by reload. In 1.4.2, checks resolve paths and enforce directory boundaries; a new output file is checked through its existing parent directory, and an existing output file is checked too.
+
+Use dedicated CRL output directories under administrator control. Do not allow the whole data directory or directories containing configuration files: an authorized caller chooses the output filename within an allowed directory. Keep certificate and private-key paths under administrator control as well.
 
 The revocation implementation accepts PEM certificate text as its first argument, despite older README and SQL comments describing a certificate path. It reads the server-side CA files `ca_certificate.crt` and `ca_key.key`, and creates or appends to `revoke_cert.db`. Prepare the CA files before using it. Do not infer that a broad server-file role bypasses these extension-specific checks.

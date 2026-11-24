@@ -12,7 +12,7 @@ There are **36** extensions in **26** packages.
 
 | **Extension** | **Package** | **Version** | **License** | **Language** | **Description** |
 |:---------|:-------|:--------:|:----------:|:--------:|:---------|
-| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/main/pg_search) | `0.26.6` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
+| [`pg_search`](/ext/e/pg_search) | [`pg_search`](https://github.com/paradedb/paradedb/tree/main/pg_search) | `0.27.0` | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Full text search for PostgreSQL using BM25 |
 | [`pgroonga`](/ext/e/pgroonga) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Use Groonga as index, fast full text search platform for all languages! |
 | [`pgroonga_database`](/ext/e/pgroonga_database) | [`pgroonga`](https://github.com/pgroonga/pgroonga) | `4.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Recovery helper for removing a damaged PGroonga internal database |
 | [`pg_bigm`](/ext/e/pg_bigm) | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | create 2-gram (bigram) index for faster full text search. |
@@ -21,12 +21,12 @@ There are **36** extensions in **26** packages.
 | [`pg_bestmatch`](/ext/e/pg_bestmatch) | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | `0.0.2` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Generate BM25 sparse vector inside PostgreSQL |
 | [`vchord_bm25`](/ext/e/vchord_bm25) | [`vchord_bm25`](https://vchord.pgsty.com/docs/bm25/) | `1.1.0` | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | A postgresql extension for bm25 ranking algorithm |
 | [`pg_tokenizer`](/ext/e/pg_tokenizer) | [`pg_tokenizer`](https://vchord.pgsty.com/docs/tokenizer) | `1.1.0` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Tokenizers for full-text search |
-| [`biscuit`](/ext/e/biscuit) | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | `3.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IAM-LIKE pattern matching with bitmap indexing |
+| [`biscuit`](/ext/e/biscuit) | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | `3.1.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | IAM-LIKE pattern matching with bitmap indexing |
 | [`pg_textsearch`](/ext/e/pg_textsearch) | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | `1.5.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 ranking |
-| [`pg_pinyin`](/ext/e/pg_pinyin) | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | `0.0.8` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Pinyin romanization and search helpers for PostgreSQL |
+| [`pg_pinyin`](/ext/e/pg_pinyin) | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | `0.0.9` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Pinyin romanization and search helpers for PostgreSQL |
 | [`pg_kazsearch`](/ext/e/pg_kazsearch) | [`pg_kazsearch`](https://github.com/darkhanakh/pg-kazsearch) | `2.3.0` | <a class="ext-badge ext-badge--license lgpl30" href="/ext/license#lgpl30">LGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Kazakh full-text search extension for PostgreSQL |
 | [`psql_bm25s`](/ext/e/psql_bm25s) | [`psql_bm25s`](https://github.com/Intelligent-Internet/Evoke) | `0.4.14` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL extension for BM25-family lexical retrieval |
-| [`pg_fts`](/ext/e/pg_fts) | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | `1.16.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 and BM25F ranking |
+| [`pg_fts`](/ext/e/pg_fts) | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | `1.18.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full-text search with BM25 and BM25F ranking |
 | [`pg_cjk_parser`](/ext/e/pg_cjk_parser) | [`pg_cjk_parser`](https://github.com/huangjimmy/pg_cjk_parser) | `0.1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | CJK bigram parser derived from PostgreSQL full-text search |
 | [`pg_jieba`](/ext/e/pg_jieba) | [`pg_jieba`](https://github.com/jaiminpan/pg_jieba) | `1.1.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | Chinese full-text search parser based on cppjieba |
 | [`acdat`](/ext/e/acdat) | [`acdat`](https://github.com/pgsty/acdat) | `0.1.1` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Compiled Aho-Corasick double-array machines for exact multi-pattern matching and replacement in PostgreSQL |
@@ -45,7 +45,7 @@ There are **36** extensions in **26** packages.
 | [`pg_icu_parser`](/ext/e/pg_icu_parser) | [`pg_icu_parser`](https://github.com/IgKh/pg_icu_parser) | `1.0` | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Full text search parser using ICU boundary analysis |
 | [`tin`](/ext/e/tin) | [`lead`](https://github.com/planetscale/lead) | `1.0.6` | <a class="ext-badge ext-badge--license agpl30orlater" href="/ext/license#agpl30orlater">AGPL-3.0-or-later</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | TIN-compatible text search for development and testing |
 | [`stannum`](/ext/e/stannum) | [`stannum`](https://github.com/TeamSpringbird/stannum) | `0.1.0` | <a class="ext-badge ext-badge--license agpl30orlater" href="/ext/license#agpl30orlater">AGPL-3.0-or-later</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | Experimental TINQL text search with BM25 and segmented indexes |
-| [`pg_tre`](/ext/e/pg_tre) | [`pg_tre`](https://codeberg.org/gregburd/pg_tre) | `4.6.2` | <a class="ext-badge ext-badge--license mit and bsd2clause" href="/ext/license#mitandbsd2clause">MIT AND BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Native PostgreSQL index access method for approximate regular-expression matching |
+| [`pg_tre`](/ext/e/pg_tre) | [`pg_tre`](https://codeberg.org/gregburd/pg_tre) | `4.6.6` | <a class="ext-badge ext-badge--license mit and bsd2clause" href="/ext/license#mitandbsd2clause">MIT AND BSD-2-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Native PostgreSQL index access method for approximate regular-expression matching |
 | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | [`fuzzystrmatch`](https://www.postgresql.org/docs/current/fuzzystrmatch.html) | `1.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | determine similarities and distance between strings |
 | [`pg_trgm`](/ext/e/pg_trgm) | [`pg_trgm`](https://www.postgresql.org/docs/current/pgtrgm.html) | `1.6` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | text similarity measurement and index searching based on trigrams |
 {.ext-table .wide .expand}
@@ -55,7 +55,7 @@ There are **36** extensions in **26** packages.
 
 ## pg_search {#pg_search}
 
-[**`pg_search`**](/ext/e/pg_search) - `0.26.6` : Full text search for PostgreSQL using BM25
+[**`pg_search`**](/ext/e/pg_search) - `0.27.0` : Full text search for PostgreSQL using BM25
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
@@ -78,14 +78,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgroonga`](/ext/e/pgroonga) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgroonga`](https://github.com/pgroonga/pgroonga) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgroonga_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgroonga` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgroonga`](/ext/e/pgroonga) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgroonga`](https://github.com/pgroonga/pgroonga) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pgroonga_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgroonga` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -97,14 +97,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgroonga_database`](/ext/e/pgroonga_database) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgroonga`](https://github.com/pgroonga/pgroonga) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgroonga_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgroonga` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgroonga_database`](/ext/e/pgroonga_database) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgroonga`](https://github.com/pgroonga/pgroonga) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pgroonga_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgroonga` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -116,14 +116,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_bigm`](/ext/e/pg_bigm) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_bigm_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-bigm` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_bigm`](/ext/e/pg_bigm) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_bigm`](https://github.com/pgbigm/pg_bigm) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pg_bigm_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-bigm` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -135,14 +135,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`vgram`](/ext/e/vgram) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`vgram`](https://github.com/akorotkov/vgram) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `vgram_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-vgram` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`vgram`](/ext/e/vgram) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`vgram`](https://github.com/akorotkov/vgram) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `vgram_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-vgram` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -154,14 +154,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`zhparser`](/ext/e/zhparser) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`zhparser`](https://github.com/amutu/zhparser) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `zhparser_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-zhparser` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`zhparser`](/ext/e/zhparser) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`zhparser`](https://github.com/amutu/zhparser) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `zhparser_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-zhparser` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -173,14 +173,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_bestmatch`](/ext/e/pg_bestmatch) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_bestmatch_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-bestmatch` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_bestmatch`](/ext/e/pg_bestmatch) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_bestmatch`](https://github.com/tensorchord/pg_bestmatch.rs) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_bestmatch_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-bestmatch` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -192,14 +192,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`vchord_bm25`](/ext/e/vchord_bm25) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`vchord_bm25`](https://vchord.pgsty.com/docs/bm25/) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `vchord_bm25_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-vchord-bm25` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`vchord_bm25`](/ext/e/vchord_bm25) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`vchord_bm25`](https://vchord.pgsty.com/docs/bm25/) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `vchord_bm25_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-vchord-bm25` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license agpl30only" href="/ext/license#agpl30only">AGPL-3.0-only</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -211,14 +211,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_tokenizer`](/ext/e/pg_tokenizer) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_tokenizer`](https://vchord.pgsty.com/docs/tokenizer) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_tokenizer_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-tokenizer` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_tokenizer`](/ext/e/pg_tokenizer) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_tokenizer`](https://vchord.pgsty.com/docs/tokenizer) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_tokenizer_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-tokenizer` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -226,18 +226,18 @@ There are **36** extensions in **26** packages.
 
 ## biscuit {#biscuit}
 
-[**`pg_biscuit`**](/ext/e/biscuit) - `3.1.0` : IAM-LIKE pattern matching with bitmap indexing
+[**`pg_biscuit`**](/ext/e/biscuit) - `3.1.1` : IAM-LIKE pattern matching with bitmap indexing
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`biscuit`](/ext/e/biscuit) | **el8** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **Package** | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | **el9** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **RPM** | `biscuit_$v` | **el10** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **DEB** | `postgresql-$v-biscuit` | **d12** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
-| | | **u26** | {{< pgvers "18,17,16" >}} | {{< pgvers "18,17,16" >}} |
+| **Package** | [`pg_biscuit`](https://github.com/CrystallineCore/Biscuit) | **el9** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| **RPM** | `biscuit_$v` | **el10** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| **DEB** | `postgresql-$v-biscuit` | **d12** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16" >}} | {{< pgvers "19,18,17,16" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -250,13 +250,13 @@ There are **36** extensions in **26** packages.
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`pg_textsearch`](/ext/e/pg_textsearch) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Package** | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **RPM** | `pg_textsearch_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **DEB** | `postgresql-$v-textsearch` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pg_textsearch`](https://github.com/timescale/pg_textsearch) | **el9** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **RPM** | `pg_textsearch_$v` | **el10** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **DEB** | `postgresql-$v-textsearch` | **d12** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| | | **u26** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -264,18 +264,18 @@ There are **36** extensions in **26** packages.
 
 ## pg_pinyin {#pg_pinyin}
 
-[**`pg_pinyin`**](/ext/e/pg_pinyin) - `0.0.8` : Pinyin romanization and search helpers for PostgreSQL
+[**`pg_pinyin`**](/ext/e/pg_pinyin) - `0.0.9` : Pinyin romanization and search helpers for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_pinyin`](/ext/e/pg_pinyin) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_pinyin_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pinyin` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_pinyin`](/ext/e/pg_pinyin) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_pinyin`](https://github.com/aiyou178/pg_pinyin) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_pinyin_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pinyin` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -307,13 +307,13 @@ There are **36** extensions in **26** packages.
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`psql_bm25s`](/ext/e/psql_bm25s) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Package** | [`psql_bm25s`](https://github.com/Intelligent-Internet/Evoke) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **RPM** | `psql_bm25s_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **DEB** | `postgresql-$v-psql-bm25s` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`psql_bm25s`](https://github.com/Intelligent-Internet/Evoke) | **el9** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **RPM** | `psql_bm25s_$v` | **el10** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **DEB** | `postgresql-$v-psql-bm25s` | **d12** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| | | **u26** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -321,18 +321,18 @@ There are **36** extensions in **26** packages.
 
 ## pg_fts {#pg_fts}
 
-[**`pg_fts`**](/ext/e/pg_fts) - `1.16.0` : Full-text search with BM25 and BM25F ranking
+[**`pg_fts`**](/ext/e/pg_fts) - `1.18.0` : Full-text search with BM25 and BM25F ranking
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`pg_fts`](/ext/e/pg_fts) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Package** | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **RPM** | `pg_fts_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **DEB** | `postgresql-$v-pg-fts` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pg_fts`](https://codeberg.org/gregburd/pg_fts) | **el9** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **RPM** | `pg_fts_$v` | **el10** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **DEB** | `postgresql-$v-pg-fts` | **d12** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| | | **u26** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -344,14 +344,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_cjk_parser`](/ext/e/pg_cjk_parser) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_cjk_parser`](https://github.com/huangjimmy/pg_cjk_parser) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_cjk_parser_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-cjk-parser` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_cjk_parser`](/ext/e/pg_cjk_parser) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_cjk_parser`](https://github.com/huangjimmy/pg_cjk_parser) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_cjk_parser_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-cjk-parser` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -363,14 +363,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_jieba`](/ext/e/pg_jieba) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_jieba`](https://github.com/jaiminpan/pg_jieba) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_jieba_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-jieba` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_jieba`](/ext/e/pg_jieba) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_jieba`](https://github.com/jaiminpan/pg_jieba) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pg_jieba_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-jieba` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang cpp" href="/ext/language#cpp">C++</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -382,14 +382,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`acdat`](/ext/e/acdat) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`acdat`](https://github.com/pgsty/acdat) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `acdat_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-acdat` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`acdat`](/ext/e/acdat) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`acdat`](https://github.com/pgsty/acdat) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `acdat_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-acdat` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -401,14 +401,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`addressing_dictionary`](/ext/e/addressing_dictionary) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`addressing_dictionary`](https://github.com/pramsey/pgsql-addressing-dictionary) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `addressing_dictionary_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-addressing-dictionary` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`addressing_dictionary`](/ext/e/addressing_dictionary) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`addressing_dictionary`](https://github.com/pramsey/pgsql-addressing-dictionary) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `addressing_dictionary_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-addressing-dictionary` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -420,14 +420,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_cs_cz`](/ext/e/hunspell_cs_cz) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -439,14 +439,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_de_de`](/ext/e/hunspell_de_de) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_de_de`](/ext/e/hunspell_de_de) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -458,14 +458,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_en_us`](/ext/e/hunspell_en_us) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_en_us`](/ext/e/hunspell_en_us) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -477,14 +477,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_fr`](/ext/e/hunspell_fr) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_fr`](/ext/e/hunspell_fr) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -496,14 +496,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_ne_np`](/ext/e/hunspell_ne_np) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -515,14 +515,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_nl_nl`](/ext/e/hunspell_nl_nl) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -534,14 +534,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_nn_no`](/ext/e/hunspell_nn_no) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -553,14 +553,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_pt_pt`](/ext/e/hunspell_pt_pt) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -572,14 +572,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_ru_ru`](/ext/e/hunspell_ru_ru) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -591,14 +591,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`hunspell_ru_ru_aot`](/ext/e/hunspell_ru_ru_aot) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`hunspell`](https://github.com/postgrespro/hunspell_dicts) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `hunspell_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-hunspell` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang data" href="/ext/language#data">Data</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -610,14 +610,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`textsearch_intl`](/ext/e/textsearch_intl) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`textsearch_intl`](https://github.com/benjaminsanborn/textsearch_intl) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `textsearch_intl_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-textsearch-intl` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`textsearch_intl`](/ext/e/textsearch_intl) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`textsearch_intl`](https://github.com/benjaminsanborn/textsearch_intl) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `textsearch_intl_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-textsearch-intl` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -629,14 +629,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_icu_parser`](/ext/e/pg_icu_parser) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_icu_parser`](https://github.com/IgKh/pg_icu_parser) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_icu_parser_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-icu-parser` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_icu_parser`](/ext/e/pg_icu_parser) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_icu_parser`](https://github.com/IgKh/pg_icu_parser) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pg_icu_parser_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-icu-parser` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mpl20" href="/ext/license#mpl20">MPL-2.0</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -682,18 +682,18 @@ There are **36** extensions in **26** packages.
 
 ## pg_tre {#pg_tre}
 
-[**`pg_tre`**](/ext/e/pg_tre) - `4.6.2` : Native PostgreSQL index access method for approximate regular-expression matching
+[**`pg_tre`**](/ext/e/pg_tre) - `4.6.6` : Native PostgreSQL index access method for approximate regular-expression matching
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
 | **Extension** | [`pg_tre`](/ext/e/pg_tre) | **el8** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Package** | [`pg_tre`](https://codeberg.org/gregburd/pg_tre) | **el9** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **RPM** | `pg_tre_$v` | **el10** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **DEB** | `postgresql-$v-pg-tre` | **d12** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit and bsd2clause" href="/ext/license#mitandbsd2clause">MIT AND BSD-2-Clause</a> | **u24** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
-| | | **u26** | {{< pgvers "18,17" >}} | {{< pgvers "18,17" >}} |
+| **Package** | [`pg_tre`](https://codeberg.org/gregburd/pg_tre) | **el9** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **RPM** | `pg_tre_$v` | **el10** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **DEB** | `postgresql-$v-pg-tre` | **d12** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit and bsd2clause" href="/ext/license#mitandbsd2clause">MIT AND BSD-2-Clause</a> | **u24** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
+| | | **u26** | {{< pgvers "19,18,17" >}} | {{< pgvers "19,18,17" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -705,14 +705,14 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`fuzzystrmatch`](https://www.postgresql.org/docs/current/fuzzystrmatch.html) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`fuzzystrmatch`](/ext/e/fuzzystrmatch) | **el8** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Package** | [`fuzzystrmatch`](https://www.postgresql.org/docs/current/fuzzystrmatch.html) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -724,12 +724,12 @@ There are **36** extensions in **26** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_trgm`](/ext/e/pg_trgm) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_trgm`](https://www.postgresql.org/docs/current/pgtrgm.html) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_trgm`](/ext/e/pg_trgm) | **el8** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Package** | [`pg_trgm`](https://www.postgresql.org/docs/current/pgtrgm.html) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}

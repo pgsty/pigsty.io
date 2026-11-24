@@ -14,7 +14,7 @@ sidebar_expanded: true
 | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | 18 | 18 | Vector Database with Ivfflat, HNSW, DiskANN Indexes, AI & ML in SQL interface, Similarity Funcs, etc...  |
 | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | 36 | 26 | ElasticSearch Alternative with BM25, 2-gram/3-gram Fuzzy Search, Zhparser & Hunspell Segregation Dicts, etc... |
 | <a class="ext-badge ext-badge--cate olap" href="/ext/cate/olap">OLAP</a> | 27 | 19 | DuckDB Integration with FDW & PG Lakehouse, Access Parquet from File/S3, Sharding with Citus/Partman/PlProxy, ... |
-| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 84 | 42 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
+| <a class="ext-badge ext-badge--cate feat" href="/ext/cate/feat">FEAT</a> | 86 | 44 | OpenCypher with AGE, GraphQL, JsonSchema, Hints & Hypo Index, HLL, Rum, IVM, ChemRDKit, and Message Queues,... |
 | <a class="ext-badge ext-badge--cate lang" href="/ext/cate/lang">LANG</a> | 43 | 27 | Develop, Test, Package, and Deliver Stored Procedures written in various PL/Languages: Java, Js, Lua, R, Sh, PRQL, ... |
 | <a class="ext-badge ext-badge--cate type" href="/ext/cate/type">TYPE</a> | 47 | 46 | Dedicate New Data Types Like: prefix, semver, uint, SIUnit, RoaringBitmap, Rational, Sphere, Hash, RRule, and more... |
 | <a class="ext-badge ext-badge--cate util" href="/ext/cate/util">UTIL</a> | 45 | 44 | Utilities such as send http request, perform gzip/zstd compress, send mails, Regex, ICU, encoding, docs, Encryption,... |

@@ -19,14 +19,14 @@ There are **22** extensions in **21** packages.
 | [`logical_ddl`](/ext/e/logical_ddl) | [`logical_ddl`](https://github.com/samedyildirim/logical_ddl) | `0.1.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Replicate supported DDL changes over PostgreSQL logical replication |
 | [`pg_failover_slots`](/ext/e/pg_failover_slots) | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | `1.2.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PG Failover Slots extension |
 | [`db_migrator`](/ext/e/db_migrator) | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | `1.0.0` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Tools to migrate other databases to PostgreSQL |
-| [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.9` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
+| [`pgactive`](/ext/e/pgactive) | [`pgactive`](https://github.com/aws/pgactive) | `2.1.10` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Active-Active Replication Extension for PostgreSQL |
 | [`spock`](/ext/e/spock) | [`spock`](https://github.com/pgEdge/spock) | `5.0.13` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Multi-master logical replication extension for PostgreSQL |
 | [`lolor`](/ext/e/lolor) | [`lolor`](https://github.com/pgEdge/lolor) | `1.2.3` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical-replication-friendly replacement for PostgreSQL large objects |
-| [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.4.2` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
+| [`pgclone`](/ext/e/pgclone) | [`pgclone`](https://github.com/valehdba/pgclone) | `4.10.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Clone PostgreSQL databases, schemas, tables, and functions across environments |
 | [`pgmqtt`](/ext/e/pgmqtt) | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | `0.5.1` | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | CDC-to-MQTT broker for PostgreSQL |
 | [`wal2json`](/ext/e/wal2json) | [`wal2json`](https://github.com/eulerto/wal2json) | `2.7` | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Changing data capture in JSON format |
 | [`wal2mongo`](/ext/e/wal2mongo) | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | `1.0.7` | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | PostgreSQL logical decoding output plugin for MongoDB |
-| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.7.0` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
+| [`decoderbufs`](/ext/e/decoderbufs) | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | `3.7.1` | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format |
 | [`decoder_raw`](/ext/e/decoder_raw) | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | `1.0` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Output plugin for logical replication in Raw SQL format |
 | [`mimeo`](/ext/e/mimeo) | [`mimeo`](https://github.com/omniti-labs/mimeo) | `1.5.1` | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | Extension for specialized, per-table replication between PostgreSQL instances |
 | [`repmgr`](/ext/e/repmgr) | [`repmgr`](https://github.com/EnterpriseDB/repmgr) | `5.5.1` | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | Replication manager for PostgreSQL |
@@ -45,14 +45,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pglogical`](/ext/e/pglogical) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pglogical`](https://github.com/2ndQuadrant/pglogical) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pglogical_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pglogical` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pglogical`](/ext/e/pglogical) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pglogical`](https://github.com/2ndQuadrant/pglogical) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pglogical_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pglogical` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -64,14 +64,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pglogical_origin`](/ext/e/pglogical_origin) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pglogical`](https://github.com/2ndQuadrant/pglogical) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pglogical_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pglogical` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pglogical_origin`](/ext/e/pglogical_origin) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pglogical`](https://github.com/2ndQuadrant/pglogical) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pglogical_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pglogical` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -83,14 +83,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pglogical_ticker`](/ext/e/pglogical_ticker) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pglogical_ticker`](https://github.com/enova/pglogical_ticker) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pglogical_ticker_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pglogical-ticker` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pglogical_ticker`](/ext/e/pglogical_ticker) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pglogical_ticker`](https://github.com/enova/pglogical_ticker) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pglogical_ticker_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pglogical-ticker` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -102,14 +102,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgl_ddl_deploy`](https://github.com/enova/pgl_ddl_deploy) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgl_ddl_deploy_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgl-ddl-deploy` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgl_ddl_deploy`](/ext/e/pgl_ddl_deploy) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgl_ddl_deploy`](https://github.com/enova/pgl_ddl_deploy) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pgl_ddl_deploy_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgl-ddl-deploy` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -121,14 +121,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`logical_ddl`](/ext/e/logical_ddl) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`logical_ddl`](https://github.com/samedyildirim/logical_ddl) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `logical_ddl_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-logical-ddl` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`logical_ddl`](/ext/e/logical_ddl) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`logical_ddl`](https://github.com/samedyildirim/logical_ddl) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `logical_ddl_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-logical-ddl` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -140,14 +140,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_failover_slots`](/ext/e/pg_failover_slots) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_failover_slots_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-failover-slots` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_failover_slots`](/ext/e/pg_failover_slots) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_failover_slots`](https://github.com/EnterpriseDB/pg_failover_slots) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_failover_slots_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-failover-slots` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -159,14 +159,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`db_migrator`](/ext/e/db_migrator) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `db_migrator_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-db-migrator` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`db_migrator`](/ext/e/db_migrator) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`db_migrator`](https://github.com/cybertec-postgresql/db_migrator) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `db_migrator_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-db-migrator` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -174,18 +174,18 @@ There are **22** extensions in **21** packages.
 
 ## pgactive {#pgactive}
 
-[**`pgactive`**](/ext/e/pgactive) - `2.1.9` : Active-Active Replication Extension for PostgreSQL
+[**`pgactive`**](/ext/e/pgactive) - `2.1.10` : Active-Active Replication Extension for PostgreSQL
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgactive`](/ext/e/pgactive) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgactive`](https://github.com/aws/pgactive) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgactive_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgactive` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgactive`](/ext/e/pgactive) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgactive`](https://github.com/aws/pgactive) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pgactive_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgactive` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -231,18 +231,18 @@ There are **22** extensions in **21** packages.
 
 ## pgclone {#pgclone}
 
-[**`pgclone`**](/ext/e/pgclone) - `4.4.2` : Clone PostgreSQL databases, schemas, tables, and functions across environments
+[**`pgclone`**](/ext/e/pgclone) - `4.10.0` : Clone PostgreSQL databases, schemas, tables, and functions across environments
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgclone`](/ext/e/pgclone) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgclone`](https://github.com/valehdba/pgclone) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgclone_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgclone` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgclone`](/ext/e/pgclone) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgclone`](https://github.com/valehdba/pgclone) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `pgclone_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgclone` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -254,14 +254,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgmqtt`](/ext/e/pgmqtt) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pgmqtt_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pgmqtt` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgmqtt`](/ext/e/pgmqtt) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pgmqtt`](https://github.com/RayElg/pgmqtt) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pgmqtt_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pgmqtt` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -273,14 +273,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`wal2json`](/ext/e/wal2json) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`wal2json`](https://github.com/eulerto/wal2json) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `wal2json_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-wal2json` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`wal2json`](/ext/e/wal2json) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`wal2json`](https://github.com/eulerto/wal2json) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `wal2json_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-wal2json` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -292,14 +292,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`wal2mongo`](/ext/e/wal2mongo) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `wal2mongo_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-wal2mongo` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`wal2mongo`](/ext/e/wal2mongo) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`wal2mongo`](https://github.com/HighgoSoftware/wal2mongo) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `wal2mongo_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-wal2mongo` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -307,18 +307,18 @@ There are **22** extensions in **21** packages.
 
 ## decoderbufs {#decoderbufs}
 
-[**`decoderbufs`**](/ext/e/decoderbufs) - `3.7.0` : Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format
+[**`decoderbufs`**](/ext/e/decoderbufs) - `3.7.1` : Logical decoding plugin that delivers WAL stream changes using a Protocol Buffer format
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`decoderbufs`](/ext/e/decoderbufs) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `postgres-decoderbufs_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-decoderbufs` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`decoderbufs`](/ext/e/decoderbufs) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`decoderbufs`](https://github.com/debezium/postgres-decoderbufs) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `postgres-decoderbufs_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-decoderbufs` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -330,14 +330,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`decoder_raw`](/ext/e/decoder_raw) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `decoder_raw_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-decoder-raw` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`decoder_raw`](/ext/e/decoder_raw) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`decoder_raw`](https://github.com/michaelpq/pg_plugins/blob/main/decoder_raw/) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `decoder_raw_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-decoder-raw` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -349,14 +349,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`mimeo`](/ext/e/mimeo) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`mimeo`](https://github.com/omniti-labs/mimeo) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `mimeo_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-mimeo` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`mimeo`](/ext/e/mimeo) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`mimeo`](https://github.com/omniti-labs/mimeo) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `mimeo_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-mimeo` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang sql" href="/ext/language#sql">SQL</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo mixed" href="/ext/repo#mixed">MIXED</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -368,14 +368,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`repmgr`](/ext/e/repmgr) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`repmgr`](https://github.com/EnterpriseDB/repmgr) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `repmgr_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-repmgr` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`repmgr`](/ext/e/repmgr) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`repmgr`](https://github.com/EnterpriseDB/repmgr) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `repmgr_$v` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-repmgr` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license gpl30" href="/ext/license#gpl30">GPL-3.0</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -387,14 +387,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_fact_loader`](/ext/e/pg_fact_loader) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_fact_loader`](https://sources.debian.org/src/pg-fact-loader/2.0.1-5/) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_fact_loader_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-fact-loader` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang plpgsql" href="/ext/language#plpgsql">PLpgSQL</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_fact_loader`](/ext/e/pg_fact_loader) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_fact_loader`](https://sources.debian.org/src/pg-fact-loader/2.0.1-5/) | **el9** | - | - |
+| **RPM** | `pg_fact_loader_$v` | **el10** | - | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-fact-loader` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang plpgsql" href="/ext/language#plpgsql">PLpgSQL</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pgdg" href="/ext/repo#pgdg">PGDG</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -406,14 +406,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pg_bulkload`](/ext/e/pg_bulkload) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pg_bulkload`](https://github.com/ossc-db/pg_bulkload) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `pg_bulkload_$v` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v-pg-bulkload` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pg_bulkload`](/ext/e/pg_bulkload) | **el8** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Package** | [`pg_bulkload`](https://github.com/ossc-db/pg_bulkload) | **el9** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **RPM** | `pg_bulkload_$v` | **el10** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **DEB** | `postgresql-$v-pg-bulkload` | **d12** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | **u22** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license bsd3clause" href="/ext/license#bsd3clause">BSD-3-Clause</a> | **u24** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "18,17,16,15" >}} | {{< pgvers "18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -425,14 +425,14 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`test_decoding`](/ext/e/test_decoding) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`test_decoding`](https://www.postgresql.org/docs/current/test-decoding.html) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`test_decoding`](/ext/e/test_decoding) | **el8** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Package** | [`test_decoding`](https://www.postgresql.org/docs/current/test-decoding.html) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `postgresql$v-contrib` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}
 
 
@@ -444,12 +444,12 @@ There are **22** extensions in **21** packages.
 
 | **Item** | **Value** | **OS** | **x86_64** | **aarch64** |
 |:---:|:---|:---:|:---:|:---:|
-| **Extension** | [`pgoutput`](/ext/e/pgoutput) | **el8** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Package** | [`pgoutput`](https://www.postgresql.org/docs/current/protocol-logical-replication.html) | **el9** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **RPM** | `postgresql$v-server` | **el10** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
-| | | **u26** | {{< pgvers "18,17,16,15,14" >}} | {{< pgvers "18,17,16,15,14" >}} |
+| **Extension** | [`pgoutput`](/ext/e/pgoutput) | **el8** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Package** | [`pgoutput`](https://www.postgresql.org/docs/current/protocol-logical-replication.html) | **el9** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **RPM** | `postgresql$v-server` | **el10** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **DEB** | `postgresql-$v` | **d12** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Language** | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> | **d13** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **Repo** | <a class="ext-badge ext-badge--repo contrib" href="/ext/repo#contrib">CONTRIB</a> | **u22** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| **License** | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | **u24** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
+| | | **u26** | {{< pgvers "19,18,17,16,15" >}} | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .ext-table--cate .wide .expand}

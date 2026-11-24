@@ -11,10 +11,10 @@ weight: 1990
     <div class="ext-card__title">timescale/pg_vectorsearch</div>
     <div class="ext-card__desc">https://github.com/timescale/pg_vectorsearch</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_vectorsearch-0.1.0.tar.gz meson-0.63.3.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_vectorsearch-0.2.0.tar.gz meson-0.63.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_vectorsearch-0.1.0.tar.gz meson-0.63.3.tar.gz</div>
-    <div class="ext-card__desc">pg_vectorsearch-0.1.0.tar.gz meson-0.63.3.tar.gz</div>
+    <div class="ext-card__title">pg_vectorsearch-0.2.0.tar.gz meson-0.63.3.tar.gz</div>
+    <div class="ext-card__desc">pg_vectorsearch-0.2.0.tar.gz meson-0.63.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 1990
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_vectorsearch`**](/ext/e/pg_vectorsearch) | `0.1.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
+| [**`pg_vectorsearch`**](/ext/e/pg_vectorsearch) | `0.2.0` | <a class="ext-badge ext-badge--cate rag" href="/ext/cate/rag">RAG</a> | <a class="ext-badge ext-badge--license postgresql" href="/ext/license#postgresql">PostgreSQL</a> | <a class="ext-badge ext-badge--lang c" href="/ext/language#c">C</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,46 +45,60 @@ weight: 1990
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18" >}} | `pg_vectorsearch` | - |
-| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18" >}} | `pg_vectorsearch_$v` | - |
-| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.1.0` | {{< pgvers "18" >}} | `postgresql-$v-vectorsearch` | - |
+| [**EXT**](/ext/list#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "19,18" >}} | `pg_vectorsearch` | - |
+| [**RPM**](/ext/rpm#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "19,18" >}} | `pg_vectorsearch_$v` | - |
+| [**DEB**](/ext/deb#rag) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.2.0` | {{< pgvers "19,18" >}} | `postgresql-$v-vectorsearch` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.1.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-@ el8.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el8.x86_64.rpm pigsty 0.1.0 533.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_vectorsearch_18-0.1.0-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el8.aarch64.rpm pigsty 0.1.0 453.7KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_vectorsearch_18-0.1.0-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el9.x86_64.rpm pigsty 0.1.0 528.7KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vectorsearch_18-0.1.0-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el9.aarch64.rpm pigsty 0.1.0 458.6KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vectorsearch_18-0.1.0-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el10.x86_64.rpm pigsty 0.1.0 533.0KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vectorsearch_18-0.1.0-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.1.0-1PGSTY.el10.aarch64.rpm pigsty 0.1.0 465.4KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vectorsearch_18-0.1.0-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~bookworm_amd64.deb pigsty 0.1.0 498.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~bookworm_arm64.deb pigsty 0.1.0 426.1KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~trixie_amd64.deb pigsty 0.1.0 497.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~trixie_arm64.deb pigsty 0.1.0 428.7KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~jammy_amd64.deb pigsty 0.1.0 529.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~jammy_arm64.deb pigsty 0.1.0 468.2KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~noble_amd64.deb pigsty 0.1.0 522.2KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~noble_amd64.deb
-@ u24.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~noble_arm64.deb pigsty 0.1.0 455.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~noble_arm64.deb
-@ u26.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~resolute_amd64.deb pigsty 0.1.0 521.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.1.0-1PGSTY~resolute_arm64.deb pigsty 0.1.0 456.4KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.1.0-1PGSTY~resolute_arm64.deb
+| el8.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | AVAIL PIGSTY 0.2.0 1 | AVAIL PIGSTY 0.2.0 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+@ el9.x86_64 19 pg_vectorsearch_19 pg_vectorsearch_19-0.2.0-1PGSTY.el9.x86_64.rpm pigsty 0.2.0 579.4KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vectorsearch_19-0.2.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 19 pg_vectorsearch_19 pg_vectorsearch_19-0.2.0-1PGSTY.el9.aarch64.rpm pigsty 0.2.0 510.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vectorsearch_19-0.2.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 19 pg_vectorsearch_19 pg_vectorsearch_19-0.2.0-1PGSTY.el10.x86_64.rpm pigsty 0.2.0 585.7KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vectorsearch_19-0.2.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 19 pg_vectorsearch_19 pg_vectorsearch_19-0.2.0-1PGSTY.el10.aarch64.rpm pigsty 0.2.0 518.5KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vectorsearch_19-0.2.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~bookworm_amd64.deb pigsty 0.2.0 549.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~bookworm_arm64.deb pigsty 0.2.0 477.5KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~trixie_amd64.deb pigsty 0.2.0 548.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~trixie_arm64.deb pigsty 0.2.0 479.9KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~jammy_amd64.deb pigsty 0.2.0 583.4KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~jammy_arm64.deb pigsty 0.2.0 522.8KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~noble_amd64.deb pigsty 0.2.0 574.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~noble_arm64.deb pigsty 0.2.0 509.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~resolute_amd64.deb pigsty 0.2.0 575.0KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 19 postgresql-19-vectorsearch postgresql-19-vectorsearch_0.2.0-1PGSTY~resolute_arm64.deb pigsty 0.2.0 509.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-19-vectorsearch_0.2.0-1PGSTY~resolute_arm64.deb
+@ el8.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el8.x86_64.rpm pigsty 0.2.0 584.9KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_vectorsearch_18-0.2.0-1PGSTY.el8.x86_64.rpm
+@ el8.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el8.aarch64.rpm pigsty 0.2.0 505.4KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_vectorsearch_18-0.2.0-1PGSTY.el8.aarch64.rpm
+@ el9.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el9.x86_64.rpm pigsty 0.2.0 578.0KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_vectorsearch_18-0.2.0-1PGSTY.el9.x86_64.rpm
+@ el9.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el9.aarch64.rpm pigsty 0.2.0 510.5KiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_vectorsearch_18-0.2.0-1PGSTY.el9.aarch64.rpm
+@ el10.x86_64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el10.x86_64.rpm pigsty 0.2.0 583.8KiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_vectorsearch_18-0.2.0-1PGSTY.el10.x86_64.rpm
+@ el10.aarch64 18 pg_vectorsearch_18 pg_vectorsearch_18-0.2.0-1PGSTY.el10.aarch64.rpm pigsty 0.2.0 518.1KiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_vectorsearch_18-0.2.0-1PGSTY.el10.aarch64.rpm
+@ d12.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~bookworm_amd64.deb pigsty 0.2.0 547.6KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~bookworm_amd64.deb
+@ d12.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~bookworm_arm64.deb pigsty 0.2.0 477.2KiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~bookworm_arm64.deb
+@ d13.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~trixie_amd64.deb pigsty 0.2.0 547.1KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~trixie_amd64.deb
+@ d13.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~trixie_arm64.deb pigsty 0.2.0 480.5KiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~trixie_arm64.deb
+@ u22.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~jammy_amd64.deb pigsty 0.2.0 581.7KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~jammy_amd64.deb
+@ u22.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~jammy_arm64.deb pigsty 0.2.0 522.6KiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~jammy_arm64.deb
+@ u24.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~noble_amd64.deb pigsty 0.2.0 572.7KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~noble_amd64.deb
+@ u24.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~noble_arm64.deb pigsty 0.2.0 509.5KiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~noble_arm64.deb
+@ u26.x86_64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~resolute_amd64.deb pigsty 0.2.0 572.5KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~resolute_amd64.deb
+@ u26.aarch64 18 postgresql-18-vectorsearch postgresql-18-vectorsearch_0.2.0-1PGSTY~resolute_arm64.deb pigsty 0.2.0 509.6KiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-vectorsearch/postgresql-18-vectorsearch_0.2.0-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -111,14 +125,17 @@ pig install pg_vectorsearch;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y pg_vectorsearch -v 19  # PG 19
 pig ext install -y pg_vectorsearch -v 18  # PG 18
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y pg_vectorsearch_19       # PG 19
 dnf install -y pg_vectorsearch_18       # PG 18
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-19-vectorsearch   # PG 19
 apt install -y postgresql-18-vectorsearch   # PG 18
 ```
 
@@ -133,16 +150,16 @@ CREATE EXTENSION pg_vectorsearch;
 
 Sources:
 
-- [README.md](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/README.md)
-- [sql/pg_vectorsearch.sql](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/sql/pg_vectorsearch.sql)
-- [docs/maintenance.md](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/docs/maintenance.md)
-- [docs/tuning.md](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/docs/tuning.md)
-- [CHANGELOG.md](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/CHANGELOG.md)
-- [VERSION](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/VERSION)
-- [meson.build](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/meson.build)
-- [pg_vectorsearch.control.in](https://github.com/timescale/pg_vectorsearch/blob/36b75d1cb56c12a380d600ef27217d88c9f419ec/pg_vectorsearch.control.in)
+- [README.md](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/README.md)
+- [sql/pg_vectorsearch.sql](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/sql/pg_vectorsearch.sql)
+- [docs/maintenance.md](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/docs/maintenance.md)
+- [docs/tuning.md](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/docs/tuning.md)
+- [CHANGELOG.md](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/CHANGELOG.md)
+- [VERSION](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/VERSION)
+- [meson.build](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/meson.build)
+- [pg_vectorsearch.control.in](https://github.com/timescale/pg_vectorsearch/blob/v0.2.0/pg_vectorsearch.control.in)
 
-`pg_vectorsearch` 0.1.0 is an alpha extension for approximate nearest-neighbor search with the PRISM index. It supports PostgreSQL 18 and 19, native `vec32` / `vec16` types and optional pgvector interoperability. It is intended for testing, with evolving behavior and maintenance requirements.
+`pg_vectorsearch` 0.2.0 is an alpha extension for approximate nearest-neighbor search with the PRISM index. It supports PostgreSQL 18 and 19, native `vec32` / `vec16` types and optional pgvector interoperability. It is intended for testing, with evolving behavior and maintenance requirements.
 
 ### Core Workflow
 
@@ -166,6 +183,19 @@ ORDER BY embedding <-> '[3,1,2]' LIMIT 5;
 
 Install as a superuser; no preload is required and the extension is not relocatable. The `prism` access method has `vec32_l2_ops`, `vec32_ip_ops`, `vec32_cosine_ops` and corresponding vec16 operator classes; `<->`, `<#>` and `<=>` express L2, negative inner product and cosine distance. `prism.nprobe` trades recall for query work; zero selects automatic tuning, not exact recall.
 
-Load representative data before building the index. Indexed dimensions are limited to 1968; expression and unlogged indexes are unsupported. Keep `prism.leaf_refine_threshold` at zero. Filtering can return fewer rows than LIMIT, and candidate buffers bounded by `work_mem` can truncate large or unbounded results. Measure against an exact baseline.
+Load representative data before building the index. L2 and cosine indexes support up to 8192 dimensions: any dimension through 1968, then a power of two times an odd factor at most eight. Inner-product indexes remain limited to 1968 for vec32 and 3584 for vec16. Expression and unlogged indexes are unsupported. Keep `prism.leaf_refine_threshold` at zero. Filtering can return fewer rows than LIMIT, and candidate buffers bounded by `work_mem` can truncate large or unbounded results. Measure against an exact baseline.
 
 Inspect `prism_index_settings` and follow the maintenance guide for churn. `prism_rebalance` supports only flat RaBitQ centroid-page indexes with `centroid_fastscan` off, not the default multilevel format. DELETE leaves tombstones, and retired pages are reclaimed only by REINDEX. There is no in-place upgrade from the earlier release candidates.
+
+### Upgrade to 0.2.0
+
+Install matching files, start a fresh session that has not loaded the old library, update the SQL extension and rebuild every PRISM index:
+
+```sql
+ALTER EXTENSION pg_vectorsearch UPDATE TO '0.2.0';
+REINDEX INDEX vectorsearch_items_prism;
+```
+
+Old index format 0x06 is rejected by the 0x07 reader. The two library versions cannot share one session. `vec32_norm` is renamed to `l2_norm`; the vec16 overload of `vec32_dims` becomes `vec16_dims`, while `vector_dims` provides the pgvector-compatible interface. Update direct callers of renamed functions; dependent views retain function OIDs.
+
+`posting_reference_format` defaults to float16. A reference element beyond ±65504 causes a build or split error; use float32 when needed. The vec16 type now rejects out-of-range input. Existing filter, buffer-size and maintenance limits still apply.

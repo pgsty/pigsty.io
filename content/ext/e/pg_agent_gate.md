@@ -11,10 +11,10 @@ weight: 7470
     <div class="ext-card__title">Manuelreyesbravo/pg_agent_gate</div>
     <div class="ext-card__desc">https://github.com/Manuelreyesbravo/pg_agent_gate</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_agent_gate-0.4.1.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_agent_gate-0.4.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_agent_gate-0.4.1.tar.gz</div>
-    <div class="ext-card__desc">pg_agent_gate-0.4.1.tar.gz</div>
+    <div class="ext-card__title">pg_agent_gate-0.4.3.tar.gz</div>
+    <div class="ext-card__desc">pg_agent_gate-0.4.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 7470
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_agent_gate`**](/ext/e/pg_agent_gate) | `0.4.1` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_agent_gate`**](/ext/e/pg_agent_gate) | `0.4.3` | <a class="ext-badge ext-badge--cate sec" href="/ext/cate/sec">SEC</a> | <a class="ext-badge ext-badge--license apache20" href="/ext/license#apache20">Apache-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -38,37 +38,37 @@ weight: 7470
 {.ext-table .ext-table--rel}
 
 
-> PG18; preload before agent statements; READ COMMITTED required. 0.4.1 fixes agent-role escape. Trusted code and external effects remain outside the sandbox.
+> Preload before agent statements. Requires READ COMMITTED. Trusted code and external effects remain outside the sandbox.
 
 
 ## Version
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18" >}} | `pg_agent_gate` | - |
+| [**EXT**](/ext/list#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.3` | {{< pgvers "19,18" >}} | `pg_agent_gate` | - |
 | [**RPM**](/ext/rpm#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18" >}} | `pg_agent_gate_$v` | - |
 | [**DEB**](/ext/deb#sec) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.4.1` | {{< pgvers "18" >}} | `postgresql-$v-pg-agent-gate` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el9.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el10.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d12.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| d13.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u22.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u24.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| u26.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.4.1 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
 @ el8.x86_64 18 pg_agent_gate_18 pg_agent_gate_18-0.4.1-1PGSTY.el8.x86_64.rpm pigsty 0.4.1 538.8KiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_agent_gate_18-0.4.1-1PGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_agent_gate_18 pg_agent_gate_18-0.4.1-1PGSTY.el8.aarch64.rpm pigsty 0.4.1 470.2KiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_agent_gate_18-0.4.1-1PGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_agent_gate_18 pg_agent_gate_18-0.4.1-1PGSTY.el9.x86_64.rpm pigsty 0.4.1 541.3KiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_agent_gate_18-0.4.1-1PGSTY.el9.x86_64.rpm
@@ -111,14 +111,17 @@ pig install pg_agent_gate;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y pg_agent_gate -v 19  # PG 19
 pig ext install -y pg_agent_gate -v 18  # PG 18
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y pg_agent_gate_19       # PG 19
 dnf install -y pg_agent_gate_18       # PG 18
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-19-pg-agent-gate   # PG 19
 apt install -y postgresql-18-pg-agent-gate   # PG 18
 ```
 
@@ -140,12 +143,12 @@ CREATE EXTENSION pg_agent_gate;
 
 Sources:
 
-- [README](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.3.0/README.md)
-- [Control](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.3.0/pg_agent_gate.control)
-- [CHANGELOG](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.3.0/CHANGELOG.md)
-- [SQL upgrade](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.3.0/sql/pg_agent_gate--0.2.15--0.3.0.sql)
+- [README](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.4.3/README.md)
+- [Control](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.4.3/pg_agent_gate.control)
+- [CHANGELOG](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.4.3/CHANGELOG.md)
+- [SQL upgrade](https://github.com/Manuelreyesbravo/pg_agent_gate/blob/v0.4.3/sql/pg_agent_gate--0.4.1--0.4.3.sql)
 
-`pg_agent_gate` 0.3.0 routes registered agent roles through proposals, checks, dry runs and guarded execution on PostgreSQL 18/19, with optional human approval before commit. The library must be loaded before the first agent statement, through shared preload or a role-level session preload followed by reconnection.
+`pg_agent_gate` 0.4.3 routes registered agent roles through proposals, checks, dry runs and guarded execution on PostgreSQL 18/19, with optional human approval before commit. The library must be loaded before the first agent statement, through shared preload or a role-level session preload followed by reconnection.
 
 ### Core Workflow
 
@@ -169,6 +172,24 @@ Set `p_requires_approval` when calling `agent_gate.register_agent` to require co
 
 The fixed `agent_gate_internal` schema stores proposals, executions and approvals; agents do not access those tables directly. The execution record identifies the approver in `approved_by`.
 
+### Write Budgets and Role Membership
+
+Version 0.4.0 introduced a default cumulative write budget: the agent's per-statement row limit per hour. `agent_gate.set_budget` changes the allowance/window; `agent_gate.reset_budget` starts a new allowance without rewriting the record. Kept writes count actual row effects, including cascades and triggers; concurrent commits serialize the budget check.
+
+Agent roles must have no members. Registration refuses such roles, and upgrades warn about existing memberships that an administrator must revoke. Connect each agent as its own login; a broker must not switch into the agent role.
+
+### Function and Session Checks in 0.4.3
+
+The 0.4.3 library judges hidden function calls when they execute, including type support functions, aggregates, defaults and constraints. It rejects SQL passed as text to known execution functions, agent-alterable functions, protected-context changes and unaccounted state changes. DDL row effects also count toward row limits. These checks deliberately reject some statements that ordinary PostgreSQL roles can execute.
+
+Protected context includes role identity, row-security settings, search path and unregistered custom application parameters. A changed context causes refusal rather than automatic reset. Native code attached to agent-owned objects is restricted. Optional `pg_living_assertions` 0.5.5 can leak context and cause refusals; 0.5.6 fixes that issue. Keep agent-controlled schemas out of other users' search paths, since DDL can create code that later runs under their rights.
+
 ### Library and SQL Upgrades
 
-The library retains the 0.2.15 protections against function-running argument casts and lone-semicolon crashes. Replace the library and restart or reconnect every process that preloads it, then update each database to 0.3.0 using the supplied SQL upgrade. The 0.3.0 migration adds approval objects and is not a no-op. Treat DDL permission as schema power that row-count limits do not bound.
+After replacing the library, restart or reconnect all processes that preload it, then update each database:
+
+```sql
+ALTER EXTENSION pg_agent_gate UPDATE TO '0.4.3';
+```
+
+The 0.4.1 to 0.4.3 migration changes no schema objects. Older upgrade paths still add budget and approval objects; inspect existing agents' budgets after upgrading. Version 0.4.2 was not released separately. Superusers, the operating system and trusted DBA code remain outside this boundary; an authorized statement can still violate human intent.

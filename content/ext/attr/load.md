@@ -5,7 +5,7 @@ description: "PostgreSQL extensions that require dynamic loading"
 weight: 10
 ---
 
-The following **135** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
+The following **137** extensions require loading in [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) to function properly.
 
 You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-SHARED-PRELOAD-LIBRARIES) parameter in `postgresql.conf`, add the extension library, and restart the database.
 
@@ -56,6 +56,8 @@ You need to modify the [`shared_preload_libraries`](https://www.postgresql.org/d
 | [`provsql`](/ext/e/provsql) | `provsql` | Semiring provenance and probability management for PostgreSQL |
 | [`orioledb`](/ext/e/orioledb) | `orioledb` | OrioleDB, the next generation transactional engine |
 | [`omni`](/ext/e/omni) | `omni--0.2.14.so` | Advanced adapter for Postgres extensions |
+| [`pg_plan_advice`](/ext/e/pg_plan_advice) | `pg_plan_advice` | Describe, reproduce, and constrain query plans with plan advice |
+| [`pg_stash_advice`](/ext/e/pg_stash_advice) | `pg_stash_advice` | Store and automatically apply plan advice by query ID |
 | [`pg_tle`](/ext/e/pg_tle) | `pg_tle` | Trusted Language Extensions for PostgreSQL |
 | [`pldbgapi`](/ext/e/pldbgapi) | `$libdir/plugin_debugger` | server-side support for debugging PL/pgSQL functions |
 | [`plprofiler`](/ext/e/plprofiler) | `plprofiler` | server-side support for profiling PL/pgSQL functions |

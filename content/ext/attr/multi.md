@@ -72,8 +72,8 @@ Package [`mobilitydb`](/ext/e/mobilitydb) contains **2** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.1` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
-| 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.1` | `----d-r` | - | MobilityDB random data generator functions |
+| 1650 | [**`mobilitydb`**](/ext/e/mobilitydb) | `1.3.2` | `--sLd--` | - | MobilityDB geospatial trajectory data management & analysis platform |
+| 1651 | [`mobilitydb_datagen`](/ext/e/mobilitydb_datagen) | `1.3.2` | `----d-r` | - | MobilityDB random data generator functions |
 {.ext-table .wide .expand}
 
 ## qdgc
@@ -130,14 +130,14 @@ Package [`pg_lake`](/ext/e/pg_lake) contains **8** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.6` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
-| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.6` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
-| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.6` | `--sLd--` | `extension_updater` | Automatic extension updater |
-| 2563 | [`pg_map`](/ext/e/pg_map) | `3.6` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
-| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.6` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
-| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.6` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
-| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.6` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
-| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.6` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
+| 2560 | [**`pg_lake`**](/ext/e/pg_lake) | `3.7` | `-bsLd--` | `lake` | Data lake extension by Snowflake |
+| 2561 | [`pg_extension_base`](/ext/e/pg_extension_base) | `3.7` | `--sLd--` | `extension_base` | Extension development kit by Snowflake |
+| 2562 | [`pg_extension_updater`](/ext/e/pg_extension_updater) | `3.7` | `--sLd--` | `extension_updater` | Automatic extension updater |
+| 2563 | [`pg_map`](/ext/e/pg_map) | `3.7` | `--s-d--` | `map_type` | Map type for PostgreSQL, bundled as a required pg_lake component. |
+| 2564 | [`pg_lake_engine`](/ext/e/pg_lake_engine) | `3.7` | `--sLd--` | `__lake__internal__nsp__` | Query engine for data lake queries |
+| 2565 | [`pg_lake_iceberg`](/ext/e/pg_lake_iceberg) | `3.7` | `--s-d--` | `lake_iceberg` | Iceberg implementation in Postgres |
+| 2566 | [`pg_lake_table`](/ext/e/pg_lake_table) | `3.7` | `--sLd--` | `__pg_lake_table_writes` | Data lake tables and Iceberg tables |
+| 2567 | [`pg_lake_copy`](/ext/e/pg_lake_copy) | `3.7` | `--sLd--` | `pg_catalog` | Copy to/from data lake files |
 {.ext-table .wide .expand}
 
 ## pg_statecharts
@@ -336,9 +336,9 @@ Package [`documentdb`](/ext/e/documentdb) contains **3** extensions:
 
 | **ID** | **Extension** | **Version** | **Attr** | **Schema** | **Description** |
 |:------:|:-----------|:--------:|:--------:|:---------|:---------|
-| 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.0` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
-| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.0` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
-| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.0` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
+| 9000 | [**`documentdb`**](/ext/e/documentdb) | `1.2` | `--sLd--` | `documentdb_api` | API surface for DocumentDB for PostgreSQL |
+| 9010 | [`documentdb_core`](/ext/e/documentdb_core) | `1.2` | `--sLd--` | `documentdb_core` | Core API surface for DocumentDB on PostgreSQL |
+| 9030 | [`documentdb_extended_rum`](/ext/e/documentdb_extended_rum) | `1.2` | `--sLd-r` | `documentdb_extended_rum_catalog` | DocumentDB Extended RUM index access method |
 {.ext-table .wide .expand}
 
 ## ivorysql

@@ -11,10 +11,10 @@ weight: 9440
     <div class="ext-card__title">RayElg/kafgres</div>
     <div class="ext-card__desc">https://github.com/RayElg/kafgres</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/kafgres-0.3.2.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/kafgres-0.3.3.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">kafgres-0.3.2.tar.gz</div>
-    <div class="ext-card__desc">kafgres-0.3.2.tar.gz</div>
+    <div class="ext-card__title">kafgres-0.3.3.tar.gz</div>
+    <div class="ext-card__desc">kafgres-0.3.3.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 9440
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`kafgres`**](/ext/e/kafgres) | `0.3.2` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`kafgres`**](/ext/e/kafgres) | `0.3.3` | <a class="ext-badge ext-badge--cate sim" href="/ext/cate/sim">SIM</a> | <a class="ext-badge ext-badge--license elastic20" href="/ext/license#elastic20">Elastic-2.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -41,30 +41,30 @@ weight: 9440
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.2` | {{< pgvers "16" >}} | `kafgres` | - |
+| [**EXT**](/ext/list#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.3` | {{< pgvers "18,17,16,15" >}} | `kafgres` | - |
 | [**RPM**](/ext/rpm#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.2` | {{< pgvers "16" >}} | `kafgres_$v` | - |
 | [**DEB**](/ext/deb#sim) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.3.2` | {{< pgvers "16" >}} | `postgresql-$v-kafgres` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el8.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el9.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| el10.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d12.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| d13.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u22.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u24.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.x86_64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
-| u26.aarch64 | N/A PIGSTY - 0 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | N/A PIGSTY - 0 | N/A PIGSTY - 0 |
+| el8.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| el8.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| el9.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| el9.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| el10.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| el10.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| d12.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| d12.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| d13.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| d13.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u22.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u22.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u24.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u24.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u26.x86_64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
+| u26.aarch64 | N/A PIGSTY - 0 | MISS PIGSTY - 0 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.3.2 1 | MISS PIGSTY - 0 |
 @ el8.x86_64 16 kafgres_16 kafgres_16-0.3.2-1PGSTY.el8.x86_64.rpm pigsty 0.3.2 4.7MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/kafgres_16-0.3.2-1PGSTY.el8.x86_64.rpm
 @ el8.aarch64 16 kafgres_16 kafgres_16-0.3.2-1PGSTY.el8.aarch64.rpm pigsty 0.3.2 4.0MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/kafgres_16-0.3.2-1PGSTY.el8.aarch64.rpm
 @ el9.x86_64 16 kafgres_16 kafgres_16-0.3.2-1PGSTY.el9.x86_64.rpm pigsty 0.3.2 4.6MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/kafgres_16-0.3.2-1PGSTY.el9.x86_64.rpm
@@ -107,15 +107,24 @@ pig install kafgres;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y kafgres -v 18  # PG 18
+pig ext install -y kafgres -v 17  # PG 17
 pig ext install -y kafgres -v 16  # PG 16
+pig ext install -y kafgres -v 15  # PG 15
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y kafgres_18       # PG 18
+dnf install -y kafgres_17       # PG 17
 dnf install -y kafgres_16       # PG 16
+dnf install -y kafgres_15       # PG 15
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-18-kafgres   # PG 18
+apt install -y postgresql-17-kafgres   # PG 17
 apt install -y postgresql-16-kafgres   # PG 16
+apt install -y postgresql-15-kafgres   # PG 15
 ```
 
 
@@ -136,6 +145,7 @@ CREATE EXTENSION kafgres;
 
 Sources:
 
+- [Current release](https://github.com/RayElg/kafgres/releases/tag/0.3.3)
 - [extension/sql/kafgres--0.2.0--0.3.0.sql](https://github.com/RayElg/kafgres/blob/0f343916988ad0b4b99d3427bd0949e69b5686b3/extension/sql/kafgres--0.2.0--0.3.0.sql)
 - [.github/workflows/ci.yml](https://github.com/RayElg/kafgres/blob/0f343916988ad0b4b99d3427bd0949e69b5686b3/.github/workflows/ci.yml)
 - [README 0.3.2](https://github.com/RayElg/kafgres/blob/0f343916988ad0b4b99d3427bd0949e69b5686b3/README.md)
@@ -144,12 +154,13 @@ Sources:
 - [0.3.1 to 0.3.2 SQL](https://github.com/RayElg/kafgres/blob/0.3.2/extension/sql/kafgres--0.3.1--0.3.2.sql)
 - [0.3.1 to 0.3.2 changes](https://github.com/RayElg/kafgres/compare/0.3.1...0.3.2)
 
-`kafgres` embeds a Kafka protocol broker in PostgreSQL. Upstream release 0.3.2 builds and tests PostgreSQL 13–18. It needs superuser installation, shared preload and a restart. Its license is Elastic License 2.0.
+`kafgres` embeds a Kafka protocol broker in PostgreSQL. Upstream release 0.3.3 builds and tests PostgreSQL 13–18. It needs superuser installation, shared preload and a restart. Its license is Elastic License 2.0.
 
 ### Enable the broker
 
 ```ini
 shared_preload_libraries = 'kafgres'
+wal_level = logical
 kafgres.database = 'postgres'
 kafgres.bind_host = '127.0.0.1'
 kafgres.advertised_host = '127.0.0.1'
@@ -194,3 +205,7 @@ ALTER EXTENSION kafgres UPDATE TO '0.3.2';
 ```
 
 The 0.3.1-to-0.3.2 SQL script advances the extension version without changing SQL objects. When upgrading from 0.3.0, account for old transaction markers: Sarama cannot decode markers lacking an EndTransactionMarker value, and they remain until retention removes their segments. Follow the upstream guidance for the consumer start position or topic recreation.
+
+### 0.3.3 configuration
+
+The 0.3.3 release artifacts cover PostgreSQL 13–18. Its documented broker configuration requires logical WAL and a client-reachable advertised host. On builds enforcing output-plugin allowlists, add kafgres to output_plugin_libraries while preserving existing entries, then reload if the broker reports the plugin is forbidden. Shared preload still requires a restart; a configuration reload does not replace it.

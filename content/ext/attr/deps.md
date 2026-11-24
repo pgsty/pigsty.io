@@ -5,11 +5,11 @@ description: "PostgreSQL extensions with dependency relationships"
 weight: 30
 ---
 
-**135** extensions depend on other extensions, **79** extensions are depended upon by others.
+**136** extensions depend on other extensions, **80** extensions are depended upon by others.
 
 ## Upstream Dependencies
 
-The following **135** extensions require other extensions to be installed first:
+The following **136** extensions require other extensions to be installed first:
 
 | **Extension** | **Requires** | **Description** |
 |:-----------|:-------------|:---------|
@@ -81,6 +81,7 @@ The following **135** extensions require other extensions to be installed first:
 | [`omni_session`](/ext/e/omni_session) | [`omni_var`](/ext/e/omni_var) [`omni_id`](/ext/e/omni_id) [`omni_web`](/ext/e/omni_web) [`omni_httpd`](/ext/e/omni_httpd) [`omni_polyfill`](/ext/e/omni_polyfill) | Session management |
 | [`omni_test`](/ext/e/omni_test) | [`dblink`](/ext/e/dblink) [`omni_cloudevents`](/ext/e/omni_cloudevents) | Testing framework |
 | [`omni_vfs`](/ext/e/omni_vfs) | [`omni_vfs_types_v1`](/ext/e/omni_vfs_types_v1) [`dblink`](/ext/e/dblink) | Virtual File System |
+| [`pg_stash_advice`](/ext/e/pg_stash_advice) | [`pg_plan_advice`](/ext/e/pg_plan_advice) | Store and automatically apply plan advice by query ID |
 | [`hstore_pllua`](/ext/e/hstore_pllua) | [`hstore`](/ext/e/hstore) [`pllua`](/ext/e/pllua) | Hstore transform for Lua |
 | [`hstore_plluau`](/ext/e/hstore_plluau) | [`hstore`](/ext/e/hstore) [`plluau`](/ext/e/plluau) | Hstore transform for untrusted Lua |
 | [`plpgsql_check`](/ext/e/plpgsql_check) | [`plpgsql`](/ext/e/plpgsql) | Additional validation, profiling, and diagnostics for PL/pgSQL functions |
@@ -152,7 +153,7 @@ The following **135** extensions require other extensions to be installed first:
 
 ## Downstream Dependencies
 
-The following **79** extensions are depended upon by other extensions:
+The following **80** extensions are depended upon by other extensions:
 
 | **Extension** | **Required By** | **Description** |
 |:-----------|:-------------|:---------|
@@ -197,6 +198,7 @@ The following **79** extensions are depended upon by other extensions:
 | [`omni_web`](/ext/e/omni_web) | [`omni_aws`](/ext/e/omni_aws) [`omni_cloudevents`](/ext/e/omni_cloudevents) [`omni_containers`](/ext/e/omni_containers) [`omni_kube`](/ext/e/omni_kube) [`omni_rest`](/ext/e/omni_rest) [`omni_session`](/ext/e/omni_session) | Common web stack primitives |
 | [`omni_xml`](/ext/e/omni_xml) | [`omni_aws`](/ext/e/omni_aws) | XML toolkit |
 | [`omni_yaml`](/ext/e/omni_yaml) | [`omni_kube`](/ext/e/omni_kube) [`omni_schema`](/ext/e/omni_schema) | YAML toolkit |
+| [`pg_plan_advice`](/ext/e/pg_plan_advice) | [`pg_stash_advice`](/ext/e/pg_stash_advice) | Describe, reproduce, and constrain query plans with plan advice |
 | [`pllua`](/ext/e/pllua) | [`hstore_pllua`](/ext/e/hstore_pllua) | Lua as a procedural language |
 | [`plluau`](/ext/e/plluau) | [`hstore_plluau`](/ext/e/hstore_plluau) | Lua as an untrusted procedural language |
 | [`plr`](/ext/e/plr) | [`fbsql`](/ext/e/fbsql) | load R interpreter and execute R script from within a database |

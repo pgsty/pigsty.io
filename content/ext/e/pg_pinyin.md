@@ -11,10 +11,10 @@ weight: 2200
     <div class="ext-card__title">aiyou178/pg_pinyin</div>
     <div class="ext-card__desc">https://github.com/aiyou178/pg_pinyin</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_pinyin-0.0.8.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_pinyin-0.0.9.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_pinyin-0.0.8.tar.gz</div>
-    <div class="ext-card__desc">pg_pinyin-0.0.8.tar.gz</div>
+    <div class="ext-card__title">pg_pinyin-0.0.9.tar.gz</div>
+    <div class="ext-card__desc">pg_pinyin-0.0.9.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2200
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_pinyin`**](/ext/e/pg_pinyin) | `0.0.8` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_pinyin`**](/ext/e/pg_pinyin) | `0.0.9` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license mit" href="/ext/license#mit">MIT</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,30 +45,30 @@ weight: 2200
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.8` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin` | - |
-| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.8` | {{< pgvers "18,17,16,15,14" >}} | `pg_pinyin_$v` | - |
-| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.8` | {{< pgvers "18,17,16,15,14" >}} | `postgresql-$v-pinyin` | - |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.9` | {{< pgvers "19,18,17,16,15" >}} | `pg_pinyin` | - |
+| [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.8` | {{< pgvers "18,17,16,15" >}} | `pg_pinyin_$v` | - |
+| [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.0.8` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-pinyin` | - |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| el8.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| el9.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| el9.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| el10.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| el10.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| d12.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| d12.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| d13.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| d13.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u22.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u22.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u24.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u24.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u26.x86_64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
-| u26.aarch64 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el8.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el8.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el9.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el9.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el10.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| el10.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| d12.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| d12.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| d13.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| d13.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u22.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u22.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u24.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u24.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u26.x86_64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
+| u26.aarch64 | MISS PIGSTY - 0 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 | AVAIL PIGSTY 0.0.8 1 |
 @ el8.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.8-1PGSTY.el8.x86_64.rpm pigsty 0.0.8 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_18-0.0.8-1PGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_pinyin_18 pg_pinyin_18-0.0.8-1PGSTY.el8.aarch64.rpm pigsty 0.0.8 2.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_18-0.0.8-1PGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_pinyin_18 pg_pinyin_18-0.0.8-1PGSTY.el9.x86_64.rpm pigsty 0.0.8 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_18-0.0.8-1PGSTY.el9.x86_64.rpm
@@ -133,22 +133,6 @@ weight: 2200
 @ u24.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.8-1PGSTY~noble_arm64.deb pigsty 0.0.8 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.8-1PGSTY~noble_arm64.deb
 @ u26.x86_64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.8-1PGSTY~resolute_amd64.deb pigsty 0.0.8 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.8-1PGSTY~resolute_amd64.deb
 @ u26.aarch64 15 postgresql-15-pinyin postgresql-15-pinyin_0.0.8-1PGSTY~resolute_arm64.deb pigsty 0.0.8 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-15-pinyin_0.0.8-1PGSTY~resolute_arm64.deb
-@ el8.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el8.x86_64.rpm pigsty 0.0.8 2.9MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_pinyin_14-0.0.8-1PGSTY.el8.x86_64.rpm
-@ el8.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el8.aarch64.rpm pigsty 0.0.8 2.7MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_pinyin_14-0.0.8-1PGSTY.el8.aarch64.rpm
-@ el9.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el9.x86_64.rpm pigsty 0.0.8 2.9MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_pinyin_14-0.0.8-1PGSTY.el9.x86_64.rpm
-@ el9.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el9.aarch64.rpm pigsty 0.0.8 2.7MiB https://repo.pigsty.io/yum/pgsql/el9.aarch64/pg_pinyin_14-0.0.8-1PGSTY.el9.aarch64.rpm
-@ el10.x86_64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el10.x86_64.rpm pigsty 0.0.8 2.9MiB https://repo.pigsty.io/yum/pgsql/el10.x86_64/pg_pinyin_14-0.0.8-1PGSTY.el10.x86_64.rpm
-@ el10.aarch64 14 pg_pinyin_14 pg_pinyin_14-0.0.8-1PGSTY.el10.aarch64.rpm pigsty 0.0.8 2.7MiB https://repo.pigsty.io/yum/pgsql/el10.aarch64/pg_pinyin_14-0.0.8-1PGSTY.el10.aarch64.rpm
-@ d12.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~bookworm_amd64.deb pigsty 0.0.8 2.5MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~bookworm_amd64.deb
-@ d12.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~bookworm_arm64.deb pigsty 0.0.8 2.2MiB https://repo.pigsty.io/apt/pgsql/bookworm/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~bookworm_arm64.deb
-@ d13.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~trixie_amd64.deb pigsty 0.0.8 2.5MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~trixie_amd64.deb
-@ d13.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~trixie_arm64.deb pigsty 0.0.8 2.2MiB https://repo.pigsty.io/apt/pgsql/trixie/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~trixie_arm64.deb
-@ u22.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~jammy_amd64.deb pigsty 0.0.8 2.7MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~jammy_amd64.deb
-@ u22.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~jammy_arm64.deb pigsty 0.0.8 2.6MiB https://repo.pigsty.io/apt/pgsql/jammy/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~jammy_arm64.deb
-@ u24.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~noble_amd64.deb pigsty 0.0.8 2.7MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~noble_amd64.deb
-@ u24.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~noble_arm64.deb pigsty 0.0.8 2.6MiB https://repo.pigsty.io/apt/pgsql/noble/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~noble_arm64.deb
-@ u26.x86_64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~resolute_amd64.deb pigsty 0.0.8 2.7MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~resolute_amd64.deb
-@ u26.aarch64 14 postgresql-14-pinyin postgresql-14-pinyin_0.0.8-1PGSTY~resolute_arm64.deb pigsty 0.0.8 2.5MiB https://repo.pigsty.io/apt/pgsql/resolute/pool/main/p/pg-pinyin/postgresql-14-pinyin_0.0.8-1PGSTY~resolute_arm64.deb
 {{< /pgext_matrix >}}
 
 ## Build
@@ -175,27 +159,27 @@ pig install pg_pinyin;          # Install for current active PG version
 ```
 
 ```bash {tab="pig" value="pig"}
+pig ext install -y pg_pinyin -v 19  # PG 19
 pig ext install -y pg_pinyin -v 18  # PG 18
 pig ext install -y pg_pinyin -v 17  # PG 17
 pig ext install -y pg_pinyin -v 16  # PG 16
 pig ext install -y pg_pinyin -v 15  # PG 15
-pig ext install -y pg_pinyin -v 14  # PG 14
 ```
 
 ```bash {tab="dnf" value="dnf"}
+dnf install -y pg_pinyin_19       # PG 19
 dnf install -y pg_pinyin_18       # PG 18
 dnf install -y pg_pinyin_17       # PG 17
 dnf install -y pg_pinyin_16       # PG 16
 dnf install -y pg_pinyin_15       # PG 15
-dnf install -y pg_pinyin_14       # PG 14
 ```
 
 ```bash {tab="apt" value="apt"}
+apt install -y postgresql-19-pinyin   # PG 19
 apt install -y postgresql-18-pinyin   # PG 18
 apt install -y postgresql-17-pinyin   # PG 17
 apt install -y postgresql-16-pinyin   # PG 16
 apt install -y postgresql-15-pinyin   # PG 15
-apt install -y postgresql-14-pinyin   # PG 14
 ```
 
 
@@ -208,6 +192,10 @@ CREATE EXTENSION pg_pinyin;
 ## Usage
 
 Sources:
+
+- [Upstream source](https://github.com/aiyou178/pg_pinyin/releases/tag/v0.0.9)
+- [Upstream source](https://github.com/aiyou178/pg_pinyin/blob/v0.0.9/readme.md)
+- [Upstream source](https://github.com/aiyou178/pg_pinyin/blob/v0.0.9/pg_pinyin--0.0.8--0.0.9.sql)
 
 - [pg_pinyin v0.0.8 README](https://github.com/aiyou178/pg_pinyin/blob/v0.0.8/readme.md)
 - [pg_pinyin v0.0.8 control file](https://github.com/aiyou178/pg_pinyin/blob/v0.0.8/pg_pinyin.control)
@@ -272,3 +260,11 @@ If pg_search is absent, the same entry point is installed as an error-reporting 
 ### Operational Notes
 
 The extension ships generated character and word dictionaries in its pinyin schema. Treat those tables as extension-managed data rather than application tables. Romanization is normalization, not translation, and ambiguous or domain-specific readings may require application-side review.
+
+### 0.0.9 query modes and batch input
+
+The current release requires pgrx 0.20.0-compatible servers and headers: PostgreSQL 15.20, 16.16, 17.12 or 18.7 and later minors. PostgreSQL 14 is removed; 19 RC2 is experimental. Reconnect after replacing the library and run ALTER EXTENSION pg_pinyin UPDATE TO '0.0.9'. This supersedes the older compatibility paragraph.
+
+Explicit apostrophes preserve syllable boundaries such as xi'an. pinyin_regex_phrase_mode adds opt-in full, initials, autocomplete and auto modes; pinyin_phrase provides exact native term/phrase queries for plain syllable fields. Use a mode matching the field encoding and user intent. pg_search remains optional and its native phrase APIs must be available for that integration.
+
+pinyin_word_romanize_batch(text[]) accepts independent plain-text documents with NULL and optional suffix handling. Use the documented COPY staging/batch workflow for imports. Embedded Rust pattern parsers are immutable and parallel safe without runtime SPI; this does not imply every dictionary-dependent romanization function has the same contract. Existing defaults remain available; malformed explicit-mode input raises errors rather than searching a silently truncated prefix.

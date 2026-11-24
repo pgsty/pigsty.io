@@ -11,10 +11,10 @@ weight: 2100
     <div class="ext-card__title">main/pg_search</div>
     <div class="ext-card__desc">https://github.com/paradedb/paradedb/tree/main/pg_search</div>
   </a>
-  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_search-0.26.6.tar.gz">
+  <a class="ext-card ext-card--source" href="https://repo.pigsty.io/ext/src/pg_search-0.27.0.tar.gz">
     <div class="ext-card__kicker">Source</div>
-    <div class="ext-card__title">pg_search-0.26.6.tar.gz</div>
-    <div class="ext-card__desc">pg_search-0.26.6.tar.gz</div>
+    <div class="ext-card__title">pg_search-0.27.0.tar.gz</div>
+    <div class="ext-card__desc">pg_search-0.27.0.tar.gz</div>
   </a>
 </div>
 
@@ -25,7 +25,7 @@ weight: 2100
 
 | **Package** | **Version** | **Category** | **License** | **Language** |
 |:---------------------------------------------------:|:-------:|:--------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| [**`pg_search`**](/ext/e/pg_search) | `0.26.6` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
+| [**`pg_search`**](/ext/e/pg_search) | `0.27.0` | <a class="ext-badge ext-badge--cate fts" href="/ext/cate/fts">FTS</a> | <a class="ext-badge ext-badge--license agpl30" href="/ext/license#agpl30">AGPL-3.0</a> | <a class="ext-badge ext-badge--lang rust" href="/ext/language#rust">Rust</a> |
 {.ext-table .wide .expand}
 
 |  ID   | **Extension** | **Bin** | **Lib** | **Load** | **Create** | **Trust** | **Reloc** | **Schema** |
@@ -45,30 +45,30 @@ weight: 2100
 
 | Type | Repo | Version | PG Ver | Package | Deps |
 |:----:|:----:|:----:|:------:|:--------:|:----:|
-| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.26.6` | {{< pgvers "18,17,16,15" >}} | `pg_search` | `vector` |
+| [**EXT**](/ext/list#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.27.0` | {{< pgvers "18,17,16,15" >}} | `pg_search` | `vector` |
 | [**RPM**](/ext/rpm#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.26.6` | {{< pgvers "18,17,16,15" >}} | `pg_search_$v` | `pgvector_$v` |
 | [**DEB**](/ext/deb#fts) | <a class="ext-badge ext-badge--repo pigsty" href="/ext/repo#pigsty">PIGSTY</a> | `0.26.6` | {{< pgvers "18,17,16,15" >}} | `postgresql-$v-pg-search` | `postgresql-$v-pgvector` |
 {.ext-table .wide .expand}
 
 {{< pgext_matrix >}}
-| **OS / PG** | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **OS / PG** | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| el8.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| el8.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| el9.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| el9.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| el10.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| el10.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| d12.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| d12.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| d13.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| d13.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u22.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u22.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u24.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u24.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u26.x86_64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
-| u26.aarch64 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | N/A PIGSTY - 0 |
+| el8.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| el8.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| el9.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| el9.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| el10.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| el10.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| d12.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| d12.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| d13.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| d13.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u22.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u22.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u24.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u24.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u26.x86_64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
+| u26.aarch64 | N/A PIGSTY - 0 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 | AVAIL PIGSTY 0.26.6 1 |
 @ el8.x86_64 18 pg_search_18 pg_search_18-0.26.6-1PGSTY.el8.x86_64.rpm pigsty 0.26.6 58.0MiB https://repo.pigsty.io/yum/pgsql/el8.x86_64/pg_search_18-0.26.6-1PGSTY.el8.x86_64.rpm
 @ el8.aarch64 18 pg_search_18 pg_search_18-0.26.6-1PGSTY.el8.aarch64.rpm pigsty 0.26.6 54.5MiB https://repo.pigsty.io/yum/pgsql/el8.aarch64/pg_search_18-0.26.6-1PGSTY.el8.aarch64.rpm
 @ el9.x86_64 18 pg_search_18 pg_search_18-0.26.6-1PGSTY.el9.x86_64.rpm pigsty 0.26.6 59.5MiB https://repo.pigsty.io/yum/pgsql/el9.x86_64/pg_search_18-0.26.6-1PGSTY.el9.x86_64.rpm
@@ -197,6 +197,17 @@ CREATE EXTENSION pg_search CASCADE;  -- requires: vector
 
 Sources:
 
+- [Official source](https://www.paradedb.com/docs/project/changelog/0.27.0.md)
+- [Official source](https://api.pgxn.org/src/pg_search/pg_search-0.27.0/pg_search/pg_search.control)
+- [Official source](https://api.pgxn.org/src/pg_search/pg_search-0.27.0/Cargo.toml)
+
+- [0.26.8 changelog](https://www.paradedb.com/docs/project/changelog/0.26.8.md)
+- [pg_search 0.26.8 README](https://api.pgxn.org/src/pg_search/pg_search-0.26.8/pg_search/README.md)
+- [pg_search 0.26.8 control](https://api.pgxn.org/src/pg_search/pg_search-0.26.8/pg_search/pg_search.control)
+- [0.26.7 to 0.26.8 SQL](https://api.pgxn.org/src/pg_search/pg_search-0.26.8/pg_search/sql/pg_search--0.26.7--0.26.8.sql)
+- [Upstream source](https://api.pgxn.org/src/pg_search/pg_search-0.26.7/docs/project/changelog/0.26.7.mdx)
+- [Upstream source](https://api.pgxn.org/src/pg_search/pg_search-0.26.7/pg_search/pg_search.control)
+
 - [0.26.6 changelog](https://github.com/paradedb/paradedb/blob/v0.26.6/docs/project/changelog/0.26.6.mdx)
 - [pg_search 0.26.6 control](https://github.com/paradedb/paradedb/blob/v0.26.6/pg_search/pg_search.control)
 - [pg_search 0.26.6 Cargo.toml](https://github.com/paradedb/paradedb/blob/v0.26.6/pg_search/Cargo.toml)
@@ -222,7 +233,7 @@ Sources:
 - [Query vectors](https://github.com/paradedb/paradedb/blob/v0.25.11/docs/documentation/vector/querying.mdx)
 - [Hybrid-search overview](https://github.com/paradedb/paradedb/blob/v0.25.11/docs/documentation/hybrid/overview.mdx)
 
-`pg_search` 0.26.6 adds ParadeDB's full-text, structured, vector, and hybrid search index to PostgreSQL. Version 0.25 uses the `paradedb` index access method; the older `bm25` access-method name remains a compatibility alias. The extension requires `vector`, supports PostgreSQL 15-18 upstream, and must be loaded through `shared_preload_libraries`.
+`pg_search` 0.27.0 adds ParadeDB's full-text, structured, vector, and hybrid search index to PostgreSQL. Version 0.25 uses the `paradedb` index access method; the older `bm25` access-method name remains a compatibility alias. The extension requires `vector`, supports PostgreSQL 15-18 upstream, and must be loaded through `shared_preload_libraries`.
 
 ### Install and Build an Index
 
@@ -343,3 +354,25 @@ Version 0.26.5 enforces table permissions on standalone index-reading functions 
 ### Version 0.26.6
 
 Join Scan now supports top-K `ORDER BY` on the vector distance operators `<->`, `<=>`, and `<#>` for `INNER` and `SEMI` (`IN` / `EXISTS`) joins. Rank join also applies when a leaf has a single-table filter answered by the index, including row-level security policies, equality, `= ANY`, and range conditions. The release fixes a crash when `pdb.score()` appears with a scalar subquery or query parameter in a Join Scan select list, and `EXPLAIN` now warns when `RankJoinExec` is not used. Validate plans and top-K results after upgrading; package coordinates must be checked separately from upstream.
+
+### 0.26.7 partitioning and scores
+
+Skewed partition_by indexes now use heap ctid as a fallback to divide otherwise unsplittable partitions. Existing indexes need REINDEX to benefit. Explicitly including ctid in partition_by retains the old competing-column behavior and does not enable this fallback.
+
+Row-level security filters now contribute 0.0 consistently to pdb.score; an earlier plan-dependent constant is removed. This can change reported scores. Merge backpressure counts all visible segments, and builds/merges with more than 4 GiB of distinct string values in a segment are fixed. These changes do not remove the earlier 0.26 vector-format rebuild requirements.
+
+### 0.26.8 Foreground Merge Behaviour
+
+After a write successfully launches a background merger, the foreground write path now skips its own foreground merge. If the background merger cannot be launched, foreground merging remains the fallback. Apply the normal matching library, SQL-extension update and preload maintenance procedure; this release adds no new index-format migration.
+
+### Version 0.27.0: Upgrade and Query Changes
+
+Upgrade standbys before the primary. Community physical replicas can replay WAL, but queries using ParadeDB indexes on a read replica fail. After promotion, or restoration from a base backup taken on a standby, replicated ParadeDB indexes require `REINDEX INDEX`. Backups taken on the primary are unaffected. Earlier standby libraries cannot replay the new ParadeDB WAL records.
+
+Rebuild every existing vector index: 0.27.0 uses vector format 6 and refuses older formats. Replace the `vector_fields` index option with `quantization`; recreate indexes explicitly storing the removed option. Rename `max_leaf_size` to `target_leaf_size` using ALTER INDEX or recreation. Quantization defaults to `[1,1]`; zero disables it. The new default `replication = 2` assigns vectors to a second cluster and affects storage/build work; `replication = 1` disables that assignment.
+
+Whole-row bare searches now cover indexed fields rather than implicitly targeting the key. Field-specific builders need an indexed column; use `body @@@ pdb.term('postgres')`, not a whole-row term builder. Direct ltree indexing is deprecated; the documented alternative is a separate GiST index with bitmap intersection.
+
+`paradedb.mpp_queue_size` is now a byte budget, default 8MB, and `paradedb.mpp_request_timeout` is removed. `paradedb.vector_cluster_max_probe` is an absolute work budget, default 100. `paradedb.max_term_set_size` defaults to 262144; excessive term sets error. Review saved settings before rollout.
+
+New `pdb.expand` synonym rules apply at query time, and `pdb.explain_score` returns a JSONB score explanation. L2 and inner-product vectors above approximately 6.5e18 magnitude are rejected, including during REINDEX; finite cosine vectors remain accepted. Prebuilt upstream binaries require PostgreSQL 15.20, 16.16, 17.12 or 18.7 or later within those majors. These upstream requirements do not imply that the catalog's RPM/DEB packages have already been updated.

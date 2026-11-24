@@ -3,7 +3,7 @@ title: PG Extension Catalog
 linkTitle: PG Extension Catalog
 icon: fas fa-puzzle-piece
 description: >
-  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 625 PG ecosystem extensions for out-of-the-box use.
+  Extensions are the soul of PostgreSQL. Pigsty builds, packages, collects, and integrates 627 PG ecosystem extensions for out-of-the-box use.
 weight: 100
 outputs:
   - HTML
@@ -15,7 +15,7 @@ cascade:
 
 Pigsty provides the following three pieces of infrastructure to help users harness the collaborative superpowers of the PostgreSQL extension ecosystem:
 
-- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**625 packaged extensions**](/ext/list)
+- [**Packaged Extension Catalog**](/ext/list): Browse detailed information, usage, metadata, download links and docs for [**627 packaged extensions**](/ext/list)
 - [**Extension Repository**](/docs/repo/pgsql): Get pre-built RPM/DEB binary packages, available on [**16 Linux systems**](/ext/os)
 - [**Package Manager**](https://pig.pgsty.com): Use the [`pig`](https://pig.pgsty.com) CLI tool to abstract away OS and architecture differences
 
@@ -34,7 +34,7 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 ## Key Features
 
-- **Quantity**: Unparalleled extension count: **625 packaged extensions**, the most in the PG extension ecosystem
+- **Quantity**: Unparalleled extension count: **627 packaged extensions**, the most in the PG extension ecosystem
 - **Quality**: Native Linux RPM/DEB packages, fully compatible with PGDG packaging standards
 - **Ease of Use**: Provides the [**`pig`**](https://pig.pgsty.com) package manager, abstracting away OS and architecture differences for out-of-the-box use
 - **Compatibility**: Extensions are fully compatible with PGDG packaging standards, seamlessly usable with PGDG repositories
@@ -46,11 +46,11 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 ## Extension Statistics
 
-| **Type** | **All** | **PGDG** | **PIGSTY** | **CONTRIB** | | **PG18** | **PG17** | **PG16** | **PG15** | **PG14** |
+| **Type** | **All** | **PGDG** | **PIGSTY** | **CONTRIB** | | **PG19** | **PG18** | **PG17** | **PG16** | **PG15** |
 |:------:|:------:|:------:|:------:|:------:|:---:|:------:|:------:|:------:|:------:|:------:|
-| **ALL** | 625 | 147 | 448 | 71 | | 616 | 603 | 585 | 552 | 525 |
-| **EL** | 624 | 144 | 409 | 71 | | 615 | 602 | 584 | 551 | 525 |
-| **Debian** | 618 | 114 | 433 | 71 | | 610 | 596 | 579 | 547 | 523 |
+| **ALL** | 627 | 147 | 448 | 73 | | 515 | 619 | 604 | 586 | 553 |
+| **EL** | 626 | 144 | 409 | 73 | | 449 | 615 | 602 | 586 | 556 |
+| **Debian** | 620 | 114 | 433 | 73 | | 441 | 610 | 596 | 581 | 552 |
 {.ext-table .wide .expand}
 
 > See: [Extension List](/ext/list), [RPM List](/ext/rpm), [DEB List](/ext/deb), [Repository](/ext/repo)
@@ -98,14 +98,14 @@ Everything can be solved with PostgreSQL! Check out our blog post: [**PostgreSQL
 
 | **System** | **Version** | **x86_64** | **aarch64** | **PG Ver** |
 |:------:|:------:|:----------:|:-----------:|:--------:|
-| `RockyLinux 8` | `8` | [`el8.x86_64`](/ext/os/el8.x86_64) | [`el8.aarch64`](/ext/os/el8.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `RockyLinux 9` | `9` | [`el9.x86_64`](/ext/os/el9.x86_64) | [`el9.aarch64`](/ext/os/el9.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `RockyLinux 10` | `10` | [`el10.x86_64`](/ext/os/el10.x86_64) | [`el10.aarch64`](/ext/os/el10.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `Debian 12` | `12` | [`d12.x86_64`](/ext/os/d12.x86_64) | [`d12.aarch64`](/ext/os/d12.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `Debian 13` | `13` | [`d13.x86_64`](/ext/os/d13.x86_64) | [`d13.aarch64`](/ext/os/d13.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `Ubuntu 22.04` | `22.04` | [`u22.x86_64`](/ext/os/u22.x86_64) | [`u22.aarch64`](/ext/os/u22.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `Ubuntu 24.04` | `24.04` | [`u24.x86_64`](/ext/os/u24.x86_64) | [`u24.aarch64`](/ext/os/u24.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
-| `Ubuntu 26.04` | `26.04` | [`u26.x86_64`](/ext/os/u26.x86_64) | [`u26.aarch64`](/ext/os/u26.aarch64) | {{< pgvers "18,17,16,15,14" >}} |
+| `RockyLinux 8` | `8` | [`el8.x86_64`](/ext/os/el8.x86_64) | [`el8.aarch64`](/ext/os/el8.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `RockyLinux 9` | `9` | [`el9.x86_64`](/ext/os/el9.x86_64) | [`el9.aarch64`](/ext/os/el9.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `RockyLinux 10` | `10` | [`el10.x86_64`](/ext/os/el10.x86_64) | [`el10.aarch64`](/ext/os/el10.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `Debian 12` | `12` | [`d12.x86_64`](/ext/os/d12.x86_64) | [`d12.aarch64`](/ext/os/d12.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `Debian 13` | `13` | [`d13.x86_64`](/ext/os/d13.x86_64) | [`d13.aarch64`](/ext/os/d13.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `Ubuntu 22.04` | `22.04` | [`u22.x86_64`](/ext/os/u22.x86_64) | [`u22.aarch64`](/ext/os/u22.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `Ubuntu 24.04` | `24.04` | [`u24.x86_64`](/ext/os/u24.x86_64) | [`u24.aarch64`](/ext/os/u24.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
+| `Ubuntu 26.04` | `26.04` | [`u26.x86_64`](/ext/os/u26.x86_64) | [`u26.aarch64`](/ext/os/u26.aarch64) | {{< pgvers "19,18,17,16,15" >}} |
 {.ext-table .wide .expand}
 
 > See: [Operating System](/ext/os), [RPM List](/ext/rpm), [DEB List](/ext/deb)
